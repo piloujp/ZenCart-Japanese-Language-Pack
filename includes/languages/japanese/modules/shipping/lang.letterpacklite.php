@@ -1,0 +1,7 @@
+<?php
+$define = [
+	'MODULE_SHIPPING_LETTERPACKLITE_TEXT_TITLE' => 'レターパックライト',
+	'MODULE_SHIPPING_LETTERPACKLITE_TEXT_DESCRIPTION' => 'レターパックライト',
+	'MODULE_SHIPPING_LETTERPACKLITE_TEXT_WAY' => '日本郵便局',
+];
+return $define;

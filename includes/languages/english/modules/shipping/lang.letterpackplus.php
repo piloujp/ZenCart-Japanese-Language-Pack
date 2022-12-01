@@ -1,0 +1,7 @@
+<?php
+$define = [
+	'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE' => 'LetterPack Plus',
+	'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DESCRIPTION' => 'LetterPack Plus',
+	'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_WAY' => 'All Japan for 520Yens',
+];
+return $define;
