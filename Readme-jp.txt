@@ -49,6 +49,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 
 - 以下に示すように、すべての新しいファイルをカートにコピーします：
 
+	'...(\admin-XX to YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.php
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\lang.japanese.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\' すべてのフォルダ コンテンツ
 

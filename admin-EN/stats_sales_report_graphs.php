@@ -111,30 +111,30 @@ for ($i = 0; $i < $report->size; $i++) {
   echo "           ['";
 
 if ($_SESSION['language'] == 'japanese') {
-  if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 5) {
-    echo substr($report->info[$i]['text'], 0, 1);
+  if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 4) {
+    echo substr($report->info[$i]['text'], 0, 4);
   } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
     echo substr($report->info[$i]['text'], 0, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
-    echo rtrim(substr($report->info[$i]['text'], 5, 5), '/');
+    echo substr($report->info[$i]['text'], 5, 5) . '～' . substr($report->info[$i]['text'], 18, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
-    echo ltrim(substr($report->info[$i]['text'], 0, 2), '0');
+    echo preg_replace('/0(?=[0-9])/','',substr($report->info[$i]['text'], 0, 2));
   } elseif ($report->size > 5) {
-    echo ltrim(substr($report->info[$i]['text'], 8, 2), '0');
+    echo substr($report->info[$i]['text'], 5, 5);
   } else {
-    echo substr($report->info[$i]['text'], 0, 5);
+    echo substr($report->info[$i]['text'], 5, 5);
   }
 } else {
   if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 5) {
-    echo substr($report->info[$i]['text'], 0, 1);
+    echo substr($report->info[$i]['text'], 0, 4);
   } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
     echo substr($report->info[$i]['text'], 0, 3);
   } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
-    echo rtrim(substr($report->info[$i]['text'], 0, 5), '/');
+    echo substr($report->info[$i]['text'], 0, 5) . '-' . substr($report->info[$i]['text'], 13, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
-    echo ltrim(substr($report->info[$i]['text'], 0, 2), '0');
+    echo preg_replace('/0(?=[0-9])/','',substr($report->info[$i]['text'], 0, 2));
   } elseif ($report->size > 5) {
-    echo rtrim(substr($report->info[$i]['text'], 3, 2), '/');
+    echo substr($report->info[$i]['text'], 0, 5);
   } else {
     echo substr($report->info[$i]['text'], 0, 5);
   }

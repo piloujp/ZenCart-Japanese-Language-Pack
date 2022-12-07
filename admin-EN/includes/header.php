@@ -200,8 +200,8 @@ if (defined('MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN') && MODULE_ORDER_TOTAL_G
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <?php
-        echo $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time());
-        echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
+		echo ($_SESSION['language'] == 'japanese' AND function_exists('datefmt_create')) ? zen_set_local_calendar()->format(time()) : $zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time());
+//        echo '&nbsp;' . date("O", time()) . ' GMT';  // time zone
         echo '&nbsp;[' . $_SERVER['REMOTE_ADDR'] . ']'; // current admin user's IP address
         echo '<br>';
         echo gethostname();
