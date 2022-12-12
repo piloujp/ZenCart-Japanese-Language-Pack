@@ -159,10 +159,10 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 -----------------
 日本語とは関係なく、修正が必要なファイルが他に二つあります。これらのファイルは v1.5.8 のオリジナル リリースのものであり、新しいリリースで更新される可能性があります。
 
-	'...(\admin-XX\includes\modules\dashboard_widgets\OrderStatusDashboardWidget.php'
+	'...\admin-XX\includes\modules\dashboard_widgets\OrderStatusDashboardWidget.php'
 	管理者のメイン ページの左下にある注文ステータス カテゴリをクリックすると、常に完全な注文リストが表示されます。修正後、選択したステータス カテゴリの注文のみが取得されます。
 	
-	'...(\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
+	'...\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	新規注文ボックスの管理者メイン ページの右上で、顧客名が２０文字を超える場合にカットされます。 切断を最小限に抑えるために、これを３０に増やしました。
 
 バーションヒストリー：
