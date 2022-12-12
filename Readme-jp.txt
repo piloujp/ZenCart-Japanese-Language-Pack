@@ -164,3 +164,21 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	
 	'...(\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	新規注文ボックスの管理者メイン ページの右上で、顧客名が２０文字を超える場合にカットされます。 切断を最小限に抑えるために、これを３０に増やしました。
+
+バーションヒストリー：
+--------------
+v1.0.0 - 23 Nov 2022
+オリジナルリリース。
+
+v1.0.1 - 29 Nov 2022
+readme ファイルの日本語版を追加しました。
+英語の readme ファイルの修正。
+ディレクトリ「dashboard_widgets」を適切な場所に移動しました。
+
+v1.1.0 - 7 Dec 2022
+販売統計グラフの凡例にいくつかの修正を加えて、グラフ オプションに関係なく正しく表示されるようにしました。
+日本の地方暦（元号付き）を提供する関数「zen_set_local_calendar()」を追加しました。
+	デフォルトでは、管理ヘッダーの日付は次のように表示されます： 2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00
+	この IntlDate 形式を使用して：'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ'。この形式は、
+	'...YourAdminFolderName\includes\header.php' の 203 行目に関数 zen_set_local_calendar()
+	の引数として新しい文字列を追加することで変更できます。

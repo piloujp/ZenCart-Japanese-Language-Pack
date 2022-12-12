@@ -142,64 +142,65 @@ class sagawa extends base {
       global $db;
       global $slength, $swidth, $sheight, $ssize;
 
-// Begining of parcel size calculation
-$cube = $maxlength = $maxwidth = $maxheight = $defitems = 0;
-// Retrieving size
-for($x = 0 ; $x < count($order->products) ; $x++ ) {
-   $t = $order->products[$x]['id'] ;
-   $dim_query = "select products_length, products_height, products_width from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_height > '0' and  products_width > '0' ";
-   $dims = $db->Execute($dim_query);
-   if ($dims->RecordCount() > 0) {
-   // re-orientate //
-   $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
-   $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
+	  if (empty($order->delivery['zone_id']) == true) { return NULL;}
 
-   $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
-   $maxheight = $maxheight + $dims->fields['products_height'];
+      // Begining of parcel size calculation
+      $cube = $maxlength = $maxwidth = $maxheight = $defitems = 0;
+      // Retrieving size
+      for($x = 0 ; $x < count($order->products) ; $x++ ) {
+         $t = $order->products[$x]['id'] ;
+         $dim_query = "select products_length, products_height, products_width from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_height > '0' and  products_width > '0' ";
+         $dims = $db->Execute($dim_query);
+         if ($dims->RecordCount() > 0) {
+         // re-orientate //
+         $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
+         $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
 
- 	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
- 	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
- 	 if ($dims->fields['products_height'] > $maxheight) { $maxheight = $dims->fields['products_height'] ; }
- 	 }
-   else { // get track of default cubes for non assigned items //
- 	$defitems = $defitems + $order->products[$x]['qty']  ;
- 	    if($maxwidth == 0) {$maxwidth = $swidth ;}
- 	    if($maxheight == 0) {$maxheight = $sheight ;}
- 	    if($maxlength == 0) {$maxlength = $slength ;}
+         $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
+         $maxheight = $maxheight + $dims->fields['products_height'];
 
- 	}
-  }
+       	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
+       	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
+       	 if ($dims->fields['products_height'] > $maxheight) { $maxheight = $dims->fields['products_height'] ; }
+       	 }
+         else { // get track of default cubes for non assigned items //
+			$defitems = $defitems + $order->products[$x]['qty']  ;
+       	    if($maxwidth == 0) {$maxwidth = $swidth ;}
+       	    if($maxheight == 0) {$maxheight = $sheight ;}
+       	    if($maxlength == 0) {$maxlength = $slength ;}
+       	 }
+        }
 
-//  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
-//  for this rather than the defaults because a small default still needs to be stacked by height
-    $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
-//    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
+      //  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
+      //  for this rather than the defaults because a small default still needs to be stacked by height
+          $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
+      //    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
 
-//  calculate our height (assumes products are stacked one atop the other)
-//    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
-    $x = round($maxheight,1);
+      //  calculate our height (assumes products are stacked one atop the other)
+      //    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
+          $x = round($maxheight,1);
 
-    if($x > 240 ) {  //  maximum allowed
-    $maxlength = 240 ;   // so we set our length to maximum allowed
-    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
-    }
+          if($x > 240 ) {  //  maximum allowed
+          $maxlength = 240 ;   // so we set our length to maximum allowed
+          $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
+          }
 
-//  now find the shortest 2 sides (for girth)
-//    $var = array($x, $maxlength, $maxwidth) ;
-//    sort($var) ;
-//    if(($var[0] * 1) + ($var[1] * 1) + $var[2] > 240 ) {   if($debug == 1) { echo "Girth exceeded1: $shipping_num_boxes " ; print_r($var) ;}
-//    $maxwidth = intval($var[1] / 2) ;  $shipping_num_boxes++ ; // chop it in half and send it two boxes. /
-//    $x = $var[0] ;
-//    }
+      //  now find the shortest 2 sides (for girth)
+      //    $var = array($x, $maxlength, $maxwidth) ;
+      //    sort($var) ;
+      //    if(($var[0] * 1) + ($var[1] * 1) + $var[2] > 240 ) {   if($debug == 1) { echo "Girth exceeded1: $shipping_num_boxes " ; print_r($var) ;}
+      //    $maxwidth = intval($var[1] / 2) ;  $shipping_num_boxes++ ; // chop it in half and send it two boxes. /
+      //    $x = $var[0] ;
+      //    }
 
-//  use our new parcel dimensions
-   $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength; $ssize = $slength + $swidth + $sheight;
+      //  use our new parcel dimensions
+         $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength; $ssize = $slength + $swidth + $sheight;
 
-//  save it for display purposes on quote form (this way I don't need to hack another system file)
-//$_SESSION['swidth'] = $swidth ; $_SESSION['sheight'] = $sheight ;
-//$_SESSION['slength'] = $slength ; $_SESSION['boxes'] = $shipping_num_boxes ;  
+      //  save it for display purposes on quote form (this way I don't need to hack another system file)
+      //$_SESSION['swidth'] = $swidth ; $_SESSION['sheight'] = $sheight ;
+      //$_SESSION['slength'] = $slength ; $_SESSION['boxes'] = $shipping_num_boxes ;  
 
-//return to original file      
+      //return to original file      
 
       $this->quotes = array('id' => $this->code,
                             'module' => $this->title);

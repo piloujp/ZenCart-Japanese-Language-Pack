@@ -164,3 +164,20 @@ There are two other files that needed modifications but had nothing to do with J
 	
 	'...(\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	On the right up side of admin main page in new orders box, customer name is cut when longer than 20 characters. This was increased to 30 to minimise cutting.
+
+Versions history:
+----------------
+v1.0.0 - 23 Nov 2022
+Original release.
+
+v1.0.1 - 29 Nov 2022
+Added readme file japanese version.
+English readme file corrections.
+Moved directory 'dashboard_widgets' to the right place.
+
+v1.1.0 - 7 Dec 2022
+Made some corrections to sale statistic graph legends so they display correctly whatever the graph option.
+Added an extra function 'zen_set_local_calendar()' providing local Japanese calendar with emperor era.
+	By default date in admin header is displayed like this: 2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00
+	using IntlDate format 'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ'. This format can be change by adding a new string
+	as an argument of function zen_set_local_calendar() at line 203 in '...YourAdminFolderName\includes\header.php'.

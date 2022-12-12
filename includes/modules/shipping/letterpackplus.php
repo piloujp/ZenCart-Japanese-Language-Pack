@@ -86,60 +86,65 @@
       global $order, $db;
       global $slength, $swidth, $sheight, $shipping_weight;
 	  
-// Begining of parcel size calculation
-//      global $slength, $swidth, $sheight;
-//      global $order, $db;
-$cube = $maxlength = $maxwidth = $maxheight = $minlength = $minheight = $defitems = 0;
-// Retrieving size
-$x=0;
-while (isset($order->products[$x])) {
-   $t = $order->products[$x]['id'] ;
-   $dim_query = "select products_length, products_height, products_width, products_weight from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_weight > '0' and  products_width > '0' ";
-   $dims = $db->Execute($dim_query);
-   if ($dims->RecordCount() > 0) {
-   // re-orientate //
-   $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
-   $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
-
-   $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
-
- 	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
- 	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
- 	 if ($dims->fields['products_height'] * $order->products[$x]['qty'] > $maxheight) { $maxheight = $dims->fields['products_height'] * $order->products[$x]['qty']; }
- 	 if ($dims->fields['products_height'] > $minheight) { $minheight = $dims->fields['products_height'] ; }
- 	 if ($dims->fields['products_length'] > $minlength) { $minlength = $dims->fields['products_length'] ; }
-
- 	 }
-   else { // get track of default cubes for non assigned items //
- 	$defitems = $defitems + $order->products[$x]['qty']  ;
- 	    if($maxwidth == 0) {$maxwidth = $swidth ;}
- 	    if($maxheight == 0) {$maxheight = $sheight ;}
- 	    if($maxlength == 0) {$maxlength = $slength ;}
-
- 	}
-	$x++;
-}
-
-//  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
-//  for this rather than the defaults because a small default still needs to be stacked by height
-    $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
-//    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
-
-//  calculate our height (assumes products are stacked one atop the other)
-//    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
-    $x = round($maxheight,1);
-
-    if($x > 5.5 && $minheight <= 5.5 && $minlength <= 30) {  //  maximum allowed
-    $maxlength = 30 ;   // so we set our length to maximum allowed
-    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
-    }
-
-//  use our new parcel dimensions
-   $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength;
-// end of calculation
-
      if (!$this->enabled) return;
       if (IS_ADMIN_FLAG === true) return;
+
+/*      // disable for some master_categories_id 
+      if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
+          $this->enabled = false; 
+      }
+*/
+      // Begining of parcel size calculation
+      //      global $slength, $swidth, $sheight;
+      //      global $order, $db;
+      $cube = $maxlength = $maxwidth = $maxheight = $minlength = $minheight = $defitems = 0;
+      // Retrieving size
+      $x=0;
+      while (isset($order->products[$x])) {
+         $t = $order->products[$x]['id'] ;
+         $dim_query = "select products_length, products_height, products_width, products_weight from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_weight > '0' and  products_width > '0' ";
+         $dims = $db->Execute($dim_query);
+         if ($dims->RecordCount() > 0) {
+         // re-orientate //
+         $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
+         $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
+
+         $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
+
+       	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
+       	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
+       	 if ($dims->fields['products_height'] * $order->products[$x]['qty'] > $maxheight) { $maxheight = $dims->fields['products_height'] * $order->products[$x]['qty']; }
+       	 if ($dims->fields['products_height'] > $minheight) { $minheight = $dims->fields['products_height'] ; }
+       	 if ($dims->fields['products_length'] > $minlength) { $minlength = $dims->fields['products_length'] ; }
+
+       	 }
+         else { // get track of default cubes for non assigned items //
+			$defitems = $defitems + $order->products[$x]['qty']  ;
+       	    if($maxwidth == 0) {$maxwidth = $swidth ;}
+       	    if($maxheight == 0) {$maxheight = $sheight ;}
+       	    if($maxlength == 0) {$maxlength = $slength ;}
+       	 }
+      	 $x++;
+		}
+
+      //  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
+      //  for this rather than the defaults because a small default still needs to be stacked by height
+          $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
+      //    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
+
+      //  calculate our height (assumes products are stacked one atop the other)
+      //    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
+          $x = round($maxheight,1);
+
+          if($x > 5.5 && $minheight <= 5.5 && $minlength <= 30) {  //  maximum allowed
+          $maxlength = 30 ;   // so we set our length to maximum allowed
+          $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
+          }
+
+      //  use our new parcel dimensions
+         $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength;
+      // end of calculation
+
       // disable if too big 
       if (IS_ADMIN_FLAG == false && ($slength > 31 || $swidth > 25 || $sheight > 5.5 || ($slength+$swidth+$sheight > 61.5) || $shipping_weight > 4)) { 
           $this->enabled = false;
