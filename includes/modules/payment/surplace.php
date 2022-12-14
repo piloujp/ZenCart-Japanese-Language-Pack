@@ -45,6 +45,11 @@
      * @var int
      */
     public $sort_order;
+    /**
+     * $email_footer is used to provide specific instructions of this module use to user by email.
+     * @var string
+     */
+    public $email_footer;
 
 // class constructor
     function __construct() {

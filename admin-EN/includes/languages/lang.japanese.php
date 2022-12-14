@@ -184,6 +184,7 @@ $define = [
     'ENTRY_LAST_NAME_ERROR' => '&nbsp;<span class="errorText">min ' . ENTRY_LAST_NAME_MIN_LENGTH . ' chars</span>',
     'ENTRY_LAST_NAME_KANA' => 'Last Name (furigana):',
     'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">min ' . ENTRY_LAST_NAME_MIN_LENGTH . ' chars</span>',
+    'ENTRY_NAME_KANA' => 'Reading: ',
     'ENTRY_NEWSLETTER' => 'Newsletter:',
     'ENTRY_NEWSLETTER_NO' => 'Unsubscribed',
     'ENTRY_NEWSLETTER_YES' => 'Subscribed',
