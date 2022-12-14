@@ -181,3 +181,11 @@ Added an extra function 'zen_set_local_calendar()' providing local Japanese cale
 	By default date in admin header is displayed like this: 2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00
 	using IntlDate format 'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ'. This format can be change by adding a new string
 	as an argument of function zen_set_local_calendar() at line 203 in '...YourAdminFolderName\includes\header.php'.
+
+v1.1.5 - 14 Dec 2022
+Important bug corrections to:
+- Shipping modules and zones database. Now working fine with shipping estimator. You must use JP_zones_updates.sql to update zones database.
+- Customers.php in admin. You can now update custoners data without any problem.
+Some typos corrections in languages files and readme files.
+Made new Japanese admin buttons. It was the last part not translated yet.
+Added furigana display under customers name in order details page.
