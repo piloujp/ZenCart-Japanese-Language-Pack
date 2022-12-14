@@ -142,9 +142,9 @@ if (!empty($action)) {
 
             if (ACCOUNT_DOB == 'true') {
                 if (checkdate(
-                    substr(zen_date_raw($customers_dob), 4, 2),
-                    substr(zen_date_raw($customers_dob), 6, 2),
-                    substr(zen_date_raw($customers_dob), 0, 4)
+                    (int)substr(zen_date_raw($customers_dob), 4, 2),
+                    (int)substr(zen_date_raw($customers_dob), 6, 2),
+                    (int)substr(zen_date_raw($customers_dob), 0, 4)
                 )) {
                     $entry_date_of_birth_error = false;
                 } else {
@@ -289,7 +289,7 @@ if (!empty($action)) {
                         'type' => 'stringIgnoreNull'
                     ),
                     array(
-                        'fieldName' => 'customers_firstname_kana',
+                        'fieldName' => 'entry_firstname_kana',
                         'value' => $customers_firstname_kana,
                         'type' => 'stringIgnoreNull'
                     ),
@@ -299,7 +299,7 @@ if (!empty($action)) {
                         'type' => 'stringIgnoreNull'
                     ),
                     array(
-                        'fieldName' => 'customers_lastname_kana',
+                        'fieldName' => 'entry_lastname_kana',
                         'value' => $customers_lastname_kana,
                         'type' => 'stringIgnoreNull'
                     ),
