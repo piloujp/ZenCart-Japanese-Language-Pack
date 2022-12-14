@@ -188,4 +188,4 @@ Important bug corrections to:
 - Customers.php in admin. You can now update custoners data without any problem.
 Some typos corrections in languages files and readme files.
 Made new Japanese admin buttons. It was the last part not translated yet.
-Added furigana display under customers name in order details page.
+Added furigana display under customers name in admin order details page.
