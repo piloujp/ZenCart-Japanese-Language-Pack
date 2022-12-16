@@ -703,7 +703,7 @@ if (!empty($action)) {
                                     $cInfo->customers_dob
                                 )),
                                 'maxlength="10" class="form-control" id="customers_dob" minlength="' . ENTRY_DOB_MIN_LENGTH . '"',
-                                true
+                                (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? true : false)
                             ); ?>
                         </div>
                     </div>

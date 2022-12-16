@@ -164,7 +164,7 @@ $define = [
     'ENTRY_COUNTRY' => '国名：',
     'ENTRY_COUNTRY_ERROR' => '',
     'ENTRY_DATE_OF_BIRTH' => '生年月日：',
-    'ENTRY_DATE_OF_BIRTH_ERROR' => '&nbsp;<span class="errorText">（記入例: 1980/05/21）</span>',
+    'ENTRY_DATE_OF_BIRTH_ERROR' => '&nbsp;<span class="errorText">（記入例： 1980/05/21）</span>',
     'ENTRY_DATE_PURCHASED' => '購入日：',
     'ENTRY_EMAIL_ADDRESS' => 'E-Mail アドレス：',
     'ENTRY_EMAIL_ADDRESS_CHECK_ERROR' => '&nbsp;<span class="errorText">このメールアドレスは不正です。</span>',
