@@ -124,10 +124,17 @@ function zen_get_country_zones($country_id)
 {
     global $db;
     $zones_array = array();
-    $zones = $db->Execute("SELECT zone_id, zone_name, zone_code
-                           FROM " . TABLE_ZONES . "
-                           WHERE zone_country_id = " . (int)$country_id . "
-                           ORDER BY zone_name");
+	if ($_SESSION['language'] == "japanese" AND $country_id == 107) {
+		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+							FROM " . TABLE_ZONES . "
+							WHERE zone_country_id = 107 AND  (zone_name NOT RLIKE '^[A-Z,a-z]')
+							ORDER BY zone_name");
+	} else {
+		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+							FROM " . TABLE_ZONES . "
+							WHERE zone_country_id = " . (int)$country_id . " AND (zone_name RLIKE '^[A-Z,a-z]')
+							ORDER BY zone_name");
+	}
     foreach ($zones as $zone) {
         $zones_array[] = [
             'id' => $zone['zone_id'],
