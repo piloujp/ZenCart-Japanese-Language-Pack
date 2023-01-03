@@ -55,7 +55,7 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 
 	'...\images\' all content.
 	
-	'...\includes\classes\_jppercel.php'
+	'...\includes\classes\_jpparcel.php'
 	'...\includes\classes\_sagawa.php'
 	'...\includes\classes\_yamato.php'
 	'...\includes\classes\_yupack.php'

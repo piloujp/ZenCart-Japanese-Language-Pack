@@ -55,7 +55,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 
 	'...\images\' すべてのフォルダ コンテンツ
 	
-	'...\includes\classes\_jppercel.php'
+	'...\includes\classes\_jpparcel.php'
 	'...\includes\classes\_sagawa.php'
 	'...\includes\classes\_yamato.php'
 	'...\includes\classes\_yupack.php'
