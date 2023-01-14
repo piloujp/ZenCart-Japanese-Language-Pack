@@ -159,10 +159,10 @@ Extra files corrections:
 -----------------------
 There are two other files that needed modifications but had nothing to do with Japanese, one correcting a bug and the other for cosmetic reason. These files are from the original release of v1.5.8 and might be updated on newer release.
 
-	'...\admin-XX\includes\modules\dashboard_widgets\OrderStatusDashboardWidget.php'
+	'...(\admin-XX\includes\modules\dashboard_widgets\OrderStatusDashboardWidget.php'
 	On the left down side of admin main page, when you click on any order status category it will always bring the full orders list. After correction you get only the orders from status category you choose.
 	
-	'...\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
+	'...(\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	On the right up side of admin main page in new orders box, customer name is cut when longer than 20 characters. This was increased to 30 to minimise cutting.
 
 Versions history:
