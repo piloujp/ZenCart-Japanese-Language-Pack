@@ -2,6 +2,7 @@
 $define = [
     'EMAIL_TEXT_SUBJECT' => 'ご注文ありがとうございます。',
     'EMAIL_TEXT_HEADER' => '注文確認書',
+    'EMAIL_TEXT_FROM' => ' 差出人 ',
     'EMAIL_THANKS_FOR_SHOPPING' => 'ご利用ありがとうございます。',
     'EMAIL_DETAILS_FOLLOW' => 'ご注文内容は以下の通りです。',
     'EMAIL_TEXT_ORDER_NUMBER' => 'ご注文番号:',
