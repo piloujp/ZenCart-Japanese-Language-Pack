@@ -131,7 +131,7 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 	'...\includes\templates\template_default\templates\tpl_modules_create_account.php'
 
 - EDIT modules (shipping, payment,order total) FILES only if you want their admin menus in Japanese.
-In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after you have to uninstall and re-install modules for changes to take effect.
+In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after, you have to uninstall and re-install modules for changes to take effect.
 There are actually 8 Shipping, 4 Payment and 3 Total_Order modules.
 
 
@@ -148,7 +148,7 @@ Other SQL files:
 ---------------
 ---------------
 'mysql_japanese_config.sql'
-It only does some configuration for Japanese tax, currency and other few things. I will recommend you to just have a look at it and do these config through Zen Cart admin interface. Be careful if you already have some data/config added in your database, you will need to tweak some sql query as numbers are not default anymore.
+It only does some configuration for Japanese tax, currency and other few things. I will recommend you to just have a look at it and do these config through Zen Cart admin interface. If you want to use these sql queries, be careful if you already have some data/config added in your database, you will need to tweak some sql query as numbers are not default anymore.
 What you have to set is mainly adding japanese language as default then japanese Yen as new default currency and adding japanese 10% VAT tax rate, class and necessary zones/geo zones. You might want to set minimum length for first name and last name to 1 as some japanese names can be written with one character only.
 
 'zencart1.5.8_structure_upgraded.sql'
@@ -189,3 +189,10 @@ Important bug corrections to:
 Some typos corrections in languages files and readme files.
 Made new Japanese admin buttons. It was the last part not translated yet.
 Added furigana display under customers name in admin order details page.
+
+v1.1.6 - 14 Jan 2023
+Modified customer.php so that dob field is required or not depending on field length setting in admin like for customer side.
+Typo corrections in language file relative to dob field.
+Added filter in function zen_get_country_zones to display only Japanese name for Japan zones when in Japanese and English names otherwise.
+Updated categories and rates for Japanese Post Class jpparcel.php. Class is ready for new Japan Post modules (coming soon).
+Renamed all files and variable from jppercel... to jpparcel... which includes module file and language files.
