@@ -49,7 +49,8 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 
 - COPY all NEW FILES to your cart, as listed below:
 
-	'...(\admin-XX to YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.php
+	'...(\admin-XX to YourAdminFolderName)\includes\extra_configures\function_zen_date_raw.php'
+	'...(\admin-XX to YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\lang.japanese.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\' all content.
 
@@ -59,6 +60,8 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 	'...\includes\classes\_sagawa.php'
 	'...\includes\classes\_yamato.php'
 	'...\includes\classes\_yupack.php'
+	
+	'...\includes\extra_configures\function_zen_date_raw.php'
 	
 	'...\includes\languages\lang.japanese.php'
 	'...\includes\languages\english\modules\' all content.

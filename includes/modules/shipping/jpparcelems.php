@@ -73,6 +73,12 @@ class jpparcelems extends base {
      * @var array
      */
     public $jpparcelems_countries_nbr;
+	    /**
+     * $country_code is country ISO 2 letters code EMS is shipping
+     * @var int
+     */
+    public $country_code;
+
     
   /**
    * constructor

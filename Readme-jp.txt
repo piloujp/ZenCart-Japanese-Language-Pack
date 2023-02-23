@@ -49,7 +49,8 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 
 - 以下に示すように、すべての新しいファイルをカートにコピーします：
 
-	'...(\admin-XX to YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.php
+	'...(\admin-XX to YourAdminFolderName)\includes\extra_configures\function_zen_date_raw.php'
+	'...(\admin-XX to YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\lang.japanese.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\' すべてのフォルダ コンテンツ
 
@@ -59,6 +60,8 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...\includes\classes\_sagawa.php'
 	'...\includes\classes\_yamato.php'
 	'...\includes\classes\_yupack.php'
+	
+	'...\includes\extra_configures\function_zen_date_raw.php'
 	
 	'...\includes\languages\lang.japanese.php'
 	'...\includes\languages\english\modules\' すべてのフォルダ コンテンツ
