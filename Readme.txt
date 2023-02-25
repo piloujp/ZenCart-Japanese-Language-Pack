@@ -1,4 +1,4 @@
-Zen Cart v1.5.8 Japanese language pack installation information (11-11-2022) by Pilou2.
+Zen Cart v1.5.8 Japanese language pack installation information (Original release 11-11-2022) by Pilou2.
 
 This language pack includes not only Japanese language files but although core files and database modifications adding possibility to use furigana, products dimension and barcode.
 This allows to use japanese Yamato express delivery, Nekopos, Sagawa express delivery, Japan Post Yupack, LetterPack Lite, LetterPack Plus and EMS services. Shipping, payment and order total modules files are included.
@@ -199,3 +199,10 @@ Typo corrections in language file relative to dob field.
 Added filter in function zen_get_country_zones to display only Japanese name for Japan zones when in Japanese and English names otherwise.
 Updated categories and rates for Japanese Post Class jpparcel.php. Class is ready for new Japan Post modules (coming soon).
 Renamed all files and variable from jppercel... to jpparcel... which includes module file and language files.
+
+V1.1.8 - 24 Feb 2023
+Added new shipping module International ePacket.
+Added zen_date_raw override function that accept any date format.
+Fix bug 'furigana not saved when creating account'.
+Fix bug when EMS oversized.
+Correction of few Zen Cart bugs not related to Japanese Pack but in files with modifications for Japanese Pack.
