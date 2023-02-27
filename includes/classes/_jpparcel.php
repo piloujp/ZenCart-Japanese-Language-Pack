@@ -35,6 +35,14 @@
 if ( !defined('JPPARCEL') ) {
   define('JPPARCEL', 1);
 
+$filename = "jpparcel.php"; 
+$folder = "/modules/shipping/";  // end with slash 
+$new_langfile = DIR_WS_LANGUAGES . $_SESSION['language'] . $folder .  "lang." . $filename; 
+if (file_exists($new_langfile)) {
+    global $languageLoader; 
+    $languageLoader->loadExtraLanguageFiles(DIR_FS_CATALOG . DIR_WS_LANGUAGES,  $_SESSION['language'], $filename, $folder); 
+}
+
 class _JpParcel {
     public $quote;
     public $DestCountryCode = NULL;
@@ -59,7 +67,7 @@ class _JpParcel {
     );
     // 小包郵便物の価格ランク: (最大重量(kg),第1地帯,第2地帯,第3地帯,第4地帯)
     public $a_price_parcel = array(
-    // 小形包装物:航空便 06-2022
+    // 小形包装物:航空便 06-2022 Small Packets Air 7 days
     'jpparcelairs'=>array(
       array(0.1, 350, 480, 510, 750),// 0.1kg以下,第1,第2,第3,第4地帯
       array(0.2, 450, 600, 680, 880),
@@ -82,7 +90,7 @@ class _JpParcel {
       array(1.9, 2150, 2640, 3570, 3090),
       array(2.0, 2250, 2760, 3740, 3220),
       ),
-    // 小形包装物:船便 06-2022
+    // 小形包装物:船便 06-2022 Small Packets Surface 2 to 3 months
     'jpparcelseas'=>array(
       array(0.10, 480, 480, 480, 480),// 0.1kg以下,第1,第2,第3,第4地帯
       array(0.25, 570, 570, 570, 570),
@@ -90,7 +98,7 @@ class _JpParcel {
       array(1.00,1010,1010,1010,1010),
       array(2.00,1600,1600,1600,1600),
       ),
-    // 国際eパケット 06-2022
+    // 国際eパケット 06-2022 International ePacket 7 days - tracking
     'jpparcelepack'=>array(
       array(0.1, 690, 790, 820, 1150),// 0.1kg以下,第1,第2,第3,第4地帯
       array(0.2, 780, 910, 1000, 1280),
@@ -113,7 +121,7 @@ class _JpParcel {
       array(1.9, 2310, 2950, 4060, 3490),
       array(2.0, 2400, 3070, 4240, 3620),
       ),
-    // 小包郵便物:航空小包 06-2022
+    // 小包郵便物:航空小包 06-2022 International Parcel Post 7 days - tracking
     'jpparcelair'=>array(
       array( 1, 2050, 2500, 3850, 4200, 4550),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2750, 3700, 6000, 6700, 7250),
@@ -146,7 +154,7 @@ class _JpParcel {
       array(29, 17850, 25650, 53600, 64700, 63050),
       array(30, 18350, 26300, 55200, 66700, 64850),
       ),
-    // 小包郵便物:船便小包 06-2022
+    // 小包郵便物:船便小包 06-2022 International Parcel Post Surface 2 - 3 months
     'jpparcelsea'=>array(
       array( 1, 1800, 2100, 2500, 2600, 2700),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2200, 2600, 3100, 3300, 3400),
@@ -179,7 +187,7 @@ class _JpParcel {
       array(29, 13000, 14200, 15500, 20300, 20400),
       array(30, 13400, 14600, 15900, 20900, 21000),
       ),
-	// 国際スピード郵便(EMS) 06-2022 extra charge zone 3 and 4
+	// 国際スピード郵便(EMS) 06-2022 extra charge zone 3 and 4 - EMS 4 days - tracking
     'jpparcelems'=>array(
       array( 0.5, 1450, 1900, 3150, 3900, 3600),// 0.5kg以下,第1,第2,第3,第4,第5地帯
       array( 0.6, 1600, 2150, 3400, 4180, 3900),
@@ -228,7 +236,7 @@ class _JpParcel {
 
     // コンストラクタ
     // $id:   module id
-    // $titl: module name
+    // $title: module name
     // $country: country code
     function __construct($id, $title, $country = NULL) {
         $this->quote = array('id' => $id, 'title' => $title);

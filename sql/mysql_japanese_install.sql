@@ -107,13 +107,13 @@ INSERT INTO orders_status VALUES ('5', '2', '配送済み', 40);
 
 
 # カナを追加する
-ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NOT NULL default '';
-ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NOT NULL default '';
+ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NULL;
+ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NULL;
 ALTER TABLE customers    ADD COLUMN customers_firstname_kana varchar(32) NOT NULL default '';
 ALTER TABLE customers    ADD COLUMN customers_lastname_kana  varchar(32) NOT NULL default '';
-ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NOT NULL default '';
-ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NOT NULL default '';
-ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NOT NULL default '';
+ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NULL;
+ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
+ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
 #住所フォーマット追加
 INSERT INTO address_format VALUES (21, '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様');

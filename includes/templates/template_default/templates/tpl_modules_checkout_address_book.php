@@ -23,10 +23,9 @@ require(DIR_WS_MODULES . zen_get_module_directory('checkout_address_book.php'));
     } 
 ?>
     <div <?php echo ($selected) ? 'id="defaultSelected" class="moduleRowSelected"' : 'class="moduleRow"'; ?>>
-    <div class="back"><?php echo zen_draw_radio_field('address', $address['address_book_id'], $selected, 'id="name-' . $address['address_book_id'] . '"'); ?></div>
-    <div class="back">
+    <div class="back"><?php echo zen_draw_radio_field('address', $address['address_book_id'], $selected, 'id="name-' . $address['address_book_id'] . '"'); ?>
         <label for="name-<?php echo $address['address_book_id']; ?>">
-            <?php echo zen_output_string_protected($address['firstname'] . ' ' . $address['lastname']); ?>
+            <?php echo ($_SESSION['language'] == 'japanese') ? zen_output_string_protected($address['lastname'] . ' ' . $address['firstname']) : zen_output_string_protected($address['firstname'] . ' ' . $address['lastname']); ?>
         </label>
     </div>
   </div>

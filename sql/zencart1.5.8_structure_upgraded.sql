@@ -23,8 +23,8 @@ CREATE TABLE address_book (
   entry_zone_id int NOT NULL DEFAULT '0',
   entry_telephone varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
   entry_fax varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  entry_firstname_kana varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  entry_lastname_kana varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+  entry_firstname_kana varchar(32) COLLATE utf8mb4_unicode_ci NULL,
+  entry_lastname_kana varchar(32) COLLATE utf8mb4_unicode_ci NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE address_format (
@@ -603,9 +603,9 @@ CREATE TABLE orders (
   billing_telephone varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   billing_fax varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   customers_fax varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  customers_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  delivery_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  billing_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  customers_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NULL,
+  delivery_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NULL,
+  billing_name_kana varchar(64) COLLATE utf8mb4_unicode_ci NULL,
   delivery_timespec varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
