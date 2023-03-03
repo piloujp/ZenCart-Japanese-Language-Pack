@@ -107,6 +107,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...\email\email_template_product_notification.html'
 	'...\includes\classes\Customer.php'
 	'...\includes\classes\order.php'
+	'...\includes\classes\shipping.php'
 	'...\includes\functions\functions_addresses.php'
 	'...\includes\functions\functions_dates.php'
 	'...\includes\functions\functions_general_shared.php'
@@ -114,12 +115,12 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...\includes\languages\lang.english.php'
 	'...\includes\languages\english\lang.checkout_process.php'
 	'...\includes\languages\english\responsive_classic\lang.index.php'
-	'...\includes\languages\modules\checkout_new_address.php'
-	'...\includes\languages\modules\create_account.php'
-	'...\includes\languages\modules\pages\account_edit\header_php.php'
-	'...\includes\languages\modules\pages\address_book_process\header_php.php'
-	'...\includes\languages\modules\pages\checkout_shipping\header_php.php'
-	'...\includes\languages\modules\pages\create_account_success\header_php.php'
+	'...\includes\modules\checkout_new_address.php'
+	'...\includes\modules\create_account.php'
+	'...\includes\modules\pages\account_edit\header_php.php'
+	'...\includes\modules\pages\address_book_process\header_php.php'
+	'...\includes\modules\pages\checkout_shipping\header_php.php'
+	'...\includes\modules\pages\create_account_success\header_php.php'
 	'...\includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php'
 	'...\includes\templates\responsive_classic\templates\tpl_checkout_confirmation_default.php'
 	'...\includes\templates\template_default\templates\tpl_account_edit_default.php'
@@ -135,8 +136,11 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 
 - 管理メニューを日本語にしたい場合にのみ、モジュール (配送、支払い、注文合計) ファイルを編集します。
 ファイルの下部にある「インストール機能」で、英語の sql クエリをコメント化し、日本語のクエリをコメント解除します。モジュールをインストールする前に実行する必要があります。 モジュールを既にインストールしている場合は、変更を有効にするためにモジュールをアンインストールしてから再インストールする必要があります。
-実際には、８つの Shipping モジュール、４つの Payment モジュール、３つの Total_Order モジュールがあります。
+実際には、１１つの Shipping モジュール、４つの Payment モジュール、３つの Total_Order モジュールがあります。
+- モジュールを出荷するためのクラス(_jpparcel.php、_sagawa.php、yamato.php、_yupack.php)を編集します。必要に応じて料金を確認して調整する必要があります。
+このパックのリリース以降に変更されている可能性があり、配送会社との契約にも依存します。ゆうパックの場合、ストアの場所によっては新しいカテゴリを設定する必要がある場合があります。
 
+質問がある場合は、サポート フォーラムを利用してください： https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack
 
 アンインストール：
 ------------
@@ -207,3 +211,12 @@ v1.1.8 - ２０２３年２月２４日
 アカウントを作成するときにFuriganaを保存しないバグを修正します。
 EMSが特大ときにバグを修正します。
 日本語パックに関連していないが、日本語パックの変更があるファイルでは、少数のZen Cartバグの修正。
+
+v1.2.0 - ２０２３年３月４日
+日本郵便の発送モジュール「小包郵便物（航空）」と「小包郵便物（船便）」を追加。
+この新しい追加により、追跡付き小包のすべての日本郵便国際サービスが利用可能になります。Covid 19以降、SALシステムは廃止され、追跡を提供しない「スモールパケット」サービスは、多かれ少なかれeパケットに置き換えられました。
+マルチボックス機能を備えた新しい配送クラスを使用するように国際配送モジュールをアップグレードしました （二つの国際eパケットは一つのEMSよりも安いなど)。
+ゆうパック発送モジュールを更新しました（料金・エリア）。
+新しい住所を日本語で入力するためのフォームを含む修正されたテンプレート。 現在は、「姓、名、国、郵便番号、都道府県、市区町村、番地」の形式に従います。
+管理者の注文画面でふりがなが空欄の場合、ふりがな「Reading :」が表示されないようにバグを修正しました。
+多くのコードのクリーニングと最適化、およびいくつかのバグ修正。

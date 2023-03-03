@@ -49,9 +49,9 @@
 	<li>重さは30kg以内。</li>
 </ol>
 
-<p>１－２日で届きます。土曜日午後と日曜日におくられません。通知サービスがあります。</p>
+<p>2－5日で届きます。土曜日午後と日曜日におくられません。通知サービスがあります。</p>
 
-<p>－　<strong><font color="#ff0000" size="4">ヤマト宅急便</font></strong>はゆうパックより高くなります。代金引換もできます。</p>
+<p>－　<strong><font color="#ff0000" size="4">ヤマト宅急便</font></strong>はゆうパックより少し高くなります。代金引換もできます。</p>
 
 <table border="0" cellpadding="0" cellspacing="0">
 	<tbody>
@@ -215,9 +215,9 @@
 	</tbody>
 </table>
 
-<p>１－２日で届きます。通知サービスがあります。</p>
+<p>2－4日で届きます。通知サービスがあります。</p>
 
-<p>－　<strong><font color="#ff0000" size="4">佐川宅急便</font></strong>は船便サービスです（沖縄から）。サイズと重さのリミットはありません。大きい荷物と一番安いです。今は代金引換をできません。</p>
+<p>－　<strong><font color="#ff0000" size="4">佐川宅急便</font></strong>は船便サービスです（沖縄から）。サイズと重さのリミットはありません。大きい荷物と一番安いです。</p>
 
 <table border="0" cellpadding="0" cellspacing="0">
 	<tbody>
@@ -336,13 +336,13 @@
 	</tbody>
 </table>
 
-<p class="intro">３－７日で届きます。通知サービスがあります。</p>
+<p class="intro">4－10日で届きます。通知サービスがあります。</p>
 
 <p>&nbsp;</p>
 
 <p><span style="font-size:16px;"><strong>国際郵便：</strong></span></p>
 
-<p>国際郵便は、EMSで発送します。発送してから、お問い合わせ番号を送ります。<br />
+<p>国際郵便は、EMSと国際eパケットで発送します。発送してから、お問い合わせ番号を送ります。<br />
 <small>注：お届けの日数は目安です。運送便・通関・現地での取り扱いなどの状況により、日数は変動します。</small></p>
 
 <table border="1" cellpadding="0" cellspacing="0" width="519">
@@ -359,9 +359,19 @@
 			<td class="h2"><strong>EMS<br />
 			（国際スピード郵便）</strong></td>
 			<td>
-			<p>国際郵便の中で<strong><em>最優先に</em></strong>取り扱い、<strong><em>4～8日程度</em></strong>で各国のお客さまにお届けします。</p>
+			<p>国際郵便の中で<strong><em>最優先に</em></strong>取り扱い、<strong><em>4～10日程度</em></strong>で各国のお客さまにお届けします。</p>
 
 			<p class="arrange-r"><span class="mkr-next"><a href="http://www.post.japanpost.jp/int/ems/index.html" target="_blank">EMS（国際スピード郵便）の詳細</a></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td class="h2"><strong>国際eパケット</strong></td>
+			<td>
+			<ul>
+				<li>2kgまでの小形物品をEMS（国際スピード郵便）より安く送ることができます。到着まで<strong>6-15日</strong>かかります。</li>
+				<li>航空便扱いとなります。</li>
+				<li>一部の国で追跡ができるほか、6000円を限度に補償もあります。</li>
+			</ul>
 			</td>
 		</tr>
 	</tbody>

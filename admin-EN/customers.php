@@ -704,7 +704,8 @@ if (!empty($action)) {
                                 )),
                                 'maxlength="10" class="form-control" id="customers_dob" minlength="' . ENTRY_DOB_MIN_LENGTH . '"',
                                 (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? true : false)
-                            ); ?>
+                            );
+							echo($error == true && $entry_date_of_birth_error == true ? '&nbsp;' . ENTRY_DATE_OF_BIRTH_ERROR : '');?>
                         </div>
                     </div>
                 <?php

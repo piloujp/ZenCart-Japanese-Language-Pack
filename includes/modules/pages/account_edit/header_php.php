@@ -24,7 +24,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'process') {
   $firstname = zen_db_prepare_input($_POST['firstname']);
   $lastname = zen_db_prepare_input($_POST['lastname']);
   $nick = (!empty($_POST['nick']) ? zen_db_prepare_input($_POST['nick']) : '');
-  if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
+  if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_date_raw(zen_db_prepare_input($_POST['dob'])));
   $email_address = zen_db_prepare_input($_POST['email_address']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = isset($_POST['fax']) ? zen_db_prepare_input($_POST['fax']) : '';
@@ -67,10 +67,6 @@ if ($_SESSION['language'] == 'japanese') {
 
   if (ACCOUNT_DOB == 'true') {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
-	  if ($_SESSION['language'] == 'japanese') {
-		$dob = substr($dob, 5, 2) . '-' . substr($dob, 8, 2) . '-' . substr($dob, 0, 4);
-	  }
-      // Support ISO-8601 style date
       if (preg_match('/^([0-9]{4})(|-|\/)([0-9]{2})\2([0-9]{2})$/', $dob)) {
         // Account for incorrect date format provided to strtotime such as swapping day and month instead of the expected yyyymmdd, yyyy-mm-dd, or yyyy/mm/dd format
         if (strtotime($dob) !== false) {
@@ -157,12 +153,7 @@ if ($_SESSION['language'] == 'japanese') {
       if ($dob == '0001-01-01 00:00:00' or $_POST['dob'] == '') {
         $sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>'0001-01-01 00:00:00', 'type'=>'date');
       } else {
-		if ($_SESSION['language'] == 'japanese') {
-			$ndate = date("m/d/Y", strtotime($_POST['dob']));
-			$sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>zen_date_raw($ndate), 'type'=>'date');
-		} else {
-			$sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>zen_date_raw($_POST['dob']), 'type'=>'date');
-		}
+		$sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>zen_date_raw($_POST['dob']), 'type'=>'date');
       }
     }
 
@@ -217,16 +208,8 @@ if (!(isset($_POST['action']) && ($_POST['action'] == 'process'))) {
   // Posted page content is not requested to be processed, populate dob with customer's database entry.
   // Using ISO-8601 format of date display to support javascript/jQuery driven date picker data handling.
   $dob = zen_date_short($account->fields['customers_dob']);
-  if ($_SESSION['language'] == 'japanese') {
-  $dob = substr($dob, 0, 4) . '-' . substr($dob, 5, 2) . '-' . substr($dob, 8, 2);
-	if ($dob <= '0001-01-01') {
-		$dob = '0001-01-01 00:00:00';
-	}
-  } else{
-  $dob = substr($dob, 0, 2) . '-' . substr($dob, 3, 2) . '-' . substr($dob, 6, 4);
-	if ($dob <= '01-01-0001') {
-		$dob = '0001-01-01 00:00:00';
-	}
+  if ($dob <= '0001-01-01') {
+    $dob = '0001-01-01 00:00:00';
   }
 }
 // if DOB field has database default setting, show blank:

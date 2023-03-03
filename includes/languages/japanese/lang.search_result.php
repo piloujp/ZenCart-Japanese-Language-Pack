@@ -8,6 +8,7 @@ $define = [
     'ENTRY_MANUFACTURERS' => 'メーカー:',
     'TABLE_HEADING_IMAGE' => '',
     'TEXT_NO_PRODUCTS' => '検索条件に一致する商品はありません。',
+    'TEXT_SHOW' => '次の基準で結果をフィルタリング：',
 ];
 
 return $define;

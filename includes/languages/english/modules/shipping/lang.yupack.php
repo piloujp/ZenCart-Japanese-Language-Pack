@@ -17,6 +17,7 @@ $GLOBALS['a_yupack_time']=array(
   array('id'=>'14h-16h','text'=>'14h-16h'),
   array('id'=>'16h-18h','text'=>'16h-18h'),
   array('id'=>'18h-20h','text'=>'18h-20h'),
+  array('id'=>'19h-21h','text'=>'19h-21h'),
   array('id'=>'20h-21h','text'=>'20h-21h'),
 );
 return $define;

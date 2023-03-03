@@ -107,6 +107,7 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 	'...\email\email_template_product_notification.html'
 	'...\includes\classes\Customer.php'
 	'...\includes\classes\order.php'
+	'...\includes\classes\shipping.php'
 	'...\includes\functions\functions_addresses.php'
 	'...\includes\functions\functions_dates.php'
 	'...\includes\functions\functions_general_shared.php'
@@ -114,12 +115,12 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 	'...\includes\languages\lang.english.php'
 	'...\includes\languages\english\lang.checkout_process.php'
 	'...\includes\languages\english\responsive_classic\lang.index.php'
-	'...\includes\languages\modules\checkout_new_address.php'
-	'...\includes\languages\modules\create_account.php'
-	'...\includes\languages\modules\pages\account_edit\header_php.php'
-	'...\includes\languages\modules\pages\address_book_process\header_php.php'
-	'...\includes\languages\modules\pages\checkout_shipping\header_php.php'
-	'...\includes\languages\modules\pages\create_account_success\header_php.php'
+	'...\includes\modules\checkout_new_address.php'
+	'...\includes\modules\create_account.php'
+	'...\includes\modules\pages\account_edit\header_php.php'
+	'...\includes\modules\pages\address_book_process\header_php.php'
+	'...\includes\modules\pages\checkout_shipping\header_php.php'
+	'...\includes\modules\pages\create_account_success\header_php.php'
 	'...\includes\templates\responsive_classic\templates\tpl_ajax_checkout_confirmation_default.php'
 	'...\includes\templates\responsive_classic\templates\tpl_checkout_confirmation_default.php'
 	'...\includes\templates\template_default\templates\tpl_account_edit_default.php'
@@ -135,7 +136,11 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 
 - EDIT modules (shipping, payment,order total) FILES only if you want their admin menus in Japanese.
 In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after, you have to uninstall and re-install modules for changes to take effect.
-There are actually 8 Shipping, 4 Payment and 3 Total_Order modules.
+There are actually 11 Shipping, 4 Payment and 3 Total_Order modules.
+- EDIT classes (_jpparcel.php, _sagawa.php, yamato.php, _yupack.php) for shipping modules. You need to check and adjust rates if necessary.
+They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
+
+If you have some question got support forum : https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack
 
 
 UNINSTALL:
@@ -206,3 +211,13 @@ Added zen_date_raw override function that accept any date format.
 Fix bug 'furigana not saved when creating account'.
 Fix bug when EMS oversized.
 Correction of few Zen Cart bugs not related to Japanese Pack but in files with modifications for Japanese Pack.
+
+V1.2.0 - 4 Mar 2023
+Added Japanese Post shipping modules 'International Parcels Air' and 'Surface'.
+With this new addition every Japanese Post international services for parcels with tracking are available. SAL system has been abandoned since Covid 19 and 'Small Packets' services that do not offer tracking are more or less replaced by ePackets.
+Upgraded international shipping modules to use new shipping class that has multiboxing capabilities (like two international ePackets are cheaper than one EMS).
+Yupack shipping module update (rates and area).
+Modified templates with forms to fill a new address in Japanese. They now follow format 'last name, first name, country, postcode, prefecture, city, street address'.
+Some minor bug corrections to avoid displaying furigana 'Reading :' when furigana is empty in admin order page.
+Lot of code cleaning and optimization and few bugs fixing.
+

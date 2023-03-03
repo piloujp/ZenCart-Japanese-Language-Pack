@@ -965,13 +965,13 @@ class order extends base
             'language_code' => $_SESSION['languages_code'],
             'order_weight' => $_SESSION['cart']->weight,
             'customers_fax' => $this->customer['fax'],
-            'customers_name_kana' => $this->customer['firstname_kana'] . ' ' . $this->customer['lastname_kana'],
+            'customers_name_kana' => $this->customer['lastname_kana'] . ' ' . $this->customer['firstname_kana'],
             'delivery_telephone' => $this->delivery['telephone'],
             'delivery_fax' => $this->delivery['fax'],
-            'delivery_name_kana' => $this->delivery['firstname_kana'] . ' ' . $this->delivery['lastname_kana'],
+            'delivery_name_kana' => $this->delivery['lastname_kana'] . ' ' . $this->delivery['firstname_kana'],
             'billing_telephone' => $this->billing['telephone'],
             'billing_fax' => $this->billing['fax'],
-            'billing_name_kana' => $this->billing['firstname_kana'] . ' ' . $this->billing['lastname_kana'],
+            'billing_name_kana' => $this->billing['lastname_kana'] . ' ' . $this->billing['firstname_kana'],
 	        'delivery_timespec' => $this->delivery['timespec'],
         ];
 
