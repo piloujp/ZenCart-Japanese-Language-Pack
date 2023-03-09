@@ -240,7 +240,7 @@ class shipping extends base
 
     public function quote($method = '', $module = '', $calc_boxes_weight_tare = true, $insurance_exclusions = [])
     {
-        global $shipping_weight, $uninsurable_value, $max_shipping_weight, $shipping_num_boxes;
+        global $shipping_weight, $uninsurable_value, $max_shipping_weight, $shipping_num_boxes, $box_array;
         $quotes_array = [];
 		
 		// Stop calculations if one item is over weight limit set in admin
@@ -282,6 +282,7 @@ class shipping extends base
 				If (defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
 					$max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_WEIGHT");
 				}
+				$box_array = [];
 				if ($calc_boxes_weight_tare) {
 					$this->calculate_boxes_weight_and_tare(); // calculates boxes number and their weight with tare
 				}
