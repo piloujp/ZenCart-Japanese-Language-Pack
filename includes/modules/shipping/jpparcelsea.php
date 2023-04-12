@@ -155,7 +155,7 @@ class jpparcelsea extends base {
    * @return unknown
    */
     function quote() {
-      global $shipping_weight, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight;
+      global $shipping_weight, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $multiboxes;
       global $order;
       global $cart;
       global $db;
@@ -168,6 +168,7 @@ class jpparcelsea extends base {
           if ( (MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING != 'True') || ((int)$cart->show_total() < (int)MODULE_SHIPPING_JPPARCELSEA_OVER) ) {
               include_once(DIR_WS_CLASSES . '_jpparcel.php');
               $rate = new _JpParcel($this->code, MODULE_SHIPPING_JPPARCELSEA_TEXT_WAY_NORMAL, $this->country_code);
+			$multiboxes = MODULE_SHIPPING_JPPARCELSEA_MULTIBOX;
 			if (!empty($box_array)) {
 				$total_boxes_quote = 0;
 				for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
@@ -179,10 +180,11 @@ class jpparcelsea extends base {
 					} else {
 						if ($b == 0) {
 							$this->quotes['module'] = $this->title . ' (' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
-						} elseif ($b == $shipping_num_boxes-1) {
-							$this->quotes['module'] .= ', ' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT . ')';
 						} else {
 							$this->quotes['module'] .= ', ' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
+						}
+						if ($b == $shipping_num_boxes-1) {
+							$this->quotes['module'] .= ')';
 						}
 						$total_boxes_quote += $tmpQuote['cost'];
 					}
@@ -241,6 +243,7 @@ class jpparcelsea extends base {
 // English
 
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable International Parcels Surface Method', 'MODULE_SHIPPING_JPPARCELSEA_STATUS', 'True', 'Do you want to offer International Parcels Surface rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_JPPARCELSEA_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Weight - New boxes based on weight limit', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_JPPARCELSEA_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', '30', 'Maximum weight that can be ship with this method.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -253,6 +256,7 @@ class jpparcelsea extends base {
 //　Japanese
 /*
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('小包郵便物（船便小包）配送を有効にする', 'MODULE_SHIPPING_JPPARCELSEA_STATUS', 'True', '小包郵便物（船便小包）配送を提供したいですか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('マルチボックス化を有効にする', 'MODULE_SHIPPING_JPPARCELSEA_MULTIBOX', 'None', '制限に達したときに新しい区画を追加しますか？何に基づいて？オプションは次のとおりです。<br>None - マルチボクシングなし<br>Weight - 重量制限に基づく新しいボックス', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('取扱い手数料', 'MODULE_SHIPPING_JPPARCELSEA_HANDLING', '0', 'この配送方法の手数料です。', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷重量', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', '30', 'この方法で出荷できる最大重量。', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('送料無料設定', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'False', '送料無料設定を有効にしますか? [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください.', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -278,6 +282,6 @@ class jpparcelsea extends base {
    * @return unknown
    */
   function keys() {
-    return array('MODULE_SHIPPING_JPPARCELSEA_STATUS', 'MODULE_SHIPPING_JPPARCELSEA_HANDLING', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'MODULE_SHIPPING_JPPARCELSEA_OVER', 'MODULE_SHIPPING_JPPARCELSEA_ZONE', 'MODULE_SHIPPING_JPPARCELSEA_SORT_ORDER');
+    return array('MODULE_SHIPPING_JPPARCELSEA_STATUS', 'MODULE_SHIPPING_JPPARCELSEA_MULTIBOX', 'MODULE_SHIPPING_JPPARCELSEA_HANDLING', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'MODULE_SHIPPING_JPPARCELSEA_OVER', 'MODULE_SHIPPING_JPPARCELSEA_ZONE', 'MODULE_SHIPPING_JPPARCELSEA_SORT_ORDER');
   }
 }

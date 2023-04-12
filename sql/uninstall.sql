@@ -1,6 +1,3 @@
-DELETE FROM configuration WHERE configuration_key='MIN_ORDER_AMOUNT';
-DELETE FROM configuration WHERE configuration_key='MIN_ORDER_AMOUNT';
-
 ALTER TABLE address_book DROP COLUMN entry_firstname_kana;
 ALTER TABLE address_book DROP COLUMN entry_lastname_kana;
 ALTER TABLE address_book DROP COLUMN entry_telephone;

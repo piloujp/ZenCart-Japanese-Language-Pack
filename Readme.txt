@@ -35,7 +35,7 @@ If you need to set admin menus back to English, use this file.
 FILES Case 1: Original Zen Cart 1.5.8 fresh installation.
 ------------
 
-- If you have a FRESH INSTALL of Zen Cart v1.5.8 with no update, plugin or other modifications you can just COPY ALL STOREFRONT SIDE FILES (folders email, images, includes) to your cart overwriting existing files.
+- If you have a FRESH INSTALL of Zen Cart v1.5.8 with no update, plugin or other modifications just COPY ALL STOREFRONT SIDE FILES (folders email, images, includes) to your cart overwriting existing files.
 - For ADMIN you have to CHOOSE which LANGUAGE you want to use on admin side and then COPY APPROPRIATE FOLDER to your cart admin folder:
 	English --> Copy content of admin-EN to your admin folder replacing files if necessary.
 	Japanese --> Copy content of admin-JP to your admin folder replacing files if necessary.
@@ -137,10 +137,30 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 - EDIT modules (shipping, payment,order total) FILES only if you want their admin menus in Japanese.
 In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after, you have to uninstall and re-install modules for changes to take effect.
 There are actually 11 Shipping, 4 Payment and 3 Total_Order modules.
-- EDIT classes (_jpparcel.php, _sagawa.php, yamato.php, _yupack.php) for shipping modules. You need to check and adjust rates if necessary.
-They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
 
-If you have some question got support forum : https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack
+- EDIT classes (_jpparcel.php, _sagawa.php, _yamato.php, _yupack.php) for shipping modules. You need to check and adjust rates if necessary.
+They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
+Quoting is based on three main arrays:
+ One for quote/shipping cost with one raw for each price range and columns for size, '$a_pricerank'. This is where shipping cost is actually set.
+ Second one defines which range (in first one) to use depending on sending location and destination, '$a_dist_to_rank'. Coding system starts with two letters, each one corresponding to a prefecture/state group defined in third array ($a_zonemap), first one for sending location and second one for destination. Then folloows a raw number to use in first array for this location combination.
+
+You must check and eventualy set these two arrays ('$a_pricerank' and '$a_dist_to_rank') to fit your situation. Unfortunately none of the shipping companies provide downloadable quoting tables but you can check online:
+For Yamato : https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
+For Sagawa : https://www.sagawa-exp.co.jp/send/fare/attention.html
+For Japan Post YuPack : https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html
+For Japan Post overseas services : https://www.post.japanpost.jp/int/charge/list/
+For Japan Post International ePackets : https://www.post.japanpost.jp/int/service/epacket.html
+
+If you have some question got support forum : https://docs.zen-cart.com/user/new_user_topics/
+
+
+CONFIGURATION:
+-------------
+-------------
+Log into admin interface and go to language and set Japanese as default if desired.
+Then go to Tools-->Layout Boxes Controller and set language box to on.
+Then you will have to add Japanese Yen as a currency, set Japanese tax and create new geo-zones. The files 'mysql_japanese_config.sql' can help you with this but you might have to customize it.
+Please have a look at Zen Cart documentation, starting by here: https://docs.zen-cart.com/user/new_user_topics/
 
 
 UNINSTALL:
@@ -148,6 +168,7 @@ UNINSTALL:
 ---------
 Delete all 'newly' added files.
 Use your backup to copy back your precedent version for all merged/replaced files.
+In admin delete geo-zones, currency and tax related to Japanese.
 To remove added records from your database use 'uninstall.sql' file with a tool like phpMyAdmin. All newly added data will be lost.
 Don't forget to change back any admin settings you might have done.
 
@@ -161,6 +182,9 @@ What you have to set is mainly adding japanese language as default then japanese
 
 'zencart1.5.8_structure_upgraded.sql'
 It is just a DUMP of the database structure after modification. Do NOT INSTALL! It could be useful if you plan to transfer data from an old version to check what is matching or not. You can use it too for a manual uptadtes to/from v1.5.8 japanese...
+
+'JP_zones_update.sql'
+If you have installed a version before 1.1.6 and you do an update, please use this file to update Japanese zones in database.
 
 Extra files corrections:
 -----------------------
@@ -221,3 +245,10 @@ Modified templates with forms to fill a new address in Japanese. They now follow
 Some minor bug corrections to avoid displaying furigana 'Reading :' when furigana is empty in admin order page.
 Lot of code cleaning and optimization and few bugs fixing.
 
+V1.2.1 - 12 Apr 2023
+Added new improved algorithm for parcel size calculation in shipping class and updated shipping modules that use it.
+Updated shipping modules Sagawa, Yamato and Yupack code and quote tables to reflect last prices increase and other changes.
+Other shipping modules code changes for improved multiboxes support.
+Updated install instructions (this readme file).
+Corrected an SQL querry error and other minor typos.
+Some cleaning here and there.

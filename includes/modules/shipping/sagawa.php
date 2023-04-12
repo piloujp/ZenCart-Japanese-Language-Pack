@@ -79,7 +79,7 @@ class sagawa extends base {
    * @return sagawa
    */
   function __construct() {
-    global $order,$db;
+    global $order, $db;
 
     $this->code = 'sagawa';
     $this->title = MODULE_SHIPPING_SAGAWA_TEXT_TITLE;
@@ -88,8 +88,8 @@ class sagawa extends base {
     if (null === $this->sort_order) return false;
 
     $this->icon = DIR_WS_TEMPLATE_ICONS . 'shipping_sagawa.gif';
-//    $this->tax_class = MODULE_SHIPPING_SAGAWA_TAX_CLASS;
-//    $this->tax_basis = MODULE_SHIPPING_SAGAWA_TAX_BASIS;
+    $this->tax_class = MODULE_SHIPPING_SAGAWA_TAX_CLASS;
+    $this->tax_basis = MODULE_SHIPPING_SAGAWA_TAX_BASIS;
     // disable only when entire cart is free shipping
     if (zen_get_shipping_enabled($this->code)) {
       $this->enabled = (MODULE_SHIPPING_SAGAWA_STATUS == 'True');
@@ -135,76 +135,18 @@ class sagawa extends base {
    * @return unknown
    */
     function quote() {
-      global $shipping_weight, $shipping_num_boxes;
+      global $shipping_num_boxes, $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
       global $order;
       global $a_sagawa_time;
-      global $cart;
       global $db;
-      global $slength, $swidth, $sheight, $ssize;
 
 	  if (empty($order->delivery['zone_id']) == true) { return NULL;}
 
-      // Begining of parcel size calculation
-      $cube = $maxlength = $maxwidth = $maxheight = $defitems = 0;
-      // Retrieving size
-      for($x = 0 ; $x < count($order->products) ; $x++ ) {
-         $t = $order->products[$x]['id'] ;
-         $dim_query = "select products_length, products_height, products_width from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_height > '0' and  products_width > '0' ";
-         $dims = $db->Execute($dim_query);
-         if ($dims->RecordCount() > 0) {
-         // re-orientate //
-         $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
-         $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
-
-         $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
-         $maxheight = $maxheight + $dims->fields['products_height'];
-
-       	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
-       	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
-       	 if ($dims->fields['products_height'] > $maxheight) { $maxheight = $dims->fields['products_height'] ; }
-       	 }
-         else { // get track of default cubes for non assigned items //
-			$defitems = $defitems + $order->products[$x]['qty']  ;
-       	    if($maxwidth == 0) {$maxwidth = $swidth ;}
-       	    if($maxheight == 0) {$maxheight = $sheight ;}
-       	    if($maxlength == 0) {$maxlength = $slength ;}
-       	 }
-        }
-
-      //  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
-      //  for this rather than the defaults because a small default still needs to be stacked by height
-          $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
-      //    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
-
-      //  calculate our height (assumes products are stacked one atop the other)
-      //    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
-          $x = round($maxheight,1);
-
-          if($x > 240 ) {  //  maximum allowed
-          $maxlength = 240 ;   // so we set our length to maximum allowed
-          $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
-          }
-
-      //  now find the shortest 2 sides (for girth)
-      //    $var = array($x, $maxlength, $maxwidth) ;
-      //    sort($var) ;
-      //    if(($var[0] * 1) + ($var[1] * 1) + $var[2] > 240 ) {   if($debug == 1) { echo "Girth exceeded1: $shipping_num_boxes " ; print_r($var) ;}
-      //    $maxwidth = intval($var[1] / 2) ;  $shipping_num_boxes++ ; // chop it in half and send it two boxes. /
-      //    $x = $var[0] ;
-      //    }
-
-      //  use our new parcel dimensions
-         $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength; $ssize = $slength + $swidth + $sheight;
-
-      //  save it for display purposes on quote form (this way I don't need to hack another system file)
-      //$_SESSION['swidth'] = $swidth ; $_SESSION['sheight'] = $sheight ;
-      //$_SESSION['slength'] = $slength ; $_SESSION['boxes'] = $shipping_num_boxes ;  
-
-      //return to original file      
-
-      $this->quotes = array('id' => $this->code,
-                            'module' => $this->title);
+      $this->quotes = array('id' => $this->code, 'module' => $this->title);
       if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+	  
+	  $max_shipping_weight = MODULE_SHIPPING_SAGAWA_MAX_WEIGHT;
+	  $max_shipping_girth = MODULE_SHIPPING_SAGAWA_MAX_GIRTH;
       $country_id = $order->delivery['country']['id'];
       $zone_id    = $order->delivery['zone_id'];
 
@@ -219,20 +161,39 @@ class sagawa extends base {
               $rate = new _Sagawa($this->code, MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL,
                                 zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
               $rate->SetDest($s_zone_code, $this->sagawa_countries[$country_id]);
-              $rate->SetWeight($shipping_weight);
-              $rate->SetSize($slength, $swidth, $sheight);
-              $tmpQuote = $rate->GetQuote(); // id, title, cost | error
+			  if (!empty($box_sizes_array)) {
+			      $total_boxes_quote = 0;
+				  $safefactor = 1.05; // when you build a box you need safety margins
+				  for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
+					$rate->SetWeight($box_array[$b]['box_weight']);
+					$ship_length = ceil($box_sizes_array[$b][0] * $safefactor);
+					$ship_width = ceil($box_sizes_array[$b][1] * $safefactor);
+					$ship_height = ceil($box_sizes_array[$b][2] * $safefactor);
+					$rate->SetSize($ship_length, $ship_width, $ship_height);
+					$tmpQuote = $rate->GetQuote(); // id, title, cost | error
+					$box_array[$b]['box_quote'] = $tmpQuote['cost'];
+					$bgirth[$b] = $ship_length + $ship_width + $ship_height;
 
-              if (isset($tmpQuote['error'])) {
-                  $this->quotes['error'] = $tmpQuote['error'];
-              } else {
-                  $this->quotes['module'] = $this->title
-                      . ' (' . $shipping_num_boxes . ' x ' . round($shipping_weight / $shipping_num_boxes,3) . 'kg, '. $ssize . 'cm)';
-
-                  $tmpQuote['cost'] *= $shipping_num_boxes;
-                  // 手数料
-                  $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
-              }
+					if (isset($tmpQuote['error'])) {
+						$this->quotes['error'] = $tmpQuote['error'];
+					} else {
+						if ($b == 0) {
+							$this->quotes['module'] = $this->title . ' (' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT . ', ' . $bgirth[$b] . 'cm';
+						} else {
+							$this->quotes['module'] .= ', ' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT . ', ' . $bgirth[$b] . 'cm';
+						}
+						if ($b == $shipping_num_boxes-1) {
+							$this->quotes['module'] .= ')';
+						}
+						$total_boxes_quote += $tmpQuote['cost'];
+					}
+				  }
+				  $tmpQuote['cost'] = $total_boxes_quote;
+			  } else {
+				  $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
+			  }
+              // 手数料
+              $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
           } else {
               $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
           }
@@ -295,23 +256,27 @@ class sagawa extends base {
 
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable sagawa Method', 'MODULE_SHIPPING_SAGAWA_STATUS', 'True', 'Do you want to offer sagawa rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_SAGAWA_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', '50', 'Maximum weight that can be ship with this method.', '6', '0', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_SAGAWA_MAX_GIRTH', '260', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum order for free shipping', 'MODULE_SHIPPING_SAGAWA_OVER', '50000', 'If you purchase more than the set amount, shipping will be free.', '6', '3', now())");
-//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_SAGAWA_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
 
 // Japanese
 /*
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('佐川急便の配送を有効にする', 'MODULE_SHIPPING_SAGAWAEX_STATUS', 'True', '佐川急便の配送を提供しますか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('取扱い手数料', 'MODULE_SHIPPING_SAGAWAEX_HANDLING', '0', '送料に適用する取扱手数料を設定できます。', '6', '1', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('送料無料設定', 'MODULE_SHIPPING_SAGAWAEX_FREE_SHIPPING', 'False', '送料無料設定を有効にしますか? [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください。', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('送料を無料にする購入金額設定', 'MODULE_SHIPPING_SAGAWAEX_OVER', '5000', '設定金額以上をご購入の場合は送料を無料にします。', '6', '3', now())");
-//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('税種別', 'MODULE_SHIPPING_SAGAWAEX_TAX_CLASS', '0', '配送料金に適用される税種別を選んでください。', '6', '3', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('課税標準', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('配送地域', 'MODULE_SHIPPING_SAGAWAEX_ZONE', '0', '配送地域を選択すると選択された地域のみで利用可能となります。', '6', '5', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('表示の整列順', 'MODULE_SHIPPING_SAGAWAEX_SORT_ORDER', '0', '表示の整列順を設定できます。数字が小さいほど上位に表示されます。', '6', '6', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('佐川急便の配送を有効にする', 'MODULE_SHIPPING_SAGAWA_STATUS', 'True', '佐川急便の配送を提供しますか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('取扱い手数料', 'MODULE_SHIPPING_SAGAWA_HANDLING', '0', '送料に適用する取扱手数料を設定できます。', '6', '1', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷重量', 'MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', '50', 'この方法で出荷できる最大重量。', '6', '0', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷胴回り', 'MODULE_SHIPPING_SAGAWA_MAX_GIRTH', '260', 'この方法で発送できる最大サイズ（胴回り）です。', '6', '0', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('送料無料設定', 'MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'False', '送料無料設定を有効にしますか? [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください。', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+    $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('送料を無料にする購入金額設定', 'MODULE_SHIPPING_SAGAWA_OVER', '5000', '設定金額以上をご購入の場合は送料を無料にします。', '6', '3', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('税種別', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', '0', '配送料金に適用される税種別を選んでください。', '6', '3', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('課税標準', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('配送地域', 'MODULE_SHIPPING_SAGAWA_ZONE', '0', '配送地域を選択すると選択された地域のみで利用可能となります。', '6', '5', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('表示の整列順', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER', '0', '表示の整列順を設定できます。数字が小さいほど上位に表示されます。', '6', '6', now())");
 */
   }
   /**
@@ -329,7 +294,7 @@ class sagawa extends base {
    * @return unknown
    */
   function keys() {
-    return array('MODULE_SHIPPING_SAGAWA_STATUS', 'MODULE_SHIPPING_SAGAWA_HANDLING','MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'MODULE_SHIPPING_SAGAWA_OVER', 'MODULE_SHIPPING_SAGAWA_ZONE', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER');
+    return array('MODULE_SHIPPING_SAGAWA_STATUS', 'MODULE_SHIPPING_SAGAWA_HANDLING', 'MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', 'MODULE_SHIPPING_SAGAWA_MAX_GIRTH','MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'MODULE_SHIPPING_SAGAWA_OVER', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'MODULE_SHIPPING_SAGAWA_ZONE', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER');
   }
 
 //  function help() {

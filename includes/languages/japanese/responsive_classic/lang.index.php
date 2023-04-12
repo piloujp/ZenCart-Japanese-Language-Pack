@@ -13,10 +13,8 @@ $define = [
     'TEXT_BUY' => '一つ買う \'',
     'TEXT_NOW' => '\' 今すぐ',
     'HEADING_TITLE_PRODUCTS' => '利用可能な商品。',
-//    'HEADING_TITLE' => 'おめでとうございます!<br>オンラインショップ構築ソフトZen Cart 日本語版のインストールに成功しました。',
-//    'HEADING_TITLE_NESTED' => 'おめでとうございます!<br>オンラインショップ構築ソフトZen Cart 日本語版のインストールに成功しました。',
-    'HEADING_TITLE' => 'ヘリテックジャパンオンラインショップへようこそ',
-    'HEADING_TITLE_NESTED' => 'ヘリテックジャパンオンラインショップへようこそ',
+    'HEADING_TITLE' => 'おめでとうございます!<br>オンラインショップ構築ソフトZen Cart 日本語版のインストールに成功しました。',
+    'HEADING_TITLE_NESTED' => 'おめでとうございます!<br>オンラインショップ構築ソフトZen Cart 日本語版のインストールに成功しました。',
 ];
 
 return $define;

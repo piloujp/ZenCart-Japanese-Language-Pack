@@ -8,7 +8,6 @@ UPDATE configuration SET configuration_value = 'true' WHERE configuration_key = 
 UPDATE configuration SET configuration_value = '107' WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 
 #言語設定
-INSERT INTO languages VALUES (2,'Japanese','ja','icon.gif','japanese',0);
 UPDATE configuration SET configuration_value = 'ja' WHERE configuration_key = 'DEFAULT_LANGUAGE';
 
 #通貨設定

@@ -264,13 +264,9 @@
 </fieldset>
 
 <?php
-//plugin Google reCaptcha
-echo recaptcha_get_html(false, 'light', 'normal', 'margin:5px');
-//eof plugin Google reCaptcha
   if (CUSTOMERS_REFERRAL_STATUS == 2) {
 ?>
 <fieldset>
-
 <legend><?php echo TABLE_HEADING_REFERRAL_DETAILS; ?></legend>
 <label class="inputLabel" for="customers_referral"><?php echo ENTRY_CUSTOMERS_REFERRAL; ?></label>
 <?php echo zen_draw_input_field('customers_referral', '', zen_set_field_length(TABLE_CUSTOMERS, 'customers_referral', '15') . ' id="customers_referral"'); ?>

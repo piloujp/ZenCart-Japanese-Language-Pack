@@ -83,73 +83,23 @@
    * Perform various checks to see whether this module should be visible
    */
     function update_status() {
-      global $order, $db;
-      global $slength, $swidth, $sheight, $shipping_weight;
+      global $order, $db, $shipping_weight, $box_sizes_array;
 
       if (!$this->enabled) return;
       if (IS_ADMIN_FLAG === true) return;
 
-/*      // disable for some master_categories_id 
+      // disable for some master_categories_id 
       if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
           $this->enabled = false; 
       }
-*/
-      // Begining of parcel size calculation
-      //      global $slength, $swidth, $sheight;
-      //      global $order, $db;
-      $cube = $maxlength = $maxwidth = $maxheight = $minlength = $minheight = $defitems = 0;
-      // Retrieving size
-      $x=0;
-      while (isset($order->products[$x])) {
-         $t = $order->products[$x]['id'] ;
-         $dim_query = "select products_length, products_height, products_width, products_weight from " . TABLE_PRODUCTS . " where products_id='$t' and  products_length > '0' and products_weight > '0' and  products_width > '0' ";
-         $dims = $db->Execute($dim_query);
-         if ($dims->RecordCount() > 0) {
-         // re-orientate //
-         $var = array($dims->fields['products_width'], $dims->fields['products_height'], $dims->fields['products_length']) ; sort($var) ;
-         $dims->fields['products_length'] = $var[2] ; $dims->fields['products_width'] = $var[1] ;  $dims->fields['products_height'] = $var[0] ;
-
-         $cube = $cube + ($dims->fields['products_width'] * $dims->fields['products_height'] * $dims->fields['products_length'] * $order->products[$x]['qty']) ;
-         $maxheight = $maxheight + $dims->fields['products_height'];
-
-       	 if ($dims->fields['products_width'] >  $maxwidth) { $maxwidth  = $dims->fields['products_width'] ; }
-       	 if ($dims->fields['products_length'] > $maxlength) { $maxlength = $dims->fields['products_length'] ; }
-       	 if ($dims->fields['products_height'] > $maxheight) { $maxheight = $dims->fields['products_height'] ; }
-       	 if ($dims->fields['products_height'] > $minheight) { $minheight = $dims->fields['products_height'] ; }
-       	 if ($dims->fields['products_length'] > $minlength) { $minlength = $dims->fields['products_length'] ; }
-
-       	 }
-         else { // get track of default cubes for non assigned items //
-			$defitems = $defitems + $order->products[$x]['qty']  ;
-       	    if($maxwidth == 0) {$maxwidth = $swidth ;}
-       	    if($maxheight == 0) {$maxheight = $sheight ;}
-       	    if($maxlength == 0) {$maxlength = $slength ;}
-       	 }
-      	 $x++;
-		}
-
-      //  summarise the two cubes (default x items, plus explicit defined - note we use the max lengths & widths
-      //  for this rather than the defaults because a small default still needs to be stacked by height
-          $cube = $cube + ($maxwidth * $sheight * $maxlength * $defitems)  ;
-      //    echo "C $cube - W $maxwidth - H $sheight - L $maxlength - I $defitems<br>";
-
-      //  calculate our height (assumes products are stacked one atop the other)
-      //    $x = round(($cube / ( $maxlength * $maxwidth)),2)  ;
-          $x = round($maxheight,1);
-
-          if($x > 2.5 && $minheight <= 2.5 && $minlength <= 29 ) {  //  maximum allowed
-          $maxlength = 29 ;   // so we set our length to maximum allowed
-          $x = round(($cube / ( $maxlength * $maxwidth)),2)  ; // then recalculate new height
-          }
-
-      //  use our new parcel dimensions
-         $swidth = $maxwidth ; $sheight = $x ; $slength = $maxlength;
-      // end of calculation
-
-      // disable if too big 
-      if (IS_ADMIN_FLAG == false && ($slength > 28 || $swidth > 11 || $sheight > 2.4 || ($slength+$swidth+$sheight > 48) || $shipping_weight > 1)) { 
-          $this->enabled = false;
-      }
+	  if (!empty($box_sizes_array)) {
+		  //echo ' Box size array: ';print_r($box_sizes_array[0]);echo ' Weight: ' . $shipping_weight;
+		  $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
+		  // disable if too big 
+		  if (IS_ADMIN_FLAG == false && ($box_sizes_array[0][0] > MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT || $girth > 48 || $shipping_weight > MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT)) { 
+			  $this->enabled = false;
+		  }
+	  }
 
       if ((int)MODULE_SHIPPING_NEKOPOSU_ZONE > 0) {
         $check_flag = false;
@@ -203,6 +153,11 @@
 
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Nekopos Shipping', 'MODULE_SHIPPING_NEKOPOSU_STATUS', 'True', 'Do you want to offer Nekopos rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, val_function, date_added) values ('Shipping Cost', 'MODULE_SHIPPING_NEKOPOSU_COST', '385', 'The shipping cost for all orders using this shipping method.', '6', '0', '" . '{"error":"TEXT_POSITIVE_FLOAT","id":"FILTER_VALIDATE_FLOAT","options":{"options":{"min_range":0}}}'  . "', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum shipping weight', 'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT', '1', 'Maximum weight that can be ship with this method.', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum inner length', 'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH', '28', 'Maximum length of envelope inside volume.', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum inner width', 'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH', '11', 'Maximum width of envelope inside volume.', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum inner height', 'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT', '2.5', 'Maximum height of envelope inside volume.', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum inner girth', 'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH', '48', 'Maximum girth of envelope inside volume.', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_NEKOPOSU_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
@@ -212,6 +167,11 @@
 /*
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('ネコポス配送を有効にする', 'MODULE_SHIPPING_NEKOPOSU_STATUS', 'True', 'ネコポスで発送しますか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, val_function, date_added) values ('送料', 'MODULE_SHIPPING_NEKOPOSU_COST', '385', 'この配送方法を使用するすべての注文の配送料。', '6', '0', '" . '{"error":"TEXT_POSITIVE_FLOAT","id":"FILTER_VALIDATE_FLOAT","options":{"options":{"min_range":0}}}'  . "', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷重量', 'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT', '1', 'この方法で出荷できる最大重量。', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大内部長さ', 'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH', '28', 'エンベロープ内容積の最大長。', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大内幅', 'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH', '11', '封筒の内容積の最大幅。', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大内高', 'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT', '2.5', 'エンベロープ内容積の最大高さ。', '6', '0', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大内周', 'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH', '48', 'エンベロープ内容積の最大周囲。', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('税種別', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', '0', '配送料金に適用される税種別を選んでください。', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('課税標準', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'Shipping', '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('配送地域', 'MODULE_SHIPPING_NEKOPOSU_ZONE', '0', '配送地域を選択すると選択された地域のみで利用可能となります。', '6', '0', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
@@ -225,6 +185,6 @@
     }
 
     function keys() {
-      return array('MODULE_SHIPPING_NEKOPOSU_STATUS', 'MODULE_SHIPPING_NEKOPOSU_COST', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'MODULE_SHIPPING_NEKOPOSU_ZONE', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER');
+      return array('MODULE_SHIPPING_NEKOPOSU_STATUS', 'MODULE_SHIPPING_NEKOPOSU_COST', 'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'MODULE_SHIPPING_NEKOPOSU_ZONE', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER');
     }
   }

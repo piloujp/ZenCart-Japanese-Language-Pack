@@ -2,11 +2,11 @@
 
 <p>－振込：</p>
 
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 銀行名： &nbsp; &nbsp;PayPay銀行 （コード0033）<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 支店名： &nbsp;本店営業部 （コード001）<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 口座番号： &nbsp;2420902<br />
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 銀行名： &nbsp; &nbsp;銀行<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 支店名： &nbsp;本店営業部）<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 口座番号： &nbsp;0123456<br />
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 預金科目： 普通<br />
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 口座名義人： ジェリノ　ピエール</p>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 口座名義人： 名前</p>
 
 <p>－PayPal （PayPalアカウントは必要でわない。VISA、MASTERCARDかJCBカードを持っていたらＯＫです）。</p>
 
@@ -24,7 +24,7 @@
 
 <p>燃料と別に（メーカーが送ります）、沖縄から商品を送ります。もし注文するときにサイズか重さがオバーになったら、発送のオプションが少なくなります。</p>
 
-<p>－　<strong><font color="#ff0000" size="4">ネコポス</font></strong>は一番安いです。しかしA４の封筒に入ります商品だけできます。厚さは２.5ｃｍまで、重さ1Ｋｇまで。２－4日で届きます。</p>
+<p>－　<strong><font color="#ff0000" size="4">ネコポス</font></strong>は一番安いです。しかしA４の封筒に入ります商品だけできます。厚さは２.５ｃｍまで、重さ1Ｋｇまで。２－４日で届きます。</p>
 
 <p>－　<strong><font color="#ff0000" size="4">レターパックプラス</font></strong>で郵便局の封筒（Ａ４サイズ、＜4Ｋｇ）に入ります商品をお売ります。日本でどこでも送りましたら、５2０円かかります。だいたい１日で届きます、ときどき２日になります。土曜日と日曜日に１５時の後におくられません。通知サービスがあります。対面でお届けし、受領印をいただく。</p>
 

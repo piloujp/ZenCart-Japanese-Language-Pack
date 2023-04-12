@@ -118,7 +118,6 @@ class _yupack {
 
 		$n_totallength = $this->Length + $this->Width + $this->Height;
 
-//		while (list($n_index, $a_limit) = each($a_classes)) {
 		while ( $a_limit =  current($a_classes)) {
 			if ($n_totallength <= $a_limit[1] && $this->Weight <= $a_limit[2]) {
 				return $a_limit[0];
@@ -208,7 +207,7 @@ class _yupack {
 		'大分県'=>'K',  
 		'宮崎県'=>'K',  
 		'鹿児島県'=>'K',  
-		'沖縄県'=>'L',
+		'沖縄県'=>'L'/*,
 		'Hokkaido'=>'A',  
 		'Aomori'=>'B',  
 		'Iwate'=>'B',  
@@ -255,7 +254,7 @@ class _yupack {
 		'Oita'=>'K',  
 		'Miyazaki'=>'K',  
 		'Kagoshima'=>'K',  
-		'Okinawa'=>'L'
+		'Okinawa'=>'L'*/
 		);
 		return $a_zonemap[$zone];
 	}
@@ -305,6 +304,14 @@ class _yupack {
 				}
 			  //$this->quote['DEBUG'] = ' zone=' . $this->OriginZone . '=>' . $this->DestZone   //DEBUG
 			  //              . ' cost=' . $a_pricerank[$s_rank][$n_sizeclass];           //DEBUG
+				if ($this->Weight >= 25) { // 重量ゆうパックは+５１０か+５２０円になります
+					if ($s_rank > 8) {
+						$omoi = 510;
+					} else {
+						$omoi = 520;
+					}
+					$this->quote['cost'] += $omoi;
+				}
 			} else {
 				$this->quote['error'] = MODULE_SHIPPING_YUPACK_TEXT_OUT_OF_AREA . '(' . $s_key .')';
 			}
