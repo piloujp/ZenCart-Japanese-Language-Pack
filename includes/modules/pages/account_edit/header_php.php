@@ -30,7 +30,10 @@ if (!empty($_POST['action']) && $_POST['action'] == 'process') {
   $fax = isset($_POST['fax']) ? zen_db_prepare_input($_POST['fax']) : '';
   $email_format = in_array($_POST['email_format'], array('HTML', 'TEXT', 'NONE', 'OUT'), true) ? $_POST['email_format'] : 'TEXT';
 
-  if (CUSTOMERS_REFERRAL_STATUS == '2' and $_POST['customers_referral'] != '') $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
+  $customers_referral = ''; 
+  if (CUSTOMERS_REFERRAL_STATUS === '2' && !empty($_POST['customers_referral']) ) {
+     $customers_referral = zen_db_prepare_input($_POST['customers_referral']);
+  }
 
   if (ACCOUNT_GENDER == 'true') {
     if ( ($gender != 'm') && ($gender != 'f') ) {
@@ -67,16 +70,17 @@ if ($_SESSION['language'] == 'japanese') {
 
   if (ACCOUNT_DOB == 'true') {
     if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
+      // Support ISO-8601 style date
       if (preg_match('/^([0-9]{4})(|-|\/)([0-9]{2})\2([0-9]{2})$/', $dob)) {
         // Account for incorrect date format provided to strtotime such as swapping day and month instead of the expected yyyymmdd, yyyy-mm-dd, or yyyy/mm/dd format
         if (strtotime($dob) !== false) {
           $_POST['dob'] = $dob = date(DATE_FORMAT, strtotime($dob));
         }
       }
-	  if (substr_count($dob,'/') > 2 || checkdate((int)substr(zen_date_raw($dob), 4, 2), (int)substr(zen_date_raw($dob), 6, 2), (int)substr(zen_date_raw($dob), 0, 4)) == false) {
-		$error = true;
-		$messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);
-	  }
+      if (substr_count($dob,'/') > 2 || checkdate((int)substr(zen_date_raw($dob), 4, 2), (int)substr(zen_date_raw($dob), 6, 2), (int)substr(zen_date_raw($dob), 0, 4)) == false) {
+        $error = true;
+        $messageStack->add('account_edit', ENTRY_DATE_OF_BIRTH_ERROR);
+      }
     }
   }
 
@@ -153,7 +157,7 @@ if ($_SESSION['language'] == 'japanese') {
       if ($dob == '0001-01-01 00:00:00' or $_POST['dob'] == '') {
         $sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>'0001-01-01 00:00:00', 'type'=>'date');
       } else {
-		$sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>zen_date_raw($_POST['dob']), 'type'=>'date');
+        $sql_data_array[] = array('fieldName'=>'customers_dob', 'value'=>zen_date_raw($_POST['dob']), 'type'=>'date');
       }
     }
 

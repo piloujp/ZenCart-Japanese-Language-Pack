@@ -6,6 +6,7 @@ UPDATE configuration SET configuration_value=1 WHERE configuration_key='ENTRY_ST
 UPDATE configuration SET configuration_value = 'false' WHERE configuration_key = 'ACCOUNT_SUBURB';
 UPDATE configuration SET configuration_value = 'true' WHERE configuration_key = 'DISPLAY_PRICE_WITH_TAX';
 UPDATE configuration SET configuration_value = '107' WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
+UPDATE configuration SET configuration_value = 'true' WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
 #言語設定
 UPDATE configuration SET configuration_value = 'ja' WHERE configuration_key = 'DEFAULT_LANGUAGE';

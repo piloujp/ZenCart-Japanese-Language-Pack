@@ -19,7 +19,7 @@ $define = [
     'EMAIL_DISCLAIMER' => 'このメールは当ショップに登録されたお客様に対してお送りしています。お心当たりが無いようでしたら大変お手数ですがメールにて %s までご連絡ください。',
     'EMAIL_SPAM_DISCLAIMER' => 'このメールは当ショップに登録され、購読を希望された方にお届けしています。配信停止を希望される方は、お手数ですがこちらのメールアドレスまでご連絡下さい。',
     'EMAIL_ORDER_MESSAGE' => '',
-    'EMAIL_FOOTER_COPYRIGHT' => 'Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="http://www.zen-cart.com" target="_blank">Zen Cart</a>',
+    'EMAIL_FOOTER_COPYRIGHT' => 'Copyright (c) ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart.com" target="_blank">Zen Cart</a>',
     'TEXT_UNSUBSCRIBE' => "\n\nメールマガジンの購読を解除される場合は、こちらのリンクをクリックして下さい: \n",
     'EMAIL_ADVISORY' => '-----' . "\n" . '「<strong>重要:</strong>
 お客様の個人情報保護、および迷惑行為防止のために' . "\n" . '

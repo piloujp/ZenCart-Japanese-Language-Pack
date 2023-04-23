@@ -7,10 +7,10 @@
 */
 
 $define = [
+    'EMAIL_LOGO_ALT_TITLE_TEXT' => 'Zen Cart! The Art of E-commerce',
     'EMAIL_LOGO_FILENAME' => 'header.jpg',
     'EMAIL_LOGO_WIDTH' => '550',
     'EMAIL_LOGO_HEIGHT' => '110',
-    'EMAIL_LOGO_ALT_TITLE_TEXT' => 'Zen Cart! The Art of E-commerce',
     'EMAIL_EXTRA_HEADER_INFO' => '',
     'EMAIL_ORDER_UPDATE_MESSAGE' => '',
     'OFFICE_FROM' => '差出人:',
@@ -18,7 +18,7 @@ $define = [
     'OFFICE_USE' => '会社での利用のみ:',
     'OFFICE_LOGIN_NAME' => 'ログイン名:',
     'OFFICE_LOGIN_EMAIL' => 'ログインメールアドレス:',
-    'OFFICE_LOGIN_PHONE' => '<strong>電話:</strong>',
+    'OFFICE_LOGIN_PHONE' => '電話:',
     'OFFICE_IP_ADDRESS' => 'IPアドレス:',
     'OFFICE_HOST_ADDRESS' => 'ホスト名:',
     'OFFICE_DATE_TIME' => '日付・時間:',

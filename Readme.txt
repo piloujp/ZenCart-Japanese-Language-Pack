@@ -44,6 +44,7 @@ FILES Case 1: Original Zen Cart 1.5.8 fresh installation.
 
 FILES Case 2: Zen Cart 1.5.8 with plugins, updated/upgraded with more recent version or that has been upgraded from older version like 1.5.7.
 ------------
+IMPORTANT NOTE: If some Japanese shipping modules (and payment, ot_total) are already installed, uninstall them before upgrading, it will avoid messing up database.
 
 First choose your admin language and use appropriate folder: admin-EN for English and admin-JP for Japanese admin, discard the other one. Both support furigana and other store side Japanese functionalities.
 
@@ -134,6 +135,10 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 	'...\includes\templates\template_default\templates\tpl_modules_checkout_new_address.php'
 	'...\includes\templates\template_default\templates\tpl_modules_create_account.php'
 
+
+For both cases:
+---------------
+
 - EDIT modules (shipping, payment,order total) FILES only if you want their admin menus in Japanese.
 In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after, you have to uninstall and re-install modules for changes to take effect.
 There are actually 11 Shipping, 4 Payment and 3 Total_Order modules.
@@ -142,7 +147,7 @@ There are actually 11 Shipping, 4 Payment and 3 Total_Order modules.
 They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
 Quoting is based on three main arrays:
  One for quote/shipping cost with one raw for each price range and columns for size, '$a_pricerank'. This is where shipping cost is actually set.
- Second one defines which range (in first one) to use depending on sending location and destination, '$a_dist_to_rank'. Coding system starts with two letters, each one corresponding to a prefecture/state group defined in third array ($a_zonemap), first one for sending location and second one for destination. Then folloows a raw number to use in first array for this location combination.
+ Second one defines which range (in first one) to use depending on sending location and destination, '$a_dist_to_rank'. Coding system starts with two letters, each one corresponding to a prefecture/state group defined in third array ($a_zonemap), first one for sending location and second one for destination. Then follows a raw number to use in first array for this location combination.
 
 You must check and eventualy set these two arrays ('$a_pricerank' and '$a_dist_to_rank') to fit your situation. Unfortunately none of the shipping companies provide downloadable quoting tables but you can check online:
 For Yamato : https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
@@ -151,7 +156,7 @@ For Japan Post YuPack : https://www.post.japanpost.jp/service/you_pack/charge/ic
 For Japan Post overseas services : https://www.post.japanpost.jp/int/charge/list/
 For Japan Post International ePackets : https://www.post.japanpost.jp/int/service/epacket.html
 
-If you have some question got support forum : https://docs.zen-cart.com/user/new_user_topics/
+If you have some question go to support forum : https://docs.zen-cart.com/user/new_user_topics/
 
 
 CONFIGURATION:
@@ -252,3 +257,8 @@ Other shipping modules code changes for improved multiboxes support.
 Updated install instructions (this readme file).
 Corrected an SQL querry error and other minor typos.
 Some cleaning here and there.
+
+V1.2.2 - 23 Apr 2023
+Last files Update to Zen Cart v1.5.8a.
+Updated instructions in readme files.
+Modification of some SQL queries for database setting. 

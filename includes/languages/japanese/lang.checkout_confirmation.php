@@ -5,7 +5,7 @@ $define = [
     'HEADING_TITLE' => 'ご注文内容を確認してください',
     'HEADING_PRODUCTS' => 'カートの内容',
     'NO_COMMENTS_TEXT' => 'なし',
-    'TITLE_CONTINUE_CHECKOUT_PROCEDURE' => '<strong>最終ステップ</strong>',
+    'TITLE_CONTINUE_CHECKOUT_PROCEDURE' => '最終ステップ',
     'TEXT_CONTINUE_CHECKOUT_PROCEDURE' => '→『ご注文の確定』ボタンを押して手続きを完了させてください。',
 ];
 

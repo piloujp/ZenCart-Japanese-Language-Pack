@@ -9,7 +9,7 @@ $define = [
     'TITLE_PLEASE_SELECT' => '選択してください',
     'TEXT_ENTER_SHIPPING_INFORMATION' => '今回のご注文でご利用いただける配送方法はこちらのみです。',
     'TITLE_NO_SHIPPING_AVAILABLE' => '現在、ご利用いただけません。',
-    'TEXT_NO_SHIPPING_AVAILABLE' => '<span class="alert">現在、ご登録いただいております地域に対応した配送方法がございません。</span><br />問題の解決の為に、お問い合わせからご相談下さい。',
+    'TEXT_NO_SHIPPING_AVAILABLE' => '<span class="alert">現在、ご登録いただいております地域に対応した配送方法がございません。</span><br/>問題の解決の為に、お問い合わせからご相談下さい。',
     'TITLE_CONTINUE_CHECKOUT_PROCEDURE' => '次画面に進んでください',
     'TEXT_CONTINUE_CHECKOUT_PROCEDURE' => '→ステップ２ お支払い方法を選択',
     'FREE_SHIPPING_TITLE' => '配送料無料',

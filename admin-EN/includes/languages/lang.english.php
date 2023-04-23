@@ -248,6 +248,7 @@ $define = [
     'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_LOGO_IMAGE' => 'logo.gif',
     'HEADER_LOGO_WIDTH' => '192',
+    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_TITLE_ACCOUNT' => 'Account',
     'HEADER_TITLE_LOGOFF' => 'Logoff',
     'HEADER_TITLE_ONLINE_CATALOG' => 'Storefront',
