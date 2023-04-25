@@ -3,13 +3,13 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2022 Jun 12 New in v1.5.8-alpha $
+ * @version $Id: Pilou2/Piloujp 2023 Apr 25 New in v1.5.8a $
 */
 
 $define = [
     'HEADING_TITLE' => '顧客管理',
     'TABLE_HEADING_FIRSTNAME' => '名',
-	'TABLE_HEADING_LASTNAME_KANA' => '名ふりがな',
+	'TABLE_HEADING_FIRSTNAME_KANA' => '名ふりがな',
     'TABLE_HEADING_LASTNAME' => '姓',
 	'TABLE_HEADING_LASTNAME_KANA' => '姓ふりがな',
     'TABLE_HEADING_ACCOUNT_CREATED' => '登録日',
