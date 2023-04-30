@@ -140,7 +140,7 @@ class yamato extends base {
    * @return unknown
    */
     function quote() {
-      global $shipping_num_boxes, $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
+      global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
       global $order;
       global $a_yamato_time;
       global $db;
@@ -148,12 +148,14 @@ class yamato extends base {
 	  if (empty($order->delivery['zone_id']) == true) { return NULL;}
       
       $this->quotes = array('id' => $this->code, 'module' => $this->title);
-      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
 	  
 	  $max_shipping_weight = MODULE_SHIPPING_YAMATO_MAX_WEIGHT;
 	  $max_shipping_girth = MODULE_SHIPPING_YAMATO_MAX_GIRTH;
       $country_id = $order->delivery['country']['id'];
       $zone_id    = $order->delivery['zone_id'];
+
+	  $shipping_num_boxes = 1;
 
       if (in_array($country_id, $this->yamato_countries_nbr)) {
           $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");

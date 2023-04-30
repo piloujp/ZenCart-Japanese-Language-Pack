@@ -213,7 +213,6 @@ class jpparcelepack extends base {
           if ($this->tax_class > 0) {
               $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
           }
-		  $max_shipping_weight = 0;
         } else {
             $this->quotes['error'] = MODULE_SHIPPING_JPPARCELEPACK_TEXT_NOTAVAILABLE;
         }
@@ -255,7 +254,7 @@ class jpparcelepack extends base {
 //　Japanese
 /*
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('国際eパケット配送を有効にする', 'MODULE_SHIPPING_JPPARCELEPACK_STATUS', 'True', '国際eパケット配送を提供したいですか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('マルチボックス化を有効にする', 'MODULE_SHIPPING_JPPARCELEPACK_MULTIBOX', 'None', '制限に達したときに新しい区画を追加しますか？何に基づいて？オプションは次のとおりです。<br>None - マルチボクシングなし<br>Weight - 重量制限に基づく新しいボックス', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\'), ', now())");
+    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('マルチボックス化を有効にする', 'MODULE_SHIPPING_JPPARCELEPACK_MULTIBOX', 'None', '制限に達したときに新しい区画を追加しますか？何に基づいて？オプションは次のとおりです。<br>なし - マルチボクシングなし<br>重さ - 重量制限に基づく新しいボックス', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\'), ', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('取扱い手数料', 'MODULE_SHIPPING_JPPARCELEPACK_HANDLING', '0', 'この配送方法の手数料です。', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷重量', 'MODULE_SHIPPING_JPPARCELEPACK_MAX_WEIGHT', '2', 'この方法で出荷できる最大重量。', '6', '0', now())");
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('送料無料設定', 'MODULE_SHIPPING_JPPARCELEPACK_FREE_SHIPPING', 'False', '送料無料設定を有効にしますか? [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください.', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");

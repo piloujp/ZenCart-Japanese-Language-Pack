@@ -109,11 +109,11 @@ class yupack extends base {
     if (!$this->enabled) return;
     if (IS_ADMIN_FLAG === true) return;
 
-/*      // disable for some master_categories_id 
+      // disable for some master_categories_id 
       if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
           $this->enabled = false; 
       }
-*/
+
     if ((int)MODULE_SHIPPING_YUPACK_ZONE > 0) {
       $check_flag = false;
       $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_YUPACK_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
@@ -140,7 +140,7 @@ class yupack extends base {
    * @return unknown
    */
     function quote() {
-      global $shipping_num_boxes, $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
+      global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
       global $order;
       global $a_yupack_time;
       global $db;
@@ -148,12 +148,14 @@ class yupack extends base {
       if (empty($order->delivery['zone_id']) == true) { return NULL;}
 
       $this->quotes = array('id' => $this->code, 'module' => $this->title);
-      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
 
 	  $max_shipping_weight = MODULE_SHIPPING_YUPACK_MAX_WEIGHT;
 	  $max_shipping_girth = MODULE_SHIPPING_YUPACK_MAX_GIRTH;
       $country_id = $order->delivery['country']['id'];
       $zone_id    = $order->delivery['zone_id'];
+
+	  $shipping_num_boxes = 1;
 
       if (in_array($country_id, $this->yupack_countries_nbr)) {
           $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");

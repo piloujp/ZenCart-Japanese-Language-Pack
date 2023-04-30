@@ -83,22 +83,26 @@
    * Perform various checks to see whether this module should be visible
    */
     function update_status() {
-      global $order, $db, $shipping_weight, $box_sizes_array, $multiboxes;
+      global $order, $db, $shipping_weight, $multiboxes, $box_sizes_array, $max_shipping_weight, $max_size_array;
 	  
       if (!$this->enabled) return;
       if (IS_ADMIN_FLAG === true) return;
 
       // disable for some master_categories_id 
-      if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
+/*      if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
           $this->enabled = false; 
       }
-
+*/
 	  $multiboxes = MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX;
+	  $max_shipping_weight = MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT;
+	  $max_size_array = array('Max_length' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH, 'Max_width' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH, 'Max_height' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT, 'Max_girth' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH);
 	  if (!empty($box_sizes_array)) {
 		  //echo ' Box size array: ';print_r($box_sizes_array[0]);echo ' Weight: ' . $shipping_weight;
 		  $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
+		  //echo ' Girth : ' . $girth;
 		  // disable if too big 
-		  if (IS_ADMIN_FLAG == false && $multiboxes === 'None' && ($box_sizes_array[0][0] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT || $girth > MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH || $shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT)) { 
+		  if (IS_ADMIN_FLAG == false && ((($box_sizes_array[0][0] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT || $girth > MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH) && $multiboxes != 'Size') || ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes != 'Size'))) { 
+		  //if (IS_ADMIN_FLAG == false && ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes == 'None')) { 
 			  $this->enabled = false;
 		  }
 	  }
@@ -121,13 +125,20 @@
           $this->enabled = false;
         }
       }
+	  //$multiboxes = 'None';
+	  //$shipping_num_boxes = 1;
     }
 
     function quote($method = '') {
       global $order, $shipping_num_boxes;
 
+	  if ($shipping_num_boxes > 1) {
+		  $BQTY = ' x ' . $shipping_num_boxes;
+	  } else {
+		  $BQTY = '';
+	  }
       $this->quotes = array('id' => $this->code,
-                            'module' => MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE,
+                            'module' => MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE . $BQTY,
                             'methods' => array(array('id' => $this->code,
                                                      'title' => MODULE_SHIPPING_LETTERPACKPLUS_TEXT_WAY,
                                                      'cost' => ((int)MODULE_SHIPPING_LETTERPACKPLUS_COST*$shipping_num_boxes))));
@@ -135,8 +146,7 @@
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
       }
 
-      if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
-
+      if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
       return $this->quotes;
     }
 
@@ -154,7 +164,7 @@
 // English
 
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Letter Pack Plus Shipping', 'MODULE_SHIPPING_LETTERPACKPLUS_STATUS', 'True', 'Do you want to offer Letter Pack Plus rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Weight - New boxes based on weight limit<br>Size - New boxes based on dimension limits', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\', \'Size\'), ', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Size - Add new boxes when size limit is reached', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Size\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, val_function, date_added) values ('Shipping Cost', 'MODULE_SHIPPING_LETTERPACKPLUS_COST', '520', 'The shipping cost for all orders using this shipping method.', '6', '0', '" . '{"error":"TEXT_POSITIVE_FLOAT","id":"FILTER_VALIDATE_FLOAT","options":{"options":{"min_range":0}}}'  . "', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum shipping weight', 'MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT', '4', 'Maximum weight that can be ship with this method.', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum inner length', 'MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH', '31', 'Maximum length of envelope inside volume.', '6', '0', now())");
@@ -169,7 +179,7 @@
 //　Japanese
 /*
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('レターパックプラス配送を有効にする', 'MODULE_SHIPPING_LETTERPACKPLUS_STATUS', 'True', 'レターパックプラスでの発送を希望しますか？', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('マルチボックス化を有効にする', 'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX', 'None', '制限に達したときに新しい区画を追加しますか？何に基づいて？オプションは次のとおりです。<br>None - マルチボクシングなし<br>Weight - 重量制限に基づく新しいボックス<br>Size - 寸法制限に基づく新しいボックス', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\', \'Size\'), ', now())");
+      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('マルチボックス化を有効にする', 'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX', 'None', '制限に達したときに新しい区画を追加しますか？何に基づいて？オプションは次のとおりです。<br>なし - マルチボクシングなし<br>寸法 - 寸法制限に基づく新しいボックス', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Size\'), ', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, val_function, date_added) values ('送料', 'MODULE_SHIPPING_LETTERPACKPLUS_COST', '520', 'この配送方法を使用するすべての注文の配送料。', '6', '0', '" . '{"error":"TEXT_POSITIVE_FLOAT","id":"FILTER_VALIDATE_FLOAT","options":{"options":{"min_range":0}}}'  . "', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷重量', 'MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT', '4', 'この方法で出荷できる最大重量。', '6', '0', now())");
       $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大内部長さ', 'MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH', '31', '封筒内容積の最大長。', '6', '0', now())");

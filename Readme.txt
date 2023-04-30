@@ -259,8 +259,10 @@ Corrected an SQL querry error and other minor typos.
 Some cleaning here and there.
 
 V1.2.2 - 30 Apr 2023
-Last files Update to Zen Cart v1.5.8a.
-Updated instructions in readme files.
+Class shipping can now do multiboxing on size or weight.
+Aligned icon with text in few shipping modules.
 Modification of some SQL queries for database setting. 
 Corrected bug in Japanese admin that prevented to see Customer list page.
 Modified admin customer edit form so that less mandatory fields are required.
+Last files Update to Zen Cart v1.5.8a.
+Updated instructions in readme files.
