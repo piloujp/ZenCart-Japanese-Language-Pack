@@ -8,7 +8,7 @@ UPDATE `zones` SET `zone_code` = '福井県' WHERE `zones`.`zone_name` = 'Fukui'
 UPDATE `zones` SET `zone_code` = '福岡県' WHERE `zones`.`zone_name` = 'Fukuoka';
 UPDATE `zones` SET `zone_code` = '福島県' WHERE `zones`.`zone_name` = 'Fukushima';
 UPDATE `zones` SET `zone_code` = '岐阜県' WHERE `zones`.`zone_name` = 'Gifu';
-UPDATE `zones` SET `zone_code` = '群馬県' WHERE `zones`.`zone_name` = 'Gumma';
+UPDATE `zones` SET `zone_code` = '群馬県' WHERE `zones`.`zone_name` = 'Gunma';
 UPDATE `zones` SET `zone_code` = '広島県' WHERE `zones`.`zone_name` = 'Hiroshima';
 UPDATE `zones` SET `zone_code` = '北海道' WHERE `zones`.`zone_name` = 'Hokkaido';
 UPDATE `zones` SET `zone_code` = '兵庫県' WHERE `zones`.`zone_name` = 'Hyogo';

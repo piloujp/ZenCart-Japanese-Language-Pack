@@ -57,7 +57,7 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '福井県
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '福岡県', 'Fukuoka');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '福島県', 'Fukushima');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '岐阜県', 'Gifu');
-INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '群馬県', 'Gumma');
+INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '群馬県', 'Gunma');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '広島県', 'Hiroshima');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '北海道', 'Hokkaido');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '兵庫県', 'Hyogo');
