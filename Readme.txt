@@ -266,3 +266,10 @@ Corrected bug in Japanese admin that prevented to see Customer list page.
 Modified admin customer edit form so that less mandatory fields are required.
 Last files Update to Zen Cart v1.5.8a.
 Updated instructions in readme files.
+
+V1.2.3 - 15 May 2023
+Updated filter for Japanese prefectures names (Kanji or romaji) so it does not filter out other languages using non-standard characters.
+Japanese prefecture Gunma spelling was corrected in zones table and SQL queries. Please fix you database with this query:
+UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';
+Added comments in Japanese shipping modules class for Yamato, Sagawa and Yupack. There are in a structured way more like example to make customization easier.
+
