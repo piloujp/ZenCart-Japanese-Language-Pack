@@ -248,7 +248,6 @@ $define = [
     'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_LOGO_IMAGE' => 'logo.gif',
     'HEADER_LOGO_WIDTH' => '192',
-    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_TITLE_ACCOUNT' => 'マイアカウント',
     'HEADER_TITLE_LOGOFF' => 'ログオフ',
     'HEADER_TITLE_ONLINE_CATALOG' => 'オンラインショップ',
