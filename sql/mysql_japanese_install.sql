@@ -122,8 +122,11 @@ INSERT INTO address_format VALUES (21, '〒$postcode$cr$state$city$streets$cr$la
 UPDATE countries SET address_format_id=21 WHERE countries_id=107;
 
 #言語追加
-INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'jp', 'icon.gif', 'japanese',0);
+INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'ja', 'icon.gif', 'japanese',0);
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
+
+#販売国
+UPDATE configuration SET configuration_value=107 WHERE configuration_key='STORE_COUNTRY';
 
 # 住所に電話番号を追加、個人情報側からは電話番号削除
 ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32) NOT NULL;
