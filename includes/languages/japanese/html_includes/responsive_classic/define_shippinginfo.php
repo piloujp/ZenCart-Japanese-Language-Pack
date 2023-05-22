@@ -37,7 +37,7 @@
 <table cellspacing="0" class="layout">
 	<tbody>
 		<tr>
-			<td class="pic"><img height="123" src="http://helitech-jp.com/images/yupack_size.gif" width="206" /></td>
+			<td class="pic"><img height="123" src="../images/yupack_size.gif" width="206" /></td>
 			<td>重さ30kgまで<br />
 			A+B+C=1.7m以内</td>
 		</tr>
@@ -65,13 +65,13 @@
 			<td bgcolor="#b6b6b6"><img border="0" height="1" width="1" /></td>
 		</tr>
 		<tr>
-			<td bgcolor="#b6b6b6"><img border="0" height="30" src="http://helitech-jp.com/images/spacer.gif" width="1" /></td>
+			<td bgcolor="#b6b6b6"><img border="0" height="30" src="../images/spacer.gif" width="1" /></td>
 			<th bgcolor="#dedeff" class="vl3">サイズ</th>
-			<td bgcolor="#b6b6b6"><img border="0" class="style1" height="1" src="http://helitech-jp.com/images/spacer.gif" width="1" /></td>
+			<td bgcolor="#b6b6b6"><img border="0" class="style1" height="1" src="../images/spacer.gif" width="1" /></td>
 			<td align="center" bgcolor="#dedeff" class="vl3">荷物の大きさ</td>
-			<td bgcolor="#b6b6b6"><img border="0" class="style1" height="1" src="http://helitech-jp.com/images/spacer.gif" width="1" /></td>
+			<td bgcolor="#b6b6b6"><img border="0" class="style1" height="1" src="../images/spacer.gif" width="1" /></td>
 			<td align="center" bgcolor="#dedeff" class="vl3">重さ</td>
-			<td bgcolor="#b6b6b6"><img border="0" height="1" src="http://helitech-jp.com/images/spacer.gif" width="1" /></td>
+			<td bgcolor="#b6b6b6"><img border="0" height="1" src="../images/spacer.gif" width="1" /></td>
 		</tr>
 		<tr>
 			<td bgcolor="#b6b6b6"><img border="0" height="1" width="1" /></td>
@@ -189,9 +189,9 @@
 			<td rowspan="2" width="130">
 			<p>&nbsp;</p>
 
-			<p><img border="0" height="130" src="http://helitech-jp.com/images/size_il002.gif" width="114" /></p>
+			<p><img border="0" height="130" src="../images/size_il002.gif" width="114" /></p>
 			</td>
-			<td height="50"><img alt="サイズの測り方" border="0" height="37" src="http://helitech-jp.com/images/size_il001.gif" width="182" /></td>
+			<td height="50"><img alt="サイズの測り方" border="0" height="37" src="../images/size_il001.gif" width="182" /></td>
 		</tr>
 		<tr>
 			<td valign="top">

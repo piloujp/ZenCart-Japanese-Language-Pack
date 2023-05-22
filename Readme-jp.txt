@@ -83,6 +83,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...(\admin-XX to YourAdminFolderName)\customers.php'
 	'...(\admin-XX to YourAdminFolderName)\stats_sales_report_graphs.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\header.php
+	'...(\admin-XX to YourAdminFolderName)\includes\functions\html_output.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\lang.english.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\lang.customers.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\lang.product.php'
@@ -113,6 +114,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...\includes\functions\functions_dates.php'
 	'...\includes\functions\functions_general_shared.php'
 	'...\includes\functions\functions_osh_update.php'
+	'...\includes\functions\html_output.php'
 	'...\includes\languages\lang.english.php'
 	'...\includes\languages\english\lang.checkout_process.php'
 	'...\includes\languages\english\responsive_classic\lang.index.php'
