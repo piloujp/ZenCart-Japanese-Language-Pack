@@ -141,10 +141,6 @@ First choose your admin language and use appropriate folder: admin-EN for Englis
 For both cases:
 ---------------
 
-- EDIT modules (shipping, payment,order total) FILES only if you want their admin menus in Japanese.
-In the 'install function', at the bottom of these files, comment English sql queries and uncomment Japanese ones. You have to do it before installing modules. If you do it after, you have to uninstall and re-install modules for changes to take effect.
-There are actually 11 Shipping, 4 Payment and 3 Total_Order modules.
-
 - EDIT classes (_jpparcel.php, _sagawa.php, _yamato.php, _yupack.php) for shipping modules. You need to check and adjust rates if necessary.
 They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
 Quoting is based on three main arrays:
@@ -275,3 +271,6 @@ Japanese prefecture Gunma spelling was corrected in zones table and SQL queries.
 UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';
 Added comments in Japanese shipping modules class for Yamato, Sagawa and Yupack. There are in a structured way more like example to make customization easier.
 
+V1.2.4 - 25 May 2023
+All Japanese modules for shipping , payment and order total will install in admin current language, Japanese or English. With this automatized, file edit to choose language should not be necessary anymore.
+Pull down menus for Japanese zone will show prefectures (states) when in Japanese in standard administrative order, which is North to South (Hokkaido to Okinawa).

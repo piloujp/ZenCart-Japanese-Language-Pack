@@ -520,7 +520,7 @@ function zen_js_zone_list(string $country, string $form, string $field) {
 			$sql = "SELECT zone_name, zone_id
 					FROM " . TABLE_ZONES . "
 					WHERE zone_country_id =  107  AND  (zone_name regexp '^[\\\p{Hani}]')
-					ORDER BY zone_name";
+					ORDER BY zone_id";
 		} else {
 			$sql = "SELECT zone_name, zone_id
 					FROM " . TABLE_ZONES . "

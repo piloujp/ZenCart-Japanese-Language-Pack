@@ -208,7 +208,7 @@ function zen_image_submit($image, $alt = '', $parameters = '')
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = 107  AND  (zone_name regexp '^[\\\p{Hani}]')
-                              ORDER BY zone_name");
+                              ORDER BY zone_id");
 	  } else {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "

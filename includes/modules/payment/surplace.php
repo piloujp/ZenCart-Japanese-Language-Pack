@@ -144,32 +144,30 @@
     }
 
     function install() {
-// English
-
-      global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
-        $messageStack->add_session('Paiement at the shop module already installed.', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
-        return 'failed';
-      }
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable shop payment', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', 'Do you want to accept payment at the shop?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-	  $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
-
-// Japanese
-/*
-      global $db, $messageStack;
-      if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
-        $messageStack->add_session('店頭支払いモジュール搭載済み。', 'error');
-        zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
-        return 'failed';
-      }
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('店頭支払いを有効にする', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', '店頭支払いを受け取りますか？', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-	  $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('支払い地帯', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', '地帯が選択されている場合は、その地帯に対してのみこの支払い方法を有効にしてください。', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('表示順', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', '0', '表示順を設定します。 最下位が最初に表示されます。', '6', '0', now())");
-      $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('注文ステータスの設定', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID', '0', 'この支払いモジュールで行われた注文のステータスを設定します。', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
-*/
+		global $db, $messageStack;
+		if ($_SESSION['language'] == 'japanese') {
+		// Japanese
+			if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
+				$messageStack->add_session('店頭支払いモジュール搭載済み。', 'error');
+				zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
+				return 'failed';
+			}
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('店頭支払いを有効にする', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', '店頭支払いを受け取りますか？', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('支払い地帯', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', '地帯が選択されている場合は、その地帯に対してのみこの支払い方法を有効にしてください。', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('表示順', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', '0', '表示順を設定します。 最下位が最初に表示されます。', '6', '0', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('注文ステータスの設定', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID', '0', 'この支払いモジュールで行われた注文のステータスを設定します。', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
+		} else {
+		// English
+			if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
+				$messageStack->add_session('Paiement at the shop module already installed.', 'error');
+				zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
+				return 'failed';
+			}
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable shop payment', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', 'Do you want to accept payment at the shop?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+			$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
+		}
    }
 
     function remove() {

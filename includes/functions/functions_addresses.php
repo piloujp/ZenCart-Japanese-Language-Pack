@@ -128,7 +128,7 @@ function zen_get_country_zones($country_id)
 		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
 							FROM " . TABLE_ZONES . "
 							WHERE zone_country_id = 107 AND  (zone_name regexp '^[\\\p{Hani}]')
-							ORDER BY zone_name");
+							ORDER BY zone_id");
 	} else {
 		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
 							FROM " . TABLE_ZONES . "
