@@ -207,7 +207,7 @@ class yupack extends base {
           if (!isset($tmpQuote['error'])) {
               // 配送時刻指定
               $timespec = $this->get_timespec();
-              $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('yupack_timespec', $a_yupack_time, $timespec,'style="width: 115px;"');
+              $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('yupack_timespec', $a_yupack_time, $timespec,'style="width: 160px;"');
               $tmpQuote['timespec'] = $timespec;
           }
 
