@@ -207,12 +207,12 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
-                              WHERE zone_country_id = 107  AND  (zone_name regexp '^[\\\p{Hani}]')
+                              WHERE zone_country_id = 107  AND  (zone_name REGEXP '^[一-龠]')
                               ORDER BY zone_id");
 	  } else {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
-                              WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name regexp '^[\\\P{Hani}]')
+                              WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
                               ORDER BY zone_name");
 	  }
 
