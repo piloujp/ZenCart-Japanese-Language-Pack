@@ -1,6 +1,5 @@
-
 #地域設定
-# Japan
+# Japan zones
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (107,'北海道','北海道');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (107,'青森県','青森県');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (107,'岩手県','岩手県');
@@ -96,16 +95,6 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '山形県
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '山口県', 'Yamaguchi');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES(107, '山梨県', 'Yamanashi');
 
-
-#注文ステータス
-INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);
-INSERT INTO orders_status VALUES ('1', '2', '処理待ち', 0);
-INSERT INTO orders_status VALUES ('2', '2', '処理中', 10);
-INSERT INTO orders_status VALUES ('3', '2', '完了', 20);
-INSERT INTO orders_status VALUES ('4', '2', '更新', 30);
-INSERT INTO orders_status VALUES ('5', '2', '配送済み', 40);
-
-
 # カナを追加する
 ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NULL;
 ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NULL;
@@ -114,19 +103,6 @@ ALTER TABLE customers    ADD COLUMN customers_lastname_kana  varchar(32) NOT NUL
 ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
-
-#住所フォーマット追加
-INSERT INTO address_format VALUES (21, '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
-
-#住所フォーマットを変更
-UPDATE countries SET address_format_id=21 WHERE countries_id=107;
-
-#言語追加
-INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'ja', 'icon.gif', 'japanese',0);
-UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
-
-#販売国
-UPDATE configuration SET configuration_value=107 WHERE configuration_key='STORE_COUNTRY';
 
 # 住所に電話番号を追加、個人情報側からは電話番号削除
 ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32) NOT NULL;
@@ -137,10 +113,57 @@ ALTER TABLE orders ADD COLUMN billing_telephone varchar(32);
 ALTER TABLE orders ADD COLUMN billing_fax varchar(32);
 ALTER TABLE orders ADD COLUMN customers_fax varchar(32);
 
-
 #送信モヂュール用
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 ALTER TABLE products ADD COLUMN products_length      float NOT NULL default 0;
 ALTER TABLE products ADD COLUMN products_width      float NOT NULL default 0;
 ALTER TABLE products ADD COLUMN products_height      float NOT NULL default 0;
 ALTER TABLE products ADD COLUMN products_barcode     varchar(32);
+
+#注文ステータス
+INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);
+INSERT INTO orders_status VALUES ('1', '2', '処理待ち', 0);
+INSERT INTO orders_status VALUES ('2', '2', '処理中', 10);
+INSERT INTO orders_status VALUES ('3', '2', '完了', 20);
+INSERT INTO orders_status VALUES ('4', '2', '更新', 30);
+INSERT INTO orders_status VALUES ('5', '2', '配送済み', 40);
+
+#住所フォーマット
+INSERT INTO address_format VALUES (21, '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
+UPDATE countries SET address_format_id=21 WHERE countries_id=107;
+
+#言語設定
+INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'ja', 'icon.gif', 'japanese',0);
+UPDATE configuration SET configuration_value = 'ja' WHERE configuration_key = 'DEFAULT_LANGUAGE';
+UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
+
+#通貨設定
+INSERT INTO currencies VALUES (6,'Japanese Yen','JPY','','円','.',',','0','1.000000', now());
+UPDATE configuration SET configuration_value = 'JPY' WHERE configuration_key = 'DEFAULT_CURRENCY';
+UPDATE currencies SET value='0.007588' WHERE code='USD';
+UPDATE currencies SET value='0.007021' WHERE code='EUR';
+UPDATE currencies SET value='0.006097' WHERE code='GBP';
+UPDATE currencies SET value='0.010233' WHERE code='CAD';
+UPDATE currencies SET value='0.011396' WHERE code='AUD';
+
+# 税金・税率設定
+UPDATE tax_rates SET tax_rate = '10.0',tax_description = '（内消費税：10%）' WHERE tax_rates_id = '1';
+UPDATE geo_zones SET geo_zone_name = '日本',geo_zone_description = '日本（消費税）' WHERE geo_zone_id = '1';
+UPDATE zones_to_geo_zones SET zone_country_id = '107',zone_id = NULL WHERE association_id = '1';
+UPDATE tax_class SET tax_class_title = '消費税',tax_class_description = '消費税（日本）' WHERE tax_class_id = '1';
+
+#販売国
+UPDATE configuration SET configuration_value=107 WHERE configuration_key='STORE_COUNTRY';
+
+#一般設定
+UPDATE configuration SET configuration_value=1 WHERE configuration_key='ENTRY_FIRST_NAME_MIN_LENGTH';
+UPDATE configuration SET configuration_value=1 WHERE configuration_key='ENTRY_LAST_NAME_MIN_LENGTH';
+UPDATE configuration SET configuration_value=1 WHERE configuration_key='ENTRY_STREET_ADDRESS_MIN_LENGTH';
+UPDATE configuration SET configuration_value = 'false' WHERE configuration_key = 'ACCOUNT_SUBURB';
+UPDATE configuration SET configuration_value = 'true' WHERE configuration_key = 'DISPLAY_PRICE_WITH_TAX';
+UPDATE configuration SET configuration_value = '107' WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
+UPDATE configuration SET configuration_value = 'true' WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
+
+# Version
+UPDATE project_version SET project_version_minor = '5.8124', project_version_comment = 'New Installation-v158 with Japanese Pack v1.2.4', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version_history SET project_version_minor = '5.8124', project_version_comment = 'New Installation-v158 with Japanese Pack v1.2.4', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
