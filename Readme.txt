@@ -23,7 +23,7 @@ DATABASE:
 Use a utility like PhpMyAdmin to upload SQL file or directly run SQL queries using copy and paste. SQL files are in the sql folder.
 
 'mysql_japanese_install.sql'
-These are the basic database modification for this japanese pack. It includes new fields for furigana, phone, fax number and delivery time in tables orders, adress_book and customers then fields for dimensions and barcode in table products. There are some added records like new order status, address format and japanese zones in kanji and romaji.
+These are the database modifications and configurations for this japanese pack. It includes new fields for furigana, phone, fax number and delivery time in tables orders, adress_book and customers then fields for dimensions and barcode in table products. There are some added records like new order status, address format and japanese zones in kanji and romaji.
 This is the only file you really NEED to INSTALL for everything to work. Other sql files are optionals.
 
 'mysql_japanese_admin_menu.sql'
@@ -160,9 +160,7 @@ If you have some question go to support forum : https://docs.zen-cart.com/user/n
 CONFIGURATION:
 -------------
 -------------
-Log into admin interface and go to language and set Japanese as default if desired.
-Then go to Tools-->Layout Boxes Controller and set language box to on.
-Then you will have to add Japanese Yen as a currency, set Japanese tax and create new geo-zones. The files 'mysql_japanese_config.sql' can help you with this but you might have to customize it.
+Most of specific configuration has been done at install but you still have to set your store location and postal code, define some geo-zones for your shipping modules and set these modules and payment ones too.
 Please have a look at Zen Cart documentation, starting by here: https://docs.zen-cart.com/user/new_user_topics/
 
 
@@ -172,17 +170,13 @@ UNINSTALL:
 Delete all 'newly' added files.
 Use your backup to copy back your precedent version for all merged/replaced files.
 In admin delete geo-zones, currency and tax related to Japanese.
-To remove added records from your database use 'uninstall.sql' file with a tool like phpMyAdmin. All newly added data will be lost.
+To remove added records from your database use 'uninstall.sql' file with a tool like phpMyAdmin. All newly added data in this fields will be lost.
 Don't forget to change back any admin settings you might have done.
 
 
 Other SQL files:
 ---------------
 ---------------
-'mysql_japanese_config.sql'
-It only does some configuration for Japanese tax, currency and other few things. I will recommend you to just have a look at it and do these config through Zen Cart admin interface. If you want to use these sql queries, be careful if you already have some data/config added in your database, you will need to tweak some sql query as numbers are not default anymore.
-What you have to set is mainly adding japanese language as default then japanese Yen as new default currency and adding japanese 10% VAT tax rate, class and necessary zones/geo zones. You might want to set minimum length for first name and last name to 1 as some japanese names can be written with one character only.
-
 'zencart1.5.8_structure_upgraded.sql'
 It is just a DUMP of the database structure after modification. Do NOT INSTALL! It could be useful if you plan to transfer data from an old version to check what is matching or not. You can use it too for a manual uptadtes to/from v1.5.8 japanese...
 
