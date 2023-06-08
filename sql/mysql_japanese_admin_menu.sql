@@ -1,4 +1,3 @@
-
 # 一般設定グループの翻訳
 UPDATE configuration_group SET configuration_group_title = 'ショップ全般の設定', configuration_group_description = 'ショップの一般的な項目を設定します。' WHERE  configuration_group_id = '1';
 UPDATE configuration_group SET configuration_group_title = '最小値の設定', configuration_group_description = '機能・データ類の最小(少)値について設定します。' WHERE  configuration_group_id = '2';
@@ -26,7 +25,6 @@ UPDATE configuration_group SET configuration_group_title = '全商品リスト�
 UPDATE configuration_group SET configuration_group_title = '商品カタログページの表示設定', configuration_group_description = '商品カタログページの要素表示について各種の設定をします。' WHERE  configuration_group_id = '24';
 UPDATE configuration_group SET configuration_group_title = '定番ページの表示設定', configuration_group_description = '定番ページとHTMLAreaなどについて各種の設定をします。' WHERE  configuration_group_id = '25';
 UPDATE configuration_group SET configuration_group_title = 'EZ-Pagesの設定', configuration_group_description = 'EZページについて各種の設定をします。' WHERE  configuration_group_id = '30';
-
 
 # 一般設定の翻訳
 UPDATE configuration SET configuration_title = 'ショップ名',  configuration_description = 'ショップ名を設定します。' WHERE `configuration_key` = 'STORE_NAME';
@@ -190,12 +188,47 @@ UPDATE configuration SET configuration_title = '顧客の紹介(Customers Referr
 UPDATE configuration SET configuration_title = 'インストール済みの支払いモジュール',  configuration_description = 'インストールされている支払いモジュールのファイル名のリスト( セミコロン(;)区切り )です。この情報は自動的に更新されますので編集の必要はありません。' WHERE `configuration_key` = 'MODULE_PAYMENT_INSTALLED';
 UPDATE configuration SET configuration_title = 'インストール済み注文合計モジュール',  configuration_description = 'インストールされている注文合計モジュールのファイル名のリスト(セミコロン(;)区切り)です。<br>【注意】この情報は自動的に更新されますので編集の必要はありません。' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_INSTALLED';
 UPDATE configuration SET configuration_title = 'インストール済み配送モジュール',  configuration_description = 'インストールされている配送モジュールのファイル名のリスト(セミコロン(;)区切り)です。この情報は自動的に更新されますので編集の必要はありません。' WHERE `configuration_key` = 'MODULE_SHIPPING_INSTALLED';
+UPDATE configuration SET configuration_title = '送料無料を有効にする', configuration_description = '送料無料をご希望ですか？' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_STATUS';
+UPDATE configuration SET configuration_title = '受け取り場所', configuration_description = '場所のリストをセミコロン (;) で区切って入力します。<br>必要に応じて、カンマと金額を追加して、各場所の料金/追加料金を指定できます。金額が指定されていない場合は、次の設定の一般的な送料金額が適用されます。<br><br>例：<br>121 Main Street;20 Church Street<br>Sunnyside,4.00;Lee Park,5.00;High Street,0.00<br>Dallas;Tulsa,5.00;Phoenix,0.00<br>多言語で使用する場合は、このモジュールの言語ファイルの定義ステートメントを参照してください。' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_LOCATIONS_LIST';
+UPDATE configuration SET configuration_title = '送料無料', configuration_description = '送料はいくらかかりますか？' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_COST';
+UPDATE configuration SET configuration_title = '手数料', configuration_description = 'この配送方法の手数料。' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_HANDLING';
+UPDATE configuration SET configuration_title = '税種別', configuration_description = '送料には以下の税金区分を使用します。' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_TAX_CLASS';
+UPDATE configuration SET configuration_title = '配送地域', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_ZONE';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順。' WHERE configuration_key = 'MODULE_SHIPPING_FREESHIPPER_SORT_ORDER';
+UPDATE configuration SET configuration_title = '店舗受け取りを有効にする', configuration_description = '店内送料を提供したいですか？' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_STATUS';
+UPDATE configuration SET configuration_title = '輸送費t', configuration_description = 'この配送方法を使用したすべての注文の送料。' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_COST';
+UPDATE configuration SET configuration_title = '税種別', configuration_description = '送料には以下の税金区分を使用します。' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_TAX_CLASS';
+UPDATE configuration SET configuration_title = '課税標準', configuration_description = '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_TAX_BASIS';
+UPDATE configuration SET configuration_title = '配送地域', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_ZONE';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順。' WHERE configuration_key = 'MODULE_SHIPPING_STOREPICKUP_SORT_ORDER';
+UPDATE configuration SET configuration_title = '商品ごとの配送を有効にする', configuration_description = '商品ごとの送料を設定しますか？' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_STATUS';
+UPDATE configuration SET configuration_title = '輸送費', configuration_description = 'この配送方法を使用する注文では、送料に商品の数が乗算されます。' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_COST';
+UPDATE configuration SET configuration_title = '手数料', configuration_description = 'この配送方法の手数料' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_HANDLING';
+UPDATE configuration SET configuration_title = '税種別', configuration_description = '送料には以下の税金区分を使用します。' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_TAX_CLASS';
+UPDATE configuration SET configuration_title = '課税標準', configuration_description = '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_TAX_BASIS';
+UPDATE configuration SET configuration_title = '配送地域', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_ZONE';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順。' WHERE configuration_key = 'MODULE_SHIPPING_ITEM_SORT_ORDER';
+UPDATE configuration SET configuration_title = '無料の支払い請求モジュールを有効にする', configuration_description = '無料の料金支払いを受け入れますか？' WHERE configuration_key = 'MODULE_PAYMENT_FREECHARGER_STATUS';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順。 最低値が最初に表示されます。' WHERE configuration_key = 'MODULE_PAYMENT_FREECHARGER_SORT_ORDER';
+UPDATE configuration SET configuration_title = '支払い地域', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_PAYMENT_FREECHARGER_ZONE';
+UPDATE configuration SET configuration_title = '注文ステータスの設定', configuration_description = 'この支払いモジュールで行われた注文のステータスをこの値に設定します' WHERE configuration_key = 'MODULE_PAYMENT_FREECHARGER_ORDER_STATUS_ID';
+UPDATE configuration SET configuration_title = '小切手/為替モジュールを有効にする', configuration_description = '小切手/郵便為替での支払いを受け入れますか？' WHERE configuration_key = 'MODULE_PAYMENT_MONEYORDER_STATUS';
+UPDATE configuration SET configuration_title = '支払先を次のとおりにします。', configuration_description = '支払いは誰に支払われるべきですか？' WHERE configuration_key = 'MODULE_PAYMENT_MONEYORDER_PAYTO';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順。 最低値が最初に表示されます。' WHERE configuration_key = 'MODULE_PAYMENT_MONEYORDER_SORT_ORDER';
+UPDATE configuration SET configuration_title = 'Payment Zone', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_PAYMENT_MONEYORDER_ZONE';
+UPDATE configuration SET configuration_title = '注文ステータスの設定', configuration_description = 'この支払いモジュールで行われた注文のステータスをこの値に設定します' WHERE configuration_key = 'MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID';
 UPDATE configuration SET configuration_title = '税込',  configuration_description = '割引計算前に税額を金額に含めますか?' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_INC_TAX';
 UPDATE configuration SET configuration_title = 'このモジュールがインストールされています',  configuration_description = '' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_STATUS';
 UPDATE configuration SET configuration_title = '表示の整列順',  configuration_description = '表示の整列順を設定します。' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_SORT_ORDER';
 UPDATE configuration SET configuration_title = '送料込み',  configuration_description = '割引計算前に配送料を金額に含めますか?' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_INC_SHIPPING';
 UPDATE configuration SET configuration_title = '税金を再計算する',  configuration_description = '税金を再計算する' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_CALC_TAX';
 UPDATE configuration SET configuration_title = '税区分',  configuration_description = '団体割引を貸方票として扱う場合は、次の税区分を使用します。' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GROUP_PRICING_TAX_CLASS';
+UPDATE configuration SET configuration_title = '一律配送を有効にする', configuration_description = '定額配送を提供したいですか？' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_STATUS';
+UPDATE configuration SET configuration_title = '輸送費', configuration_description = 'この配送方法を使用したすべての注文の送料。' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_COST';
+UPDATE configuration SET configuration_title = '税種別', configuration_description = '送料には以下の税金区分を使用します。' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_TAX_CLASS';
+UPDATE configuration SET configuration_title = '課税標準', configuration_description = '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_TAX_BASIS';
+UPDATE configuration SET configuration_title = '配送地域', configuration_description = '配送地域を選択すると選択された地域のみで利用可能となります。' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_ZONE';
+UPDATE configuration SET configuration_title = '表示の整列順', configuration_description = '表示の整列順' WHERE configuration_key = 'MODULE_SHIPPING_FLAT_SORT_ORDER';
 UPDATE configuration SET configuration_title = 'デフォルトの通貨',  configuration_description = 'デフォルトの通貨を設定します。' WHERE `configuration_key` = 'DEFAULT_CURRENCY';
 UPDATE configuration SET configuration_title = 'デフォルトの言語',  configuration_description = 'デフォルトの言語を設定します。' WHERE `configuration_key` = 'DEFAULT_LANGUAGE';
 UPDATE configuration SET configuration_title = '新規注文のデフォルトステータス',  configuration_description = '新規の注文を受け付けたときのデフォルトステータスを設定します。' WHERE `configuration_key` = 'DEFAULT_ORDERS_STATUS_ID';
@@ -226,7 +259,7 @@ UPDATE configuration SET configuration_title = 'リスト内各商品への注�
 UPDATE configuration SET configuration_title = '商品説明の表示',  configuration_description = '商品説明を表示するかどうかを設定します。<br>0= OFF<br>150= 推奨する長さ。または自由に表示する商品説明の最大文字数を設定してください。' WHERE `configuration_key` = 'PRODUCT_LIST_DESCRIPTION';
 UPDATE configuration SET configuration_title = '商品リストの昇順を表示する記号',  configuration_description = '商品リストの昇順を示す記号は?<br>デフォルト = +' WHERE `configuration_key` = 'PRODUCT_LIST_SORT_ORDER_ASCENDING';
 UPDATE configuration SET configuration_title = '商品リストの降順を表示する記号',  configuration_description = '商品リストの降順を示す記号は?<br>デフォルト = -' WHERE `configuration_key` = 'PRODUCT_LIST_SORT_ORDER_DESCENDING';
-UPDATE configuration SET configuration_title = 'グリッドレイアウトカラム数',  configuration_description = '商品リスト画面での一行毎のカラム数を指定してください。（グリッドレイアウトになります）<br>推奨値：3<br>（ 1 にすると従来のリスト表示レイアウトになります。)' WHERE `configuration_key` = 'PRODUCT_LISTING_COLUMNS_PER_ROW';
+UPDATE configuration SET configuration_title = 'グリッドレイアウトカラム数',  configuration_description = '商品リスト画面での一行毎のカラム数を指定してください。（グリッドレイアウトになります）<br>推奨値：3<br>（ 1 にすると従来のリスト表示レイアウトになります。)<br><br><code>bootstrap</code> テンプレートの場合は、0 (流体列) または 1 (行) を使用します。<br>' WHERE `configuration_key` = 'PRODUCT_LISTING_COLUMNS_PER_ROW';
 UPDATE configuration SET configuration_title = '商品リストの英語名でのソートボタン',  configuration_description = '商品リストに英語名でのソートボタンを表示しますか?<br>・true (する)<br>・false (しない)' WHERE `configuration_key` = 'PRODUCT_LIST_ALPHA_SORTER';
 UPDATE configuration SET configuration_title = '商品リストのサブカテゴリ画像',  configuration_description = '商品リストのサブカテゴリで画像を表示しますか?<br>・true (する)<br>・false (しない)' WHERE `configuration_key` = 'PRODUCT_LIST_CATEGORIES_IMAGE_STATUS';
 UPDATE configuration SET configuration_title = '商品リストのトップカテゴリ画像',  configuration_description = '商品リストのトップカテゴリで画像を表示しますか?<br>・true (する)<br>・false (しない)' WHERE `configuration_key` = 'PRODUCT_LIST_CATEGORIES_IMAGE_STATUS_TOP';
@@ -398,8 +431,8 @@ UPDATE configuration SET configuration_title = '[前へ] [次へ] ナビゲー�
 UPDATE configuration SET configuration_title = '[前へ] [次へ] ナビゲーション - 画像の高さ',  configuration_description = '[前へ] [次へ] で表示される商品画像の高さを設定します。' WHERE `configuration_key` = 'PREVIOUS_NEXT_IMAGE_HEIGHT';
 UPDATE configuration SET configuration_title = '[前へ] [次へ] ナビゲーション - カテゴリ名と画像の配置',  configuration_description = '[前へ] [次へ] ナビゲーションの上に表示される カテゴリ画像とカテゴリ名の配置を設定します。<br>・0= off<br>・1= 左に配置<br>・2= 中央に配置<br>・3= 右に配置' WHERE `configuration_key` = 'PRODUCT_INFO_CATEGORIES';
 UPDATE configuration SET configuration_title = 'カテゴリ名と画像を常に表示',  configuration_description = 'カテゴリ名と画像の表示ステータス<br>0= カテゴリ名と画像を常に表示<br>1= カテゴリ名のみ表示<br>2= カテゴリ名と対象がある場合だけ画像を表示' WHERE `configuration_key` = 'PRODUCT_INFO_CATEGORIES_IMAGE_STATUS';
-UPDATE configuration SET configuration_title = '左側サイドボックスの横幅',  configuration_description = '左側に表示されるサイドボックスの横幅を設定します。pxを含めて入力できます。<br>・デフォルト = 150px' WHERE `configuration_key` = 'BOX_WIDTH_LEFT';
-UPDATE configuration SET configuration_title = '右側サイドボックスの横幅',  configuration_description = '右側に表示されるサイドボックスの横幅を設定します。pxを含めて入力できます。<br>・Default = 150px' WHERE `configuration_key` = 'BOX_WIDTH_RIGHT';
+UPDATE configuration SET configuration_title = '左側サイドボックスの横幅',  configuration_description = '左側に表示されるサイドボックスの横幅を設定します。pxを含めて入力できます。<br>・デフォルト = 150px<br><br><b>この構成は、ZCA 応答コンポーネントまたは ZCA ブートストラップ テーマには影響しません。</b>' WHERE `configuration_key` = 'BOX_WIDTH_LEFT';
+UPDATE configuration SET configuration_title = '右側サイドボックスの横幅',  configuration_description = '右側に表示されるサイドボックスの横幅を設定します。pxを含めて入力できます。<br>・Default = 150px<br><br><b>この構成は、ZCA 応答コンポーネントまたは ZCA ブートストラップ テーマには影響しません。</b>' WHERE `configuration_key` = 'BOX_WIDTH_RIGHT';
 UPDATE configuration SET configuration_title = 'パン屑リストの区切り文字',  configuration_description = 'パン屑リストの区切り文字を設定します。<br>【注意】空白を含む場合は&nbsp;を使用することができます。<br>・デフォルト = &nbsp;::&nbsp;' WHERE `configuration_key` = 'BREAD_CRUMBS_SEPARATOR';
 UPDATE configuration SET configuration_title = 'パン屑リストの設定',  configuration_description = 'パン屑リストのリンクを有効にしますか?<br>0= OFF<br>1= ON<br>2= TOPページのみ解除' WHERE `configuration_key` = 'DEFINE_BREADCRUMB_STATUS';
 UPDATE configuration SET configuration_title = 'ベストセラー - 桁数合わせ文字',  configuration_description = '桁数を合わせるために挿入する文字を設定します。<br>デフォルト = &nbsp;(空白)' WHERE `configuration_key` = 'BEST_SELLERS_FILLER';
@@ -412,8 +445,8 @@ UPDATE configuration SET configuration_title = 'カテゴリボックス - お�
 UPDATE configuration SET configuration_title = 'カテゴリボックス - 全商品リストへのリンクを表示',  configuration_description = 'カテゴリボックスに全商品リストへのリンクを表示しますか?' WHERE `configuration_key` = 'SHOW_CATEGORIES_BOX_PRODUCTS_ALL';
 UPDATE configuration SET configuration_title = '左側カラムの表示',  configuration_description = '左側カラムを表示しますか? (ページをオーバーライドするものがない場合)<br>・0= 常に非表示<br>1= オーバーライドがなければ表示' WHERE `configuration_key` = 'COLUMN_LEFT_STATUS';
 UPDATE configuration SET configuration_title = '右側カラムの表示',  configuration_description = '右側カラムを表示しますか? (ページをオーバーライドするものがない場合)<br>・0= 常に非表示<br>・1= オーバーライドがなければ表示' WHERE `configuration_key` = 'COLUMN_RIGHT_STATUS';
-UPDATE configuration SET configuration_title = '左側カラムの横幅',  configuration_description = '左側カラムの横幅を設定します。pxを含めて指定可能。<br>デフォルト = 150px' WHERE `configuration_key` = 'COLUMN_WIDTH_LEFT';
-UPDATE configuration SET configuration_title = '右側カラムの横幅',  configuration_description = '右側カラムの横幅を設定します。pxを含めて指定可能。<br>デフォルト = 150px' WHERE `configuration_key` = 'COLUMN_WIDTH_RIGHT';
+UPDATE configuration SET configuration_title = '左側カラムの横幅',  configuration_description = '左側カラムの横幅を設定します。pxを含めて指定可能。<br>デフォルト = 150px<br><br><b>この構成は、ZCA 応答コンポーネントまたは ZCA ブートストラップ テーマには影響しません。</b>' WHERE `configuration_key` = 'COLUMN_WIDTH_LEFT';
+UPDATE configuration SET configuration_title = '右側カラムの横幅',  configuration_description = '右側カラムの横幅を設定します。pxを含めて指定可能。<br>デフォルト = 150px<br><br><b>この構成は、ZCA 応答コンポーネントまたは ZCA ブートストラップ テーマには影響しません。</b>' WHERE `configuration_key` = 'COLUMN_WIDTH_RIGHT';
 UPDATE configuration SET configuration_title = 'カテゴリ名・リンク間の区切り',  configuration_description = 'カテゴリ名とリンク（「おすすめ商品」など）の間にセパレータ(区切り)を表示しますか?<br>・0= off<br>・1= on' WHERE `configuration_key` = 'SHOW_CATEGORIES_SEPARATOR_LINK';
 UPDATE configuration SET configuration_title = 'カテゴリの区切り - カテゴリ名・商品数',  configuration_description = 'カテゴリ名と(カテゴリ内の)商品数の間のセパレータ(区切り)は何にしますか?<br>デフォルト = -&gt;' WHERE `configuration_key` = 'CATEGORIES_SEPARATOR';
 UPDATE configuration SET configuration_title = 'カテゴリの区切り - カテゴリ名とサブカテゴリ名の間',  configuration_description = 'カテゴリ名・サブカテゴリ名の間のセパレータ(区切り)は何にしますか?<br>デフォルト = |_&nbsp;' WHERE `configuration_key` = 'CATEGORIES_SEPARATOR_SUBS';
@@ -547,5 +580,3 @@ UPDATE configuration SET configuration_title = 'グローバル認証キー',  c
 UPDATE configuration SET configuration_title = 'テキストメールでの貨幣の変換',  configuration_description = 'テキスト形式のメールに、どんな貨幣の変換が必要ですか?<br>Default = &pound;,￡:&euro;,EUR' WHERE `configuration_key` = 'CURRENCIES_TRANSLATIONS';
 UPDATE configuration SET configuration_title = 'ルートパスを cookieのパスにする',  configuration_description = '通常、Zencart はインストールされいてるディレクトリを cookie のパスとして利用します。しかし、サーバーの中にはそれでは問題が発生するケースが有ります。この設定項目では cookie のパスをショップのディレクトリではなく、サーバーのルートに設定できます。セッションで問題が発生する場合にのみ利用してください。　デフォルトは False(利用しない）です。<br>この設定を変更するということは、管理画面へのログインに問題が発生していることを意味しますので、一旦ブラウザの cookie をクリアしてください。' WHERE `configuration_key` = 'SESSION_USE_ROOT_COOKIE_PATH';
 UPDATE configuration SET configuration_title = 'cookie domain の頭にピリオドを追加',  configuration_description = '通常、Zencart は cookie domain に対して頭にピリオドをつけます（例：　.www.mydomain.com ）　サーバーの設定によってはそれでは問題が発生するケースが有ります。セッションで問題が発生する場合には、この設定を False にして試してみてください。 デフォルトは True です。' WHERE `configuration_key` = 'SESSION_ADD_PERIOD_PREFIX';
-UPDATE configuration SET configuration_title = '管理画面への「承認待ち」ボタン表示',  configuration_description = '管理画面のすべてのページにギフト券の「承認待ち」ボタンを表示しますか？<br>（承認待ちが存在しない場合には、非表示になります。　この設定に関係なく「注文管理」画面には表示されます。）' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GV_SHOW_QUEUE_IN_ADMIN';
-UPDATE configuration SET configuration_title = 'ギフト券の特価販売',  configuration_description = 'ギフト券を特価商品にする事が出来るようにしますか？' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_GV_SPECIAL';
