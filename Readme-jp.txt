@@ -89,6 +89,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\lang.product.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\update_product.php'
+	'...(\admin-XX to YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_general\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_product\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\product\collect_info.php'
