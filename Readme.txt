@@ -37,7 +37,7 @@ FILES Case 1: Original Zen Cart 1.5.8 fresh installation.
 
 - If you have a FRESH INSTALL of Zen Cart v1.5.8 with no update, plugin or other modifications just COPY ALL STOREFRONT SIDE FILES (folders email, images, includes) to your cart overwriting existing files.
 - For ADMIN you have to CHOOSE which LANGUAGE you want to use on admin side and then COPY APPROPRIATE FOLDER to your cart admin folder:
-	English --> Copy content of admin-EN to your admin folder replacing files if necessary.
+	English --> Copy content of admin to your admin folder replacing files if necessary.
 	Japanese --> Copy content of admin-JP to your admin folder replacing files if necessary.
 	DO NOT COPY BOTH OF THEM!
 
@@ -46,7 +46,7 @@ FILES Case 2: Zen Cart 1.5.8 with plugins, updated/upgraded with more recent ver
 ------------
 IMPORTANT NOTE: If some Japanese shipping modules (and payment, ot_total) are already installed, uninstall them before upgrading, it will avoid messing up database.
 
-First choose your admin language and use appropriate folder: admin-EN for English and admin-JP for Japanese admin, discard the other one. Both support furigana and other store side Japanese functionalities.
+First choose your admin language and use appropriate folder: admin for English and admin-JP for Japanese admin, discard the other one. Both support furigana and other store side Japanese functionalities.
 
 - COPY all NEW FILES to your cart, as listed below:
 
