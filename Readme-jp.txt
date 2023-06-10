@@ -89,6 +89,7 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\lang.product.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\update_product.php'
+	'...(\admin-XX to YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_general\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_product\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\product\collect_info.php'
@@ -171,15 +172,6 @@ PhpMyAdmin などのユーティリティを使用して SQL ファイルをア�
 追加されたレコードをデータベースから削除するには、phpMyAdmin などのツールで「uninstall.sql」ファイルを使用します。新しく追加されたデータはすべて失われます。
 行った可能性のある管理設定を元に戻すことを忘れないでください。
 
-
-その他の SQL ファイル：
------------------
------------------
-'zencart1.5.8_structure_upgraded.sql'
-これは、変更後のデータベース構造の単なる DUMP です。 インストールしないでください！古いバージョンからデータを転送して、何が一致しているかを確認する場合に役立ちます。v1.5.8日本語への/からの手動更新にも使用できます...
-
-'JP_zones_update.sql'
-1.1.6 より前のバージョンをインストールしていて、更新を行う場合は、このファイルを使用してデータベースの日本語ゾーンを更新してください。
 
 余分なファイルの修正：
 -----------------
@@ -267,3 +259,11 @@ UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';
 V1.2.4 - ２０２３年５月２５日
 配送、支払い、「注文合計」のすべての日本語モジュールは、管理者の現在の言語、日本語または英語でインストールされます。これが自動化されると、言語を選択するためのファイル編集はもう必要ありません。
 日本語の場合、日本の都道府県のプルダウン メニューは標準的な行政順序 (北から南) で表示されます。
+
+V1.2.5 - ２０２３年６月１０日
+国地域のプルダウン メニューを表示するコードを、8.0 だけでなく古い MySQL 5.7 データベースでも動作するように変更しました。
+SQL ファイルのクリーニングと更新。
+インストールおよびアンインストール ファイルが改善され、日本語に必要なデフォルト設定が行われ、アンインストール時にすべてが適切に削除されるようになりました。
+admin-EN フォルダーの名前を admin に変更しました。
+GitHub ファイルから Zen Cart の最新バージョンに更新されました。
+より多くのテンプレートに対応するために、それを使用する出荷モジュールの配達時間フィールドの幅が増加しました。

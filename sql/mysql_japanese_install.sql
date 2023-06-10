@@ -175,7 +175,3 @@ UPDATE configuration SET configuration_value = 'false', last_modified = now() WH
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'DISPLAY_PRICE_WITH_TAX';
 UPDATE configuration SET configuration_value = '107', last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
-
-# Version
-UPDATE project_version SET project_version_minor = '5.8130', project_version_comment = 'New Installation-v158 with Japanese Pack v1.3.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
-INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES ('Zen-Cart Database', '1', '5.8130', '', 'New Installation-v158 with Japanese Pack v1.3.0', now());

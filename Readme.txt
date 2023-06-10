@@ -23,11 +23,12 @@ DATABASE:
 Use a utility like PhpMyAdmin to upload SQL file or directly run SQL queries using copy and paste. SQL files are in the sql folder.
 
 'mysql_japanese_install.sql'
-These are the database modifications and configurations for this japanese pack. It includes new fields for furigana, phone, fax number and delivery time in tables orders, adress_book and customers then fields for dimensions and barcode in table products. There are some added records like new order status, address format and japanese zones in kanji and romaji.
-This is the only file you really NEED to INSTALL for everything to work. Other sql files are optionals.
+These are the database modifications and configurations for this Japanese pack. It includes new fields for furigana, phone, fax number and delivery time in tables orders, address_book and customers then fields for dimensions and barcode in table products. There are some added records like new order status, address format and japanese zones in kanji and romaji.
+This is the only file you really NEED to INSTALL for everything to work. Other SQL files are optional.
 
 'mysql_japanese_admin_menu.sql'
 This one will translate admin menus kept in database into Japanese. Required only if you want a fully Japanese admin interface.
+
 'mysql_english_admin_menu.sql'
 If you need to set admin menus back to English, use this file.
 
@@ -89,6 +90,7 @@ First choose your admin language and use appropriate folder: admin for English a
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\lang.product.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\update_product.php'
+	'...(\admin-XX to YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_general\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\document_product\collect_info.php'
 	'...(\admin-XX to YourAdminFolderName)\includes\modules\product\collect_info.php'
@@ -144,8 +146,8 @@ For both cases:
 - EDIT classes (_jpparcel.php, _sagawa.php, _yamato.php, _yupack.php) for shipping modules. You need to check and adjust rates if necessary.
 They could have changed since release of this pack and they also depend on your contract with transport companies. For Yupack you might need to set a new category depending on where your store is located.
 Quoting is based on three main arrays:
- One for quote/shipping cost with one raw for each price range and columns for size, '$a_pricerank'. This is where shipping cost is actually set.
- Second one defines which range (in first one) to use depending on sending location and destination, '$a_dist_to_rank'. Coding system starts with two letters, each one corresponding to a prefecture/state group defined in third array ($a_zonemap), first one for sending location and second one for destination. Then follows a raw number to use in first array for this location combination.
+ One for quote/shipping cost with one row for each price range and columns for size, '$a_pricerank'. This is where shipping cost is actually set.
+ Second one defines which range (in first one) to use depending on sending location and destination, '$a_dist_to_rank'. Coding system starts with two letters, each one corresponding to a prefecture/state group defined in third array ($a_zonemap), first one for sending location and second one for destination. Then follows a row number to use in first array for this location combination.
 
 You must check and eventualy set these two arrays ('$a_pricerank' and '$a_dist_to_rank') to fit your situation. Unfortunately none of the shipping companies provide downloadable quoting tables but you can check online:
 For Yamato : https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
@@ -154,7 +156,7 @@ For Japan Post YuPack : https://www.post.japanpost.jp/service/you_pack/charge/ic
 For Japan Post overseas services : https://www.post.japanpost.jp/int/charge/list/
 For Japan Post International ePackets : https://www.post.japanpost.jp/int/service/epacket.html
 
-If you have some question go to support forum : https://docs.zen-cart.com/user/new_user_topics/
+If you have some question go to support forum : https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack
 
 
 CONFIGURATION:
@@ -167,12 +169,13 @@ Please have a look at Zen Cart documentation, starting by here: https://docs.zen
 UNINSTALL:
 ---------
 ---------
-Delete all 'newly' added files.
-Use your backup to copy back your precedent version for all merged/replaced files.
-In admin delete geo-zones, currency and tax related to Japanese.
-To remove added records from your database use 'uninstall.sql' file with a tool like phpMyAdmin. All newly added data in this fields will be lost.
-Don't forget to change back any admin settings you might have done.
-
+Delete all 'newly' added files listed in 'List of new files to copy'.
+Use your backup to copy back your precedent version for all merged/replaced files listed in 'List of files to merge'.
+Import SQL file 'uninstall.sql' which is in 'sql' folder of the language pack. It will remove all extra fields that have been added to database and reset to default settings that were modified at install time. Be careful that any information added in new fields like products sizes will be lost.
+Be aware too that default settings might not be what you want, you must checks these and adjust as you want them to be. Mainly these setting are:
+Default language reset to English.
+Default currency reset to USD.
+Store country reset to United States. 
 
 Other SQL files:
 ---------------
@@ -182,17 +185,6 @@ It is just a DUMP of the database structure after modification. Do NOT INSTALL! 
 
 'JP_zones_update.sql'
 If you have installed a version before 1.1.6 and you do an update, please use this file to update Japanese zones in database.
-
-Extra files corrections:
------------------------
------------------------
-There are two other files that needed modifications but had nothing to do with Japanese, one correcting a bug and the other for cosmetic reason. These files are from the original release of v1.5.8 and might be updated on newer release.
-
-	'...\admin-XX\includes\modules\dashboard_widgets\OrderStatusDashboardWidget.php'
-	On the left down side of admin main page, when you click on any order status category it will always bring the full orders list. After correction you get only the orders from status category you choose.
-	
-	'...\admin-XX\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'
-	On the right up side of admin main page in new orders box, customer name is cut when longer than 20 characters. This was increased to 30 to minimise cutting.
 
 Versions history:
 ----------------
@@ -266,5 +258,13 @@ UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';
 Added comments in Japanese shipping modules class for Yamato, Sagawa and Yupack. There are in a structured way more like example to make customization easier.
 
 V1.2.4 - 25 May 2023
-All Japanese modules for shipping , payment and order total will install in admin current language, Japanese or English. With this automatized, file edit to choose language should not be necessary anymore.
+All Japanese modules for shipping, payment and order total will install in admin current language, Japanese or English. With this automatized, file edit to choose language should not be necessary anymore.
 Pull down menus for Japanese zone will show prefectures (states) when in Japanese in standard administrative order, which is North to South (Hokkaido to Okinawa).
+
+V1.2.5 - 10 June 2023
+Changed code that display country zones pull down menu to work with older MySQL 5.7 databases and not only 8.0.
+SQL files cleaning and update.
+Install and uninstall files have been improved to do as much default setting as necessary for Japanese and then removing everything nicely when uninstalling.
+Renamed admin-EN folder to admin.
+Updated to last Zen Cart version from GitHub files.
+Increased width of delivery time field for shipping modules that use it, to accommodate more templates.
