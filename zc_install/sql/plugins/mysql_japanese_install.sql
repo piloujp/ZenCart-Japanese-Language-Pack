@@ -178,4 +178,4 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 
 # Version
 UPDATE project_version SET project_version_minor = '5.8130', project_version_comment = 'New Installation-v158 with Japanese Pack v1.3.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
-INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES ('Zen-Cart Database', '1', '5.8130', '', 'New Japanese Pack v1.3.0 installation', now());
+INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES ('Zen-Cart Database', '1', '5.8130', '', 'New Installation-v158 with Japanese Pack v1.3.0', now());
