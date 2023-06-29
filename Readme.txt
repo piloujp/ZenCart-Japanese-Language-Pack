@@ -9,3 +9,5 @@ This allows use of Japanese Yamato express delivery, Nekoposu, Sagawa express de
 
 この日本語パックには、言語ファイルだけでなく、コア ファイルとデータベースの変更が含まれており、ふりがな、商品寸法、バーコードを使用する可能性が追加されています。
 これにより、日本のヤマト便、ネコポス、佐川急便、日本郵便ゆうパック、レターパック ライト、レターパック プラス、および EMS サービスを利用できます。配送、支払い、および注文の合計モジュール ファイルが含まれています。
+
+Support thread on Zen Cart forum: https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack
