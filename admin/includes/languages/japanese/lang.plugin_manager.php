@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Sep 18 Modified in v1.5.8 $
+ * @version $Id: pilou2 2023 Jul 05 Modified in v1.5.8a $
 */
 
 $define = [
@@ -35,6 +35,7 @@ $define = [
     'TEXT_CLEANUP_ERROR' => 'Please check file permissions. Some Directories not removed',
     'TEXT_UPGRADE_AVAILABLE' => 'Upgrade Available',
     'TEXT_VERSION_INSTALLED' => 'Version Installed: %s',
+    'TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' => 'A new version %s is available to download from the <a target="_blank" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">support forum</a>',
     'TEXT_CONFIRM_UNINSTALL' => 'Are you sure you want to uninstall this plugin?',
     'TEXT_CONFIRM_UPGRADE' => 'Are you sure you want to upgrade this plugin?',
     'TEXT_CONFIRM_DISABLE' => 'Are you sure you want to disable this plugin?',
