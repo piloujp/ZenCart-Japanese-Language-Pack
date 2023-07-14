@@ -88,8 +88,8 @@
       if (!$this->enabled) return;
       if (IS_ADMIN_FLAG === true) return;
 
-      // disable for some master_categories_id 
-/*      if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
+/*      // disable for some master_categories_id 
+      if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
           $this->enabled = false; 
       }
 */

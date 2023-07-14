@@ -1,29 +1,26 @@
 <?php
 /*
-  $Id: _jpparcel.php,v 1.0 2004/06/17 11:28:46 ptosh Exp $
-
-  Japanese Postal Service Shipping Calculator.
-  Calculate shipping costs.
-
-  2004/06/17 written by TAMURA Toshihiko (tamura@bitscope.co.jp)
-  2006/01/20 mod. for Zen-Cart by Tackmix(master@tackmix.com)
-  2008/03/24 add. by kimono(maeda@obitastar.co.jp)
-  2023/01/03 modified and updated for Zen Cart v1.5.8 by pilou2
-
+ * JpParcel Class.
+ *
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: pilou2/piloujp 2023 May 13 Modified in v1.5.8a $
  */
+
 /*
 (適応するサービス)
 以下の種別に対応して料金を計算する。
------------------------------------------------
-種別                               id
------------------------------------------------
-小形包装物:航空便                  jpparcelairs
-小形包装物:船便                    jpparcelseas
-国際eパケット                        jpparcelepack
-小包郵便物:航空小包                jpparcelair
-小包郵便物:船便小包                jpparcelsea
-国際スピード郵便(EMS)                jpparcelems
------------------------------------------------
+----------------------------------------------------------------------------------------
+種別                               id							Service
+----------------------------------------------------------------------------------------
+小形包装物:航空便                  jpparcelairs				Small Packets Air
+小形包装物:船便                    jpparcelseas				Small Packets Surface
+国際eパケット                        jpparcelepack				International ePackets
+小包郵便物:航空小包                jpparcelair				International Parcels Air
+小包郵便物:船便小包                jpparcelsea				International Parcels Surface
+国際スピード郵便(EMS)                jpparcelems				Express Mail Service
+----------------------------------------------------------------------------------------
 
 (使用方法)
     $parcel = new _JpParcel('jpparcelair','航空小包');
@@ -98,7 +95,7 @@ class _JpParcel {
       array(1.00,1010,1010,1010,1010),
       array(2.00,1600,1600,1600,1600),
       ),
-    // 国際eパケット 06-2022 International ePacket 7 days - tracking
+    // 国際eパケット 06-2022 International ePackets 7 days - tracking
     'jpparcelepack'=>array(
       array(0.1, 690, 790, 820, 1150),// 0.1kg以下,第1,第2,第3,第4地帯
       array(0.2, 780, 910, 1000, 1280),
@@ -121,7 +118,7 @@ class _JpParcel {
       array(1.9, 2310, 2950, 4060, 3490),
       array(2.0, 2400, 3070, 4240, 3620),
       ),
-    // 小包郵便物:航空小包 06-2022 International Parcel Post 7 days - tracking
+    // 小包郵便物:航空小包 06-2022 extra charge zone 3 and 4 - International Parcels Air 7 days - tracking
     'jpparcelair'=>array(
       array( 1, 2050, 2500, 3850, 4200, 4550),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2750, 3700, 6000, 6700, 7250),
@@ -154,7 +151,7 @@ class _JpParcel {
       array(29, 17850, 25650, 53600, 64700, 63050),
       array(30, 18350, 26300, 55200, 66700, 64850),
       ),
-    // 小包郵便物:船便小包 06-2022 International Parcel Post Surface 2 - 3 months
+    // 小包郵便物:船便小包 06-2022 International Parcels Surface 2 - 3 months - tracking
     'jpparcelsea'=>array(
       array( 1, 1800, 2100, 2500, 2600, 2700),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2200, 2600, 3100, 3300, 3400),
