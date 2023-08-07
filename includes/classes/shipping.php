@@ -103,7 +103,6 @@ class shipping extends base
 		$max_item_height = 0;
 		$max_item_girth = 0;
 		$weight_qty_sizes_array = $this->get_weight_qty_sizes(); // function call to make an array of cart items including id, weight, quantity, length, width, height, girth and volume ordered by weight
-		//print_r($weight_qty_sizes_array);
 		foreach($weight_qty_sizes_array as $keys => $datas) { // make simplified arrays, one for cart items weight and another for cart items dimensions
 			$sorted_sizes_array = array($datas['length'], $datas['width'], $datas['height']);
 			rsort($sorted_sizes_array,SORT_NUMERIC);
@@ -216,9 +215,9 @@ class shipping extends base
 					$items_size_array[$i][$key][2] = ($items_size_array[$i][$key][2] == 0) ? $ave_height : $items_size_array[$i][$key][2]; 
 				}
 			}
-			$zero_rate = ($defitems == 0) ? $box_array[$i]['box_items'] : $box_array[$i]['box_items']/$defitems;
+			$zero_rate = ($defitems == 0) ? 2 : $box_array[$i]['box_items']/$defitems;
 			if($maxlength == 0 or $maxwidth == 0 or $maxheight == 0 or $zero_rate < 2) {
-				return;
+				return; // too many items lack dimensions
 			}
 			// begining of algorithm to calculate box size using size_array which has been ordered from largest volume to smallest one.
 			// Items are stacked on each other (height) but if they are smaler than half max length or max width they are put side by side.
