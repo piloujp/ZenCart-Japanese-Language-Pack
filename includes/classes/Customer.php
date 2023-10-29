@@ -722,9 +722,9 @@ class Customer extends base
 
         $sql_data_array = [
             ['fieldName'=>'customers_firstname', 'value'=> $data['firstname'], 'type'=>'stringIgnoreNull'],
-            ['fieldName'=>'customers_firstname_kana', 'value'=> $data['firstname_kana'], 'type'=>'stringIgnoreNull'],
+            ['fieldName'=>'customers_firstname_kana', 'value'=> $data['firstname_kana'] ?? '', 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'customers_lastname', 'value'=> $data['lastname'], 'type'=>'stringIgnoreNull'],
-            ['fieldName'=>'customers_lastname_kana', 'value'=> $data['lastname_kana'], 'type'=>'stringIgnoreNull'],
+            ['fieldName'=>'customers_lastname_kana', 'value'=> $data['lastname_kana'] ?? '', 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'customers_email_address', 'value'=> $data['email_address'], 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'customers_nick', 'value'=> $data['nick'], 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'customers_telephone', 'value'=> $data['telephone'], 'type'=>'stringIgnoreNull'],
@@ -758,9 +758,9 @@ class Customer extends base
         $sql_data_array = [
             ['fieldName'=>'customers_id', 'value'=> $customer_id, 'type'=>'integer'],
             ['fieldName'=>'entry_firstname', 'value'=> $data['firstname'], 'type'=>'stringIgnoreNull'],
-            ['fieldName'=>'entry_firstname_kana', 'value'=> $data['firstname_kana'], 'type'=>'stringIgnoreNull'],
+            ['fieldName'=>'entry_firstname_kana', 'value'=> $data['firstname_kana'] ?? '', 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'entry_lastname', 'value'=> $data['lastname'], 'type'=>'stringIgnoreNull'],
-            ['fieldName'=>'entry_lastname_kana', 'value'=> $data['lastname_kana'], 'type'=>'stringIgnoreNull'],
+            ['fieldName'=>'entry_lastname_kana', 'value'=> $data['lastname_kana'] ?? '', 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'entry_street_address', 'value'=> $data['street_address'], 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'entry_postcode', 'value'=> $data['postcode'], 'type'=>'stringIgnoreNull'],
             ['fieldName'=>'entry_city', 'value'=> $data['city'], 'type'=>'stringIgnoreNull'],

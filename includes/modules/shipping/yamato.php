@@ -88,8 +88,8 @@ class yamato extends base {
     if (null === $this->sort_order) return false;
 
     $this->icon = DIR_WS_TEMPLATE_ICONS . 'shipping_yamato.gif';
-//    $this->tax_class = MODULE_SHIPPING_YAMATO_TAX_CLASS;
-//    $this->tax_basis = MODULE_SHIPPING_YAMATO_TAX_BASIS;
+    $this->tax_class = MODULE_SHIPPING_YAMATO_TAX_CLASS;
+    $this->tax_basis = MODULE_SHIPPING_YAMATO_TAX_BASIS;
     // disable only when entire cart is free shipping
     if (zen_get_shipping_enabled($this->code)) {
       $this->enabled = (MODULE_SHIPPING_YAMATO_STATUS == 'True');
@@ -266,8 +266,8 @@ class yamato extends base {
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('最大出荷胴回り', 'MODULE_SHIPPING_YAMATO_MAX_GIRTH', '200', 'この方法で発送できる最大サイズ（胴回り）です。', '6', '0', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('送料無料設定', 'MODULE_SHIPPING_YAMATO_FREE_SHIPPING', 'False', '送料無料設定を有効にしますか？ [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください。', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
 		$db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('送料を無料にする購入金額設定', 'MODULE_SHIPPING_YAMATO_OVER', '5000', '設定金額以上をご購入の場合は送料を無料にします。', '6', '3', now())");
-	//	  $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('税種別', 'MODULE_SHIPPING_YAMATO_TAX_CLASS', '0', '配送料金に適用される税種別を選んでください。', '6', '3', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-	//	  $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('課税標準', 'MODULE_SHIPPING_YAMATO_TAX_BASIS', 'Shipping', '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('税種別', 'MODULE_SHIPPING_YAMATO_TAX_CLASS', '0', '配送料金に適用される税種別を選んでください。', '6', '3', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('課税標準', 'MODULE_SHIPPING_YAMATO_TAX_BASIS', 'Shipping', '配送料はどのような基準で計算されますか。オプションは：<br>配送 - 顧客の配送先住所に基づく<br>請求 - 顧客に基づく 請求先住所<br>ストア - 請求/配送ゾーンがストア ゾーンと等しい場合、ストアの住所に基づく。', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('配送地域', 'MODULE_SHIPPING_YAMATO_ZONE', '0', '配送地域を選択すると選択された地域のみで利用可能となります。', '6', '5', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('表示の整列順', 'MODULE_SHIPPING_YAMATO_SORT_ORDER', '0', '表示の整列順を設定できます。数字が小さいほど上位に表示されます。', '6', '6', now())");
 	} else {
@@ -278,15 +278,14 @@ class yamato extends base {
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_YAMATO_MAX_GIRTH', '200', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_YAMATO_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting? Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum order for free shipping', 'MODULE_SHIPPING_YAMATO_OVER', '50000', 'If you purchase more than the set amount, shipping will be free.', '6', '3', now())");
-	//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_YAMATO_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-	//    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_YAMATO_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping - Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+	    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_YAMATO_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+	    $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_YAMATO_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping - Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_YAMATO_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
 		$db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_YAMATO_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
 	}
   }
   /**
    * Remove the module and all its settings
-   *
    */
     function remove() {
       global $db;
@@ -299,10 +298,6 @@ class yamato extends base {
    * @return unknown
    */
   function keys() {
-    return array('MODULE_SHIPPING_YAMATO_STATUS', 'MODULE_SHIPPING_YAMATO_HANDLING', 'MODULE_SHIPPING_YAMATO_MAX_WEIGHT', 'MODULE_SHIPPING_YAMATO_MAX_GIRTH','MODULE_SHIPPING_YAMATO_FREE_SHIPPING', 'MODULE_SHIPPING_YAMATO_OVER', 'MODULE_SHIPPING_YAMATO_ZONE', 'MODULE_SHIPPING_YAMATO_SORT_ORDER');
+    return array('MODULE_SHIPPING_YAMATO_STATUS', 'MODULE_SHIPPING_YAMATO_HANDLING', 'MODULE_SHIPPING_YAMATO_MAX_WEIGHT', 'MODULE_SHIPPING_YAMATO_MAX_GIRTH','MODULE_SHIPPING_YAMATO_FREE_SHIPPING', 'MODULE_SHIPPING_YAMATO_OVER', 'MODULE_SHIPPING_YAMATO_TAX_CLASS', 'MODULE_SHIPPING_YAMATO_TAX_BASIS', 'MODULE_SHIPPING_YAMATO_ZONE', 'MODULE_SHIPPING_YAMATO_SORT_ORDER');
   }
-
-//  function help() {
-//       return array('link' => 'https://docs.zen-cart.com/user/shipping/table/');
-//  }
 }

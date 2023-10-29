@@ -191,7 +191,7 @@ class _Yamato {
 
 	function GetQuote() {
 		// 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,180,200)
-		// (参照) https://www.kuronekoyamato.co.jp/ytc/search/payment/simulation.html
+		// (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
 		// 2023/10～
 		$a_pricerank = array(
 // ヤマト運輸との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
@@ -393,7 +393,7 @@ class _Yamato {
 		'N01'=>array(999,999,999,999,999,999,999,999) // 沖縄:L >  沖縄:L LL=>N01
 */
 		
-//		２０２３年１０月以降のすべての送料（契約無し）　Full tarafication (no contract) from October 2023
+//		２０２３年１０月以降のすべての送料（契約無し、税込み）　Full tarafication (no contract, tax included) from October 2023
 //		契約なし場合は、下にアンコメントしてください　If you have no contract, uncomment next line
 /*
 		'N01'=>array( 940,1230,1530,1850,2190,2510,3060,3720),
@@ -403,7 +403,7 @@ class _Yamato {
 		'N05'=>array(1320,1940,2580,3230,3900,4550,5870,6640),
 		'N06'=>array(1460,1740,2050,2370,2710,3030,4130,4790),
 		'N07'=>array(1460,2070,2710,3360,4030,4680,6000,6770),
-		'N08'=>array(1610,1900,2200,2520,2860,3180,4830,5790),
+		'N08'=>array(1610,1900,2200,2520,2860,3180,4830,5490),
 		'N09'=>array(1610,2230,2860,3510,4180,4830,6700,7470),
 		'N10'=>array(1760,2050,2360,2680,3020,3340,4990,5650),
 		'N11'=>array(1760,2380,3020,3670,4340,4990,6860,7630),
