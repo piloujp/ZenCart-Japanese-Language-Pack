@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2022 Jun 04 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -25,10 +25,11 @@ $define = [
     'TABLE_HEADING_QUANTITY' => '数量',
     'TABLE_HEADING_UPDATED_BY' => '更新作業者',
     'ENTRY_CUSTOMER' => '顧客名:',
-    'ENTRY_CUSTOMER_ADDRESS' => '顧客住所:<br><i class="fa fa-2x fa-user"></i>',
-    'ENTRY_SHIPPING_ADDRESS' => '配送先住所:',
-    'ENTRY_BILLING_ADDRESS' => '請求先住所:',
+    'ENTRY_CUSTOMER_ADDRESS' => '顧客住所:<br><i class="fa-solid fa-2x fa-user"></i>',
+    'ENTRY_SHIPPING_ADDRESS' => '配送先住所:<br><i class="fa-solid fa-2x fa-truck"></i>',
+    'ENTRY_BILLING_ADDRESS' => '請求先住所:<br><i class="fa-regular fa-2x fa-credit-card"></i>',
     'ENTRY_PAYMENT_METHOD' => '支払方法:',
+    'ENTRY_CURRENCY_VALUE' => '通貨価値:',
     'ENTRY_CREDIT_CARD_TYPE' => 'クレジットカード種別:',
     'ENTRY_CREDIT_CARD_OWNER' => 'クレジットカード所有者:',
     'ENTRY_CREDIT_CARD_NUMBER' => 'クレジットカード番号:',

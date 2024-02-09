@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -29,6 +29,8 @@ $define = [
     'TEXT_INFO_HEADING_PRE_ADD_FEATURED' => '商品IDからのおすすめ商品の登録',
     'TEXT_INFO_PRE_ADD_INTRO' => '沢山の商品の中から、手動で商品IDを入力することによって、おすすめ商品を追加できます。<br><br>商品数が膨大になれば、ページの読み込みやドロップダウンからの選択は手間がかかるため、商品IDから入力するこの方法が最適です。',
     'TEXT_PRE_ADD_PRODUCTS_ID' => '追加したい商品のIDを入力: ',
+    'ERROR_INVALID_ACTIVE_DATE' => '「アクティブ」 日付が無効です。再入力してください。',
+    'ERROR_INVALID_EXPIRES_DATE' => '「期限切れ」 日付が無効です。再入力してください。',
 ];
 
 return $define;

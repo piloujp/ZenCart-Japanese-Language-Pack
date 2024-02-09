@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: lat9 2023 Dec 10 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -65,6 +65,7 @@ $define = [
     'TEXT_PRODUCTS_DISCOUNT' => 'Discount',
     'TEXT_PRODUCTS_DISCOUNT_QTY' => 'Minimum Qty',
     'TEXT_PRODUCTS_DISCOUNT_PRICE' => 'Discount Value',
+    'TEXT_PRODUCTS_DISCOUNT_PRICE_W' => 'Wholesale Discount Values',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EACH' => 'Calculate Price:',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED' => 'Extended Price:',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX' => 'Calculate<br>Price: &nbsp; Taxed:',

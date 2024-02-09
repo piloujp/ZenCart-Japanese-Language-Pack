@@ -87,6 +87,7 @@ return [
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED' => '管理画面用ディレクトリ名を自動変換できませんでした。既にデフォルトのディレクトリ名から変更されているようです。',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED' => '管理画面用ディレクトリ名は自動的にリネームされます。いかに表示されている新しいディレクトリ名を必ずメモしておいてください。',
 'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップが完了しました！',
+'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップ完了',
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => 'インストールが完了しました。',
 'TEXT_COMPLETION_INSTALL_LINKS_BELOW' => '以下のリンクより、ショップ画面や管理画面にアクセスすることが出来ます。',
@@ -126,7 +127,6 @@ return [
 'TEXT_NAVBAR_DATABASE_SETUP' => 'データベースセットアップ',
 'TEXT_NAVBAR_ADMIN_SETUP' => '管理者セットアップ',
 'TEXT_NAVBAR_COMPLETION' => '完了しました',
-
 'TEXT_INDEX_ALERTS' => '警告',
 'TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES' => 'configure.phpファイルの生成と保存で問題が発生しました。インストールは正しく行われていません！！.<br>詳しい技術的情報は/logs/フォルダにあります。',
 'TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE' => 'マスタの設定ファイルレイアウトが読み取れませんでした：%s。ファイルが存在し、読み取り可能であることを確認してください。',
@@ -174,6 +174,7 @@ return [
 'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 データベースは最新のようです。 稼働中のライブサイトで作業していますか？ インストールを続行すると、現在のデータベースの内容が消去されます。 本当にインストールしてよろしいですか？',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => '複数の管理ディレクトリが存在するようです。古い管理ディレクトリを削除して [更新] をクリックするか、以下の正しい管理ディレクトリを選択して [更新] をクリックしてください。',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => '複数の管理画面ディレクトリが存在するようです。 古い管理画面ディレクトリを削除して[更新]をクリックするか、または下の正しい管理ディレクトリを選択して[更新]をクリックしてください。',
+'TEXT_ERROR_MYSQL_VERSION' => 'サーバー データベースが最小バージョンを満たしていません。 MySQL: %s または MariaDB: %s',
 'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムにエラーや警告は検出されませんでした。 インストールを続けることができます。',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%：データベースを検査し、現在のバージョンにアップグレードするために必要な手順 (新しいフィールドの追加/既存のフィールドの変更) を提供します。これは非破壊的なプロセスであることを目的としていますが、他のすべての変更と同様、続行する前にデータベースの検証済みのバックアップが利用可能であることを確認する必要があります。',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%：データベースを新しい状態に戻し、すべてのデータを削除します。オプションで、このプロセスの一部としてデモンストレーション データをロードすることもできます。',
@@ -369,4 +370,6 @@ See below to implement a similar set of measures for the Nginx Webserver.</p>
 <p><strong>11</strong>. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
 <p><strong>12</strong>. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
 <p><strong>END OF TERMS AND CONDITIONS</strong></p>',
+    'TEXT_UPGRADING_TO_VERSION' => 'バージョン %s にアップグレードしています',
+    'TEXT_PROGRESS_FINISHED' => '終了した',
 ];

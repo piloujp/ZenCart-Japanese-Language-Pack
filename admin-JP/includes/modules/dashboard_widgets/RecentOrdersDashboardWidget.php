@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2020 Oct 24 Modified in v1.5.8-alpha $
+ * @version $Id: DrByte 2023 Jul 28 Modified in v2.0.0-alpha1 $
  */
 
 if (!zen_is_superuser() && !check_page(FILENAME_ORDERS, '')) return;
@@ -11,7 +11,7 @@ if (!zen_is_superuser() && !check_page(FILENAME_ORDERS, '')) return;
 // return;
 
 // Configure settings
-// To override the $show_* or $attr_img_width values, see 
+// To override the $show_* or $attr_img_width values, see
 // https://docs.zen-cart.com/user/admin/site_specific_overrides/
 $includeAttributesInPopoverRows = $includeAttributesInPopoverRows ?? true;
 $maxRows = $recentOrdersMaxRows ?? 25;
@@ -74,7 +74,7 @@ $currencies = new currencies();
                 <?php echo $order['orders_id'] . ' - ' . substr($order['customers_name'], 0, 30); ?>
             </a>
           </td>
-          <td class="text-right" title="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br>' => '', '<hr>' => "----\n")); ?>">
+          <td class="text-right" title="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br>' => '', '<br />' => '', '<hr>' => "----\n")); ?>">
             <?php echo $amt; ?>
           </td>
           <td class="text-right"><?php echo zen_date_short($order['date_purchased']); ?></td>
@@ -83,7 +83,7 @@ $currencies = new currencies();
                  data-trigger="focus"
                  data-placement="left"
                  title="<?php echo TEXT_PRODUCT_POPUP_TITLE; ?>"
-                 data-content="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br>' => '<br>')); ?>"
+                 data-content="<?php echo zen_output_string($product_details, array('"' => '&quot;', "'" => '&#39;', '<br />' => '<br>')); ?>"
               >
                   <?php echo TEXT_PRODUCT_POPUP_BUTTON; ?>
               </a>

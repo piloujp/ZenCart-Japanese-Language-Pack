@@ -2,9 +2,9 @@
 /**
  * Address functions
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pRose on charmes 2022 May 15 New in v1.5.8-alpha $
+ * @version $Id: lat9 2024 Jan 23 Modified in v2.0.0-alpha1 $
  */
 
 /**
@@ -97,8 +97,8 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
  */
 function zen_get_country_name($country_id, $activeOnly = true)
 {
-    $country_array = zen_get_countries($country_id, false, $activeOnly);
-    return $country_array['countries_name'];
+    $country_array = zen_get_countries((int)$country_id, false, $activeOnly);
+    return $country_array['countries_name'] ?? '';
 }
 
 
@@ -109,7 +109,7 @@ function zen_get_country_name($country_id, $activeOnly = true)
  */
 function zen_get_countries_with_iso_codes($country_id, $activeOnly = TRUE)
 {
-    return zen_get_countries($country_id, true, $activeOnly);
+    return zen_get_countries((int)$country_id, true, $activeOnly);
 }
 
 
@@ -125,23 +125,30 @@ function zen_get_country_zones($country_id)
     global $db;
     $zones_array = array();
 	if ($_SESSION['language'] == "japanese" AND $country_id == 107) {
-		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+		$zones = $db->Execute("SELECT zone_id, zone_code, zone_name
 							FROM " . TABLE_ZONES . "
-							WHERE zone_country_id = 107 AND  (zone_name REGEXP '^[一-龠]')
+							WHERE zone_country_id = " . (int)$country_id . "
 							ORDER BY zone_id");
+		foreach ($zones as $zone) {
+			$zones_array[] = [
+				'id' => $zone['zone_id'],
+				'text' => $zone['zone_code'],
+				'zone_code' => $zone['zone_code'],
+				];
+		}
 	} else {
-		$zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+		$zones = $db->Execute("SELECT zone_id, zone_code, zone_name
 							FROM " . TABLE_ZONES . "
-							WHERE zone_country_id = " . (int)$country_id . " AND (zone_name NOT REGEXP '^[一-龠]')
+							WHERE zone_country_id = " . (int)$country_id . "
 							ORDER BY zone_name");
+		foreach ($zones as $zone) {
+			$zones_array[] = [
+				'id' => $zone['zone_id'],
+				'text' => $zone['zone_name'],
+				'zone_code' => $zone['zone_code'],
+				];
+		}
 	}
-    foreach ($zones as $zone) {
-        $zones_array[] = [
-            'id' => $zone['zone_id'],
-            'text' => $zone['zone_name'],
-            'zone_code' => $zone['zone_code'],
-            ];
-    }
 
     return $zones_array;
 }
@@ -156,7 +163,11 @@ function zen_get_country_zones($country_id)
 function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-    $sql = "SELECT zone_name
+	$zone_var_name = 'zone_name';
+	if ($_SESSION['language'] == "japanese" && $country_id === 107) {
+		$zone_var_name = 'zone_code';
+	}
+    $sql = "SELECT " . $zone_var_name . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
             AND zone_id = " . (int)$zone_id;
@@ -164,7 +175,7 @@ function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone 
     $result = $db->Execute($sql);
 
     if ($result->RecordCount()) {
-        return $result->fields['zone_name'];
+        return $result->fields[$zone_var_name];
     }
     return $default_zone;
 }
@@ -180,7 +191,11 @@ function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone 
 function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-    $sql = "SELECT zone_code
+	$zone_var_code = 'zone_code';
+	if ($_SESSION['language'] != "japanese" && $country_id === 107) {
+		$zone_var_code = 'zone_name';
+	}
+    $sql = "SELECT " . $zone_var_code . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
             AND zone_id = " . (int)$zone_id;
@@ -188,7 +203,7 @@ function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone 
     $result = $db->Execute($sql);
 
     if ($result->RecordCount() > 0) {
-        return $result->fields['zone_code'];
+        return $result->fields[$zone_var_code];
     }
     return $default_zone;
 }
@@ -403,7 +418,7 @@ function zen_address_label($customers_id, $address_id = 1, $html = false, $boln 
 
     $zco_notifier->notify('NOTIFY_ZEN_ADDRESS_LABEL', null, $customers_id, $address_id, $address->fields);
 
-    $format_id = zen_get_address_format_id($address->fields['country_id']);
+    $format_id = zen_get_address_format_id((int)$address->fields['country_id']);
 
     return zen_address_format($format_id, $address->fields, $html, $boln, $eoln);
 }

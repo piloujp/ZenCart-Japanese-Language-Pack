@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Pilou2/Piloujp 2023 Apr 25 New in v1.5.8a $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -65,6 +65,9 @@ $define = [
     'EMP_BUTTON_PLACEORDER_ALT' => 'この顧客への注文を作成',
     'EMP_BUTTON_PLACEORDER' => '注文作成',
     'TEXT_CUSTOMER_GROUPS' => '顧客グループ',
+    'TABLE_HEADING_WHOLESALE_LEVEL' => '卸売レベル',
+    'TEXT_WHOLESALE_LEVEL' => '卸売レベル：',
+    'HELPTEXT_WHOLESALE_LEVEL' => '小売顧客の場合は 0 を入力し、卸売顧客の場合は「卸売価格レベル」を入力します。顧客は、卸売価格レベルを持つことも、割引価格グループの一部になることもできますが、両方を所有することはできません。',
 ];
 
 return $define;

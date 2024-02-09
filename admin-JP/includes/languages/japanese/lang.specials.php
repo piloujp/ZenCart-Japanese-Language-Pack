@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -33,6 +33,8 @@ $define = [
     'TEXT_PRE_ADD_PRODUCTS_ID' => '追加したい商品のIDを入力: ',
     'TEXT_SPECIALS_PRICE_NOTES_HEAD' => '<b>注意：</b>', 
     'TEXT_SPECIALS_PRICE_NOTES_BODY' => '<li>特別価格を税別の「新しい価格」で指定している場合、小数値がある場合は "." （小数点）を使ってください。例：<b>49.99</b>。計算された値引き率がショップ側の特別価格の横に表示されます。</li><li>特別価格を「値引き率」で指定する場合、% 記号を使って、値引き分のパーセンテージを入力してください。例：<b>20%</b>。</li><li>適用開始日/適用終了日の指定は必須ではありません。適用終了日を空欄にした場合、特価の適用は終了しません。</li><li>日付がセットされた場合、ステータスは日付判定によって自動的に　有効化/無効化 されます。</li>',
+    'ERROR_INVALID_ACTIVE_DATE' => '「アクティブ」 日付が無効です。再入力してください。',
+    'ERROR_INVALID_EXPIRES_DATE' => '「期限切れ」 日付が無効です。再入力してください。',
 ];
 
 return $define;

@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Sep 17 Modified in v1.5.8 $
+ * @version $Id: DrByte 2023 Aug 18 Modified in v2.0.0-alpha1 $
  */
 
 // Normally this zen_date_raw function will ONLY be defined here.
@@ -63,11 +63,7 @@ function zen_date_long($raw_date)
     $second = (int)substr($raw_date, 17, 2);
 
     global $zcDate;
-    $retVal = $zcDate->output(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
-    if (stristr(PHP_OS, 'win') === 0) {
-       return utf8_encode($retVal);
-    }
-    return $retVal;
+    return $zcDate->output(DATE_FORMAT_LONG, mktime($hour, $minute, $second, $month, $day, $year));
 }
 
 
@@ -276,7 +272,7 @@ function zen_is_leap_year($year)
  * compute the days between two dates
  * @param string $date1
  * @param string $date2
- * @return bool|int
+ * @return int
  */
 function zen_date_diff($date1, $date2)
 {
@@ -296,7 +292,7 @@ function zen_date_diff($date1, $date2)
     $date1_set = mktime(0, 0, 0, $m1, $d1, $y1);
     $date2_set = mktime(0, 0, 0, $m2, $d2, $y2);
 
-    return round(($date2_set - $date1_set) / (60 * 60 * 24));
+    return (int)round(($date2_set - $date1_set) / (60 * 60 * 24));
 }
 
 
@@ -456,4 +452,29 @@ function zen_count_days($start_date, $end_date, $lookup = 'm')
         if (($counter == 1) && ($end_date_month == $start_date_month)) $counter = ($counter - 1);
     }
     return $counter;
+}
+
+if (!function_exists('datetime_to_sql_format')) {
+    /**
+     * Used especially for converting PayPal-IPN dates to a standard format for db storage
+     */
+    function datetime_to_sql_format(string $dateString, string $format = 'H:i:s M d, Y e'): string
+    {
+        $dateTime = DateTime::createFromFormat($format, $dateString);
+        $dateTime->setTimezone((new DateTime)->getTimezone());
+        return $dateTime->format('Y-m-d H:i:s');
+    }
+}
+
+if (!function_exists('convertToLocalTimeZone')) {
+    /** Used primarily to convert a time value from one timezone to another
+     *  particularly when no timezone component is included in the time value.
+     *  Mainly needed for converting 3rd party Zulu time values to local time
+     */
+    function convertToLocalTimeZone(string $dateTime, string $fromTz = 'UTC', string $outputFormat = 'Y-m-d H:i:s'): string
+    {
+        $localDateTime = new DateTime($dateTime, new DateTimeZone($fromTz));
+        $localDateTime->setTimezone((new DateTime)->getTimezone());
+        return $localDateTime->format($outputFormat);
+    }
 }

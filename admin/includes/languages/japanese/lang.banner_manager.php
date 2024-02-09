@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 May 05 New in v1.5.8-alpha $
+ * @version $Id: lat9 2023 Dec 08 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -62,6 +62,8 @@ $define = [
     'ERROR_BANNER_IMAGE_REQUIRED' => 'Error: Banner image required.',
     'ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' => 'Error: Banner could not be set to open in a new window',
     'ERROR_UNKNOWN_BANNER_ON_SSL' => 'Error: Banner could not be set to use SSL',
+    'ERROR_INVALID_SCHEDULED_DATE' => 'The &quot;Scheduled At&quot; date is not valid, please re-enter.',
+    'ERROR_INVALID_EXPIRES_DATE' => 'The &quot;Expires On&quot; date is not valid, please-re-enter.',
     'TEXT_LEGEND_BANNER_ON_SSL' => 'Show SSL',
     'TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS' => 'New Window',
     'IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON' => 'Open New Window - Enabled',

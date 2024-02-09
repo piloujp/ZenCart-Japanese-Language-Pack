@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Sep 19 Modified in v1.5.8 $
+ * @version $Id: lat9 2024 Jan 16 Modified in v2.0.0-alpha1 $
  */
 /**
  * order class
@@ -49,7 +49,7 @@ class order extends base
      */
     public $delivery = [];
     /**
-     * $doStockDecrement is a flag used by a notifier to prevent the default stock decrement processing 
+     * $doStockDecrement is a flag used by a notifier to prevent the default stock decrement processing
      * @var boolean
      */
     public $doStockDecrement;
@@ -80,7 +80,7 @@ class order extends base
     protected $orderId = null;
     /**
      * $products is an array containing details of the products for the order
-     * @var array 
+     * @var array
      */
     public $products = [];
     /**
@@ -115,17 +115,17 @@ class order extends base
     public $statuses = [];
     /**
      * $total_cost is the total cost of the order
-     * @var float 
+     * @var float
      */
     public $total_cost;
     /**
      * $total_tax is the total amount of tax for the order
-     * @var float 
+     * @var float
      */
     public $total_tax;
     /**
      * $total_weight is the total weight of the order
-     * @var float 
+     * @var float
      */
     public $total_weight;
     /**
@@ -182,6 +182,8 @@ class order extends base
 
         $totals = $db->Execute($totals_query);
 
+        $precision = QUANTITY_DECIMALS > 0 ? (int)QUANTITY_DECIMALS : 0;
+
         while (!$totals->EOF) {
             if ($totals->fields['class'] == 'ot_coupon') {
                 $coupon_link_query = "SELECT coupon_id
@@ -228,6 +230,7 @@ class order extends base
             'orders_status' => $order->fields['orders_status'],
             'total' => $order->fields['order_total'],
             'tax' => $order->fields['order_tax'],
+            'shipping_tax_rate' => $order->fields['shipping_tax_rate'],
             'last_modified' => $order->fields['last_modified'],
             'ip_address' => $order->fields['ip_address'],
             'language_code' => $order->fields['language_code'],
@@ -300,7 +303,7 @@ class order extends base
 
         while (!$orders_products->EOF) {
             // convert quantity to proper decimals - account history
-            if (QUANTITY_DECIMALS != 0) {
+            if ($precision !== 0) {
                 $fix_qty = $orders_products->fields['products_quantity'];
                 switch (true) {
                     case (false === strpos($fix_qty, '.')):
@@ -314,7 +317,7 @@ class order extends base
                 $new_qty = $orders_products->fields['products_quantity'];
             }
 
-            $new_qty = round($new_qty, QUANTITY_DECIMALS);
+            $new_qty = round($new_qty, $precision);
 
             if ($new_qty == (int)$new_qty) {
                 $new_qty = (int)$new_qty;
@@ -456,7 +459,7 @@ class order extends base
     protected function getCountryZoneId(int $countries_id, string $state)
     {
         global $db;
-        
+
         $sql =
             "SELECT zone_id
                FROM " . TABLE_ZONES . "
@@ -568,12 +571,14 @@ class order extends base
             'shipping_cost' => !empty($_SESSION['shipping']['cost']) ? $_SESSION['shipping']['cost'] : 0,
             'subtotal' => 0,
             'shipping_tax' => 0,
+            'shipping_tax_rate' => null,
             'tax' => 0,
             'total' => 0,
             'tax_groups' => [],
             'comments' => (isset($_SESSION['comments']) ? $_SESSION['comments'] : ''),
             'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR'],
         ];
+
 
         if ($customer_address->RecordCount() > 0) {
             $this->customer = [
@@ -672,7 +677,8 @@ class order extends base
         $index = 0;
         $products = $_SESSION['cart']->get_products();
         for ($i = 0, $n = count($products); $i < $n; $i++) {
-            $rowClass = ($i / 2) == floor($i / 2) ? "rowEven" : "rowOdd";
+            $rowClass = ($i / 2) == floor($i / 2) ? 'rowEven' : 'rowOdd';
+            $products_final_price_without_tax = $products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']);
             $this->products[$index] = [
                 'qty' => $products[$i]['quantity'],
                 'name' => $products[$i]['name'],
@@ -680,7 +686,7 @@ class order extends base
                 'price' => $products[$i]['price'],
                 'tax' => null, // calculated later
                 'tax_groups' => null, // calculated later
-                'final_price' => zen_round($products[$i]['price'] + $_SESSION['cart']->attributes_price($products[$i]['id']), $decimals),
+                'final_price' => (DISPLAY_PRICE_WITH_TAX === 'true') ? $products_final_price_without_tax : zen_round($products_final_price_without_tax, $decimals),
                 'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                 'weight' => $products[$i]['weight'],
                 'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
@@ -834,6 +840,7 @@ class order extends base
             $this->products[$index]['tax_groups'] = $taxRates;
             return $taxRates;
         }
+
         $taxRates = zen_get_multiple_tax_rates($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
         $this->products[$index]['tax'] = zen_get_tax_rate($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
         $this->products[$index]['tax_description'] = zen_get_tax_description($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
@@ -853,26 +860,49 @@ class order extends base
             return;
         }
 
-        $product_tax_rate = $this->products[$index]['tax'];
+        global $currencies;
 
-        $shown_price = (zen_add_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $product_tax_rate))
-                     + zen_add_tax($this->products[$index]['onetime_charges'], $product_tax_rate);
+        $product_tax_rate = $this->products[$index]['tax'];
+        $product_final_price = $this->products[$index]['final_price'];
+        $product_qty = $this->products[$index]['qty'];
+        $product_onetime_charges = $this->products[$index]['onetime_charges'];
+
+        // ----
+        // Pricing calculations are different when a store displays prices with tax.
+        //
+        if (DISPLAY_PRICE_WITH_TAX === 'true') {
+            $shown_price =
+                $currencies->value(zen_add_tax($product_final_price, $product_tax_rate)) * $product_qty
+                    + $currencies->value(zen_add_tax($product_onetime_charges, $product_tax_rate));
+
+            // -----
+            // Calculate the amount of tax included in the price when tax-in pricing is enabled.
+            //
+            $tax_add =
+                $currencies->value(zen_calculate_tax($product_final_price, $product_tax_rate)) * $product_qty
+                    + $currencies->value(zen_calculate_tax($product_onetime_charges, $product_tax_rate));
+        } else {
+            $shown_price =
+                zen_add_tax($product_final_price * $product_qty, $product_tax_rate)
+                    + zen_add_tax($product_onetime_charges, $product_tax_rate);
+
+            // -----
+            // Calculate the amount of tax for this product when tax is NOT included in the price.
+            //
+            $tax_add = zen_calculate_tax($shown_price, $product_tax_rate);
+        }
+
         $this->info['subtotal'] += $shown_price;
         $this->notify('NOTIFY_ORDER_CART_SUBTOTAL_CALCULATE', ['shown_price' => $shown_price]);
 
-        if (DISPLAY_PRICE_WITH_TAX == 'true') {
-            // calculate the amount of tax "inc"luded in price (used if tax-in pricing is enabled)
-            $tax_add = $shown_price - ($shown_price / (($product_tax_rate < 10) ? "1.0" . str_replace('.', '', $product_tax_rate) : "1." . str_replace('.', '', $product_tax_rate)));
-        } else {
-            // calculate the amount of tax for this product (assuming tax is NOT included in the price)
-//        $tax_add = zen_round(($product_tax_rate / 100) * $shown_price, $currencies->currencies[$this->info['currency']]['decimal_places']);
-            $tax_add = ($product_tax_rate / 100) * $shown_price;
-        }
         $this->info['tax'] += $tax_add;
 
         foreach ($taxRates as $taxDescription => $taxRate) {
-            $taxAdd = zen_calculate_tax($this->products[$index]['final_price'] * $this->products[$index]['qty'], $taxRate)
-                    + zen_calculate_tax($this->products[$index]['onetime_charges'], $taxRate);
+            if (DISPLAY_PRICE_WITH_TAX === 'true') {
+                $taxAdd = $currencies->value(zen_calculate_tax($product_final_price * $product_qty, $taxRate)) + $currencies->value(zen_calculate_tax($product_onetime_charges, $taxRate));
+            } else {
+                $taxAdd = zen_calculate_tax($product_final_price * $product_qty, $taxRate) + zen_calculate_tax($product_onetime_charges, $taxRate);
+            }
 
             if (isset($this->info['tax_groups'][$taxDescription])) {
                 $this->info['tax_groups'][$taxDescription] += $taxAdd;
@@ -959,6 +989,7 @@ class order extends base
             'orders_status' => $this->info['order_status'],
             'order_total' => $this->info['total'],
             'order_tax' => $this->info['tax'],
+            'shipping_tax_rate' => $this->info['shipping_tax_rate'] ?? 'null',
             'currency' => $this->info['currency'],
             'currency_value' => $this->info['currency_value'],
             'ip_address' => $_SESSION['customers_ip_address'] . ' - ' . $_SERVER['REMOTE_ADDR'],
@@ -1330,15 +1361,15 @@ class order extends base
         // make an array to store the html version
         $html_msg = [];
 		$customerGreet = $this->customer['country']['id'] == 107 ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
- 
+
         //intro area
         $email_order = EMAIL_TEXT_HEADER . "\n\n" .
-		$customerGreet . "\n\n" .
-        EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
-        EMAIL_SEPARATOR . "\n" .
-        EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
-        EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
-        EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
+		    $customerGreet . "\n\n" .
+            EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
+            EMAIL_SEPARATOR . "\n" .
+            EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
+            EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
+            EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
 
         $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
         $html_msg['INTRO_STORE_NAME'] = STORE_NAME;
@@ -1351,7 +1382,7 @@ class order extends base
         $html_msg['INTRO_DATE_ORDERED'] = $zcDate->output(DATE_FORMAT_LONG);
         $html_msg['INTRO_URL_TEXT'] = EMAIL_TEXT_INVOICE_URL_CLICK;
         $html_msg['INTRO_URL_VALUE'] = zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false);
-        $html_msg['EMAIL_CUSTOMER_PHONE'] = $this->delivery['telephone'];
+        $html_msg['EMAIL_CUSTOMER_PHONE'] = $this->customer['telephone'];
         $html_msg['EMAIL_TEXT_TELEPHONE'] = EMAIL_TEXT_TELEPHONE;
 
         //comments area
@@ -1402,11 +1433,10 @@ class order extends base
 			} else {
             $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
                 EMAIL_SEPARATOR . "\n" .
-                zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n" .
-				EMAIL_TEXT_TELEPHONE . $this->delivery['telephone'] . "\n\n";
-;
-			}
+                zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n";
+            }
         }
+        $email_order .= EMAIL_TEXT_TELEPHONE . $this->customer['telephone'] . "\n\n";
 
         //addresses area: Billing
         $email_order .= "\n" . EMAIL_TEXT_BILLING_ADDRESS . "\n" .

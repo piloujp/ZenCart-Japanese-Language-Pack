@@ -7,7 +7,8 @@ $define = [
   <a href="' . zen_href_link(FILENAME_GV_FAQ, 'faq_item=2') . '">' . TEXT_GV_NAMES . 'を贈るには</a><br>
   <a href="' . zen_href_link(FILENAME_GV_FAQ, 'faq_item=3') . '">' . TEXT_GV_NAMES . 'をショッピングに使うには</a><br>
   <a href="' . zen_href_link(FILENAME_GV_FAQ, 'faq_item=4') . '">' . TEXT_GV_NAMES . 'を使うには [贈られた方向け]</a><br>
-  <a href="' . zen_href_link(FILENAME_GV_FAQ, 'faq_item=5') . '">問題が起きたときは</a><br>',
+  <a href="' . zen_href_link(FILENAME_GV_FAQ, 'faq_item=5') . '">問題が起きたときは</a><br>
+',
     'SUB_HEADING_TITLE_1' => TEXT_GV_NAMES . 'を購入するには',
     'SUB_HEADING_TEXT_1' => TEXT_GV_NAMES . 'は当ショップの他の商品と同様にお求めいただけます。<br>当ショップが提供している通常の方法でお支払いができ、お求めいただいた' . TEXT_GV_NAME . 'の金額はお客様の' . TEXT_GV_NAME . 'アカウントに追加されます。<br>お客様の' . TEXT_GV_NAME . 'アカウントに残高がある場合はショッピングカート欄に表示され、メールで' . TEXT_GV_NAME . 'を贈るためのリンクも表示されます。',
     'SUB_HEADING_TITLE_2' => TEXT_GV_NAMES . 'を贈るには',

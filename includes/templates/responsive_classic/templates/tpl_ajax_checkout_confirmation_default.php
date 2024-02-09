@@ -5,10 +5,10 @@
  * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Steve 2021 Mar 14 Modified in v1.5.8-alpha $
+ * @version $Id: lat9 2024 Jan 19 Modified in v2.0.0-alpha1 $
  */
 ?>
 <div class="centerColumn" id="checkoutConfirmDefault">
@@ -123,7 +123,7 @@
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
           <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
-          <?php  echo $stock_check[$i]; ?>
+          <?php echo (!empty($stock_check[$i])) ? $stock_check[$i] : ''; ?>
 
 <?php // if there are attributes, loop thru them and display one per line
     if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {

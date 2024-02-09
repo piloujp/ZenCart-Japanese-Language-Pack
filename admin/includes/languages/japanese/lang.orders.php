@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2022 Jun 04 New in v1.5.8-alpha $
+ * @version $Id: lat9 2024 Jan 03 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -25,10 +25,11 @@ $define = [
     'TABLE_HEADING_QUANTITY' => 'Qty.',
     'TABLE_HEADING_UPDATED_BY' => 'Updated By',
     'ENTRY_CUSTOMER' => 'Customer:',
-    'ENTRY_CUSTOMER_ADDRESS' => 'Customer Address:<br><i class="fa fa-2x fa-user"></i>',
-    'ENTRY_SHIPPING_ADDRESS' => 'Shipping Address:<br><i class="fa fa-2x fa-truck"></i>',
-    'ENTRY_BILLING_ADDRESS' => 'Billing Address:<br><i class="fa fa-2x fa-credit-card"></i>',
+    'ENTRY_CUSTOMER_ADDRESS' => 'Customer Address:<br><i class="fa-solid fa-2x fa-user"></i>',
+    'ENTRY_SHIPPING_ADDRESS' => 'Shipping Address:<br><i class="fa-solid fa-2x fa-truck"></i>',
+    'ENTRY_BILLING_ADDRESS' => 'Billing Address:<br><i class="fa-regular fa-2x fa-credit-card"></i>',
     'ENTRY_PAYMENT_METHOD' => 'Payment Method:',
+    'ENTRY_CURRENCY_VALUE' => 'Currency Value:',
     'ENTRY_CREDIT_CARD_TYPE' => 'Credit Card Type:',
     'ENTRY_CREDIT_CARD_OWNER' => 'Credit Card Owner:',
     'ENTRY_CREDIT_CARD_NUMBER' => 'Credit Card Number:',
@@ -85,7 +86,7 @@ $define = [
     'TABLE_HEADING_CUSTOMER_COMMENTS' => 'Customer<br>Comments',
     'TEXT_COMMENTS_YES' => 'Customer Comments - YES',
     'TEXT_COMMENTS_NO' => 'Customer Comments - NO',
-    'TEXT_CUSTOMER_LOOKUP' => '<i class="fa fa-search"></i> Lookup Customer',
+    'TEXT_CUSTOMER_LOOKUP' => '<i class="fa-solid fa-magnifying-glass"></i> Lookup Customer',
     'TEXT_INVALID_ORDER_STATUS' => '<span class="alert">(Invalid Order Status)</span>',
     'BUTTON_TO_LIST' => 'Order List',
     'SELECT_ORDER_LIST' => 'Jump to Order:',

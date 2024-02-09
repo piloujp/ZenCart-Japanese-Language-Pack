@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: torvista 2022 Feb 14 New in v1.5.8-alpha $
+ * @version $Id: mc12345678 2023 Jul 09 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -27,12 +27,12 @@ $define = [
                       </li>
                       <li>
                         You must choose the action to take if a product is a special <i>and</i> is subject to this sale:
-						<ul>
+                        <ul>
                           <li>
                             <strong>Ignore Specials Price - Apply to Product Price and Replace Special</strong><br>
-							The sale deduction will be applied to the regular price of the product.
+                            The sale deduction will be applied to the regular price of the product.
                             (eg. Regular price $10.00, Specials price is $9.50, Sale Condition is 10%.
-							The product\'s final price will show $9.00 on sale. The Specials price is ignored.)
+                            The product\'s final price will show $9.00 on sale. The Specials price is ignored.)
                           </li>
                           <li>
                             <strong>Ignore Sale Condition - No Sale Applied When Special Exists</strong><br>

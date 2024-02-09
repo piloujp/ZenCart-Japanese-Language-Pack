@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Aug 11 Modified in v1.5.8-alpha2 $
+ * @version $Id: lat9 2023 Dec 10 Modified in v2.0.0-alpha1 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -17,6 +17,7 @@ $parameters = [
   'products_model' => '',
   'products_image' => '',
   'products_price' => '0.0000',
+  'products_price_w' => '0',
   'products_virtual' => DEFAULT_PRODUCT_FREE_SHIPPING_PRODUCTS_VIRTUAL,
   'products_weight' => '0',
   'products_date_added' => '',
@@ -127,7 +128,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
         <div class="input-group">
           <span class="input-group-addon">
               <?php
-              echo zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_LINKED) . '&nbsp;&nbsp;';
+              echo zen_icon('linked', IMAGE_ICON_LINKED) . '&nbsp;&nbsp;';
               ?>
           </span>
           <?php
@@ -169,7 +170,7 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
     <div class="col-sm-9 col-md-6">
       <div class="date input-group" id="datepicker">
         <span class="input-group-addon datepicker_icon">
-          <i class="fa fa-calendar fa-lg">&nbsp;</i>
+          <i class="fa-regular fa-calendar-days fa-lg">&nbsp;</i>
         </span>
         <?php echo zen_draw_input_field('products_date_available', $pInfo->products_date_available, 'class="form-control" id="products_date_available" autocomplete="off"'); ?>
       </div>
@@ -275,6 +276,19 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
           <?php echo zen_draw_input_field('products_price_gross', $pInfo->products_price, 'onkeyup="updateNet()" class="form-control" id="products_price_gross" inputmode="decimal"'); ?>
       </div>
     </div>
+<?php
+    if (WHOLESALE_PRICING_CONFIG !== 'false') {
+?>
+    <div class="form-group">
+        <?php echo zen_draw_label(TEXT_PRODUCTS_WHOLESALE_PRICE, 'products-price-w', 'class="col-sm-3 control-label"'); ?>
+      <div class="col-sm-9 col-md-6">
+          <?php echo zen_draw_input_field('products_price_w', $pInfo->products_price_w, 'class="form-control" id="products-price-w"'); ?>
+          <span class="help-block"><?php echo HELPTEXT_WHOLESALE_PRICES; ?></span>
+      </div>
+    </div>
+<?php
+    }
+?>
   </div>
   <script>
     updateGross();

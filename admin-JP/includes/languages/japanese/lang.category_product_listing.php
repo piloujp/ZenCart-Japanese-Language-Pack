@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2022 Aug 05 Modified in v1.5.8-alpha2 $
+ * @version $Id: piloujp 2024 S\Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -79,6 +79,8 @@ $define = [
     'TEXT_SORT_PRODUCTS_ID' => '商品 ID',
     'TEXT_SORT_PRODUCTS_ID_DESC' => '商品 ID (降順)',
     'TEXT_SORT_PRODUCTS_WEIGHT' => '重量',
+    'TEXT_HIDE_IMAGES' => '画像を非表示にする',
+    'TEXT_SHOW_IMAGES' => '画像を表示する',
 ];
 
 return $define;

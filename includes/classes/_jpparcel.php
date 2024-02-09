@@ -16,7 +16,6 @@
 ----------------------------------------------------------------------------------------
 小形包装物:航空便                  jpparcelairs				Small Packets Air
 小形包装物:船便                    jpparcelseas				Small Packets Surface
-国際eパケット                        jpparcelepack				International ePackets
 小包郵便物:航空小包                jpparcelair				International Parcels Air
 小包郵便物:船便小包                jpparcelsea				International Parcels Surface
 国際スピード郵便(EMS)                jpparcelems				Express Mail Service
@@ -94,29 +93,6 @@ class _JpParcel {
       array(0.50, 720, 720, 720, 720),
       array(1.00,1010,1010,1010,1010),
       array(2.00,1600,1600,1600,1600),
-      ),
-    // 国際eパケット 06-2022 International ePackets 7-13 days - tracking
-    'jpparcelepack'=>array(
-      array(0.1, 690, 790, 820, 1150),// 0.1kg以下,第1,第2,第3,第4地帯
-      array(0.2, 780, 910, 1000, 1280),
-      array(0.3, 870, 1030, 1180, 1410),
-      array(0.4, 960, 1150, 1360, 1540),
-      array(0.5, 1050, 1270, 1540, 1670),
-      array(0.6, 1140, 1390, 1720, 1800),
-      array(0.7, 1230, 1510, 1900, 1930),
-      array(0.8, 1320, 1630, 2080, 2060),
-      array(0.9, 1410, 1750, 2260, 2190),
-      array(1.0, 1500, 1870, 2440, 2320),
-      array(1.1, 1590, 1990, 2620, 2450),
-      array(1.2, 1680, 2110, 2800, 2580),
-      array(1.3, 1770, 2230, 2980, 2710),
-      array(1.4, 1860, 2350, 3160, 2840),
-      array(1.5, 1950, 2470, 3340, 2970),
-      array(1.6, 2040, 2590, 3520, 3100),
-      array(1.7, 2130, 2710, 3700, 3230),
-      array(1.8, 2220, 2830, 3880, 3360),
-      array(1.9, 2310, 2950, 4060, 3490),
-      array(2.0, 2400, 3070, 4240, 3620),
       ),
     // 小包郵便物:航空小包 06-2022 extra charge zone 3 and 4 - International Parcels Air 7-15 days - tracking
     'jpparcelair'=>array(
@@ -265,7 +241,6 @@ class _JpParcel {
         switch ($this->quote['id']) {
         case 'jpparcelairs':
         case 'jpparcelseas':
-        case 'jpparcelepack':
           $area_to_no = array(
             'easia1'   =>1, //中国・韓国・台湾
             'easia2'   =>1, //東アジア

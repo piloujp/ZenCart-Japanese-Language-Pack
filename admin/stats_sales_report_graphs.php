@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @author inspired from sales_report_graphs.php,v 0.01 2002/11/27 19:02:22 cwi Exp  Released under the GNU General Public License $
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Sep 17 Modified in v1.5.8 $
+ * @version $Id: neekfenwick 2023 Dec 09 Modified in v2.0.0-alpha1 $
  */
 require 'includes/application_top.php';
 
@@ -112,9 +112,9 @@ for ($i = 0; $i < $report->size; $i++) {
 
 if ($_SESSION['language'] == 'japanese') {
   if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 4) {
-    echo $report->info[$i]['text'];
+    echo substr($report->info[$i]['text'], 0, 1);
   } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
-    echo $report->info[$i]['text'];
+    echo substr($report->info[$i]['text'], 0, 3);
   } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
     echo substr($report->info[$i]['text'], 5, 5) . '～' . substr($report->info[$i]['text'], 18, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
@@ -126,9 +126,9 @@ if ($_SESSION['language'] == 'japanese') {
   }
 } else {
   if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 5) {
-    echo $report->info[$i]['text'];
+    echo substr($report->info[$i]['text'], 0, 1);
   } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
-    echo $report->info[$i]['text'];
+    echo substr($report->info[$i]['text'], 0, 3);
   } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
     echo substr($report->info[$i]['text'], 0, 5) . '-' . substr($report->info[$i]['text'], 13, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
@@ -145,7 +145,7 @@ if ($_SESSION['language'] == 'japanese') {
   if ($j == 0) {
   // first value
   echo round($report->info[$i]['sum'], 2);
-  } else { 
+  } else {
     // second value
     if ($sales_report_view < statsSalesReportGraph::YEARLY_VIEW) {
       echo round($report->info[$i]['avg'], 2);
@@ -316,23 +316,23 @@ if ($_SESSION['language'] == 'japanese') {
           for ($i = 0; $i < $report->status_available_size; $i++) {
             ?>
             <tr>
-              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['value'] ?></a></td>
+              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['text'] ?></a></td>
               <?php
               if (substr($sales_report_filter, $i, 1) == "0") {
                 $tmp = substr($sales_report_filter, 0, $i) . "1" . substr($sales_report_filter, $i + 1, $report->status_available_size - ($i + 1));
                 $tmp = zen_href_link(FILENAME_STATS_SALES_REPORT_GRAPHS, $report->filter_link . "&filter=" . $tmp);
                 ?>
                 <td class="dataTableContent text-right col-sm-12">
-                  <?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green.gif', IMAGE_ICON_STATUS_GREEN, 10, 10) ?>&nbsp;
-                  <a href="<?php echo $tmp; ?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_status_red_light.gif', IMAGE_ICON_STATUS_RED_LIGHT, 10, 10) ?></a></td>
+                  <?php echo zen_icon('status-green', IMAGE_ICON_STATUS_GREEN) ?>&nbsp;
+                  <a href="<?php echo $tmp; ?>"><?php echo zen_icon('status-red-light', IMAGE_ICON_STATUS_RED_LIGHT) ?></a></td>
                 <?php
               } else {
                 $tmp = substr($sales_report_filter, 0, $i) . "0" . substr($sales_report_filter, $i + 1);
                 $tmp = zen_href_link(FILENAME_STATS_SALES_REPORT_GRAPHS, $report->filter_link . "&filter=" . $tmp);
                 ?>
                 <td class="dataTableContent text-right col-sm-12">
-                  <a href="<?php echo $tmp; ?>"><?php echo zen_image(DIR_WS_IMAGES . 'icon_status_green_light.gif', IMAGE_ICON_STATUS_GREEN, 10, 10) ?></a>
-                  &nbsp;<?php echo zen_image(DIR_WS_IMAGES . 'icon_status_red.gif', IMAGE_ICON_STATUS_RED_LIGHT, 10, 10) ?></td>
+                  <a href="<?php echo $tmp; ?>"><?php echo zen_icon('status-green-light', IMAGE_ICON_STATUS_GREEN) ?></a>
+                  &nbsp;<?php echo zen_icon('status-red', IMAGE_ICON_STATUS_RED_LIGHT) ?></td>
                 <?php
               }
               ?>

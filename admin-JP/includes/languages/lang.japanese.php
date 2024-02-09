@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Sep 30 Modified in v1.5.8 $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -245,9 +245,9 @@ $define = [
     'ERROR_USPS_STATUS' => '<strong>警告：</strong>USPS 出荷モジュールにユーザー名がないか、PRODUCTION ではなく TEST に設定されていて機能しません。<br>USPS の配送見積もりを取得できない場合は、USPS に連絡して、運用サーバーで Web ツール アカウントを有効にしてください。 1-800-344-7779 か icustomercare@usps.com',
     'FEMALE' => '女性',
     'HEADER_ALT_TEXT' => 'Admin Powered by Zen Cart :: The Art of E-Commerce',
-    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_LOGO_IMAGE' => 'logo.gif',
     'HEADER_LOGO_WIDTH' => '192',
+    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_TITLE_ACCOUNT' => 'マイアカウント',
     'HEADER_TITLE_LOGOFF' => 'ログオフ',
     'HEADER_TITLE_ONLINE_CATALOG' => 'オンラインショップ',
@@ -258,6 +258,8 @@ $define = [
     'HEADING_TITLE_SEARCH_DETAIL' => '検索： ',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS' => '商品ID検索（コンマ区切り）',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL' => '商品名・型番で検索',
+    'HELPTEXT_WHOLESALE_POPUP_TITLE' => '卸売価格の設定',
+    'HELPTEXT_WHOLESALE_PRICES' => '小売価格のみの場合は 0 を入力します。 それ以外の場合は、卸売価格レベルをマイナス記号 (-) で区切って入力します。 価格レベルは、固定金額またはパーセントオフのいずれかです。 たとえば、「2.00-10%-1.00」の場合、レベル 1 の顧客には 2.00、レベル 2 の顧客には 10% オフ、レベル 3 以上の顧客には 1.00 の価格が与えられます。',
     'HTML_PARAMS' => 'dir="ltr" lang="ja"',
     'ICON_COPY_TO' => '複製',
     'ICON_CROSS' => '偽(False)',
@@ -268,6 +270,7 @@ $define = [
     'ICON_FOLDER' => 'フォルダ',
     'ICON_MOVE' => '移動',
     'ICON_PREVIEW' => 'プレビュー',
+    'ICON_SELECTED' => '選択された行',
     'ICON_STATISTICS' => '統計',
     'ICON_SUCCESS' => '成功',
     'ICON_TICK' => '真(True)',
@@ -405,6 +408,7 @@ $define = [
     'TABLE_HEADING_NO' => 'いいえ',
     'TABLE_HEADING_OPTION_NAME' => 'オプション名',
     'TABLE_HEADING_OPTION_PRICE' => '価格',
+    'TABLE_HEADING_OPTION_PRICE_W' => '卸売価格',
     'TABLE_HEADING_OPTION_PRICE_PREFIX' => '接頭',
     'TABLE_HEADING_OPTION_VALUE' => 'オプション値',
     'TABLE_HEADING_OPTION_NAME_MAX' => 'オプション名最大',
@@ -425,6 +429,7 @@ $define = [
     'TABLE_HEADING_PRODUCTS_MODEL' => '型番',
     'TABLE_HEADING_PRODUCTS_NAME' => '商品名',
     'TABLE_HEADING_PRODUCTS_PRICE' => '価格/特別/セール',
+    'TABLE_HEADING_HAS_WHOLESALE_PRICE' => '卸売価格が設定されています',
     'TABLE_HEADING_SALE_DATE_END' => '終了日',
     'TABLE_HEADING_SALE_DATE_START' => '開始日',
     'TABLE_HEADING_SALE_DEDUCTION' => '控除',
@@ -576,7 +581,7 @@ $define = [
     'TEXT_PRODUCTS_MIX_ON' => '*オプション込み',
     'TEXT_PRODUCTS_MODEL' => '商品型番：',
     'TEXT_PRODUCTS_STATUS_INFO_OFF' => '<span class="alert">*商品は無効です</span>',
-    'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa fa-commenting"></i>',
+    'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa-solid fa-comment-dots"></i>',
     'TEXT_PRODUCT_POPUP_TITLE' => '注文商品',
     'TEXT_PRODUCT_TO_VIEW' => '商品を選択し、表示ボタンを押してください。',
     'TEXT_PRODUCT_WEIGHT_UNIT' => 'kg',
@@ -623,6 +628,7 @@ $define = [
     'WARNING_ATTRIBUTE_COPY_INVALID_ID' => 'Warning: Attribute Copy to Product ID#%u aborted. Invalid ID',
     'WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES' => '警告：オプション情報のコピーを中止しました。コピー元の商品IDにはオプションが存在していません #%u, "%s"。',
     'WARNING_ATTRIBUTE_COPY_SAME_ID' => '警告：オプション情報のコピーを中止しました。商品ID #%u から商品ID#%u (同じ商品ID) にはコピーできません。',
+    'WARNING_CATEGORY_DOES_NOT_EXIST' => '警告：カテゴリ ID#%u は無効です。存在しません。',
     'WARNING_CONFIG_FILE_WRITEABLE' => '警告：設定ファイル：%sincludes/configure.php。セキュリティ上の危険性を含んでいます。このファイルに対して正しいパミッション設定を行ってください。（読み取り専用、CHMOD 644 か 444 推奨） <a href="https://docs.zen-cart.com/user/miscellaneous/configure/" rel="noopener" target="_blank">FAQをご参照ください。</a>',
     'WARNING_COULD_NOT_LOCATE_LANG_FILE' => '警告：言語ファイルが見つかりません：',
     'WARNING_DATABASE_VERSION_OUT_OF_DATE' => 'データベースのパッチレベルを上げる必要があります。ツール->' . '%%BOX_TOOLS_SERVER_INFO%%' . 'を見てください。',

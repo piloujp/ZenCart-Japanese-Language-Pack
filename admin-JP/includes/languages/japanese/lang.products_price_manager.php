@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -65,6 +65,7 @@ $define = [
     'TEXT_PRODUCTS_DISCOUNT' => '割引',
     'TEXT_PRODUCTS_DISCOUNT_QTY' => '数量（～以上）',
     'TEXT_PRODUCTS_DISCOUNT_PRICE' => '割引値（※上部「割引タイプ」指定に準じます）',
+    'TEXT_PRODUCTS_DISCOUNT_PRICE_W' => '卸売割引価格',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EACH' => '割引適用単価:',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EXTENDED' => '割引適用小計:',
     'TEXT_PRODUCTS_DISCOUNT_PRICE_EACH_TAX' => '割引適用<br>単価: &nbsp; 税込:',

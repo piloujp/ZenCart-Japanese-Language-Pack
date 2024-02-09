@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Sep 30 Modified in v1.5.8 $
+ * @version $Id: lat9 2023 Dec 10 Modified in v2.0.0-alpha1 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -245,9 +245,9 @@ $define = [
     'ERROR_USPS_STATUS' => '<strong>Warning:</strong> USPS shipping module is either missing the username, or it is set to TEST rather than PRODUCTION and will not work.<br>If you cannot retrieve USPS Shipping Quotes, contact USPS to activate your Web Tools account on their production server. 1-800-344-7779 or icustomercare@usps.com',
     'FEMALE' => 'Female',
     'HEADER_ALT_TEXT' => 'Admin Powered by Zen Cart :: The Art of E-Commerce',
-    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_LOGO_IMAGE' => 'logo.gif',
     'HEADER_LOGO_WIDTH' => '192',
+    'HEADER_LOGO_HEIGHT' => '68',
     'HEADER_TITLE_ACCOUNT' => 'Account',
     'HEADER_TITLE_LOGOFF' => 'Logoff',
     'HEADER_TITLE_ONLINE_CATALOG' => 'Storefront',
@@ -258,6 +258,8 @@ $define = [
     'HEADING_TITLE_SEARCH_DETAIL' => 'Search: ',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS' => 'Search for Product IDs (Delimited by commas)',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL' => 'Search for Product Name/Model',
+    'HELPTEXT_WHOLESALE_POPUP_TITLE' => 'Setting Wholesale Prices',
+    'HELPTEXT_WHOLESALE_PRICES' => 'Enter 0 for retail pricing only. Otherwise, enter the wholesale-pricing levels separated by minus-sign (-). A pricing level can be either a fixed amount or a percent-off. For example, \'2.00-10%-1.00\' gives a price of 2.00 to customers at level-1, 10%-off to those at level-2 and 1.00 to those at level-3 and higher.',
     'HTML_PARAMS' => 'dir="ltr" lang="ja"',
     'ICON_COPY_TO' => 'Copy to',
     'ICON_CROSS' => 'False',
@@ -268,6 +270,7 @@ $define = [
     'ICON_FOLDER' => 'Folder',
     'ICON_MOVE' => 'Move',
     'ICON_PREVIEW' => 'Preview',
+    'ICON_SELECTED' => 'Selected Row',
     'ICON_STATISTICS' => 'Statistics',
     'ICON_SUCCESS' => 'Success',
     'ICON_TICK' => 'True',
@@ -405,6 +408,7 @@ $define = [
     'TABLE_HEADING_NO' => 'No',
     'TABLE_HEADING_OPTION_NAME' => 'Option Name',
     'TABLE_HEADING_OPTION_PRICE' => 'Price',
+    'TABLE_HEADING_OPTION_PRICE_W' => 'Wholesale Price',
     'TABLE_HEADING_OPTION_PRICE_PREFIX' => 'Prefix',
     'TABLE_HEADING_OPTION_VALUE' => 'Option Value',
     'TABLE_HEADING_OPTION_NAME_MAX' => 'Max',
@@ -425,6 +429,7 @@ $define = [
     'TABLE_HEADING_PRODUCTS_MODEL' => '型番',
     'TABLE_HEADING_PRODUCTS_NAME' => '商品名',
     'TABLE_HEADING_PRODUCTS_PRICE' => 'Price/Special/Sale',
+    'TABLE_HEADING_HAS_WHOLESALE_PRICE' => 'Has Wholesale Pricing',
     'TABLE_HEADING_SALE_DATE_END' => 'End Date',
     'TABLE_HEADING_SALE_DATE_START' => 'Start Date',
     'TABLE_HEADING_SALE_DEDUCTION' => 'Deduction',
@@ -576,7 +581,7 @@ $define = [
     'TEXT_PRODUCTS_MIX_ON' => '*Yes Mixed Options',
     'TEXT_PRODUCTS_MODEL' => 'Products Model:',
     'TEXT_PRODUCTS_STATUS_INFO_OFF' => '<span class="alert">*Product is Disabled</span>',
-    'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa fa-commenting"></i>',
+    'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa-solid fa-comment-dots"></i>',
     'TEXT_PRODUCT_POPUP_TITLE' => 'Products Ordered',
     'TEXT_PRODUCT_TO_VIEW' => 'Select a Product to View and Press Display ...',
     'TEXT_PRODUCT_WEIGHT_UNIT' => 'kg',
@@ -623,6 +628,7 @@ $define = [
     'WARNING_ATTRIBUTE_COPY_INVALID_ID' => 'Warning: Attribute Copy to Product ID#%u aborted. Invalid ID',
     'WARNING_ATTRIBUTE_COPY_NO_ATTRIBUTES' => 'Warning: Attribute Copy aborted. No Attributes found for source Product ID#%u, "%s".',
     'WARNING_ATTRIBUTE_COPY_SAME_ID' => 'Warning: Attribute Copy aborted. Cannot copy from Product ID#%u to Product ID#%u (same ID).',
+    'WARNING_CATEGORY_DOES_NOT_EXIST' => 'Warning: Category ID#%u is invalid, it does not exist.',
     'WARNING_CONFIG_FILE_WRITEABLE' => 'Warning: Your configuration file: %s is writeable. This is a potential security risk - please set the right user permissions on this file (read-only, CHMOD 644 or 444 are typical). You may need to use your webhost control panel/file-manager to change the permissions effectively. Contact your webhost for assistance. <a href="https://docs.zen-cart.com/user/miscellaneous/configure/" rel="noopener" target="_blank">See this FAQ</a>',
     'WARNING_COULD_NOT_LOCATE_LANG_FILE' => 'WARNING: Could not locate language file: ',
     'WARNING_DATABASE_VERSION_OUT_OF_DATE' => 'Your database appears to need patching to a higher level. See Tools->' . '%%BOX_TOOLS_SERVER_INFO%%' . ' to review patch levels.',

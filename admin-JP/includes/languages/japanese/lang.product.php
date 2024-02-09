@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -69,6 +69,8 @@ $define = [
     'TEXT_META_EXCLUDED' => '<span class="alert">除外</span>',
     'TEXT_TITLE_PLUS_TAGLINE' => 'ショップの 「タイトル」+「タグライン」',
     'TEXT_PRODUCTS_PRICE_INFO' => '価格：',
+    'WARNING_PRODUCT_DOES_NOT_EXIST' => '警告: 商品 ID#%u は存在しないため、変更できません。',
+    'TEXT_PRODUCTS_WHOLESALE_PRICE' => '卸売価格:',
 ];
 
 return $define;

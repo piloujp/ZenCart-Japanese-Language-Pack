@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 May 05 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -62,6 +62,8 @@ $define = [
     'ERROR_BANNER_IMAGE_REQUIRED' => 'エラー: バナーの画像が必要です。',
     'ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' => 'エラー: バナーを新しいウィンドウで開くように設定できませんでした',
     'ERROR_UNKNOWN_BANNER_ON_SSL' => 'エラー: SSL を使用するようにバナーを設定できませんでした',
+    'ERROR_INVALID_SCHEDULED_DATE' => '「予定日」は無効です。再入力してください。',
+    'ERROR_INVALID_EXPIRES_DATE' => '「有効期限」は、 日付が無効です。再入力してください。',
     'TEXT_LEGEND_BANNER_ON_SSL' => 'SSLを表示',
     'TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS' => '新しいウィンドウ',
     'IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON' => '新しいウインドウを開くー可能',

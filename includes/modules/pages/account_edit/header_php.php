@@ -2,10 +2,10 @@
 /**
  * Header code file for the customer's Account-Edit page
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2021 Feb 19 Modified in v1.5.8-alpha $
+ * @version $Id: Scott C Wilson 2023 Mar 14 Modified in v1.5.8a $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ACCOUNT_EDIT');
@@ -24,7 +24,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'process') {
   $firstname = zen_db_prepare_input($_POST['firstname']);
   $lastname = zen_db_prepare_input($_POST['lastname']);
   $nick = (!empty($_POST['nick']) ? zen_db_prepare_input($_POST['nick']) : '');
-  if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_date_raw(zen_db_prepare_input($_POST['dob'])));
+  if (ACCOUNT_DOB == 'true') $dob = (empty($_POST['dob']) ? zen_db_prepare_input('0001-01-01 00:00:00') : zen_db_prepare_input($_POST['dob']));
   $email_address = zen_db_prepare_input($_POST['email_address']);
   $telephone = zen_db_prepare_input($_POST['telephone']);
   $fax = isset($_POST['fax']) ? zen_db_prepare_input($_POST['fax']) : '';
@@ -211,7 +211,8 @@ if (ACCOUNT_GENDER == 'true') {
 if (!(isset($_POST['action']) && ($_POST['action'] == 'process'))) {
   // Posted page content is not requested to be processed, populate dob with customer's database entry.
   // Using ISO-8601 format of date display to support javascript/jQuery driven date picker data handling.
-  $dob = zen_date_short($account->fields['customers_dob']);
+  $dob = zen_date_raw(zen_date_short($account->fields['customers_dob']));
+  $dob = substr($dob, 0, 4) . '-' . substr($dob, 4, 2) . '-' . substr($dob, 6, 2);
   if ($dob <= '0001-01-01') {
     $dob = '0001-01-01 00:00:00';
   }

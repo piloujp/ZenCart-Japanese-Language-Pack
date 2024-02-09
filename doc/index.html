@@ -115,7 +115,7 @@ a.anclink {
 
         height="24" width="50">
       <div>
-        <h1 class="title">Zen Cart v1.5.8 Japanese language pack documentation</h1>
+        <h1 class="title">Zen Cart v2.0.0 Japanese language pack documentation</h1>
       </div>
       <p class="texte"><br>
       </p>
@@ -125,7 +125,7 @@ a.anclink {
         products dimension anywhere in the cart system.</p>
       <p class="texte">This allows use of Japanese Yamato express delivery,
         Nekoposu, Sagawa express delivery, Japan Post Yupack, LetterPack Lite,
-        LetterPack Plus, International ePackets and EMS services. All these
+        LetterPack Plus and EMS services. All these
         shipping modules files are included. Some payment and order total
         modules that complete shipping modules (c.o.d.) are although provided.</p>
       <p class="texte">With this set you can use Zen Cart in Japan without
@@ -138,7 +138,7 @@ a.anclink {
         Most of the translation is the work of members of Zen-Cart.jp which does
         not exist anymore. Ideas of adding furigana and Japanese shipping
         modules with shipping fees based on dimension are more than ten years
-        old but they were redesigned for Zen Cart v1.5.8. As in Japan reading of
+        old but they were redesigned for Zen Cart v2.0.0. As in Japan reading of
         name's kanjis varies a lot from one region to another, furigana are
         useful if not necessary on the admin side.<br>
         Japan transport methods fees are generally based on parcel size with
@@ -166,30 +166,31 @@ a.anclink {
         useful.<br>
         Then you must set an empty MySQL database (Unicode collation) and a user
         with standard write-read-edit-delete rights on this database.<br>
-        This pack is for Zen Cart 1.5.8 and above, please don't use too old
+        This pack is for Zen Cart 2.0.0 and above, please don't use too old
         versions for PHP and MySQL. You can check on Zen Cart site for exact
         requirement, but a good choice would be to use PHP 8.1 or newer and
         MySQL 5.7 will do but 8.0x is better. MySQL 8.0 has some new collation
         and properties for Japanese that are interesting. For backward
         compatibility reasons there are not used in this plugin for now, but it
         might change in the future.</p>
-      <p class="texte">Don't forget, this language pack is for Zen Cart 1.5.8a
-        and above! It works with ZC 1.5.8 but won't with older versions.</p>
+      <p class="texte">Don't forget, this language pack is for Zen Cart 2.0.0
+        and above! It works with ZC 2.0.0 but won't with older versions. For 
+		ZC v1.5.8 and 1.5.8a, please use ZC Japanese Language Pack v1.3.3.</p>
       <p class="texte">Finally, if you have a cart already installed, you must <span
 
           id="important">do a complete backup including database</span>. For
         files a copy is easy, but for database you must export it in an SQL file
         you can import again if necessary. This is a very important step! In
-        case of troubles, it will save you lot of time and more. Please, choose
+        case of troubles, it will save you lot of time and more.<br> Please, choose
         from below menu to get detailed explanations:<br>
       </p>
       <p class="title3"><a class="menu_links" onclick="shide('newinst')">New
           cart installation</a></p>
       <div id="newinst">
-        <p class="texte">Extract Zen Cart v1.5.8a or newer you have just
+        <p class="texte">Extract Zen Cart v2.0.0-alpha1 or newer you have just
           downloaded and copy all files in your site folder. Extract Zen Cart
-          v1.5.8 Japanese Language Pack too and copy admin, email, images,
-          includes and zc_install folders overwriting Zen Cart original files
+          v2.0.0 Japanese Language Pack too and copy admin, email, images,
+          includes, zc_install and zc_plugins folders overwriting Zen Cart original files
           when necessary. Don't reverse order! Do Zen Cart first then language
           pack.</p>
         <p class="texte">Now you should open your browser and in address bar
@@ -222,14 +223,14 @@ a.anclink {
       <p class="title3"><a class="menu_links" onclick="shide('allinst')">Already
           installed cart but still close to default setting</a></p>
       <div id="allinst">
-        <p class="texte">When installing over an existing Zen Cart 1.5.8 or
-          1.58a with no plugin that modify core files installed, it is nearly as
+        <p class="texte">When installing over an existing Zen Cart 2.0.0 
+          with no plugin that modify core files installed, it is nearly as
           easy as a new install but there are few points you need to check.</p>
         <p class="texte">First, after doing a backup of your installed cart,
-          extract Zen Cart v1.5.8 Japanese Language Pack and rename admin folder
+          extract Zen Cart v2.0.0 Japanese Language Pack and rename admin folder
           to the same name as your already installed admin folder. Then copy
           everything in folders admin (renamed to your real admin folder name),
-          email, images, includes and zc_install to your cart overwriting
+          email, images, includes, zc_install and zc_plugins to your cart overwriting
           original files.</p>
         <p class="texte">Now you should open your browser and in address bar
           type your site address using your real domain in place of 'yoursite'
@@ -247,7 +248,7 @@ a.anclink {
         <p class="texte">After clicking on 'Upgrade' button, on next screen you
           will have to enter your superuser credentials but before you must
           check that on the list above there is only one option that is checked,
-          and it is '1.5.8 to 1.5.8130'. You can then proceed as a normal
+          and it is '2.0.0 to 2.0.0001'. You can then proceed as a normal
           install.</p>
         <p class="texte">When upgrading database there are few settings that are
           done like setting Japanese as default language, Japanese Yen as
@@ -261,10 +262,10 @@ a.anclink {
       <p class="title3"><a class="menu_links" onclick="shide('mergeinst')">Installation
           on a modified cart with plugins and other custom settings</a></p>
       <div id="mergeinst">
-        <p class="texte">If you already have Zen Cart 1.5.8 with plugins
+        <p class="texte">If you already have Zen Cart 2.0.0 with plugins
           installed, you might not be able to copy this Japanese language pack
           files over and expect everything to work. There are two possible
-          situations, whether installed plugins have modified Zen Cart 1.5.8
+          situations, whether installed plugins have modified Zen Cart 2.0.0
           core files or not.</p>
         <p class="texte">If none of the Zen cart original files have been
           modified, then it is easy, use the installer following instructions
@@ -462,9 +463,6 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
         For Japan Post overseas services : <a href="https://www.post.japanpost.jp/int/charge/list/"
 
           title="郵便胸腔EMS" target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
-        For Japan Post International ePackets : <a href="https://www.post.japanpost.jp/int/service/epacket.html"
-
-          title="郵便胸腔eパケット" target="_blank">https://www.post.japanpost.jp/int/service/epacket.html</a><br>
         <br>
         If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
 
@@ -489,13 +487,13 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
       <p class="texte">This plugin should be in any multilingual Zen Cart.
         Having language switch in header is very useful and practical especially
         on mobile displays.</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-v300-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
 
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">This is a Japanese version of this nice template adapted
         to this language pack. It is not yet released in Zen Cart site plugin
-        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-v300-JP"
+        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
 
           title="ZCA Bootstrap template JP - GitHub" target="_blank">here</a>.
         It looks great on mobiles screen.<br>
@@ -679,6 +677,10 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
 		Yamato October 2023 price increase update.<br>
         Few corrections to fix minor bugs.<br>
         <br>
+        V2.0.0 - February 10 2024<br>
+		Updated version for Zen Cart v2.0.0-alpha1.<br>
+        Change of Japanese zones dual name management.<br>
+        <br>
       </p>
     </div>
     <div class="jp" id="jp"> <img id="lang" src="images/flags-US-JP_small.webp"
@@ -687,7 +689,7 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
 
         onclick="chglan()" height="24" width="50">
       <div>
-        <h1 class="title">Zen Cart v1.5.8 Japanese language pack 説明書</h1>
+        <h1 class="title">Zen Cart v2.0.0 Japanese language pack 説明書</h1>
       </div>
       <p class="texte"><br>
       </p>
@@ -700,7 +702,7 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
         ます。インストール時に選択する必要があります。</p>
       <p class="texte">翻訳のほとんどは、もう存在しない Zen-Cart.jp のメンバーの作品です。<br>
         ふりがなと日本の配送モジュールを追加し、寸法に基づいた配送料を設定するというアイデアは 10 年以上前のものですが、Zen Cart
-        v1.5.8 で再設計されました。<br>
+        v2.0.0 で再設計されました。<br>
         日本では名前の漢字の読み方が地域によって大きく異なるため、管理者側でもフリガナは非常に便利です。<br>
         日本の配送方法の料金は、荷物のサイズに基づいており、重量制限もあります。固定料金の配送でもサイズ制限がありますので、正確な見積もりを提供するため
         に商 品の寸法が必要です。<br>
@@ -715,12 +717,12 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
         サーバーを使用する場合は、ファイルをアップロードするための FTP クライアントが便利です。<br>
         次に、空の MySQL データベース (Unicode 照合順序)
         と、このデータベースに対する標準の書き込み、読み取り、編集、削除の権限を持つユーザーを設定する必要があります。<br>
-        このパックは Zen Cart 1.5.8 以降を対象としています。PHP および MySQL
+        このパックは Zen Cart 2.0.0 以降を対象としています。PHP および MySQL
         には古すぎるバージョンを使用しないでください。正確な要件については、Zen Cart サイトでご確認ください。ただし、PHP 8.1
         以降を使用することをお勧めします。MySQL 5.7 でも十分ですが、8.0x の方が優れています。MySQL 8.0
         には、日本語用の興味深い新しい照合順序とプロパティがいくつかあります。下位互換性の理由から、現時点ではこのプラグインでは使用されていませんが、将来的には変更され
         る可能性があります。</p>
-      <p class="texte">この言語パックは Zen Cart 1.5.8a 以降用であることを忘れないでください。 ZC 1.5.8
+      <p class="texte">この言語パックは Zen Cart 2.0.0-alpha1 以降用であることを忘れないでください。 ZC 2.0.0
         では動作しますが、古いバージョンでは動作しません。</p>
       <p class="texte">最後に、カートがすでにインストールされている場合は、<span id="important">データベースを含む完
           全なバックアップを実行する必要があります</span>。ファイルの場合、コピーは簡単ですが、データベースの場合は、必要に応じて再度インポート
@@ -730,9 +732,9 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
       <p class="title3"><a class="menu_links" onclick="shide('newinstjp')">初め
           てのインストール</a></p>
       <div id="newinstjp">
-        <p class="texte">ダウンロードした Zen Cart v1.5.8a 以降を抽出し、サイト
-          フォルダー内のすべてのファイルをコピーします。Zen Cart v1.5.8 日本語言語パックも抽出し、必要に応じて
-          admin、email、images、includes、および zc_install フォルダーをコピーして、Zen Cart
+        <p class="texte">ダウンロードした Zen Cart v2.0.0 以降を抽出し、サイト
+          フォルダー内のすべてのファイルをコピーします。Zen Cart v2.0.0 日本語言語パックも抽出し、必要に応じて
+          admin、email、images、includes、zc_install、および zc_plugins フォルダーをコピーして、Zen Cart
           の元のファイルを上書きします。順序を逆にしないでください！ 最初に Zen Cart を実行し、次に言語パックを実行します。</p>
         <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
           http または https を使用してサイト アドレスを入力する必要があります。<br>
@@ -753,12 +755,12 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
       <p class="title3"><a class="menu_links" onclick="shide('allinstjp')">新し
           いカートのアップデート</a></p>
       <div id="allinstjp">
-        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart 1.5.8 または
-          1.58a に上書きインストールする場合、新規インストールとほぼ同じくらい簡単ですが、確認する必要がある点がいくつかあります。</p>
-        <p class="texte">まず、インストールしたカートのバックアップを作成した後、Zen Cart v1.5.8
+        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart 2.0.0
+		に上書きインストールする場合、新規インストールとほぼ同じくらい簡単ですが、確認する必要がある点がいくつかあります。</p>
+        <p class="texte">まず、インストールしたカートのバックアップを作成した後、Zen Cart v2.0.0
           日本語言語パックを抽出し、admin フォルダーの名前を既にインストールされている admin
           フォルダーと同じ名前に変更します。次に、フォルダー admin (実際の管理フォルダー名に名前変更)、email、images、
-          includes、および zc_install 内のすべてのものをカートにコピーし、元のファイルを上書きします。</p>
+          includes、zc_install、および zc_plugins 内のすべてのものをカートにコピーし、元のファイルを上書きします。</p>
         <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
           http または https を使用してサイト アドレスを入力する必要があります。<br>
           https://yoursite.com/zc_install/</p>
@@ -769,8 +771,8 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
           識されていないか、バージョンが間違っているか、またはすでにアップグレードされていることを意味します。アップグレードできるようにするには、これ
           を整理して修正する必要があります。</p>
         <p class="texte">「アップグレード」ボタンをクリックした後、次の画面でスーパーユーザーの認証情報を入力する必要がありますが、その
-          前に上のリストでチェックされているオプションは一つだけで、「1.5.8 ～
-          1.5.8130」です。その後、通常のインストールとして続行できます。</p>
+          前に上のリストでチェックされているオプションは一つだけで、「2.0.0 ～
+          2.0.0001」です。その後、通常のインストールとして続行できます。</p>
         <p class="texte">データベースをアップグレードするときは、デフォルト言語として日本語を設定したり、デフォルト通貨として日本円を設
           定したり、新しい税クラスや税率を追加したりするなど、いくつかの設定を行う必要があります。設定が希望通りであるかどうかを管理者に確認してくださ
           い。たとえば、3
@@ -780,8 +782,8 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
       <p class="title3"><a class="menu_links" onclick="shide('mergeinstjp')">改
           造されたカートからアップデート</a></p>
       <div id="mergeinstjp">
-        <p class="texte">すでに Zen Cart 1.5.8 とプラグインがインストールされている場合は、この日本語言語パック
-          ファイルをコピーしてもすべてが動作することは期待できない可能性があります。インストールされているプラグインが Zen Cart 1.5.8
+        <p class="texte">すでに Zen Cart 2.0.0 とプラグインがインストールされている場合は、この日本語言語パック
+          ファイルをコピーしてもすべてが動作することは期待できない可能性があります。インストールされているプラグインが Zen Cart 2.0.0
           コア ファイルを変更したかどうかに関係なく、2 つの状況が考えられます。</p>
         <p class="texte">Zen カートのオリジナル
           ファイルが何も変更されていない場合は、上記の前章の指示に従ってインストーラーを使用するのは簡単です。</p>
@@ -955,9 +957,6 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
         日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
 
           target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
-        日本郵便の国際eパケット： <a href="https://www.post.japanpost.jp/int/service/epacket.html"
-
-          title="郵便胸腔eパケット" target="_blank">https://www.post.japanpost.jp/int/service/epacket.html</a><br>
         <br>
         質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
 
@@ -978,12 +977,12 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
       <p class="texte"></p>
       <p class="texte">このプラグインは、多言語の Zen Cart に含まれている必要があります。
         ヘッダーに言語切り替えがあると、特にモバイル ディスプレイで非常に便利で実用的です。</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-v300-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
 
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">これは、この言語パックに適合したこの素晴らしいテンプレートの日本語版です。 Zen Cart サイトのプラグイン
-        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-v300-JP"
+        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
 
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ダウンロード</a>で
         きます。 携帯電話の画面では見栄えがします。<br>
@@ -1129,6 +1128,10 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.product.p
         V1.3.3 - ２０２３年１０月２９日<br>
 		ヤマト宅急便２０２３年１０月値上げ更新。。<br>
 		軽微なバグを修正するための修正。<br>
+        <br>
+        V2.0.0 - ２０２４年２月１０日<br>
+		Zen Cart v2.0.0-alpha1 の更新バージョン。<br>
+        日本のゾーンの二重名管理の変更。<br>
         <br>
       </p>
     </div>

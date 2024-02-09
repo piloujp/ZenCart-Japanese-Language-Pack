@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2023 Feb 17 Modified in v1.5.8a $
+ * @version $Id: lat9 2023 Dec 09 Modified in v2.0.0-alpha1 $
  */
 
 ////
@@ -130,6 +130,9 @@ function zen_catalog_base_link($connection = '')
 ////
 // The HTML image wrapper function
   function zen_image($src, $alt = '', $width = '', $height = '', $params = '') {
+    if ($src === DIR_WS_CATALOG_IMAGES) {
+      return '';
+    }
     $image = '<img src="' . $src . '" alt="' . zen_output_string($alt) . '"';
     // soft clean the alt tag
     $alt = zen_clean_html($alt);
@@ -166,6 +169,102 @@ function zen_image_submit($image, $alt = '', $parameters = '')
     return $image_submit;
 }
 
+/**
+ * Provide a mapping from simple icon names to the FontAwesome classes that achieve them.
+ * Borrow colour styles: Red: txt-status-on, Yellow: txt-linked, Green: txt-status-on
+ */
+$iconMap = [
+  'caret-right' => 'fa-caret-right txt-navy',
+  'circle-info' => 'fa-circle-info txt-black',
+  'edit' => 'fa-pencil text-success',
+  'popup' => 'fa-up-right-from-square txt-black',
+  'enabled' => 'fa-square txt-status-on',
+  'linked' => 'fa-square txt-linked',
+  'disabled' => 'fa-square txt-status-off',
+  'new-window' => 'fa-square txt-orange',
+  'new-window-off' => [
+    'fa-square fa-stack-2x opacity-25 txt-orange',
+    'fa-xmark fa-stack-1x txt-red'
+  ],
+  'ssl-on' => 'fa-square txt-blue',
+  'ssl-off' => [
+    'fa-square fa-stack-2x opacity-25 txt-blue',
+    'fa-xmark fa-stack-1x txt-red'
+  ],
+  'line-chart' => 'fa-line-chart txt-black',
+  'calendar-days' => 'fa-regular fa-calendar-days',
+  'status-green' => [
+    'fa-solid fa-circle fa-stack-1x txt-status-on',
+    'fa-regular fa-circle fa-stack-1x txt-black'
+  ],
+  'status-yellow' => [
+    'fa-solid fa-circle fa-stack-1x txt-linked',
+    'fa-regular fa-circle fa-stack-1x txt-black'
+  ],
+  'status-red' => [
+    'fa-solid fa-circle fa-stack-1x txt-status-off',
+    'fa-regular fa-circle fa-stack-1x txt-black'
+  ],
+  'status-red-light' => [
+    'fa-solid fa-circle fa-stack-1x txt-status-off txt-light',
+    'fa-regular fa-circle fa-stack-1x txt-black'
+  ],
+  'pencil' => 'fa-pencil',
+  'trash' => 'fa-trash-alt',
+  'preview' => 'fa-magnifying-glass',
+  'move' => 'fa-arrow-right-to-bracket',
+  'metatags' => 'fa-asterisk',
+  'image' => 'fa-image',
+  'tick' => 'fa-check txt-status-on',
+  'cross' => 'fa-xmark txt-status-off',
+  'star' => 'fa-star txt-gold',
+  'star-shadow' => 'fa-star txt-gold star-shadow',
+  'locked' => 'fa-lock',
+  'unlocked' => 'fa-lock-open',
+  'loading' => 'fa-gear fa-spin'
+];
+
+/**
+ * Return a FontAwesome icon according to $icon, with optional tooltip and size specifier.
+ *
+ * @param string $icon Nickname for the icon to return.
+ * @param string $tooltip Optional tooltip to show on hover.  Uses Bootstrap `data-toggle`.
+ * @param string $size One of `2x`, `lg` or blank.  Most icons are 2x but some need to be less intrusive.
+ * @param bool   $fixedWidth If true, include fa-fw to maintain icon width in a column of different icons.
+ * @param bool   $hidden If true, aria-hidden=true is included to hide the element from assistive technologies.
+ * Only use when the icon is in a focussable parent e.g. an anchor, so the parent takes focus and the icon
+ * itself is not declared by screen readers and the like. Note that in these cases, the tooltip text should
+ * go on the parent anchor and not on this icon element using $tooltip.
+ * @return string
+ */
+function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool $fixedWidth = false, bool $hidden = false): string
+{
+  global $iconMap;
+  if (!array_key_exists($icon, $iconMap)) {
+    return '';
+  }
+  $tooltip = empty($tooltip) ? '' : (' data-toggle="tooltip" title="' . str_replace('"', '\"', $tooltip) . '"');
+  $fw = empty($fixedWidth) ? '' : ' fa-fw';
+  $classes = $iconMap[$icon];
+  if (is_array($classes)) {
+    return "<div class=\"icon-{$icon} fa-stack\"{$tooltip}{$fw}>" .
+      join(
+        '',
+        array_map(
+          function ($cls) {
+            return '<i class="fa-solid ' . $cls . '"></i>';
+          }, $classes
+        )
+      ) .
+      '</div>';
+  }
+  // If the classes looked up have an override, use it (add nothing), otherwise default to fa-solid
+  $iconSet = str_contains($classes, 'fa-regular') ? '' : 'fa-solid';
+  $sizeClass = $size === '2x' ? ' fa-2x' : ($size === 'lg' ? ' fa-lg' : '');
+  $ariaHidden = $hidden ? ' aria-hidden="true"' : '';
+  return "<i class=\"$iconSet$sizeClass align-middle $classes$fw\"$tooltip$ariaHidden></i>";
+}
+
 ////
 // Draw a 1 pixel black line
   function zen_black_line() {
@@ -175,10 +274,16 @@ function zen_image_submit($image, $alt = '', $parameters = '')
 ////
 // Output a separator either through whitespace, or with an image
   function zen_draw_separator($image = 'pixel_black.gif', $width = '100%', $height = '1') {
-    if (substr(rtrim($width), -1) != "%") $width = $width . 'px';
-    return zen_image(DIR_WS_IMAGES . $image, '', '', $height, 'style="width:' . $width . ';"');
+	if (!empty($width)) {
+		if (substr(rtrim($width), -1) !== '%') {
+            $width = $width . 'px';
+        }
+		$param = 'style="width:' . $width . ';"';
+	} else {
+		$param = NULL;
+	}
+    return zen_image(DIR_WS_IMAGES . $image, '', '', $height, $param);
   }
-
 /**
  * @deprecated since v1.5.8. Use <button> markup instead
  */
@@ -205,14 +310,14 @@ function zen_image_submit($image, $alt = '', $parameters = '')
       }
 
 	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
-      $states = $db->Execute("SELECT zone_name, zone_id
+      $states = $db->Execute("SELECT zone_id, zone_code
                               FROM " . TABLE_ZONES . "
-                              WHERE zone_country_id = 107  AND  (zone_name REGEXP '^[一-龠]')
+                              WHERE zone_country_id = " . $countries->fields['zone_country_id'] . "
                               ORDER BY zone_id");
 	  } else {
-      $states = $db->Execute("SELECT zone_name, zone_id
+      $states = $db->Execute("SELECT zone_id, zone_name
                               FROM " . TABLE_ZONES . "
-                              WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
+                              WHERE zone_country_id = " . $countries->fields['zone_country_id'] . "
                               ORDER BY zone_name");
 	  }
 
@@ -360,7 +465,8 @@ function zen_draw_input_field($name, $value = '~*~*#', $parameters = '', $requir
 // Output a form textarea field
   function zen_draw_textarea_field($name, $wrap, $cols, $height, $text = '~*~*#', $parameters = '', $reinsert_value = true) {
     $cols = (int)$cols;
-    $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . zen_output_string($wrap) . '"' . ($cols > 0 ? ' cols="' . $cols . '"' : '') . ' rows="' . zen_output_string($height) . '"';
+    $wrap = in_array($wrap, ['soft', 'hard', 'off'], true) ? $wrap : 'soft';
+    $field = '<textarea name="' . zen_output_string($name) . '" wrap="' . $wrap . '"' . ($cols > 0 ? ' cols="' . $cols . '"' : '') . ' rows="' . zen_output_string($height) . '"';
 
     if (!empty($parameters)) $field .= ' ' . $parameters;
 

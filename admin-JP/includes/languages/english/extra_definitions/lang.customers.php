@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2022 Jun 12 New in v1.5.8-alpha $
+ * @version $Id: lat9 2023 Dec 10 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -65,6 +65,9 @@ $define = [
     'EMP_BUTTON_PLACEORDER_ALT' => 'Place an order for this customer',
     'EMP_BUTTON_PLACEORDER' => 'Place Order',
     'TEXT_CUSTOMER_GROUPS' => 'Customer Groups',
+    'TABLE_HEADING_WHOLESALE_LEVEL' => 'Wholesale Level',
+    'TEXT_WHOLESALE_LEVEL' => 'Wholesale Level:',
+    'HELPTEXT_WHOLESALE_LEVEL' => 'Enter 0 for "Retail" customers or a "Wholesale" pricing level. A customer can have either a wholesale pricing level or be part of a discount pricing group, but not both.',
 ];
 
 return $define;

@@ -2,10 +2,10 @@
 /**
  * Checkout Shipping Page
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 12 Modified in v1.5.8-alpha $
+ * @version $Id: DrByte 2024 Jan 27 Modified in v2.0.0-alpha1 $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -20,13 +20,14 @@
   if (!zen_is_logged_in()) {
     $_SESSION['navigation']->set_snapshot();
     zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-  } else {
-    // validate customer
-    if (zen_get_customer_validate_session($_SESSION['customer_id']) == false) {
-      $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_SHIPPING));
-      zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
-    }
   }
+
+$customer = new Customer($_SESSION['customer_id']);
+// validate customer
+if (zen_get_customer_validate_session($_SESSION['customer_id']) === false) {
+    $_SESSION['navigation']->set_snapshot(array('mode' => 'SSL', 'page' => FILENAME_CHECKOUT_SHIPPING));
+    zen_redirect(zen_href_link(FILENAME_LOGIN, '', 'SSL'));
+}
 
 // Validate Cart for checkout
   $_SESSION['valid_to_checkout'] = true;
@@ -194,14 +195,12 @@ if (isset($_SESSION['cart']->cartID)) {
 
   // check that the currently selected shipping method is still valid (in case a zone restriction has disabled it, etc)
   if (isset($_SESSION['shipping']['id'])) {
-    $checklist = array();
+    $checklist = [];
     foreach ($quotes as $key=>$val) {
-      if ($val['methods'] != '') {
+      if (is_array($val['methods'])) {
         foreach($val['methods'] as $key2=>$method) {
           $checklist[] = $val['id'] . '_' . $method['id'];
         }
-      } else {
-        // skip
       }
     }
     $checkval = $_SESSION['shipping']['id'];

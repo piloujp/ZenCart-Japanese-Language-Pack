@@ -517,14 +517,14 @@ function zen_js_zone_list(string $country, string $form, string $field) {
         }
 
 		if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
-			$sql = "SELECT zone_name, zone_id
+			$sql = "SELECT zone_id, zone_code
 					FROM " . TABLE_ZONES . "
-					WHERE zone_country_id =  107  AND  (zone_name REGEXP '^[一-龠]')
+					WHERE zone_country_id =  " . (int)$countries->fields['zone_country_id'] . "
 					ORDER BY zone_id";
 		} else {
-			$sql = "SELECT zone_name, zone_id
+			$sql = "SELECT zone_id, zone_name
 					FROM " . TABLE_ZONES . "
-					WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
+					WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . "
 					ORDER BY zone_name";
 		}
         $results = $db->Execute($sql);

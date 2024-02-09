@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: lat9 2023 Dec 10 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -69,6 +69,8 @@ $define = [
     'TEXT_META_EXCLUDED' => '<span class="alert">EXCLUDED</span>',
     'TEXT_TITLE_PLUS_TAGLINE' => 'Store Title+Tagline',
     'TEXT_PRODUCTS_PRICE_INFO' => 'Price:',
+    'WARNING_PRODUCT_DOES_NOT_EXIST' => 'Warning: Product ID#%u cannot be modified, it does not exist.',
+    'TEXT_PRODUCTS_WHOLESALE_PRICE' => 'Wholesale Price:',
 ];
 
 return $define;

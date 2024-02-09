@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott C Wilson 2022 Jan 11 New in v1.5.8-alpha $
+ * @version $Id: piloujp 2024 Feb 06 New in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -43,6 +43,7 @@ $define = [
     'TEXT_WHOS_ONLINE_TIMER_FREQ4' => '1分',
     'TEXT_WHOS_ONLINE_TIMER_FREQ5' => '5分',
     'TEXT_WHOS_ONLINE_TIMER_FREQ6' => '10分',
-    'TEXT_WHOS_ONLINE_TIMER_FREQ7' => '14分',];
+    'TEXT_WHOS_ONLINE_TIMER_FREQ7' => '14分',
+];
 
 return $define;
