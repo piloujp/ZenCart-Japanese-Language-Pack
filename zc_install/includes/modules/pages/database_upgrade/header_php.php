@@ -27,7 +27,6 @@ $versionArray[] = '1.5.5';
 $versionArray[] = '1.5.6';
 $versionArray[] = '1.5.7';
 $versionArray[] = '1.5.8';
-$versionArray[] = '1.5.8130';
 $versionArray[] = '2.0.0';
 $versionArray[] = '2.0.0001';
 
