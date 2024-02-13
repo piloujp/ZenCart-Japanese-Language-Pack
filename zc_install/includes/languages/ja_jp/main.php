@@ -87,6 +87,9 @@ return [
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED' => '管理画面用ディレクトリ名を自動変換できませんでした。既にデフォルトのディレクトリ名から変更されているようです。',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED' => '管理画面用ディレクトリ名は自動的にリネームされます。いかに表示されている新しいディレクトリ名を必ずメモしておいてください。',
 'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップが完了しました！',
+'TEXT_ADMIN_SETUP_NEWSLETTER_EMAIL' => 'ニュースレターの電子メール:',
+'TEXT_ADMIN_SETUP_NEWSLETTER_OPTIN' => 'オプトイン：',
+'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップ完了',
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => 'インストールが完了しました。',
 'TEXT_COMPLETION_INSTALL_LINKS_BELOW' => '以下のリンクより、ショップ画面や管理画面にアクセスすることが出来ます。',
@@ -126,7 +129,7 @@ return [
 'TEXT_NAVBAR_DATABASE_SETUP' => 'データベースセットアップ',
 'TEXT_NAVBAR_ADMIN_SETUP' => '管理者セットアップ',
 'TEXT_NAVBAR_COMPLETION' => '完了しました',
-
+'TEXT_NAVBAR_PAYMENT_PROVIDERS' => '決済プロバイダー',
 'TEXT_INDEX_ALERTS' => '警告',
 'TEXT_ERROR_PROBLEMS_WRITING_CONFIGUREPHP_FILES' => 'configure.phpファイルの生成と保存で問題が発生しました。インストールは正しく行われていません！！.<br>詳しい技術的情報は/logs/フォルダにあります。',
 'TEXT_ERROR_COULD_NOT_READ_CFGFILE_TEMPLATE' => 'マスタの設定ファイルレイアウトが読み取れませんでした：%s。ファイルが存在し、読み取り可能であることを確認してください。',
