@@ -891,6 +891,8 @@ class Customer extends base
             ['fieldName' => 'entry_postcode', 'value' => $data['postcode'], 'type' => 'stringIgnoreNull'],
             ['fieldName' => 'entry_city', 'value' => $data['city'], 'type' => 'stringIgnoreNull'],
             ['fieldName' => 'entry_country_id', 'value' => $data['country'], 'type' => 'integer'],
+            ['fieldName' => 'entry_telephone', 'value' => $data['telephone'], 'type' => 'stringIgnoreNull'],
+            ['fieldName' => 'entry_fax', 'value' => $data['fax'], 'type' => 'stringIgnoreNull'],
         ];
 
         if (ACCOUNT_GENDER == 'true') {

@@ -165,7 +165,7 @@ if (!empty($action)) {
             if (ACCOUNT_STATE === 'true') {
                 $entry_state_has_zones = count(zen_get_country_zones($entry_country_id)) > 0;
                 if ($entry_state_has_zones) {
-					if ($_SESSION['language'] == "japanese" && (int)$entry_country_id === 107) {
+					if ($_SESSION['language'] == "japanese" && $entry_country_id == jp_country_id()) {
                     $zone_query = $db->Execute(
                         "SELECT zone_id
                            FROM " . TABLE_ZONES . "
@@ -331,6 +331,16 @@ if (!empty($action)) {
                         'fieldName' => 'entry_country_id',
                         'value' => $entry_country_id,
                         'type' => 'integer'
+                    ],
+                    [
+                        'fieldName' => 'entry_telephone',
+                        'value' => $entry_telephone,
+                        'type' => 'stringIgnoreNull'
+                    ],
+                    [
+                        'fieldName' => 'entry_fax',
+                        'value' => $entry_fax,
+                        'type' => 'stringIgnoreNull'
                     ],
                 ];
 

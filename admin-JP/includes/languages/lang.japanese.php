@@ -639,6 +639,7 @@ $define = [
     'WARNING_FILE_UPLOADS_DISABLED' => '警告： このPHPではファイルアップロードがサポートされていません。iniファイルを修正してください。',
     'WARNING_INSTALL_DIRECTORY_EXISTS' => 'セキュリティ 警告： インストールディレクトリがまだ残っています： %s。セキュリティ上の理由から、このディレクトリを削除してください。',
     'WARNING_NO_FILE_UPLOADED' => '警告： アップロードファイルが指定されていません。',
+    'WARNING_PAGE_REQUIRES_UPDATE' => 'このページには、Zen Cart の次のバージョンの更新が必要です。 サイト開発者またはプラグイン作成者に<a href="https://docs.zen-cart.com/dev/plugins/admin_head_content/" rel="noopener noreferrer" target="_blank">この</a>ドキュメントを参照してもらってください。',
     'WARNING_PRIMARY_SERVER_FAILED' => '警告：第１為替サーバー (%s) が %s (%s) の更新に失敗しました。　第2為替サーバーを試みています。',
     'WARNING_REVIEW_ROGUE_ACTIVITY' => '警告：XSS 活動の可能性があります。ログを確認してください：',
     'WARNING_SESSION_AUTO_START' => '警告： session.auto_start が有効になっています。　-　php.ini ファイルでこの設定を無効にしてください。（設定変更を有効にするためには、webサーバの再起動が必要かも知れません。',

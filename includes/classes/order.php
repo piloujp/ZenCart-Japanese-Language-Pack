@@ -947,7 +947,7 @@ class order extends base
 
         $sql_data_array = [
             'customers_id' => $_SESSION['customer_id'],
-            'customers_name' => ($this->customer['country']['id'] == 107) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'] . ' ' . $this->customer['lastname'],
+            'customers_name' => ($this->customer['country']['id'] == jp_country_id()) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'] . ' ' . $this->customer['lastname'],
             'customers_company' => $this->customer['company'],
             'customers_street_address' => $this->customer['street_address'],
             'customers_suburb' => $this->customer['suburb'],
@@ -958,7 +958,7 @@ class order extends base
             'customers_telephone' => $this->customer['telephone'],
             'customers_email_address' => $this->customer['email_address'],
             'customers_address_format_id' => $this->customer['format_id'],
-            'delivery_name' => ($this->delivery['country']['id'] == 107) ? $this->delivery['lastname'] . ' ' . $this->delivery['firstname'] : $this->delivery['firstname'] . ' ' . $this->delivery['lastname'],
+            'delivery_name' => ($this->delivery['country']['id'] == jp_country_id()) ? $this->delivery['lastname'] . ' ' . $this->delivery['firstname'] : $this->delivery['firstname'] . ' ' . $this->delivery['lastname'],
             'delivery_company' => $this->delivery['company'],
             'delivery_street_address' => $this->delivery['street_address'],
             'delivery_suburb' => $this->delivery['suburb'],
@@ -967,7 +967,7 @@ class order extends base
             'delivery_state' => $this->delivery['state'],
             'delivery_country' => $this->delivery['country']['title'],
             'delivery_address_format_id' => (int)$this->delivery['format_id'],
-            'billing_name' => ($this->billing['country']['id'] == 107) ? $this->billing['lastname'] . ' ' . $this->billing['firstname'] : $this->billing['firstname'] . ' ' . $this->billing['lastname'],
+            'billing_name' => ($this->billing['country']['id'] == jp_country_id()) ? $this->billing['lastname'] . ' ' . $this->billing['firstname'] : $this->billing['firstname'] . ' ' . $this->billing['lastname'],
             'billing_company' => $this->billing['company'],
             'billing_street_address' => $this->billing['street_address'],
             'billing_suburb' => $this->billing['suburb'],
@@ -1360,7 +1360,7 @@ class order extends base
         // lets start with the email confirmation
         // make an array to store the html version
         $html_msg = [];
-		$customerGreet = $this->customer['country']['id'] == 107 ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
+		$customerGreet = $this->customer['country']['id'] == jp_country_id() ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
 
         //intro area
         $email_order = EMAIL_TEXT_HEADER . "\n\n" .
@@ -1479,8 +1479,8 @@ class order extends base
 
         $email_order = str_replace('&nbsp;', ' ', $email_order);
 
-        $html_msg['EMAIL_FIRST_NAME'] = ($this->customer['country']['id'] == 107) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'];
-        $html_msg['EMAIL_LAST_NAME'] = ($this->customer['country']['id'] == 107) ? '' : $this->customer['lastname'];
+        $html_msg['EMAIL_FIRST_NAME'] = ($this->customer['country']['id'] == jp_country_id()) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'];
+        $html_msg['EMAIL_LAST_NAME'] = ($this->customer['country']['id'] == jp_country_id()) ? '' : $this->customer['lastname'];
 		$html_msg['EMAIL_GREET'] = EMAIL_GREET;
         //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
 
