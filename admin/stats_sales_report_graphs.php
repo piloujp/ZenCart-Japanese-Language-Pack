@@ -112,9 +112,9 @@ for ($i = 0; $i < $report->size; $i++) {
 
 if ($_SESSION['language'] == 'japanese') {
   if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 4) {
-    echo substr($report->info[$i]['text'], 0, 1);
+    echo $report->info[$i]['text'];
   } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
-    echo substr($report->info[$i]['text'], 0, 3);
+    echo $report->info[$i]['text'];
   } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
     echo substr($report->info[$i]['text'], 5, 5) . '～' . substr($report->info[$i]['text'], 18, 5);
   } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
