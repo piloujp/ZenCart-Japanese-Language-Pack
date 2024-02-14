@@ -127,11 +127,11 @@ UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layou
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
 UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='0.007524', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.007043', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.006064', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='0.010101', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='0.011295', last_updated = now() WHERE code='AUD';
+UPDATE currencies SET value='0.007031', last_updated = now() WHERE code='USD';
+UPDATE currencies SET value='0.006515', last_updated = now() WHERE code='EUR';
+UPDATE currencies SET value='0.005544', last_updated = now() WHERE code='GBP';
+UPDATE currencies SET value='0.009454', last_updated = now() WHERE code='CAD';
+UPDATE currencies SET value='0.010766', last_updated = now() WHERE code='AUD';
 
 # 税金・税率設定
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
@@ -203,7 +203,7 @@ UPDATE configuration SET configuration_title = '商品にかかる税額の算�
 UPDATE configuration SET configuration_title = '送料にかかる税額の算定基準',  configuration_description = '送料にかかる税金を算出する際の基準を設定します。<br />・Shipping …顧客(商品送付先)の住所<br />・Billing …顧客の請求先の住所<br />・Store …ショップの所在地による(送付先・請求先ともショップの所在地域である場合に有効)<br />注意：この設定は配送モジュールによってオーバーライド(上書き設定)が可能です。' WHERE `configuration_key` = 'STORE_SHIPPING_TAX_BASIS';
 UPDATE configuration SET configuration_title = '税金の表示',  configuration_description = '合計額が0円でも税金を表示しますか?<br />0= オフ<br />1= オン' WHERE `configuration_key` = 'STORE_TAX_DISPLAY_STATUS';
 UPDATE configuration SET configuration_title = '税金の分割表示',  configuration_description = '税金が複数の種類があった場合、チェックアウトの際、別々に表示するかどうかを設定します。<br />・true = 税金を別々に表示<br />・false = 税金をまとめて表示' WHERE `configuration_key` = 'SHOW_SPLIT_TAX_CHECKOUT';
-UPDATE configuration SET configuration_title = 'Wholesale Pricing', configuration_description = 'サイトで<em>卸売価格</em>を有効にする必要がありますか？この機能を有効にしたくない場合は、<b>false</b> (デフォルト) を選択します。 すべての卸売顧客に対して免税を有効にする場合は [<b>免税</b>] を選択するか、卸売顧客に対して通常どおり税金を適用する場合は [<b>価格設定のみ</b>] を選択します。' WHERE configuration_key = 'WHOLESALE_PRICING_CONFIG';
+UPDATE configuration SET configuration_title = '卸売価格', configuration_description = 'サイトで<em>卸売価格</em>を有効にする必要がありますか？この機能を有効にしたくない場合は、<b>false</b> (デフォルト) を選択します。 すべての卸売顧客に対して免税を有効にする場合は [<b>免税</b>] を選択するか、卸売顧客に対して通常どおり税金を適用する場合は [<b>価格設定のみ</b>] を選択します。' WHERE configuration_key = 'WHOLESALE_PRICING_CONFIG';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのセッションタイムアウトを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインセッションを、無通信時間 15分で期限切れにするよう求めています。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのパスワードルールを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインパスワードは、90日で変更しなければならず、過去4回以内に利用したパスワードと同じものは利用できません。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_PWD_EXPIRY_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSS Ajax 決済処理',  configuration_description = 'PA-DSSコンプライアンスでは、組込まれている支払プログラムによっては、注文最終確認画面内で ajax を利用する事が求めています。これはサイト内で番号を入力するタイプのクレジットカード決済のような特定の支払方法を利用している場合にのみ適用されます。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_AJAX_CHECKOUT';
@@ -888,6 +888,13 @@ UPDATE product_type_layout SET configuration_title = '「質問する」ボタ�
 UPDATE product_type_layout SET configuration_title = '「質問する」ボタンを表示しますか？', configuration_description = '商品情報ページに「質問する」ボタンを表示しますか？（0 = 偽、1 = 真）' WHERE configuration_key = 'SHOW_DOCUMENT_PRODUCT_INFO_ASK_A_QUESTION';
 UPDATE product_type_layout SET configuration_title = '「質問する」ボタンを表示しますか？', configuration_description = '商品情報ページに「質問する」ボタンを表示しますか？（0 = 偽、1 = 真）' WHERE configuration_key = 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ASK_A_QUESTION';
 
-# Version
-UPDATE project_version SET project_version_minor = '0.0001', project_version_comment = 'New Installation-v200-alpha1 with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
-INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES ('Zen-Cart Database', '2', '0.0001', '', 'Updated to Japanese Pack v2.0.0', now());
+#### VERSION UPDATE STATEMENTS
+## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
+##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
+#NEXT_X_ROWS_AS_ONE_COMMAND:3
+INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)
+SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
+FROM project_version;
+
+## Now set to new version
+UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

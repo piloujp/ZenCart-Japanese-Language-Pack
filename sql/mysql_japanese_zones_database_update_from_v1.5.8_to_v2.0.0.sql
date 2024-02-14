@@ -1,14 +1,15 @@
-Set @jp_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
--- Create a temporary table with ols zones ids
+# Create a temporary table with old zones ids
 CREATE TABLE japan_zones (PRIMARY KEY (zone_id)) as SELECT zone_id, zone_code, zone_name FROM zones WHERE zone_country_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
--- Change kanji names to romaji
+# Change kanji names to romaji
 UPDATE japan_zones jz JOIN japan_zones js ON jz.zone_code = js.zone_code AND js.zone_name REGEXP '[a-z0-9]' SET jz.zone_name = js.zone_name WHERE jz.zone_name NOT REGEXP '[a-z0-9]';
 
--- Delete old Japanese zones
-DELETE * FROM zones WHERE zone_country_id = @jp_id;
+Set @jp_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
--- Insert new zones
+# Delete old Japanese zones
+DELETE FROM zones WHERE zone_country_id = @jp_id;
+
+# Insert new zones
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'北海道','Hokkaido');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'青森県','Aomori');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'岩手県','Iwate');
@@ -57,9 +58,20 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'宮崎
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'鹿児島県','Kagoshima');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'沖縄県','Okinawa');
 
--- Update address book and zones to geo zones tables with new zones ids
+# Update address book and zones to geo zones tables with new zones ids
 UPDATE address_book a JOIN japan_zones jz ON a.entry_zone_id = jz.zone_id AND a.entry_country_id = @jp_id JOIN zones z ON z.zone_name = jz.zone_name SET a.entry_zone_id = z.zone_id;
 UPDATE zones_to_geo_zones gz JOIN japan_zones jz ON gz.zone_id = jz.zone_id AND gz.zone_country_id = @jp_id JOIN zones z ON z.zone_name = jz.zone_name SET gz.zone_id = z.zone_id;
 
--- Delete temporary table
+# Delete temporary table
 DROP TABLE japan_zones;
+
+#### VERSION UPDATE STATEMENTS
+## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
+##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
+#NEXT_X_ROWS_AS_ONE_COMMAND:3
+INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)
+SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
+FROM project_version;
+
+## Now set to new version
+UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Manual version update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

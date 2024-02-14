@@ -107,11 +107,11 @@ UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layou
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
 UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='0.007161', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.006580', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.005610', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='0.009578', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='0.010836', last_updated = now() WHERE code='AUD';
+UPDATE currencies SET value='0.007031', last_updated = now() WHERE code='USD';
+UPDATE currencies SET value='0.006515', last_updated = now() WHERE code='EUR';
+UPDATE currencies SET value='0.005544', last_updated = now() WHERE code='GBP';
+UPDATE currencies SET value='0.009454', last_updated = now() WHERE code='CAD';
+UPDATE currencies SET value='0.010766', last_updated = now() WHERE code='AUD';
 
 # 税金・税率設定
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
@@ -131,6 +131,13 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
-# Version
-UPDATE project_version SET project_version_minor = '0.0001', project_version_comment = 'New Installation-v200-alpha1 with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
-INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_comment, project_version_date_applied) VALUES ('Zen-Cart Database', '2', '0.0001', '', 'New Japanese Pack v2.0.0 installation', now());
+#### VERSION UPDATE STATEMENTS
+## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
+##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
+#NEXT_X_ROWS_AS_ONE_COMMAND:3
+INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)
+SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
+FROM project_version;
+
+## Now set to new version
+UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'New Installation-v200-alpha1 with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

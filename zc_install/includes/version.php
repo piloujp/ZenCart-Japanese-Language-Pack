@@ -25,4 +25,4 @@ define('PROJECT_VERSIONSERVER_URL', 'https://ping.zen-cart.com/zcversioncheck');
 define('PLUGIN_VERSIONSERVER_URL', 'https://ping.zen-cart.com/plugincheck');
 define('PROJECT_NOTIFICATIONSERVER_URL', 'https://versionserver.zen-cart.com/api/notifications');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '2');
-define('EXPECTED_DATABASE_VERSION_MINOR', '0.0001');
+define('EXPECTED_DATABASE_VERSION_MINOR', '0.0200');
