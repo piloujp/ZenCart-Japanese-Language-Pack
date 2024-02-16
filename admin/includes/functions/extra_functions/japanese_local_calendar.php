@@ -5,7 +5,7 @@
  * @version $Id: pilou2 2022 Dec 7 Created in v1.5.8 $
  */
  
-function zen_set_local_calendar ($pattern = 'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ') {
+function zen_set_local_calendar ($pattern = 'r年（Gy年）MMMMd日 EEEE HH:mm ZZZZ') {
 	$formatterJP = datefmt_create(
 				'ja_JP@calendar=japanese',
 				IntlDateFormatter::FULL,
