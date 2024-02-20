@@ -51,6 +51,7 @@ if (isset($_POST['edit']) && $_POST['edit'] === 'edit') {
         'products_length' => convertToFloat($_POST['products_length']),
         'products_width' => convertToFloat($_POST['products_width']),
         'products_height' => convertToFloat($_POST['products_height']),
+        'product_ships_in_own_box' => (int)($_POST['product_ships_in_own_box'] ?? 0),
         'products_barcode' => (int)$_POST['products_barcode'],                           
         'products_status' => (int)$_POST['products_status'],
         'products_virtual' => (int)$_POST['products_virtual'],

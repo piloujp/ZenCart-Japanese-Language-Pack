@@ -82,9 +82,6 @@ ALTER TABLE orders ADD COLUMN customers_fax varchar(32);
 
 #送信モヂュール用
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
-ALTER TABLE products ADD COLUMN products_length      float NOT NULL default 0;
-ALTER TABLE products ADD COLUMN products_width      float NOT NULL default 0;
-ALTER TABLE products ADD COLUMN products_height      float NOT NULL default 0;
 ALTER TABLE products ADD COLUMN products_barcode     varchar(32);
 
 #注文ステータス

@@ -623,7 +623,15 @@ if (!empty($action) && $order_exists === true) {
               </tr>
               <tr>
                 <td class="noprint"><strong><?php echo ENTRY_CUSTOMER; ?></strong></td>
-                <td class="noprint"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'search=' . $order->customer['email_address'], 'SSL') . '">' . TEXT_CUSTOMER_LOOKUP . '</a>'; ?></td>
+                <td class="noprint">
+                  <?php 
+                  if ($order->customer['id'] == 0) { 
+                       echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'search=' . $order->customer['email_address'], 'SSL') . '">' . TEXT_CUSTOMER_LOOKUP . '</a>'; 
+                  } else {
+                       echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $order->customer['id'], 'SSL') . '">' . TEXT_CUSTOMER_LOOKUP . '</a>'; 
+                  }
+                  ?>
+                </td>
               </tr>
             </table>
           </div>
@@ -668,6 +676,17 @@ if (!empty($action) && $order_exists === true) {
 <?php
   $address_footer_suffix = '';
   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_ADDRESS_FOOTERS', 'billing', $address_footer_suffix, $order->billing);
+
+  // -----
+  // Determine, based on a 'soft' configuration setting in admin/extra_datafiles/site_specific_admin_overrides.php,
+  // whether to display the order's overall and product-specific weights.
+  //
+  // Note: Zen Cart versions *prior to* 1.5.6 stored neither orders::order_weight nor
+  // orders_products::products_weight.  If the order's weight is stored as null, don't
+  // display the weights!
+  //
+  $show_orders_weights = ($order->info['order_weight'] !== null && ((bool)($show_orders_weights ?? true)));
+
   if (!empty($address_footer_suffix)) {
   ?>
                 <tr><td>&nbsp;</td><td><?php echo $address_footer_suffix; ?></td></tr>
@@ -683,6 +702,20 @@ if (!empty($action) && $order_exists === true) {
               <td class="main"><strong><?php echo ENTRY_DATE_PURCHASED; ?></strong></td>
               <td class="main"><?php echo zen_date_long($order->info['date_purchased']); ?></td>
             </tr>
+<?php
+            // -----
+            // If the order's weight isn't null (the field was added to the stored order in
+            // zc156), display the order's weight.
+            //
+            if ($show_orders_weights === true) {
+?>
+            <tr>
+              <td class="main"><strong><?php echo ENTRY_WEIGHT; ?></strong></td>
+              <td class="main"><?php echo $order->info['order_weight'] . ' ' . ltrim(TEXT_PRODUCT_WEIGHT_UNIT, ' '); ?></td>
+            </tr>
+<?php
+            }
+?>
             <tr>
               <td class="main"><strong><?php echo ENTRY_PAYMENT_METHOD; ?></strong></td>
               <td class="main"><?php echo $order->info['payment_method']; ?></td>
@@ -765,6 +798,9 @@ if (!empty($action) && $order_exists === true) {
             <tr class="dataTableHeadingRow">
               <th class="dataTableHeadingContent" colspan="2"><?php echo TABLE_HEADING_PRODUCTS_NAME; ?></th>
               <th class="dataTableHeadingContent hidden-xs"><?php echo TABLE_HEADING_PRODUCTS_MODEL; ?></th>
+<?php if ($show_orders_weights === true) { ?>
+              <th class="dataTableHeadingContent text-right"><?php echo TABLE_HEADING_PRODUCTS_WEIGHT; ?></th>
+<?php } ?>
 <?php if ($show_product_tax) { ?>
               <th class="dataTableHeadingContent text-right hidden-xs"><?php echo TABLE_HEADING_TAX; ?></th>
 <?php } ?>
@@ -778,6 +814,7 @@ if (!empty($action) && $order_exists === true) {
 <?php } ?>
             </tr>
             <?php
+            $weight_unit = ' ' . ltrim(TEXT_PRODUCT_WEIGHT_UNIT, ' ');
             for ($i = 0, $n = count($order->products); $i < $n; $i++) {
               if (DISPLAY_PRICE_WITH_TAX_ADMIN === 'true') {
                 $priceIncTax = $currencies->format(zen_round(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), $currencies->get_decimal_places($order->info['currency'])) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']);
@@ -793,21 +830,29 @@ if (!empty($action) && $order_exists === true) {
                 <?php
                     echo $order->products[$i]['name'];
                     if (isset($order->products[$i]['attributes']) && (count($order->products[$i]['attributes']) > 0)) {
-                      for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
-                        echo '<br><span style="white-space:nowrap;"><small>&nbsp;<i> - ';
-                        echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
-                        if (zen_is_option_file($order->products[$i]['attributes'][$j]['option_id'])) {
-                          $upload_name = zen_get_uploaded_file($order->products[$i]['attributes'][$j]['value']);
-                          echo ' ' . '<a href="' . zen_href_link(FILENAME_ORDERS, 'action=download&oID=' . $oID . '&filename=' .  $upload_name) . '">' . TEXT_DOWNLOAD . '</a>' . ' ';
+                        for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
+                            echo '<br><span style="white-space:nowrap;"><small>&nbsp;<i> - ';
+                            echo $order->products[$i]['attributes'][$j]['option'] . ': ' . nl2br(zen_output_string_protected($order->products[$i]['attributes'][$j]['value']));
+                            if (zen_is_option_file($order->products[$i]['attributes'][$j]['option_id'])) {
+                                $upload_name = zen_get_uploaded_file($order->products[$i]['attributes'][$j]['value']);
+                                echo ' ' . '<a href="' . zen_href_link(FILENAME_ORDERS, 'action=download&oID=' . $oID . '&filename=' .  $upload_name) . '">' . TEXT_DOWNLOAD . '</a>' . ' ';
+                            }
+                            if ($order->products[$i]['attributes'][$j]['price'] != '0') {
+                                echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
+                            }
+                            if ($order->products[$i]['attributes'][$j]['product_attribute_is_free'] == '1' && $order->products[$i]['product_is_free'] == '1') {
+                                echo TEXT_INFO_ATTRIBUTE_FREE;
+                            }
+                            // -----
+                            // Uncomment the 'echo' statement below if you want to display each attribute's
+                            // contribution to the ordered-product's weight (the weights are already included
+                            // in the product's overall weight).
+                            //
+                            if ($show_orders_weights === true && $order->products[$i]['attributes'][$j]['weight'] != 0) {
+//                                echo ' (' . $order->products[$i]['attributes'][$j]['weight_prefix'] . $order->products[$i]['attributes'][$j]['weight'] . $weight_unit . ')';
+                            }
+                            echo '</i></small></span>';
                         }
-                        if ($order->products[$i]['attributes'][$j]['price'] != '0') {
-                          echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
-                        }
-                        if ($order->products[$i]['attributes'][$j]['product_attribute_is_free'] == '1' && $order->products[$i]['product_is_free'] == '1') {
-                          echo TEXT_INFO_ATTRIBUTE_FREE;
-                        }
-                        echo '</i></small></span>';
-                      }
                     }
                     // Mobile phones only
                     echo '<span class="visible-xs">';
@@ -818,6 +863,22 @@ if (!empty($action) && $order_exists === true) {
                 <td class="dataTableContent hidden-xs">
                   <?php echo $order->products[$i]['model']; ?>
                 </td>
+                <?php
+                    if ($show_orders_weights === true) {
+                        $products_weight_unit = $order->products[$i]['products_weight'];
+                        if ($products_weight_unit === null) {
+                            $products_weight = '&mdash;';
+                        } else {
+                            $products_weight_total = rtrim(number_format((float)($products_weight_unit * $order->products[$i]['qty']), 4, '.', ''), '0.');
+                            $products_weight = "$products_weight_unit$weight_unit / $products_weight_total$weight_unit";
+                        }
+                ?>
+                <td class="dataTableContent text-right">
+                  <?php echo $products_weight; ?>
+                </td>
+                <?php
+                    }
+                ?>
 <?php if ($show_product_tax) { ?>
                 <td class="dataTableContent text-right hidden-xs">
                   <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%
@@ -850,11 +911,16 @@ if (!empty($action) && $order_exists === true) {
             ?>
             <tr>
 
-<?php if ($show_including_tax)  { ?>
-              <td colspan="8">
-<?php } else { ?>
-              <td colspan="6">
-<?php } ?>
+<?php
+$base_orders_columns = 6;
+if ($show_including_tax)  {
+    $base_orders_columns += 2;
+}
+if ($show_orders_weights === true) {
+    $base_orders_columns++;
+}
+?>
+              <td colspan="<?php echo $base_orders_columns; ?>">
                 <table style="margin-right: 0; margin-left: auto;">
                     <?php
                     for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
@@ -1253,7 +1319,7 @@ if (!empty($action) && $order_exists === true) {
                       ];
                       $search = zen_build_keyword_where_clause($keyword_search_fields, trim($keywords), true);
                   }
-                  $new_fields .= ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.orders_status, o.ip_address, o.language_code, o.delivery_state, o.delivery_country ";
+                  $new_fields .= ", o.customers_company, o.customers_email_address, o.customers_street_address, o.delivery_company, o.delivery_name, o.delivery_street_address, o.billing_company, o.billing_name, o.billing_street_address, o.payment_module_code, o.shipping_module_code, o.orders_status, o.ip_address, o.language_code, o.delivery_state, o.delivery_country, o.customers_state, o.customers_country ";
 
                   $order_by = " ORDER BY o.orders_id DESC";
                   $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_SEARCH_PARMS', $keywords, $search, $search_distinct, $new_fields, $new_table, $order_by);
@@ -1354,7 +1420,13 @@ if (!empty($action) && $order_exists === true) {
                 <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_CUSTOMERS, 'cID=' . $orders->fields['customers_id'], 'NONSSL') . '"><i class="fa-solid fa-magnifying-glass"></i></a>&nbsp;' . $orders->fields['customers_name'] . ($orders->fields['customers_company'] !== '' ? '<br>' . $orders->fields['customers_company'] : ''); ?></td>
 <?php if ($show_zone_info) { ?>
                 <td class="dataTableContent text-left">
-<?php echo $orders->fields['delivery_state'] . '<br>' . $orders->fields['delivery_country']; ?>
+<?php 
+                    if (!empty($orders->fields['delivery_country'])) { 
+                       echo $orders->fields['delivery_state'] . '<br>' . $orders->fields['delivery_country']; 
+                    } else {
+                       echo $orders->fields['customers_state'] . '<br>' . $orders->fields['customers_country']; 
+                    }
+?>
                 </td>
 <?php } ?>
                 <td class="dataTableContent text-right" title="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br>' => '', '<br />' => '', '<hr>' => "----\n"]); ?>">

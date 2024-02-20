@@ -17,9 +17,6 @@ ALTER TABLE orders DROP COLUMN customers_fax;
 ALTER TABLE orders DROP COLUMN delivery_timespec;
 
 ALTER TABLE products DROP COLUMN products_barcode;
-ALTER TABLE products DROP COLUMN products_length;
-ALTER TABLE products DROP COLUMN products_width;
-ALTER TABLE products DROP COLUMN products_height;
 
 DELETE FROM zones WHERE zone_country_id = 107;
 

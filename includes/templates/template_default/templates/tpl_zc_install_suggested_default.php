@@ -227,7 +227,6 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
           <?php if ($instPath) { ?>
             <a href="<?php echo $instPath; ?>">ここをクリックして</a>ンストールを開始してください。
           <?php } else { ?>
-            you will need to upload the "zc_install" folder using your FTP program, and then run <a href="<?php echo $instPath; ?>">zc_install/index.php</a> via your browser (or reload this page to see a link to it).
 			FTP プログラムを使用して「zc_install」フォルダーをアップロードし、ブラウザーで「zc_install/index.php」を実行する（または、このページをリロードしてリンクを表示する）必要があります。
           <?php } ?>
           <br><br>

@@ -349,7 +349,8 @@ class order extends base
 
             $subindex = 0;
             $attributes_query = "SELECT products_options_id, products_options_values_id, products_options, products_options_values,
-                                 options_values_price, price_prefix, product_attribute_is_free
+                                 options_values_price, price_prefix, product_attribute_is_free,
+                                 products_attributes_weight, products_attributes_weight_prefix
                                  FROM " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . "
                                  WHERE orders_id = " . (int)$this->orderId . "
                                  AND orders_products_id = " . (int)$orders_products->fields['orders_products_id'] . "
@@ -367,6 +368,8 @@ class order extends base
                         'prefix' => $attributes->fields['price_prefix'],
                         'price' => $attributes->fields['options_values_price'],
                         'product_attribute_is_free' => (int)$attributes->fields['product_attribute_is_free'],
+                        'weight' => $attributes->fields['products_attributes_weight'],
+                        'weight_prefix' => $attributes->fields['products_attributes_weight_prefix'],
                     ];
 
                     $subindex++;
@@ -689,6 +692,10 @@ class order extends base
                 'final_price' => (DISPLAY_PRICE_WITH_TAX === 'true') ? $products_final_price_without_tax : zen_round($products_final_price_without_tax, $decimals),
                 'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                 'weight' => $products[$i]['weight'],
+                'length' => $products[$i]['length'] ?? null,
+                'width' => $products[$i]['width'] ?? null,
+                'height' => $products[$i]['height'] ?? null,
+                'ships_in_own_box' => $products[$i]['ships_in_own_box'] ?? null,
                 'products_priced_by_attribute' => $products[$i]['products_priced_by_attribute'],
                 'product_is_free' => $products[$i]['product_is_free'],
                 'products_discount_type' => $products[$i]['products_discount_type'],
