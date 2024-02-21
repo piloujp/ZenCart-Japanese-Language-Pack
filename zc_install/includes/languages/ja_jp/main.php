@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2 2023 May 22 Modified in v1.5.8a $
+ * @version $Id: pilou2 2024 Feb 21 Modified in v2.0.0-alpha1 $
  */
 
 return [
@@ -72,6 +72,7 @@ return [
 'TEXT_LOADING_DEMO_DATA' => 'デモデータを取り込んでいます',
 'TEXT_LOADING_JAPANESE_ADMIN' => '日本語の管理者メニューの読み込み',
 'TEXT_LOADING_PLUGIN_DATA' => 'インストール済みプラグインのSQLを読み込んでいます',
+'TEXT_LOADING_PLUGIN_UPGRADES' => 'プラグインのアップグレードのための SQL のロード',
 'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'バージョン %sにアップデートできませんでした。現在のバージョンは v%sであり、先にバージョンを %s まで上げておく必要があります。',
 'TEXT_PAGE_HEADING_ADMIN_SETUP' => '管理画面セットアップ',
 'TEXT_ADMIN_SETUP_USER_SETTINGS' => '管理者ユーザー設定',
@@ -87,7 +88,6 @@ return [
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_NOT_ADMIN_CHANGED' => '管理画面用ディレクトリ名を自動変換できませんでした。既にデフォルトのディレクトリ名から変更されているようです。',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_CHANGED' => '管理画面用ディレクトリ名は自動的にリネームされます。いかに表示されている新しいディレクトリ名を必ずメモしておいてください。',
 'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップが完了しました！',
-'TEXT_PAGE_HEADING_COMPLETION' => 'セットアップ完了',
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => 'インストールが完了しました。',
 'TEXT_COMPLETION_INSTALL_LINKS_BELOW' => '以下のリンクより、ショップ画面や管理画面にアクセスすることが出来ます。',
@@ -149,7 +149,7 @@ return [
 'TEXT_ERROR_PUB_FOLDER' => '%%DIR_FS_DOWNLOAD_PUBLIC%%' . ' フォルダに書き込み権限がありません',
 'TEXT_ERROR_NGINX_FOLDER' => '/zc_install/includes/nginx_conf/ フォルダーは書き込み可能ではありません',
 'TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE' => '現在の configure.phpファイルは、古いバージョンのものであるため、処理を続行する前に更新が必要です。',
-'TEXT_ERROR_HTACCESS_SUPPORT' => ' ".htaccess" ファイル対応が有効になっていません。<br>[ <i><b>注意：</b> もし、Nginxを使用している場合は、この問題の解決方法について、このインストールウィザードの<u>最終画面</u>に進んでください。<i> ]',
+'TEXT_ERROR_HTACCESS_SUPPORT' => '「.htaccess」 ファイル対応が有効になっていません。<br>[ <i><b>注意：</b> もし、Nginxを使用している場合は、この問題の解決方法について、このインストールウィザードの<u>最終画面</u>に進んでください。<i> ]',
 'TEXT_ERROR_SESSION_SUPPORT' => 'セッションサポートに問題',
 'TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID' => 'iniファイルで session.use_trans_sid 設定が有効になっています',
 'TEXT_ERROR_SESSION_SUPPORT_AUTO_START' => 'iniファイルで session.auto_start 設定が有効になっています',

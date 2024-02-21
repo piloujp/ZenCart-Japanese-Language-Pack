@@ -97,8 +97,6 @@ INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postco
 UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '%様') WHERE countries_id = @japan_id;
 
 #言語設定
-INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'ja', 'icon.gif', 'japanese',0);
-UPDATE configuration SET configuration_value = 'ja', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
 
 #通貨設定
