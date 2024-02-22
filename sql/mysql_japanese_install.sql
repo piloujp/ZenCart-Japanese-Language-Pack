@@ -2,10 +2,10 @@
 # * Database modifications for Japanese Zen Cart
 # * @package Installer
 # * @access private
-# * @copyright Copyright 2003-2022 Zen Cart Development Team
+# * @copyright Copyright 2003-2024 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: pilou2/piloujp 2023 June 7 Modified in v1.5.8a $
+# * @version $Id: pilou2/piloujp 2024 Feb 22 Modified in v1.5.8a $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -134,29 +134,22 @@ ALTER TABLE products ADD COLUMN products_barcode     varchar(32);
 
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);
-INSERT INTO orders_status VALUES ('1', '2', '処理待ち', 0);
-INSERT INTO orders_status VALUES ('2', '2', '処理中', 10);
-INSERT INTO orders_status VALUES ('3', '2', '完了', 20);
-INSERT INTO orders_status VALUES ('4', '2', '更新', 30);
-INSERT INTO orders_status VALUES ('5', '2', '配送済み', 40);
 
 #住所フォーマット
 INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
 UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '%様') WHERE countries_id = 107;
 
 #言語設定
-INSERT INTO languages (name, code, image, directory, sort_order) VALUES('Japanese', 'ja', 'icon.gif', 'japanese',0);
-UPDATE configuration SET configuration_value = 'ja', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
 
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
 UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='0.007524', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.007043', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.006064', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='0.010101', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='0.011295', last_updated = now() WHERE code='AUD';
+UPDATE currencies SET value='0.007031', last_updated = now() WHERE code='USD';
+UPDATE currencies SET value='0.006515', last_updated = now() WHERE code='EUR';
+UPDATE currencies SET value='0.005544', last_updated = now() WHERE code='GBP';
+UPDATE currencies SET value='0.009454', last_updated = now() WHERE code='CAD';
+UPDATE currencies SET value='0.010766', last_updated = now() WHERE code='AUD';
 
 # 税金・税率設定
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
