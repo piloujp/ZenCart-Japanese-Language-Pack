@@ -814,9 +814,11 @@ DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_ORDER_TOTAL_PAYPA
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
 #NEXT_X_ROWS_AS_ONE_COMMAND:3
-SET @prec_minor_version = SELECT project_version_minor FROM project_version_history WHERE project_version_key = 'Zen-Cart Database' AND project_version_comment NOT LIKE '%Japanese%' ORDER BY project_version_id DESC LIMIT 1;
+SET @prec_minor_version = (SELECT project_version_minor FROM project_version_history WHERE project_version_key = 'Zen-Cart Main' AND project_version_comment NOT LIKE '%Japanese%' ORDER BY project_version_id DESC LIMIT 1);
+SET @prec_minor_version_db = (SELECT project_version_minor FROM project_version_history WHERE project_version_key = 'Zen-Cart Database' AND project_version_comment NOT LIKE '%Japanese%' ORDER BY project_version_id DESC LIMIT 1);
 INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)
 SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
 FROM project_version;
 
-UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v200', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v200', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = @prec_minor_version_db, project_version_comment = 'Uninstall Japanese Language Pack v200', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

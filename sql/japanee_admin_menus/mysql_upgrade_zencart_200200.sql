@@ -123,11 +123,6 @@ ALTER TABLE products ADD COLUMN products_barcode     varchar(32);
 
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);
-INSERT INTO orders_status VALUES ('1', '2', '処理待ち', 0);
-INSERT INTO orders_status VALUES ('2', '2', '処理中', 10);
-INSERT INTO orders_status VALUES ('3', '2', '完了', 20);
-INSERT INTO orders_status VALUES ('4', '2', '更新', 30);
-INSERT INTO orders_status VALUES ('5', '2', '配送済み', 40);
 
 #住所フォーマット
 INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
@@ -909,4 +904,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
+UPDATE project_version SET project_version_minor = '0.0-alpha1', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
 UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
