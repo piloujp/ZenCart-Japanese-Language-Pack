@@ -1,3 +1,5 @@
+Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
+
 ALTER TABLE address_book DROP COLUMN entry_firstname_kana;
 ALTER TABLE address_book DROP COLUMN entry_lastname_kana;
 ALTER TABLE address_book DROP COLUMN entry_telephone;
@@ -18,7 +20,7 @@ ALTER TABLE orders DROP COLUMN delivery_timespec;
 
 ALTER TABLE products DROP COLUMN products_barcode;
 
-DELETE FROM zones WHERE zone_country_id = 107;
+DELETE FROM zones WHERE zone_country_id = @japan_id;
 
 DELETE FROM orders_status WHERE orders_status_name = '処理待ち';
 DELETE FROM orders_status WHERE orders_status_name = '処理中';
@@ -27,9 +29,8 @@ DELETE FROM orders_status WHERE orders_status_name = '更新';
 DELETE FROM orders_status WHERE orders_status_name = '配送済み';
 
 DELETE FROM address_format WHERE address_format LIKE '%様';
-UPDATE countries SET address_format_id = 1 WHERE countries_id = 107;
+UPDATE countries SET address_format_id = 1 WHERE countries_id = @japan_id;
 
-DELETE FROM languages WHERE name = 'Japanese';
 UPDATE configuration SET configuration_value = 'en', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
 
 DELETE FROM currencies WHERE title = 'Japanese Yen';
@@ -42,7 +43,7 @@ UPDATE currencies SET value='1.501196', last_updated = now() WHERE code='AUD';
 
 DELETE FROM tax_class WHERE tax_class_title = '消費税';
 DELETE FROM geo_zones WHERE geo_zone_name = '日本';
-DELETE FROM zones_to_geo_zones WHERE zone_country_id = '107';
+DELETE FROM zones_to_geo_zones WHERE zone_country_id = @japan_id;
 DELETE FROM tax_rates WHERE tax_description = '（内消費税：10%）';
 
 UPDATE configuration SET configuration_value = '223', last_modified = now() WHERE configuration_key='STORE_COUNTRY';
