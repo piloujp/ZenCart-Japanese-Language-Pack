@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
+ * @version $Id: piloujp 2024 Feb 22 Modified in v2.0.0-alpha1 $
 */
 
 $define = [
@@ -25,6 +25,8 @@ $define = [
     'TABLE_HEADING_QUANTITY' => '数量',
     'TABLE_HEADING_UPDATED_BY' => '更新作業者',
     'ENTRY_CUSTOMER' => '顧客名:',
+    'TABLE_HEADING_PRODUCTS_WEIGHT' => '重さ<br><small>単位/合計</small>',
+    'ENTRY_WEIGHT' => '全体の重量：',
     'ENTRY_CUSTOMER_ADDRESS' => '顧客住所:<br><i class="fa-solid fa-2x fa-user"></i>',
     'ENTRY_SHIPPING_ADDRESS' => '配送先住所:<br><i class="fa-solid fa-2x fa-truck"></i>',
     'ENTRY_BILLING_ADDRESS' => '請求先住所:<br><i class="fa-regular fa-2x fa-credit-card"></i>',
