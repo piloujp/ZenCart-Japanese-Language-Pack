@@ -58,6 +58,7 @@ $define = [
     'COUPON_USES_COUPON' => 'クーポンごとの利用数',
     'COUPON_USES_USER' => '顧客ごとの利用数',
     'COUPON_REFERRER' => '有効なリファラー',
+    'COUPON_REFERRER_EXISTS' => 'クーポン \'%s\' (id %d) は参照元 \'%s\' にすでに存在します',
     'COUPON_PRODUCTS' => '有効な商品のリスト',
     'COUPON_CATEGORIES' => '有効なカテゴリのリスト',
     'DATE_CREATED' => '作成日',

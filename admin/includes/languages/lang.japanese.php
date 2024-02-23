@@ -9,7 +9,7 @@
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
 
 $define = [
-    'ADMIN_NAV_DATE_TIME_FORMAT' => '%Y年 %m月 %d日 %A %X',
+    'ADMIN_NAV_DATE_TIME_FORMAT' => '%Y年 %m月 %d日 %A %X (%Z)',
     'ARIA_PAGINATION_' => '',
     'ARIA_PAGINATION_CURRENTLY_ON' => ', now on page %s',
     'ARIA_PAGINATION_CURRENT_PAGE' => 'Current Page',
