@@ -20,6 +20,10 @@ $parameters = [
   'products_price_w' => '0',
   'products_virtual' => 0,
   'products_weight' => '0',
+  'products_length' => '',
+  'products_width' => '',
+  'products_height' => '',
+  'product_ships_in_own_box' => '',
   'products_date_added' => '',
   'products_last_modified' => '',
   'products_date_available' => '',
@@ -40,9 +44,6 @@ $parameters = [
   'products_discount_type_from' => '0',
   'products_price_sorter' => '0',
   'master_categories_id' => '',
-  'products_length' => '0',
-  'products_width' => '0',
-  'products_height' => '0',
   'products_barcode' => '',
 ];
 
@@ -162,6 +163,10 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
        zen_draw_hidden_field('products_model', $pInfo->products_model) .
        zen_draw_hidden_field('products_price', $pInfo->products_price) .
        zen_draw_hidden_field('products_weight', $pInfo->products_weight) .
+       zen_draw_hidden_field('products_length', $pInfo->products_length) .
+       zen_draw_hidden_field('products_width', $pInfo->products_width) .
+       zen_draw_hidden_field('products_height', $pInfo->products_height) .
+       zen_draw_hidden_field('product_ships_in_own_box', $pInfo->product_ships_in_own_box) .
        zen_draw_hidden_field('products_virtual', $pInfo->products_virtual) .
        zen_draw_hidden_field('products_tax_class_id', $pInfo->products_tax_class_id) .
        zen_draw_hidden_field('manufacturers_id', $pInfo->manufacturers_id) .
@@ -172,9 +177,6 @@ if (zen_get_categories_status($current_category_id) == 0 && $pInfo->products_sta
        zen_draw_hidden_field('product_is_always_free_shipping', $pInfo->product_is_always_free_shipping) .
        zen_draw_hidden_field('products_qty_box_status', $pInfo->products_qty_box_status) .
        zen_draw_hidden_field('products_quantity_order_max', $pInfo->products_quantity_order_max) .
-       zen_draw_hidden_field('products_length', $pInfo->products_length) .
-       zen_draw_hidden_field('products_width', $pInfo->products_width) .
-       zen_draw_hidden_field('products_height', $pInfo->products_height) .
        zen_draw_hidden_field('products_barcode', $pInfo->products_barcode);
   ?>
   <div class="col-sm-12 text-center"><?php echo (zen_get_categories_status($current_category_id) == '0' ? TEXT_CATEGORIES_STATUS_INFO_OFF : '') . (isset($out_status) && $out_status ? ' ' . TEXT_PRODUCTS_STATUS_INFO_OFF : ''); ?></div>

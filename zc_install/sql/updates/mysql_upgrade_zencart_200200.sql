@@ -30,6 +30,10 @@
 #
 #####################################################
 
+# Clear out active customer sessions. Truncating helps the database clean up behind itself.
+TRUNCATE TABLE whos_online;
+TRUNCATE TABLE db_cache;
+
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
 
