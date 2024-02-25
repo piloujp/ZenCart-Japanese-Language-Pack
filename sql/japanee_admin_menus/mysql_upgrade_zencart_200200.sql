@@ -119,7 +119,6 @@ ALTER TABLE orders ADD COLUMN customers_fax varchar(32);
 
 #送信モヂュール用
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
-ALTER TABLE products ADD COLUMN products_barcode     varchar(32);
 
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);

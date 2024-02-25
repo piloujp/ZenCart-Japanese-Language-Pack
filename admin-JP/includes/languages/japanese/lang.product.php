@@ -25,7 +25,6 @@ $define = [
     'TEXT_PRODUCTS_NAME' => '商品名:',
     'TEXT_PRODUCTS_DESCRIPTION' => '商品説明:',
     'TEXT_PRODUCTS_QUANTITY' => '商品数量:',
-	'TEXT_PRODUCTS_BARCODE' => '商品バーコード:',
     'TEXT_PRODUCTS_IMAGE' => '商品画像:',
     'TEXT_EDIT_PRODUCTS_IMAGE' => '商品画像編集:',
     'TEXT_PRODUCTS_URL' => '商品URL:',

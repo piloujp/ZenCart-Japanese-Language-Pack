@@ -25,7 +25,6 @@ $define = [
     'TEXT_PRODUCTS_NAME' => 'Products Name:',
     'TEXT_PRODUCTS_DESCRIPTION' => 'Products Description:',
     'TEXT_PRODUCTS_QUANTITY' => 'Products Quantity:',
-	'TEXT_PRODUCTS_BARCODE' => 'Products Barcode:',
     'TEXT_PRODUCTS_IMAGE' => 'Product Image:',
     'TEXT_EDIT_PRODUCTS_IMAGE' => 'Edit Product Image:',
     'TEXT_PRODUCTS_URL' => 'Products URL:',

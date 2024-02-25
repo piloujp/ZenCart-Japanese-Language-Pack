@@ -18,8 +18,6 @@ ALTER TABLE orders DROP COLUMN billing_fax;
 ALTER TABLE orders DROP COLUMN customers_fax;
 ALTER TABLE orders DROP COLUMN delivery_timespec;
 
-ALTER TABLE products DROP COLUMN products_barcode;
-
 DELETE FROM zones WHERE zone_country_id = @japan_id;
 
 DELETE FROM orders_status WHERE orders_status_name = '処理待ち';

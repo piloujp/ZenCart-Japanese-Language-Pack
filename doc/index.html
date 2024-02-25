@@ -335,24 +335,8 @@ a.anclink {
           YourAdminFolderName)\includes\languages\lang.english.php'<br>
           '...(\admin-XX to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
-          '...(\admin-XX
-          toYourAdminFolderName)\includes\languages\english\lang.product.php'<br>
           '...(\admin-XX to
 YourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\collect_info.php'</div>
-        <div class="texte">'...(\admin-XX to
-          YourAdminFolderName)\includes\modules\update_product.php'</div>
-        <div class="texte"> '...(\admin-XX to
-YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\document_general\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\document_product\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\product_free_shipping\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\product_music\collect_info.php'<br>
           <br>
           <span class="listtitle">JAPANESE ADMIN ONLY:</span><br>
           '...(\admin-JP to
@@ -493,6 +477,26 @@ YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.
           the provided <b>file</b> in 'sql' folder:</p>
         <p class="texte"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.0.0.sql'</p>
+        <p class="title4">Finally:</p>
+        <p class="texte">Now <b>you must add Japanese language to Zen Cart</b>
+          through 'admin&gt;Localization&gt;Languages'. This has to be done
+          manually through admin interface as it sets everything necessary for a
+          new language in Zen cart. </p>
+        <p class="texte">Name: Japanese<br>
+          Code: ja<br>
+          Image: icon.gif<br>
+          Directory: japanese<br>
+          Sort Order: 0</p>
+        <p class="texte">Set Japanese as default. Then <b>import/run</b> SQL
+          queries in file '<b>orders_status_update.sql</b>' (in 'sql' folder) to
+          update order status table with Japanese.</p>
+        <p class="texte">When upgrading database there are few settings that are
+          done like setting Japanese Yen as default currency, adding new tax
+          class and rate... <b>You should check in admin</b> that these setting
+          are like you want them. For example, if you have more than two
+          languages installed, you might want to use Japanese but not as default
+          language. In this case, you must set this as you want in admin
+          afterward. If all is good, you can go to configuration chapter.</p>
       </div>
       <p class="title2">Configuration</p>
       <p class="texte">Most of specific configuration has been done at install
@@ -744,7 +748,7 @@ YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.
         Yamato October 2023 price increase update.<br>
         Few corrections to fix minor bugs.<br>
         <br>
-        V2.0.0 - February 22 2024<br>
+        V2.0.0 - February 26 2024<br>
         Updated version for Zen Cart v2.0.0-alpha1.<br>
         Change of Japanese zones dual name management.<br>
         <br>
@@ -901,25 +905,9 @@ YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.
           '...(\admin-XX to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
           '...(\admin-XX
-          toYourAdminFolderName)\includes\languages\english\lang.product.php'<br>
-          '...(\admin-XX
 toYourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'</div>
-        <div class="texte">'...(\admin-XX to
-          YourAdminFolderName)\includes\modules\collect_info.php'</div>
-        <div class="texte"> '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\update_product.php'<br>
-          '...(\admin-XX
-toYourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\document_general\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\document_product\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\product_free_shipping\collect_info.php'<br>
-          '...(\admin-XX to
-          YourAdminFolderName)\includes\modules\product_music\collect_info.php'<br>
-          <br>
-          <br>
+        <br>
+        <div class="texte"> <br>
           <span class="listtitle">日本の管理者側のみ：</span><br>
           '...(\admin-JP to
 YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.php'<br>
@@ -1051,6 +1039,22 @@ YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.
           の提供されたファイルから SQL コマンドをインポートまたは実行します:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.5.8_to_v2.0.0.sql' </p>
+        <p class="title4">最後に：</p>
+        <p class="texte">ここで、「管理者 &gt; ローカリゼーション &gt; 言語」を通じて Zen Cart に<b>日本語を追
+            加する必要があります</b>。Zen
+          Cart内の新しい言語に必要なものはすべて設定されるため、これは管理インターフェイスを介して手動で行う必要があります。 </p>
+        <p class="texte">Name: Japanese<br>
+          Code: ja<br>
+          Image: icon.gif<br>
+          Directory: japanese<br>
+          Sort Order: 0</p>
+        <p class="texte">日本語をデフォルトとして設定します。 次に、ファイル '<b>orders_status_update.sql</b>'
+          ('sql' フォルダ内) で SQL クエリを<b>インポート/実行して</b>、注文ステータス テーブルを日本語で更新します。</p>
+        <p class="texte">データベースをアップグレードするときは、デフォルト言語として日本語を設定したり、デフォルト通貨として日本円を設
+          定したり、新しい税クラスや税率を追加したりするなど、いくつかの設定を行う必要があります。設定が希望通りであるかどうかを管理者に確認してくださ
+          い。たとえば、3
+          つ以上の言語がインストールされている場合、デフォルト言語としてではなく日本語を使用することができます。この場合、後で管理画面でデフォルトの言語を希望どおりに設定
+          する必要があります。すべて問題なければ、構成の章に進むことができます。</p>
       </div>
       <p class="title2">構成</p>
       <p class="texte">特定の構成のほとんどはインストール時に行われていますが、店舗の場所と郵便番号を設定し、配送モジュール用にいくつ
@@ -1250,7 +1254,7 @@ YourAdminFolderName)\includes\functions\extra_functions\japanese_local_calendar.
         ヤマト宅急便２０２３年１０月値上げ更新。。<br>
         軽微なバグを修正するための修正。<br>
         <br>
-        V2.0.0 - ２０２４年２月２２日<br>
+        V2.0.0 - ２０２４年２月２６日<br>
         Zen Cart v2.0.0-alpha1 の更新バージョン。<br>
         日本のゾーンの二重名管理の変更。<br>
         <br>
