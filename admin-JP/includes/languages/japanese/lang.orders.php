@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 22 Modified in v2.0.0-alpha1 $
+ * @version $Id: lat9 2024 Feb 08 Modified in v2.0.0-beta1 $
 */
 
 $define = [
@@ -88,7 +88,7 @@ $define = [
     'TABLE_HEADING_CUSTOMER_COMMENTS' => 'お客様からの<br>連絡事項',
     'TEXT_COMMENTS_YES' => 'お客様からの連絡事項－有り',
     'TEXT_COMMENTS_NO' => 'お客様からの連絡事項－無し',
-    'TEXT_CUSTOMER_LOOKUP' => '<i class="fa fa-search"></i> 顧客情報を表示',
+    'TEXT_CUSTOMER_LOOKUP' => '<i class="fa-solid fa-magnifying-glass"></i> 顧客情報を表示',
     'TEXT_INVALID_ORDER_STATUS' => '<span class="alert">(無効な注文ステータス)</span>',
     'BUTTON_TO_LIST' => '注文一覧表示',
     'SELECT_ORDER_LIST' => '注文IDを指定して移動:',
