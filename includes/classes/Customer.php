@@ -559,7 +559,7 @@ class Customer extends base
         }
 
         $sql =
-            "SELECT address_book_id,
+            "SELECT ab.*,
                     entry_firstname AS firstname, entry_lastname AS lastname,
                     entry_firstname_kana AS firstname_kana, entry_lastname_kana AS lastname_kana,
                     entry_company AS company, entry_street_address AS street_address,

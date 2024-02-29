@@ -6,7 +6,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 27 Modified in v2.0.0-beta1 $
+ * @version $Id: piloujp 2024 Feb 29 Modified in v2.0.0-beta1 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -487,6 +487,10 @@ class shipping extends base
             $za_large_array = preg_split("/[:,]/", str_replace(' ', '', !empty(SHIPPING_BOX_PADDING) ? SHIPPING_BOX_PADDING : '0:0'));
             $zc_large_percent = (float)$za_large_array[0];
             $zc_large_weight = (float)$za_large_array[1];
+
+            // SHIPPING_BOX_WEIGHT = tare
+            // SHIPPING_BOX_PADDING = Large Box % increase
+            // SHIPPING_MAX_WEIGHT = Largest package
 
 			if (empty($max_shipping_weight) or $max_shipping_weight >= SHIPPING_MAX_WEIGHT) {
 				$max_shipping_weight = SHIPPING_MAX_WEIGHT;

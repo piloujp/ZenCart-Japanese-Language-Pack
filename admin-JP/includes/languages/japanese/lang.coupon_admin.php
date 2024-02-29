@@ -89,7 +89,7 @@ $define = [
     'COUPON_SALE_HELP' => '<i>クーポンを適用しない</i> を選択した場合、セールもしくは特価商品は値引き対象から除外され、最低注文数にも含まれません。',
     'COUPON_USES_COUPON_HELP' => 'クーポンの最大利用回数。空白の場合は無制限になります。',
     'COUPON_USES_USER_HELP' => 'クーポンの最大利用回数。空白の場合は無制限になります。',
-    'COUPON_REFERRER_HELP' => '訪問時にクーポンを自動的に適用するドメイン (カンマ区切り)。 例えば 「jills-blog.com」または「bobsbits.com,thisandthat.com」。',
+    'COUPON_REFERRER_HELP' => '訪問時にクーポンを自動的に適用するドメイン (行ごとに 1 つ)。 例えば 「jills-blog.com」 または「bobsbits.com」。緑色の <i class=&quot;fa-solid fa-plus&quot;></i> アイコンをクリックして新しい行を追加するか、赤色の <i class=&quot;fa-solid fa-times&quot;></i> アイコンをクリックします、 行を削除します。',
     'COUPON_BUTTON_PREVIEW' => 'プレビュー',
     'COUPON_BUTTON_CONFIRM' => '確定',
     'COUPON_ACTIVE' => 'ステータス',
