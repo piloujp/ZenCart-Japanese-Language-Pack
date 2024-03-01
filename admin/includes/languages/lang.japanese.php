@@ -3,13 +3,14 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2024 Feb 23 Modified in v2.0.0-beta1 $
+ * @version $Id: DrByte 2024 Mar 1 Modified in v2.0.0-beta1 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
 
 $define = [
-    'ADMIN_NAV_DATE_TIME_FORMAT' => '%Y年 %m月 %d日 %A %X (%Z)',
+	'ADMIN_NAV_DATE_CALENDAR' => 'ja_JP@calendar=japanese',
+	'ADMIN_NAV_DATE_TIME_FORMAT' => 'r年（Gy年）MMMMd日 EEEE HH:mm (ZZZZ)',
     'ARIA_PAGINATION_' => '',
     'ARIA_PAGINATION_CURRENTLY_ON' => ', now on page %s',
     'ARIA_PAGINATION_CURRENT_PAGE' => 'Current Page',
