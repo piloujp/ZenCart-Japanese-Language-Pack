@@ -50,6 +50,7 @@ $define = [
     'BOX_HEADING_SPECIALS' => '特価商品',
     'BOX_HEADING_WHATS_NEW' => '新着商品',
     'BOX_INFORMATION_ABOUT_US' => '会社概要',
+    'BOX_INFORMATION_ACCESSIBILITY' => 'アクセシビリティ',
     'BOX_INFORMATION_CONDITIONS' => 'ご利用規約',
     'BOX_INFORMATION_CONTACT' => 'お問い合わせ',
     'BOX_INFORMATION_DISCOUNT_COUPONS' => '割引クーポン',
