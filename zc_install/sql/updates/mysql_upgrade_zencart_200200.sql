@@ -125,7 +125,7 @@ ALTER TABLE orders ADD COLUMN customers_fax varchar(32);
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 
 #注文ステータス
-INSERT INTO orders_status VALUES ('5', '1', 'Sent', 40);
+INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
 #住所フォーマット
 INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
