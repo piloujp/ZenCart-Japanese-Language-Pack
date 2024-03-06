@@ -67,7 +67,6 @@ if ($error) {
     die();
 }
 // Demo data
-/*
 if (isset($_POST['demoData'])) {
     $extendedOptions = [
         'doJsonProgressLogging' => true,
@@ -93,7 +92,6 @@ if ($error) {
     echo json_encode(['error' => $error, 'file' => $file]);
     die();
 }
-*/
 //Japanese admin menus
 if (isset($_POST['adminjp'])) {
     $extendedOptions = [

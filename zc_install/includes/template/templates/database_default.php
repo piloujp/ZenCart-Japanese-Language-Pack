@@ -71,8 +71,6 @@
       </div>
     </div>
   </fieldset>
-<?php
-/*
   <fieldset>
     <legend><?php echo TEXT_DATABASE_SETUP_DEMO_SETTINGS; ?></legend>
     <div class="row">
@@ -84,8 +82,6 @@
       </div>
     </div>
   </fieldset>
-*/
-?>
   <fieldset>
     <legend><?php echo TEXT_DATABASE_SETUP_ADVANCED_SETTINGS; ?></legend>
     <input type="hidden" name="db_charset" value="utf8mb4">

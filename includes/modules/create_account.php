@@ -337,11 +337,15 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
             // build the message content
             $name = $firstname . ' ' . $lastname;
 
-            if (ACCOUNT_GENDER === 'true') {
-                $email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
-            } else {
-                $email_text = sprintf(EMAIL_GREET_NONE, $firstname);
-            }
+			if ($_SESSION['language'] == 'japanese') {
+					$email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname);
+			} else {
+				if (ACCOUNT_GENDER === 'true') {
+					$email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
+				} else {
+					$email_text = sprintf(EMAIL_GREET_NONE, $firstname);
+				}
+			}
             $html_msg['EMAIL_GREETING'] = str_replace('\n', '', $email_text);
             $html_msg['EMAIL_FIRST_NAME'] = $firstname;
             $html_msg['EMAIL_LAST_NAME'] = $lastname;

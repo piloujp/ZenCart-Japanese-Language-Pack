@@ -309,7 +309,7 @@ systemChecks:
             fieldCheck: Exists
           - checkType: fieldSchema
             tableName: address_book
-            fieldName: entry_firstname_kana
+            fieldName: entry_lastname_kana
             fieldCheck: Exists
           - checkType: fieldSchema
             tableName: address_book
@@ -363,32 +363,6 @@ systemChecks:
             tableName: orders
             fieldName: delivery_timespec
             fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: products
-            fieldName: products_length
-            fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: products
-            fieldName: products_width
-            fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: products
-            fieldName: products_height
-            fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: products
-            fieldName: products_barcode
-            fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: orders
-            fieldName: shipping_tax_rate
-            fieldCheck: Exists
-          - checkType: fieldSchema
-            tableName: orders
-            fieldName: is_wholesale
-            fieldCheck: Exists
-          - checkType: configKeyExists
-            keyName: WHOLESALE_PRICING_CONFIG
 
   checkDBVersion200:
     runLevel: dbVersion
