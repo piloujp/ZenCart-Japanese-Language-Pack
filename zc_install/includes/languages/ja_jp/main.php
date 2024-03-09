@@ -133,7 +133,7 @@ return [
 'TEXT_ERROR_COULD_NOT_WRITE_CONFIGFILE' => '生成された設定ファイルを書き込めませんでした：%s。ファイルが存在し、書き込み可能であることを確認してください。',
 'TEXT_ERROR_STORE_CONFIGURE' => "メインの/includes/configure.phpファイルが存在しないか読み取り出来ない、または書き込みできません",
 'TEXT_ERROR_ADMIN_CONFIGURE' => "管理画面用の /admin/includes/configure.phpファイルが存在しないか読み取り出来ない、または書き込みできません",
-'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'PHP バージョンが正しくありません。<p>お使いの PHPバージョン (' . PHP_VERSION . ') は、利用できません。</p><p>このバージョンの Zen Cart&reg; が対応する PHPのバージョンは、7.3 から 8.2です。<br><a href="https://www.zen-cart.com">www.zen-cart.com</a> のウェブサイトより最新版の Zen Cart&reg;をご確認ください。</p>'),
+'TEXT_ERROR_PHP_VERSION' => str_replace(["\n", "\r"], '', 'PHP バージョンが正しくありません。<p>お使いの PHPバージョン (' . PHP_VERSION . ') は、利用できません。</p><p>このバージョンの Zen Cart&reg; は PHP バージョン 8.0 ～ 8.3 と互換性がありますが、8.2.x 以降が推奨されます。<br><a href="https://www.zen-cart.com">www.zen-cart.com</a> のウェブサイトより最新版の Zen Cart&reg;をご確認ください。</p>'),
 'TEXT_ERROR_PHP_VERSION_RECOMMENDED' => '最大限のセキュリティと互換性を保つためにはPHP%s以降を使用するべきです。現状のままでもインストールを進めることができます。ただ、あなたのサイトが古いソフトウェアを実行している場合、PCI準拠ではないことを覚えておいてください。',
 'TEXT_ERROR_PHP_VERSION_MIN' => 'PHPバージョンは %s以降である必要があります',
 'TEXT_ERROR_PHP_VERSION_MAX' => 'PHPバージョンが %s以前である必要があります',

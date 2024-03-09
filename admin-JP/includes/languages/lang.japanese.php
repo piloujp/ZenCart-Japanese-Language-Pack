@@ -157,6 +157,7 @@ $define = [
     'DEDUCTION_TYPE_DROPDOWN_2' => '新しい価格',
     'DEFINE_LANGUAGE' => '言語ファイル管理',
     'EDITOR_NONE' => 'プレーンテキスト',
+    'EMAIL_GREET' => '様',
     'EMAIL_SALUTATION' => '',
     'EMAIL_SEND_FAILED' => 'エラー: "%s"へのメール送信が失敗しました <%s> 件名: "%s"',
     'ENTRY_CITY' => '市区町村：',

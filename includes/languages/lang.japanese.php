@@ -94,6 +94,7 @@ $define = [
     'DB_ERROR_NOT_CONNECTED' => 'エラー - データベースに接続できません',
     'DOB_FORMAT_STRING' => 'yyyy/mm/dd',
     'DOWNLOADS_CONTROLLER_ON_HOLD_MSG' => '注意:お支払いが完了するまで商品のダウンロードはできません。',
+    'EMAIL_GREET' => '様',
     'EMAIL_SALUTATION' => '',
     'EMAIL_SEND_FAILED' => 'エラー: Eメールの送信に失敗しました。宛先: "%s" <%s> 件名: "%s"',
     'EMPTY_CART_TEXT_NO_QUOTE' => 'セッションの有効期限が切れました．．．送料見積もりの​​ためにショッピングカートを更新してください...',

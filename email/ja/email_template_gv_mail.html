@@ -10,7 +10,7 @@ $EMAIL_COMMON_CSS
 
 </head>
 
-<body id="direct_mail">
+<body id="gv_mail">
 <div class="holder">
 
   <!-- Header Section -->
@@ -19,16 +19,18 @@ $EMAIL_COMMON_CSS
     $EXTRA_HEADER_INFO
   </div>
 
-
   <!-- Content Section -->
   <div class="content">
-    <div>$EMAIL_SALUTATION $EMAIL_FIRST_NAME $EMAIL_LAST_NAME $EMAIL_GREET</div>
+    <div>$EMAIL_LAST_NAME $EMAIL_FIRST_NAME $EMAIL_GREET,</div>
+    <br>
     <div>$EMAIL_MESSAGE_HTML</div>
+    <!-- GV_BLOCK html includes a containing div as optionally used also in email_template_welcome) -->
+    $GV_BLOCK
   </div>
-
 
   <!-- Footer Section -->
   <div class="footer">
+    <div class="unsubscribe">$UNSUBSCRIBE_LINK</div>
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
   </div>
 

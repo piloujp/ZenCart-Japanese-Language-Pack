@@ -112,6 +112,7 @@ INSERT INTO tax_rates (tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_de
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key='STORE_COUNTRY';
 
 #一般設定
+UPDATE configuration SET configuration_value = '&pound;,£:&euro;,€:&yen;,￥:&reg;,®:&trade;,™', last_modified = now() WHERE configuration_key = 'CURRENCIES_TRANSLATIONS';
 UPDATE configuration SET configuration_value = '1', last_modified = now() WHERE configuration_key = 'ENTRY_FIRST_NAME_MIN_LENGTH';
 UPDATE configuration SET configuration_value = '1', last_modified = now() WHERE configuration_key = 'ENTRY_LAST_NAME_MIN_LENGTH';
 UPDATE configuration SET configuration_value = '1', last_modified = now() WHERE configuration_key = 'ENTRY_STREET_ADDRESS_MIN_LENGTH';

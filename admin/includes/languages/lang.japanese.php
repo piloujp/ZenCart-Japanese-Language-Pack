@@ -157,6 +157,7 @@ $define = [
     'DEDUCTION_TYPE_DROPDOWN_2' => 'New Price',
     'DEFINE_LANGUAGE' => 'Choose Language:',
     'EDITOR_NONE' => 'Plain Text',
+    'EMAIL_GREET' => '様',
     'EMAIL_SALUTATION' => '',
     'EMAIL_SEND_FAILED' => 'ERROR: Failed sending email to: "%s" <%s> with subject: "%s"',
     'ENTRY_CITY' => 'City:',

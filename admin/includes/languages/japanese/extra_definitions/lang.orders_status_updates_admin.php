@@ -7,7 +7,6 @@
 */
 
 $define = [
-    'EMAIL_GREET' => ' 様',
     'OSH_EMAIL_SEPARATOR' => '------------------------------------------------------',
     'OSH_EMAIL_TEXT_SUBJECT' => 'ご注文受付状況のお知らせ',
     'OSH_EMAIL_TEXT_ORDER_NUMBER' => 'ご注文受付番号:',

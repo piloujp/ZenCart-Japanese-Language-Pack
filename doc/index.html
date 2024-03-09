@@ -326,7 +326,14 @@ a.anclink {
           your actual admin folder name:</span>
         <p class="texte"></p>
         <div class="texte"><span class="listtitle">ADMIN English OR Japanese:</span><br>
+          '...(\admin-XX to YourAdminFolderName)\coupon_admin.php'<br>
           '...(\admin-XX to YourAdminFolderName)\customers.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\gv_mail.php<br>
+          '...(\admin-XX to YourAdminFolderName)\gv_queue.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\invoice.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\mail.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\orders.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\packingslip.php'<br>
           '...(\admin-XX to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
           '...(\admin-XX to YourAdminFolderName)\includes\header.php<br>
           '...(\admin-XX to
@@ -336,9 +343,12 @@ a.anclink {
           '...(\admin-XX to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
           '...(\admin-XX to
-YourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'</div>
-        <div class="texte">'...(\admin-XX to
-YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'</div>
+YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
+          '...(\admin-XX to
+          YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
+          '...(\admin-XX to
+          YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
+        </div>
         <div class="texte"> <br>
           <span class="listtitle">JAPANESE ADMIN ONLY:</span><br>
           '...(\admin-JP to
@@ -346,23 +356,13 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         <div class="texte"> <br>
           <span class="listtitle">CATALOG:</span><br>
           '...\email\email_template_checkout.html'<br>
-          '...\email\email_template_coupon.html'<br>
-          '...\email\email_template_direct_email.html'<br>
-          '...\email\email_template_gv_mail.html'<br>
-          '...\email\email_template_gv_queue.html'<br>
-          '...\email\email_template_newsletters.html'<br>
-          '...\email\email_template_order_status.html'<br>
-          '...\email\email_template_product_notification.html'<br>
           '...\includes\classes\Customer.php'<br>
           '...\includes\classes\order.php'<br>
           '...\includes\classes\shipping.php'<br>
           '...\includes\functions\functions_addresses.php'<br>
-          '...\includes\functions\functions_general_shared.php'<br>
           '...\includes\functions\functions_osh_update.php'<br>
           '...\includes\functions\html_output.php'<br>
           '...\includes\languages\lang.english.php'<br>
-          '...\includes\languages\english\lang.checkout_process.php'<br>
-          '...\includes\languages\english\lang.password_forgotten.php'<br>
           '...\includes\modules\checkout_new_address.php'<br>
           '...\includes\modules\create_account.php'<br>
           '...\includes\modules\pages\account_edit\header_php.php'<br>
@@ -381,6 +381,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
 '...\includes\templates\template_default\templates\tpl_modules_checkout_address_book.php'<br>
 '...\includes\templates\template_default\templates\tpl_modules_checkout_new_address.php'<br>
 '...\includes\templates\template_default\templates\tpl_modules_create_account.php'<br>
+'...\includes\templates\template_default\templates\tpl_zc_install_suggested_default.php'<br>
+'...\includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php'<br>
         </div>
         <br>
         <p class="title5"><a id="filecopy">List of new files to copy</a>:</p>
@@ -390,6 +392,7 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           YourAdminFolderName)\includes\languages\lang.japanese.php'<br>
           '...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\'
           all content.<br>
+          '...\email\ja\' all content.<br>
           '...\images\' all content.<br>
           '...\includes\classes\_jpparcel.php'<br>
           '...\includes\classes\_sagawa.php'<br>
@@ -402,7 +405,6 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           '...\includes\modules\order_total\' all content.<br>
           '...\includes\modules\payment\' all content.<br>
           '...\includes\modules\shipping\' all content.<br>
-          '...\includes\templates\responsive_classic\images\icons\' all content.<br>
 '...\includes\templates\template_default\buttons\english\button_update_cart.png'<br>
           '...\includes\templates\template_default\buttons\japanese\' all
           content.<br>
@@ -749,8 +751,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         Yamato October 2023 price increase update.<br>
         Few corrections to fix minor bugs.<br>
         <br>
-        V2.0.0 - March 7 2024<br>
-        Updated version for Zen Cart v2.0.0-alpha1.<br>
+        V2.0.0 - March 10 2024<br>
+        Updated version for Zen Cart v2.0.0-beta1.<br>
         Change of Japanese zones dual name management.<br>
         <br>
       </p>
@@ -896,7 +898,14 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           に置き換え、「YourAdminFolderName」を実際の管理フォルダ名に置き換えます。</span>
         <p class="texte"></p>
         <div class="texte"><span class="listtitle">管理者側、英語または日本語：</span><br>
+          '...(\admin-XX to YourAdminFolderName)\coupon_admin.php'<br>
           '...(\admin-XX to YourAdminFolderName)\customers.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\gv_mail.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\gv_queue.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\invoice.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\mail.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\orders.php'<br>
+          '...(\admin-XX to YourAdminFolderName)\packingslip.php'<br>
           '...(\admin-XX to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
           '...(\admin-XX to YourAdminFolderName)\includes\header.php<br>
           '...(\admin-XX to
@@ -905,10 +914,13 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           YourAdminFolderName)\includes\languages\lang.english.php'<br>
           '...(\admin-XX to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
-          '...(\admin-XX
-toYourAdminFolderName)\includes\languages\english\extra_definitions\lang.orders_status_updates_admin.php'</div>
-        <div class="texte">'...(\admin-XX to
-YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'</div>
+          '...(\admin-XX to
+YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
+          '...(\admin-XX to
+          YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
+          '...(\admin-XX to
+YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
+        </div>
         <div class="texte"> <br>
           <span class="listtitle">日本の管理者側のみ：</span><br>
           '...(\admin-JP to
@@ -916,23 +928,13 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           <br>
           <span class="listtitle">ショップ側：</span><br>
           '...\email\email_template_checkout.html'<br>
-          '...\email\email_template_coupon.html'<br>
-          '...\email\email_template_direct_email.html'<br>
-          '...\email\email_template_gv_mail.html'<br>
-          '...\email\email_template_gv_queue.html'<br>
-          '...\email\email_template_newsletters.html'<br>
-          '...\email\email_template_order_status.html'<br>
-          '...\email\email_template_product_notification.html'<br>
           '...\includes\classes\Customer.php'<br>
           '...\includes\classes\order.php'<br>
           '...\includes\classes\shipping.php'<br>
           '...\includes\functions\functions_addresses.php'<br>
-          '...\includes\functions\functions_general_shared.php'<br>
           '...\includes\functions\functions_osh_update.php'<br>
           '...\includes\functions\html_output.php'<br>
           '...\includes\languages\lang.english.php'<br>
-          '...\includes\languages\english\lang.checkout_process.php'<br>
-          '...\includes\languages\english\lang.password_forgotten.php'<br>
           '...\includes\modules\checkout_new_address.php'<br>
           '...\includes\modules\create_account.php'<br>
           '...\includes\modules\pages\account_edit\header_php.php'<br>
@@ -951,15 +953,18 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
 '...\includes\templates\template_default\templates\tpl_modules_checkout_address_book.php'<br>
 '...\includes\templates\template_default\templates\tpl_modules_checkout_new_address.php'<br>
 '...\includes\templates\template_default\templates\tpl_modules_create_account.php'<br>
+'...\includes\templates\template_default\templates\tpl_zc_install_suggested_default.php'<br>
+'...\includes\templates\template_default\templates\tpl_zc_phpupgrade_default.php'<br>
         </div>
         <br>
         <p class="title5"><a id="filecopyjp">コピーする新しいファイルのリスト：</a></p>
-        <p class="texte">'...(\admin-XX to
-          YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br>
+        <div class="texte">'...(\admin-XX to
+YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br>
           '...(\admin-XX to
           YourAdminFolderName)\includes\languages\lang.japanese.php'<br>
           '...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\'
           all content.<br>
+          '...\email\ja\' all content.<br>
           '...\images\' all content.<br>
           '...\includes\classes\_jpparcel.php'<br>
           '...\includes\classes\_sagawa.php'<br>
@@ -972,12 +977,12 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           '...\includes\modules\order_total\' all content.<br>
           '...\includes\modules\payment\' all content.<br>
           '...\includes\modules\shipping\' all content.<br>
-          '...\includes\templates\responsive_classic\images\icons\' all content.<br>
 '...\includes\templates\template_default\buttons\english\button_update_cart.png'<br>
           '...\includes\templates\template_default\buttons\japanese\' all
           content.<br>
           '...\includes\templates\template_default\images\icons\' all content.<br>
-          '...\zc_plugins\' all content.</p>
+          '...\zc_plugins\' all content.<br>
+        </div>
         <p class="title4">日本語版カートからファイルを更新:</p>
         <p class="texte">いくつかの注意点を除いて英語版として進めていきます。</p>
         <p></p>
@@ -1254,8 +1259,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         ヤマト宅急便２０２３年１０月値上げ更新。。<br>
         軽微なバグを修正するための修正。<br>
         <br>
-        V2.0.0 - ２０２４年３月7日<br>
-        Zen Cart v2.0.0-alpha1 の更新バージョン。<br>
+        V2.0.0 - ２０２４年３月１０日<br>
+        Zen Cart v2.0.0-beta1 の更新バージョン。<br>
         日本のゾーンの二重名管理の変更。<br>
         <br>
       </p>

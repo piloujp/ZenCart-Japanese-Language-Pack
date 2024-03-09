@@ -10,7 +10,7 @@ $EMAIL_COMMON_CSS
 
 </head>
 
-<body id="coupon">
+<body id="newsletters">
 <div class="holder">
 
   <!-- Header Section -->
@@ -19,21 +19,17 @@ $EMAIL_COMMON_CSS
     $EXTRA_HEADER_INFO
   </div>
 
+
   <!-- Content Section -->
   <div class="content">
-    <div class="content-line">$EMAIL_SALUTATION $EMAIL_FIRST_NAME $EMAIL_LAST_NAME $EMAIL_GREET,</div>
-    <div class="content-line">$EMAIL_MESSAGE_HTML</div>
-    <div class="content-line">$COUPON_TEXT_TO_REDEEM</div>
-    <div class="content-line">$COUPON_TEXT_VOUCHER_IS <span class="coupon-code">$COUPON_CODE</span> -
-    <span class="coupon-desc">$COUPON_DESCRIPTION</span>
-  </div>
-  <div class="content-line">$COUPON_TEXT_REMEMBER</div>
-  <div class="content-line">$COUPON_REDEEM_STORENAME_URL</div>
+    <div>$EMAIL_LAST_NAME $EMAIL_FIRST_NAME $EMAIL_GREET,</div>
+    <div>$EMAIL_MESSAGE_HTML</div>
   </div>
 
 
   <!-- Footer Section -->
   <div class="footer">
+    <div class="unsubscribe">$UNSUBSCRIBE_LINK</div>
     <div class="copyright">$EMAIL_FOOTER_COPYRIGHT</div>
   </div>
 
