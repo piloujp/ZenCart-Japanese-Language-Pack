@@ -18,7 +18,7 @@
 <?php if ($messageStack->size('addressbook') > 0) echo $messageStack->output('addressbook'); ?>
 
 <h2 id="addressBookDefaultPrimary"><?php echo PRIMARY_ADDRESS_TITLE; ?></h2>
-<address class="back"><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['customer_default_address_id'], true, ' ', '<br>'); ?></address>
+<address class="back"><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['customer_default_address_id'], true, ' ', '<br>') .  EMAIL_GREET; ?></address>
 <div class="instructions"><?php echo PRIMARY_ADDRESS_DESCRIPTION; ?></div>
 <br class="clearBoth">
 
@@ -34,7 +34,7 @@
 ?>
 <h3 class="addressBookDefaultName"><?php echo ($_SESSION['language'] == 'japanese') ? zen_output_string_protected($addresses['lastname'] . ' ' . $addresses['firstname']) : zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']); ?><?php if ($addresses['address_book_id'] == $_SESSION['customer_default_address_id']) echo '&nbsp;' . PRIMARY_ADDRESS ; ?></h3>
 
-<address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br>');
+<address><?php echo zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br>') . EMAIL_GREET;
 		echo !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '';
 		echo !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : ''; ?></address>
 

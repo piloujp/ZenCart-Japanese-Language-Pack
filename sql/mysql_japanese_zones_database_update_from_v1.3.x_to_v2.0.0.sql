@@ -65,6 +65,8 @@ UPDATE zones_to_geo_zones gz JOIN japan_zones jz ON gz.zone_id = jz.zone_id AND 
 # Delete temporary table
 DROP TABLE japan_zones;
 
+UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname ' WHERE address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様';
+
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table

@@ -128,8 +128,9 @@ ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
 #住所フォーマット
-INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
-UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '%様') WHERE countries_id = @japan_id;
+SELECT IFNULL((SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%'), NULL) INTO @Formid;
+REPLACE INTO address_format (address_format_id, address_format, address_summary) VALUES (@formid, '〒$postcode$cr$state$city$streets$cr$lastname $firstname ', '$city $country');
+UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '〒%') WHERE countries_id = @japan_id;
 
 #言語設定
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';

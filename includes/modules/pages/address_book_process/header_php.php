@@ -95,15 +95,16 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 
   if ($_SESSION['language'] == 'japanese') {
     $firstname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['firstname_kana']));
-    $lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['lastname_kana']));
     if (strlen($firstname_kana) < ENTRY_FIRST_NAME_MIN_LENGTH) {
       $error = true;
       $messageStack->add('addressbook', ENTRY_FIRST_NAME_KANA_ERROR);
     }
+    $lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['lastname_kana']));
     if (strlen($lastname_kana) < ENTRY_LAST_NAME_MIN_LENGTH) {
       $error = true;
       $messageStack->add('addressbook', ENTRY_LAST_NAME_KANA_ERROR);
     }
+  }
 	$entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
 	if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
     	$error = true;
@@ -112,7 +113,6 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
 	if (ACCOUNT_FAX_NUMBER == 'true') {
     	$entry_fax = zen_db_prepare_input($_POST['entry_fax']);
 	}
-  }
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);
@@ -213,11 +213,11 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       if ($_SESSION['language'] == 'japanese') {
         $sql_data_array[] = array('fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull');
         $sql_data_array[] = array('fieldName'=>'entry_lastname_kana', 'value'=>$lastname_kana, 'type'=>'stringIgnoreNull');
+	  }
         $sql_data_array[] = array('fieldName'=>'entry_telephone', 'value'=>$entry_telephone, 'type'=>'stringIgnoreNull');
         if (ACCOUNT_FAX_NUMBER == 'true') {
           $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$entry_fax, 'type'=>'stringIgnoreNull');
         }
-	  }
 
     if ($_POST['action'] == 'update') {
       $where_clause = "address_book_id = :edit and customers_id = :customersID";

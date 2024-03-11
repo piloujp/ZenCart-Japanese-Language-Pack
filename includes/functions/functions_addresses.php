@@ -163,10 +163,7 @@ function zen_get_country_zones($country_id)
 function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-	$zone_var_name = 'zone_name';
-	if ($_SESSION['language'] == "japanese" && $country_id == jp_country_id()) {
-		$zone_var_name = 'zone_code';
-	}
+	$zone_var_name = ($_SESSION['language'] == "japanese" && $country_id == jp_country_id()) ? 'zone_code' : 'zone_name';
     $sql = "SELECT " . $zone_var_name . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
@@ -191,10 +188,7 @@ function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone 
 function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-	$zone_var_code = 'zone_code';
-	if ($_SESSION['language'] != "japanese" && $country_id == jp_country_id()) {
-		$zone_var_code = 'zone_name';
-	}
+	$zone_var_code = ($_SESSION['language'] != "japanese" && $country_id == jp_country_id()) ? 'zone_name' : 'zone_code';
     $sql = "SELECT " . $zone_var_code . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "

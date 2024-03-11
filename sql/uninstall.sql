@@ -26,7 +26,7 @@ DELETE FROM orders_status WHERE orders_status_name = '完了';
 DELETE FROM orders_status WHERE orders_status_name = '更新';
 DELETE FROM orders_status WHERE orders_status_name = '配送済み';
 
-DELETE FROM address_format WHERE address_format LIKE '%様';
+DELETE FROM address_format WHERE address_format LIKE '〒%';
 UPDATE countries SET address_format_id = 1 WHERE countries_id = @japan_id;
 
 UPDATE configuration SET configuration_value = 'en', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
