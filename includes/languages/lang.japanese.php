@@ -470,6 +470,7 @@ $define = [
     'TEXT_NO_NEW_PRODUCTS' => '新着商品はまもなく登録されますので、また後ほどご覧ください。',
     'TEXT_NO_PROD_RESTRICTIONS' => 'この割引クーポンは全商品対象です。',
     'TEXT_NO_PROD_SALES' => 'この割引クーポンはセール商品には適用されません。',
+    'TEXT_NO_SHIPPING_AVAILABLE_ESTIMATOR' => '申し訳ございませんが、この注文を表示された住所に配送するためのオンライン オプションはありません。<br><br>最新の見積もりを入手するには、ログインするか、ご希望の配送先住所を編集してください。<br><br>それでも見積もりが利用できない場合は、別の手配をするために当社までご連絡ください。',
     'TEXT_NO_REVIEWS' => '商品のレビューはまだありません。',
     'TEXT_NUMBER_SYMBOL' => '# ',
     'TEXT_OF_5_STARS' => '',
