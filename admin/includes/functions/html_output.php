@@ -309,7 +309,7 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
         $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
       }
 
-	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == jp_country_id()) {
+	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_jp_country_id()) {
       $states = $db->Execute("SELECT zone_id, zone_code AS zone_name
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = " . $countries->fields['zone_country_id'] . "

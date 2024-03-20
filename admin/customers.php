@@ -165,7 +165,7 @@ if (!empty($action)) {
             if (ACCOUNT_STATE === 'true') {
                 $entry_state_has_zones = count(zen_get_country_zones($entry_country_id)) > 0;
                 if ($entry_state_has_zones) {
-					if ($_SESSION['language'] == "japanese" && $entry_country_id == jp_country_id()) {
+					if ($_SESSION['language'] == "japanese" && $entry_country_id == zen_jp_country_id()) {
                     $zone_query = $db->Execute(
                         "SELECT zone_id
                            FROM " . TABLE_ZONES . "
@@ -1858,8 +1858,9 @@ if ($action === 'edit' || $action === 'update') {
         $additional_columns = [];
         $zco_notifier->notify(
             'NOTIFY_ADMIN_CUSTOMERS_LISTING_ELEMENT',
-            $customer,
-            $additional_columns
+            $result,
+            $additional_columns,
+            $customer
         );
         if (is_array($additional_columns) && count($additional_columns) !== 0) {
             if (count($additional_columns) !== $additional_heading_count) {

@@ -6,7 +6,7 @@
  */
 
 // Function returning Japan's country id used in ZC Japanese Language Pack
-function jp_country_id() {
+function zen_jp_country_id() {
 	global $db;
 	
 	$query = 'Select countries_id from countries where countries_iso_code_2 = \'JP\' LIMIT 1';
