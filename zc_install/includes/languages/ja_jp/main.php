@@ -158,6 +158,7 @@ return [
 'TEXT_ERROR_DB_CONNECTION_UPGRADE' => '現在の configure.php の設定に、データベース接続の問題があります',
 'TEXT_ERROR_SET_TIME_LIMIT' => 'max_execution_time 設定を無効にしました ',
 'TEXT_ERROR_GD' => 'GD Extension が有効になっていません',
+'TEXT_ERROR_INTL' => 'INTL 拡張機能が有効になっていません。 日付の処理とローカリゼーションのサポートに必要です。',
 'TEXT_ERROR_JSON' => 'JSON 拡張機能が有効になっていません。アプリケーションの多くの部分でデータを解析するために必要です。',
 'TEXT_ERROR_FILEINFO' => 'Fileinfo 拡張子が有効になっていません。 ファイルサイズの計算に使用されます。',
 'TEXT_ERROR_ZLIB' => 'Zlib Extension が有効になっていません',
