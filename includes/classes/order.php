@@ -691,7 +691,7 @@ class order extends base
                 'price' => $products[$i]['price'],
                 'tax' => null, // calculated later
                 'tax_groups' => null, // calculated later
-                'final_price' => (DISPLAY_PRICE_WITH_TAX === 'true') ? $products_final_price_without_tax : zen_round($products_final_price_without_tax, $decimals),
+                'final_price' => $products_final_price_without_tax,
                 'onetime_charges' => $_SESSION['cart']->attributes_price_onetime_charges($products[$i]['id'], $products[$i]['quantity']),
                 'weight' => $products[$i]['weight'],
                 'length' => $products[$i]['length'] ?? null,

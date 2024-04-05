@@ -1071,7 +1071,7 @@ if ($action === 'edit' || $action === 'update') {
                 <div class="col-sm-9 col-md-6">
 <?php
     if ($processed === true) {
-        if ($cInfo->customers_newsletter === '1') {
+        if ($cInfo->customers_newsletter === 1) {
             echo ENTRY_NEWSLETTER_YES;
         } else {
             echo ENTRY_NEWSLETTER_NO;
@@ -1081,7 +1081,7 @@ if ($action === 'edit' || $action === 'update') {
         echo zen_draw_pull_down_menu(
             'customers_newsletter',
             $newsletter_array,
-            ($cInfo->customers_newsletter === '1') ? '1' : '0',
+            ($cInfo->customers_newsletter === 1) ? 1 : 0,
             'class="form-control" id="customers_newsletter"'
         );
     }
@@ -1828,7 +1828,7 @@ if ($action === 'edit' || $action === 'update') {
 <?php
         if (ACCOUNT_COMPANY === 'true') {
 ?>
-                                <td class="dataTableContent"><?php echo $customer['company']; ?></td>
+                                <td class="dataTableContent"><?php echo zen_output_string_protected($customer['company']); ?></td>
 <?php
         }
         if ($show_registration_ip_in_listing) {
@@ -1858,7 +1858,7 @@ if ($action === 'edit' || $action === 'update') {
         $additional_columns = [];
         $zco_notifier->notify(
             'NOTIFY_ADMIN_CUSTOMERS_LISTING_ELEMENT',
-            $result,
+            array_merge($result, $customer),
             $additional_columns,
             $customer
         );
@@ -2291,7 +2291,7 @@ if ($action === 'edit' || $action === 'update') {
                     'text' =>
                         '<br>' .
                         CUSTOMERS_REFERRAL . ' ' .
-                        $cInfo->customers_referral
+                        zen_output_string_protected($cInfo->customers_referral)
                 ];
             }
             break;
