@@ -117,8 +117,10 @@ a.anclink {
 
 </style> </head>
   <body>
-    <div class="en" id="en"> <img id="lang" src="images/flags-US-JP_small.webp"
-        alt="Toggle language" title="英語と日本語の間で言語を変更するにはここをクリックしてください" onclick="chglan()"
+    <div class="en" id="en"> <img id="lang" src="images/flags-US-JP_small.webp"
+
+        alt="Toggle language" title="英語と日本語の間で言語を変更するにはここをクリックしてください" onclick="chglan()"
+
         height="24" width="50">
       <div>
         <h1 class="title">Zen Cart v2.0.0 Japanese language pack documentation</h1>
@@ -182,7 +184,8 @@ a.anclink {
       <p class="texte">Don't forget, this language pack is for Zen Cart 2.0.0
         and above! It works with ZC 2.0.0 but won't with older versions. For ZC
         v1.5.8 and 1.5.8a, please use ZC Japanese Language Pack v1.3.x.</p>
-      <p class="texte">Finally, if you have a cart already installed, you must <span
+      <p class="texte">Finally, if you have a cart already installed, you must <span
+
           id="important">do a complete backup including database</span>. For
         files a copy is easy, but for database you must export it in an SQL file
         you can import again if necessary. This is a very important step! In
@@ -442,8 +445,12 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           importing SQL files.</p>
         <p class="texte">There is a <b>folder named 'sql'</b> where you will
           find the SQL files we need to update Zen Cart database:</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          'mysql_upgrade_zencart_200200.sql'</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200_EN.sql' to upgrade
+          English ZC to v2.0.0 if not already done.<br>
+          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200200.sql' to upgrade
+          Japanese Language Pack to v2.0.0.</p>
         <p class="texte">This file contains database modifications and
           configurations for this Japanese Language Pack. It includes new fields
           for furigana, phone, fax number and delivery time in tables orders,
@@ -475,21 +482,10 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         <p class="texte">To <b>update</b> from ZC Japanese <b>Language Pack
             v1.3.x to v2.0.0</b>, <b>import</b> or run the SQL commands from
           the provided <b>file</b> in 'sql' folder:</p>
-        <p class="texte"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.0.0.sql'</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200_JP.sql'
+          to upgrade ZC to v2.0.0 if not already done.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.0.0.sql'</p>
         <p class="title4">Finally:</p>
-        <p class="texte">Now <b>you must add Japanese language to Zen Cart</b>
-          through 'admin&gt;Localization&gt;Languages'. This has to be done
-          manually through admin interface as it sets everything necessary for a
-          new language in Zen cart. </p>
-        <p class="texte">Name: Japanese<br>
-          Code: ja<br>
-          Image: icon.gif<br>
-          Directory: japanese<br>
-          Sort Order: 0</p>
-        <p class="texte">Set Japanese as default. Then <b>import/run</b> SQL
-          queries in file '<b>orders_status_update.sql</b>' (in 'sql' folder) to
-          update order status table with Japanese.</p>
         <p class="texte">When upgrading database there are few settings that are
           done like setting Japanese Yen as default currency, adding new tax
           class and rate... <b>You should check in admin</b> that these setting
@@ -507,7 +503,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         but you still have to set your store location and postal code, define
         some geo-zones for your shipping modules and set these modules and
         payment ones too.<br>
-        Please have a look at Zen Cart documentation, starting by here: <a href="https://docs.zen-cart.com/user/new_user_topics/"
+        Please have a look at Zen Cart documentation, starting by here: <a href="https://docs.zen-cart.com/user/new_user_topics/"
+
           title="Zen Cart Documentation" target="_blank">https://docs.zen-cart.com/user/new_user_topics/</a></p>
       <p class="texte"> </p>
       <p class="title3">Modules setting</p>
@@ -533,16 +530,21 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         '$a_dist_to_rank') to fit your situation. Unfortunately none of the
         shipping companies provide downloadable quoting tables but you can check
         online:<br>
-        For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+        For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
-        For Sagawa : <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+        For Sagawa : <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+
           title="佐川急便送料" target="_blank">https://www.sagawa-exp.co.jp/send/fare/attention.html</a><br>
-        For Japan Post YuPack : <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+        For Japan Post YuPack : <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+
           title="郵便胸腔ゆうパック" target="_blank">https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html</a><br>
-        For Japan Post overseas services : <a href="https://www.post.japanpost.jp/int/charge/list/"
+        For Japan Post overseas services : <a href="https://www.post.japanpost.jp/int/charge/list/"
+
           title="郵便胸腔EMS" target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
         <br>
-        If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+        If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
       <p class="title3">Admin language:</p>
       <p class="texte">Admin language in Zen Cart is peculiar, there are two
@@ -556,23 +558,27 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
       <p class="texte">'mysql_japanese_admin_menu.sql'<br>
         'mysql_english_admin_menu.sql'</p>
       <p class="title3">Recommended plugins</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+
           title="Language/Currency Links in Header" target="_blank">Language/Currency
           Links in Header</a></p>
       <p class="texte"></p>
       <p class="texte">This plugin should be in any multilingual Zen Cart.
         Having language switch in header is very useful and practical especially
         on mobile displays.</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">This is a Japanese version of this nice template adapted
         to this language pack. It is not yet released in Zen Cart site plugin
-        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">here</a>.
         It looks great on mobiles screen.<br>
       </p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+
           title="Postcode auto fill plugin part 1" target="_blank">Postcode auto
           fill</a></p>
       <p class="texte">This plugin was designed to help customers to fill create
@@ -583,7 +589,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         that postal code databases are big and plugin had to be separated in two
         parts. Importing big files in MySQL with phpMyAdmin could be problem too
         if PHP and MySQL are not set properly.</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+
           title="Image Handler 5" target="_blank">Image Handler 5 (Zen Cart
           1.5.7+)</a> </p>
       <p class="texte">This plugin enhances Zen Cart images by adding a handler
@@ -591,7 +598,8 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         can upload multiple sizes of an image from the Admin image handler page.</p>
       <p class="texte"> </p>
       <p class="title2">Uninstall</p>
-      <p class="texte">Delete all 'newly' added files listed in '<a class="anclink"
+      <p class="texte">Delete all 'newly' added files listed in '<a class="anclink"
+
           href="#filecopy" onclick="montre('mergeinst')">List of new files to
           copy</a>'.<br>
         <b>Use your backup</b> to copy back your precedent version for all
@@ -758,8 +766,10 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         <br>
       </p>
     </div>
-    <div class="jp" id="jp"> <img id="lang" src="images/flags-US-JP_small.webp"
-        alt="言語を切り替えます" title="Click here to change language between English and Japanese"
+    <div class="jp" id="jp"> <img id="lang" src="images/flags-US-JP_small.webp"
+
+        alt="言語を切り替えます" title="Click here to change language between English and Japanese"
+
         onclick="chglan()" height="24" width="50">
       <div>
         <h1 class="title">Zen Cart v2.0.0 Japanese language pack 説明書</h1>
@@ -988,9 +998,11 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
         <p class="title4">日本語版カートからファイルを更新:</p>
         <p class="texte">いくつかの注意点を除いて英語版として進めていきます。</p>
         <p></p>
-        <p class="texte"><span style="color: #cc0000;">ポイント１：</span><span class="HwtZe"
+        <p class="texte"><span style="color: #cc0000;">ポイント１：</span><span class="HwtZe"
+
             lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">　「classes」
-                フォルダー内の出荷モジュールのすべてのクラス ファイルをコピーするのではなく、チェックしてマージする必要があります。 </span></span></span><span
+                フォルダー内の出荷モジュールのすべてのクラス ファイルをコピーするのではなく、チェックしてマージする必要があります。 </span></span></span><span
+
             class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">そ
                 うしないと、これまでに行ったすべてのカスタマイズ、特に会社のさまざまな配送料が失われる可能性があります。</span></span></span>
         </p>
@@ -1015,8 +1027,10 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
           ファイルのインポートに使用できます。</p>
         <p class="texte"><b>「sql」フォルダ</b>ーがあり、そこ には Zen Cart データベースを更新するために必要な 2
           つの SQL ファイルがあります。</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          'mysql_upgrade_zencart_200200.sql'</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200_EN.sql'
+          、まだ完了していない場合は、英語 ZC を v2.0.0 にアップグレードします。<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200200.sql'
+          、日本語言語パックを v2.0.0 にアップグレードします。</p>
         <p class="texte"> このファイルには、この日本語言語パックのデータベースの変更と構成が含まれています。これには、テーブル
           order、address_book、customers にフリガナ、電話番号、FAX 番号、配達時間の新しいフィールドが追加され、テーブル
           product に寸法とバーコードのフィールドが追加されます。<br>
@@ -1041,19 +1055,12 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
         <p class="texte">データベース更新用の専用SQLファイルを提供します。</p>
         <p class="texte"><b>ZC 日本語言語パック v1.3.x から v2.0.0 に更新する</b>には、「sql」フォルダー内
           の提供されたファイルから SQL コマンドをインポートまたは実行します:</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          'mysql_japanese_zones_database_update_from_v1.5.8_to_v2.0.0.sql' </p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mysql_upgrade_zencart_200_JP.sql'
+          、まだ完了していない場合は、英語 ZC を v2.0.0 にアップグレードします。<br>
+          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;'mysql_japanese_zones_database_update_from_v1.5.8_to_v2.0.0.sql'
+          </p>
         <p class="title4">最後に：</p>
-        <p class="texte">ここで、「管理者 &gt; ローカリゼーション &gt; 言語」を通じて Zen Cart に<b>日本語を追
-            加する必要があります</b>。Zen
-          Cart内の新しい言語に必要なものはすべて設定されるため、これは管理インターフェイスを介して手動で行う必要があります。 </p>
-        <p class="texte">Name: Japanese<br>
-          Code: ja<br>
-          Image: icon.gif<br>
-          Directory: japanese<br>
-          Sort Order: 0</p>
-        <p class="texte">日本語をデフォルトとして設定します。 次に、ファイル '<b>orders_status_update.sql</b>'
-          ('sql' フォルダ内) で SQL クエリを<b>インポート/実行して</b>、注文ステータス テーブルを日本語で更新します。</p>
         <p class="texte">データベースをアップグレードするときは、デフォルト言語として日本語を設定したり、デフォルト通貨として日本円を設
           定したり、新しい税クラスや税率を追加したりするなど、いくつかの設定を行う必要があります。設定が希望通りであるかどうかを管理者に確認してくださ
           い。たとえば、3
@@ -1066,7 +1073,8 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
       <p class="title2">構成</p>
       <p class="texte">特定の構成のほとんどはインストール時に行われていますが、店舗の場所と郵便番号を設定し、配送モジュール用にいくつ
         かの 地域ゾーンを定義し、これらのモジュールと支払いモジュールも設定する必要があります。<br>
-        ここから始まる Zen Cart のドキュメントをご覧ください（英語）： <a href="https://docs.zen-cart.com/user/new_user_topics/"
+        ここから始まる Zen Cart のドキュメントをご覧ください（英語）： <a href="https://docs.zen-cart.com/user/new_user_topics/"
+
           title="Zen Cart Documentation" target="_blank">https://docs.zen-cart.com/user/new_user_topics/</a></p>
       <p class="texte"> </p>
       <p class="title3">モジュールの設定</p>
@@ -1085,16 +1093,21 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
         これら 2 つの配列 ('$a_pricerank' と '$a_dist_to_rank')
         を確認し、最終的に状況に合わせて設定する必要があります。
         残念ながら、ダウンロード可能な見積表を提供している配送会社はありませんが、オンラインで確認できます。<br>
-        ヤマト宅急便： <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+        ヤマト宅急便： <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
-        佐川急便発送： <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+        佐川急便発送： <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+
           title="佐川急便送料" target="_blank">https://www.sagawa-exp.co.jp/send/fare/attention.html</a><br>
-        日本郵便ゆうパック： <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+        日本郵便ゆうパック： <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+
           title="郵便胸腔ゆうパック" target="_blank">https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html</a><br>
-        日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
+        日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
+
           target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
         <br>
-        質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+        質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
       <p class="title3">管理言語</p>
       <p class="texte">Zen Cart
@@ -1106,21 +1119,25 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
       <p class="texte">'mysql_japanese_admin_menu.sql'<br>
         'mysql_english_admin_menu.sql'</p>
       <p class="title3">おすすめのプラグイン</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+
           title="Language/Currency Links in Header" target="_blank">Language/Currency
           Links in Header</a></p>
       <p class="texte"></p>
       <p class="texte">このプラグインは、多言語の Zen Cart に含まれている必要があります。
         ヘッダーに言語切り替えがあると、特にモバイル ディスプレイで非常に便利で実用的です。</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">これは、この言語パックに適合したこの素晴らしいテンプレートの日本語版です。 Zen Cart サイトのプラグイン
-        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ダウンロード</a>で
         きます。 携帯電話の画面では見栄えがします。<br>
       </p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+
           title="Postcode auto fill plugin part 1" target="_blank">Postcode auto
           fill</a></p>
       <p class="texte">このプラグインは、顧客がアカウント作成フォームまたは新しいアドレス
@@ -1128,7 +1145,8 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
         所が一致しない住所の不一致などのエラーを回避します。欠点は、郵便番号データベースが大きく、プラグインを 2
         つの部分に分割する必要があることです。PHP と MySQL が適切に設定されていない場合、phpMyAdmin を使用して MySQL
         に大きなファイルをインポートする場合にも問題が発生する可能性があります。</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+
           title="Image Handler 5" target="_blank">Image Handler 5 (Zen Cart
           1.5.7+)</a> </p>
       <p class="texte">このプラグインは、画像の自動サイズ変更、サムネイルのキャッシュなどを提供するハンドラーを追加することにより、
