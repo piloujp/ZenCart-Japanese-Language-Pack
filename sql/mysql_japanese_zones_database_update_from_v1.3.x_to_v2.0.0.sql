@@ -61,12 +61,20 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@jp_id,'沖縄
 # Update address book and zones to geo zones tables with new zones ids
 UPDATE address_book a JOIN japan_zones jz ON a.entry_zone_id = jz.zone_id AND a.entry_country_id = @jp_id JOIN zones z ON z.zone_name = jz.zone_name SET a.entry_zone_id = z.zone_id;
 UPDATE zones_to_geo_zones gz JOIN japan_zones jz ON gz.zone_id = jz.zone_id AND gz.zone_country_id = @jp_id JOIN zones z ON z.zone_name = jz.zone_name SET gz.zone_id = z.zone_id;
+
+# Update store zone
 UPDATE configuration cf JOIN japan_zones jz ON cf.configuration_value = jz.zone_id JOIN zones z ON z.zone_name = jz.zone_name SET cf.configuration_value = z.zone_id WHERE configuration_key = 'STORE_ZONE';
 
 # Delete temporary table
 DROP TABLE japan_zones;
 
+#Update address format (remove 様)
 UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname ' WHERE address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様';
+
+#Set units to Kg and cm
+UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
+UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
+
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
