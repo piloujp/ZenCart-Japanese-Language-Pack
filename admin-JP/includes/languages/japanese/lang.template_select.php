@@ -28,6 +28,9 @@ $define = [
     'TEXT_INFO_HEADING_NEW_TEMPLATE' => 'テンプレートを言語に連携',
     'TEXT_INFO_INSERT_INTRO' => '言語に対して連携させるテンプレートを以下から選択',
     'IMAGE_NEW_TEMPLATE' => '言語とテンプレートの連携を作成',
-];
+    'TEXT_CLOSE' => '閉じる',
+    'TEXT_VIEW_TEMPLATE_SETTINGS' => 'テンプレート設定の表示',
+    'TEXT_MODAL_HEADING_INTRO' => 'テンプレート設定：',
+    'ERROR_COULD_NOT_READ_FILE' => '申し訳ありませんが、ファイルを読み取れませんでした。',];
 
 return $define;
