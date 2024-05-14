@@ -12,6 +12,7 @@ $define = [
     'TEXT_ADMIN_PROFILE' => '管理グループ',
     'TEXT_CHOOSE_PROFILE' => '管理グループを選択',
     'TEXT_NO_USERS_FOUND' => '管理者は見つかりません',
+    'TEXT_PASS_LAST_CHANGED' => 'パスワードの最終変更日',
     'TEXT_CONFIRM_DELETE' => '削除する場合は確認を押してください。',
     'ERROR_NO_USER_DEFINED' => 'リクエストされたオプションは、ユーザーを指定せずに実行することはできません。',
     'ERROR_USER_MUST_HAVE_PROFILE' => '管理グループを設定して下さい。',
