@@ -68,7 +68,7 @@ class sagawa extends base {
      */
     public $sagawa_countries;
     /**
-     * $sagawa_countries_nbr is country number (107) Sagawa is shipping
+     * $sagawa_countries_nbr is country number Sagawa is shipping
      * @var array
      */
     public $sagawa_countries_nbr;
@@ -95,8 +95,9 @@ class sagawa extends base {
       $this->enabled = (MODULE_SHIPPING_SAGAWA_STATUS == 'True');
     }
 
-    $this->sagawa_countries = array(107 => 'JP');
-    $this->sagawa_countries_nbr = array(107);
+    $japan_id = zen_jp_country_id();
+    $this->sagawa_countries = array($japan_id => 'JP');
+    $this->sagawa_countries_nbr = array($japan_id);
 
     $this->update_status();
   }

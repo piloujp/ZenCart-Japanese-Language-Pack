@@ -68,7 +68,7 @@ class yamato extends base {
      */
     public $yamato_countries;
     /**
-     * $yamato_countries_nbr is country number (107) Yamato is shipping
+     * $yamato_countries_nbr is country number Yamato is shipping
      * @var array
      */
     public $yamato_countries_nbr;
@@ -95,8 +95,9 @@ class yamato extends base {
       $this->enabled = (MODULE_SHIPPING_YAMATO_STATUS == 'True');
     }
 
-    $this->yamato_countries = array(107 => 'JP');
-    $this->yamato_countries_nbr = array(107);
+    $japan_id = zen_jp_country_id();
+    $this->yamato_countries = array($japan_id => 'JP');
+    $this->yamato_countries_nbr = array($japan_id);
 
     $this->update_status();
   }

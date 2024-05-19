@@ -68,7 +68,7 @@ class yupack extends base {
      */
     public $yupack_countries;
     /**
-     * $yupack_countries_nbr is country number (107) Yupack is shipping
+     * $yupack_countries_nbr is country number Yupack is shipping
      * @var array
      */
     public $yupack_countries_nbr;
@@ -95,8 +95,9 @@ class yupack extends base {
       $this->enabled = (MODULE_SHIPPING_YUPACK_STATUS == 'True');
     }
 
-    $this->yupack_countries = array(107 => 'JP');
-    $this->yupack_countries_nbr = array(107);
+    $japan_id = zen_jp_country_id();
+    $this->yupack_countries = array($japan_id => 'JP');
+    $this->yupack_countries_nbr = array($japan_id);
 
     $this->update_status();
   }

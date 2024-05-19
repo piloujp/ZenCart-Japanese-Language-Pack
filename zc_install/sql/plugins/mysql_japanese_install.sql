@@ -72,7 +72,7 @@ ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
 # 住所に電話番号を追加、個人情報側からは電話番号削除
-ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32) NOT NULL;
+ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32);
 ALTER TABLE address_book ADD COLUMN entry_fax varchar(32);
 ALTER TABLE orders ADD COLUMN delivery_telephone varchar(32);
 ALTER TABLE orders ADD COLUMN delivery_fax varchar(32);
