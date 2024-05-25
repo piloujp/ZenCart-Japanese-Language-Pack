@@ -30,13 +30,14 @@
 #
 #####################################################
 
+#PROGRESS_FEEDBACK:!TEXT=Purging caches ...
 # Clear out active customer sessions. Truncating helps the database clean up behind itself.
 TRUNCATE TABLE whos_online;
 TRUNCATE TABLE db_cache;
 
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
-
+#PROGRESS_FEEDBACK:!TEXT=Backing up old zones ids.
 # Create a temporary table with old zones ids
 CREATE TABLE japan_zones (PRIMARY KEY (zone_id)) as SELECT zone_id, zone_code, zone_name FROM zones WHERE zone_country_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 # Change kanji names to romaji
@@ -45,6 +46,7 @@ UPDATE japan_zones jz JOIN japan_zones js ON jz.zone_code = js.zone_code AND js.
 # Delete old Japanese zones
 DELETE FROM zones WHERE zone_country_id = @japan_id;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating zones...
 #地域設定
 # Japan zones
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'北海道','Hokkaido');
@@ -105,7 +107,7 @@ UPDATE configuration cf JOIN japan_zones jz ON cf.configuration_value = jz.zone_
 # Delete temporary table
 DROP TABLE japan_zones;
 
-
+#PROGRESS_FEEDBACK:!TEXT=Updating database for kana entries...
 # カナを追加する
 ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NULL;
 ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NULL;
@@ -115,6 +117,7 @@ ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating invoice related data...
 # 住所に電話番号を追加、個人情報側からは電話番号削除
 ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32);
 ALTER TABLE address_book ADD COLUMN entry_fax varchar(32);
@@ -130,11 +133,13 @@ ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
+#PROGRESS_FEEDBACK:!TEXT=Updating address related data...
 #住所フォーマット
 SELECT IFNULL((SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%'), NULL) INTO @Formid;
 REPLACE INTO address_format (address_format_id, address_format, address_summary) VALUES (@formid, '〒$postcode$cr$state$city$streets$cr$lastname $firstname ', '$city $country');
 UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '〒%') WHERE countries_id = @japan_id;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating admin configuration...
 #単位を kg と cm に設定します
 UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
 UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
@@ -170,6 +175,7 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
+#PROGRESS_FEEDBACK:!TEXT=Updating admin menus to Japanese...
 # Japanese menus/submenus
 # 一般設定グループの翻訳
 UPDATE configuration_group SET configuration_group_title = 'ショップ全般の設定', configuration_group_description = 'ショップの一般的な項目を設定します。' WHERE  configuration_group_id = '1';
@@ -223,6 +229,7 @@ UPDATE configuration SET configuration_title = '送料にかかる税額の算�
 UPDATE configuration SET configuration_title = '税金の表示',  configuration_description = '合計額が0円でも税金を表示しますか?<br />0= オフ<br />1= オン' WHERE `configuration_key` = 'STORE_TAX_DISPLAY_STATUS';
 UPDATE configuration SET configuration_title = '税金の分割表示',  configuration_description = '税金が複数の種類があった場合、チェックアウトの際、別々に表示するかどうかを設定します。<br />・true = 税金を別々に表示<br />・false = 税金をまとめて表示' WHERE `configuration_key` = 'SHOW_SPLIT_TAX_CHECKOUT';
 UPDATE configuration SET configuration_title = '卸売価格', configuration_description = 'サイトで<em>卸売価格</em>を有効にする必要がありますか？この機能を有効にしたくない場合は、<b>false</b> (デフォルト) を選択します。 すべての卸売顧客に対して免税を有効にする場合は [<b>免税</b>] を選択するか、卸売顧客に対して通常どおり税金を適用する場合は [<b>価格設定のみ</b>] を選択します。' WHERE configuration_key = 'WHOLESALE_PRICING_CONFIG';
+UPDATE configuration SET configuration_title = 'MFA 多要素認証が必要です', configuration_description = '管理者ユーザーの二要素認証' WHERE configuration_key = 'MFA_ENABLED';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのセッションタイムアウトを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインセッションを、無通信時間 15分で期限切れにするよう求めています。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのパスワードルールを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインパスワードは、90日で変更しなければならず、過去4回以内に利用したパスワードと同じものは利用できません。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_PWD_EXPIRY_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSS Ajax 決済処理',  configuration_description = 'PA-DSSコンプライアンスでは、組込まれている支払プログラムによっては、注文最終確認画面内で ajax を利用する事が求めています。これはサイト内で番号を入力するタイプのクレジットカード決済のような特定の支払方法を利用している場合にのみ適用されます。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_AJAX_CHECKOUT';
@@ -410,7 +417,7 @@ UPDATE configuration SET configuration_title = '管理画面で設定キー(conf
 UPDATE configuration SET configuration_title = '出荷国名',  configuration_description = '配送料の計算に利用するための国名を選択します。' WHERE `configuration_key` = 'SHIPPING_ORIGIN_COUNTRY';
 UPDATE configuration SET configuration_title = 'ショップの郵便番号',  configuration_description = 'ショップの郵便番号を入力します。' WHERE `configuration_key` = 'SHIPPING_ORIGIN_ZIP';
 UPDATE configuration SET configuration_title = '一回の配送で配送可能な最大重量(kg)',  configuration_description = '一回の配送で可能な重量(kg)の最大値を設定します。例えば10kgに設定した状態でカートに30kgの商品があった場合、10kg × 3回の配送という形で処理されます。' WHERE `configuration_key` = 'SHIPPING_MAX_WEIGHT';
-UPDATE configuration SET configuration_title = '小・中パッケージの風袋 - 比率・重量',  configuration_description = '典型的な小・中パッケージの風袋(ふうたい：大きさと重量)を設定します。<br />例：<br>単位 = SHIPPING_WEIGHT_UNITS　（lbsまたはkgs）<br>10% + 1単位 10:1<br>10% + 0単位 10:0<br>0% + 5単位 0:5<br>0% + 0単位 0:0' WHERE `configuration_key` = 'SHIPPING_BOX_WEIGHT';
+UPDATE configuration SET configuration_title = '小・中パッケージの風袋 - 比率・重量',  configuration_description = '典型的な小・中パッケージの風袋(ふうたい：大きさと重量)を設定します。<br>例：<br>単位 = SHIPPING_WEIGHT_UNITS　（lbsまたはkgs）<br>10% + 1単位 10:1<br>10% + 0単位 10:0<br>0% + 5単位 0:5<br>0% + 0単位 0:0' WHERE `configuration_key` = 'SHIPPING_BOX_WEIGHT';
 UPDATE configuration SET configuration_title = '大型パッケージの風袋 - 大きさ・重量',  configuration_description = '大きなパッケージの風袋風袋(ふうたい：大きさと重量)を設定します。<br>例：<br>単位 = SHIPPING_WEIGHT_UNITS （lbsまたはkgs）<br>10% + 1単位 10:1<br>10% + 0単位 10:0<br>0% + 5単位 0:5<br>0% + 0単位 0:0' WHERE `configuration_key` = 'SHIPPING_BOX_PADDING';
 UPDATE configuration SET configuration_title = '出荷重量単位', configuration_description = '出荷モジュールは商品に設定された重量をどのように扱うべきですか？（ポンドを使用する場合は、1 オンス = 0.0625 を覚えておいてください。）。<b>注：正しい単位を視覚的に表示するには、言語ファイルを手動で更新する必要があります。</b>' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
 UPDATE configuration SET configuration_title = '出荷の寸法単位', configuration_description = 'ストアでは、商品の長さ、幅、高さのどの測定単位が保存されていますか?' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
@@ -557,10 +564,10 @@ UPDATE configuration SET configuration_title = '表示の整列順', configurati
 UPDATE configuration SET configuration_title = '低注文手数料を適用する', configuration_description = '低注文手数料を適用しますか?' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_LOW_ORDER_FEE';
 UPDATE configuration SET configuration_title = '最低注文の注文手数料', configuration_description = 'この金額未満の注文には、最低注文手数料を追加します。' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_ORDER_UNDER';
 UPDATE configuration SET configuration_title = '注文手数料', configuration_description = 'パーセンテージ計算の場合は、% を含めます。例： 10%<br />一律の金額の場合は、金額を入力するだけです - 例: $5.00 の場合は 5。' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_FEE';
-UPDATE configuration SET configuration_title = 'Attach Low Order Fee On Orders Made', configuration_description = 'Attach low order fee for orders sent to the set destination.' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_DESTINATION';
+UPDATE configuration SET configuration_title = '行われた注文に低額の注文手数料を適用する', configuration_description = '設定された宛先に送信される注文には、低額の注文手数料が適用されます。' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_DESTINATION';
 UPDATE configuration SET configuration_title = '税区分', configuration_description = '低注文手数料には、次の税区分を使用してください。' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_TAX_CLASS';
-UPDATE configuration SET configuration_title = 'No Low Order Fee on Virtual Products', configuration_description = 'Do not charge Low Order Fee when cart is Virtual Products Only' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_VIRTUAL';
-UPDATE configuration SET configuration_title = 'No Low Order Fee on Gift Vouchers', configuration_description = 'Do not charge Low Order Fee when cart is Gift Vouchers Only' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_GV';
+UPDATE configuration SET configuration_title = '仮想製品の注文手数料は低額ではありません', configuration_description = 'カートが仮想製品のみの場合、低額の注文手数料を請求しない' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_VIRTUAL';
+UPDATE configuration SET configuration_title = 'ギフト券には低価格の注文手数料はかかりません', configuration_description = 'カートがギフト券のみの場合、低額の注文手数料は請求されません' WHERE configuration_key = 'MODULE_ORDER_TOTAL_LOWORDERFEE_GV';
 UPDATE configuration SET configuration_title = '送料の表示',  configuration_description = '' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_SHIPPING_STATUS';
 UPDATE configuration SET configuration_title = '表示の整列順',  configuration_description = '表示の整列順を設定します。<br />数字が小さいほど上位に表示されます。' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_SHIPPING_SORT_ORDER';
 UPDATE configuration SET configuration_title = '送料無料設定',  configuration_description = '送料無料設定を有効にしますか?' WHERE `configuration_key` = 'MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING';
@@ -909,6 +916,9 @@ UPDATE product_type_layout SET configuration_title = '「質問する」ボタ�
 UPDATE product_type_layout SET configuration_title = '「質問する」ボタンを表示しますか？', configuration_description = '商品情報ページに「質問する」ボタンを表示しますか？（0 = 偽、1 = 真）' WHERE configuration_key = 'SHOW_DOCUMENT_PRODUCT_INFO_ASK_A_QUESTION';
 UPDATE product_type_layout SET configuration_title = '「質問する」ボタンを表示しますか？', configuration_description = '商品情報ページに「質問する」ボタンを表示しますか？（0 = 偽、1 = 真）' WHERE configuration_key = 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ASK_A_QUESTION';
 
+
+#PROGRESS_FEEDBACK:!TEXT=Finalizing ... Done!
+
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
@@ -918,5 +928,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_minor = '0.0', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '1.0', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+
+##### END OF UPGRADE SCRIPT

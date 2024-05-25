@@ -30,13 +30,14 @@
 #
 #####################################################
 
+#PROGRESS_FEEDBACK:!TEXT=Purging caches ...
 # Clear out active customer sessions. Truncating helps the database clean up behind itself.
 TRUNCATE TABLE whos_online;
 TRUNCATE TABLE db_cache;
 
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
-
+#PROGRESS_FEEDBACK:!TEXT=Backing up old zones ids.
 # Create a temporary table with old zones ids
 CREATE TABLE japan_zones (PRIMARY KEY (zone_id)) as SELECT zone_id, zone_code, zone_name FROM zones WHERE zone_country_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 # Change kanji names to romaji
@@ -45,6 +46,7 @@ UPDATE japan_zones jz JOIN japan_zones js ON jz.zone_code = js.zone_code AND js.
 # Delete old Japanese zones
 DELETE FROM zones WHERE zone_country_id = @japan_id;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating zones...
 #地域設定
 # Japan zones
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'北海道','Hokkaido');
@@ -105,7 +107,7 @@ UPDATE configuration cf JOIN japan_zones jz ON cf.configuration_value = jz.zone_
 # Delete temporary table
 DROP TABLE japan_zones;
 
-
+#PROGRESS_FEEDBACK:!TEXT=Updating database for kana entries...
 # カナを追加する
 ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NULL;
 ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NULL;
@@ -115,6 +117,7 @@ ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating invoice related data...
 # 住所に電話番号を追加、個人情報側からは電話番号削除
 ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32);
 ALTER TABLE address_book ADD COLUMN entry_fax varchar(32);
@@ -130,11 +133,13 @@ ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
+#PROGRESS_FEEDBACK:!TEXT=Updating address related data...
 #住所フォーマット
 SELECT IFNULL((SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%'), NULL) INTO @Formid;
 REPLACE INTO address_format (address_format_id, address_format, address_summary) VALUES (@formid, '〒$postcode$cr$state$city$streets$cr$lastname $firstname ', '$city $country');
 UPDATE countries SET address_format_id = (SELECT address_format_id from address_format WHERE address_format LIKE '〒%') WHERE countries_id = @japan_id;
 
+#PROGRESS_FEEDBACK:!TEXT=Updating admin configuration...
 #単位を kg と cm に設定します
 UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
 UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
@@ -170,6 +175,8 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
+#PROGRESS_FEEDBACK:!TEXT=Finalizing ... Done!
+
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
@@ -179,5 +186,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_minor = '0.0', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '1.0', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+
+##### END OF UPGRADE SCRIPT

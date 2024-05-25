@@ -12,6 +12,8 @@
 
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
 
+
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese zones...
 #地域設定
 # Japan zones
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'北海道','Hokkaido');
@@ -62,6 +64,7 @@ INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'宮
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'鹿児島県','Kagoshima');
 INSERT INTO zones (zone_country_id, zone_code, zone_name) VALUES (@japan_id,'沖縄県','Okinawa');
 
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese name reading
 # カナを追加する
 ALTER TABLE address_book ADD COLUMN entry_firstname_kana     varchar(32) NULL;
 ALTER TABLE address_book ADD COLUMN entry_lastname_kana      varchar(32) NULL;
@@ -71,6 +74,7 @@ ALTER TABLE orders       ADD COLUMN customers_name_kana      varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN delivery_name_kana       varchar(64) NULL;
 ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese invoice data
 # 住所に電話番号を追加、個人情報側からは電話番号削除
 ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32);
 ALTER TABLE address_book ADD COLUMN entry_fax varchar(32);
@@ -86,6 +90,7 @@ ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 #注文ステータス
 INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese address format
 #住所フォーマット
 INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname ', '$city $country');
 UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%') WHERE countries_id = @japan_id;
@@ -97,21 +102,24 @@ UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration
 #言語設定
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';
 
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese Yen as default currency
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
 UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='0.007031', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.006515', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.005544', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='0.009454', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='0.010766', last_updated = now() WHERE code='AUD';
+UPDATE currencies SET value='0.006684', last_updated = now() WHERE code='USD';
+UPDATE currencies SET value='0.006166', last_updated = now() WHERE code='EUR';
+UPDATE currencies SET value='0.005256', last_updated = now() WHERE code='GBP';
+UPDATE currencies SET value='0.009166', last_updated = now() WHERE code='CAD';
+UPDATE currencies SET value='0.010109', last_updated = now() WHERE code='AUD';
 
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese tax
 # 税金・税率設定
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
 INSERT INTO geo_zones (geo_zone_name, geo_zone_description, last_modified, date_added) VALUES ('日本', '日本（消費税）', now(), now());
 INSERT INTO zones_to_geo_zones (zone_country_id, geo_zone_id, last_modified, date_added) SELECT @japan_id, geo_zone_id, now(), now() FROM geo_zones WHERE geo_zone_name = '日本';
 INSERT INTO tax_rates (tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) SELECT ztg.association_id, tc.tax_class_id, '1', '10.0', '（内消費税：10%）', now(), now() FROM tax_class tc, zones_to_geo_zones ztg JOIN geo_zones gz ON ztg.geo_zone_id = gz.geo_zone_id WHERE tc.tax_class_title = '消費税' AND gz.geo_zone_name ='日本';
 
+#PROGRESS_FEEDBACK:!TEXT=Updating admin configuration
 #販売国
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key='STORE_COUNTRY';
 
@@ -125,6 +133,8 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
+#PROGRESS_FEEDBACK:!TEXT=Finalizing ... Done!
+
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
@@ -134,5 +144,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_minor = '0.0', project_version_comment = 'New Installation-v200 with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'New Installation-v200 with Japanese Pack v2.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '1.0', project_version_comment = 'New Installation-v210 with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'New Installation-v210 with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

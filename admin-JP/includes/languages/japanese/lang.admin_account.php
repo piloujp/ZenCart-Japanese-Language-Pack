@@ -9,6 +9,7 @@
 $define = [
     'HEADING_TITLE' => '管理者アカウント',
     'SUCCESS_PASSWORD_UPDATED' => 'パスワードを更新しました。',
+    'TEXT_PASS_LAST_CHANGED' => 'パスワードの最終変更',
 ];
 
 return $define;

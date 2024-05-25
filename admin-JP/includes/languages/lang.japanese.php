@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 May 21 Modified in v2.0.1 $
+ * @version $Id: piloujp 2024 May 25 Modified in v2.1.0-alpha1 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -460,6 +460,7 @@ $define = [
     'TEXT_BANNERS_BANNER_VIEWS' => 'バナー閲覧数',
     'TEXT_BOOLEAN_VALIDATE' => '値はブール値または同等である必要があります。',
     'TEXT_BUTTON_RESET_ACTIVITY_LOG' => '管理人のログ記録をリセットする。',
+    'TEXT_BUTTON_SET_UP' => '設定',
     'TEXT_CALL_FOR_PRICE' => '価格はお問い合わせください',
     'TEXT_CANCEL' => 'キャンセル',
     'TEXT_CATEGORIES_PRODUCTS' => '商品カテゴリを選択してください',
@@ -561,6 +562,21 @@ $define = [
     'TEXT_LETTERS_FREE' => ' 文字無料 ',
     'TEXT_LINKED_PRODUCTS' => 'リンクされた商品：',
     'TEXT_MASTER_CATEGORIES_ID' => '商品マスターカテゴリ：',
+    'TEXT_MFA_EMAIL_BODY' => "管理者のログイン確認コードは次のとおりです：\n\n%s\n\nこのコードは、IP アドレスを介して試行されたログイン用です：%s\n\nこれがあなたではない場合は、管理者パスワードをすぐに変更してください。",
+    'TEXT_MFA_EMAIL_SUBJECT' => '管理者ログイン認証コード',
+    'TEXT_MFA_ERROR' => '多要素認証のログイン検証を開始するときにエラーが発生しました',
+    'TEXT_MFA_ENTER_OTP_CODE' => '認証アプリから生成された 6 桁のコードを入力します。',
+    'TEXT_MFA_ENTER_OTP_EMAIL' => '電子メールアドレスに送信された、生成された6桁のコードを入力します。',
+    'TEXT_MFA_SCAN_QR_CODE' => 'このQRコードを認証アプリにスキャンし、生成された6桁のコードを以下に入力します。',
+    'TEXT_MFA_METHOD_EMAIL' => '電子メール（ログイン試行ごとにコードが電子メールで送信されます）',
+    'TEXT_MFA_METHOD_TOTP' => '認証アプリ経由のOTP（ワンタイム パスコード）',
+    'TEXT_MFA_STATUS' => '多要素認証<br>状態',
+    'TEXT_MFA_BY_EMAIL' => 'メールで',
+    'TEXT_MFA_BY_TOTP' => 'TOTP（時間ベースのワンタイムパスワード）',
+    'TEXT_MFA_ENABLED_DATE' => '%sから有効になりました',
+    'TEXT_MFA_EXEMPT' => '免除される',
+    'TEXT_MFA_NOT_SET' => 'まだアクティベートされていません',
+    'TEXT_MFA_DISABLED_FOR_SITE' => '機能が有効になっていません',
     'TEXT_MODEL' => '型番：',
     'TEXT_NEW_PRODUCT' => 'カテゴリ中の商品: &quot;%s&quot;',
     'TEXT_NO' => 'いいえ',
