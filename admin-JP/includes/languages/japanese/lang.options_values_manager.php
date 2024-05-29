@@ -14,7 +14,7 @@ $define = [
     'TABLE_TEXT_MAX_COUNT' => '最大ダウンロード回数:',
     'TEXT_WARNING_OF_DELETE' => 'このオプションにリンクされた商品・オプション値があります。削除するとエラーが出る可能性があります。',
     'TEXT_OK_TO_DELETE' => 'このオプションにリンクされた商品・オプション値はありません。削除可能です。',
-    'ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE' => '可能な複製オプション値が追加されました(Possible Duplicate Options Value Added)。',
+    'ATTRIBUTE_POSSIBLE_OPTIONS_VALUE_WARNING_DUPLICATE' => '重複する可能性のあるオプション値が追加されました：オプション名 "%3$s" の "<b>%1$s</b>" %2$s（値 ID：%4$s）',
     'TEXT_DOWNLOADS_DISABLED' => 'NOTE: ダウンロード機能オフ',
     'TABLE_TEXT_MAX_DAYS_SHORT' => 'ダウンロード期限:',
     'TABLE_TEXT_MAX_COUNT_SHORT' => 'ダウンロード可能回数:',
@@ -61,7 +61,7 @@ $define = [
     'ERROR_OPTION_VALUES_DELETE_MISMATCH' => 'エラー: 選択されたオプション名とオプション値が適合しません',
     'SUCCESS_OPTION_VALUES_DELETE' => '削除に成功しました： ',
     'LABEL_FILTER' => 'フィルタリングするオプション値を選択',
-    'TEXT_DISPLAY_NUMBER_OF_OPTION_VALUES' => '<b>%d</b> 件目から <b>%d</b> 件目を表示（全 <b>%d</b> 件のオプション値）',
+    'TEXT_DISPLAY_NUMBER_OF_OPTION_VALUES' => '<b>%1$d</b> 件目から <b>%2$d</b> 件目を表示（全 <b>%3$d</b> 件のオプション値）',
     'TEXT_SHOW_ALL' => 'すべて表示',
 ];
 

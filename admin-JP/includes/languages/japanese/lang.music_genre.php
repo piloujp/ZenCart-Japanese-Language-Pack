@@ -16,7 +16,7 @@ $define = [
     'TEXT_HEADING_NEW_MUSIC_GENRE' => '新しい音楽ジャンル',
     'TEXT_HEADING_EDIT_MUSIC_GENRE' => '音楽ジャンルを編集',
     'TEXT_HEADING_DELETE_MUSIC_GENRE' => '音楽ジャンルを削除',
-    'TEXT_DISPLAY_NUMBER_OF_MUSIC_GENRES' => '<strong>%d</strong> から <strong>%d</strong> までを表示 (全 <strong>%d</strong> 件)',
+    'TEXT_DISPLAY_NUMBER_OF_MUSIC_GENRES' => '<strong>%1$d</strong> から <strong>%2$d</strong> までを表示 (全 <strong>%3$d</strong> 件)',
     'TEXT_DELETE_PRODUCTS' => 'この音楽ジャンルと、これにリンクされている全てのアイテムを本当に削除しますか?',
     'TEXT_DELETE_WARNING_PRODUCTS' => '<b>警告:</b>  %s アイテムがこの音楽ジャンルにリンクされています!',
 ];

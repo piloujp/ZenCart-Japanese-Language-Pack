@@ -35,7 +35,7 @@ $define = [
     'TEXT_CLEANUP_ERROR' => 'ファイルの許可を確認してください。一部のディレクトリが削除されませんでした',
     'TEXT_UPGRADE_AVAILABLE' => 'アップグレードが可能です',
     'TEXT_VERSION_INSTALLED' => 'インストール済みバージョン：%s',
-    'TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' => '新しいバージョン %s は、<a target="_blank" href="https://www.zen-cart.com/downloads.php?do=file&id=%s">サポート フォーラム</a>からダウンロードできます。',
+    'TEXT_NEW_PLUGIN_DOWNLOAD_AVAILABLE' => '新しいバージョン%1$sは、<a target="_blank" href="https://www.zen-cart.com/downloads.php?do=file&id=%2$s">サポート フォーラム</a>からダウンロードできます。',
     'TEXT_CONFIRM_UNINSTALL' => '本当にこのプラグインをアンインストールしますか？',
     'TEXT_CONFIRM_UPGRADE' => '本当にこのプラグインをアップグレードしますか？',
     'TEXT_CONFIRM_DISABLE' => '本当にこのプラグインを無効にしますか？',

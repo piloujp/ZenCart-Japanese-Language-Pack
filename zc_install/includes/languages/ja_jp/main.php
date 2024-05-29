@@ -3,13 +3,13 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2 2024 Mar 10 Modified in v2.0.1 $
+ * @version $Id: pilou2 2024 May 29 Modified in v2.0.1 $
  */
 
 return [
 'META_TAG_TITLE' => 'Zen Cart&reg; インストーラ',
 'HTML_PARAMS' => 'dir="ltr" lang="ja"',
-'ZC_VERSION_STRING' => '%s v%s',
+'ZC_VERSION_STRING' => '%1$s v%2$s',
 'TEXT_PAGE_HEADING_INDEX' => 'システムチェック',
 'TEXT_INDEX_FATAL_ERRORS' => 'インストールを進める前に修正が必要な問題があります',
 'TEXT_INDEX_WARN_ERRORS' => 'その他の問題：',
@@ -73,7 +73,7 @@ return [
 'TEXT_LOADING_JAPANESE_ADMIN' => '日本語の管理者メニューの読み込み',
 'TEXT_LOADING_PLUGIN_DATA' => 'インストール済みプラグインのSQLを読み込んでいます',
 'TEXT_LOADING_PLUGIN_UPGRADES' => 'プラグインのアップグレードのための SQL のロード',
-'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'バージョン %sにアップデートできませんでした。現在のバージョンは v%sであり、先にバージョンを %s まで上げておく必要があります。',
+'TEXT_COULD_NOT_UPDATE_BECAUSE_ANOTHER_VERSION_REQUIRED' => 'バージョン %1$sにアップデートできませんでした。現在のバージョンは v%2$sであり、先にバージョンを %3$s まで上げておく必要があります。',
 'TEXT_PAGE_HEADING_ADMIN_SETUP' => '管理画面セットアップ',
 'TEXT_ADMIN_SETUP_USER_SETTINGS' => '管理者ユーザー設定',
 'TEXT_ADMIN_SETUP_USER_NAME' => 'Admin Superuser 管理者名：',
@@ -175,7 +175,7 @@ return [
 'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 データベースは最新のようです。 稼働中のライブサイトで作業していますか？ インストールを続行すると、現在のデータベースの内容が消去されます。 本当にインストールしてよろしいですか？',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => '複数の管理ディレクトリが存在するようです。古い管理ディレクトリを削除して [更新] をクリックするか、以下の正しい管理ディレクトリを選択して [更新] をクリックしてください。',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => '複数の管理画面ディレクトリが存在するようです。 古い管理画面ディレクトリを削除して[更新]をクリックするか、または下の正しい管理ディレクトリを選択して[更新]をクリックしてください。',
-'TEXT_ERROR_MYSQL_VERSION' => 'サーバー データベースが最小バージョンを満たしていません。 MySQL: %s または MariaDB: %s',
+'TEXT_ERROR_MYSQL_VERSION' => 'サーバー データベースが最小バージョンを満たしていません。 MySQL: %1$s または MariaDB: %2$s',
 'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムにエラーや警告は検出されませんでした。 インストールを続けることができます。',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%：データベースを検査し、現在のバージョンにアップグレードするために必要な手順 (新しいフィールドの追加/既存のフィールドの変更) を提供します。これは非破壊的なプロセスであることを目的としていますが、他のすべての変更と同様、続行する前にデータベースの検証済みのバックアップが利用可能であることを確認する必要があります。',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%：データベースを新しい状態に戻し、すべてのデータを削除します。オプションで、このプロセスの一部としてデモンストレーション データをロードすることもできます。',
@@ -251,9 +251,9 @@ return [
 'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => ' %s カラムを削除できません。対象が存在していません。',
 'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => ' %s カラムを変更できません。対象が存在していません。',
 'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'prod-type-layout configuration_key "%s" を追加できません。対象が既に存在しています。',
-'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'index %s （ %s テーブル）を削除できません。対象が存在していません。',
+'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'index %1$s （ %2$s テーブル）を削除できません。対象が存在していません。',
 'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => ' %s テーブルの primary key を削除できません。対象が存在していません。',
-'REASON_INDEX_ALREADY_EXISTS' => 'index %s を %s テーブルに追加できません。対象が既に存在しています。',
+'REASON_INDEX_ALREADY_EXISTS' => 'index %1$s を %2$s テーブルに追加できません。対象が既に存在しています。',
 'REASON_PRIMARY_KEY_ALREADY_EXISTS' => ' %s テーブルに primary key を追加できません。primary key は既に存在しています。',
 'REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS' => 'configuration_group_key "%s" は、すでに存在しているため追加できません',
 'REASON_CONFIG_GROUP_ID_ALREADY_EXISTS' => 'configuration_group_id "%s" は、すでに存在しているため追加できません',

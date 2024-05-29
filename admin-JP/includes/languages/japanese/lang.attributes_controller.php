@@ -83,7 +83,7 @@ $define = [
     'TEXT_DELETE_ALL_OPTIONS_FROM_PRODUCT' => '商品からすべてのオプションを削除',
     'TEXT_COPY_ALL_OPTIONS_TO_PRODUCT' => 'オプションを他の商品にコピーする',
     'TEXT_COPY_ALL_OPTIONS_TO_CATEGORY' => 'カテゴリ内の全ての商品にオプションをコピーする',
-    'TEXT_DISPLAY_NUMBER_OF_ATTRIBUTES' => '<b>%d</b> から <b>%d</b> まで(全 <b>%d</b> 件のオプション)',
+    'TEXT_DISPLAY_NUMBER_OF_ATTRIBUTES' => '<b>%1$d</b> から <b>%2$d</b> まで(全 <b>%3$d</b> 件のオプション)',
 ];
 
 return $define;

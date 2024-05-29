@@ -27,7 +27,7 @@ $define = [
     'TABLE_HEADING_TRANS_ID' => '処理ID',
     'TABLE_HEADING_PENDING_REASON' => '保留事由',
     'TEXT_INFO_PAYPAL_IPN_HEADING' => 'PayPal IPN',
-    'TEXT_DISPLAY_PAYPAL_IPN_NUMBER_OF_TX' => '<b>%d</b> 件目から <b>%d</b> 件目を表示 (全 <b>%d</b> 件の取引)',
+    'TEXT_DISPLAY_PAYPAL_IPN_NUMBER_OF_TX' => '<b>%1$d</b> 件目から <b>%2$d</b> 件目を表示 (全 <b>%3$d</b> 件の取引)',
 ];
 
 return $define;

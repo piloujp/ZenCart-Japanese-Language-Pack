@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
+ * @version $Id: piloujp 2024 May 29 Modified in v2.0.1 $
 */
 
 $define = [
@@ -81,8 +81,8 @@ $define = [
     'DISCOUNT_TYPE_FROM_DROPDOWN_1' => '特価',
     'TEXT_UPDATE_COMMIT' => '現在表示されている内容で確定する',
     'TEXT_PRODUCTS_TAX_CLASS' => '税種別:',
-    'TEXT_INFO_MASTER_CATEGORIES_ID_WARNING' => '<strong>警告：</strong> 商品のマスターカテゴリID# %s は現在のカテゴリID# %s と一致しておらず、商品はリンクされていません!',
-    'TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT' => 'マスターカテゴリID# %sを現在のカテゴリID# %sと一致させる',
+    'TEXT_INFO_MASTER_CATEGORIES_ID_WARNING' => '<strong>警告：</strong> 商品のマスターカテゴリID# %1$sは現在のカテゴリID# %2$sと一致しておらず、商品はリンクされていません!',
+    'TEXT_INFO_MASTER_CATEGORIES_ID_UPDATE_TO_CURRENT' => 'マスターカテゴリID# %1$sを現在のカテゴリID# %2$sと一致させる',
     'PRODUCT_WARNING_UPDATE' => '必要な変更を行ったら「更新」ボタンで確定してください。',
     'PRODUCT_UPDATE_SUCCESS' => '商品情報の更新に成功!',
     'PRODUCT_WARNING_UPDATE_CANCEL' => '変更はキャンセルされ、保存されませんでした...',

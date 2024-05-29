@@ -18,7 +18,7 @@ $define = [
     'TEXT_EXTENSION' => '拡張子: ',
     'TEXT_NEW_INTRO' => '新しいメディアフォーマットについて情報を入力してください。',
     'TEXT_DELETE_INTRO' => 'このメディアフォーマットを本当に削除しますか?',
-    'TEXT_DISPLAY_NUMBER_OF_MEDIA_TYPES' => '<strong>%d</strong> から <strong>%d</strong>　までを表示 (全 <strong>%d</strong> 件)',
+    'TEXT_DISPLAY_NUMBER_OF_MEDIA_TYPES' => '<strong>%1$d</strong> から <strong>%2$d</strong>　までを表示 (全 <strong>%3$d</strong> 件)',
 ];
 
 return $define;

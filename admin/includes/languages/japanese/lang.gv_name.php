@@ -7,9 +7,9 @@
 */
 
 $define = [
-    'TEXT_GV_NAME' => 'Gift Certificate',
-    'TEXT_GV_NAMES' => 'Gift Certificates',
-    'TEXT_GV_REDEEM' => 'Redemption Code',
+    'TEXT_GV_NAME' => 'ギフト券',
+    'TEXT_GV_NAMES' => 'ギフト券',
+    'TEXT_GV_REDEEM' => '引換コード',
 ];
 
 return $define;

@@ -21,13 +21,13 @@ $define = [
     'TEXT_HTML_MESSAGE' => 'HTML Message:',
     'TEXT_MESSAGE' => 'Text-Only Message:',
     'TEXT_MESSAGE_INFO' => '<p>Optionally include a specific message, inserted prior to the standard ' . '%%TEXT_GV_NAME%%' . ' email text.</p>',
-    'NOTICE_EMAIL_SENT_TO' => 'Notice: %1s email(s) sent to %2s',
+    'NOTICE_EMAIL_SENT_TO' => 'Notice: %1$s email(s) sent to %2$s',
     'ERROR_NO_CUSTOMER_SELECTED' => 'Error: No Customer selected.',
     'ERROR_NO_AMOUNT_ENTERED' => 'Error: Certificate Value invalid.',
     'ERROR_NO_SUBJECT' => 'Error: no Email Subject entered.',
-    'TEXT_GV_ANNOUNCE' => 'We\'re pleased to offer you a ' . '%%TEXT_GV_NAME%%' . ' for %s.',
-    'TEXT_GV_TO_REDEEM_TEXT' => 'Use the following link to redeem the ' . '%%TEXT_GV_NAME%%' . "\n\n " . '%1$s%2$s' . "\n\n" . 'or visit ' . STORE_NAME . " at " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . 'and enter the code %2$s on the Checkout-Payment page.',
-    'TEXT_GV_TO_REDEEM_HTML' => '<a href="%1$s%2$s">Click here to redeem the ' . '%%TEXT_GV_NAME%%' . '</a> or visit <a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> and enter the code <strong>%2$s</strong> on the Checkout-Payment page.',
+    'TEXT_GV_ANNOUNCE' => '大切なお客様であるあなたに、%sの' . '%%TEXT_GV_NAME%%' . 'を贈ります。',
+    'TEXT_GV_TO_REDEEM_TEXT' => '以下のリンクから' . '%%TEXT_GV_NAME%%' . "\n\n ". '%1$s%2$s' . "\n\n" . 'の引換を行うか、' . STORE_NAME . " URL: " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . ' でのお支払い手続きページで、ギフト券引換コード %2$s を入力してご利用ください。',
+    'TEXT_GV_TO_REDEEM_HTML' => '<a href="%1$s%2$s">ここをクリックしてギフト券を引換' . '%%TEXT_GV_NAME%%' . '</a> するか、<a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> でのお支払い手続きページでギフト券引換コード <strong>%2$s</strong> を入力してご利用ください。',
 ];
 
 return $define;

@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
+ * @version $Id: piloujp 2024 May 29 Modified in v2.0.1 $
 */
 
 $define = [
@@ -32,7 +32,7 @@ $define = [
     'TABLE_HEADING_PAGE_IS_SSL' => 'ページはSSLです:',
     'TABLE_HEADING_PAGE_IS_VISIBLE' => 'ページを表示:',
     'TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION' => ' ヘッダやフッタ、サイドボックスに表示しなくても、ページ自体は表示します。<br>(「ページを表示」や「ヘッダ」「フッター」「サイドボックス」を全て"いいえ"に設定した場合、直接URLを指定してアクセスがあった場合には「ページが見つかりません」になります)',
-    'TEXT_DISPLAY_NUMBER_OF_PAGES' => ' <b>%d</b> から <b>%d</b> を表示(<b>%d</b> ページ中)',
+    'TEXT_DISPLAY_NUMBER_OF_PAGES' => ' <b>%1$d</b> から <b>%2$d</b> を表示(<b>%3$d</b> ページ中)',
     'IMAGE_NEW_PAGE' => '新規ページ',
     'TEXT_INFO_PAGES_ID' => 'ID: ',
     'TEXT_INFO_PAGES_ID_SELECT' => 'ページを選択 ...',

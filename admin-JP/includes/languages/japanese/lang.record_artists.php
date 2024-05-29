@@ -19,7 +19,7 @@ $define = [
     'TEXT_HEADING_NEW_RECORD_ARTIST' => '新しいアーティスト',
     'TEXT_HEADING_EDIT_RECORD_ARTIST' => 'アーティストを追加',
     'TEXT_HEADING_DELETE_RECORD_ARTIST' => 'アーティストを削除',
-    'TEXT_DISPLAY_NUMBER_OF_ARTISTS' => ' <strong>%d</strong> から <strong>%d</strong> までを表示 ( 全<strong>%d</strong> 件)',
+    'TEXT_DISPLAY_NUMBER_OF_ARTISTS' => ' <strong>%1$d</strong> から <strong>%2$d</strong> までを表示 ( 全<strong>%3$d</strong> 件)',
     'TEXT_DELETE_PRODUCTS' => 'このアーチストと、このアーティストにリンクされている全てのアイテムを削除しますか?',
     'TEXT_DELETE_WARNING_PRODUCTS' => '<b>警告：</b> このアーティストに対して、まだ %s 件のアイテムがリンクされています！',
 ];

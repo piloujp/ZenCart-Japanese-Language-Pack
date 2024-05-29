@@ -19,7 +19,7 @@ $define = [
     'TEXT_HEADING_NEW_RECORD_COMPANY' => '新しいレコード会社',
     'TEXT_HEADING_EDIT_RECORD_COMPANY' => 'レコード会社を編集する',
     'TEXT_HEADING_DELETE_RECORD_COMPANY' => 'レコード会社を削除する',
-    'TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES' => ' <strong>%d</strong> から <strong>%d</strong> までを表示 ( 全<strong>%d</strong> 件)',
+    'TEXT_DISPLAY_NUMBER_OF_RECORD_COMPANIES' => ' <strong>%1$d</strong> から <strong>%2$d</strong> までを表示 ( 全<strong>%3$d</strong> 件)',
     'TEXT_DELETE_PRODUCTS' => 'このレコード会社と、このレコード会社に関連付けられているすべてのアイテムを本当に削除しますか?',
     'TEXT_DELETE_WARNING_PRODUCTS' => '<b>警告:</b> このレコード会社に関連付けられているアイテムが %s あります',
 ];

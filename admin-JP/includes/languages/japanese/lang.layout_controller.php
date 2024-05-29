@@ -43,7 +43,7 @@ $define = [
     'TEXT_GOOD_BOX' => ' ',
     'TEXT_BAD_BOX' => '<font color="ff0000"><b>見つかりません！！</b></font><br>',
     'SUCCESS_BOX_DELETED' => 'ボックステンプレートの削除に成功しました。: ',
-    'SUCCESS_BOX_RESET' => 'ボックステンプレートをデフォルトの設定に戻しました。: ',
+    'SUCCESS_BOX_RESET' => '[%1$s] の設定は [%2$s] の現在の設定にリセットされました。',
     'SUCCESS_BOX_UPDATED' => 'ボックス設定の更新に成功しました。: ',
     'TEXT_ON' => ' オン ',
     'TEXT_OFF' => ' オフ ',
