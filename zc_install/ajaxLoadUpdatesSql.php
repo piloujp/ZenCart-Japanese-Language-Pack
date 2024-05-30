@@ -34,6 +34,7 @@ $updateList = [
     '2.0.0' => ['required' => '1.5.8'],
     '2.0.0200' => ['required' => '2.0.0'],
     '2.1.0' => ['required' => '2.0.0'],
+    '2.1.0200' => ['required' => '2.1.0'],
 ];
 
 $systemChecker = new systemChecker();

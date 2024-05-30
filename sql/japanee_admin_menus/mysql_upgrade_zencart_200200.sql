@@ -229,7 +229,6 @@ UPDATE configuration SET configuration_title = '送料にかかる税額の算�
 UPDATE configuration SET configuration_title = '税金の表示',  configuration_description = '合計額が0円でも税金を表示しますか?<br />0= オフ<br />1= オン' WHERE `configuration_key` = 'STORE_TAX_DISPLAY_STATUS';
 UPDATE configuration SET configuration_title = '税金の分割表示',  configuration_description = '税金が複数の種類があった場合、チェックアウトの際、別々に表示するかどうかを設定します。<br />・true = 税金を別々に表示<br />・false = 税金をまとめて表示' WHERE `configuration_key` = 'SHOW_SPLIT_TAX_CHECKOUT';
 UPDATE configuration SET configuration_title = '卸売価格', configuration_description = 'サイトで<em>卸売価格</em>を有効にする必要がありますか？この機能を有効にしたくない場合は、<b>false</b> (デフォルト) を選択します。 すべての卸売顧客に対して免税を有効にする場合は [<b>免税</b>] を選択するか、卸売顧客に対して通常どおり税金を適用する場合は [<b>価格設定のみ</b>] を選択します。' WHERE configuration_key = 'WHOLESALE_PRICING_CONFIG';
-UPDATE configuration SET configuration_title = 'MFA 多要素認証が必要です', configuration_description = '管理者ユーザーの二要素認証' WHERE configuration_key = 'MFA_ENABLED';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのセッションタイムアウトを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインセッションを、無通信時間 15分で期限切れにするよう求めています。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_ADMIN_SESSION_TIMEOUT_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSSセキュリティ基準でのパスワードルールを強制しますか？',  configuration_description = 'PA-DSSコンプライアンスでは全ての管理画面に対するログインパスワードは、90日で変更しなければならず、過去4回以内に利用したパスワードと同じものは利用できません。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_PWD_EXPIRY_ENFORCED';
 UPDATE configuration SET configuration_title = 'PA-DSS Ajax 決済処理',  configuration_description = 'PA-DSSコンプライアンスでは、組込まれている支払プログラムによっては、注文最終確認画面内で ajax を利用する事が求めています。これはサイト内で番号を入力するタイプのクレジットカード決済のような特定の支払方法を利用している場合にのみ適用されます。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。' WHERE `configuration_key` = 'PADSS_AJAX_CHECKOUT';
@@ -345,7 +344,7 @@ UPDATE configuration SET configuration_title = 'おすすめ商品 - 画像の�
 UPDATE configuration SET configuration_title = '全商品一覧 - 画像の幅',  configuration_description = 'デフォルト = 100' WHERE `configuration_key` = 'IMAGE_PRODUCT_ALL_LISTING_WIDTH';
 UPDATE configuration SET configuration_title = '全商品一覧 - 画像の高さ',  configuration_description = 'デフォルト = 80' WHERE `configuration_key` = 'IMAGE_PRODUCT_ALL_LISTING_HEIGHT';
 UPDATE configuration SET configuration_title = '商品画像 - 画像がない場合のNo Image画像',  configuration_description = '「No Image」画像を自動的に表示するかどうかを設定します。<br />・0= オフ<br />・1= オン<br />' WHERE `configuration_key` = 'PRODUCTS_IMAGE_NO_IMAGE_STATUS';
-UPDATE configuration SET configuration_title = '商品画像 - No Image画像の指定',  configuration_description = '商品画像がない場合に表示するNo Image画像を設定します。<br />Default = no_picture.gif' WHERE `configuration_key` = 'PRODUCTS_IMAGE_NO_IMAGE';
+UPDATE configuration SET configuration_title = '商品画像 - No Image画像の指定',  configuration_description = '商品画像がない場合に表示するNo Image画像を設定します。<br />デフォルト = no_picture.gif' WHERE `configuration_key` = 'PRODUCTS_IMAGE_NO_IMAGE';
 UPDATE configuration SET configuration_title = '商品画像 - 商品・カテゴリでプロポーショナルな画像を使う',  configuration_description = '商品情報・カテゴリでプロポーショナルな画像を使いますか?<br />注意：プロポーショナル画像には高さ・横幅とも"0"(ピクセル)を指定しないでください。<br />0= オフ 1= オン' WHERE `configuration_key` = 'PROPORTIONAL_IMAGES_STATUS';
 UPDATE configuration SET configuration_title = '(メール用)敬称表示(Mr. or Ms)',  configuration_description = '顧客のアカウント作成の際、メール用の敬称(Mr. or Ms) を表示するかどうかを設定します。' WHERE `configuration_key` = 'ACCOUNT_GENDER';
 UPDATE configuration SET configuration_title = '生年月日',  configuration_description = '顧客のアカウント作成の際、「生年月日」の欄を表示するかどうかを設定します。<br />注意: 不要な場合はfalseに、必要な場合はtrueを指定してください。' WHERE `configuration_key` = 'ACCOUNT_DOB';
@@ -928,7 +927,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_minor = '1.0', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '0.1', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '0.0200', project_version_comment = 'Version Update with Japanese Pack v2.0.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
 
 ##### END OF UPGRADE SCRIPT
