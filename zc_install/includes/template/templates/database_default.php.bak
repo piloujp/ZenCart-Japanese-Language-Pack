@@ -78,7 +78,7 @@
         <label class="inline" for="demoData"><a href="#" class="hasHelpText" id="DEMODATA"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO; ?></a></label>
       </div>
       <div class="small-9 columns">
-        <input type="checkbox" name="demoData" id="demoData" tabindex="6" <?php echo $install_demo_data ? 'checked' : ''; ?>><label class="inline" for="demoData"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION; ?></label>
+        <input type="checkbox" name="demoData" id="demoData" tabindex="5" <?php echo $install_demo_data ? 'checked' : ''; ?>><label class="inline" for="demoData"><?php echo TEXT_DATABASE_SETUP_LOAD_DEMO_DESCRIPTION; ?></label>
       </div>
     </div>
   </fieldset>

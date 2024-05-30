@@ -918,8 +918,6 @@ UPDATE product_type_layout SET configuration_title = '「質問する」ボタ�
 UPDATE product_type_layout SET configuration_title = '「質問する」ボタンを表示しますか？', configuration_description = '商品情報ページに「質問する」ボタンを表示しますか？（0 = 偽、1 = 真）' WHERE configuration_key = 'SHOW_PRODUCT_FREE_SHIPPING_INFO_ASK_A_QUESTION';
 
 
-#PROGRESS_FEEDBACK:!TEXT=Finalizing ... Done!
-
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table

@@ -820,5 +820,5 @@ INSERT INTO project_version_history (project_version_key, project_version_major,
 SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
 FROM project_version;
 
-UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v200', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = @prec_minor_version_db, project_version_comment = 'Uninstall Japanese Language Pack v200', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v201', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = @prec_minor_version_db, project_version_comment = 'Uninstall Japanese Language Pack v201', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

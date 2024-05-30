@@ -267,8 +267,6 @@ UPDATE email_archive SET email_html=REPLACE(email_html, 'src=', '_src_') WHERE e
 UPDATE email_archive SET email_html=REPLACE(email_html, '<script', '_scrpt_') WHERE email_html LIKE '%<script%';
 
 
-#PROGRESS_FEEDBACK:!TEXT=Finalizing ... Done!
-
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
