@@ -95,7 +95,7 @@ class sagawa extends base {
       $this->enabled = (MODULE_SHIPPING_SAGAWA_STATUS == 'True');
     }
 
-    $japan_id = zen_jp_country_id();
+    $japan_id = zen_country_iso_to_id('JP');
     $this->sagawa_countries = array($japan_id => 'JP');
     $this->sagawa_countries_nbr = array($japan_id);
 

@@ -516,7 +516,7 @@ function zen_js_zone_list(string $country, string $form, string $field) {
             $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
         }
 
-		if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_jp_country_id()) {
+		if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_country_iso_to_id('JP')) {
 			$sql = "SELECT zone_id, zone_code AS zone_name
 					FROM " . TABLE_ZONES . "
 					WHERE zone_country_id =  " . (int)$countries->fields['zone_country_id'] . "

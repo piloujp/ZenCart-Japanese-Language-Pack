@@ -95,7 +95,7 @@ class yamato extends base {
       $this->enabled = (MODULE_SHIPPING_YAMATO_STATUS == 'True');
     }
 
-    $japan_id = zen_jp_country_id();
+    $japan_id = zen_country_iso_to_id('JP');
     $this->yamato_countries = array($japan_id => 'JP');
     $this->yamato_countries_nbr = array($japan_id);
 

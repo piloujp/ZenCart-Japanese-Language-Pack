@@ -67,39 +67,40 @@
       if (MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true') {
         //check if payment method is PayPal.
         if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'paypalwpp') {
-       	switch ($orderTotal) {
-			case ($orderTotal <= 300000):
-			if ($order->delivery['country']['id'] == zen_jp_country_id()) {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100));
-			} else {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));}
-				break;
-			case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
-			if ($order->delivery['country']['id'] == zen_jp_country_id()) {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE3000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE3000JP/100));
-			} else {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE3000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE3000/100));}
-				break;
-			case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
-			if ($order->delivery['country']['id'] == zen_jp_country_id()) {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100));
-			} else {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100));}
-				break;
-			case ($orderTotal > 10000000):
-			if ($order->delivery['country']['id'] == zen_jp_country_id()) {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE100000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE100000JP/100));
-			} else {
-				$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE100000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE100000/100));}
-				break;
-			default:
-			$paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));
-			break;
-		}
-           $order->info['total'] += $paypal_cost;
-        $this->output[] = array('title' => $this->title . ':',
-                                  'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
-                                  'value' => $paypal_cost);
+            $japan_id = zen_country_iso_to_id('JP');
+            switch ($orderTotal) {
+                case ($orderTotal <= 300000):
+                if ($order->delivery['country']['id'] == $japan_id) {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100));
+                } else {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));}
+                    break;
+                case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
+                if ($order->delivery['country']['id'] == $japan_id) {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE3000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE3000JP/100));
+                } else {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE3000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE3000/100));}
+                    break;
+                case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
+                if ($order->delivery['country']['id'] == $japan_id) {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100));
+                } else {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100));}
+                    break;
+                case ($orderTotal > 10000000):
+                if ($order->delivery['country']['id'] == $japan_id) {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE100000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE100000JP/100));
+                } else {
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE100000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE100000/100));}
+                    break;
+                default:
+                $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));
+                break;
+            }
+            $order->info['total'] += $paypal_cost;
+            $this->output[] = array('title' => $this->title . ':',
+                                      'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
+                                      'value' => $paypal_cost);
         }
       }
     }

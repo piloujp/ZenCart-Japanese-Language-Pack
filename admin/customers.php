@@ -165,7 +165,7 @@ if (!empty($action)) {
             if (ACCOUNT_STATE === 'true') {
                 $entry_state_has_zones = count(zen_get_country_zones($entry_country_id)) > 0;
                 if ($entry_state_has_zones) {
-					if ($_SESSION['language'] == "japanese" && $entry_country_id == zen_jp_country_id()) {
+					if ($_SESSION['language'] == "japanese" && $entry_country_id == zen_country_iso_to_id('JP')) {
                     $zone_query = $db->Execute(
                         "SELECT zone_id
                            FROM " . TABLE_ZONES . "

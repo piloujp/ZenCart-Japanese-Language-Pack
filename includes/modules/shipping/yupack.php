@@ -95,7 +95,7 @@ class yupack extends base {
       $this->enabled = (MODULE_SHIPPING_YUPACK_STATUS == 'True');
     }
 
-    $japan_id = zen_jp_country_id();
+    $japan_id = zen_country_iso_to_id('JP');
     $this->yupack_countries = array($japan_id => 'JP');
     $this->yupack_countries_nbr = array($japan_id);
 

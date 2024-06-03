@@ -124,7 +124,7 @@ function zen_get_country_zones(int|string $country_id): array
 {
     global $db;
     $zones_array = array();
-	if ($_SESSION['language'] == "japanese" && $country_id == zen_jp_country_id()) {
+	if ($_SESSION['language'] == "japanese" && $country_id == zen_country_iso_to_id('JP')) {
 		$zones = $db->Execute("SELECT zone_id, zone_code, zone_name
 							FROM " . TABLE_ZONES . "
 							WHERE zone_country_id = " . (int)$country_id . "
@@ -163,7 +163,7 @@ function zen_get_country_zones(int|string $country_id): array
 function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-	$zone_var_name = ($_SESSION['language'] == "japanese" && $country_id == zen_jp_country_id()) ? 'zone_code' : 'zone_name';
+	$zone_var_name = ($_SESSION['language'] == "japanese" && $country_id == zen_country_iso_to_id('JP')) ? 'zone_code' : 'zone_name';
     $sql = "SELECT " . $zone_var_name . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
@@ -188,7 +188,7 @@ function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone 
 function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-	$zone_var_code = ($_SESSION['language'] != "japanese" && $country_id == zen_jp_country_id()) ? 'zone_name' : 'zone_code';
+	$zone_var_code = ($_SESSION['language'] != "japanese" && $country_id == zen_country_iso_to_id('JP')) ? 'zone_name' : 'zone_code';
     $sql = "SELECT " . $zone_var_code . "
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
