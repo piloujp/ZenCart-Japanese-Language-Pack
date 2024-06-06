@@ -58,7 +58,6 @@ $define = [
     'EMAIL_TEXT_STATUS_UPDATED' => 'ご注文状況は次のようになっております。:' . "\n",
     'EMAIL_TEXT_STATUS_LABEL' => '<strong>現在の受付状況:</strong> %s' . "\n\n",
     'EMAIL_TEXT_STATUS_PLEASE_REPLY' => 'ご質問などがございましたら、このメールにご返信ください。' . "\n",
-    'ERROR_ORDER_DOES_NOT_EXIST' => 'エラー: 注文が存在しません。',
     'SUCCESS_ORDER_UPDATED' => '成功: 注文状態が更新されました。',
     'WARNING_ORDER_NOT_UPDATED' => '警告: 注文状態は何も更新されませんでした。',
     'TEXT_INFO_ATTRIBUTE_FREE' => '&nbsp;-&nbsp;<span class="alert">無料</span>',
