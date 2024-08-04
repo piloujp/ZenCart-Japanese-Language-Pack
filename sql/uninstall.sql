@@ -54,6 +54,7 @@ UPDATE configuration SET configuration_value = 'false', last_modified = now() WH
 UPDATE configuration SET configuration_value = '223', last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'false', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
+/*
 UPDATE configuration_group SET configuration_group_title = 'My Store', configuration_group_description = 'General information about my store' WHERE configuration_group_id = 1 AND configuration_group_title RLIKE '[一-龠]+';
 UPDATE configuration_group SET configuration_group_title = 'Minimum Values', configuration_group_description = 'The minimum values for functions / data' WHERE configuration_group_id = 2 AND configuration_group_title RLIKE '[一-龠]+';
 UPDATE configuration_group SET configuration_group_title = 'Maximum Values', configuration_group_description = 'The maximum values for functions / data' WHERE configuration_group_id = 3 AND configuration_group_title RLIKE '[一-龠]+';
@@ -639,6 +640,7 @@ UPDATE configuration SET configuration_title = 'global auth key', configuration_
 UPDATE configuration SET configuration_title = 'Convert currencies for Text emails', configuration_description = 'What currency conversions do you need for Text emails?<br />Example = &amp;pound;,&pound;:&amp;euro;,&euro;' WHERE configuration_key = 'CURRENCIES_TRANSLATIONS';
 UPDATE configuration SET configuration_title = 'Use root path for cookie path', configuration_description = 'Normally Zen Cart will use the directory that a store resides in as the cookie path. This can cause problems with some servers. This setting allows you to set the cookie path to the root of the server, rather than the store directory. It should only be used if you have problems with sessions. <strong>Default Value = False</strong><br><br><strong>Changing this setting may mean you have problems logging into your admin, you should clear your browser cookies to overcome this.</strong>' WHERE configuration_key = 'SESSION_USE_ROOT_COOKIE_PATH';
 UPDATE configuration SET configuration_title = 'Add period prefix to cookie domain', configuration_description = 'Normally Zen Cart will add a period prefix to the cookie domain, e.g.  .www.mydomain.com. This can sometimes cause problems with some server configurations. If you are having session problems you may want to try setting this to False. <strong>Default Value = True</strong>' WHERE configuration_key = 'SESSION_ADD_PERIOD_PREFIX';
+*/
 
 UPDATE product_types SET type_name = 'Product - General' WHERE type_handler = 'product';
 UPDATE product_types SET type_name = 'Product - Music' WHERE type_handler = 'product_music';

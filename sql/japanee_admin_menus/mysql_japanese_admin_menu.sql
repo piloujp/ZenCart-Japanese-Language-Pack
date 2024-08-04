@@ -1,3 +1,4 @@
+/*
 # 一般設定グループの翻訳
 UPDATE configuration_group SET configuration_group_title = 'ショップ全般の設定', configuration_group_description = 'ショップの一般的な項目を設定します。' WHERE  configuration_group_id = '1';
 UPDATE configuration_group SET configuration_group_title = '最小値の設定', configuration_group_description = '機能・データ類の最小(少)値について設定します。' WHERE  configuration_group_id = '2';
@@ -585,7 +586,7 @@ UPDATE configuration SET configuration_title = 'グローバル認証キー',  c
 UPDATE configuration SET configuration_title = 'テキストメールでの貨幣の変換',  configuration_description = 'テキスト形式のメールに、どんな貨幣の変換が必要ですか?<br />Default = &pound;,￡:&euro;,EUR' WHERE `configuration_key` = 'CURRENCIES_TRANSLATIONS';
 UPDATE configuration SET configuration_title = 'ルートパスを cookieのパスにする',  configuration_description = '通常、Zencart はインストールされいてるディレクトリを cookie のパスとして利用します。しかし、サーバーの中にはそれでは問題が発生するケースが有ります。この設定項目では cookie のパスをショップのディレクトリではなく、サーバーのルートに設定できます。セッションで問題が発生する場合にのみ利用してください。　デフォルトは False(利用しない）です。<br />この設定を変更するということは、管理画面へのログインに問題が発生していることを意味しますので、一旦ブラウザの cookie をクリアしてください。' WHERE `configuration_key` = 'SESSION_USE_ROOT_COOKIE_PATH';
 UPDATE configuration SET configuration_title = 'cookie domain の頭にピリオドを追加',  configuration_description = '通常、Zencart は cookie domain に対して頭にピリオドをつけます（例：　.www.mydomain.com ）　サーバーの設定によってはそれでは問題が発生するケースが有ります。セッションで問題が発生する場合には、この設定を False にして試してみてください。 デフォルトは True です。' WHERE `configuration_key` = 'SESSION_ADD_PERIOD_PREFIX';
-
+*/
 # 製品タイプ設定の翻訳
 UPDATE product_types SET type_name = '商品 - 一般' WHERE type_handler = 'product';
 UPDATE product_types SET type_name = '商品 - 音楽' WHERE type_handler = 'product_music';
