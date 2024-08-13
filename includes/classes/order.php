@@ -2,7 +2,7 @@
 /**
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2024 Mar 15 Modified in v2.0.0-rc2 $
+ * @version $Id: lat9 2024 Jun 06 Modified in v2.1.0-alpha1 $
  */
 /**
  * order class
@@ -303,18 +303,9 @@ class order extends base
 
         while (!$orders_products->EOF) {
             // convert quantity to proper decimals - account history
-            if ($precision !== 0) {
-                $fix_qty = $orders_products->fields['products_quantity'];
-                switch (true) {
-                    case (false === strpos($fix_qty, '.')):
-                        $new_qty = $fix_qty;
-                        break;
-                    default:
-                        $new_qty = preg_replace('/[0]+$/', '', $orders_products->fields['products_quantity']);
-                        break;
-                }
-            } else {
-                $new_qty = $orders_products->fields['products_quantity'];
+            $new_qty = $orders_products->fields['products_quantity'];
+            if ($precision !== 0 && str_contains($new_qty, '.')) {
+                $new_qty = rtrim($new_qty, '0');
             }
 
             $new_qty = round($new_qty, $precision);

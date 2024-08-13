@@ -106,11 +106,11 @@ UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layou
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
 UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='0.006684', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.006166', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.005256', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='0.009166', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='0.010109', last_updated = now() WHERE code='AUD';
+UPDATE currencies SET value='0.007050', last_updated = now() WHERE code='USD';
+UPDATE currencies SET value='0.006507', last_updated = now() WHERE code='EUR';
+UPDATE currencies SET value='0.005531', last_updated = now() WHERE code='GBP';
+UPDATE currencies SET value='0.009783', last_updated = now() WHERE code='CAD';
+UPDATE currencies SET value='0.010820', last_updated = now() WHERE code='AUD';
 
 #PROGRESS_FEEDBACK:!TEXT=Adding Japanese tax
 # 税金・税率設定

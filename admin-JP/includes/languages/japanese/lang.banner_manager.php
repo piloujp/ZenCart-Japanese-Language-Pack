@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
+ * @version $Id: DrByte 2024 Aug 03 Modified in v2.1.0-alpha1 $
 */
 
 $define = [
@@ -17,10 +17,11 @@ $define = [
     'TEXT_BANNERS_TITLE' => 'バナー タイトル:',
     'TEXT_BANNERS_URL' => 'バナーリンク先URL:',
     'TEXT_BANNERS_GROUP' => 'バナー グループ:',
-    'TEXT_BANNERS_NEW_GROUP' => '新しいグループを作成する場合は、下のテキストボックスに直接グループ名を入力してください。',
-    'TEXT_BANNERS_IMAGE' => 'バナー画像ファイル:',
-    'TEXT_BANNERS_IMAGE_LOCAL' => 'サーバー上のにある画像を利用する場合は、下のテキストボックスに直接パスとファイル名を入力してください。',
-    'TEXT_BANNERS_IMAGE_TARGET' => '画像保存先ディレクトリ:',
+    'TEXT_BANNERS_NEW_GROUP' => 'または、以下の新しいバナーグループを入力してください',
+    'TEXT_BANNERS_IMAGE' => '画像をアップロード:',
+    'TEXT_BANNERS_CURRENT_IMAGE' => '現在の画像:',
+    'TEXT_BANNERS_IMAGE_LOCAL' => '現在の画像ファイル名が表示されています。編集して既存の画像を指定します。または、新しい画像をアップロードします。',
+    'TEXT_BANNERS_IMAGE_TARGET' => '画像のターゲットフォルダ（保存先）:',
     'TEXT_BANNER_IMAGE_TARGET_INFO' => '<strong>推奨のバナー保存先ディレクトリ:</strong> ' . DIR_FS_CATALOG_IMAGES . 'banners/',
     'TEXT_BANNERS_HTML_TEXT_INFO' => '<strong>注意: HTMLバナーはクリックの記録がされません。</strong>',
     'TEXT_BANNERS_HTML_TEXT' => 'HTML テキスト:',

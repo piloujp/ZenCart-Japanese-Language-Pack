@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Nick Fenwick 2023 Nov 22 Modified in v2.0.0-alpha1 $
+ * @version $Id: Scott Wilson 2024 Jul 07 Modified in v2.1.0-alpha1 $
  */
 ?>
 <div class="centerColumn" id="accountHistInfo">
@@ -112,6 +112,17 @@ $zco_notifier->notify('NOTIFY_ACCOUNT_HISTORY_INFO_EXTRA_COLUMN_HEADING', $order
   if (DOWNLOAD_ENABLED == 'true') require($template->get_template_dir('tpl_modules_downloads.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_downloads.php');
 ?>
 
+<?php
+  $additional_content = false;
+  $zco_notifier->notify('NOTIFY__INVOICE_ADDITIONAL_DATA_MIDDLE', $order, $additional_content);
+    if ($additional_content !== false) {
+?>
+    <table class="table">
+        <tr><td class="main additional_data" colspan="2"><?php echo $additional_content; ?></td></tr>
+    </table>
+<?php
+    }
+?>
 
 <?php
 /**

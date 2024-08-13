@@ -23,7 +23,7 @@ $db_user_fallback = $configReader->getDefine('DB_SERVER_USERNAME');
 $db_password_fallback = $configReader->getDefine('DB_SERVER_PASSWORD');
 $db_name_fallback = $configReader->getDefine('DB_DATABASE');
 $install_demo_data = false;
-$install_japanese_admin = false;
+$install_japanese_admin = true;
 
 
 if (defined('DEVELOPER_MODE') && DEVELOPER_MODE === true) {

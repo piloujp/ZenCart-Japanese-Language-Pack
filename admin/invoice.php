@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: proseLA 2023 Aug 19 Modified in v2.0.0-alpha1 $
+ * @version $Id: Scott Wilson 2024 Jul 07 Modified in v2.1.0-alpha1 $
  */
 require('includes/application_top.php');
 // To override the $show_* or $attr_img_width values, see
@@ -387,6 +387,17 @@ if (empty($order->info)) {
           ?>
         </tbody>
       </table>
+      <?php
+        $additional_content = false;
+        $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_INVOICE_ADDITIONAL_DATA_MIDDLE', $oID, $additional_content);
+          if ($additional_content !== false) {
+      ?>
+          <table class="table">
+              <tr><td class="main additional_data" colspan="2"><?php echo $additional_content; ?></td></tr>
+          </table>
+      <?php
+          }
+      ?>
       <table class="table">
           <?php
           for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {

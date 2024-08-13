@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2 2024 May 29 Modified in v2.0.1 $
+ * @version $Id: DrByte 2024 May 27 Modified in v2.1.0-alpha1 $
  */
 
 return [
@@ -166,7 +166,7 @@ return [
 'TEXT_ERROR_CURL' => 'CURL extension に問題があります - PHPが CURL が入っていないと報告しています。',
 'TEXT_ERROR_UPLOADS' => 'PHP用の Upload Extension が有効になっていません',
 'TEXT_ERROR_XML' => 'PHPの XML Extension が有効になっていません',
-'TEXT_ERROR_GZIP' => 'PHPの GZip Extension が有効になっていません<br>[ <i><b>注意：</b> Nginxを使用していてNginx内でGZipを処理している場合、これは関係ないかもしれません。<i> ]',
+'TEXT_ERROR_GZIP' => 'PHPのGZip拡張機能が検出されません',
 'TEXT_ERROR_EXTENSION_NOT_LOADED' => '%s extension が読み込まれていないようです',
 'TEXT_ERROR_FUNCTION_DOES_NOT_EXIST' => 'PHP function %s が有りません',
 'TEXT_ERROR_CURL_LIVE_TEST' => 'ライブサーバに接続する際に CURL が利用できません',
@@ -194,6 +194,8 @@ return [
 'TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK' => 'localhost接続を使用してMySQLに接続しようとしました。 一部のホストではMySQLデータベースにIPアドレスまたはホスト名が必要なため、この失敗は必ずしもMySQLが動作していないことを意味するわけではありません。<br> <br>データベースサーバーにlocalhostを使用している場合は、MySQLが正常に動作していることを確認してください。',
 'TEXT_HELP_TITLE_CHECKCURL' => '%%TEXT_ERROR_CURL%%',
 'TEXT_HELP_CONTENT_CHECKCURL' => 'CURLは、PHPプログラムがショップで決済処理を行ったり、リアルタイムの配送料見積もりを得るために支払いや配送プロバイダーのような外部のサーバーやサービスに接続するのに使われるバックグラウンドプロセスです。 お客様のサーバーでCURL機能をテストしたところ、接続を確立できませんでした。 これはWebサーバの設定に問題があることを示している可能性があります。 あなたのサーバー上でCURLサポートを有効にするための支援を求めてあなたのホスティング会社に連絡してください。<br> <br>あなたがオフライン開発サーバー上でこのサイトを運営している開発者であれば、CURLがこのテストに接続できないのは当然です。 CURLは、オンライン接続が要求されるトランザクションアクティビティのテストを除き、開発目的には必要ありません。',
+'TEXT_HELP_TITLE_GZIP' => 'PHP の GZip 拡張子が検出されません。',
+'TEXT_HELP_CONTENT_GZIP' => 'GZip は、Web ページのコンテンツを圧縮してサイズを小さくしてからブラウザーに送信するため、送信速度が速くなります。Apache Web サーバーでは、PHP 構成設定で有効にする必要があります。Nginx Web サーバーでは、Nginx 設定自体で有効にできます。ホスティング会社がこれを処理します。<br><br>[ <i><strong>注:</strong> 明確にするために、Nginx を使用していて、Nginx 内で GZip を処理している場合は、これを無視できます</i>（nginx の使用中は、これを自動的に簡単に検出できないため）。 ]',
 'TEXT_HELP_TITLE_ADMINSERVERDOMAIN' => '管理画面サーバードメイン',
 'TEXT_HELP_CONTENT_ADMINSERVERDOMAIN' => "管理画面にアクセスするためのドメイン名を入力してください。 このアドレスにはHTTPS（SSL）を使用することを強くお勧めします。 サイトでSSLを有効にする方法については、サーバー管理者様にご相談ください。",
 'TEXT_HELP_TITLE_ENABLESSLCATALOG' => 'ショップ画面でSSLを有効にしますか？',
@@ -257,8 +259,8 @@ return [
 'REASON_PRIMARY_KEY_ALREADY_EXISTS' => ' %s テーブルに primary key を追加できません。primary key は既に存在しています。',
 'REASON_CONFIG_GROUP_KEY_ALREADY_EXISTS' => 'configuration_group_key "%s" は、すでに存在しているため追加できません',
 'REASON_CONFIG_GROUP_ID_ALREADY_EXISTS' => 'configuration_group_id "%s" は、すでに存在しているため追加できません',
-'TEXT_COMPLETION_NGINX_TEXT' => "<u>Nginx サーバーについての重要なセキュリティ上の注意点</u>",
-'TEXT_HELP_TITLE_NGINXCONF' => "Nginx Web サーバーでセキュリティを保つ",
+'TEXT_COMPLETION_NGINX_TEXT' => 'クリックして <u>Nginx の重要なセキュリティ情報</u> を表示',
+'TEXT_HELP_TITLE_NGINXCONF' => 'Nginx Web サーバーでセキュリティを保つ',
 'TEXT_HELP_CONTENT_NGINXCONF' => '<p>Your Zen Cart installation comes with security measures in a format native to the Apache Webserver. <br>
 See below to implement a similar set of measures for the Nginx Webserver.</p>
 <hr>
