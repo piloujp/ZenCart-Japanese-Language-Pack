@@ -15,7 +15,7 @@ return [
 'TEXT_INDEX_WARN_ERRORS' => 'その他の問題：',
 'TEXT_INDEX_WARN_ERRORS_ALT' => '問題点：',
 'TEXT_HEADER_MAIN' => 'ヒント: フィールド名をクリックするとヘルプが表示されますので、各フィールドに何を入力すればよいかを確認してください。',
-'TEXT_INDEX_HEADER_MAIN' => 'ヒント：エラーや警告のタイトル部分をクリックするとさらに詳しい情報を見ることが出来るかも知れません。',
+'TEXT_INDEX_HEADER_MAIN' => 'ヒント: <u>疑問符アイコン <strong><i class="bi-question-circle"></i></strong></u> の付いたリンクをクリックすると、フォーム フィールドまたはエラーに関する詳細情報が表示されます。',
 'TEXT_INSTALLER_CHOOSE_LANGUAGE' => '言語を選択してください',
 'TEXT_HELP_CONTENT_CHOOSE_LANG' => 'Zen Cart&reg; は、言語パックを導入することで多言語に対応します。必要な言語パックをインストールするだけで、インストーラを含め、ショップ全体を多言語で運用できるようになります。',
 'TEXT_PAGE_HEADING_SYSTEM_SETUP' => 'システムセットアップ',
@@ -80,8 +80,9 @@ return [
 'TEXT_EXAMPLE_USERNAME' => '例：shop_owner',
 'TEXT_ADMIN_SETUP_USER_EMAIL' => 'Admin Superuser メールアドレス：',
 'TEXT_EXAMPLE_EMAIL' => '例：my_email@example.com',
-'TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; メールアドレスを再入力: ',
+'TEXT_ADMIN_SETUP_USER_EMAIL_REPEAT' => '... メールアドレスを再入力してください: ',
 'TEXT_ADMIN_SETUP_USER_PASSWORD' => 'Superuser 管理者パスワード：',
+'TEXT_ADMIN_SETUP_MATCHING_EMAIL' => '一致する有効なメールアドレスが必要です。',
 'TEXT_ADMIN_SETUP_USER_PASSWORD_HELP' => '<strong>発行された仮パスワードを保存してください！</strong>：以下は Superuser管理者アカウントが暫定的に利用するための仮パスワードです。必ずこのパスワードをメモしておいてください。',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY' => '管理画面ディレクトリ：',
 'TEXT_ADMIN_SETUP_ADMIN_DIRECTORY_HELP_DEFAULT' => '管理画面用ディレクトリ名を自動変換できませんでした。管理画面にアクセスするためには、管理画面のディレクトリ名を自分で他の名前に変更する必要があります。',
@@ -229,7 +230,7 @@ return [
 'TEXT_HELP_TITLE_SQLCACHEDIRECTORY' => 'SQL キャッシュディレクトリ',
 'TEXT_HELP_CONTENT_SQLCACHEDIRECTORY' => "ファイルベースのキャッシュに使用するディレクトリを入力します。 利用しているWebサーバ上のディレクトリ/フォルダを指定します。また、Webサーバ（例えばApache）がファイルを書き込めるように、書き込み可能のパミッション設定が必要です。",
 'TEXT_HELP_TITLE_ADMINUSER' => 'Superuser管理者名',
-'TEXT_HELP_CONTENT_ADMINUSER' => "これがショップ管理者としてのアクセス権限と他の管理者ユーザーアカウントを管理するのに使われるメインの管理者ユーザー名になります。 最上位の全ての管理機能にアクセス可能です。",
+'TEXT_HELP_CONTENT_ADMINUSER' => "これがショップ管理者としてのアクセス権限と他の管理者ユーザーアカウントを管理するのに使われるメインの管理者ユーザー名になります。 最上位の全ての管理機能にアクセス可能です。<br>管理パネルから、さまざまなアクセス レベルを持つユーザーを追加できます。",
 'TEXT_HELP_TITLE_ADMINEMAIL' => 'Superuser管理者メールアドレス',
 'TEXT_HELP_CONTENT_ADMINEMAIL' => "この電子メールアドレスは、パスワードを忘れた場合のパスワード再発行に使用されます。",
 'TEXT_HELP_TITLE_ADMINEMAIL2' => 'メールアドレス再入力',
@@ -312,7 +313,7 @@ See below to implement a similar set of measures for the Nginx Webserver.</p>
 </li>
 <ol>
 </div>
-<div class="alert-box alert"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
+<div class="alert alert-danger"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
 <hr>',
 'TEXT_HELP_TITLE_AGREETOTERMS' => '規約に同意する',
 'TEXT_HELP_CONTENT_AGREETOTERMS' => '<a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" rel="noopener" target="_blank">Original GPL 2.0 text</a>
