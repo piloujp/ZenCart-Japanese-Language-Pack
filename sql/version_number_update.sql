@@ -1,0 +1,1 @@
+UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'Manual version update with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
