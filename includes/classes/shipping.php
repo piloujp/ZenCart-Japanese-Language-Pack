@@ -1,5 +1,4 @@
 <?php
-
 /**
  * shipping class
  *
@@ -8,6 +7,8 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: DrByte 2024 Feb 19 Modified in v2.0.0-beta1 $
  */
+use Zencart\Traits\NotifierManager;
+
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
@@ -17,8 +18,10 @@ if (!defined('IS_ADMIN_FLAG')) {
  * Class used for interfacing with shipping modules
  *
  */
-class shipping extends base
+class shipping
 {
+    use NotifierManager;
+
     /**
      * $enabled public property used by notifiers to allow notifier to turn off a shipping method when querying available modules
      */
@@ -67,7 +70,7 @@ class shipping extends base
             ];
         } else {
             foreach ($this->modules as $value) {
-                $class = substr($value, 0, strrpos($value, '.'));
+                $class = pathinfo($value, PATHINFO_FILENAME);
                 $modules_to_quote[] = [
                     'class' => $class,
                     'file' => $value,
@@ -76,17 +79,10 @@ class shipping extends base
         }
 
         foreach ($modules_to_quote as $quote_module) {
-            $lang_file = null;
-            $module_file = DIR_WS_MODULES . 'shipping/' . $quote_module['file'];
-            if (IS_ADMIN_FLAG === true) {
-                $lang_file = zen_get_file_directory(DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $quote_module['file'], 'false');
-                $module_file = DIR_FS_CATALOG . $module_file;
-            } else {
-                $lang_file = zen_get_file_directory(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/shipping/', $quote_module['file'], 'false');
-            }
-            if ($languageLoader->hasLanguageFile(DIR_FS_CATALOG . DIR_WS_LANGUAGES, $_SESSION['language'], $quote_module['file'], '/modules/shipping')) {
-                $languageLoader->loadExtraLanguageFiles(DIR_FS_CATALOG . DIR_WS_LANGUAGES, $_SESSION['language'], $quote_module['file'], '/modules/shipping');
-            } else {
+            if (!$languageLoader->loadCatalogLanguageFile($_SESSION['language'], $quote_module['file'], '/modules/shipping')) {
+                $language_dir = (IS_ADMIN_FLAG === false) ? DIR_WS_LANGUAGES : (DIR_FS_CATALOG . DIR_WS_LANGUAGES);
+                $lang_file = zen_get_file_directory($language_dir . $_SESSION['language'] . '/modules/shipping/', $quote_module['file'], 'false');
+
                 if (is_object($messageStack)) {
                     if (IS_ADMIN_FLAG === false) {
                         $messageStack->add('checkout_shipping', WARNING_COULD_NOT_LOCATE_LANG_FILE . $lang_file, 'caution');
@@ -96,11 +92,13 @@ class shipping extends base
                 }
                 continue;
             }
+
             $this->enabled = true;
+            $module_file = DIR_FS_CATALOG . DIR_WS_MODULES . 'shipping/' . $quote_module['file'];
             $this->notify('NOTIFY_SHIPPING_MODULE_ENABLE', $quote_module['class'], $quote_module['class']);
             if ($this->enabled) {
                 include_once $module_file;
-                $GLOBALS[$quote_module['class']] = new $quote_module['class'];
+                $GLOBALS[$quote_module['class']] = new $quote_module['class']();
 
                 $enabled = $this->check_enabled($GLOBALS[$quote_module['class']]);
                 if ($enabled === false) {
@@ -168,10 +166,12 @@ class shipping extends base
             $enabled = $module_class->check_enabled_for_zone();
         }
         $this->notify('NOTIFY_SHIPPING_CHECK_ENABLED_FOR_ZONE', [], $module_class, $enabled);
+
         if (method_exists($module_class, 'check_enabled') && $enabled) {
             $enabled = $module_class->check_enabled();
         }
         $this->notify('NOTIFY_SHIPPING_CHECK_ENABLED', [], $module_class, $enabled);
+
         return !empty($enabled);
     }
 
@@ -597,7 +597,7 @@ class shipping extends base
             $modules_to_quote = [];
 
             foreach ($this->modules as $value) {
-                $class = substr($value, 0, strrpos($value, '.'));
+                $class = pathinfo($value, PATHINFO_FILENAME);
                 if (!empty($module)) {
                     if ($module === $class && isset($GLOBALS[$class]) && $GLOBALS[$class]->enabled) {
                         $modules_to_quote[] = $class;
@@ -685,12 +685,13 @@ class shipping extends base
         $rates = [];
         $exclude_storepickup_module = false;
         foreach ($this->modules as $value) {
-            $class = substr($value, 0, strrpos($value, '.'));
+            $class = pathinfo($value, PATHINFO_FILENAME);
             if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class]) && $GLOBALS[$class]->enabled) {
                 $quotes = $GLOBALS[$class]->quotes ?? null;
                 if (empty($quotes['methods']) || isset($quotes['error'])) {
                     continue;
                 }
+
                 foreach ($quotes['methods'] as $method) {
                     if (isset($method['cost'])) {
                         $rates[] = [

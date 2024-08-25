@@ -83,6 +83,25 @@ require DIR_FS_INSTALL . DIR_WS_INSTALL_TEMPLATE . 'partials/partial_modal_help.
         </div>
     </fieldset>
     <fieldset class="border rounded p-3 mt-2">
+        <legend><?= TEXT_DATABASE_SETUP_JAPANESE_ADMIN ?></legend>
+        <div class="row mb-2">
+            <div class="col-sm-5 col-lg-3">
+                <label class="col-form-label" for="adminjp">
+                    <a href="#" class="hasHelpText icon-link" id="ADMINJP">
+                        <?= TEXT_DATABASE_SETUP_LOAD_JAPANESE_ADMIN ?>
+                        <i class="bi-question-circle"></i>
+                    </a>
+                </label>
+            </div>
+            <div class="col-xs-7 col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="adminjp" id="adminjp" tabindex="5" <?= $install_japanese_admin ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="adminjp"><?= TEXT_DATABASE_SETUP_LOAD_JAPANESE_ADMIN_DESCRIPTION ?></label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="border rounded p-3 mt-2">
         <legend><?= TEXT_DATABASE_SETUP_DEMO_SETTINGS ?></legend>
         <div class="row mb-2">
             <div class="col-sm-5 col-lg-3">
