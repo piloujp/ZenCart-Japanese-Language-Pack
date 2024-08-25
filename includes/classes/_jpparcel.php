@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2023 May 13 Modified in v1.5.8a $
+ * @version $Id: pilou2/piloujp 2024 Aug 24 Modified in v2.1.0-alpha1 $
  */
 
 /*
@@ -61,40 +61,39 @@ class _JpParcel {
 /* アフリカ   */ 'africa'  =>array('DZ','UG','EG','ET','GH','GA','KE','CI','SL','DJ','ZW','SD','SN',
                                    'TZ','TN','TG','NG','BW','MG','ZA','MU','MA','RW','RE'),
     );
-    // 小包郵便物の価格ランク: (最大重量(kg),第1地帯,第2地帯,第3地帯,第4地帯)
     public $a_price_parcel = array(
     // 小形包装物:航空便 06-2022 Small Packets Air 7-15 days
     'jpparcelairs'=>array(
-      array(0.1, 350, 480, 510, 750),// 0.1kg以下,第1,第2,第3,第4地帯
-      array(0.2, 450, 600, 680, 880),
-      array(0.3, 550, 720, 850, 1010),
-      array(0.4, 650, 840, 1020, 1140),
-      array(0.5, 750, 960, 1190, 1270),
-      array(0.6, 850, 1080, 1360, 1400),
-      array(0.7, 950, 1200, 1530, 1530),
-      array(0.8, 1050, 1320, 1700, 1660),
-      array(0.9, 1150, 1440, 1870, 1790),
-      array(1.0, 1250, 1560, 2040, 1920),
-      array(1.1, 1350, 1680, 2210, 2050),
-      array(1.2, 1450, 1800, 2380, 2180),
-      array(1.3, 1550, 1920, 2550, 2310),
-      array(1.4, 1650, 2040, 2720, 2440),
-      array(1.5, 1750, 2160, 2890, 2570),
-      array(1.6, 1850, 2280, 3060, 2700),
-      array(1.7, 1950, 2400, 3230, 2830),
-      array(1.8, 2050, 2520, 3400, 2960),
-      array(1.9, 2150, 2640, 3570, 3090),
-      array(2.0, 2250, 2760, 3740, 3220),
+      array(0.1, 350, 380, 510, 830, 550),// 0.1kg以下,第1,第2,第3,第4,第5地帯
+      array(0.2, 450, 500, 690, 1040, 810),
+      array(0.3, 550, 620, 870, 1250, 1070),
+      array(0.4, 650, 740, 1050, 1460, 1330),
+      array(0.5, 750, 860, 1230, 1670, 1590),
+      array(0.6, 850, 980, 1410, 1880, 1850),
+      array(0.7, 950, 1100, 1590, 2090, 2110),
+      array(0.8, 1050, 1220, 1770, 2300, 2370),
+      array(0.9, 1150, 1340, 1950, 2510, 2630),
+      array(1.0, 1250, 1460, 2130, 2720, 2890),
+      array(1.1, 1350, 1580, 2310, 2930, 3150),
+      array(1.2, 1450, 1700, 2490, 3140, 3410),
+      array(1.3, 1550, 1820, 2670, 3350, 3670),
+      array(1.4, 1650, 1940, 2850, 3560, 3930),
+      array(1.5, 1750, 2060, 3030, 3770, 4190),
+      array(1.6, 1850, 2180, 3210, 3980, 4450),
+      array(1.7, 1950, 2300, 3390, 4190, 4710),
+      array(1.8, 2050, 2420, 3570, 4400, 4970),
+      array(1.9, 2150, 2540, 3750, 4610, 5230),
+      array(2.0, 2250, 2660, 3930, 4820, 5490),
       ),
     // 小形包装物:船便 06-2022 Small Packets Surface 2 to 3 months
     'jpparcelseas'=>array(
-      array(0.10, 480, 480, 480, 480),// 0.1kg以下,第1,第2,第3,第4地帯
-      array(0.25, 570, 570, 570, 570),
-      array(0.50, 720, 720, 720, 720),
-      array(1.00,1010,1010,1010,1010),
-      array(2.00,1600,1600,1600,1600),
+      array(0.10, 480, 480, 480, 480, 480),// 0.1kg以下,第1,第2,第3,第4,第5地帯
+      array(0.25, 600, 600, 600, 600, 600),
+      array(0.50, 800, 800, 800, 800, 800),
+      array(1.00,1300,1300,1300,1300, 1300),
+      array(2.00,2200,2200,2200,2200, 2200),
       ),
-    // 小包郵便物:航空小包 06-2022 extra charge zone 3 and 4 - International Parcels Air 7-15 days - tracking
+    // 小包郵便物:国際小包、航空便 08-2024 extra charge zone 3 and 4 - International Parcels Air 7-15 days - tracking
     'jpparcelair'=>array(
       array( 1, 2050, 2500, 3850, 4200, 4550),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2750, 3700, 6000, 6700, 7250),
@@ -127,7 +126,7 @@ class _JpParcel {
       array(29, 17850, 25650, 53600, 64700, 63050),
       array(30, 18350, 26300, 55200, 66700, 64850),
       ),
-    // 小包郵便物:船便小包 06-2022 International Parcels Surface 2 - 3 months - tracking
+    // 小包郵便物:国際小包、船便 08-2024 International Parcels Surface 2 - 3 months - tracking
     'jpparcelsea'=>array(
       array( 1, 1800, 2100, 2500, 2600, 2700),// 1kg以下,第1,第2,第3,第4,第5地帯
       array( 2, 2200, 2600, 3100, 3300, 3400),
@@ -160,7 +159,7 @@ class _JpParcel {
       array(29, 13000, 14200, 15500, 20300, 20400),
       array(30, 13400, 14600, 15900, 20900, 21000),
       ),
-	// 国際スピード郵便(EMS) 06-2022 extra charge zone 3 and 4 - EMS 4-10 days - tracking
+	// 国際スピード郵便(EMS) 08-2024 extra charge zone 3 and 4 - EMS 4-10 days - tracking
     'jpparcelems'=>array(
       array( 0.5, 1450, 1900, 3150, 3900, 3600),// 0.5kg以下,第1,第2,第3,第4,第5地帯
       array( 0.6, 1600, 2150, 3400, 4180, 3900),
@@ -238,61 +237,21 @@ class _JpParcel {
     function GetZoneNo($areaname) {
         $area_to_no = array();
 
-        switch ($this->quote['id']) {
-        case 'jpparcelairs':
-        case 'jpparcelseas':
-          $area_to_no = array(
-            'easia1'   =>1, //中国・韓国・台湾
-            'easia2'   =>1, //東アジア
-            'wpacific'=>4, //西太平洋
-            'seasia'  =>2, //東南アジア
-            'swasia'  =>2, //西南アジア
-            'oceania' =>2, //オセアニア
-            'mneast'  =>2, //中近東
-            'europe'  =>2, //ヨーロッパ
-            'namerica'=>2, //北米
-            'camerica'=>2, //中米
-			'america' =>4, //USA
-            'samerica'=>3, //南米
-            'africa'  =>3, //アフリカ
-          );
-          break;
-        case 'jpparcelair':
-        case 'jpparcelsea':
-          $area_to_no = array(
-            'easia1'   =>1, //中国・韓国・台湾
-            'easia2'   =>2, //東アジア
-            'wpacific'=>4, //西太平洋
-            'seasia'  =>2, //東南アジア
-            'swasia'  =>2, //西南アジア
-            'oceania' =>3, //オセアニア
-            'mneast'  =>3, //中近東
-            'europe'  =>3, //ヨーロッパ
-            'namerica'=>3, //北米
-            'camerica'=>5, //中米
-			'america' =>4, //USA
-            'samerica'=>5, //南米
-            'africa'  =>5, //アフリカ
-          );
-          break;
-        case 'jpparcelems':
-          $area_to_no = array(
-            'easia1'   =>1, //中国・韓国・台湾
-            'easia2'   =>2, //東アジア
-            'wpacific'=>4, //西太平洋
-            'seasia'  =>2, //東南アジア
-            'swasia'  =>2, //西南アジア
-            'oceania' =>3, //オセアニア
-            'mneast'  =>3, //中近東
-            'europe'  =>3, //ヨーロッパ
-            'namerica'=>3, //北米
-            'camerica'=>5, //中米
-            'america' =>4, //USA
-            'samerica'=>5, //南米
-            'africa'  =>5, //アフリカ
-          );
-          break;
-        }
+        $area_to_no = array(
+          'easia1'   =>1, //中国・韓国・台湾
+          'easia2'   =>2, //東アジア
+          'wpacific'=>4, //西太平洋
+          'seasia'  =>2, //東南アジア
+          'swasia'  =>2, //西南アジア
+          'oceania' =>3, //オセアニア
+          'mneast'  =>3, //中近東
+          'europe'  =>3, //ヨーロッパ
+          'namerica'=>3, //北米
+          'camerica'=>5, //中米
+		  'america' =>4, //USA
+          'samerica'=>5, //南米
+          'africa'  =>5, //アフリカ
+        );
         return $area_to_no[$areaname];
     }
 
