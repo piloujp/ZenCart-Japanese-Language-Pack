@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 May 21 Modified in v2.0.1 $
+ * @version $Id: piloujp 2024 Aug 25 Modified in v2.1.0-alpha1 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -39,6 +39,7 @@ $define = [
     'BOX_CATALOG_CATEGORIES_PRODUCTS' => 'Categories/Products',
     'BOX_CATALOG_CATEGORY' => 'Category',
     'BOX_CATALOG_FEATURED' => 'Featured Products',
+    'BOX_CATALOG_FEATURED_CATEGORIES' => 'Featured Categories',
     'BOX_CATALOG_MANUFACTURERS' => 'Manufacturers',
     'BOX_CATALOG_PRODUCT' => 'Product',
     'BOX_CATALOG_PRODUCTS_EXPECTED' => 'Upcoming Products',
@@ -291,6 +292,7 @@ $define = [
     'IMAGE_DISPLAY' => 'Display',
     'IMAGE_EDIT' => 'Edit',
     'IMAGE_EDIT_ATTRIBUTES' => 'Edit Attributes',
+    'IMAGE_EDIT_CATEGORY' => 'Edit Category',
     'IMAGE_EDIT_PRODUCT' => 'Edit Product',
     'IMAGE_EMAIL' => 'Email',
     'IMAGE_FORGET_ONLY' => 'Forget Only',
@@ -394,6 +396,7 @@ $define = [
     'TABLE_HEADING_ACTION' => 'Action',
     'TABLE_HEADING_AVAILABLE_DATE' => 'Available',
     'TABLE_HEADING_ACTIVE_FROM' => 'Active From',
+    'TABLE_HEADING_CATEGORY_NAME' => 'Category Name',
     'TABLE_HEADING_COMMENTS' => 'コメント',
     'TABLE_HEADING_CONFIGURATION_TITLE' => 'Title',
     'TABLE_HEADING_CONFIGURATION_VALUE' => 'Value',
@@ -445,7 +448,7 @@ $define = [
     'TABLE_HEADING_TAX' => '税金',
     'TABLE_HEADING_TOTAL' => '合計',
     'TABLE_HEADING_TOTAL_EXCLUDING_TAX' => '合計（税別）',
-    'TABLE_HEADING_TOTAL_INCLUDING_TAX' => '合計（税込み）',
+    'TABLE_HEADING_TOTAL_INCLUDING_TAX' => '合計（税込）',
     'TABLE_HEADING_YES' => 'Yes',
     'TEXT_ACTIVITY_LOG_ACCESSED' => 'Admin Activity Log accessed. Output format: %1$s. Filter: %2$s. %3$s',
     'TEXT_ADMIN_NAME' => 'Username',
