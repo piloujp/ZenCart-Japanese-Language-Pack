@@ -186,12 +186,12 @@ a.anclink {
       <p class="title3"><a class="menu_links" onclick="shide('newinst')">New
           cart installation</a></p>
       <div id="newinst">
-        <p class="texte"><b>Extract Zen Cart v2.0.0</b> or newer you have just
-          downloaded and <b>copy all files</b> in your site folder. <b>Extract
-            Zen Cart Japanese Language Pack</b> too and <b>copy admin, email,
-            images, includes, zc_install and zc_plugins folders overwriting</b>
-          Zen Cart original files when necessary. Don't reverse order! Do Zen
-          Cart first then language pack.</p>
+        <p class="texte"><b>Extract Zen Cart v2.1.0</b> or newer you have just
+          downloaded and <b>copy all English ZC files</b> in your site folder.
+          <b>Extract Zen Cart Japanese Language Pack</b> too and <b>copy all
+            content of folder 'FILES_to_INSTALL' overwriting</b> Zen Cart
+          original files when necessary. Don't reverse order! Do Zen Cart first
+          then language pack.</p>
         <p class="texte">Now you should open your browser and in address bar
           type your site address using your real domain in place of 'yoursite'
           and http or https depending on your case:<br>
@@ -218,34 +218,42 @@ a.anclink {
         <p class="texte">Now you can go to configuration chapter to get ready
           for sale.</p>
         <p class="texte">The only difference with standard Zen Cart install is
-          that you must choose to install Japanese admin&nbsp; sub-menus or not.
-          Most of sub-menus in Zen Cart admin are hard coded in database and
-          cannot be changed on the fly easily. They won't change even if you
+          that you must choose to install English admin sub-menus for Japanese
+          or not. Most of sub-menus in Zen Cart admin are hard coded in database
+          and cannot be changed on the fly easily. They won't change even if you
           switch language with language selector. If you choose to install
-          these, you cart will be fully Japanese. If not, your admin interface
-          will be in English but when you use it in Japanese, it will be
-          partially translated and especially all part that customers might see
-          like invoices and emails will be in Japanese. If you use it in
-          English, everything will be in English.</p>
+          English admin&nbsp; sub-menus, your admin interface will be in English
+          but when you use it in Japanese, it will be partially translated and
+          especially all part that customers might see like invoices and emails
+          will be in Japanese. If you use it in English, everything will be in
+          English.</p>
         <p class="texte">Generally, if you are Japanese, you will choose
           Japanese admin menus. But if you are not, keeping in English what
           customers cannot see in your admin is a good option. This language
           setting can be changed manually afterward, see configuration chapter
-          for that.<br>
-        </p>
+          for that.</p>
       </div>
-      <p class="title3"><a class="menu_links" onclick="shide('allinst')">Already
-          installed cart but still close to default setting</a></p>
+      <p class="title3"><a class="menu_links" onclick="shide('allinst')">Updating
+          an already installed English cart but still close to default setting</a></p>
       <div id="allinst">
-        <p class="texte">When installing over an existing Zen Cart 2.x.x with no
+        <p class="texte">When installing over an existing Zen Cart 2.1.0 with no
           plugin that modify core files installed, it is nearly as easy as a new
-          install but there are few points you need to check.</p>
+          install but there are few points you need to check. Be careful that in
+          this case of installation, Japanese Language Pack version and English
+          ZC versions must correspond:</p>
+        <p class="texte">ZC v1.5.8-1.5.8a --&gt; Japanese Language Pack v1.3.4<br>
+          ZC v2.0.0-2.0.1 --&gt; Japanese Language Pack v2.0.1<br>
+          ZC v2.1.0 --&gt; Japanese Language Pack v2.1.0</p>
+        <p class="texte">Best is to update ZC to latest English version then use
+          latest Japanese Language Pack corresponding. If you don't respect
+          this, database version will not be recognized correctly and database
+          will not be updated to Japanese version.</p>
         <p class="texte">First, after <b>doing a backup</b> of your installed
-          cart, <b>extract Zen Cart Japanese Language Pack</b> and rename admin
-          folder (admin-JP folder if you want to use Japanese admin menu) to the
-          same name as your already installed admin folder. Then <b>copy
-            everything in folders admin (renamed to your real admin folder
-            name), email, images, includes, zc_install and zc_plugins</b> to
+          cart, <b>extract Zen Cart Japanese Language Pack</b> and <b>rename
+            admin folder</b> (in folder FILES_to_INSTALL) to the same name as
+          your already installed ZC admin folder. If you want to use <b>English
+            admin version</b>, replace admin folder by <b>admin-EN</b> folder
+          before renaming. Then <b>copy everything in folder FILES_to_INSTALL </b>to
           your cart, <b> overwriting </b>original files.</p>
         <p class="texte">Now you should open your browser and in address bar
           type your site address using your real domain in place of 'yoursite'
@@ -264,7 +272,7 @@ a.anclink {
         <p class="texte">After clicking on 'Upgrade' button, on next screen you
           will have to <b>enter your superuser credentials</b>, but before you
           must check that on the list above there is at least <b>one option</b>
-          like '2.0.0 to 2.0.0200' that correspond to your version. You can then
+          like '2.1.0 to 2.1.0200' that correspond to your version. You can then
           proceed as a normal install.</p>
         <p class="texte">Now <b>you must add Japanese language to Zen Cart</b>
           through 'admin&gt;Localization&gt;Languages'. This has to be done
@@ -285,6 +293,13 @@ a.anclink {
           languages installed, you might want to use Japanese but not as default
           language. In this case, you must set this as you want in admin
           afterward. If all is good, you can go to configuration chapter.</p>
+        <p class="texte" style="font-size: smaller"><i>Note:</i> With this
+          installation method, admin submenus will be in Japanese. If you want
+          them in English, you will have to copy files in
+          '...\admin-EN\includes\languages' folder to
+          'Your_shop_folder\YOUR_ADMIN\includes\languages' folder and then
+          import in ZC the SQL file
+          '...\sql\english_admin_menus\mysql_english_admin_menu.sql'. </p>
       </div>
       <p class="title3"><a class="menu_links" onclick="shide('mergeinst')">Installation
           on an English modified cart with plugins and other custom settings or
@@ -309,7 +324,9 @@ a.anclink {
           overwritten by language pack ones. If there are too many, just use the
           list below to check one by one and merge if necessary.</p>
         <p class="texte">Before starting copying/merging files you must <b>choose
-            which language</b> you will use in <b>admin side</b> of the cart.<br>
+            which language</b> you will use in <b>admin side</b> of the cart.
+          To use <b>English admin</b> you <b>must replace admin</b> folder
+          content <b>by admin-EN</b> folder content.<br>
           Then <b>start by merging</b> files in the '<a class="anclink" href="#filemerge">List
             of files to merge</a>' below. A specialized tool like WinMerge is
           very useful here. It will allow you to check differences between two
@@ -317,37 +334,36 @@ a.anclink {
             new files</b> 'as is'. Use the '<a class="anclink" href="#filecopy">List
             of new files to copy</a>' below to identify them.</p>
         <span class="title5"><a id="filemerge">List of files to merge</a>:</span><br>
-        <span class="note">Replace 'admin-xx' by 'admin' for English or
-          'admin-JP' for Japanese admin interface and 'YourAdminFolderName' by
-          your actual admin folder name:</span>
+        <span class="note">Replace 'YourAdminFolderName' by your actual admin
+          folder name:</span>
         <p class="texte"></p>
         <div class="texte"><span class="listtitle">ADMIN English OR Japanese:</span><br>
-          '...(\admin-XX to YourAdminFolderName)\coupon_admin.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\customers.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\gv_mail.php<br>
-          '...(\admin-XX to YourAdminFolderName)\gv_queue.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\invoice.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\mail.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\orders.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\packingslip.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\includes\header.php<br>
-          '...(\admin-XX to
+          '...\(admin to YourAdminFolderName)\coupon_admin.php'<br>
+          '...\(admin to YourAdminFolderName)\customers.php'<br>
+          '...\(admin to YourAdminFolderName)\gv_mail.php<br>
+          '...\(admin to YourAdminFolderName)\gv_queue.php'<br>
+          '...\(admin to YourAdminFolderName)\invoice.php'<br>
+          '...\(admin to YourAdminFolderName)\mail.php'<br>
+          '...\(admin to YourAdminFolderName)\orders.php'<br>
+          '...\(admin to YourAdminFolderName)\packingslip.php'<br>
+          '...\(admin to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
+          '...\(admin to YourAdminFolderName)\includes\header.php<br>
+          '...\(admin to
           YourAdminFolderName)\includes\functions\html_output.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\lang.english.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
 YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
         </div>
         <div class="texte"> <br>
           <span class="listtitle">JAPANESE ADMIN ONLY:</span><br>
-          '...(\admin-JP to
+          '...\(admin to
 YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.php'</div>
         <div class="texte"> <br>
           <span class="listtitle">CATALOG:</span><br>
@@ -383,12 +399,12 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         </div>
         <br>
         <p class="title5"><a id="filecopy">List of new files to copy</a>:</p>
-        <p class="texte">'...(\admin-XX to
+        <p class="texte">'...\(admin to
           YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\lang.japanese.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\'
-          all content.<br>
+          '...\(admin to YourAdminFolderName)\includes\languages\japanese\' all
+          content.<br>
           '...\email\ja\' all content.<br>
           '...\images\' all content.<br>
           '...\includes\classes\_jpparcel.php'<br>
@@ -461,11 +477,11 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         <p class="texte">Set Japanese as default. Then <b>import/run</b> SQL
           queries in file '<b>orders_status_update.sql</b>' (in 'sql' folder) to
           update order status table with Japanese. </p>
-        <p class="texte">If you want a fully <b>Japanese admin</b> side, then <b>import
-            next file</b> as well from folder 'japanese_admin_menus'. It will
-          translate admin menus kept in database into Japanese:</p>
+        <p class="texte">If you want to keep <b>English admin</b> side, then <b>import
+            next file</b> as well from folder 'english_admin_menus'. It will
+          translate back admin menus kept in database into Japanese:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          'mysql_japanese_admin_menu.sql'</p>
+          'mysql_english_admin_menu.sql'</p>
         <p class="title6">From Japanese Zen Cart:</p>
         <p class="texte">Special SQL files for actual database update are
           provided. But <b>first</b> you need to <b>upgrade</b> Zen Cart v2 <b>to
@@ -546,7 +562,7 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         one language to another but with database it is more complicated and not
         as safe. In Zen Cart, Database part is not switchable 'on the fly' but
         it can be done by importing an SQL file.<br>
-        Using this two files in 'sql/japanese_admin_menus' folder you can switch
+        Using this two files in 'sql/english_admin_menus' folder you can switch
         between English and Japanese sub-menus:</p>
       <p class="texte">'mysql_japanese_admin_menu.sql'<br>
         'mysql_english_admin_menu.sql'</p>
@@ -604,6 +620,10 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           language</b> from Zen Cart Admin menu 'Localization&gt;Languages'.<br>
         Default currency resets to USD.<br>
         Store country resets to United States. </p>
+      <p class="title2">Bonus content</p>
+      <p class="texte">You will find some language files translation for few
+        plugins in folder '...\optional plugins'.<br>
+      </p>
       <p class="title2">Version history</p>
       <p class="texte">v1.0.0 - November 23 2022<br>
         Original release.<br>
@@ -809,11 +829,10 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
       <p class="title3"><a class="menu_links" onclick="shide('newinstjp')">初め
           てのインストール</a></p>
       <div id="newinstjp">
-        <p class="texte">ダウンロードした <b>Zen Cart v2 以降を抽出し</b>、サイト フォルダー内の<b>す
-            べてのファイルをコピー</b>します。<b>Zen Cart 日本語言語パックも抽出し</b>、必要に応じて <b>admin、
-            email、images、includes、zc_install、および zc_plugins フォルダーをコピー</b>して、Zen
-          Cart の元のファイルを<b>上書きします</b>。順序を逆にしないでください！ 最初に Zen Cart
-          を実行し、次に言語パックを実行します。</p>
+        <p class="texte">ダウンロードした <b>Zen Cart v2.1.0 以降を抽出し</b>、サイト フォルダー内の<b>す
+            べてのファイルをコピー</b>します。<b>Zen Cart 日本語言語パックも抽出し</b>、必要に応じて、Zen Cart の元の<b>ファ
+            イルを上書きして</b>、フォルダー <b>'FILES_to_INSTALL' のすべてのコンテンツをコピーします</b>。順序を逆
+          にしないでください！ 最初に Zen Cart を実行し、次に言語パックを実行します。</p>
         <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
           http または https を使用してサイト アドレスを入力する必要があります。<br>
           <b>https://yoursite.com/zc_install/</b></p>
@@ -832,25 +851,31 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           ('sql' フォルダ内) で SQL クエリを<b>インポート/実行して</b>、注文ステータス テーブルを日本語で更新します。</p>
         <p class="texte">販売の準備をするには、設定の章に進んでください。</p>
         <p class="texte">標準の Zen Cart
-          インストールとの唯一の違いは、日本語の管理サブメニューをインストールするかどうかを選択する必要があることです。Zen Cart
+          インストールとの唯一の違いは、英語の管理サブメニューをインストールするかどうかを選択する必要があることです。Zen Cart
           管理者のサブメニューのほとんどはデータベースにハードコーディングされており、その場で簡単に変更することはできません。言語セレクターで言語を切り替えても変更されま
-          せん。
-          日本語サブメニューのインストールを選択すると、カートは完全に日本語化されます。そうでない場合、管理インターフェースは英語になりますが、日本語で使用すると部分的に
+          せん。 英語サブメニューのインストールを選択すると、管理インターフェースは英語になりますが、日本語で使用すると部分的に
           翻訳され、特に請求書や電子メールなど、顧客が目にする可能性のあるすべての部分が日本語になります。英語で使用するとすべて英語になります。</p>
         <p class="texte">通常、あなたが日本人の場合は、日本語の管理者メニューを選択しますしかし、そうでない場合は、管理画面で顧客に表示
           されない部分を英語のままにしておくのが良い選択肢です。この言語設定は後で手動で変更できます。詳細については、設定の章を参照してください。<br>
         </p>
       </div>
-      <p class="title3"><a class="menu_links" onclick="shide('allinstjp')">新し
-          いカートのアップデート</a></p>
+      <p class="title3"><a class="menu_links" onclick="shide('allinstjp')">すでにイン
+          ストールされている英語のカートを更新していますが、まだデフォルト設定に近いです</a></p>
       <div id="allinstjp">
-        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart 2.x.x
-          に上書きインストールする場合、新規インストールとほぼ同じくらい簡単ですが、確認する必要がある点がいくつかあります。</p>
+        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart 2.1.0
+          に上書きインストールする場合、新規インストールとほぼ同じくらい簡単ですが、確認する必要がある点がいくつかあります。この場合、インストール時に日本語言語パックの
+          バージョンと英語 ZC のバージョンが対応している必要があることに注意してください。</p>
+        <p class="texte">ZC v1.5.8-1.5.8a --&gt; 日本語言語パック v1.3.4<br>
+          ZC v2.0.0-2.0.1 --&gt; 日本語言語パック v2.0.1<br>
+          ZC v2.1.0 --&gt; 日本語言語パック v2.1.0</p>
+        <p class="texte">ZC
+          を最新の英語バージョンに更新してから、対応する最新の日本語言語パックを使用することをお勧めします。これを尊重しないと、データベースのバージョンが正しく認識され
+          ず、データベースが日本語バージョンに更新されません。</p>
         <p class="texte">まず、インストールしたカートの<b>バックアップ</b>を作成した後、<b>Zen Cart
             日本語言語パックを抽出し</b>、admin フォルダーの名前を既にインストールされている admin
-          フォルダーと同じ名前に変更します。日本語の管理メニューを使用する場合は、admin-JPフォルダの名前を変更します。次に、フォルダー <b>admin
-            (実際の管理フォルダー名に名前変更)、email、images、 includes、zc_install、および zc_plugins</b>
-          内のすべてのものをカートに<b>コピー</b>し、元のファ イルを<b>上書きします</b>。</p>
+          フォルダーと同じ名前に変更します。<b>英語の管理者バージョン</b>を使用する場合は、名前を変更する前に admin フォルダーを <b>admin-EN</b>
+          フォルダーに置き換えます。次に、<b>FILES_to_INSTALL フォルダー内のすべて</b>のものを<b>カートにコピーし</b>、
+          元のファイルを<b>上書きします</b>。</p>
         <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
           http または https を使用してサイト アドレスを入力する必要があります。<br>
           <b>https://yoursite.com/zc_install/</b></p>
@@ -864,7 +889,7 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
                 class="ryNqvb">「アップグレード」ボタンをクリックすると、次の画面で<b>スーパーユーザーの資格情報</b>を入力
                 する必要があります。</span></span></span><span class="HwtZe" lang="ja"><span
               class="jCAhz JxVs2d ChMk0b"><span class="ryNqvb">ただし、その前に、上記のリストに、
-                お使いのバージョンに対応する「2.0.0 ～ 2.0.0200」などの<b>オプションが少なくとも 1 つあること</b>を確認
+                お使いのバージョンに対応する「2.1.0 ～ 2.1.0200」などの<b>オプションが少なくとも 1 つあること</b>を確認
                 する必要があります。</span></span></span>その後、通常のインストールとして続行できます。</p>
         <p class="texte">ここで、「管理者 &gt; ローカリゼーション &gt; 言語」を通じて Zen Cart に<b>日本語を追
             加する必要があります</b>。Zen
@@ -881,11 +906,16 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
           い。たとえば、3
           つ以上の言語がインストールされている場合、デフォルト言語としてではなく日本語を使用することができます。この場合、後で管理画面でデフォルトの言語を希望どおりに設定
           する必要があります。すべて問題なければ、構成の章に進むことができます。</p>
+        <p class="texte" style="font-size: smaller">注意:
+          このインストール方法では、管理サブメニューは日本語になります。英語にしたい場合は、「...\admin-EN\includes\languages」フォルダ内の
+          ファイルを「Your_shop_folder\YOUR_ADMIN\includes\languages」フォルダにコピーし、SQL
+          ファイル「...\sql\english_admin_menus\mysql_english_admin_menu.sql」を ZC
+          にインポートする必要があります。</p>
       </div>
       <p class="title3"><a class="menu_links" onclick="shide('mergeinstjp')">
-          プラグ インやその他のカスタム設定を使用して修正された英語版カート、または日本語版カートへのインストール</a></p>
+          プラグインやその他のカスタム設定を含む英語版カートまたは日本語版カートへのインストール</a></p>
       <div id="mergeinstjp">
-        <p class="texte">すでに Zen Cart 2.x.x とプラグインがインストールされている場合は、この日本語言語パック
+        <p class="texte">すでに Zen Cart とプラグインがインストールされている場合は、この日本語言語パック
           ファイルをコピーしてもすべてが動作することは期待できない可能性があります。インストールされているプラグインが Zen Cart 2.x.x
           コア ファイルを変更したかどうかに関係なく、2 つの状況が考えられます。</p>
         <p class="texte">Zen カートのオリジナル
@@ -897,42 +927,42 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         <p class="texte">すでに変更されたファイルのリストを作成し、この言語パックの「結合するファイル」リストと比較します。これらの変更
           されたファイルは言語パック ファイルとマージする必要があり、他のファイルは言語パック
           ファイルによって上書きされる必要があります。数が多すぎる場合は、以下のリストを使用していとつずつ確認し、必要に応じて結合してください。。</p>
-        <p class="texte">ファイルのコピー/結合を開始する前に、<b>カートの管理側で使用する言語を選択する</b>必要があります。<br>
+        <p class="texte">ファイルのコピー/結合を開始する前に、<b>カートの管理側で使用する言語を選択する</b>必要があります。英語
+          の管理メニューを使用するには、admin フォルダーの内容を admin-EN フォルダーのコンテンツに置き換える必要があります。<br>
           次に、以下の「<a class="anclink" href="#filemergejp">結合するファイルのリスト</a>」内のファイルを<b>
             結合する</b>ことから始めます。ここでは、WinMerge のような特殊なツールが非常に役立ちます。2
           つのファイル間の相違点を確認し、見つかった相違点を結合するかどうかを確認できます。次に、以下の「<a class="anclink" href="#filecopyjp">コ
             ピーする新しいファイルのリ スト</a>」を使用して<b>新しいファイル</b>を識別し、<b>コピー</b>できます。</p>
         <span class="title5"><a id="filemergejp">結合するファイルのリスト</a>：</span><br>
-        <span class="note">「admin-xx」を英語の場合は「admin」、日本語の管理インターフェイスの場合は「admin-JP」
-          に置き換え、「YourAdminFolderName」を実際の管理フォルダ名に置き換えます。</span>
+        <span class="note">「YourAdminFolderName」を実際の管理フォルダ名に置き換えます。</span>
         <p class="texte"></p>
         <div class="texte"><span class="listtitle">管理者側、英語または日本語：</span><br>
-          '...(\admin-XX to YourAdminFolderName)\coupon_admin.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\customers.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\gv_mail.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\gv_queue.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\invoice.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\mail.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\orders.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\packingslip.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\includes\header.php<br>
-          '...(\admin-XX to
+          '...\(admin to YourAdminFolderName)\coupon_admin.php'<br>
+          '...\(admin to YourAdminFolderName)\customers.php'<br>
+          '...\(admin to YourAdminFolderName)\gv_mail.php'<br>
+          '...\(admin to YourAdminFolderName)\gv_queue.php'<br>
+          '...\(admin to YourAdminFolderName)\invoice.php'<br>
+          '...\(admin to YourAdminFolderName)\mail.php'<br>
+          '...\(admin to YourAdminFolderName)\orders.php'<br>
+          '...\(admin to YourAdminFolderName)\packingslip.php'<br>
+          '...\(admin to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
+          '...\(admin to YourAdminFolderName)\includes\header.php<br>
+          '...\(admin to
           YourAdminFolderName)\includes\functions\html_output.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\lang.english.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
 YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
 YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
         </div>
         <div class="texte"> <br>
-          <span class="listtitle">日本の管理者側のみ：</span><br>
-          '...(\admin-JP to
+          <span class="listtitle">日本語の管理者側のみ：</span><br>
+          '...\(admin to
 YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.php'<br>
           <br>
           <span class="listtitle">ショップ側：</span><br>
@@ -968,12 +998,12 @@ YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.p
         </div>
         <br>
         <p class="title5"><a id="filecopyjp">コピーする新しいファイルのリスト：</a></p>
-        <div class="texte">'...(\admin-XX to
+        <div class="texte">'...\(admin to
 YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br>
-          '...(\admin-XX to
+          '...\(admin to
           YourAdminFolderName)\includes\languages\lang.japanese.php'<br>
-          '...(\admin-XX to YourAdminFolderName)\includes\languages\japanese\'
-          all content.<br>
+          '...\(admin to YourAdminFolderName)\includes\languages\japanese\' all
+          content.<br>
           '...\email\ja\' all content.<br>
           '...\images\' all content.<br>
           '...\includes\classes\_jpparcel.php'<br>
@@ -990,9 +1020,8 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
 '...\includes\templates\template_default\buttons\english\button_update_cart.png'<br>
           '...\includes\templates\template_default\buttons\japanese\' all
           content.<br>
-          '...\includes\templates\template_default\images\icons\' all content.<br>
-          '...\zc_plugins\' all content.<br>
-        </div>
+          '...\includes\templates\template_default\images\icons\' all content.</div>
+        <div class="texte">'...\zc_plugins\' all content. </div>
         <p class="title4">日本語版カートからファイルを更新:</p>
         <p class="texte">いくつかの注意点を除いて英語版として進めていきます。</p>
         <p></p>
@@ -1040,11 +1069,10 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
           Sort Order: 0<br>
           日本語をデフォルトとして設定します。 次に、ファイル '<b>orders_status_update.sql</b>' ('sql'
           フォルダ内) で SQL クエリを<b>インポート/実行して</b>、注文ステータス テーブルを日本語で更新します。</p>
-        <p class="texte">完全に<b>日本語の管理側</b>が必要な場合 は、<b>次のファイル</b>も
-          フォルダー「japanese_admin_menus」から<b>インポート</b>します。これにより、デー タベースに保存されている管
-          理メニューが日本語に翻訳されます。</p>
+        <p class="texte"><b>英語の管理側</b>を維持したい場合は、フォルダ「english_admin_menus」から<b>次の
+            ファイルもインポート</b>します。これにより、データベースに保存されている管理メニューが英語に翻訳されます。</p>
         <p class="texte">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-          'mysql_japanese_admin_menu.sql'</p>
+          'mysql_english_admin_menu.sql'</p>
         <p class="title6">日本語カートから：</p>
         <p class="texte">データベース更新用の専用SQLファイルを提供します。ただし、<b>まず</b> Zen Cart v2 を<b>最
             新バージョンにアップグレード</b>する必要があります。</p>
@@ -1110,7 +1138,7 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
         の管理言語は独特で、言語ファイルを使用する部分と、言語関連データを保存するデータベースを使用する部分の 2
         つの部分があります。言語ファイルはある言語から別の言語に簡単に切り替えることができますが、データベースの場合はより複雑で安全ではありません。Zen
         Cart では、データベース部分の言語を即座に切り替えることはできませんが、SQL ファイルをインポートすることで切り替えることができます。<br>
-        「sql/japanese_admin_menus」フォルダー内のこの 2
+        「sql/english_admin_menus」フォルダー内のこの 2
         つのファイルを使用すると、英語と日本語のサブメニューを切り替えることができます。</p>
       <p class="texte">'mysql_japanese_admin_menu.sql'<br>
         'mysql_english_admin_menu.sql'</p>
@@ -1157,6 +1185,9 @@ YourAdminFolderName)\includes\extra_configures\function_japan_country_id.php'<br
           する必要</b>があります。<br>
         デフォルトの通貨が米ドルにリセットされました。<br>
         購入国を米国にリセットします。</p>
+      <p class="title2">ボーナスコンテンツ</p>
+      <p class="texte">いくつかのプラグインの言語ファイル翻訳は、フォルダー「...\optional plugins」にあります。<br>
+      </p>
       <p class="title2">バーションヒストリー</p>
       <p class="texte">v1.0.0 - ２０２２年１１月２３日<br>
         オリジナルリリース。<br>
