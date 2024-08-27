@@ -254,6 +254,7 @@ return [
 'REASON_COLUMN_ALREADY_EXISTS' => ' %s カラムを追加できません。対象が既に存在しています。',
 'REASON_COLUMN_DOESNT_EXIST_TO_DROP' => ' %s カラムを削除できません。対象が存在していません。',
 'REASON_COLUMN_DOESNT_EXIST_TO_CHANGE' => ' %s カラムを変更できません。対象が存在していません。',
+'REASON_COLUMN_DOESNT_EXIST' => '列 %s は存在しないため、値を設定できません。',
 'REASON_PRODUCT_TYPE_LAYOUT_KEY_ALREADY_EXISTS' => 'prod-type-layout configuration_key "%s" を追加できません。対象が既に存在しています。',
 'REASON_INDEX_DOESNT_EXIST_TO_DROP' => 'index %s （ %s テーブル）を削除できません。対象が存在していません。',
 'REASON_PRIMARY_KEY_DOESNT_EXIST_TO_DROP' => ' %s テーブルの primary key を削除できません。対象が存在していません。',
