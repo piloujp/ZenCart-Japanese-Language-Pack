@@ -1,4 +1,4 @@
-Modified version of ZCA Bootstrap Template v3.7.x to be used with Zen Cart v1.5.8, v1.5.8a and v2.0.x with ZC Japanese Language Pack ZC v1.3.4 (zc v1.5.8) or v2.0.x (zc v2.0.x)
+Modified version of ZCA Bootstrap Template v3.7.x to be used with Zen Cart v1.5.8, v1.5.8a and v2.x.x with ZC Japanese Language Pack ZC v1.3.4 (zc v1.5.8) or v2.x.x (zc v2.x.x)
 There are both Japanese language files and code modifications to fit Japanese Zen Cart version.
 
 Modified files list:

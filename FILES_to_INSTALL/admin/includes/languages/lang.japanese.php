@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2024 Jun 01 Modified in v2.1.0-alpha1 $
+* @version $Id: Jeff Rutt 2024 Aug 28 Modified in v2.1.0-alpha2 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -494,6 +494,7 @@ $define = [
     'TEXT_DISPLAY_NUMBER_OF_CURRENCIES' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
     'TEXT_DISPLAY_NUMBER_OF_CUSTOMERS' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
     'TEXT_DISPLAY_NUMBER_OF_FEATURED' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
+    'TEXT_DISPLAY_NUMBER_OF_FEATURED_CATEGORIES' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
     'TEXT_DISPLAY_NUMBER_OF_GENERIC' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
     'TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',
     'TEXT_DISPLAY_NUMBER_OF_GROUPS' => '<b>%1$d</b> から <b>%2$d</b> を表示しています（全<b>%3$d</b>件）',

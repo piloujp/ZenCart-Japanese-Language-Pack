@@ -1,6 +1,0 @@
-Regex to convert SQL UPDATE statements to configuration file format:
-
-Find:
-/^UPDATE configuration SET configuration_title = '(.*)',[ ]{1,2}configuration_description = '(.*)' WHERE [`]?configuration_key[`]? = '(.*)';$/
-Replace:
-/    'CFGTITLE_$3' => '$1',\r    'CFGDESC_$3' => '$2',/

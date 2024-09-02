@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2 2024 Aug 25 Modified in v2.1.0-alpha1 $
+ * @version $Id: pilou2 2024 Aug 25 Modified in v2.1.0-alpha2 s$
  */
 
 return [
@@ -173,12 +173,12 @@ return [
 'TEXT_ERROR_FUNCTION_DOES_NOT_EXIST' => 'PHP function %s が有りません',
 'TEXT_ERROR_CURL_LIVE_TEST' => 'ライブサーバに接続する際に CURL が利用できません',
 'TEXT_ERROR_HTTPS' => 'ヒント: 可能であれば、SSL証明書をインストールした状態で、 "https://"を使用してインストーラを実行する必要があります。',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => '既存の configure.php ファイルが見つかりました。 下の[アップグレード...]を選択すると、インストーラはデータベース構造のアップグレードを試みます。',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 データベースは最新のようです。 稼働中のライブサイトで作業していますか？ インストールを続行すると、現在のデータベースの内容が消去されます。 本当にインストールしてよろしいですか？',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => '既存の configure.php ファイルが見つかりました。 下の[アップグレード...]を選択すると、インストーラはデータベース構造のアップグレードを試みます。下のボタンを使用してアップグレードできます。注意: クリーン インストールを続行すると、既存のデータが消去されます。',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 データベースは最新のようです。 稼働中のライブサイトで作業していますか？ クリーン インストールを続行すると、現在のデータベースの内容が削除されます。クリーン インストールを続行してもよろしいですか？',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => '複数の管理ディレクトリが存在するようです。古い管理ディレクトリを削除して [更新] をクリックするか、以下の正しい管理ディレクトリを選択して [更新] をクリックしてください。',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => '複数の管理画面ディレクトリが存在するようです。 古い管理画面ディレクトリを削除して[更新]をクリックするか、または下の正しい管理ディレクトリを選択して[更新]をクリックしてください。',
 'TEXT_ERROR_MYSQL_VERSION' => 'サーバー データベースが最小バージョンを満たしていません。 MySQL: %s または MariaDB: %s',
-'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムにエラーや警告は検出されませんでした。 インストールを続けることができます。',
+'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムでエラーは検出されませんでした。以下のいずれかのインストール (またはアップグレード (利用可能な場合)) オプションを選択して続行できます。',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%：データベースを検査し、現在のバージョンにアップグレードするために必要な手順 (新しいフィールドの追加/既存のフィールドの変更) を提供します。これは非破壊的なプロセスであることを目的としていますが、他のすべての変更と同様、続行する前にデータベースの検証済みのバックアップが利用可能であることを確認する必要があります。',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%：データベースを新しい状態に戻し、すべてのデータを削除します。オプションで、このプロセスの一部としてデモンストレーション データをロードすることもできます。',
 'TEXT_FORM_VALIDATION_REQUIRED' => '必須',

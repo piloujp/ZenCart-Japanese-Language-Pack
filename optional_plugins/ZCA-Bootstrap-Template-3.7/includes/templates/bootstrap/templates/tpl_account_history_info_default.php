@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.7.3
  *
  * Loaded automatically by index.php?main_page=account_edit.
  * Displays information related to a single specific order
@@ -137,6 +137,21 @@ foreach ($order->totals as $total) {
  */
 if (DOWNLOAD_ENABLED === 'true') {
     require $template->get_template_dir('tpl_modules_downloads.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_downloads.php';
+}
+
+/**
+ * Enable an observer to add content to the bottom of the order's data.
+ */
+$additional_content = false;
+$zco_notifier->notify('NOTIFY_INVOICE_ADDITIONAL_DATA_MIDDLE', $order, $additional_content);
+if ($additional_content !== false) {
+?>
+            <table class="table">
+                <tr>
+                    <td class="main additional_data" colspan="2"><?php echo $additional_content; ?></td>
+                </tr>
+            </table>
+<?php
 }
 
 /**

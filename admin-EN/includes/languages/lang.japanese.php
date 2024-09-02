@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Aug 25 Modified in v2.1.0-alpha1 $
+* @version $Id: Jeff Rutt 2024 Aug 28 Modified in v2.1.0-alpha2 $
 */
 
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
@@ -494,6 +494,7 @@ $define = [
     'TEXT_DISPLAY_NUMBER_OF_CURRENCIES' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Currencies)',
     'TEXT_DISPLAY_NUMBER_OF_CUSTOMERS' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Customers)',
     'TEXT_DISPLAY_NUMBER_OF_FEATURED' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Featured Products)',
+    'TEXT_DISPLAY_NUMBER_OF_FEATURED_CATEGORIES' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Featured Categories)',
     'TEXT_DISPLAY_NUMBER_OF_GENERIC' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Entries)',
     'TEXT_DISPLAY_NUMBER_OF_GIFT_VOUCHERS' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Gift Vouchers)',
     'TEXT_DISPLAY_NUMBER_OF_GROUPS' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> Groups)',
