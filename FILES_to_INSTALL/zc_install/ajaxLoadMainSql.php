@@ -103,15 +103,6 @@ if ($error) {
 }
 //English admin menus
 if (isset($_POST['adminen'])) {
-    $extendedOptions = [
-        'doJsonProgressLogging' => true,
-        'doJsonProgressLoggingFileName' => zcDatabaseInstaller::$initialProgressMeterFilename,
-        'id' => 'main',
-        'message' => TEXT_LOADING_ENGLISH_ADMIN,
-    ];
-    $file = DIR_FS_INSTALL . 'sql/adminen/mysql_english_admin_menu.sql';
-    logDetails('processing file ' . $file);
-    $error = $dbInstaller->parseSqlFile($file, $extendedOptions);
     // attempt to unzip demo images, failing silently if Zip extension isn't installed
     if (class_exists('ZipArchive')) {
         // copying English admin files

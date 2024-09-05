@@ -3,16 +3,16 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2024 Aug 03 Modified in v2.1.0-alpha1 $
-*/
+ * @version $Id: DrByte 2024 Aug 07 Modified in v2.1.0-alpha2 $
+ */
 
 $define = [
     'HEADING_TITLE' => 'バナーの管理',
     'TABLE_HEADING_BANNERS' => 'バナー',
     'TABLE_HEADING_GROUPS' => 'グループ',
+    'TABLE_HEADING_POSITIONS' => '位置',
     'TABLE_HEADING_STATISTICS' => '表示 / クリック',
     'TABLE_HEADING_BANNER_OPEN_NEW_WINDOWS' => '新しいウィンドウ',
-    'TABLE_HEADING_BANNER_ON_SSL' => 'SSLを表示',
     'TABLE_HEADING_BANNER_SORT_ORDER' => '並び順',
     'TEXT_BANNERS_TITLE' => 'バナー タイトル:',
     'TEXT_BANNERS_URL' => 'バナーリンク先URL:',
@@ -41,8 +41,6 @@ $define = [
     'TEXT_INFO_BANNER_STATUS' => '<strong>注意:</strong> バナーのステータスは、指定された「開始日」「終了日」並びに「表示回数」の設定によって自動更新されます。',
     'TEXT_BANNERS_OPEN_NEW_WINDOWS' => 'バナーを新しいウィンドウで開く',
     'TEXT_INFO_BANNER_OPEN_NEW_WINDOWS' => '<strong>注意:</strong>バナーを新しいウィンドウで開きます',
-    'TEXT_BANNERS_ON_SSL' => 'SSLページでのバナー表示',
-    'TEXT_INFO_BANNER_ON_SSL' => '<strong>注意:</strong>このバナーがSSLページでエラーなしに表示される場合は、Yes に設定してください。No に設定するとSSLページではこのバナーはスキップされます。',
     'TEXT_BANNERS_DATE_ADDED' => '登録日:',
     'TEXT_BANNERS_SCHEDULED_AT_DATE' => '開始日: <b>%s</b>',
     'TEXT_BANNERS_EXPIRES_AT_DATE' => '終了日: <b>%s</b>',
@@ -62,17 +60,12 @@ $define = [
     'ERROR_UNKNOWN_STATUS_FLAG' => 'エラー: 不明なステータスです。',
     'ERROR_BANNER_IMAGE_REQUIRED' => 'エラー: バナーの画像が必要です。',
     'ERROR_UNKNOWN_BANNER_OPEN_NEW_WINDOW' => 'エラー: バナーを新しいウィンドウで開くように設定できませんでした',
-    'ERROR_UNKNOWN_BANNER_ON_SSL' => 'エラー: SSL を使用するようにバナーを設定できませんでした',
     'ERROR_INVALID_SCHEDULED_DATE' => '「予定日」は無効です。再入力してください。',
     'ERROR_INVALID_EXPIRES_DATE' => '「有効期限」は、 日付が無効です。再入力してください。',
-    'TEXT_LEGEND_BANNER_ON_SSL' => 'SSLを表示',
     'TEXT_LEGEND_BANNER_OPEN_NEW_WINDOWS' => '新しいウィンドウ',
     'IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_ON' => '新しいウインドウを開くー可能',
     'IMAGE_ICON_BANNER_OPEN_NEW_WINDOWS_OFF' => '新しいウインドウを開くー不可能',
-    'IMAGE_ICON_BANNER_ON_SSL_ON' => '安全なページを開くー可能',
-    'IMAGE_ICON_BANNER_ON_SSL_OFF' => '安全なページを開くー不可能',
     'SUCCESS_BANNER_OPEN_NEW_WINDOW_UPDATED' => '成功しました: 新しいウィンドウを開くバナーのステータスは更新されました.',
-    'SUCCESS_BANNER_ON_SSL_UPDATED' => '成功しました: SSLページ内で開くバナーのステータスは更新されました',
 ];
 
 return $define;
