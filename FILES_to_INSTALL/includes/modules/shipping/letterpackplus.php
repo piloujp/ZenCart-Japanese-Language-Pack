@@ -141,7 +141,7 @@
                             'module' => MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE . $BQTY,
                             'methods' => array(array('id' => $this->code,
                                                      'title' => MODULE_SHIPPING_LETTERPACKPLUS_TEXT_WAY,
-                                                     'cost' => ((int)MODULE_SHIPPING_LETTERPACKPLUS_COST*$shipping_num_boxes))));
+                                                     'cost' => MODULE_SHIPPING_LETTERPACKPLUS_COST*$shipping_num_boxes)));
       if ($this->tax_class > 0) {
         $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
       }
