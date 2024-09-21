@@ -690,8 +690,7 @@ if ($action === 'edit' || $action === 'update') {
                             TABLE_CUSTOMERS,
                             'customers_firstname_kana',
                             50
-                        ) . ' class="form-control" id="customers_firstname_kana" minlength="' . ENTRY_FIRST_NAME_MIN_LENGTH . '"',
-                        true
+                        ) . ' class="form-control" id="customers_firstname_kana" minlength="' . ENTRY_FIRST_NAME_MIN_LENGTH . '"'
                     ); ?>
                 </div>
             </div>
@@ -734,8 +733,7 @@ if ($action === 'edit' || $action === 'update') {
                             TABLE_CUSTOMERS,
                             'customers_lastname_kana',
                             50
-                        ) . ' class="form-control" id="customers_lastname_kana" minlength="' . ENTRY_LAST_NAME_MIN_LENGTH . '"',
-                        true
+                        ) . ' class="form-control" id="customers_lastname_kana" minlength="' . ENTRY_LAST_NAME_MIN_LENGTH . '"'
                     ); ?>
                 </div>
                 </div>
