@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.0.0-alpha1 $
+ * @version $Id: piloujp 2024 Feb 06 Modified in v2.1.0-alpha1 $
 */
 
 $define = [
@@ -29,7 +29,6 @@ $define = [
     'TEXT_DELETE_INTRO' => 'この顧客を本当に削除しますか?',
     'TEXT_DELETE_REVIEWS' => 'レビューも削除(投稿数 %s)',
     'TEXT_INFO_HEADING_DELETE_CUSTOMER' => '顧客を削除',
-    'TYPE_BELOW' => '以下に入力してください。',
     'TEXT_INFO_NUMBER_OF_ORDERS' => '注文数:',
     'TEXT_INFO_LIFETIME_VALUE' => '顧客生涯価値:',
     'TEXT_INFO_LAST_ORDER' => '最近の注文:',
@@ -68,6 +67,13 @@ $define = [
     'TABLE_HEADING_WHOLESALE_LEVEL' => '卸売レベル',
     'TEXT_WHOLESALE_LEVEL' => '卸売レベル：',
     'HELPTEXT_WHOLESALE_LEVEL' => '小売顧客の場合は 0 を入力し、卸売顧客の場合は「卸売価格レベル」を入力します。顧客は、卸売価格レベルを持つことも、割引価格グループの一部になることもできますが、両方を所有することはできません。',
+
+    // -----
+    // Added, since used by zen_prepare_country_zones_pull_down
+    //
+    'PLEASE_SELECT' => '選択してください',
+    'TYPE_BELOW' => '以下に選択肢を入力してください...',
+
 ];
 
 return $define;
