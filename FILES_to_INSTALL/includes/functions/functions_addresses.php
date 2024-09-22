@@ -188,8 +188,7 @@ function zen_get_zone_name(int $country_id, int $zone_id, ?string $default_zone 
 function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone = '')
 {
     global $db;
-	$zone_var_code = ($_SESSION['language'] != "japanese" && $country_id == zen_country_iso_to_id('JP')) ? 'zone_name' : 'zone_code';
-    $sql = "SELECT " . $zone_var_code . "
+    $sql = "SELECT zone_code
             FROM " . TABLE_ZONES . "
             WHERE zone_country_id = " . (int)$country_id . "
             AND zone_id = " . (int)$zone_id;
@@ -197,7 +196,7 @@ function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone 
     $result = $db->Execute($sql);
 
     if ($result->RecordCount() > 0) {
-        return $result->fields[$zone_var_code];
+        return $result->fields['zone_code'];
     }
     return $default_zone;
 }

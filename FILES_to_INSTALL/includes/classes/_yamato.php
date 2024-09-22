@@ -394,8 +394,8 @@ class _Yamato {
 */
 		
 //		２０２４年０４月以降のすべての送料（契約無し、税込み）　Full tarafication (no contract, tax included) from April 2024
-//		契約なし場合は、下にアンコメントしてください　If you have no contract, uncomment lines below
-/*
+//		契約書がある場合は、以下の行をコメントし、更新された値を持つ上記の配列のいずれかを使用します。　If you have a contract, comment lines below and use one of the array above with updated values.
+
 		'N01' => array( 940,1230,1530,1850,2190,2510,3060,3720),
 		'N02' => array(1060,1350,1650,1970,2310,2630,3730,4500),
 		'N03' => array(1190,1480,1790,2110,2450,2770,4090,5190),
@@ -412,7 +412,7 @@ class _Yamato {
 		'N14' => array(2070,2360,2670,2990,3330,3650,6180,7770),
 		'N15' => array(2340,2620,2930,3250,3590,3910,6550,8140),
 		'N16' => array(2340,2950,3590,4240,4910,5560,9080,10730)
-*/
+
 //		契約なし場合は、上にアンコメントしてください　If you have no contract, uncomment precedent line
 		);
 		// 地帯 - 地帯間の価格ランク

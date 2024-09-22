@@ -166,15 +166,6 @@ if (!empty($action)) {
             if (ACCOUNT_STATE === 'true') {
                 $entry_state_has_zones = count(zen_get_country_zones((int)$entry_country_id)) > 0;
                 if ($entry_state_has_zones) {
-					if ($_SESSION['language'] == "japanese" && $entry_country_id == zen_country_iso_to_id('JP')) {
-                    $zone_query = $db->Execute(
-                        "SELECT zone_id
-                           FROM " . TABLE_ZONES . "
-                           WHERE zone_country_id = " . (int)$entry_country_id . "
-                             AND zone_code = " . (int)$entry_zone_id . "
-                           LIMIT 1"
-                    );
-					} else {
                     $zone_query = $db->Execute(
                         "SELECT zone_id
                            FROM " . TABLE_ZONES . "
@@ -182,7 +173,6 @@ if (!empty($action)) {
                              AND zone_id = " . (int)$entry_zone_id . "
                            LIMIT 1"
                     );
-					}
 
                     if ($zone_query->EOF) {
                         $error = true;
