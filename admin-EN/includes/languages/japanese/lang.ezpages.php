@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2024 May 27 Modified in v2.1.0-alpha1 $
+ * @version $Id: DrByte 2024 Aug 28 Modified in v2.1.0-alpha2 $
 */
 
 $define = [
@@ -33,7 +33,7 @@ $define = [
     'TABLE_HEADING_PAGE_OPEN_NEW_WINDOW' => 'Open New Window:',
     'TABLE_HEADING_PAGE_IS_VISIBLE' => 'Page is Visible:',
     'TABLE_HEADING_PAGE_IS_VISIBLE_EXPLANATION' => ' Page is reachable even if not linked in header, footer or sidebox<br>
-    (But if all the settings for Visible and Header and Footer and Sidebox are all OFF then visitors attempting to see the page will get a Page-Not-Found response.)',
+(But if all the settings for Visible and Header and Footer and Sidebox are all OFF then visitors attempting to see the page will get a Page-Not-Found response.)',
     'TEXT_DISPLAY_NUMBER_OF_PAGES' => 'Displaying <b>%1$d</b> to <b>%2$d</b> (of <b>%3$d</b> pages)',
     'IMAGE_NEW_PAGE' => 'New Page',
     'TEXT_INFO_PAGES_ID' => 'ID: ',

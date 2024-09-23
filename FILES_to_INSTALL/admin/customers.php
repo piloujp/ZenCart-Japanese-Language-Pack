@@ -90,9 +90,12 @@ if (!empty($action)) {
             $customers_lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['customers_lastname_kana']));
             $customers_email_address = zen_db_prepare_input($_POST['customers_email_address']);
             $customers_telephone = zen_db_prepare_input($_POST['customers_telephone']);
+            $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
             $customers_fax = '';
+            $entry_fax = '';
             if (ACCOUNT_FAX_NUMBER === 'true') {
                 $customers_fax = zen_db_prepare_input($_POST['customers_fax']);
+                $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
             }
             $customers_newsletter = zen_db_prepare_input($_POST['customers_newsletter']);
             $customers_group_pricing = (int)($_POST['customers_group_pricing'] ?? 0); //- Not present if wholesale pricing is selected!
@@ -771,6 +774,58 @@ if ($action === 'edit' || $action === 'update') {
                         echo ($error === true && $entry_email_address_check_error === true) ? '&nbsp;' . ENTRY_EMAIL_ADDRESS_ERROR : ''; ?>
                 </div>
             </div>
+             <div class="form-group">
+                <?php echo zen_draw_label(ENTRY_TELEPHONE_NUMBER, 'customers_telephone', 'class="col-sm-3 control-label"'); ?>
+                <div class="col-sm-9 col-md-6">
+                    <?php
+                    echo zen_draw_input_field(
+                        'customers_telephone',
+                        htmlspecialchars(
+                            $cInfo->customers_telephone,
+                            ENT_COMPAT,
+                            CHARSET,
+                            true
+                        ),
+                        zen_set_field_length(
+                            TABLE_CUSTOMERS,
+                            'customers_telephone',
+                            15
+                        ) . ' class="form-control" id="customers_telephone" minlength="' . ENTRY_TELEPHONE_MIN_LENGTH . '"',
+                        true
+                    ); ?>
+                </div>
+            </div>
+<?php
+    if (ACCOUNT_FAX_NUMBER === 'true') {
+?>
+            <div class="form-group">
+                <?php echo zen_draw_label(ENTRY_FAX_NUMBER, 'customers_fax', 'class="col-sm-3 control-label"'); ?>
+                <div class="col-sm-9 col-md-6">
+<?php
+        if ($processed === true) {
+            echo $cInfo->customers_fax . zen_draw_hidden_field('customers_fax');
+        } else {
+            echo zen_draw_input_field(
+                'customers_fax',
+                htmlspecialchars(
+                    (string)$cInfo->customers_fax,
+                    ENT_COMPAT,
+                    CHARSET,
+                    true
+                ),
+                zen_set_field_length(
+                    TABLE_CUSTOMERS,
+                    'customers_fax',
+                    15
+                ) . ' class="form-control" id="customers_fax"'
+            );
+        }
+?>
+                </div>
+            </div>
+<?php
+    }
+?>
  <?php
     // -----
     // If a plugin has additional fields to add to the form, it supplies that information here.
@@ -949,29 +1004,23 @@ if ($action === 'edit' || $action === 'update') {
                     ); ?>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?>
-        </div>
-        <div class="row formAreaTitle"><?php echo CATEGORY_CONTACT; ?></div>
-        <div class="formArea">
             <div class="form-group">
-                <?php echo zen_draw_label(ENTRY_TELEPHONE_NUMBER, 'customers_telephone', 'class="col-sm-3 control-label"'); ?>
+                <?php echo zen_draw_label(ENTRY_TELEPHONE_NUMBER, 'entry_telephone', 'class="col-sm-3 control-label"'); ?>
                 <div class="col-sm-9 col-md-6">
                     <?php
                     echo zen_draw_input_field(
-                        'customers_telephone',
+                        'entry_telephone',
                         htmlspecialchars(
-                            $cInfo->customers_telephone,
+                            $cInfo->entry_telephone,
                             ENT_COMPAT,
                             CHARSET,
                             true
                         ),
                         zen_set_field_length(
-                            TABLE_CUSTOMERS,
-                            'customers_telephone',
+                            TABLE_ADDRESS_BOOK,
+                            'entry_telephone',
                             15
-                        ) . ' class="form-control" id="customers_telephone" minlength="' . ENTRY_TELEPHONE_MIN_LENGTH . '"',
+                        ) . ' class="form-control" id="entry_telephone" minlength="' . ENTRY_TELEPHONE_MIN_LENGTH . '"',
                         true
                     ); ?>
                 </div>
@@ -980,25 +1029,25 @@ if ($action === 'edit' || $action === 'update') {
     if (ACCOUNT_FAX_NUMBER === 'true') {
 ?>
             <div class="form-group">
-                <?php echo zen_draw_label(ENTRY_FAX_NUMBER, 'customers_fax', 'class="col-sm-3 control-label"'); ?>
+                <?php echo zen_draw_label(ENTRY_FAX_NUMBER, 'entry_fax', 'class="col-sm-3 control-label"'); ?>
                 <div class="col-sm-9 col-md-6">
 <?php
         if ($processed === true) {
-            echo $cInfo->customers_fax . zen_draw_hidden_field('customers_fax');
+            echo $cInfo->entry_fax . zen_draw_hidden_field('entry_fax');
         } else {
             echo zen_draw_input_field(
-                'customers_fax',
+                'entry_fax',
                 htmlspecialchars(
-                    (string)$cInfo->customers_fax,
+                    (string)$cInfo->entry_fax,
                     ENT_COMPAT,
                     CHARSET,
                     true
                 ),
                 zen_set_field_length(
-                    TABLE_CUSTOMERS,
-                    'customers_fax',
+                    TABLE_ADDRESS_BOOK,
+                    'entry_fax',
                     15
-                ) . ' class="form-control" id="customers_fax"'
+                ) . ' class="form-control" id="entry_fax"'
             );
         }
 ?>
