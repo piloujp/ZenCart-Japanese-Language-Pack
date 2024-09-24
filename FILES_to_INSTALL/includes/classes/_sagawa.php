@@ -5,14 +5,15 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2024 Aug 24 Modified in v2.1.0-alpha1 $
+ * @version $Id: pilou2/piloujp 2024 Sept 24 Modified in v2.1.0-alpha2 $
  */
 
 /*
     $rate = new _sagawa('sagawa','通常便');
     $rate->SetOrigin('北海道', 'JP');   // 北海道から
     $rate->SetDest('東京都', 'JP');     // 東京都まで
-    $rate->SetWeight(10);           // kg
+    $rate->SetWeight(10);               // kg
+	$rate->SetSize(20, 15, 10);         // Length, Width, Height (cm)
     $quote = $rate->GetQuote();
     print $quote['type'] . "<br>";
     print $quote['cost'] . "\n";
@@ -31,7 +32,7 @@ class _Sagawa {
     // コンストラクタ
     // $id:   module id
     // $titl: module name
-    // $zone: 都道府県コード '01'～'47'
+    // $zone: 都道府県
     // $country: country code
     function __construct($id, $title, $zone = NULL, $country = NULL) {
         $this->quote = array('id' => $id, 'title' => $title);
@@ -40,7 +41,7 @@ class _Sagawa {
         }
     }
     // 発送元をセットする
-    // $zone: 都道府県コード '01'～'47'
+    // $zone: 都道府県
     // $country: country code
     function SetOrigin($zone, $country = NULL) {
         $this->OriginZone = $zone;
@@ -55,7 +56,6 @@ class _Sagawa {
         }
     }
     function SetWeight($weight) {
-        //$this->Weight = $weight;
         $this->Weight = $weight;
     }
     function SetSize($length = NULL, $width = NULL, $height = NULL) {
@@ -69,8 +69,7 @@ class _Sagawa {
             $this->Height = $height;
         }
     }
-    // サイズ区分(0～4)を返す
-    // 規格外の場合は9を返す
+    // サイズ区分(0～8)を返す
     //
     // 区分  サイズ名  ３辺計   重量
     // ----------------------------------
@@ -101,7 +100,6 @@ class _Sagawa {
 
         $n_totallength = $this->Length + $this->Width + $this->Height;
 
-        //while (list($n_index, $a_limit) = each($a_classes)) {
         foreach ($a_classes as $n_index => $a_limit) {
             if ($n_totallength <= $a_limit[1] && $this->Weight <= $a_limit[2]) {
                 return $a_limit[0];
@@ -125,10 +123,10 @@ class _Sagawa {
         }
         return $s_key;
     }
-    // 都道府県コードから地帯コードを取得する
-    // $zone: 都道府県コード
+    // 都道府県から地帯コードを取得する
+    // $zone: 都道府県
     function GetLZone($zone) {
-        // 都道府県コードを地帯コード('A'～'M')に変換する
+        // 都道府県を地帯コード('A'～'M')に変換する
         //  北海道:'A' = 北海道
         //  北東北:'B' = 青森県,岩手県,秋田県
         //  南東北:'C' = 宮城県,山形県,福島県
@@ -195,12 +193,13 @@ class _Sagawa {
     }
 
     function GetQuote() {
-        // 距離別の価格ランク: ランクコード => 価格(60,80,100,140,160,180,200,220,240,260) 2023-03 prices HT https://www.sagawa-exp.co.jp/send/fare/attention.html
+        // 距離別の価格ランク: ランクコード => 価格(60,80,100,140,160,180,200,220,240,260)
+        // https://www.sagawa-exp.co.jp/send/fare/attention.html
         $a_pricerank = array(
 // サガワ急便との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
 // Size and weight restrictions vary depending on the contract with Sagawa Transport, so you will need to adjust them in "function GetSizeClass()".
-// 送信元の都道府県の行「/*...」と「*/...」を削除し、契約に合わせて料金を調整して下さい。
-// Remove lines '/*...' and '*/...' for the prefecture you send from and adjust rates to your contract.
+// 送信元の都道府県の行「/*」と「*/」を削除し、契約に合わせて料金を調整して下さい。
+// Remove lines '/*' and '*/' for the prefecture you send from and adjust rates to your contract.
 
 // //  /////////////////// GetSizeClass array(  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10)
 // // 北海道から/////////////////////////////( 60,80,100,140,160,180,200,220,240,260   ) サイズ、契約なし、２０２４年８月、税込
@@ -399,6 +398,7 @@ class _Sagawa {
 		'N01' => array(910,1220,1520,2180,2440,2600,2890,3480,4070,5240,6420) // M沖縄-M沖縄  'MM'=>N01
 */
 // // すべての送料//////////////////////////( 60,80,100,140,160,180,200,220,240,260   ) サイズ、契約なし、２０２４年８月、税込
+//		契約がある場合は、以下の行をコメントアウトし、上記の配列のいずれかを使用して、都道府県のデフォルト値を契約値に置き換えます。　If you have a contract, comment out lines below and use one of the array above by replacing default values for your prefecture by your contract values.
 
 		'N01' => array(910,1220,1520,2180,2440,2600,2890,3480,4070,5240,6420),
 		'N02' => array(910,1220,1520,2180,2440,2710,2890,3480,4070,5240,6420),
@@ -466,6 +466,7 @@ class _Sagawa {
 		'N64' => array(2442,4158,6292,9185,12595,17435,19855,24695,29535,39215,48895),
 		'N65' => array(2552,4807,7579,11220,14740,19580,22000,26840,31680,41360,51040)
 
+//		契約書がある場合は、上記の行をコメントアウトしてください。　If you have a contract, comment out lines above.
         );   
         // 地帯 - 地帯間の価格ランク
 		// Zone - Price rank between zones
@@ -499,8 +500,6 @@ class _Sagawa {
                 } else {
                     $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
                 }
-              //$this->quote['DEBUG'] = ' zone=' . $this->OriginZone . '=>' . $this->DestZone   //DEBUG
-              //              . ' cost=' . $a_pricerank[$s_rank][$n_sizeclass];           //DEBUG
             } else {
                 $this->quote['error'] = MODULE_SHIPPING_SAGAWA_TEXT_OUT_OF_AREA . '(' . $s_key .')';
             }

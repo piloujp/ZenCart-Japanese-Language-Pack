@@ -5,14 +5,15 @@
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2024 Aug 24 Modified in v2.1.0-alpha1 $
+ * @version $Id: pilou2/piloujp 2024 Sept 24 Modified in v2.1.0-alpha2 $
  */
 
 /*
 	$rate = new _Yamato('yamato','通常便');
 	$rate->SetOrigin('北海道', 'JP');   // 北海道から
 	$rate->SetDest('東京都', 'JP');     // 東京都まで
-	$rate->SetWeight(10);           // kg
+	$rate->SetWeight(10);               // kg
+	$rate->SetSize(20, 15, 10);         // Length, Width, Height (cm)
 	$quote = $rate->GetQuote();
 	print $quote['type'] . "<br>";
 	print $quote['cost'] . "\n";
@@ -31,7 +32,7 @@ class _Yamato {
 	// コンストラクタ
 	// $id:   module id
 	// $titl: module name
-	// $zone: 都道府県コード '01'～'47'
+	// $zone: 都道府県
 	// $country: country code
 	function __construct($id, $title, $zone = NULL, $country = NULL) {
 		$this->quote = array('id' => $id, 'title' => $title);
@@ -40,7 +41,7 @@ class _Yamato {
 		}
 	}
 	// 発送元をセットする
-	// $zone: 都道府県コード '01'～'47'
+	// $zone: 都道府県
 	// $country: country code
 	function SetOrigin($zone, $country = NULL) {
 		$this->OriginZone = $zone;
@@ -55,7 +56,6 @@ class _Yamato {
 		}
 	}
 	function SetWeight($weight) {
-		//$this->Weight = $weight;
 		$this->Weight = $weight;
 	}
 	function SetSize($length = NULL, $width = NULL, $height = NULL) {
@@ -69,8 +69,7 @@ class _Yamato {
 			$this->Height = $height;
 		}
 	}
-	// サイズ区分(0～4)を返す
-	// 規格外の場合は9を返す
+	// サイズ区分(0～7)を返す
 	//
 	// 区分  サイズ名  ３辺計   重量
 	// ----------------------------------
@@ -82,7 +81,6 @@ class _Yamato {
 	// 5    160サイズ 160cmまで 25kgまで
 	// 6    180サイズ 180cmまで 30kgまで
 	// 7    200サイズ 200cmまで 30kgまで
-	// 9    規格外
 	function GetSizeClass() {
 		$a_classes = array(
 			array(0,  60,  2),  // 区分,３辺計,重量
@@ -97,7 +95,6 @@ class _Yamato {
 
 		$n_totallength = $this->Length + $this->Width + $this->Height;
 
-		//while (list($n_index, $a_limit) = each($a_classes)) {
 		foreach ($a_classes as $n_index => $a_limit) {
 			if ($n_totallength <= $a_limit[1] && $this->Weight <= $a_limit[2]) {
 				return $a_limit[0];
@@ -121,10 +118,10 @@ class _Yamato {
 		}
 		return $s_key;
 	}
-	// 都道府県コードから地帯コードを取得する
-	// $zone: 都道府県コード
+	// 都道府県から地帯コードを取得する
+	// $zone: 都道府県
 	function GetLZone($zone) {
-		// 都道府県コードを地帯コード('A'～'M')に変換する
+		// 都道府県を地帯コード('A'～'L')に変換する
 		//  北海道:'A' = 北海道
 		//  北東北:'B' = 青森県,岩手県,秋田県
 		//  南東北:'C' = 宮城県,山形県,福島県
@@ -192,12 +189,11 @@ class _Yamato {
 	function GetQuote() {
 		// 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,180,200)
 		// (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
-		// 2023/10～
 		$a_pricerank = array(
 // ヤマト運輸との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
 // Size and weight restrictions vary depending on the contract with Yamato Transport, so you will need to adjust them in "function GetSizeClass()".
 // 送信元の都道府県の行「/*...」と「*/...」を削除し、契約に合わせて料金を調整して下さい。
-// Remove lines '/*...' and '*/...' for the prefecture you send from and adjust rates to your contract.
+// Remove lines '/*' and '*/' for the prefecture you send from and adjust rates to your contract.
 
 
 //   /////////////////////////// GetSizeClass array(  0,  1,  2,  3,  4,  5,  6,  7)
@@ -394,7 +390,7 @@ class _Yamato {
 */
 		
 //		２０２４年０４月以降のすべての送料（契約無し、税込み）　Full tarafication (no contract, tax included) from April 2024
-//		契約書がある場合は、以下の行をコメントし、更新された値を持つ上記の配列のいずれかを使用します。　If you have a contract, comment lines below and use one of the array above with updated values.
+//		契約がある場合は、以下の行をコメントアウトし、上記の配列のいずれかを使用して、都道府県のデフォルト値を契約値に置き換えます。　If you have a contract, comment out lines below and use one of the array above by replacing default values for your state by your contract values.
 
 		'N01' => array( 940,1230,1530,1850,2190,2510,3060,3720),
 		'N02' => array(1060,1350,1650,1970,2310,2630,3730,4500),
@@ -413,7 +409,7 @@ class _Yamato {
 		'N15' => array(2340,2620,2930,3250,3590,3910,6550,8140),
 		'N16' => array(2340,2950,3590,4240,4910,5560,9080,10730)
 
-//		契約なし場合は、上にアンコメントしてください　If you have no contract, uncomment precedent line
+//		契約書がある場合は、上記の行をコメントアウトしてください。　If you have a contract, comment out lines above.
 		);
 		// 地帯 - 地帯間の価格ランク
 		$a_dist_to_rank = array(
@@ -444,8 +440,6 @@ class _Yamato {
 				} else {
 					$this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
 				}
-			  //$this->quote['DEBUG'] = ' zone=' . $this->OriginZone . '=>' . $this->DestZone   //DEBUG
-			  //              . ' cost=' . $a_pricerank[$s_rank][$n_sizeclass];           //DEBUG
 			} else {
 				$this->quote['error'] = MODULE_SHIPPING_YAMATO_TEXT_OUT_OF_AREA . '(' . $s_key .')';
 			}
