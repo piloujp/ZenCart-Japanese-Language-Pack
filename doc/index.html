@@ -345,14 +345,21 @@ a.anclink {
           '...\(admin to YourAdminFolderName)\packingslip.php'<br>
           '...\(admin to YourAdminFolderName)\stats_sales_report_graphs.php'<br>
           '...\(admin to YourAdminFolderName)\includes\header.php<br>
-          '...\(admin to YourAdminFolderName)\includes\functions\html_output.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.php'<br>
+          '...\(admin to
+          YourAdminFolderName)\includes\functions\html_output.php'<br>
+          '...\(admin to
+YourAdminFolderName)\includes\functions\extra_functions\add_cookie_path_switch.php'<br>
           '...\(admin to YourAdminFolderName)\includes\javascript\customers.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\languages\lang.english.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
-          '...\(admin to YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
+          '...\(admin to
+          YourAdminFolderName)\includes\languages\lang.english.php'<br>
+          '...\(admin to
+          YourAdminFolderName)\includes\languages\english\lang.customers.php'<br>
+          '...\(admin to
+YourAdminFolderName)\includes\modules\dashboard_widgets\RecentOrdersDashboardWidget.php'<br>
+          '...\(admin to
+          YourAdminFolderName)\includes\modules\newsletters\newsletter.php'<br>
+          '...\(admin to
+          YourAdminFolderName)\includes\modules\newsletters\product_notification.php'<br>
         </div>
         <div style="margin-left: 80px; text-align: left;"> </div>
         <div class="texte" style="margin-left: 80px; text-align: left;"> <br>
@@ -527,22 +534,19 @@ a.anclink {
         companies. Files to set are '_jpparcel.php', '_sagawa.php',
         '_yamato.php', '_yupack.php' in 'includes/classes/' folder. You need to
         check and adjust rates if necessary.<br>
-        For YuPack you might need to set a new category depending on where your
-        store is located. For other you can uncomment what fits your need.<br>
         Quoting is based on three main arrays:<br>
         One for quote/shipping cost with one row for each price range and
         columns for size, '$a_pricerank'. This is where shipping cost is set.<br>
         Second one defines which range (in first one) to use depending on
         sending location and destination, '$a_dist_to_rank'. Coding system
         starts with two letters, each one corresponding to a prefecture/state
-        group defined in third array ($a_zonemap), first one for sending
+        group defined in third array ($a_zonemap). First letter is for sending
         location and second one for destination. Then follows a row number to
         use in first array for this location combination.<br>
         <br>
-        You must check and eventually set these two arrays ('$a_pricerank' and
-        '$a_dist_to_rank') to fit your situation. Unfortunately none of the
-        shipping companies provide downloadable quoting tables but you can check
-        online:<br>
+        You must check and eventually set these the array '$a_pricerank' to fit
+        your situation. Unfortunately none of the shipping companies provide
+        downloadable quoting tables but you can check online:<br>
         For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
 
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
@@ -1142,13 +1146,10 @@ YourAdminFolderName)\includes\extra_configures\function_country_iso_to_id.php'<b
         に応 じて異なるため、設定する必要があります。
         設定するファイルは「includes/classes/」フォルダ内の「_jpparcel.php」、「_sagawa.php」、「_yamato.php」、
         「_yupack.php」です。必要に応じて料金を確認し、調整する必要があります。<br>
-        ゆうパックの場合、店舗の所在地に応じて新しいカテゴリを設定する必要がある場合があります。
-        その他については、ニーズに合ったものをコメント解除できます。<br>
         クォートは 3 つの主要な配列に基づいています：<br>
         見積もり/送料の「$a_pricerank」。価格帯ごとに 1 行、サイズの列が含まれます。送料の設定はこちらで行います。<br>
         2 番目の '$a_dist_to_rank' は、送信場所と宛先に応じて (最初の範囲内の) どの範囲を使用するかを定義します。コーディング
-        システムは 2 つの文字で始まり、各文字は 3 番目の配列 ($a_zonemap) で定義された都道府県/州グループに対応します。1
-        つ目は送信場所、2 つ目は宛先です。次に、この位置の組み合わせの最初の配列で使用する行番号が続きます。<br>
+        システムは 2 つの文字で始まり、各文字は 3 番目の配列 ($a_zonemap) で定義された都道府県グループに対応します。1 番目の文字は送信場所、2 番目の文字は送信先を表します。次に、この位置の組み合わせの最初の配列で使用する行番号が続きます。<br>
         <br>
         これら 2 つの配列 ('$a_pricerank' と '$a_dist_to_rank')
         を確認し、最終的に状況に合わせて設定する必要があります。

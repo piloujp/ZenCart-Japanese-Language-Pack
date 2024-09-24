@@ -582,8 +582,8 @@ class Customer extends base
                     entry_country_id AS country_id,
                     countries_name AS country_name,
                     countries_iso_code_3 AS country_iso,
-					entry_telephone AS telephone,
-					entry_fax AS fax
+                    entry_telephone AS telephone,
+                    entry_fax AS fax
                FROM " . TABLE_ADDRESS_BOOK . " ab
                     INNER JOIN " . TABLE_COUNTRIES . " c ON (ab.entry_country_id = c.countries_id)
                     LEFT JOIN " . TABLE_ZONES . " z ON (ab.entry_zone_id = z.zone_id AND z.zone_country_id = c.countries_id)
@@ -788,8 +788,8 @@ class Customer extends base
                         entry_suburb = '',
                         entry_firstname_kana = '',
                         entry_lastname_kana = '',
-						entry_telephone = '',
-						entry_fax = ''
+                        entry_telephone = '',
+                        entry_fax = ''
                   WHERE customers_id = " . (int)$this->customer_id
             );
 

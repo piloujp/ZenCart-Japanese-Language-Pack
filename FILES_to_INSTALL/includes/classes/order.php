@@ -664,7 +664,7 @@ class order extends base
                 'fax' => $shipping_address->fields['entry_fax'],
                 'firstname_kana' => $shipping_address->fields['entry_firstname_kana'],
                 'lastname_kana' => $shipping_address->fields['entry_lastname_kana'],
-	            'timespec' => (isset($_SESSION['shipping']['timespec'])) ? $_SESSION['shipping']['timespec'] : '',
+                'timespec' => (isset($_SESSION['shipping']['timespec'])) ? $_SESSION['shipping']['timespec'] : '',
 
             ];
         }
@@ -1041,7 +1041,7 @@ class order extends base
             'billing_telephone' => $this->billing['telephone'],
             'billing_fax' => $this->billing['fax'],
             'billing_name_kana' => $this->billing['lastname_kana'] . ' ' . $this->billing['firstname_kana'],
-	        'delivery_timespec' => $this->delivery['timespec'],
+            'delivery_timespec' => $this->delivery['timespec'],
         ];
 
         zen_db_perform(TABLE_ORDERS, $sql_data_array);
@@ -1399,11 +1399,11 @@ class order extends base
         // make an array to store the html version
         $html_msg = [];
         $japan_id = zen_country_iso_to_id('JP');
-		$customerGreet = $this->customer['country']['id'] == $japan_id ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
+        $customerGreet = $this->customer['country']['id'] == $japan_id ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
 
         //intro area
         $email_order = EMAIL_TEXT_HEADER . "\n\n" .
-		    $customerGreet . "\n\n" .
+            $customerGreet . "\n\n" .
             EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
             EMAIL_SEPARATOR . "\n" .
             EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
@@ -1465,11 +1465,11 @@ class order extends base
         $html_msg['TIMESPEC'] = (!empty($this->delivery['timespec'])) ? $this->delivery['timespec'] : '';
 
         if ($this->content_type != 'virtual' && !$storepickup) {
-			if (!empty($this->delivery['timespec'])) {
+            if (!empty($this->delivery['timespec'])) {
             $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
                 EMAIL_SEPARATOR . "\n" . zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n" .
-				EMAIL_TEXT_TELEPHONE . $this->delivery['telephone'] . "\n" . TEXT_TIME_SPECIFY . $this->delivery['timespec'] . "\n\n";
-			} else {
+                EMAIL_TEXT_TELEPHONE . $this->delivery['telephone'] . "\n" . TEXT_TIME_SPECIFY . $this->delivery['timespec'] . "\n\n";
+            } else {
             $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
                 EMAIL_SEPARATOR . "\n" .
                 zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n";
@@ -1520,7 +1520,7 @@ class order extends base
 
         $html_msg['EMAIL_FIRST_NAME'] = ($this->customer['country']['id'] == $japan_id) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'];
         $html_msg['EMAIL_LAST_NAME'] = ($this->customer['country']['id'] == $japan_id) ? '' : $this->customer['lastname'];
-		$html_msg['EMAIL_GREET'] = EMAIL_GREET;
+        $html_msg['EMAIL_GREET'] = EMAIL_GREET;
         //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
 
         $html_msg['EXTRA_INFO'] = '';

@@ -1243,7 +1243,7 @@ $define = [
     'CFGDESC_SESSION_USE_ROOT_COOKIE_PATH' => '通常、Zencart はインストールされいてるディレクトリを cookie のパスとして利用します。しかし、サーバーの中にはそれでは問題が発生するケースが有ります。この設定項目では cookie のパスをショップのディレクトリではなく、サーバーのルートに設定できます。セッションで問題が発生する場合にのみ利用してください。　デフォルトは False(利用しない）です。<br />この設定を変更するということは、管理画面へのログインに問題が発生していることを意味しますので、一旦ブラウザの cookie をクリアしてください。',
     'CFGTITLE_SESSION_ADD_PERIOD_PREFIX' => 'cookie domain の頭にピリオドを追加',
     'CFGDESC_SESSION_ADD_PERIOD_PREFIX' => '通常、Zencart は cookie domain に対して頭にピリオドをつけます（例：　.www.mydomain.com ）　サーバーの設定によってはそれでは問題が発生するケースが有ります。セッションで問題が発生する場合には、この設定を False にして試してみてください。 デフォルトは True です。',
-//eof constant configuration titles and descriptions    
+//eof constant configuration titles and descriptions
 ];
 
 return $define;

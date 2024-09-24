@@ -12,13 +12,13 @@
 (適応するサービス)
 以下の種別に対応して料金を計算する。
 ----------------------------------------------------------------------------------------
-種別                               id							Service
+種別                               id                            Service
 ----------------------------------------------------------------------------------------
-小形包装物:航空便                  jpparcelairs				Small Packets Air
-小形包装物:船便                    jpparcelseas				Small Packets Surface
-小包郵便物:航空小包                jpparcelair				International Parcels Air
-小包郵便物:船便小包                jpparcelsea				International Parcels Surface
-国際スピード郵便(EMS)                jpparcelems				Express Mail Service
+小形包装物:航空便                  jpparcelairs                Small Packets Air
+小形包装物:船便                    jpparcelseas                Small Packets Surface
+小包郵便物:航空小包                jpparcelair                International Parcels Air
+小包郵便物:船便小包                jpparcelsea                International Parcels Surface
+国際スピード郵便(EMS)                jpparcelems                Express Mail Service
 ----------------------------------------------------------------------------------------
 
 (使用方法)
@@ -44,7 +44,7 @@ class _JpParcel {
     public $DestCountryCode = NULL;
     public $Weight = 0;
     public $Areas = array(
-/*	第1地帯  */ 'easia1' => array('CN','TW','KR'),
+/* 第1地帯  */ 'easia1' => array('CN','TW','KR'),
 /* 東アジア   */ 'easia2'   =>array('HK','PH','MO','MN'),
 /* 西太平洋   */ 'wpacific'=>array('GU','MP','AS','VI'),
 /* 東南アジア */ 'seasia'  =>array('SG','TH','MY','VN','ID','KH','BN','MM','LA'),
@@ -159,7 +159,7 @@ class _JpParcel {
       array(29, 13000, 14200, 15500, 20300, 20400),
       array(30, 13400, 14600, 15900, 20900, 21000),
       ),
-	// 国際スピード郵便(EMS) 08-2024 extra charge zone 3 and 4 - EMS 4-10 days - tracking
+    // 国際スピード郵便(EMS) 08-2024 extra charge zone 3 and 4 - EMS 4-10 days - tracking
     'jpparcelems'=>array(
       array( 0.5, 1450, 1900, 3150, 3900, 3600),// 0.5kg以下,第1,第2,第3,第4,第5地帯
       array( 0.6, 1600, 2150, 3400, 4180, 3900),
@@ -248,7 +248,7 @@ class _JpParcel {
           'europe'  =>3, //ヨーロッパ
           'namerica'=>3, //北米
           'camerica'=>5, //中米
-		  'america' =>4, //USA
+          'america' =>4, //USA
           'samerica'=>5, //南米
           'africa'  =>5, //アフリカ
         );
@@ -273,7 +273,7 @@ class _JpParcel {
                 }
                 // $this->quote['DEBUG'] = ' DestCountryCode=' . $this->DestCountryCode; //DEBUG
             } else {
-				// 実際には起こらないはず
+                // 実際には起こらないはず
                 $this->quote['error'] = MODULE_SHIPPING_JPPARCEL_TEXT_ILLEGAL_AREA . '(' . $this->DestCountryCode .')';
             }
         } else {
