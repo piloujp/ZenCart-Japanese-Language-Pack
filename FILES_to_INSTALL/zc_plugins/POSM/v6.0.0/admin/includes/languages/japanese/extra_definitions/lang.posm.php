@@ -8,6 +8,7 @@
 
 $define = [
     'ADMIN_PLUGIN_MANAGER_NAME_FOR_POSM' => '商品オプションの在庫マネージャー',
+    'ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_POSM' => 'このプラグインを使用すると、サイトで商品と属性の組み合わせ（「製品バリアント」または「属性別在庫」とも呼ばれます）に基づいて商品の在庫レベルとモデル番号を割り当てることができます。',
 ];
 
 return $define;

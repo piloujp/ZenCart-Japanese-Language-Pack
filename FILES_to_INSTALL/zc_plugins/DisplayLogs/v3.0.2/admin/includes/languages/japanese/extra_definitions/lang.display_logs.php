@@ -8,6 +8,7 @@
 
 $define = [
     'ADMIN_PLUGIN_MANAGER_NAME_FOR_DISPLAYLOGS' => 'ログ表示',
+    'ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_DISPLAYLOGS' => 'Zen Cart ログ ファイルを表示および管理します。',
 ];
 
 return $define;
