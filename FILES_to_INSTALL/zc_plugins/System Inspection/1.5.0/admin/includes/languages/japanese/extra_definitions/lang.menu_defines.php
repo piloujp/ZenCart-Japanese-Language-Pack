@@ -9,5 +9,4 @@
  */
 return [
     'BOX_TOOLS_SYSTEM_INSPECTION' => 'システム検査',
-    'FILENAME_SYSTEM_INSPECTION' => 'system_inspection.php',
 ];
