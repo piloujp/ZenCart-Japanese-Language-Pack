@@ -3,7 +3,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2024 Feb 06 Modified in v2.1.0-alpha1 $
+ * @version $Id: lat9 2024 Sep 20 Modified in v2.1.0-beta1 $
 */
 
 $define = [
@@ -71,9 +71,8 @@ $define = [
     // -----
     // Added, since used by zen_prepare_country_zones_pull_down
     //
-    'PLEASE_SELECT' => '選択してください',
-    'TYPE_BELOW' => '以下に選択肢を入力してください...',
-
+    'PLEASE_SELECT' => 'Please select',
+    'TYPE_BELOW' => 'Type a choice below ...',
 ];
 
 return $define;
