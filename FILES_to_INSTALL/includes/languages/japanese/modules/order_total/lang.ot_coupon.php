@@ -10,6 +10,20 @@ $define = [
     'TEXT_COMMAND_TO_DELETE_CURRENT_COUPON_FROM_ORDER' => 'REMOVE',
     'TEXT_REMOVE_REDEEM_COUPON' => '割引クーポンの利用を取り消しました。',
     'MODULE_ORDER_TOTAL_COUPON_INCLUDE_ERROR' => ' Setting Include tax = true, should only happen when recalculate = None',
+//bof constant configuration titles and descriptions for ot_coupon
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_STATUS' => 'このモジュールはインストールされています',
+//    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_STATUS' => '',
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_SORT_ORDER' => '表示順',
+    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_SORT_ORDER' => '表示順を設定します。 最下位が最初に表示されます。',
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_INC_SHIPPING' => '送料込み',
+    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_INC_SHIPPING' => '計算に配送料を含める。',
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_INC_TAX' => '税込',
+    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_INC_TAX' => '計算には税金を含めます。',
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_CALC_TAX' => '税金を再計算',
+    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_CALC_TAX' => '税金の再計算方法。',
+    'CFGTITLE_MODULE_ORDER_TOTAL_COUPON_TAX_CLASS' => '税区分',
+    'CFGDESC_MODULE_ORDER_TOTAL_COUPON_TAX_CLASS' => '割引クーポンを「クレジット ノート」として扱う場合は、次の税金クラスを使用します。',
+//eof constant configuration titles and descriptions for ot_coupon
 ];
 
 $define['MODULE_ORDER_TOTAL_COUPON_REMOVE_INSTRUCTIONS'] = '<p>割引クーポンの利用を取り消すには「REMOVE」と入力してEnterあるいはReturnキーを押して下さい。</p>';

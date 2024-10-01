@@ -71,8 +71,9 @@ $define = [
     // -----
     // Added, since used by zen_prepare_country_zones_pull_down
     //
-    'PLEASE_SELECT' => 'Please select',
-    'TYPE_BELOW' => 'Type a choice below ...',
+    'PLEASE_SELECT' => '選択してください',
+    'TYPE_BELOW' => '以下に選択肢を入力してください...',
+
 ];
 
 return $define;
