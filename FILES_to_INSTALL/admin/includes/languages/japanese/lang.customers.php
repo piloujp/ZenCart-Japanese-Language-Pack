@@ -73,7 +73,6 @@ $define = [
     //
     'PLEASE_SELECT' => '選択してください',
     'TYPE_BELOW' => '以下に選択肢を入力してください...',
-
 ];
 
 return $define;
