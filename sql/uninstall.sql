@@ -1,4 +1,5 @@
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
+Set @USA_id = (Select countries_id from countries where countries_iso_code_2 = 'US' LIMIT 1);
 
 ALTER TABLE address_book DROP COLUMN entry_firstname_kana;
 ALTER TABLE address_book DROP COLUMN entry_lastname_kana;
@@ -20,12 +21,6 @@ ALTER TABLE orders DROP COLUMN delivery_timespec;
 
 DELETE FROM zones WHERE zone_country_id = @japan_id;
 
-DELETE FROM orders_status WHERE orders_status_name = '処理待ち';
-DELETE FROM orders_status WHERE orders_status_name = '処理中';
-DELETE FROM orders_status WHERE orders_status_name = '完了';
-DELETE FROM orders_status WHERE orders_status_name = '更新';
-DELETE FROM orders_status WHERE orders_status_name = '配送済み';
-
 DELETE FROM address_format WHERE address_format LIKE '〒%';
 UPDATE countries SET address_format_id = 1 WHERE countries_id = @japan_id;
 
@@ -44,14 +39,14 @@ DELETE FROM geo_zones WHERE geo_zone_name = '日本';
 DELETE FROM zones_to_geo_zones WHERE zone_country_id = @japan_id;
 DELETE FROM tax_rates WHERE tax_description = '（内消費税：10%）';
 
-UPDATE configuration SET configuration_value = '223', last_modified = now() WHERE configuration_key='STORE_COUNTRY';
+UPDATE configuration SET configuration_value = @USA_id, last_modified = now() WHERE configuration_key='STORE_COUNTRY';
 
 UPDATE configuration SET configuration_value = '2', last_modified = now() WHERE configuration_key = 'ENTRY_FIRST_NAME_MIN_LENGTH';
 UPDATE configuration SET configuration_value = '2', last_modified = now() WHERE configuration_key = 'ENTRY_LAST_NAME_MIN_LENGTH';
 UPDATE configuration SET configuration_value = '5', last_modified = now() WHERE configuration_key = 'ENTRY_STREET_ADDRESS_MIN_LENGTH';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_SUBURB';
 UPDATE configuration SET configuration_value = 'false', last_modified = now() WHERE configuration_key = 'DISPLAY_PRICE_WITH_TAX';
-UPDATE configuration SET configuration_value = '223', last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
+UPDATE configuration SET configuration_value = @USA_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'false', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_NEKOPOSU%';
@@ -61,7 +56,6 @@ DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_SAGAWA%'
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_YAMATO%';
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_YUPACK%';
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELSEA%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELEPACK%';
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELAIR%';
 DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELEMS%';
 
