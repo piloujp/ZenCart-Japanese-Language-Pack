@@ -1,7 +1,7 @@
 <?php
 $define = [
-    'MODULE_SHIPPING_YAMATO_TEXT_TITLE' => 'ヤマト運輸(宅急便)、1-3日',
-    'MODULE_SHIPPING_YAMATO_TEXT_DESCRIPTION' => '宅急便の配送料金',
+    'MODULE_SHIPPING_YAMATO_TEXT_TITLE' => 'ヤマト運輸(宅急便)、１－４日',
+    'MODULE_SHIPPING_YAMATO_TEXT_DESCRIPTION' => '宅急便配送設定',
     'MODULE_SHIPPING_YAMATO_TEXT_WAY_NORMAL' => '宅急便、代引きは可能です。',
     'MODULE_SHIPPING_YAMATO_TEXT_WAY_COOL' => 'クール宅急便',
     'MODULE_SHIPPING_YAMATO_TEXT_WAY_TOP' => '超速宅急便',
@@ -17,7 +17,7 @@ $define = [
     'CFGTITLE_MODULE_SHIPPING_YAMATO_MAX_WEIGHT' => '最大出荷重量',
     'CFGDESC_MODULE_SHIPPING_YAMATO_MAX_WEIGHT' => 'この方法で出荷できる最大重量。',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_MAX_GIRTH' => '最大出荷胴回り',
-    'CFGDESC_MODULE_SHIPPING_YAMATO_MAX_GIRTH' => 'この方法で発送できる最大サイズ（胴回り）です。',
+    'CFGDESC_MODULE_SHIPPING_YAMATO_MAX_GIRTH' => '封筒の内部容積の３辺の合計の最大値。',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_FREE_SHIPPING' => '送料無料設定',
     'CFGDESC_MODULE_SHIPPING_YAMATO_FREE_SHIPPING' => '送料無料設定を有効にしますか？ [合計モジュール]-[送料]-[送料無料設定]を優先する場合は False を選んでください。',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_OVER' => '送料を無料にする購入金額設定',

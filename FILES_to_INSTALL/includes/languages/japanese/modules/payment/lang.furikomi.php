@@ -1,15 +1,21 @@
 <?php
 $define = [
 	'MODULE_PAYMENT_FURIKOMI_TEXT_TITLE' => '振込',
-	'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => "<br>以下の口座に振り込んで下さい:<br><pre>\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? MODULE_PAYMENT_FURIKOMI_BANKNAME : 'Bank name') . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH : 'Branch name') . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? MODULE_PAYMENT_FURIKOMI_ACCNUM : 'Account number') . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE : 'Account type') . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? MODULE_PAYMENT_FURIKOMI_ACCNAM : 'Account name') . '</pre><p>ご注文ありがとう御座いました。入金確認後、商品を送ります。',
-//  "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT .
-//  "\n".
-//  "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME2 .
-//  "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH2 .
-//  "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM2 .
-//  "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYP2E .
-//  "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM2 .
-//  "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT2 .
+	'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => '<br>以下の口座に振り込んで下さい：<br><pre>'
+    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? MODULE_PAYMENT_FURIKOMI_BANKNAME : '銀行名')
+    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH : '支店名')
+    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? MODULE_PAYMENT_FURIKOMI_ACCNUM : '口座番号')
+    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE : '預金科目')
+    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? MODULE_PAYMENT_FURIKOMI_ACCNAM : '口座名義人')
+//    . "\nSWIFTコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? MODULE_PAYMENT_FURIKOMI_SWIFT : 'SWIFTコード')
+//    . "\n\n２番目の銀行の選択肢："
+//    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME2') ? MODULE_PAYMENT_FURIKOMI_BANKNAME2 : '銀行名')
+//    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH2 : '支店名')
+//    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM2') ? MODULE_PAYMENT_FURIKOMI_ACCNUM2 : '口座番号')
+//    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE2 : '預金科目')
+//    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? MODULE_PAYMENT_FURIKOMI_ACCNAM2 : '口座名義人')
+//    . "\nSWIFTコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'SWIFTコード')
+    . '</pre><p>ご注文ありがとう御座いました。入金確認後、商品を送ります。',
 // bof constant configuration titles and descriptions for payment module furikomi
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込モジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込による支払いを受け入れますか？',
@@ -25,10 +31,10 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCNUM' => '銀行口座番号：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_ACCTYPE' => '預金科目',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCTYPE' => '口座の種類： 普通。',
-    'CFGTITLE_MODULE_PAYMENT_FURIKOMI_SWIFT' => 'スウィフトコード',
-    'CFGDESC_MODULE_PAYMENT_FURIKOMI_SWIFT' => 'スウィフトコード：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_ACCNAM' => '口座名義',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCNAM' => '口座名：',
+    'CFGTITLE_MODULE_PAYMENT_FURIKOMI_SWIFT' => 'スウィフトコード',
+    'CFGDESC_MODULE_PAYMENT_FURIKOMI_SWIFT' => 'スウィフトコード：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_BANKNAME2' => '２番目の銀行名',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_BANKNAME2' => '銀行名：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_BANKBRANCH2' => '２番目の支店名',
@@ -37,24 +43,30 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCNUM2' => '銀行口座番号：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_ACCTYPE2' => '２番目の預金科目',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCTYPE2' => '口座の種類： 普通。',
-    'CFGTITLE_MODULE_PAYMENT_FURIKOMI_SWIFT2' => '２番目のスウィフトコード',
-    'CFGDESC_MODULE_PAYMENT_FURIKOMI_SWIFT2' => 'スウィフトコード：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_ACCNAM2' => '２番目の口座名義',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ACCNAM2' => '口座名：',
+    'CFGTITLE_MODULE_PAYMENT_FURIKOMI_SWIFT2' => '２番目のスウィフトコード',
+    'CFGDESC_MODULE_PAYMENT_FURIKOMI_SWIFT2' => 'スウィフトコード：',
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID' => '注文ステータスの設定',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID' => 'この支払いモジュールで行われた注文のステータスを設定します。',
 // eof constant configuration titles and descriptions for payment module furikomi
 ];
 if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
-	$define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "以下の口座に振り込んで下さい:\n\n" . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYPE . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM . "\n\nご注文ありがとう御座いました。入金確認後、商品を送ります。\n";
-//  "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT .
-//  "\n".
-//  "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME2 .
-//  "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH2 .
-//  "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM2 .
-//  "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYP2E .
-//  "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM2 .
-//  "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT2 .
+	$define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "以下の口座に振り込んで下さい：\n"
+    . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME
+    . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH
+    . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM
+    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYPE
+    . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM
+//    . "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT
+//    . "\n２番目の銀行の選択肢："
+//    . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME2
+//    . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH2
+//    . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM2
+//    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYP2E
+//    . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM2
+//    . "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT2
+    . "\n\nご注文ありがとう御座いました。入金確認後、商品を送ります。\n";
 }
 
 return $define;

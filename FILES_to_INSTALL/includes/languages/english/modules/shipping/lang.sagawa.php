@@ -1,8 +1,8 @@
 <?php
 $define = [
-    'MODULE_SHIPPING_SAGAWA_TEXT_TITLE' => 'Sagawa Express',
-    'MODULE_SHIPPING_SAGAWA_TEXT_DESCRIPTION' => 'Sagawa Express',
-    'MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL' => 'Regular mail',
+    'MODULE_SHIPPING_SAGAWA_TEXT_TITLE' => 'Sagawa Express 1-4 days',
+    'MODULE_SHIPPING_SAGAWA_TEXT_DESCRIPTION' => 'Sagawa Express\' settings',
+    'MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL' => 'Standard',
     'MODULE_SHIPPING_SAGAWA_TEXT_WAY_COOL' => 'Cool Express',
     'MODULE_SHIPPING_SAGAWA_TEXT_WAY_TOP' => 'Air Mail / Top Express',
     'MODULE_SHIPPING_SAGAWA_TEXT_NOTAVAILABLE' => 'This service is not offered between selected regions.',
