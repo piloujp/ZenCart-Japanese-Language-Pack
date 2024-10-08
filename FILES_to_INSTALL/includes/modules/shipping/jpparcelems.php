@@ -149,60 +149,56 @@ class jpparcelems extends base {
     $this->quotes = array('id' => $this->code, 'module' => $this->title);
     if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
 
-    if ($this->country_code != 'JP') {
-        $max_shipping_weight = MODULE_SHIPPING_JPPARCELEMS_MAX_WEIGHT;
-        if ( (MODULE_SHIPPING_JPPARCELEMS_FREE_SHIPPING != 'True') || ((int)$cart->show_total() < (int)MODULE_SHIPPING_JPPARCELEMS_OVER) ) {
-            include_once(DIR_WS_CLASSES . '_jpparcel.php');
-            $rate = new _JpParcel($this->code, MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, $this->country_code);
-            $multiboxes = MODULE_SHIPPING_JPPARCELEMS_MULTIBOX;
-            if (!empty($box_array)) {
-                $total_boxes_quote = 0;
-                for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
-                    $rate->SetWeight($box_array[$b]['box_weight']);
-                    $tmpQuote = $rate->GetQuote(); // id, title, cost | error
-                    $box_array[$b]['box_quote'] = $tmpQuote['cost'];
-                    if (isset($tmpQuote['error'])) {
-                        $this->quotes['error'] = $tmpQuote['error'];
-                    } else {
-                        if ($b == 0) {
-                            $this->quotes['module'] = $this->title . ' (' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
-                        } else {
-                            $this->quotes['module'] .= ', ' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
-                        }
-                        if ($b == $shipping_num_boxes-1) {
-                            $this->quotes['module'] .= ')';
-                        }
-                        $total_boxes_quote += $tmpQuote['cost'];
-                    }
-                }
-                $tmpQuote['cost'] = $total_boxes_quote;
-            } else {
-                $rate->SetWeight($shipping_weight);
+    $max_shipping_weight = MODULE_SHIPPING_JPPARCELEMS_MAX_WEIGHT;
+    if ( (MODULE_SHIPPING_JPPARCELEMS_FREE_SHIPPING != 'True') || ((int)$cart->show_total() < (int)MODULE_SHIPPING_JPPARCELEMS_OVER) ) {
+        include_once(DIR_WS_CLASSES . '_jpparcel.php');
+        $rate = new _JpParcel($this->code, MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, $this->country_code);
+        $multiboxes = MODULE_SHIPPING_JPPARCELEMS_MULTIBOX;
+        if (!empty($box_array)) {
+            $total_boxes_quote = 0;
+            for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
+                $rate->SetWeight($box_array[$b]['box_weight']);
                 $tmpQuote = $rate->GetQuote(); // id, title, cost | error
-
+                $box_array[$b]['box_quote'] = $tmpQuote['cost'];
                 if (isset($tmpQuote['error'])) {
                     $this->quotes['error'] = $tmpQuote['error'];
                 } else {
-                    $this->quotes['module'] = $this->title . ' (' . $shipping_num_boxes . ' x ' . $shipping_weight . TEXT_SHIPPING_WEIGHT . ')';
-                    $tmpQuote['cost'] *= $shipping_num_boxes;
+                    if ($b == 0) {
+                        $this->quotes['module'] = $this->title . ' (' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
+                    } else {
+                        $this->quotes['module'] .= ', ' . (string)$box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
+                    }
+                    if ($b == $shipping_num_boxes-1) {
+                        $this->quotes['module'] .= ')';
+                    }
+                    $total_boxes_quote += $tmpQuote['cost'];
                 }
             }
-
-            // 手数料
-            $tmpQuote['cost'] += MODULE_SHIPPING_JPPARCELEMS_HANDLING;
+            $tmpQuote['cost'] = $total_boxes_quote;
         } else {
-            $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, 'cost' => 0);
+            $rate->SetWeight($shipping_weight);
+            $tmpQuote = $rate->GetQuote(); // id, title, cost | error
+
+            if (isset($tmpQuote['error'])) {
+                $this->quotes['error'] = $tmpQuote['error'];
+            } else {
+                $this->quotes['module'] = $this->title . ' (' . $shipping_num_boxes . ' x ' . $shipping_weight . TEXT_SHIPPING_WEIGHT . ')';
+                $tmpQuote['cost'] *= $shipping_num_boxes;
+            }
         }
 
-        $this->quotes['methods'][] = $tmpQuote;
-
-        if ($this->tax_class > 0) {
-            $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
-        }
-        $max_shipping_weight = 0;
+        // 手数料
+        $tmpQuote['cost'] += MODULE_SHIPPING_JPPARCELEMS_HANDLING;
     } else {
-        $this->quotes['error'] = MODULE_SHIPPING_JPPARCELEMS_TEXT_NOTAVAILABLE;
+        $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, 'cost' => 0);
     }
+
+    $this->quotes['methods'][] = $tmpQuote;
+
+    if ($this->tax_class > 0) {
+        $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
+    }
+    $max_shipping_weight = 0;
     return $this->quotes;
   }
 
