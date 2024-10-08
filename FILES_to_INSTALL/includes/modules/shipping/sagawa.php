@@ -14,70 +14,70 @@ class sagawa extends base {
     /**
      * $_check is used to check the configuration key set up
      * @var int
-     */
+    **/
     protected $_check;
     /**
      * $code determines the internal 'code' name used to designate "this" shipping module
      *
      * @var string
-     */
+    **/
     public $code;
     /**
      * $description is a soft name for this shipping method
      * @var string 
-     */
+    **/
     public $description;
     /**
      * $enabled determines whether this module shows or not... during checkout.
      * @var boolean
-     */
+    **/
     public $enabled;
     /**
      * $icon is the file name containing the Shipping method icon
      * @var string
-     */
+    **/
     public $icon;
     /** 
      * $quotes is an array containing all the quote information for this shipping module
      * @var array
-     */
+    **/
     public $quotes;
     /**
      * $sort_order is the order priority of this shipping module when displayed
      * @var int
-     */
+    **/
     public $sort_order;
     /**
      * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
      * @var string
-     */
+    **/
     public $tax_basis;
     /**
      * $tax_class is the  Tax class to be applied to the shipping cost
      * @var string
-     */
+    **/
     public $tax_class;
     /**
      * $title is the displayed name for this shipping method
      * @var string
-     */
+    **/
     public $title;
     /**
      * $sagawa_countries is the country number->code Sagawa is shipping
      * @var array
-     */
+    **/
     public $sagawa_countries;
     /**
      * $sagawa_countries_nbr is country number Sagawa is shipping
      * @var array
-     */
+    **/
     public $sagawa_countries_nbr;
     
   /**
    * constructor
    *
    * @return sagawa
-   */
+  **/
   function __construct() {
     global $order, $db;
 
@@ -92,7 +92,7 @@ class sagawa extends base {
     $this->tax_basis = MODULE_SHIPPING_SAGAWA_TAX_BASIS;
     // disable only when entire cart is free shipping
     if (zen_get_shipping_enabled($this->code)) {
-      $this->enabled = (MODULE_SHIPPING_SAGAWA_STATUS == 'True');
+        $this->enabled = (MODULE_SHIPPING_SAGAWA_STATUS == 'True');
     }
 
     $japan_id = zen_country_iso_to_id('JP');
@@ -104,29 +104,32 @@ class sagawa extends base {
 
   /**
    * Perform various checks to see whether this module should be visible
-   */
+  **/
   function update_status() {
     global $order, $db;
     if (!$this->enabled) return;
     if (IS_ADMIN_FLAG === true) return;
 
     if ((int)MODULE_SHIPPING_SAGAWA_ZONE > 0) {
-      $check_flag = false;
-      $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_SAGAWA_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
-      while (!$check->EOF) {
-        if ($check->fields['zone_id'] < 1) {
-          $check_flag = true;
-          break;
-        } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-          $check_flag = true;
-          break;
+        $check_flag = false;
+        $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_SAGAWA_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
+        while (!$check->EOF) {
+            if ($check->fields['zone_id'] < 1) {
+                $check_flag = true;
+                break;
+            } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
+                $check_flag = true;
+                break;
+            }
+            $check->MoveNext();
         }
-        $check->MoveNext();
-      }
 
-      if ($check_flag == false) {
-        $this->enabled = false;
-      }
+        if ($check_flag == false) {
+            $this->enabled = false;
+        }
+    }
+    if ( $this->enabled == true ) {
+        if (!in_array((int)$order->delivery['country']['id'], $this->sagawa_countries_nbr)) $this->enabled = false;
     }
   }
   /**
@@ -134,40 +137,40 @@ class sagawa extends base {
    *
    * @param string $method
    * @return unknown
-   */
-    function quote() {
-      global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
-      global $order;
-      global $a_sagawa_time;
-      global $db;
+  **/
+  function quote() {
+    global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
+    global $order;
+    global $a_sagawa_time;
+    global $db;
 
-      if (empty($order->delivery['zone_id']) == true) { return NULL;}
+    if (empty($order->delivery['zone_id']) == true) { return NULL;}
 
-      $this->quotes = array('id' => $this->code, 'module' => $this->title);
-      if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
+    $this->quotes = array('id' => $this->code, 'module' => $this->title);
+    if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
       
-      $max_shipping_weight = MODULE_SHIPPING_SAGAWA_MAX_WEIGHT;
-      $max_shipping_girth = MODULE_SHIPPING_SAGAWA_MAX_GIRTH;
-      $country_id = $order->delivery['country']['id'];
-      $zone_id    = $order->delivery['zone_id'];
+    $max_shipping_weight = MODULE_SHIPPING_SAGAWA_MAX_WEIGHT;
+    $max_shipping_girth = MODULE_SHIPPING_SAGAWA_MAX_GIRTH;
+    $country_id = $order->delivery['country']['id'];
+    $zone_id    = $order->delivery['zone_id'];
 
-      $shipping_num_boxes = 1;
+    $shipping_num_boxes = 1;
 
-      if (in_array($country_id, $this->sagawa_countries_nbr)) {
-          $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");
-          $a_zonevalues = $zoneinfo->fields;
-          $s_zone_code = $a_zonevalues['zone_code'];
+    if (in_array($country_id, $this->sagawa_countries_nbr)) {
+        $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");
+        $a_zonevalues = $zoneinfo->fields;
+        $s_zone_code = $a_zonevalues['zone_code'];
 
-          // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
-          if ( (MODULE_SHIPPING_SAGAWA_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_SAGAWA_OVER) ) {
-              include_once(DIR_WS_CLASSES . '_sagawa.php');
-              $rate = new _Sagawa($this->code, MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL,
-                                zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
-              $rate->SetDest($s_zone_code, $this->sagawa_countries[$country_id]);
-              if (!empty($box_sizes_array)) {
-                  $total_boxes_quote = 0;
-                  $safefactor = 1.05; // when you build a box you need safety margins
-                  for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
+        // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
+        if ( (MODULE_SHIPPING_SAGAWA_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_SAGAWA_OVER) ) {
+            include_once(DIR_WS_CLASSES . '_sagawa.php');
+            $rate = new _Sagawa($this->code, MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL,
+                              zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
+            $rate->SetDest($s_zone_code, $this->sagawa_countries[$country_id]);
+            if (!empty($box_sizes_array)) {
+                $total_boxes_quote = 0;
+                $safefactor = 1.05; // when you build a box you need safety margins
+                for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
                     $rate->SetWeight($box_array[$b]['box_weight']);
                     $ship_length = ceil($box_sizes_array[$b][0] * $safefactor);
                     $ship_width = ceil($box_sizes_array[$b][1] * $safefactor);
@@ -190,69 +193,69 @@ class sagawa extends base {
                         }
                         $total_boxes_quote += $tmpQuote['cost'];
                     }
-                  }
-                  $tmpQuote['cost'] = $total_boxes_quote;
-              } else {
-                  $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
-              }
-              // 手数料
-              $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
-          } else {
-              $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
-          }
-
-          if (!isset($tmpQuote['error'])) {
-              // 配送時刻指定
-              $timespec = $this->get_timespec();
-              $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('sagawa_timespec', $a_sagawa_time, $timespec,'style="width: 160px;"');
-              $tmpQuote['timespec'] = $timespec;
-          }
-
-          $this->quotes['methods'][] = $tmpQuote;
-
-          if ($this->tax_class > 0) {
-              $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
-          }
+                }
+                $tmpQuote['cost'] = $total_boxes_quote;
+            } else {
+                $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
+            }
+            // 手数料
+            $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
         } else {
-            $this->quotes['error'] = MODULE_SHIPPING_SAGAWA_TEXT_NOTAVAILABLE;
+            $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
         }
-        return $this->quotes;
+
+        if (!isset($tmpQuote['error'])) {
+            // 配送時刻指定
+            $timespec = $this->get_timespec();
+            $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('sagawa_timespec', $a_sagawa_time, $timespec,'style="width: 160px;"');
+            $tmpQuote['timespec'] = $timespec;
+        }
+
+        $this->quotes['methods'][] = $tmpQuote;
+
+        if ($this->tax_class > 0) {
+            $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
+        }
+    } else {
+        $this->quotes['error'] = MODULE_SHIPPING_SAGAWA_TEXT_NOTAVAILABLE;
+    }
+    return $this->quotes;
   }
 
-    // 時刻を指定するプルダウンメニューの'value'を返す
-    function get_timespec() {
-        global $a_sagawa_time;
-        global $shipping;
+  // 時刻を指定するプルダウンメニューの'value'を返す
+  function get_timespec() {
+    global $a_sagawa_time;
+    global $shipping;
 
-        $selected = $a_sagawa_time[0]['id'];
-        if ( isset($_POST['sagawa_timespec']) ) {
-            $selected = $_POST['sagawa_timespec'];
-        } elseif ( is_array($shipping) ) {
-            list($module, $method) = explode('_', $shipping['id']);
-            if ($module == $this->code) {
-                $selected = $shipping['timespec'];
-            }
+    $selected = $a_sagawa_time[0]['id'];
+    if ( isset($_POST['sagawa_timespec']) ) {
+        $selected = $_POST['sagawa_timespec'];
+    } elseif ( is_array($shipping) ) {
+        list($module, $method) = explode('_', $shipping['id']);
+        if ($module == $this->code) {
+            $selected = $shipping['timespec'];
         }
-        return $selected;
     }
+    return $selected;
+  }
 
   /**
    * Check to see whether module is installed
    *
    * @return unknown
-   */
+  **/
   function check() {
     global $db;
     if (!isset($this->_check)) {
-      $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_SHIPPING_SAGAWA_STATUS'");
-      $this->_check = $check_query->RecordCount();
+        $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_SHIPPING_SAGAWA_STATUS'");
+        $this->_check = $check_query->RecordCount();
     }
     return $this->_check;
   }
   /**
    * Install the shipping module and its configuration settings
    *
-   */
+  **/
   function install() {
     global $db;
     $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Sagawa shipping method', 'MODULE_SHIPPING_SAGAWA_STATUS', 'True', 'Do you want to offer Sagawa rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -269,22 +272,18 @@ class sagawa extends base {
   /**
    * Remove the module and all its settings
    *
-   */
-    function remove() {
-      global $db;
-      $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_SAGAWA\_%'");
-    }
+  **/
+  function remove() {
+    global $db;
+    $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_SAGAWA\_%'");
+  }
 
   /**
    * Internal list of configuration keys used for configuration of the module
    * 
    * @return unknown
-   */
+  **/
   function keys() {
     return array('MODULE_SHIPPING_SAGAWA_STATUS', 'MODULE_SHIPPING_SAGAWA_HANDLING', 'MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', 'MODULE_SHIPPING_SAGAWA_MAX_GIRTH','MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'MODULE_SHIPPING_SAGAWA_OVER', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'MODULE_SHIPPING_SAGAWA_ZONE', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER');
   }
-
-//  function help() {
-//       return array('link' => 'https://docs.zen-cart.com/user/shipping/table/');
-//  }
 }
