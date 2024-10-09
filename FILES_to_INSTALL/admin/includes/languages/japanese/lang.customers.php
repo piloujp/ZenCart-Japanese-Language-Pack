@@ -9,9 +9,7 @@
 $define = [
     'HEADING_TITLE' => '顧客管理',
     'TABLE_HEADING_FIRSTNAME' => '名',
-	'TABLE_HEADING_FIRSTNAME_KANA' => '名ふりがな',
     'TABLE_HEADING_LASTNAME' => '姓',
-	'TABLE_HEADING_LASTNAME_KANA' => '姓ふりがな',
     'TABLE_HEADING_ACCOUNT_CREATED' => '登録日',
     'TABLE_HEADING_LOGIN' => '最終ログイン日',
     'TABLE_HEADING_REGISTRATION_IP' => '登録IP',
