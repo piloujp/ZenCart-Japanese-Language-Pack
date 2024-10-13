@@ -24,8 +24,8 @@ $define = [
     'TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS' => 'カテゴリのヘッダ情報定義',
     'TEXT_EDIT_CATEGORIES_META_TAGS_INTRO' => 'ヘッダ情報のカスタマイズ',
     'TEXT_EDIT_CATEGORIES_META_TAGS_TITLE' => 'タイトル:',
-    'TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS' => 'Metaタグ(Keywords):',
-    'TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION' => 'Metaタグ(Description):',
+    'TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS' => 'メタタグ（キーワード）：',
+    'TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION' => 'メタタグ（説明）：',
 ];
 
 return $define;
