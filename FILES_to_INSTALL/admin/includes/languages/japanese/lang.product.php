@@ -36,6 +36,7 @@ $define = [
     'TEXT_PRODUCTS_LENGTH' => '商品の長さ:',
     'TEXT_PRODUCTS_WIDTH' => '商品の幅:',
     'TEXT_PRODUCTS_HEIGHT' => '商品の高さ:',
+    'TEXT_PRODUCT_MPN' => '商品 MPN（製造部品番号）：',
     'TEXT_PRODUCT_SHIPS_IN_OWN_BOX' => '専用の箱で発送しますか？',
     'TEXT_PRODUCT_SHIPS_IN_OWN_BOX_HELP' => '商品は元の箱に入れて発送されますか? (例: 別の箱にまとめて発送することはなく、追加の梱包費用はかかりません)',
     'TEXT_PRODUCT_IS_FREE' => '無料商品:',
