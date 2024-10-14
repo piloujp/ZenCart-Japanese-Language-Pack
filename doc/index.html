@@ -464,7 +464,7 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.japanese_
             latest version</b>.There is a <b>folder named 'sql'</b> where you
           will find the SQL files we need to update Zen Cart database:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-          'mysql_upgrade_zencart_210200.sql' to upgrade Japanese Language Pack
+          'mysql_upgrade_zencart_210210.sql' to upgrade Japanese Language Pack
           Database to v2.1.0.</p>
         <p class="texte">This file contains database modifications and
           configurations for this Japanese Language Pack. It includes new fields
@@ -500,9 +500,9 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.japanese_
         <p class="texte"><i><b>v2.x.x </b>of ZC Japanese Language Pack (ZC
             v2.0.0 and above) already installed :</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp; To update <b>from ZC Japanese
-            Language Pack v2.x.x</b>, there is actually no database update
-          (files only). Just run this SQL file to update version number.</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_number_update.sql' </p>
+            Language Pack v2.x.x</b>, there is only one minor database update of
+          address format. Just run this SQL file.</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql' </p>
         <p class="title4">Finally:</p>
         <p class="texte">When upgrading database there are few settings that are
           done like setting Japanese Yen as default currency, adding new tax
@@ -1094,15 +1094,13 @@ YourAdminFolderName)\includes\languages\english\extra_definitions\lang.japanese_
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>v2.0.0にアップデート</b>す
           るには、「sql」フォルダー内 の提供された<b>ファイル</b>から SQL コマンドを<b>インポート</b>または実行します:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.0.0.sql' は、ゾーン
+          'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.sql' は、ゾーン
           テーブルとその他のいくつかのものを更新します。</p>
         <p class="texte"><i><b>ZC 日本語言語パック v2.x.x</b> (ZC v2.0.0 以上)
             がすでにインストールされています:</i></p>
-        <p class="texte"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>ZC日本語言語パックv2.x.x
-          からアップデートするには、実際にはデータベースのアップデー トは行われません (ファイルのみ)。バージョン番号を更新するには、この SQL
-          <span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">ファ
-                イル</span></span></span>を実行するだけです。</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_number_update.sql'</p>
+        <p class="texte"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ZC 日本語言語パック v2.x.x から</b>更
+          新するには、アドレス形式のデータベースのマイナー更新が一つだけ必要です。この SQL ファイルを実行するだけです。</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql'</p>
         <p class="title4">最後に：</p>
         <p class="texte">データベースをアップグレードするときは、デフォルト言語として日本語を設定したり、デフォルト通貨として日本円を設
           定したり、新しい税クラスや税率を追加したりするなど、いくつかの設定を行う必要があります。設定が希望どおりであるかどうかを管理者で<b>確認す

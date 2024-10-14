@@ -304,8 +304,8 @@ systemChecks:
   checkDBVersion210200:
     runLevel: dbVersion
     errorLevel: WARN
-    version: '2.1.0200'
-    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.1.0200') . PHP_EOL; ?>
+    version: '2.1.0210'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.1.0210') . PHP_EOL; ?>
     methods:
       dbVersionChecker:
         parameters:

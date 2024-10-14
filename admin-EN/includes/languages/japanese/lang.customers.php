@@ -9,9 +9,7 @@
 $define = [
     'HEADING_TITLE' => 'Customers',
     'TABLE_HEADING_FIRSTNAME' => 'First Name',
-    'TABLE_HEADING_FIRSTNAME_KANA' => 'First Name reading',
     'TABLE_HEADING_LASTNAME' => 'Last Name',
-    'TABLE_HEADING_LASTNAME_KANA' => 'Last Name reading',
     'TABLE_HEADING_ACCOUNT_CREATED' => 'Account Created',
     'TABLE_HEADING_LOGIN' => 'Last Login',
     'TABLE_HEADING_REGISTRATION_IP' => 'Registration IP',

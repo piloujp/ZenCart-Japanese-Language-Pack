@@ -92,7 +92,7 @@ INSERT INTO orders_status VALUES ('5', '1', 'Sent', 15);
 
 #PROGRESS_FEEDBACK:!TEXT=Adding Japanese address format
 #住所フォーマット
-INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname ', '$city $country');
+INSERT INTO address_format (address_format, address_summary) VALUES ('〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
 UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%') WHERE countries_id = @japan_id;
 
 #単位を kg と cm に設定します

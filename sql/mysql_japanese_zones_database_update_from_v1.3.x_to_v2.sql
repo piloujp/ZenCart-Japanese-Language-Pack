@@ -69,7 +69,7 @@ UPDATE configuration cf JOIN japan_zones jz ON cf.configuration_value = jz.zone_
 DROP TABLE japan_zones;
 
 #Update address format (remove 様)
-UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname ' WHERE address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様';
+UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様' WHERE address_format LIKE '〒%';
 
 #Set units to Kg and cm
 UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
