@@ -10,7 +10,7 @@
  *
  * BOOTSTRAP v3.5.2
  */
-define('BOX_TOOLS_ZCA_BOOTSTRAP_COLORS', 'ZCA Bootstrap Colors');
+define('BOX_TOOLS_ZCA_BOOTSTRAP_COLORS', 'ZCA ブートストラップの色');
 
 define('SUCCESS_ZCA_BOOTSTRAP_COLORS_INSTALLED', 'ZCA Bootstrap Colors (v%s) は正常にインストールされました。');
 define('SUCCESS_ZCA_BOOTSTRAP_COLORS_UPDATED', 'ZCA Bootstrap Colors は v%s に正常に更新されました。');

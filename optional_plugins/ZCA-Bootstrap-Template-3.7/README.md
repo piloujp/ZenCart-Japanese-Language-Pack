@@ -1,5 +1,5 @@
-# ZCA Bootstrap Template v3.7.3 for zc158, zc200 and zc210
-# Modified version of ZCA Bootstrap Template v3.7.3 to be used with ZC Japanese Language Pack ZC v1.3.x (zc v1.5.8) to v2.x.x (zc v2.x.x)
+# ZCA Bootstrap Template v3.7.4 for zc158, zc200 and zc210
+# Modified version of ZCA Bootstrap Template v3.7.4 to be used with ZC Japanese Language Pack ZC v1.3.x (zc v1.5.8) to v2.x.x (zc v2.x.x)
 
 This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) foundation to provide an updated look-and-feel to your Zen Cart.  Since the template is standards-based, it's easier to make layout changes to your store.
 
@@ -18,7 +18,7 @@ This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/gett
 
 ## Features:
 
-- Supports Zen Cart major versions **1.5.8** through **2.1.0**, best when run on a zc210 (or zc158**a**) installation.  Validated on PHP versions 7.4 through 8.3.
+- Supports Zen Cart major versions **1.5.8** through **2.1.0**, best when run on a zc210 (or zc201) installation.  Validated on PHP versions 7.4 through 8.3.
 - Bootstrap 4 Framework.
 - Responsive.
 - 3 Column Layout (removes right column on product info, shopping cart & checkout pages).

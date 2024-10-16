@@ -1,13 +1,16 @@
 <?php
 /**
- * @package languageDefines
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: cardinal3dsecure.php 15757 2010-03-31 19:13:24Z drbyte $
- */
+ * @version $Id: piloujp 2024 Oct 16 Modified in v2.1.0-beta1 $
+*/
 
-	define('RECAPTCHA_MISSING_INPUT_SECRET' , '入力シークレットがありません');
-	define('RECAPTCHA_INVALID_INPUT_SECRET' , '無効な入力シークレット');
-	define('RECAPTCHA_MISSING_INPUT_RESPONSE' , 'ロボットでないことを証明してください');
-	define('RECAPTCHA_INVALID_INPUT_RESPONSE' , '申し訳ありませんが、あなたがロボットではないことをもう一度証明してください');
+$define = [
+	'RECAPTCHA_MISSING_INPUT_SECRET' => '入力シークレットがありません',
+	'RECAPTCHA_INVALID_INPUT_SECRET' => '無効な入力シークレット',
+	'RECAPTCHA_MISSING_INPUT_RESPONSE' => 'ロボットでないことを証明してください',
+	'RECAPTCHA_INVALID_INPUT_RESPONSE' => '申し訳ありませんが、あなたがロボットではないことをもう一度証明してください',
+];
+    
+retrun $define;

@@ -301,7 +301,7 @@ systemChecks:
     methods:
       checkHttpsRequest:
 
-  checkDBVersion210200:
+  checkDBVersion210210:
     runLevel: dbVersion
     errorLevel: WARN
     version: '2.1.0210'
