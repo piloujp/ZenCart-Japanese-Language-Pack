@@ -397,6 +397,9 @@ class _Sagawa {
         'N52' => array(1914,2233,3201,4587,6083,10923,13343,18183,23023,32703,42383), // M沖縄-L南九州'LM'=>N52
         'N01' => array(910,1220,1520,2180,2440,2600,2890,3480,4070,5240,6420) // M沖縄-M沖縄  'MM'=>N01
 */
+
+//        契約がある場合は、発送元に関する上記の行のコメントを解除し、契約に合わせて料金を調整します。　If you have a contract, uncomment lines above for your shipping origin and adjust fees to your contract.
+
 // // すべての送料//////////////////////////( 60,80,100,140,160,180,200,220,240,260   ) サイズ、契約なし、２０２４年８月、税込
 //        契約がある場合は、以下の行をコメントアウトし、上記の配列のいずれかを使用して、都道府県のデフォルト値を契約値に置き換えます。　If you have a contract, comment out lines below and use one of the array above by replacing default values for your prefecture by your contract values.
 

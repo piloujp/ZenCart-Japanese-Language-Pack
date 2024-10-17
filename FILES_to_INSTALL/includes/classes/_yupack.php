@@ -333,6 +333,8 @@ class _yupack {
         'N01'=>array(820,1130,1450,1770,2120,2450,3000) // 沖縄'L'>沖縄'L'  'LL'=>'N01'
 */
 
+//        契約がある場合は、発送元に関する上記の行のコメントを解除し、契約に合わせて料金を調整します。　If you have a contract, uncomment lines above for your shipping origin and adjust fees to your contract.
+
 //        ２０２４年０８月現在の全ての送料（契約無し）　Full tarafication (no contract) as of August 2024
 //        契約がある場合は、以下の行をコメントアウトし、上記の配列のいずれかを使用して、都道府県のデフォルト値を契約値に置き換えます。　If you have a contract, comment out lines below and use one of the array above by replacing default values for your prefecture by your contract values.
 
