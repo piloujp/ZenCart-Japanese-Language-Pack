@@ -72,6 +72,7 @@ $define = [
     'TEXT_MAX_PREVIEW' => '整数で指定してください',
 
 //bof constant configuration group page titles
+/*
     'CFG_GRP_TITLE_MY_STORE' => 'ショップ全般の設定',
     'CFG_GRP_TITLE_MINIMUM_VALUES' => '最小値の設定',
     'CFG_GRP_TITLE_MAXIMUM_VALUES' => '最大値の設定',
@@ -95,10 +96,10 @@ $define = [
     'CFG_GRP_TITLE_NEW_LISTING' => '新着商品リストの設定',
     'CFG_GRP_TITLE_FEATURED_LISTING' => 'おすすめ商品リストの設定',
     'CFG_GRP_TITLE_ALL_LISTING' => '全商品リストの設定',
-    'CFG_GRP_TITLE_INDEX_LISTING' => '商品カタログページの表示設定',
+    'CFG_GRP_TITLE_INDEX_LISTING' => '商品リスト表示設定',
     'CFG_GRP_TITLE_DEFINE_PAGE_STATUS' => '定番ページの表示設定',
     'CFG_GRP_TITLE_EZ-PAGES_SETTINGS' => 'EZ-Pagesの設定',
-/*
+*/
     'CFG_GRP_TITLE_MY_STORE' => '%%BOX_CONFIGURATION_MY_STORE%%',
     'CFG_GRP_TITLE_MINIMUM_VALUES' => '%%BOX_CONFIGURATION_MINIMUM_VALUES%%',
     'CFG_GRP_TITLE_MAXIMUM_VALUES' => '%%BOX_CONFIGURATION_MAXIMUM_VALUES%%',
@@ -125,7 +126,7 @@ $define = [
     'CFG_GRP_TITLE_DEFINE_PAGE_STATUS' => '%%BOX_CONFIGURATION_DEFINE_PAGE_STATUS%%',
     'CFG_GRP_TITLE_EZPAGES_SETTINGS' => '%%BOX_CONFIGURATION_EZPAGES_SETTINGS%%',
 //eof constant configuration group page titles
-*/
+
 //bof constant configuration titles and descriptions
     'CFGTITLE_STORE_NAME' => 'ショップ名',
     'CFGDESC_STORE_NAME' => 'ショップ名を設定します。',
@@ -1165,6 +1166,8 @@ $define = [
     'CFGDESC_SHOW_PRODUCT_INFO_CATEGORY_SPECIALS_PRODUCTS' => '特価商品を(トップレベル)カテゴリ・サブカテゴリ共に商品カタログページに表示 しますか?<br />0= オフ<br />または表示順を数値(1～4)で設定してください。<br />',
     'CFGTITLE_SHOW_PRODUCT_INFO_CATEGORY_UPCOMING' => '入荷予定商品を商品カタログページに表示する - カテゴリ・サブカテゴリ共に',
     'CFGDESC_SHOW_PRODUCT_INFO_CATEGORY_UPCOMING' => '入荷予定商品を(トップレベル)カテゴリ・サブカテゴリ共に商品カタログページに表示 しますか?<br />0= オフ<br />または表示順を数値(1～4)で設定してください。<br />',
+    'CFGTITLE_SHOW_PRODUCT_INFO_MAIN_FEATURED_CATEGORIES' => 'メインページにおすすめカテゴリを表示する',
+    'CFGDESC_SHOW_PRODUCT_INFO_MAIN_FEATURED_CATEGORIES' => 'メインページにおすすめカテゴリを表示する。<br>0 = オフまたはソート順を設定する<br>',
     'CFGTITLE_SHOW_PRODUCT_INFO_MISSING_NEW_PRODUCTS' => '新着商品を商品カタログページに表示する - エラーページと「商品がありません」ページ',
     'CFGDESC_SHOW_PRODUCT_INFO_MISSING_NEW_PRODUCTS' => '新着予定商品を商品カタログページに表示 しますか?<br />エラーページと「商品がありません」ページ<br />0= オフ<br />または順番を数値(1～4)で設定してください。',
     'CFGTITLE_SHOW_PRODUCT_INFO_MISSING_FEATURED_PRODUCTS' => 'おすすめ商品を商品カタログページに表示する - エラーページと「商品がありません」ページ',
