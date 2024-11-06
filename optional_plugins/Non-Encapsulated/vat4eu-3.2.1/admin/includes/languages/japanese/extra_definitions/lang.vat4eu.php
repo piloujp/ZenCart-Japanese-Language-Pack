@@ -1,6 +1,6 @@
 <?php
 $define = [
-    'CFG_GRP_TITLE_VAT4EU_PLUGIN' => 'EU 諸国向けの VAT プラグイン（VAT4EU）';
+    'CFG_GRP_TITLE_VAT4EU_PLUGIN' => 'EU 諸国向けの VAT プラグイン（VAT4EU）',
     'CFGTITLE_VAT4EU_MODULE_VERSION' => 'プラグインのバージョンとリリース日',
     'CFGDESC_VAT4EU_MODULE_VERSION' => '「EU 諸国向け VAT (VAT4EU)」の現在のバージョンとリリース日。',
     'CFGTITLE_VAT4EU_EU_COUNTRIES' => '欧州連合諸国リスト',
