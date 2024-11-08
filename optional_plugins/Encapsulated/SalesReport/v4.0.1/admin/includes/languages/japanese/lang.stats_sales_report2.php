@@ -82,7 +82,7 @@ $defines = [
     // TIMEFRAME DATE DISPLAY
     // Note:  Other constants moved to the main processing file for v3.2.1.
     //
-    'DATE_SPACER' => ' to<br>&nbsp;&nbsp;&nbsp;',
+    'DATE_SPACER' => ' ～<br>&nbsp;&nbsp;&nbsp;',
 
     //////////////////////////////////////////////////////////
     // EXCLUDE SPECIFIED PRODUCTS

@@ -200,6 +200,14 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_PAYPALWPP_SERVER' => '<strong>Live : </strong>ライブトランザクションの処理に使用<br><strong>Sandbox : </strong>開発者とテスト向け',
     'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_DEBUGGING' => 'デバッグモード',
     'CFGDESC_MODULE_PAYMENT_PAYPALWPP_DEBUGGING' => 'デバッグモードを有効にしますか？失敗したトランザクションの完全な詳細ログがストア所有者に電子メールで送信されます。',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_PFUSER' => 'ペイフロー： ユーザー',
+    'CFGDESC_MODULE_PAYMENT_PAYPALWPP_PFUSER' => 'アカウントに 1 人以上の追加ユーザーを設定した場合、この値はトランザクションの処理を許可されたユーザーの ID になります。それ以外の場合は、VENDOR と同じ値にする必要があります。この値は大文字と小文字が区別されます。',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_PFPARTNER' => 'ペイフロー： パートナー',
+    'CFGDESC_MODULE_PAYMENT_PAYPALWPP_PFPARTNER' => 'Payflow アカウントにリンクされた Payflow パートナー名。この値は大文字と小文字が区別されます。<br>一般的な値： <strong>PayPal</strong> または <strong>ZenCart</strong>',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_PFVENDOR' => 'ペイフロー： ベンダー',
+    'CFGDESC_MODULE_PAYMENT_PAYPALWPP_PFVENDOR' => 'Payflow Pro アカウントに登録したときに作成した販売者ログイン ID。この値は大文字と小文字が区別されます。',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_PFPASSWORD' => 'ペイフロー： パスワード',
+    'CFGDESC_MODULE_PAYMENT_PAYPALWPP_PFPASSWORD' => 'アカウント登録時に定義した６～３２文字のパスワード。この値は大文字と小文字が区別されます。',
 // eof constant configuration titles and descriptions for payment module paypalwpp
 ];
 

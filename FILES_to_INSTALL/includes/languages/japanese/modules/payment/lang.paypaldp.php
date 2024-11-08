@@ -179,6 +179,14 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_PAYPALDP_SERVER' => '<strong>Live : </strong>ライブトランザクションの処理に使用<br><strong>Sandbox : </strong>開発者とテスト向け',
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_DEBUGGING' => 'デバッグモード',
     'CFGDESC_MODULE_PAYMENT_PAYPALDP_DEBUGGING' => 'デバッグモードを有効にしますか？失敗したトランザクションの完全な詳細ログがストア所有者に電子メールで送信されます。',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALDP_CARDINAL_PROCESSOR' => 'カーディナルプロセッサID',
+    'CFGDESC_MODULE_PAYMENT_PAYPALDP_CARDINAL_PROCESSOR' => 'Cardinal Centinel サービスのプロセッサ ID。 ',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALDP_CARDINAL_MERCHANT' => 'カーディナルマーチャントID',
+    'CFGDESC_MODULE_PAYMENT_PAYPALDP_CARDINAL_MERCHANT' => 'Cardinal Centinel サービスの販売者 ID。 ',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALDP_CARDINAL_PASSWORD' => 'カーディナル取引パスワード',
+    'CFGDESC_MODULE_PAYMENT_PAYPALDP_CARDINAL_PASSWORD' => 'Cardinal マーチャント管理コンソールから Cardinal 取引パスワードを入力します。これは、取引がストアから正当に発生したことを保護および検証するために使用されます。',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALDP_CARDINAL_AUTHENTICATE_REQ' => 'チャージバック保護された注文は Cardinal 経由でのみ受け付けますか？',
+    'CFGDESC_MODULE_PAYMENT_PAYPALDP_CARDINAL_AUTHENTICATE_REQ' => 'Cardinal 認証結果がチャージバック保護を提供している場合にのみ、承認を続行しますか？ ',
 // eof constant configuration titles and descriptions for payment module paypaldp
 ];
 
