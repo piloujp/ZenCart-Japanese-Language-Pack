@@ -68,8 +68,8 @@ class zcDate extends base
             '%X' => 'H:i:s',
             '%y' => 'y',
             '%Y' => 'Y',
-            '%z' => 'ZZZZ',
-            '%Z' => 'ZZZZ',
+            '%z' => 'O',
+            '%Z' => 'T',
         ];
         $this->strftime2date = [
             'from' => array_keys($strftime2date),
@@ -118,7 +118,7 @@ class zcDate extends base
                 '%y' => 'yy',
                 '%Y' => 'y',
                 '%z' => 'ZZZZ',
-                '%Z' => 'ZZZZ',
+                '%Z' => 'zzzz',
             ];
             $this->strftime2intl = [
                 'from' => array_keys($strftime2intl),

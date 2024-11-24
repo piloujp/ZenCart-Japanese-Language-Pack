@@ -3,10 +3,10 @@
  * html_output.php
  * HTML-generating functions used throughout the core
  *
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2023 Feb 15 Modified in v1.5.8a $
+ * @version $Id: lat9 2024 Oct 04 Modified in v2.1.0 $
  */
 
 /*
@@ -516,12 +516,12 @@ function zen_js_zone_list(string $country, string $form, string $field) {
         }
 
 		if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_country_iso_to_id('JP')) {
-			$sql = "SELECT zone_id, zone_code AS zone_name
+			$sql = "SELECT zone_code AS zone_name, zone_id
 					FROM " . TABLE_ZONES . "
-					WHERE zone_country_id =  " . (int)$countries->fields['zone_country_id'] . "
+					WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . "
 					ORDER BY zone_id";
 		} else {
-			$sql = "SELECT zone_id, zone_name
+			$sql = "SELECT zone_name, zone_id
 					FROM " . TABLE_ZONES . "
 					WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . "
 					ORDER BY zone_name";

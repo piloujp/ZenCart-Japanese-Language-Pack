@@ -144,4 +144,4 @@ FROM project_version;
 
 ## Now set to new version
 UPDATE project_version SET project_version_comment = 'New Installation-v210 with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'New Installation-v210 with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '1.0210', project_version_comment = 'New Installation-v210 with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
