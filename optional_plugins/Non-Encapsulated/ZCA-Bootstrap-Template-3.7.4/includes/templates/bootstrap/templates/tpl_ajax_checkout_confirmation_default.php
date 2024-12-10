@@ -258,6 +258,16 @@ if (MODULE_ORDER_TOTAL_INSTALLED) {
         </div>
     </div>
 
+<div id="cartContents-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
+<?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?>
+</div>
+
+
+</div>
+</div>
+<!--eof shopping cart contents card-->
+
+</div>
 
     <?= zen_draw_form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" onsubmit="submitonce();"') ?>
     <div id="processButtonHolder"></div>
