@@ -17,9 +17,9 @@ $define = [
     'STATISTICS_TYPE_DAILY' => '日次',
     'STATISTICS_TYPE_MONTHLY' => '月次',
     'STATISTICS_TYPE_YEARLY' => '年次',
-    'TITLE_TYPE' => 'タイプ:',
-    'TITLE_YEAR' => '年:',
-    'TITLE_MONTH' => '月:',
+    'TITLE_TYPE' => 'タイプ：',
+    'TITLE_YEAR' => '年：',
+    'TITLE_MONTH' => '月：',
 ];
 
 return $define;

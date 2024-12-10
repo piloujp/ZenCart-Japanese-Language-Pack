@@ -172,7 +172,7 @@ $define = [
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_CURRENCY' => '取引通貨',
     'CFGDESC_MODULE_PAYMENT_PAYPALDP_CURRENCY' => 'PayPal への注文はどの通貨で送信すればよいですか？<br>注意： サポートされていない通貨が PayPal に送信された場合、自動的に USD （または英国のアカウントを使用している場合は GBP）に変換されます。<br><strong>デフォルト：選択された通貨</strong>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY' => '販売者の国',
-    'CFGDESC_MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY' => 'PayPal アカウントはどの国で登録されていますか？<br><u>選択肢：</u><br><font color=green>エクスプレス チェックアウト モジュールで<strong>API パラメータ</strong>を指定する必要があります。</font><br><strong>米国とカナダの販売者に</strong>は、PayPal API 認証情報と PayPal Payments Pro アカウントが必要です。<br><strong>英国の販売者</strong>は<strong>PAYFLOW 設定</strong>を提供する必要があります（また Payflow アカウントを持っている必要があります）。<br><strong>オーストラリアのトレーダーは</strong>カナダを選択します<br><em>（この設定は実際には、国というよりは PayPal の内部 API 仕様に関連しています: US=1.5、UK=2.0、カナダ/オーストラリア=3.0）</em>',
+    'CFGDESC_MODULE_PAYMENT_PAYPALDP_MERCHANT_COUNTRY' => 'PayPal アカウントはどの国で登録されていますか？<br><u>選択肢：</u><br><font color=green>エクスプレス チェックアウト モジュールで<strong>API パラメータ</strong>を指定する必要があります。</font><br><strong>米国とカナダの販売者に</strong>は、PayPal API 認証情報と PayPal Payments Pro アカウントが必要です。<br><strong>英国の販売者</strong>は<strong>PAYFLOW 設定</strong>を提供する必要があります（また Payflow アカウントを持っている必要があります）。<br><strong>オーストラリアのトレーダーは</strong>カナダを選択します<br><em>（この設定は実際には、国というよりは PayPal の内部 API 仕様に関連しています：US=1.5、UK=2.0、カナダ/オーストラリア=3.0）</em>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_EC_RETURN_FMF_DETAILS' => '不正管理フィルター（FMF）',
     'CFGDESC_MODULE_PAYMENT_PAYPALDP_EC_RETURN_FMF_DETAILS' => 'PayPal アカウントで FMF サポートを有効にしていて、取引でそれを利用したい場合は、これを「はい」に設定します。それ以外の場合は、「いいえ」のままにしておきます。',
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_SERVER' => 'ライブまたはサンドボックス',

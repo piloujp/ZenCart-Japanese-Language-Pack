@@ -8,13 +8,13 @@
 
 $define = [
     'HEADING_TITLE' => '商品タイプの管理',
-    'HEADING_TITLE_LAYOUT' => '商品タイプ情報ページ レイアウトオプション :: ',
+    'HEADING_TITLE_LAYOUT' => '商品タイプ情報ページ レイアウトオプション：：',
     'TABLE_HEADING_PRODUCT_TYPES' => '商品タイプ',
     'TABLE_HEADING_PRODUCT_TYPES_ALLOW_ADD_TO_CART' => '購入可否',
     'TEXT_HEADING_NEW_PRODUCT_TYPE' => '新しい商品タイプ',
     'TEXT_HEADING_EDIT_PRODUCT_TYPE' => '商品タイプを編集',
     'TEXT_HEADING_DELETE_PRODUCT_TYPE' => '商品タイプを削除',
-    'TEXT_PRODUCT_TYPES' => '商品タイプ:',
+    'TEXT_PRODUCT_TYPES' => '商品タイプ：',
     'TEXT_PRODUCT_TYPES_HANDLER' => '取扱いページ：',
     'TEXT_PRODUCT_TYPES_ALLOW_ADD_CART' => 'この商品はカートに追加可能：',
     'TEXT_MASTER_TYPE' => 'この商品タイプを以下の商品のサブタイプとして扱う',
@@ -23,7 +23,7 @@ $define = [
     'TEXT_PRODUCT_TYPES_IMAGE' => '商品タイプのデフォルト画像：',
     'TEXT_DELETE_INTRO' => 'この商品タイプを本当に削除しますか?',
     'TEXT_DELETE_PRODUCTS' => 'この商品タイプから商品を削除しますか? (商品レビュー、特別商品、発売前商品からの削除も含みます)',
-    'TEXT_DELETE_WARNING_PRODUCTS' => '<b>注意:</b> %sの商品がまだこの商品タイプにリンクされています!',
+    'TEXT_DELETE_WARNING_PRODUCTS' => '<b>注意：</b> %sの商品がまだこの商品タイプにリンクされています!',
     'IMAGE_LAYOUT' => 'レイアウト設定',
 // Table product_types, translation for field type_name
     'PRODUCT_TYPE_NAME_FOR_HANDLER_PRODUCT' => '商品 - 一般',

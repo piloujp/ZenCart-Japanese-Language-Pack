@@ -9,10 +9,10 @@
 $define = [
     'HEADING_TITLE' => '言語定義：',
     'TEXT_FILE_DOES_NOT_EXIST' => 'ファイルが存在しません： %s',
-    'ERROR_FILE_NOT_WRITEABLE' => 'エラー: ファイルに書き込むことができません。書き込み権限を確認してください。: %s',
+    'ERROR_FILE_NOT_WRITEABLE' => 'エラー：ファイルに書き込むことができません。書き込み権限を確認してください。：%s',
     'TEXT_INFO_SELECT_FILE' => '編集するファイルを選択...',
-    'TEXT_INFO_EDITING' => '編集ファイル:',
-    'TEXT_INFO_CAUTION' => '注: 現在のテンプレート オーバーライド ディレクトリにあるファイルは常に編集する必要があります。例: /languages/' . 'language' . '/html_includes/YOUR_TEMPLATE_DIRECTORY<br>ファイルを変更した後は、必ずバックアップを作成してください。',
+    'TEXT_INFO_EDITING' => '編集ファイル：',
+    'TEXT_INFO_CAUTION' => '注：現在のテンプレート オーバーライド ディレクトリにあるファイルは常に編集する必要があります。例： /languages/' . 'language' . '/html_includes/YOUR_TEMPLATE_DIRECTORY<br>ファイルを変更した後は、必ずバックアップを作成してください。',
 ];
 
 return $define;

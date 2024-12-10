@@ -16,11 +16,11 @@ $define = [
     'TEXT_NEW_INTRO' => '新しいグループについて説明してください',
     'TEXT_DELETE_INTRO' => 'このグループを削除してもよろしいですか?',
     'TEXT_DELETE_EVEN_IF_CUSTOMERS_ASSIGNED' => 'グループに顧客が割り当てられていても削除',
-    'TEXT_DELETE_WARNING_GROUP_MEMBERS_EXIST' => '<b>警告:</b> %s 人の顧客がまだこのグループにリンクされています!',
+    'TEXT_DELETE_WARNING_GROUP_MEMBERS_EXIST' => '<b>警告：</b> %s 人の顧客がまだこのグループにリンクされています!',
     'TEXT_GROUP_NAME' => 'グループ名：',
-    'TEXT_GROUP_COMMENT' => 'コメント/説明:',
-    'TEXT_CUSTOMERS_IN_GROUP' => 'グループのお客様:',
-    'ERROR_GROUP_STILL_HAS_CUSTOMERS' => 'エラー: 顧客はこのグループに割り当てられています。 グループからすべてのメンバーを削除することを確認し、グループを削除してください。',
+    'TEXT_GROUP_COMMENT' => 'コメント/説明：',
+    'TEXT_CUSTOMERS_IN_GROUP' => 'グループのお客様：',
+    'ERROR_GROUP_STILL_HAS_CUSTOMERS' => 'エラー：顧客はこのグループに割り当てられています。 グループからすべてのメンバーを削除することを確認し、グループを削除してください。',
 ];
 
 return $define;

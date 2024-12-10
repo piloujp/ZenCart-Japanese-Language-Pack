@@ -9,7 +9,7 @@
 $define = [
     'ENTRY_CUSTOMER' => 'お客様：',
     'ENTRY_PAYMENT_METHOD' => 'お支払方法：',
-    'ENTRY_SHIPPING' => '配送:',
+    'ENTRY_SHIPPING' => '配送：',
     'TEXT_INFO_ATTRIBUTE_FREE' => '&nbsp;-&nbsp;無料',
 ];
 

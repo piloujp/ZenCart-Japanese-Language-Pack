@@ -11,7 +11,7 @@ $define = [
     'TEXT_EDIT_ALL' => '全てのオプション名を編集する',
     'TEXT_CURRENT_NAME' => '現在のオプション名',
     'TEXT_OPTION_TYPE' => 'タイプ',
-    'TEXT_SELECTED_LANGUAGE' => '言語: ',
+    'TEXT_SELECTED_LANGUAGE' => '言語：',
     'TEXT_UPDATE_SUBMIT' => '並び順を更新',
     'SUCCESS_OPTION_SORT_ORDER' => 'オプション名の並び順を更新しました。',
 ];

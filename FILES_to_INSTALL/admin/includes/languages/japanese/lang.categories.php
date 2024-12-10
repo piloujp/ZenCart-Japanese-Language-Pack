@@ -8,13 +8,13 @@
 
 $define = [
     'HEADING_TITLE' => 'カテゴリ・商品の管理',
-    'TEXT_EDIT_CATEGORIES_NAME' => 'カテゴリ名:',
-    'TEXT_CATEGORIES_DESCRIPTION' => 'カテゴリ説明文:',
-    'TEXT_CATEGORIES_IMAGE' => 'カテゴリ画像:',
+    'TEXT_EDIT_CATEGORIES_NAME' => 'カテゴリ名：',
+    'TEXT_CATEGORIES_DESCRIPTION' => 'カテゴリ説明文：',
+    'TEXT_CATEGORIES_IMAGE' => 'カテゴリ画像：',
     'TEXT_FILENAME' => 'ファイル名： %1$s (%2$upx x %3$upx / %4$ukB)',
     'TEXT_EDIT_CATEGORIES_IMAGE' => 'カテゴリ画像の編集：',
     'TEXT_CATEGORIES_IMAGE_DIR' => 'アップロード先、もしくは /images/ 以下の既存画像の保存先ディレクトリ：',
-    'TEXT_CATEGORIES_IMAGE_MANUAL' => '<strong>既にサーバ上にある画像をファイル名で指定。　ファイル名:</strong>',
+    'TEXT_CATEGORIES_IMAGE_MANUAL' => '<strong>既にサーバ上にある画像をファイル名で指定。　ファイル名：</strong>',
     'TEXT_EDIT_SORT_ORDER' => '並び順：',
     'TEXT_RESTRICT_PRODUCT_TYPE' => '商品タイプの制限',
     'TEXT_CATEGORY_HAS_RESTRICTIONS' => 'このカテゴリはこれらの商品タイプに限られています。',
@@ -23,7 +23,7 @@ $define = [
     'ERROR_IMAGE_MANUAL_NOT_FOUND' => '指定された画像 "%s" が見つかりません。',
     'TEXT_INFO_HEADING_EDIT_CATEGORY_META_TAGS' => 'カテゴリのヘッダ情報定義',
     'TEXT_EDIT_CATEGORIES_META_TAGS_INTRO' => 'ヘッダ情報のカスタマイズ',
-    'TEXT_EDIT_CATEGORIES_META_TAGS_TITLE' => 'タイトル:',
+    'TEXT_EDIT_CATEGORIES_META_TAGS_TITLE' => 'タイトル：',
     'TEXT_EDIT_CATEGORIES_META_TAGS_KEYWORDS' => 'メタタグ（キーワード）：',
     'TEXT_EDIT_CATEGORIES_META_TAGS_DESCRIPTION' => 'メタタグ（説明）：',
 ];

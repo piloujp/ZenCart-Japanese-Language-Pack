@@ -7,14 +7,14 @@
 */
 
 $define = [
-    'TEXT_DOCUMENT_STATUS' => 'ドキュメントステータス:',
-    'TEXT_DOCUMENT_DATE_AVAILABLE' => '提供開始日:',
+    'TEXT_DOCUMENT_STATUS' => 'ドキュメントステータス：',
+    'TEXT_DOCUMENT_DATE_AVAILABLE' => '提供開始日：',
     'TEXT_DOCUMENT_AVAILABLE' => '有効',
-    'TEXT_DOCUMENT_NAME' => 'ドキュメント名:',
-    'TEXT_DOCUMENT_DETAILS' => 'ドキュメントコンテンツ:',
-    'TEXT_DOCUMENT_IMAGE' => 'ドキュメント画像:',
-    'TEXT_DOCUMENT_IMAGE_DIR' => 'アップロード先ディレクトリ:',
-    'TEXT_DOCUMENT_URL' => 'ドキュメント URL:',
+    'TEXT_DOCUMENT_NAME' => 'ドキュメント名：',
+    'TEXT_DOCUMENT_DETAILS' => 'ドキュメントコンテンツ：',
+    'TEXT_DOCUMENT_IMAGE' => 'ドキュメント画像：',
+    'TEXT_DOCUMENT_IMAGE_DIR' => 'アップロード先ディレクトリ：',
+    'TEXT_DOCUMENT_URL' => 'ドキュメント URL：',
     'TEXT_DOCUMENT_URL_WITHOUT_HTTP' => '<small>(”http://”無しで記入)</small>',
 ];
 

@@ -8,7 +8,7 @@
 
 $define = [
     'HEADING_TITLE' => 'セールの管理（SALEメーカー）',
-    'SUBHEADING_TITLE' => 'セール管理(SALE Maker)のコツ(Tips)：',
+    'SUBHEADING_TITLE' => 'セール管理（SALE Maker）のコツ（Tips）：',
 ];
 
 return $define;

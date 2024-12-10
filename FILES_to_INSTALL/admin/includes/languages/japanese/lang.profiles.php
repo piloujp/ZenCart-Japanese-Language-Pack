@@ -25,7 +25,7 @@ $define = [
     'TEXT_NO_PROFILES_FOUND' => '管理グループはまだ登録されていません。',
     'IMAGE_ADD_PROFILE' => '管理グループ追加',
     'IMAGE_RENAME' => 'グループ名変更',
-    'TEXT_CONFIRM_DELETE' => '削除がリクエストされました。承認して下さい: ',
+    'TEXT_CONFIRM_DELETE' => '削除がリクエストされました。承認して下さい：',
 ];
 
 return $define;

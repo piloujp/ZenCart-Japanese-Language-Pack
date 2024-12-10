@@ -7,7 +7,7 @@
 */
 
 $define = [
-    'TEXT_PAYPAL_IPN_SORT_ORDER_INFO' => '注文を表示する: ',
+    'TEXT_PAYPAL_IPN_SORT_ORDER_INFO' => '注文を表示する：',
     'TEXT_SORT_PAYPAL_ID_DESC' => '受け取ったPayPalの注文(新しいもの - 古いもの)',
     'TEXT_SORT_PAYPAL_ID' => '受け取ったPayPalの注文(古いもの - 新しいもの)',
     'TEXT_SORT_ZEN_ORDER_ID_DESC' => '注文 ID (降順), 受け取ったPayPalの注文',

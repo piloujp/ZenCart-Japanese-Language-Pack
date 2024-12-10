@@ -13,7 +13,7 @@ $define = [
     'TEXT_NEW_INTRO' => '新しいアルバムの名称を入力してください。',
     'TEXT_MEDIA_COLLECTION_NAME' => 'アルバム名',
     'TEXT_MEDIA_EDIT_INSTRUCTIONS' => 'アルバム名を変更するには上の入力欄に入力し、保存してください。<br><br>アルバムへのメディアクリップの追加・削除を行うには、以下の入力欄・選択欄を使ってください。',
-    'TEXT_CLIPS' => 'リンクされたクリップ:',
+    'TEXT_CLIPS' => 'リンクされたクリップ：',
     'TEXT_NO_PRODUCTS' => 'このカテゴリに商品はありません',
     'TEXT_HEADING_EDIT_MEDIA_COLLECTION' => 'アルバムを編集する',
     'TEXT_EDIT_INTRO' => 'アルバムの名称を変更してください。',
@@ -27,9 +27,9 @@ $define = [
     'TEXT_PRODUCTS_INTRO' => '以下のフォームで、アルバムを商品に割り当て・削除することができます。',
     'IMAGE_PRODUCTS' => '商品に割り当てる',
     'TEXT_DELETE_PRODUCTS' => '挙げられているMediaとリンクしている全てのアイテムを削除しますか？',
-    'TEXT_DELETE_WARNING_PRODUCTS' => '<strong>注意:</strong> %s個のアイテムが 挙げられているメディアにリンクしています!',
-    'TEXT_WARNING_FOLDER_UNWRITABLE' => '注: メディアフォルダ ' . DIR_FS_CATALOG_MEDIA . ' に書き込むことができなかった為、ファイルをアップロードすることができませんでした。',
-    'ERROR_UNKNOWN_DATA' => 'エラー: 不明なデータです。要求はキャンセルされました',
+    'TEXT_DELETE_WARNING_PRODUCTS' => '<strong>注意：</strong> %s個のアイテムが 挙げられているメディアにリンクしています!',
+    'TEXT_WARNING_FOLDER_UNWRITABLE' => '注：メディアフォルダ ' . DIR_FS_CATALOG_MEDIA . ' に書き込むことができなかった為、ファイルをアップロードすることができませんでした。',
+    'ERROR_UNKNOWN_DATA' => 'エラー：不明なデータです。要求はキャンセルされました',
     'TEXT_ADD' => '追加',
 ];
 

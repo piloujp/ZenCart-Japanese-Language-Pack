@@ -4,7 +4,7 @@ if (!defined('SHOW_ACCEPTED_CREDIT_CARDS')) {
 }
 global $template, $current_page_base; 
 $define = [
-    'TEXT_ACCEPTED_CREDIT_CARDS' => '<strong>ご利用可能なクレジットカード:</strong> ',
+    'TEXT_ACCEPTED_CREDIT_CARDS' => '<strong>ご利用可能なクレジットカード：</strong> ',
     'TEXT_CC_ENABLED_VISA' => 'Visa',
     'TEXT_CC_ENABLED_MC' => 'MC',
     'TEXT_CC_ENABLED_AMEX' => 'AmEx',

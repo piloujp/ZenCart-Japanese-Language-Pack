@@ -28,7 +28,7 @@ $define = [
     'TEXT_SEARCH_FEATURED' => '現在のおすすめカテゴリを検索',
     'WARNING_FEATURED_PRE_ADD_CID_DUPLICATE' => '警告： カテゴリ ID#%u はすでにおすすめカテゴリです。',
     'WARNING_FEATURED_PRE_ADD_CID_EMPTY' => '警告： カテゴリ ID が指定されていません。',
-    'WARNING_FEATURED_PRE_ADD_CID_NO_EXIST' => '警告: カテゴリ ID#%u は存在しません。',
+    'WARNING_FEATURED_PRE_ADD_CID_NO_EXIST' => '警告：カテゴリ ID#%u は存在しません。',
 ];
 
 return $define;

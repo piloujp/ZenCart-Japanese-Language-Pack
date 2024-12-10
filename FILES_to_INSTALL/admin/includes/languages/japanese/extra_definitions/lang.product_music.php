@@ -13,8 +13,8 @@ $define = [
     'BOX_CATALOG_MEDIA_MANAGER' => 'メディアコレクション(アルバム)',
     'BOX_CATALOG_MEDIA_TYPES' => 'メディアフォーマット',
     'TEXT_PRODUCTS_RECORD_ARTIST' => 'アーティスト：',
-    'TEXT_PRODUCTS_RECORD_COMPANY' => 'レコード会社:',
-    'TEXT_PRODUCTS_MUSIC_GENRE' => '音楽ジャンル:',
+    'TEXT_PRODUCTS_RECORD_COMPANY' => 'レコード会社：',
+    'TEXT_PRODUCTS_MUSIC_GENRE' => '音楽ジャンル：',
 ];
 
 return $define;

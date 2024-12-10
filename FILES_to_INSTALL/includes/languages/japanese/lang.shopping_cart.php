@@ -6,7 +6,7 @@ $define = [
     'TABLE_HEADING_REMOVE' => '削除',
     'TABLE_HEADING_PRICE' => '単価',
     'TEXT_CART_EMPTY' => 'カートには何も入っていません。',
-    'SUB_TITLE_SUB_TOTAL' => '小計:',
+    'SUB_TITLE_SUB_TOTAL' => '小計：',
     'TEXT_CART_HELP' => '<a href="javascript:session_win();">[ヘルプ (?)]</a>',
 ];
 

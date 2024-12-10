@@ -11,8 +11,8 @@ $define = [
     'HEADING_RETURNING_CUSTOMER' => '【アカウントをお持ちの方は】<br>ご登録されたメールアドレス・パスワードでログインしてください。',
     'HEADING_RETURNING_CUSTOMER_SPLIT' => '登録済みのお客様',
     'TEXT_RETURNING_CUSTOMER_SPLIT' => '注文手続きを進めるために、<strong>' . STORE_NAME . '</strong> にログインして下さい。',
-    'TEXT_LOGIN_ERROR' => 'エラー: メールアドレスまたはパスワードが一致しませんでした。',
-    'TEXT_VISITORS_CART' => '<strong>注:</strong>お客様の&quot;ビジターズカート&quot;の内容は、ログインされると&quot;メンバーズカート&quot;の中に自動的に入ります。<a href="javascript:session_win();">[詳細]</a>',
+    'TEXT_LOGIN_ERROR' => 'エラー：メールアドレスまたはパスワードが一致しませんでした。',
+    'TEXT_VISITORS_CART' => '<strong>注：</strong>お客様の&quot;ビジターズカート&quot;の内容は、ログインされると&quot;メンバーズカート&quot;の中に自動的に入ります。<a href="javascript:session_win();">[詳細]</a>',
     'ERROR_SECURITY_ERROR' => 'ログイン中にアクセスエラーがありました。',
     'TEXT_LOGIN_BANNED' => 'エラー: アクセスが拒否されました。',
 ];

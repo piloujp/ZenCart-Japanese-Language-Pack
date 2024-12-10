@@ -8,11 +8,11 @@
 
 $define = [
     'HEADING_TITLE' => '警告!',
-    'ALERT_PART1' => '警告: 下記操作を行うまで管理画面へアクセスすることはできません',
+    'ALERT_PART1' => '警告：下記操作を行うまで管理画面へアクセスすることはできません',
     'ALERT_RENAME_ADMIN' => 'adminフォルダの名前を変更',
     'ALERT_REMOVE_ZCINSTALL' => 'zc_installフォルダを削除<br />(FTPソフトまたはサーバーのファイルマネージャーを使ってください)',
     'ADMIN_RENAME_FAQ_NOTE' => '上記に関するヘルプはこちら(英語)',
-    'ALERT_PART2' => '操作後、管理画面へのアクセスするために、ブラウザでadminフォルダのURLを入力してください。 例: <u>http://www.your_site.com/YourAdminFolder/</u> ',
+    'ALERT_PART2' => '操作後、管理画面へのアクセスするために、ブラウザでadminフォルダのURLを入力してください。 例： <u>http://www.your_site.com/YourAdminFolder/</u> ',
 ];
 
 return $define;

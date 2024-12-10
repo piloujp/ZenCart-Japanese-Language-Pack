@@ -20,10 +20,10 @@ $define = [
     'TEXT_REFERRER_DOMAIN' => '紹介者ドメイン：',
     'TEXT_NO_REFERRERS_FOUND' => '紹介者が見つかりませんでした。 「挿入」をクリックして追加します。',
     'TEXT_DISPLAY_NUMBER_OF_REFERRERS' => '<strong>%1$d</strong>～<strong>%2$d</strong>件を表示中 (<strong>%3$d</strong>件の参照者中)',
-    'ERROR_REFERRER_DOMAIN_UNIQUE_REQUIRED' => 'エラー: 紹介者ドメインは必須であり、一意である必要があります。',
-    'ERROR_REFERRER_DOMAIN_ALREADY_EXISTS' => 'エラー: 紹介者ドメインはすでに存在します。 重複したドメインを追加することはできません。',
-    'ERROR_COUPON_SELECTION_REQUIRED' => 'エラー: 紹介者ドメインに割り当てるクーポンを選択する必要があります。',
-    'ERROR_INVALID_COUPON_SPECIFIED' => 'エラー: 無効なクーポンが選択されました。',
+    'ERROR_REFERRER_DOMAIN_UNIQUE_REQUIRED' => 'エラー：紹介者ドメインは必須であり、一意である必要があります。',
+    'ERROR_REFERRER_DOMAIN_ALREADY_EXISTS' => 'エラー：紹介者ドメインはすでに存在します。 重複したドメインを追加することはできません。',
+    'ERROR_COUPON_SELECTION_REQUIRED' => 'エラー：紹介者ドメインに割り当てるクーポンを選択する必要があります。',
+    'ERROR_INVALID_COUPON_SPECIFIED' => 'エラー：無効なクーポンが選択されました。',
 ];
 
 return $define;

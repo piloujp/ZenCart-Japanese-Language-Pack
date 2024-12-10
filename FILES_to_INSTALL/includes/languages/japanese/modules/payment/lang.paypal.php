@@ -46,7 +46,7 @@ $define = [
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_STATUS' => 'この支払いモジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_PAYPAL_STATUS' => 'この支払いモジュールを有効にしますか？',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_BUSINESS_ID' => 'ビジネスID',
-    'CFGDESC_MODULE_PAYMENT_PAYPAL_BUSINESS_ID' => 'PayPal アカウントのプライマリ メール アドレス。<br>注意: これは、PayPal アカウント設定のプライマリ メール アドレスと<strong>完全に一致する</strong>必要があります。<strong>大文字と小文字が区別されるため</strong>、paypal.com で PayPal プロファイルの設定を確認し、ここに完全に同じプライマリ メール アドレスを入力してください。',
+    'CFGDESC_MODULE_PAYMENT_PAYPAL_BUSINESS_ID' => 'PayPal アカウントのプライマリ メール アドレス。<br>注意：これは、PayPal アカウント設定のプライマリ メール アドレスと<strong>完全に一致する</strong>必要があります。<strong>大文字と小文字が区別されるため</strong>、paypal.com で PayPal プロファイルの設定を確認し、ここに完全に同じプライマリ メール アドレスを入力してください。',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_PDTTOKEN' => 'PDTトークン（支払いデータ転送）',
     'CFGDESC_MODULE_PAYMENT_PAYPAL_PDTTOKEN' => '処理後すぐにトランザクションをアクティブ化するには（検証に合格した場合）、ここに PDT トークンの値を入力します。',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_CURRENCY' => '取引通貨',
@@ -66,7 +66,7 @@ $define = [
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE' => '住所の上書き',
     'CFGDESC_MODULE_PAYMENT_PAYPAL_ADDRESS_OVERRIDE' => '1 に設定すると、Zen Cart で選択された顧客の配送先住所が、顧客の PayPal に保存されたアドレス帳よりも優先されます。顧客は Zen Cart から自分の住所を確認できますが、PayPal で編集することはできません。<br>（無効な住所は PayPal によって未提供として扱われるか、override=0 になります）<br>0=オーバーライドなし<br>1=ZC アドレスは PayPal アドレスの選択を上書きします',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED' => '配送先住所の要件はありますか？',
-    'CFGDESC_MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED' => '購入者の配送先住所。0 に設定すると、顧客に配送先住所の入力を求めます。1 に設定すると、顧客に配送先住所の入力を求めません。2 に設定すると、顧客に配送先住所の入力を求めます。<br>0=プロンプト<br>1=尋ねない<br>2=必須<br><br><strong>注意: 顧客が自分で配送先住所を入力できるようにしている場合は、注文を処理するときに、PayPal の確認詳細を手動で確認して、正しい住所であることを確認してください。PayPal Payments Standard (IPN) を使用する場合、Zen Cart は、顧客が PayPal で別の配送先住所を選択したか、注文時に入力した住所を選択したかを認識しません。</strong>',
+    'CFGDESC_MODULE_PAYMENT_PAYPAL_ADDRESS_REQUIRED' => '購入者の配送先住所。0 に設定すると、顧客に配送先住所の入力を求めます。1 に設定すると、顧客に配送先住所の入力を求めません。2 に設定すると、顧客に配送先住所の入力を求めます。<br>0=プロンプト<br>1=尋ねない<br>2=必須<br><br><strong>注意：顧客が自分で配送先住所を入力できるようにしている場合は、注文を処理するときに、PayPal の確認詳細を手動で確認して、正しい住所であることを確認してください。PayPal Payments Standard (IPN) を使用する場合、Zen Cart は、顧客が PayPal で別の配送先住所を選択したか、注文時に入力した住所を選択したかを認識しません。</strong>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE' => '支払いアクション',
     'CFGDESC_MODULE_PAYMENT_PAYPALWPP_TRANSACTION_MODE' => '支払いはどのように受け取りたいですか？<br><strong>デフォルト：最終販売</strong><br>「認証のみ」を選択した場合は、支払いを確定するために PayPal による確認が必要になります。',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_PAGE_STYLE' => 'PayPal ページスタイル',
@@ -74,7 +74,7 @@ $define = [
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_HANDLER' => 'ライブまたはサンドボックス',
     'CFGDESC_MODULE_PAYMENT_PAYPAL_HANDLER' => '<strong>Live : </strong>ライブトランザクションの処理に使用<br><strong>Sandbox : </strong>開発者とテスト向け',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_IPN_DEBUG' => 'デバッグモード',
-    'CFGDESC_MODULE_PAYMENT_PAYPAL_IPN_DEBUG' => 'デバッグモードを有効にしますか？注意: これにより、電子メールの受信トレイが乱雑になり、ディスク領域が消費される可能性があります。<br>ログは/logsフォルダに保存されます。<br>メールはストアオーナーのアドレスに送信されます。<br>電子メールオプションは推奨されません。<br><strong>通常の操作の場合はオフのままにしておきます。</strong>',
+    'CFGDESC_MODULE_PAYMENT_PAYPAL_IPN_DEBUG' => 'デバッグモードを有効にしますか？注意：これにより、電子メールの受信トレイが乱雑になり、ディスク領域が消費される可能性があります。<br>ログは/logsフォルダに保存されます。<br>メールはストアオーナーのアドレスに送信されます。<br>電子メールオプションは推奨されません。<br><strong>通常の操作の場合はオフのままにしておきます。</strong>',
 // eof constant configuration titles and descriptions for payment module paypal
 ];
 
