@@ -26,7 +26,7 @@ $define = [
     'ERROR_MAIN_PAGE_NOT_ENTERED' => 'ページのファイル名が入力されていません。',
     'ERROR_FILENAME_HAS_NOT_BEEN_DEFINED' => '指定されたファイル名は存在していません。入力内容が正しいか再度確認してください。',
     'ERROR_MENU_NOT_CHOSEN' => 'メニューが選択されていません。メニューに表示させない場合でも、新しいページはメニューに紐付ける必要があります。',
-    'SUCCESS_ADMIN_PAGE_REGISTERED' => '管理者ページの登録が完了しました。',
+    'SUCCESS_ADMIN_PAGE_REGISTERED' => '管理ページの登録が完了しました。',
 ];
 
 return $define;
