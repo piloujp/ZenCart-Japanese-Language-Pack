@@ -89,11 +89,6 @@
         if (!$this->enabled) return;
         if (IS_ADMIN_FLAG === true) return;
 
-/*        // disable for some master_categories_id 
-        if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
-            $this->enabled = false; 
-        }
-*/
         if (!empty($box_sizes_array)) {
             //echo ' Box size array: ';print_r($box_sizes_array[0]);echo ' Weight: ' . $shipping_weight;
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
@@ -119,6 +114,13 @@
             if ($check_flag == false) {
                 $this->enabled = false;
             }
+        }
+
+        if ($this->enabled) {
+            // -----
+            // Give a watching observer the opportunity to disable the overall shipping module.
+            //
+            $this->notify('NOTIFY_SHIPPING_NEKOPOSU_UPDATE_STATUS', [], $this->enabled);
         }
     }
 

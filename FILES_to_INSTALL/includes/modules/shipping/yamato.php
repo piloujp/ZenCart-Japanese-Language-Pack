@@ -108,11 +108,6 @@ class yamato extends base {
         if (!$this->enabled) return;
         if (IS_ADMIN_FLAG === true) return;
 
-        /*// disable for some master_categories_id 
-        if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
-            $this->enabled = false; 
-        }
-        */
         if ((int)MODULE_SHIPPING_YAMATO_ZONE > 0) {
             $check_flag = false;
             $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_YAMATO_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
@@ -133,6 +128,13 @@ class yamato extends base {
         }
         if ( $this->enabled == true ) {
             if (!in_array((int)$order->delivery['country']['id'], $this->yamato_countries_nbr)) $this->enabled = false;
+        }
+
+        if ($this->enabled) {
+            // -----
+            // Give a watching observer the opportunity to disable the overall shipping module.
+            //
+            $this->notify('NOTIFY_SHIPPING_YAMATO_UPDATE_STATUS', [], $this->enabled);
         }
     }
     /**

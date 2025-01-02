@@ -89,11 +89,6 @@
         if (!$this->enabled) return;
         if (IS_ADMIN_FLAG === true) return;
 
-/*        // disable for some master_categories_id 
-        if (IS_ADMIN_FLAG == false && ($_SESSION['cart']->in_cart_check('master_categories_id','44') > 0 || $_SESSION['cart']->in_cart_check('master_categories_id','56') > 0)) { 
-            $this->enabled = false; 
-        }
-*/
         $multiboxes = MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX;
         $max_shipping_weight = MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT;
         $max_size_array = array('Max_length' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH, 'Max_width' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH, 'Max_height' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT, 'Max_girth' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH);
@@ -124,8 +119,13 @@
                 $this->enabled = false;
             }
         }
-        //$multiboxes = 'None';
-        //$shipping_num_boxes = 1;
+
+        if ($this->enabled) {
+            // -----
+            // Give a watching observer the opportunity to disable the overall shipping module.
+            //
+            $this->notify('NOTIFY_SHIPPING_LETTERPACKPLUS_UPDATE_STATUS', [], $this->enabled);
+        }
     }
 
     function quote($method = '')

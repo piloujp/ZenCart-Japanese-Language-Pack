@@ -130,6 +130,13 @@ class sagawa extends base
         if ( $this->enabled == true ) {
             if (!in_array((int)$order->delivery['country']['id'], $this->sagawa_countries_nbr)) $this->enabled = false;
         }
+
+        if ($this->enabled) {
+            // -----
+            // Give a watching observer the opportunity to disable the overall shipping module.
+            //
+            $this->notify('NOTIFY_SHIPPING_SAGAWA_UPDATE_STATUS', [], $this->enabled);
+        }
     }
     /**
      *  Obtain quote from shipping system/calculations
