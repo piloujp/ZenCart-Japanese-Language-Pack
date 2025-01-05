@@ -6,4 +6,4 @@
  */
 
 // Function returning a country database id from its ISO 2 letters' code
-require DIR_FS_CATALOG . 'includes/extra_configures/function_country_iso_to_id.php';
+require DIR_FS_CATALOG . 'includes/functions/extra_functions/function_country_iso_to_id.php';
