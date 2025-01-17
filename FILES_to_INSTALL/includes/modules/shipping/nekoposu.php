@@ -6,7 +6,8 @@
  * @version $Id: pilou2/piloujp 2025 Jan 2 Modified in v2.1.0 $
 **/
 
-  class nekoposu {
+class nekoposu  extends ZenShipping
+{
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -124,7 +125,7 @@
         }
     }
 
-    function quote($method = '')
+    function quote($method = ''): array
     {
         global $order;
 
@@ -152,7 +153,7 @@
         return $this->_check;
     }
 
-    function install()
+    function install(): void
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Nekoposu shipping method', 'MODULE_SHIPPING_NEKOPOSU_STATUS', 'True', 'Do you want to offer Nekoposu rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -168,14 +169,14 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
     }
 
-    function remove()
+    function remove(): void
     {
         global $db;
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_NEKOPOSU\_%'");
     }
 
-    function keys()
+    function keys(): array
     {
         return array('MODULE_SHIPPING_NEKOPOSU_STATUS', 'MODULE_SHIPPING_NEKOPOSU_COST', 'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'MODULE_SHIPPING_NEKOPOSU_ZONE', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER');
     }
-  }
+}
