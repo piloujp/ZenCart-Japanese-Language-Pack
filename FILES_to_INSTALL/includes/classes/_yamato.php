@@ -93,6 +93,9 @@ class _Yamato {
             array(7, 200, 30),
         );
 
+        if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
+            return -9;
+        }
         $n_totallength = $this->Length + $this->Width + $this->Height;
 
         foreach ($a_classes as $n_index => $a_limit) {
@@ -369,7 +372,7 @@ class _Yamato {
             if ( $s_rank ) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
-                    $this->quote['error'] = MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE;
+                    $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE : MODULE_SHIPPING_YAMATO_TEXT_DIMENSION_MISSING;
                 } else {
                     $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
                 }

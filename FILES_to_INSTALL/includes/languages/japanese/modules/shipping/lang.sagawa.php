@@ -9,6 +9,7 @@ $define = [
     'MODULE_SHIPPING_SAGAWA_TEXT_OVERSIZE' => '重量またはサイズが制限を超えています。',
     'MODULE_SHIPPING_SAGAWA_TEXT_ILLEGAL_ZONE' => '指定された都道府県が正しくありません。',
     'MODULE_SHIPPING_SAGAWA_TEXT_OUT_OF_AREA' => '配達区域外です。',
+    'MODULE_SHIPPING_SAGAWA_TEXT_DIMENSION_MISSING' => 'エラー！一部の製品寸法が欠落しています。',
 //bof constant configuration titles and descriptions for Sagawa Shipping
     'CFGTITLE_MODULE_SHIPPING_SAGAWA_STATUS' => '佐川急便の配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_SAGAWA_STATUS' => '佐川急便の配送を提供しますか？',

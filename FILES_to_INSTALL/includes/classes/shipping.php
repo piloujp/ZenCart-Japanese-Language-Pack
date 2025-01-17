@@ -250,14 +250,15 @@ class shipping
                         $maxheight = $items_size_array[$i][$key][2];
                     }
                 } else { // get track of default sizes for non assigned items
-                    $defitems ++;
+                    $defitems += $items_size_array[$i][$key][5];
                     $items_size_array[$i][$key][0] = ($items_size_array[$i][$key][0] == 0) ? $maxlength : $items_size_array[$i][$key][0]; 
                     $items_size_array[$i][$key][1] = ($items_size_array[$i][$key][1] == 0) ? $maxwidth : $items_size_array[$i][$key][1]; 
                     $items_size_array[$i][$key][2] = ($items_size_array[$i][$key][2] == 0) ? $ave_height : $items_size_array[$i][$key][2]; 
                 }
             }
-            $zero_rate = ($defitems == 0) ? 2 : $box_array[$i]['box_items']/$defitems;
-            if($maxlength == 0 or $maxwidth == 0 or $maxheight == 0 or $zero_rate < 2) {
+            $default_zero_rate = 4; // 4 means up to 1/4 of items can have missing dimensions
+            $zero_rate = ($defitems == 0) ? $default_zero_rate : $box_array[$i]['box_items']/$defitems;
+            if($maxlength == 0 or $maxwidth == 0 or $maxheight == 0 or $zero_rate < $default_zero_rate) {
                 return; // too many items lack dimensions
             }
             // begining of algorithm to calculate box size using size_array which has been ordered from largest volume to smallest one.

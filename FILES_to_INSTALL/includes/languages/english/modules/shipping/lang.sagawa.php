@@ -9,6 +9,7 @@ $define = [
     'MODULE_SHIPPING_SAGAWA_TEXT_OVERSIZE' => 'Weight or size exceeds limits.',
     'MODULE_SHIPPING_SAGAWA_TEXT_ILLEGAL_ZONE' => 'Incorrect prefecture specified.',
     'MODULE_SHIPPING_SAGAWA_TEXT_OUT_OF_AREA' => 'Out of delivery area.',
+    'MODULE_SHIPPING_SAGAWA_TEXT_DIMENSION_MISSING' => 'Error, some product dimension is missing!',
 ];
 $GLOBALS['a_sagawa_time']=array(
   array('id'=>'none','text'=>'none'),

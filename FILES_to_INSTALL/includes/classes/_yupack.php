@@ -93,6 +93,9 @@ class _yupack {
             array(5, 170, 30),
         );
 
+        if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
+            return -9;
+        }
         $n_totallength = $this->Length + $this->Width + $this->Height;
 
         while ( $a_limit =  current($a_classes)) {
@@ -380,7 +383,7 @@ class _yupack {
             if ( $s_rank ) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
-                    $this->quote['error'] = MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE;
+                    $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE : MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING;
                 } else {
                     $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
                 }

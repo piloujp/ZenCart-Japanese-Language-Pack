@@ -9,6 +9,7 @@ $define = [
     'MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE' => '重量またはサイズが制限を超えています。',
     'MODULE_SHIPPING_YAMATO_TEXT_ILLEGAL_ZONE' => '指定された都道府県が正しくありません。',
     'MODULE_SHIPPING_YAMATO_TEXT_OUT_OF_AREA' => '配達区域外です。',
+    'MODULE_SHIPPING_YAMATO_TEXT_DIMENSION_MISSING' => 'エラー！一部の製品寸法が欠落しています。',
 //bof constant configuration titles and descriptions for Yamato Shipping
     'CFGTITLE_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸(宅急便)の配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸(宅急便)の配送を提供しますか？',

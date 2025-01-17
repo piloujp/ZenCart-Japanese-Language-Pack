@@ -201,7 +201,10 @@ class yupack extends base {
                     }
                     $tmpQuote['cost'] = $total_boxes_quote;
                 } else {
-                    $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_YUPACK_TEXT_WAY_NORMAL, 'cost' => 0);
+                    $rate->SetSize();
+                    $tmpQuote = $rate->GetQuote();
+                    $this->quotes['error'] = $tmpQuote['error'];
+                    $tmpQuote['cost'] = -1;
                 }
                 // 手数料
                 $tmpQuote['cost'] += MODULE_SHIPPING_YUPACK_HANDLING;

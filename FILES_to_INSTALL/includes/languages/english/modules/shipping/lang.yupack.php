@@ -6,9 +6,10 @@ $define = [
 	'MODULE_SHIPPING_YUPACK_TEXT_WAY_COOL' =>     'Cool Express',
 	'MODULE_SHIPPING_YUPACK_TEXT_WAY_TOP' =>      'Top Express',
 	'MODULE_SHIPPING_YUPACK_TEXT_NOTAVAILABLE' => 'Service is not available between these areas.',
-	'MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE' =>     'Too large to delivery.',
+	'MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE' =>     'Weight or size exceeds limits',
 	'MODULE_SHIPPING_YUPACK_TEXT_ILLEGAL_ZONE' => 'Illegal zone.',
 	'MODULE_SHIPPING_YUPACK_TEXT_OUT_OF_AREA' =>  'Out of delivery area.',
+    'MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING' => 'Error, some product dimension is missing!',
 ];
 $GLOBALS['a_yupack_time']=array(
   array('id'=>'None','text'=>'None'),
