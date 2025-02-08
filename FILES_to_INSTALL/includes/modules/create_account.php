@@ -138,7 +138,7 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
 
     if (ACCOUNT_DOB === 'true') {
         if (ENTRY_DOB_MIN_LENGTH > 0 or !empty($_POST['dob'])) {
-			if (strlen($dob) >10 || zen_valid_date($dob) === false) {
+            if (strlen($dob) >10 || zen_valid_date($dob) === false) {
                 $error = true;
                 $messageStack->add('create_account', ENTRY_DATE_OF_BIRTH_ERROR);
             }
@@ -296,7 +296,7 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
         $customer = new Customer();
 
     if ($_SESSION['language'] == 'japanese') {
-    	$data = compact(
+        $data = compact(
         'firstname', 'firstname_kana', 'lastname', 'lastname_kana', 'email_address', 'nick', 'email_format', 'telephone', 'fax',
         'newsletter', 'password', 'customers_authorization', 'customers_referral',
         'gender', 'dob', 'company', 'street_address',
@@ -330,15 +330,15 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
             // build the message content
             $name = $firstname . ' ' . $lastname;
 
-			if ($_SESSION['language'] == 'japanese') {
-					$email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname);
-			} else {
-				if (ACCOUNT_GENDER === 'true') {
-					$email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
-				} else {
-					$email_text = sprintf(EMAIL_GREET_NONE, $firstname);
-				}
-			}
+            if ($_SESSION['language'] == 'japanese') {
+                    $email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname);
+            } else {
+                if (ACCOUNT_GENDER === 'true') {
+                    $email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
+                } else {
+                    $email_text = sprintf(EMAIL_GREET_NONE, $firstname);
+                }
+            }
             $html_msg['EMAIL_GREETING'] = str_replace('\n', '', $email_text);
             $html_msg['EMAIL_FIRST_NAME'] = $firstname;
             $html_msg['EMAIL_LAST_NAME'] = $lastname;

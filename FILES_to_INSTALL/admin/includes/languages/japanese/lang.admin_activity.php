@@ -37,7 +37,7 @@ $define = [
     'TEXT_EXPORTFILTER3' => '「警告」　毎日確認すべき情報です。',
     'TEXT_EXPORTFILTER4' => '「注意」と「警告」　特に確認すべき2種類のログを出力します。',
     'TEXT_ACTIVITY_EXPORT_FILTER_USER' => '管理者ユーザーでフィルタ：',
-	'TEXT_EXPORTFILTER_USER' => 'すべての管理者ユーザー',
+    'TEXT_EXPORTFILTER_USER' => 'すべての管理者ユーザー',
     'TEXT_INTERPRETING_LOG_DATA' => '<p><strong>ログデータの解釈</strong></p>
 <ul>
 <li><strong>重要度</strong>- ログに対して与えられている重要度の内容は以下のとおりです。

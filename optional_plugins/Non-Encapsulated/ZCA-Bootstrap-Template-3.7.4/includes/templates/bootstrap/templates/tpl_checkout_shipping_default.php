@@ -121,11 +121,11 @@ if (zen_count_shipping_modules() > 0) {
                             <?php echo zen_draw_radio_field('shipping', $quotes[$i]['id'] . '_' . $quotes[$i]['methods'][$j]['id'], $checked, 'id="ship-'.$quotes[$i]['id'] . '-' . str_replace(' ', '-', $quotes[$i]['methods'][$j]['id']) .'"'); ?>
 
                             <label for="ship-<?php echo $quotes[$i]['id'] . '-' . str_replace(' ', '-', $quotes[$i]['methods'][$j]['id']); ?>" class="custom-control-label checkboxLabel"><?php echo $quotes[$i]['methods'][$j]['title']; ?></label>
-							<?php
-							//display delivery time option if avialable
-							if (isset ($quotes[$i]['methods'][$j]['option'])) {
-							echo $quotes[$i]['methods'][$j]['option'];}
-							?>
+                            <?php
+                            //display delivery time option if avialable
+                            if (isset ($quotes[$i]['methods'][$j]['option'])) {
+                            echo $quotes[$i]['methods'][$j]['option'];}
+                            ?>
                         </div>
                         <div class="p-1"></div>
 <?php

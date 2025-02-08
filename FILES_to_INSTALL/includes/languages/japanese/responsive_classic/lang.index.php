@@ -1,6 +1,6 @@
 <?php
 $define = [
-	'TEXT_GREETING_GUEST' => '<span class="greetUser">ゲスト</span>さん、いらっしゃいませ。<a href="%s">ログイン</a>しますか?',
+    'TEXT_GREETING_GUEST' => '<span class="greetUser">ゲスト</span>さん、いらっしゃいませ。<a href="%s">ログイン</a>しますか?',
     'TEXT_GREETING_GUEST_SHOWCASE' => 'ようこそ、当ショップをお楽しみください。',
     'TEXT_GREETING_PERSONAL' => '<span class="greetUser">%1$s</span>様、いらっしゃいませ。商品の<a href="%2$s">新着情報</a>をご覧になりますか?',
     'TEXT_INFORMATION' => 'この部分を変更するには、<br><strong>/includes/languages/japanese/index.php</strong>の<strong>define(\'TEXT_INFORMATION\')</strong>の右側の<br>シングルクォーテーション(\')の間を編集してください。<br>

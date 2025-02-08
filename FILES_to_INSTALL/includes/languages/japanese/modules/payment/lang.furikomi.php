@@ -1,7 +1,7 @@
 <?php
 $define = [
-	'MODULE_PAYMENT_FURIKOMI_TEXT_TITLE' => '振込',
-	'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => '<br>以下の口座に振り込んで下さい：<br><pre>'
+    'MODULE_PAYMENT_FURIKOMI_TEXT_TITLE' => '振込',
+    'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => '<br>以下の口座に振り込んで下さい：<br><pre>'
     . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? MODULE_PAYMENT_FURIKOMI_BANKNAME : '銀行名')
     . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH : '支店名')
     . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? MODULE_PAYMENT_FURIKOMI_ACCNUM : '口座番号')
@@ -52,7 +52,7 @@ $define = [
 // eof constant configuration titles and descriptions for payment module furikomi
 ];
 if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
-	$define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "以下の口座に振り込んで下さい：\n"
+    $define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "以下の口座に振り込んで下さい：\n"
     . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME
     . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH
     . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM

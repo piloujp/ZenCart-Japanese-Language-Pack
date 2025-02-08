@@ -1,7 +1,7 @@
 <?php
 $define = [
-	'MODULE_PAYMENT_YAMATOECOLLECT_TEXT_TITLE' => 'ヤマト代金引換',
-	'MODULE_PAYMENT_YAMATOECOLLECT_TEXT_DESCRIPTION' => 'ヤマト代金引換',
+    'MODULE_PAYMENT_YAMATOECOLLECT_TEXT_TITLE' => 'ヤマト代金引換',
+    'MODULE_PAYMENT_YAMATOECOLLECT_TEXT_DESCRIPTION' => 'ヤマト代金引換',
 // bof constant configuration titles and descriptions for payment module yamatoecollect
     'CFGTITLE_MODULE_PAYMENT_YAMATOECOLLECT_STATUS' => 'ヤマト代金引換モジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_YAMATOECOLLECT_STATUS' => 'ヤマト便の代金引換払いに対応しますか？',

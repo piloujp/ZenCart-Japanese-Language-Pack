@@ -1,7 +1,7 @@
 <?php
 $define = [
-	'MODULE_PAYMENT_SAGAWAECOLLECT_TEXT_TITLE' => '佐川代金引換',
-	'MODULE_PAYMENT_SAGAWAECOLLECT_TEXT_DESCRIPTION' => '佐川代金引換',
+    'MODULE_PAYMENT_SAGAWAECOLLECT_TEXT_TITLE' => '佐川代金引換',
+    'MODULE_PAYMENT_SAGAWAECOLLECT_TEXT_DESCRIPTION' => '佐川代金引換',
 // bof constant configuration titles and descriptions for payment module sagawaecollect
     'CFGTITLE_MODULE_PAYMENT_SAGAWAECOLLECT_STATUS' => '佐川急便の代金引換を有効にする',
     'CFGDESC_MODULE_PAYMENT_SAGAWAECOLLECT_STATUS' => '佐川急便の代金引換払いに対応しますか？',

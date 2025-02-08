@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_SHIPPING_JPPARCELAIR_TEXT_TITLE' =>        '小包郵便物（航空小包）',
-	'MODULE_SHIPPING_JPPARCELAIR_TEXT_DESCRIPTION' =>  '航空小包郵便による配送料金（７~１５日）',
-	'MODULE_SHIPPING_JPPARCELAIR_TEXT_WAY_NORMAL' =>   '小包郵便物（航空小包）（７~１５日）',
+    'MODULE_SHIPPING_JPPARCELAIR_TEXT_TITLE' =>        '小包郵便物（航空小包）',
+    'MODULE_SHIPPING_JPPARCELAIR_TEXT_DESCRIPTION' =>  '航空小包郵便による配送料金（７~１５日）',
+    'MODULE_SHIPPING_JPPARCELAIR_TEXT_WAY_NORMAL' =>   '小包郵便物（航空小包）（７~１５日）',
 //bof constant configuration titles and descriptions for jpParcelair Shipping
     'CFGTITLE_MODULE_SHIPPING_JPPARCELAIR_STATUS' => '小包郵便物（航空小包）配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_JPPARCELAIR_STATUS' => '小包郵便物（航空小包）配送を提供したいですか？',

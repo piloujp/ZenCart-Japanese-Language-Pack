@@ -221,24 +221,24 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
       <h2>このページは１つ以上の理由で表示されています</h2>
       <ol>
         <li>
-		  Zen Cart<sup>&reg;</sup>を<strong>初めて使用し</strong>、通常のインストール手順がまだ完了していません。
+          Zen Cart<sup>&reg;</sup>を<strong>初めて使用し</strong>、通常のインストール手順がまだ完了していません。
           <br>
           このような場合は、
           <?php if ($instPath) { ?>
             <a href="<?php echo $instPath; ?>">ここをクリックして</a>ンストールを開始してください。
           <?php } else { ?>
-			FTP プログラムを使用して「zc_install」フォルダーをアップロードし、ブラウザーで「zc_install/index.php」を実行する（または、このページをリロードしてリンクを表示する）必要があります。
+            FTP プログラムを使用して「zc_install」フォルダーをアップロードし、ブラウザーで「zc_install/index.php」を実行する（または、このページをリロードしてリンクを表示する）必要があります。
           <?php } ?>
           <br><br>
         </li>
         <li>
-		  Zen Cart<sup>&reg;</sup> を使用するのは<strong>初めてではありません</strong>し、以前に通常のインストール手順を完了していることになります。
+          Zen Cart<sup>&reg;</sup> を使用するのは<strong>初めてではありません</strong>し、以前に通常のインストール手順を完了していることになります。
           <br>
           これがあなたの場合は...
           <br>
           <ul style='list-style-type:square'>
             <li>
-			  <tt><strong>「/includes/configure.php」</strong></tt>および/または<tt><strong>「/admin/includes/configure.php」</strong></tt>ファイルには、無効な<em>パス</em>情報および/または無効な<em>データベース接続情報</em>が含まれています。
+              <tt><strong>「/includes/configure.php」</strong></tt>および/または<tt><strong>「/admin/includes/configure.php」</strong></tt>ファイルには、無効な<em>パス</em>情報および/または無効な<em>データベース接続情報</em>が含まれています。
             <br>
             </li>
             <li>
@@ -258,7 +258,7 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
               <br>
             </li>
             <li>
-			  サポートが必要な場合は、Zen Cart<sup>&reg;</sup> Web サイトの<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ドキュメント</a>エリアを参照してください（英語のみ）。
+              サポートが必要な場合は、Zen Cart<sup>&reg;</sup> Web サイトの<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ドキュメント</a>エリアを参照してください（英語のみ）。
             </li>
           </ul>
         </li>
@@ -279,7 +279,7 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
           </li>
         <?php } else { ?>
           <li>
-			インストール ドキュメントは通常、Zen Cart&reg; 配布ファイル/zip の /docs フォルダーにあります。ドキュメントは、<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ヘルプ</a>からも入手できます（英語のみ）。
+            インストール ドキュメントは通常、Zen Cart&reg; 配布ファイル/zip の /docs フォルダーにあります。ドキュメントは、<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ヘルプ</a>からも入手できます（英語のみ）。
           </li>
         <?php } ?>
         <?php if ($instPath) { ?>
@@ -288,11 +288,11 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
           </li>
         <?php } else { ?>
           <li>
-			FTP プログラムを使用して「zc_install」フォルダーをアップロードし、ブラウザーで<a href="<?php echo $instPath; ?>">zc_install/index.php</a>を実行する（または、このページをリロードしてリンクを表示する）必要があります。
+            FTP プログラムを使用して「zc_install」フォルダーをアップロードし、ブラウザーで<a href="<?php echo $instPath; ?>">zc_install/index.php</a>を実行する（または、このページをリロードしてリンクを表示する）必要があります。
           </li>
         <?php } ?>
         <li>
-		  問題が発生した場合は、Zen Cart<sup>&reg;</sup> Web サイトの<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンラインヘルプ</a>エリアを参照してください（英語のみ）。
+          問題が発生した場合は、Zen Cart<sup>&reg;</sup> Web サイトの<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンラインヘルプ</a>エリアを参照してください（英語のみ）。
         </li>
       </ol>
     </div>
@@ -303,7 +303,7 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
           <br><br>
           このプログラムは役立つことを期待して配布されていますが、いかなる保証もありません。
           <br>
-		  商品性または特定目的への適合性の暗黙の保証はなく、
+          商品性または特定目的への適合性の暗黙の保証はなく、
           <br>
           GNU 一般公衆利用許諾書のバージョン 2 に基づいて再配布可能です。
         <p>

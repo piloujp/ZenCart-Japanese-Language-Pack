@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_ORDER_TOTAL_PAYPAL_TITLE' => 'PayPal手数料',
-	'MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION' => 'PayPal手数料',
-	'TEXT_INFO_PAYPAL_FEES' => '<strong>注：</strong> 手数料がかかります。',
+    'MODULE_ORDER_TOTAL_PAYPAL_TITLE' => 'PayPal手数料',
+    'MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION' => 'PayPal手数料',
+    'TEXT_INFO_PAYPAL_FEES' => '<strong>注：</strong> 手数料がかかります。',
 //bof constant configuration titles and descriptions for ot_paypal_fee
     'CFGTITLE_MODULE_ORDER_TOTAL_PAYPAL_STATUS' => 'PayPal手数料を有効にする',
     'CFGDESC_MODULE_ORDER_TOTAL_PAYPAL_STATUS' => 'PayPal手数料を表示しますか？',

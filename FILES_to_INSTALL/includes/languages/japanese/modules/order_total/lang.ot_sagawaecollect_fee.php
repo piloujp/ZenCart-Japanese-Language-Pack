@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_TITLE' => '代金引換佐川宅急便手数料',
-	'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_DESCRIPTION' => '代金引換佐川宅急便手数料',
-	'TEXT_INFO_SAGAWAECOLLECT_FEES' => '<strong>注記：</strong> 手数料をかかります。',
+    'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_TITLE' => '代金引換佐川宅急便手数料',
+    'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_DESCRIPTION' => '代金引換佐川宅急便手数料',
+    'TEXT_INFO_SAGAWAECOLLECT_FEES' => '<strong>注記：</strong> 手数料をかかります。',
 //bof constant configuration titles and descriptions for ot_sagawaecollect_fee
     'CFGTITLE_MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS' => '佐川急便の代金引換を有効にする',
     'CFGDESC_MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS' => '佐川急便の代引き手数料を表示しますか？',

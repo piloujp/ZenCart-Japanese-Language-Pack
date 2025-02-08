@@ -114,10 +114,10 @@ if (empty($order->info)) {
               </tr>
               <tr>
                 <td class="main"><?php echo (!empty($order->delivery) ? zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br>') : TEXT_NONE);
-								echo !empty($order->delivery['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $order->delivery['telephone'] . '</small>' : '';
-				?></td>
+                                echo !empty($order->delivery['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $order->delivery['telephone'] . '</small>' : '';
+                ?></td>
               </tr>
-			  <tr>
+              <tr>
                 <td class="main"><?php echo !empty($order->delivery['timespec']) ? '<small>' . TEXT_TIME_SPECIFY . $order->delivery['timespec'] . '</small>' :''; ?></td>
               </tr>
             </table>

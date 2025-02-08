@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_SHIPPING_NEKOPOSU_TEXT_TITLE' => 'ネコポス',
-	'MODULE_SHIPPING_NEKOPOSU_TEXT_DESCRIPTION' => 'ネコポス',
-	'MODULE_SHIPPING_NEKOPOSU_TEXT_WAY' => 'ヤマト宅急便のネコポス',
+    'MODULE_SHIPPING_NEKOPOSU_TEXT_TITLE' => 'ネコポス',
+    'MODULE_SHIPPING_NEKOPOSU_TEXT_DESCRIPTION' => 'ネコポス',
+    'MODULE_SHIPPING_NEKOPOSU_TEXT_WAY' => 'ヤマト宅急便のネコポス',
 //bof constant configuration titles and descriptions for nekoposu Shipping
     'CFGTITLE_MODULE_SHIPPING_NEKOPOSU_STATUS' => 'ネコポス配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_NEKOPOSU_STATUS' => 'ネコポスで発送しますか？',

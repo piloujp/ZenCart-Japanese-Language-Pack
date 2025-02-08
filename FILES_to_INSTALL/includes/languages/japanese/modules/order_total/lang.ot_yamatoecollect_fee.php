@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_ORDER_TOTAL_YAMATOECOLLECT_TITLE' => '代金引換ヤマト宅急便手数料',
-	'MODULE_ORDER_TOTAL_YAMATOECOLLECT_DESCRIPTION' => '代金引換ヤマト宅急便手数料',
-	'TEXT_INFO_YAMATOECOLLECT_FEES' => '<strong>注記：</strong> 手数料をかかります。',
+    'MODULE_ORDER_TOTAL_YAMATOECOLLECT_TITLE' => '代金引換ヤマト宅急便手数料',
+    'MODULE_ORDER_TOTAL_YAMATOECOLLECT_DESCRIPTION' => '代金引換ヤマト宅急便手数料',
+    'TEXT_INFO_YAMATOECOLLECT_FEES' => '<strong>注記：</strong> 手数料をかかります。',
 //bof constant configuration titles and descriptions for ot_yamatoecollect_fee
     'CFGTITLE_MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS' => 'ヤマト代金引換モジュールを有効にする',
     'CFGDESC_MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS' => 'ヤマト運輸の代引き手数料を表示しますか？',

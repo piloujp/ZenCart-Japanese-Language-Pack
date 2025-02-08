@@ -7,10 +7,10 @@
 */
 
 $define = [
-	'RECAPTCHA_MISSING_INPUT_SECRET' => '入力シークレットがありません',
-	'RECAPTCHA_INVALID_INPUT_SECRET' => '無効な入力シークレット',
-	'RECAPTCHA_MISSING_INPUT_RESPONSE' => 'ロボットでないことを証明してください',
-	'RECAPTCHA_INVALID_INPUT_RESPONSE' => '申し訳ありませんが、あなたがロボットではないことをもう一度証明してください',
+    'RECAPTCHA_MISSING_INPUT_SECRET' => '入力シークレットがありません',
+    'RECAPTCHA_INVALID_INPUT_SECRET' => '無効な入力シークレット',
+    'RECAPTCHA_MISSING_INPUT_RESPONSE' => 'ロボットでないことを証明してください',
+    'RECAPTCHA_INVALID_INPUT_RESPONSE' => '申し訳ありませんが、あなたがロボットではないことをもう一度証明してください',
 ];
     
 return $define;

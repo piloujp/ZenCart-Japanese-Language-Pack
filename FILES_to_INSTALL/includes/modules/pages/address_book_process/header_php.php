@@ -105,14 +105,14 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $messageStack->add('addressbook', ENTRY_LAST_NAME_KANA_ERROR);
     }
   }
-	$entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
-	if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
-    	$error = true;
-    	$messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
-	}
-	if (ACCOUNT_FAX_NUMBER == 'true') {
-    	$entry_fax = zen_db_prepare_input($_POST['entry_fax']);
-	}
+    $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
+    if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
+        $error = true;
+        $messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
+    }
+    if (ACCOUNT_FAX_NUMBER == 'true') {
+        $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
+    }
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);
@@ -213,7 +213,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       if ($_SESSION['language'] == 'japanese') {
         $sql_data_array[] = array('fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull');
         $sql_data_array[] = array('fieldName'=>'entry_lastname_kana', 'value'=>$lastname_kana, 'type'=>'stringIgnoreNull');
-	  }
+      }
         $sql_data_array[] = array('fieldName'=>'entry_telephone', 'value'=>$entry_telephone, 'type'=>'stringIgnoreNull');
         if (ACCOUNT_FAX_NUMBER == 'true') {
           $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$entry_fax, 'type'=>'stringIgnoreNull');

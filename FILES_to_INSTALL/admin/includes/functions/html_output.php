@@ -283,14 +283,14 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
 ////
 // Output a separator either through whitespace, or with an image
   function zen_draw_separator($image = 'pixel_black.gif', $width = '100%', $height = '1') {
-	if (!empty($width)) {
-		if (substr(rtrim($width), -1) !== '%') {
+    if (!empty($width)) {
+        if (substr(rtrim($width), -1) !== '%') {
             $width = $width . 'px';
         }
-		$param = 'style="width:' . $width . ';"';
-	} else {
-		$param = '';
-	}
+        $param = 'style="width:' . $width . ';"';
+    } else {
+        $param = '';
+    }
     return zen_image(DIR_WS_IMAGES . $image, '', '', $height, $param);
   }
 /**
@@ -318,17 +318,17 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
         $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
       }
 
-	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_country_iso_to_id('JP')) {
+      if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == zen_country_iso_to_id('JP')) {
       $states = $db->Execute("SELECT zone_code AS zone_name, zone_id
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = '" . $countries->fields['zone_country_id'] . "'
                               ORDER BY zone_id");
-	  } else {
+      } else {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = '" . $countries->fields['zone_country_id'] . "'
                               ORDER BY zone_name");
-	  }
+      }
 
       $num_state = 1;
       while (!$states->EOF) {

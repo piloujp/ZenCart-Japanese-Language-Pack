@@ -92,7 +92,7 @@ if ($action != '') {
         $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
         $html_msg['EMAIL_FIRST_NAME'] = $row['customers_firstname'];
         $html_msg['EMAIL_LAST_NAME'] = $row['customers_lastname'];
-		$html_msg['EMAIL_GREET'] = EMAIL_GREET;
+        $html_msg['EMAIL_GREET'] = EMAIL_GREET;
 
         $message .= zen_db_prepare_input($_POST['message']);
         if (EMAIL_USE_HTML == 'true') {

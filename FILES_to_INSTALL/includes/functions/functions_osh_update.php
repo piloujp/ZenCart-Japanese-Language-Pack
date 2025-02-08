@@ -133,7 +133,7 @@ function zen_update_orders_history($orders_id, $message = '', $updated_by = null
 
                 $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
                 $html_msg['EMAIL_CUSTOMERS_NAME']    = $osh_info->fields['customers_name'];
-				$html_msg['EMAIL_GREET'] = EMAIL_GREET;
+                $html_msg['EMAIL_GREET'] = EMAIL_GREET;
                 $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = OSH_EMAIL_TEXT_ORDER_NUMBER . ' ' . $orders_id;
                 $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, "order_id=$orders_id", 'SSL') .'">' . str_replace(':', '', OSH_EMAIL_TEXT_INVOICE_URL) . '</a>';
                 $html_msg['EMAIL_TEXT_DATE_ORDERED'] = OSH_EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($osh_info->fields['date_purchased']);

@@ -12,8 +12,8 @@
 
 
 $define = [
-	'TEXT_ORDER_UNDER_MIN_AMOUNT' => 'チェックアウトするために %s 以上のカートが必要です。',
-	'TEXT_FIRST_ORDER_UNDER_MIN_AMOUNT' => '初めてチェックアウトするために %s 以上のカートが必要です。'
+    'TEXT_ORDER_UNDER_MIN_AMOUNT' => 'チェックアウトするために %s 以上のカートが必要です。',
+    'TEXT_FIRST_ORDER_UNDER_MIN_AMOUNT' => '初めてチェックアウトするために %s 以上のカートが必要です。'
 ];
 
 return $define;

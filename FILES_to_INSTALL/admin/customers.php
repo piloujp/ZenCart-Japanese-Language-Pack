@@ -1255,8 +1255,8 @@ if ($action === 'edit' || $action === 'update') {
     foreach ($addressArray as $addresses) {
 ?>
                     <h3 class="addressBookDefaultName"><?php
-						echo !empty($addresses['firstname_kana']) ? '<small>' . $addresses['firstname_kana'] . '</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : '';
-						echo !empty($addresses['lastname_kana']) ? '&nbsp;<small>' . $addresses['lastname_kana'] . '</small><br>' : '';
+                        echo !empty($addresses['firstname_kana']) ? '<small>' . $addresses['firstname_kana'] . '</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : '';
+                        echo !empty($addresses['lastname_kana']) ? '&nbsp;<small>' . $addresses['lastname_kana'] . '</small><br>' : '';
                         echo zen_output_string_protected(
                             $addresses['firstname'] . ' ' . $addresses['lastname']
                         );
@@ -1271,8 +1271,8 @@ if ($action === 'edit' || $action === 'update') {
                             ' ',
                             '<br>'
                         );
-						echo !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '';
-						echo !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : '';
+                        echo !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '';
+                        echo !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : '';
                         ?>
                     </address>
 

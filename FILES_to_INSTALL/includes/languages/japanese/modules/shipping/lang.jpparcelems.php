@@ -1,8 +1,8 @@
 <?php
 $define = [
-	'MODULE_SHIPPING_JPPARCELEMS_TEXT_TITLE' =>        '国際スピード郵便',
-	'MODULE_SHIPPING_JPPARCELEMS_TEXT_DESCRIPTION' =>  '国際スピード郵便（EMS）による配送料金',
-	'MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL' =>   'EMS（４~１０日）',
+    'MODULE_SHIPPING_JPPARCELEMS_TEXT_TITLE' =>        '国際スピード郵便',
+    'MODULE_SHIPPING_JPPARCELEMS_TEXT_DESCRIPTION' =>  '国際スピード郵便（EMS）による配送料金',
+    'MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL' =>   'EMS（４~１０日）',
 //bof constant configuration titles and descriptions for jpParcelems Shipping
     'CFGTITLE_MODULE_SHIPPING_JPPARCELEMS_STATUS' => 'EMS 配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_JPPARCELEMS_STATUS' => 'EMS配送を提供したいですか？',

@@ -9,7 +9,7 @@
 @setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
 
 $define = [
-	'ADMIN_NAV_DATE_TIME_FORMAT' => 'r年（Gy年）MMMMd日 EEEE HH:mm (ZZZZ)',
+    'ADMIN_NAV_DATE_TIME_FORMAT' => 'r年（Gy年）MMMMd日 EEEE HH:mm (ZZZZ)',
     'ARIA_PAGINATION_' => '',
     'ARIA_PAGINATION_CURRENTLY_ON' => ', 現在 %s ページ目を表示中',
     'ARIA_PAGINATION_CURRENT_PAGE' => '現在のページ',
@@ -446,7 +446,7 @@ $define = [
     'TEXT_ACTIVITY_LOG_ACCESSED' => '管理者アクティビティ ログにアクセスしました。 出力形式: %1$s。 フィルタ: %2$s。 %3$s',
     'TEXT_ADMIN_NAME' => 'ユーザー名',
     'TEXT_ADMIN_TAB_PREFIX' => 'Admin',
-	'TEXT_ASC' => '昇順',
+    'TEXT_ASC' => '昇順',
     'TEXT_ATTRIBUTE_COPY_INSERTING' => 'オプションID#%1$uを商品ID#%2$uから商品ID#%3$uにコピーしました。',
     'TEXT_ATTRIBUTE_COPY_SKIPPING' => 'オプションID#%1$uの、商品ID#%2$uへのコピーをスキップしました。',
     'TEXT_ATTRIBUTE_COPY_UPDATING' => 'オプションID#%1$uを商品ID#%2$uから更新しました。',
