@@ -1341,63 +1341,63 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p></p>
     </div>
     <script>
-		function shide(ele) {
-  		  var x = document.getElementById(ele);
-  		  if (x.style.display === "none") {
-    		  x.style.display = "block";
-  		  } else {
-    		  x.style.display = "none";
-  		  }
-		}
-		function montre(ele) {
-  		  var x = document.getElementById(ele);
-  		  if (x.style.display === "none") {
-    		  x.style.display = "block";
-  		  }
-		}
-		function chglan() {
-  		  var x = document.getElementById("en");
-		  var y = document.getElementById("jp");
-		  var m1 = document.getElementById("newinst");
-		  var m2 = document.getElementById("allinst");
-		  var m3 = document.getElementById("mergeinst");
-		  var m4 = document.getElementById("newinstjp");
-		  var m5 = document.getElementById("allinstjp");
-		  var m6 = document.getElementById("mergeinstjp");
-  		  if (x.style.display === "none") {
-			  if (m4.style.display === "block") {
-				m1.style.display = "block";
-				m4.style.display = "none";
-			  }
-			  if (m5.style.display === "block") {
-				m2.style.display = "block";
-				m5.style.display = "none";
-			  }
-			  if (m6.style.display === "block") {
-				m3.style.display = "block";
-				m6.style.display = "none";
-			  }
-    		  x.style.display = "block";
-			  y.style.display = "none";
-  		  } else {
-			  if (m1.style.display === "block") {
-				m4.style.display = "block";
-				m1.style.display = "none";
-			  }
-			  if (m2.style.display === "block") {
-				m5.style.display = "block";
-				m2.style.display = "none";
-			  }
-			  if (m3.style.display === "block") {
-				m6.style.display = "block";
-				m3.style.display = "none";
-			  }
-			  y.style.display = "block";
-    		  x.style.display = "none";
-  		  }
-		}
-		document.addEventListener("DOMContentLoaded", function() {
-    	document.getElementById("jp").style.display = "none";
+        function shide(ele) {
+            var x = document.getElementById(ele);
+            if (x.style.display === "none") {
+              x.style.display = "block";
+            } else {
+              x.style.display = "none";
+            }
+        }
+        function montre(ele) {
+            var x = document.getElementById(ele);
+            if (x.style.display === "none") {
+              x.style.display = "block";
+            }
+        }
+        function chglan() {
+            var x = document.getElementById("en");
+          var y = document.getElementById("jp");
+          var m1 = document.getElementById("newinst");
+          var m2 = document.getElementById("allinst");
+          var m3 = document.getElementById("mergeinst");
+          var m4 = document.getElementById("newinstjp");
+          var m5 = document.getElementById("allinstjp");
+          var m6 = document.getElementById("mergeinstjp");
+            if (x.style.display === "none") {
+              if (m4.style.display === "block") {
+                m1.style.display = "block";
+                m4.style.display = "none";
+              }
+              if (m5.style.display === "block") {
+                m2.style.display = "block";
+                m5.style.display = "none";
+              }
+              if (m6.style.display === "block") {
+                m3.style.display = "block";
+                m6.style.display = "none";
+              }
+              x.style.display = "block";
+              y.style.display = "none";
+            } else {
+              if (m1.style.display === "block") {
+                m4.style.display = "block";
+                m1.style.display = "none";
+              }
+              if (m2.style.display === "block") {
+                m5.style.display = "block";
+                m2.style.display = "none";
+              }
+              if (m3.style.display === "block") {
+                m6.style.display = "block";
+                m3.style.display = "none";
+              }
+              y.style.display = "block";
+              x.style.display = "none";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("jp").style.display = "none";
         document.getElementById("newinst").style.display = "none";
         document.getElementById("allinst").style.display = "none";
         document.getElementById("mergeinst").style.display = "none";
@@ -1405,6 +1405,6 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         document.getElementById("allinstjp").style.display = "none";
         document.getElementById("mergeinstjp").style.display = "none";
       });
-		</script>
+        </script>
   </body>
 </html>
