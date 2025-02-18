@@ -257,7 +257,7 @@ if ($_SESSION['language'] == 'japanese') {
                 <?php
               }
               ?>
-            <tbody>
+            </tbody>
             <tfoot>
                 <?php
                 if (strlen($report->previous . " " . $report->next) > 1) {
@@ -316,7 +316,7 @@ if ($_SESSION['language'] == 'japanese') {
           for ($i = 0; $i < $report->status_available_size; $i++) {
             ?>
             <tr>
-              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['text'] ?></a></td>
+              <td class="dataTableContent text-left"><?php echo $report->status_available[$i]['text'] ?></td>
               <?php
               if (substr($sales_report_filter, $i, 1) == "0") {
                 $tmp = substr($sales_report_filter, 0, $i) . "1" . substr($sales_report_filter, $i + 1, $report->status_available_size - ($i + 1));
