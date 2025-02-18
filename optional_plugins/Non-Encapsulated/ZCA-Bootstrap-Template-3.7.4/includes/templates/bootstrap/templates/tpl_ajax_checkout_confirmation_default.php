@@ -124,7 +124,7 @@ if ($_SESSION['sendto'] != false) {
                             <?= HEADING_SHIPPING_METHOD ?>
                         </h4>
                         <div id="shippingMethod-card-body" class="card-body">
-							<h4><?= $order->info['shipping_method'] . (!empty($order->delivery['timespec']) ? '<br>' . TEXT_TIME_SPECIFY . $order->delivery['timespec'] :'') ?></h4>
+                            <h4><?= $order->info['shipping_method'] . (!empty($order->delivery['timespec']) ? '<br>' . TEXT_TIME_SPECIFY . $order->delivery['timespec'] :'') ?></h4>
                         </div>
                     </div>
 <?php

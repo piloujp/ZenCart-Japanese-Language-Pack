@@ -59,8 +59,8 @@ foreach ($addressArray as $addresses) {
                 </h4>
                 <div id="addressBookSingleEntryId<?= $addresses['address_book_id'] ?>-card-body" class="card-body p-3">
                     <address><?= zen_address_format($addresses['format_id'], $addresses['address'], true, ' ', '<br>') ?>
-					<?= !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '' ?>
-					<?= !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : '' ?></address>
+                    <?= !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '' ?>
+                    <?= !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : '' ?></address>
                     <div class="btn-toolbar justify-content-between" role="toolbar">
                         <?= zca_button_link(zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit=' . $addresses['address_book_id'], 'SSL'), BUTTON_EDIT_SMALL_ALT, 'small_edit') ?>
 <?php
