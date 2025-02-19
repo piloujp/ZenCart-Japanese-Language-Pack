@@ -36,9 +36,9 @@ $define = [
     'CFGDESC_LARGE_IMAGE_MAX_WIDTH' => '大きな画像の最大幅を指定します。幅と高さが空または０に設定されている場合、大きな画像のサイズ変更は行われません。',
     'CFGTITLE_LARGE_IMAGE_MAX_HEIGHT' => 'IH 大きな画像の最大高さ',
     'CFGDESC_LARGE_IMAGE_MAX_HEIGHT' => '大きな画像の最大の高さを指定します。幅と高さが空または 0 に設定されている場合、大きな画像のサイズ変更は行われません。',
-    'CFGTITLE_WATERMARK_GRAVITY' => 'IH透かし位置',
+    'CFGTITLE_WATERMARK_GRAVITY' => 'IH 透かし位置',
     'CFGDESC_WATERMARK_GRAVITY' => '画像のキャンバスに対する透かしの位置を選択します。デフォルトは <strong>Center</Strong> です。',
-    'CFGTITLE_IH_VERSION' => 'IH版',    'CFGDESC_IH_VERSION' => '現在インストールされている<em>イメージ ハンドラー</em>のバージョンを表示します。',
+    'CFGTITLE_IH_VERSION' => 'IH 版',    'CFGDESC_IH_VERSION' => '現在インストールされている<em>イメージ ハンドラー</em>のバージョンを表示します。',
     'CFGTITLE_IH_CACHE_NAMING' => 'IHキャッシュファイルの命名規則',    'CFGDESC_IH_CACHE_NAMING' => '<br><code>bmz_cache</code> ディレクトリ内のサイズ変更されたイメージに名前を付けるために「<em>イメージ ハンドラー</em>」によって使用されるメソッドを選択します。<br><br><em>Hashed</em>： 「MD5」ハッシュを使用してファイル名を生成します。この方法では、元のファイルを視覚的に識別するのが難しい場合があります。<br><br><em>Readable</em>： これは、<em>IH</em> の新規インストール、またはハードコードされたイメージ リンクを持たないアップグレードされたインストールの場合に適しています。<br><br><em>Mirrored</em>： <em>Readable</em> と似ていますが、「<code>bmz_cache</code>」のディレクトリ構造は元のイメージのサブディレクトリ構造を反映しています。',
 ];
 
