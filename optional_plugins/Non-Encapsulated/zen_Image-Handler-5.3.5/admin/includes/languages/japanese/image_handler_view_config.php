@@ -4,7 +4,7 @@
 // Copyright (c) 2018 Vinos de Frutas Tropicales
 //
 define('HEADING_TITLE', 'Image Handler<sup>5</sup>構成の表示');
-define('INSTRUCTIONS', 'このページには、<em>Image Handler</em><sup>5</sup> （イメージ ハンドラー）の管理およびストアフロント処理によって使用されるさまざまな設定値が表示されます。これらの値は、ストアの<em>設定</em>メニュー（左側の表）で定義されるか、ファイル <code>%1$s</code> および <code>%2$s</code> で定義されます（右側のテーブル）。');
+define('INSTRUCTIONS', 'このページには、イメージ ハンドラー<sup>5</sup><em>Image Handler</em><sup>5</sup>）の管理およびストアフロント処理によって使用されるさまざまな設定値が表示されます。これらの値は、ストアの<em>設定</em>メニュー（左側の表）で定義されるか、ファイル <code>%1$s</code> および <code>%2$s</code> で定義されます（右側のテーブル）。');
 
 define('CONFIG_HEADING', '<a href="%1$s">設定／画像</a>の値。最初の列のリンクをクリックして、関連する値を編集します。');
 

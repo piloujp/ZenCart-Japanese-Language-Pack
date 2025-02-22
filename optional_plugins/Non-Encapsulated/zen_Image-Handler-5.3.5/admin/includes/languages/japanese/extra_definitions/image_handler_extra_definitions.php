@@ -9,9 +9,9 @@
 // -----
 // The title displayed on the admin's "Tools" dropdown menu.
 //
-define('BOX_TOOLS_IMAGE_HANDLER', 'Image Handler<sup>5</sup>');
-define('BOX_TOOLS_IMAGE_HANDLER_UNINSTALL', 'Image Handler<sup>5</sup> アンインストール');
-define('BOX_TOOLS_IMAGE_HANDLER_VIEW_CONFIG', 'Image Handler<sup>5</sup> 構成の表示');
+define('BOX_TOOLS_IMAGE_HANDLER', 'イメージ ハンドラー<sup>5</sup>（Image Handler<sup>5</sup>）');
+define('BOX_TOOLS_IMAGE_HANDLER_UNINSTALL', 'イメージ ハンドラー<sup>5</sup> アンインストール');
+define('BOX_TOOLS_IMAGE_HANDLER_VIEW_CONFIG', 'イメージ ハンドラー<sup>5</sup> 構成の表示');
 
 // -----
 // Messages issued by /admin/includes/init_includes/init_image_handler.php

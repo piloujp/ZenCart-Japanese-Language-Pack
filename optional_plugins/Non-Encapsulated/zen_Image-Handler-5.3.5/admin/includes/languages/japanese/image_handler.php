@@ -29,7 +29,7 @@ define('IH_NEW_NAME_COPY_IMAGES', '新しい名前を使用し、追加の画像
 define('IH_KEEP_NAME', '古い名前と追加の画像を保持する');
 define('IH_DELETE_FROM_DB_ONLY', 'データベースのみから画像参照を削除します');
 
-define('IH_HEADING_TITLE', 'Image Handler（イメージ ハンドラー）<sup>5</sup>');
+define('IH_HEADING_TITLE', 'イメージ ハンドラー<sup>5</sup>');
 define('IH_HEADING_TITLE_PRODUCT_SELECT','画像を管理する商品を選択してください。');
 
 define('TABLE_HEADING_PHOTO_NAME', '画像名');
