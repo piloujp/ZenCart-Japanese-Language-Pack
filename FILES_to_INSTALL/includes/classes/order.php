@@ -254,7 +254,7 @@ class order extends base
             'fax' => $order->fields['customers_fax'],
             'name_kana' => $order->fields['customers_name_kana'],
         ];
-        $this->customer['zone_id'] = $this->getCountryZoneId((int)$this->customer['country'], $this->customer['state']);
+        $this->customer['zone_id'] = $this->getCountryZoneId((int)$this->customer['country']['id'], $this->customer['state']);
 
         $this->delivery = [
             'name' => $order->fields['delivery_name'],
@@ -292,7 +292,7 @@ class order extends base
             'fax' => $order->fields['billing_fax'],
             'name_kana' => $order->fields['billing_name_kana'],
         ];
-        $this->billing['zone_id'] = $this->getCountryZoneId((int)$this->billing['country'], $this->billing['state']);
+        $this->billing['zone_id'] = $this->getCountryZoneId((int)$this->billing['country']['id'], $this->billing['state']);
 
         $index = 0;
         $orders_products_query = "SELECT *
