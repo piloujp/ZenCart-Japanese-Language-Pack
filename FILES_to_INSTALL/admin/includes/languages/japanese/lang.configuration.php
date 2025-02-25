@@ -61,6 +61,7 @@ $define = [
     'TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_FEATURED_PRODUCTS_LENGTH' => '整数で指定してください',
+    'TEXT_MAX_ADMIN_RANDOM_SELECT_FEATURED_CATEGORIES_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_RANDOM_SELECT_FEATURED_PRODUCTS_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_DISPLAY_SPECIAL_PRODUCTS_INDEX_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_SHOW_NEW_PRODUCTS_LIMIT_LENGTH' => '整数で指定してください',
@@ -70,7 +71,8 @@ $define = [
     'TEXT_MAX_ADMIN_DISPLAY_PRODUCTS_TO_CATEGORIES_COLUMNS_LENGTH' => '整数で指定してください',
     'TEXT_MAX_ADMIN_DISPLAY_SEARCH_RESULTS_EZPAGE_LENGTH' => '整数で指定してください',
     'TEXT_MAX_PREVIEW' => '整数で指定してください',
-
+    'TEXT_HINT_PASSWORD_RESET_TOKEN_LENGTH' => '１２〜１００の整数を指定してください。',
+    'TEXT_HINT_PASSWORD_RESET_TOKEN_VALID_MINUTES' => '１〜１４４０の整数を指定してください。',
 //bof constant configuration group page titles
 /*
     'CFG_GRP_TITLE_MY_STORE' => 'ショップ全般の設定',
@@ -126,7 +128,6 @@ $define = [
     'CFG_GRP_TITLE_DEFINE_PAGE_STATUS' => '%%BOX_CONFIGURATION_DEFINE_PAGE_STATUS%%',
     'CFG_GRP_TITLE_EZPAGES_SETTINGS' => '%%BOX_CONFIGURATION_EZPAGES_SETTINGS%%',
 //eof constant configuration group page titles
-
 //bof constant configuration titles and descriptions
     'CFGTITLE_STORE_NAME' => 'ショップ名',
     'CFGDESC_STORE_NAME' => 'ショップ名を設定します。',
@@ -182,6 +183,10 @@ $define = [
     'CFGDESC_PADSS_PWD_EXPIRY_ENFORCED' => 'PA-DSSコンプライアンスでは全ての管理画面に対するログインパスワードは、90日で変更しなければならず、過去4回以内に利用したパスワードと同じものは利用できません。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。',
     'CFGTITLE_PADSS_AJAX_CHECKOUT' => 'PA-DSS Ajax 決済処理',
     'CFGDESC_PADSS_AJAX_CHECKOUT' => 'PA-DSSコンプライアンスでは、組込まれている支払プログラムによっては、注文最終確認画面内で ajax を利用する事が求めています。これはサイト内で番号を入力するタイプのクレジットカード決済のような特定の支払方法を利用している場合にのみ適用されます。この設定を無効にした場合、PA-DSSのルールに従っていない非コンプライアンスサイトとして、どのような証明も無効になります。',
+    'CFGTITLE_PASSWORD_RESET_TOKEN_LENGTH' => 'パスワードリセットトークンの長さ',
+    'CFGDESC_PASSWORD_RESET_TOKEN_LENGTH' => '生成されたパスワードリセットトークンの文字数。デフォルトは２４です。許容範囲：１２～１００ですが、URL の長さに影響するため、１２～３０が最適です。',
+    'CFGTITLE_PASSWORD_RESET_TOKEN_LENGTH' => 'パスワードリセットトークンの有効期限',
+    'CFGDESC_PASSWORD_RESET_TOKEN_LENGTH' => 'パスワード リセット トークンの有効期間（分）。デフォルト：６０分（１時間）。許容値：１～１４４０。最適な値は６０～１２０分です。',
     'CFGTITLE_EMP_LOGIN_ADMIN_ID' => '顧客注文作成：対応管理者ID指定',
     'CFGDESC_EMP_LOGIN_ADMIN_ID' => '顧客リストからの注文作成機能を利用できる管理者（一人）をIDで指定します。（管理者グループには関係ありません）　 0 に設定すると、特定の対応管理者指定の制限がなくなります。',
     'CFGTITLE_EMP_LOGIN_AUTOMATIC' => '顧客注文作成：パスワード無しでログイン',
