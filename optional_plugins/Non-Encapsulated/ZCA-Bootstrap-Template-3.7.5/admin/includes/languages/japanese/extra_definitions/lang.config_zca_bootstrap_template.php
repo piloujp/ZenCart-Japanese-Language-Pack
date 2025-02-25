@@ -15,7 +15,7 @@ $define = [
     'CFGDESC_COLUMN_WIDTH_LEFT' => '左列の幅<br>px を含めることができます<br>デフォルト = 150px<br><br><b>この設定は、ZCA レスポンシブ コンポーネントまたは ZCA Bootstrap テーマには影響しません</b>',
     'CFGDESC_COLUMN_WIDTH_RIGHT' => '右列の幅<br>px を含めることができます<br>デフォルト = 150px<br><b>この設定は、ZCA レスポンシブ コンポーネントまたは ZCA Bootstrap テーマには影響しません</b>',
     'CFGDESC_PRODUCT_LISTING_COLUMNS_PER_ROW' => '商品リストの行ごとに表示する商品の列数を選択します。<br>推奨： ３<br>1=[行] モード。<br><br><code>bootstrap</code> テンプレートの場合は、０（流動列）または１（行）を使用します。<br>',
-// Boostrap configuration setings
+// Boostrap configuration settings
     'CFGTITLE_BS4_AJAX_SEARCH_ENABLE' => 'AJAX 検索を有効にしますか？',
     'CFGDESC_BS4_AJAX_SEARCH_ENABLE' => 'テンプレートの AJAX 検索機能を有効にしますか？',
     'CFGTITLE_BS4_AJAX_SEARCH_RESULTS_PER_PAGE' => 'AJAX 検索： 最大結果数',
