@@ -211,6 +211,8 @@ $define = [
     'CFGDESC_CURL_PROXY_SERVER_DETAILS' => 'cURL 経由で外部サイトと通信するためにプロキシを使用する必要があるホスティング サービスがある場合は、そのプロキシ アドレスをここに入力します。<br />形式：アドレス:ポート<br />例： 127.0.0.1:3128',
     'CFGTITLE_HTML_EDITOR_PREFERENCE' => 'HTMLエディタ',
     'CFGDESC_HTML_EDITOR_PREFERENCE' => 'メールマガジンや商品説明などで用いるHTML/リッチテキスト用のソフトウェアを設定します。',
+    'CFGTITLE_TINYMCE_EDITOR_API_KEY' => 'TinyMCE エディター API キー',
+    'CFGDESC_TINYMCE_EDITOR_API_KEY' => '基本的なエディター機能は、GPL モードでは無料です。<br>オプションで、アカウント API キーを指定して TinyMCE エディターのプレミアムエディター機能を有効にし、Tiny アカウントにストアの Web サイト ドメインを登録します。<br><a href="https://www.tiny.cloud/auth/signup/" target="_blank">www.tiny.cloud</a> でサインアップします。<br><br>デフォルト値：基本機能の無料未登録モードの場合は <strong>GPL</strong>。',
     'CFGTITLE_NOTIFY_CUSTOMER_DEFAULT' => '注文ステータス更新時の顧客への通知 デフォルト値',
     'CFGDESC_NOTIFY_CUSTOMER_DEFAULT' => '注文ステータス更新時の「処理状況を顧客に通知」のデフォルト設定を指定します。Email（メールする）、No Email（メールしない）、Hide（隠す）。',
     'CFGTITLE_SHOW_COUNTS_ADMIN' => 'カテゴリ内の商品数を表示 - 管理画面',
