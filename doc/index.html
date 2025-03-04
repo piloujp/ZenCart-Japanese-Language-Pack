@@ -117,8 +117,10 @@ a.anclink {
 
 </style> </head>
   <body>
-    <div class="en" id="en"> <img id="lang" src="images/flags-US-JP_small.webp"
-        alt="Toggle language" title="英語と日本語の間で言語を変更するにはここをクリックしてください" onclick="chglan()"
+    <div class="en" id="en"> <img id="lang" src="images/flags-US-JP_small.webp"
+
+        alt="Toggle language" title="英語と日本語の間で言語を変更するにはここをクリックしてください" onclick="chglan()"
+
         height="24" width="50">
       <div>
         <h1 class="title">Zen Cart v2 Japanese language pack documentation</h1>
@@ -176,7 +178,8 @@ a.anclink {
       <p class="texte">Don't forget, this language pack is for Zen Cart 2.0.0
         and above! It is not compatible with older versions. For ZC v1.5.8 and
         1.5.8a, please use ZC Japanese Language Pack v1.3.x.</p>
-      <p class="texte">Finally, if you have a cart already installed, you must <span
+      <p class="texte">Finally, if you have a cart already installed, you must <span
+
           id="important">do a complete backup including database</span>. With
         files a copy is easy, but with database you must export it in an SQL
         file you can import again if necessary. This is a very important step!
@@ -294,7 +297,8 @@ a.anclink {
           there will be more steps and mainly <b>two parts</b> to deal with.
           One is <b>files update</b> and the other is <b>database update</b>.
           You can take care of these in any order, it is not important.</p>
-        <p class="texte">In Zen Cart documentation you will find some <a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
+        <p class="texte">In Zen Cart documentation you will find some <a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
+
             target="_blank">guide to update ZC</a> that could be very useful.</p>
         <p class="title4">Files update:</p>
         <p class="texte">Make a list of already modified files and compare with
@@ -302,11 +306,13 @@ a.anclink {
           files should be merged with language pack file, other files can be
           overwritten by language pack ones. If there are too many, just use the
           list below to check one by one and merge if necessary.</p>
-        <p class="texte"><b>Start by merging</b> files in the '<a class="anclink"
+        <p class="texte"><b>Start by merging</b> files in the '<a class="anclink"
+
             href="#filemerge">List of files to merge</a>' below. A specialized
           tool like WinMerge is very useful here. It will allow you to check
           differences between two files and merge or not any difference you
-          found. Then you can <b>copy new files</b> 'as is'. Use the '<a class="anclink"
+          found. Then you can <b>copy new files</b> 'as is'. Use the '<a class="anclink"
+
             href="#filecopy">List of new files to copy</a>' below to identify
           them.</p>
         <span class="title5"><a id="filemerge">List of files to merge</a>:</span><br>
@@ -475,7 +481,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="title6">From Japanese Zen Cart:</p>
         <p class="texte">Special SQL files for actual database update are
           provided. But <b>first</b> you need to <b>upgrade</b> Zen Cart v2 <b>to
-            latest version</b>.</p>
+            latest English version</b>. Then do as follows depending on your
+          case.</p>
         <p class="texte"><i><b>v1.3.x </b>of ZC Japanese Language Pack (ZC
             v1.5.8, v1.5.8a) already installed :</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp; To <b>update</b> from older version
@@ -509,7 +516,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         but you still have to set your store location and postal code, define
         some geo-zones for your shipping modules and set these modules and
         payment ones too.<br>
-        Please have a look at Zen Cart documentation, starting by here: <a href="https://docs.zen-cart.com/user/new_user_topics/"
+        Please have a look at Zen Cart documentation, starting by here: <a href="https://docs.zen-cart.com/user/new_user_topics/"
+
           title="Zen Cart Documentation" target="_blank">https://docs.zen-cart.com/user/new_user_topics/</a></p>
       <p class="texte"> </p>
       <p class="title3">Modules setting</p>
@@ -532,13 +540,17 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         You must check and eventually set the array '$a_pricerank' to fit your
         situation. Unfortunately none of the shipping companies provide
         downloadable quoting tables but you can check online:<br>
-        For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+        For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
-        For Sagawa : <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+        For Sagawa : <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+
           title="佐川急便送料" target="_blank">https://www.sagawa-exp.co.jp/send/fare/attention.html</a><br>
-        For Japan Post YuPack : <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+        For Japan Post YuPack : <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+
           title="郵便胸腔ゆうパック" target="_blank">https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html</a><br>
-        For Japan Post overseas services : <a href="https://www.post.japanpost.jp/int/charge/list/"
+        For Japan Post overseas services : <a href="https://www.post.japanpost.jp/int/charge/list/"
+
           title="郵便胸腔EMS" target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
       </p>
       <p class="texte">Finally, if you need to deactivate shipping modules for
@@ -546,26 +558,31 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         (by changing/adding IDs as necessary) '<b>optional_for_shipping_modules/includes/classes/obervers/</b>'
         to your cart folder '<b>.../includes/classes/obervers/</b>'.<br>
       </p>
-      <p class="texte">If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+      <p class="texte">If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
       <p class="title3">Recommended plugins</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+
           title="Language/Currency Links in Header" target="_blank">Language/Currency
           Links in Header</a></p>
       <p class="texte"></p>
       <p class="texte">This plugin should be in any multilingual Zen Cart.
         Having language switch in header is very useful and practical especially
         on mobile displays.</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">This is a Japanese version of this nice template adapted
         to this language pack. It is not yet released in Zen Cart site plugin
-        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+        section but can be downloaded from GitHub <a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">here</a>.
         It looks great on mobiles screen.<br>
       </p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+
           title="Postcode auto fill plugin part 1" target="_blank">Postcode auto
           fill</a></p>
       <p class="texte">This plugin was designed to help customers to fill create
@@ -576,7 +593,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         that postal code databases are big and plugin had to be separated in two
         parts. Importing big files in MySQL with phpMyAdmin could be problem too
         if PHP and MySQL are not set properly.</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+
           title="Image Handler 5" target="_blank">Image Handler 5 (Zen Cart
           1.5.7+)</a> </p>
       <p class="texte">This plugin enhances Zen Cart images by adding a handler
@@ -586,7 +604,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="title2">Uninstall</p>
       <p class="texte">First, <b>you must delete Japanese language</b> from Zen
         Cart Admin menu 'Localization&gt;Languages'.<br>
-        Delete all 'newly' added files listed in '<a class="anclink" href="#filecopy"
+        Delete all 'newly' added files listed in '<a class="anclink" href="#filecopy"
+
           onclick="montre('mergeinst')">List of new files to copy</a>'.<br>
         <b>Use your backup</b> to copy back your precedent version for all
         merged/replaced files listed in '<a class="anclink" href="#filemerge" onclick="montre('mergeinst')">List
@@ -617,54 +636,118 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         need to merge those rather than copy them.<br>
       </p>
       <p class="title2">Version history</p>
-      <p class="texte">v1.0.0 - November 23 2022<br>
-        Original release.<br>
+      <p class="texte">
+        V2.1.0j2 - February 25 2025<br>
+        Added multiple plugins translations which now makes a total of 23
+        plugins translated (10 encapsulated and 13 non-encapsulated).<br>
+        Updated few ZC cores files (bugs correction).<br>
         <br>
-        v1.0.1 - November 29 2022<br>
-        Added readme file Japanese version.<br>
-        English readme file corrections.<br>
-        Moved directory 'dashboard_widgets' to the right place.<br>
+        V2.1.0j1 - January 6 2025<br>
+        Added observers in shipping modules to easily deactivate them if
+        necessary.<br>
+        Updated products pages to display quantity properly in Japanese.<br>
+        Few translation strings update.<br>
         <br>
-        v1.1.0 - December 7 2022<br>
-        Made some corrections to sale statistic graph legends so they display
-        correctly whatever the graph option.<br>
-        Added an extra function 'zen_set_local_calendar()' providing local
-        Japanese calendar with emperor era.<br>
-        By default date in admin header is displayed like this:
-        2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00 using IntlDate format
-        'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ'. This format can be change by adding
-        a new string as an argument of function zen_set_local_calendar() at line
-        203 in '...YourAdminFolderName/includes/header.php'.<br>
+        V2.1.0 - November 25 2024<br>
+        Updated version for Zen Cart v2.1.0 official release.<br>
+        English admin menus option removed as now all menus in admin can be
+        switched instantly.<br>
         <br>
-        v1.1.5 - December 14 2022<br>
-        Important bug corrections to:<br>
-        - Shipping modules and zones database. Now working fine with shipping
-        estimator. You must use JP_zones_updates.sql to update zones database.<br>
-        - Customers.php in admin. You can now update customers data without any
-        problem.<br>
-        Some typos corrections in languages files and readme files.<br>
-        Made new Japanese admin buttons. It was the last part not translated
-        yet.<br>
-        Added furigana display under customers name in admin order details page.<br>
+        V2.1.0 - October 10 2024<br>
+        Updated version for Zen Cart v2.1.0-beta1.<br>
+        Uses new ZC function to replace database English admin menus by
+        translated constants on the fly.<br>
+        Added few modules translation constants.<br>
+        Minor language files updates.<br>
         <br>
-        v1.1.6 - January 14 2023<br>
-        Modified customer.php so that dob field is required or not depending on
-        field length setting in admin like for customer side.<br>
-        Typo corrections in language file relative to dob field.<br>
-        Added filter in function zen_get_country_zones to display only Japanese
-        name for Japan zones when in Japanese and English names otherwise.<br>
-        Updated categories and rates for Japanese Post Class jpparcel.php. Class
-        is ready for new Japan Post modules (coming soon).<br>
-        Renamed all files and variable from jppercel... to jpparcel... which
-        includes module file and language files.<br>
+        V2.0.1 - May 21 2024<br>
+        Updated version for Zen Cart v2.0.1.<br>
+        Minor language files updates.<br>
+        Bug fix for invoice state displaying in romaji when using Japanese.<br>
         <br>
-        V1.1.8 - February 24 2023<br>
-        Added new shipping module International ePacket.<br>
-        Added zen_date_raw override function that accept any date format.<br>
-        Fix bug 'furigana not saved when creating account'.<br>
-        Fix bug when EMS oversized.<br>
-        Correction of few Zen Cart bugs not related to Japanese Pack but in
-        files with modifications for Japanese Pack.<br>
+        V2.0.0 - April 9 2024<br>
+        Updated version for Zen Cart v2.0.0.<br>
+        Change of Japanese zones dual name management.<br>
+        <br>
+        V1.3.4 - March 2 2024<br>
+        Shipping module 'International ePacket' was deleted as Japan Post
+        discontinued this service.<br>
+        Few corrections to fix minor bugs.<br>
+        <br>
+        V1.3.3 - October 29 2023<br>
+        Yamato October 2023 price increase update.<br>
+        Few corrections to fix minor bugs.<br>
+        <br>
+        V1.3.2 - August 7 2023<br>
+        Few corrections in language files.<br>
+        Shipping estimator bug fix. When only one item in cart, quote for
+        Yamato, Sagawa and YuPack was 0.<br>
+        <br>
+        V1.3.1 - June 27 2023<br>
+        Correction of a bug in Japanese admin language files that prevented to
+        display multiple pages in few admin listings.<br>
+        Added language files for admin log plugin translation.<br>
+        Updated Readme file and documentation.<br>
+        Admin menus translation added (tables product_types and
+        product_type_layout).<br>
+        <br>
+        V1.3.0 - June 14 2023<br>
+        Added Zen Cart installer making this pack easy to install, at least for
+        a new cart. Installer can be use to install a new cart or update an
+        existing one.<br>
+        Replaced readme file explanation by a bilingual HTML documentation in
+        doc folder. This should also facilitate installation.<br>
+        <br>
+        V1.2.5 - June 10 2023<br>
+        Changed code that display country zones pull down menu to work with
+        older MySQL 5.7 databases and not only 8.0.<br>
+        SQL files cleaning and update.<br>
+        Install and uninstall files have been improved to do as much default
+        setting as necessary for Japanese and then removing everything nicely
+        when uninstalling.<br>
+        Renamed admin-EN folder to admin.<br>
+        Updated to last Zen Cart version from GitHub files.<br>
+        Increased width of delivery time field for shipping modules that use it,
+        to accommodate more templates.<br>
+        <br>
+        V1.2.4 - May 25 2023<br>
+        All Japanese modules for shipping, payment and order total will install
+        in admin current language, Japanese or English. With this automatized,
+        file edit to choose language should not be necessary anymore.<br>
+        Pull down menus for Japanese zone will show prefectures (states) when in
+        Japanese in standard administrative order, which is North to South
+        (Hokkaido to Okinawa).<br>
+        <br>
+        V1.2.3 - May 15 2023<br>
+        Updated filter for Japanese prefectures names (Kanji or romaji) so it
+        does not filter out other languages using non-standard characters.<br>
+        Japanese prefecture Gunma spelling was corrected in zones table and SQL
+        queries. Please fix you database with this query:<br>
+        UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';<br>
+        Added comments in Japanese shipping modules class for Yamato, Sagawa and
+        Yupack. There are in a structured way more like example to make
+        customization easier.<br>
+        <br>
+        V1.2.2 - April 30 2023<br>
+        Class shipping can now do multiboxing on size or weight.<br>
+        Aligned icon with text in few shipping modules.<br>
+        Modification of some SQL queries for database setting. <br>
+        Corrected bug in Japanese admin that prevented to see Customer list
+        page.<br>
+        Modified admin customer edit form so that less mandatory fields are
+        required.<br>
+        Last files Update to Zen Cart v1.5.8a.<br>
+        Updated instructions in readme files.<br>
+        <br>
+        V1.2.1 - April 12 2023<br>
+        Added new improved algorithm for parcel size calculation in shipping
+        class and updated shipping modules that use it.<br>
+        Updated shipping modules Sagawa, Yamato and Yupack code and quote tables
+        to reflect last prices increase and other changes.<br>
+        Other shipping modules code changes for improved multiboxes support.<br>
+        Updated install instructions (this readme file).<br>
+        Corrected an SQL querry error and other minor typos.<br>
+        Some cleaning here and there.<br>
         <br>
         V1.2.0 - March 4 2023<br>
         Added Japanese Post shipping modules 'International Parcels Air' and
@@ -684,110 +767,60 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         furigana is empty in admin order page.<br>
         Lot of code cleaning and optimization and few bugs fixing.<br>
         <br>
-        V1.2.1 - April 12 2023<br>
-        Added new improved algorithm for parcel size calculation in shipping
-        class and updated shipping modules that use it.<br>
-        Updated shipping modules Sagawa, Yamato and Yupack code and quote tables
-        to reflect last prices increase and other changes.<br>
-        Other shipping modules code changes for improved multiboxes support.<br>
-        Updated install instructions (this readme file).<br>
-        Corrected an SQL querry error and other minor typos.<br>
-        Some cleaning here and there.<br>
+        V1.1.8 - February 24 2023<br>
+        Added new shipping module International ePacket.<br>
+        Added zen_date_raw override function that accept any date format.<br>
+        Fix bug 'furigana not saved when creating account'.<br>
+        Fix bug when EMS oversized.<br>
+        Correction of few Zen Cart bugs not related to Japanese Pack but in
+        files with modifications for Japanese Pack.<br>
         <br>
-        V1.2.2 - April 30 2023<br>
-        Class shipping can now do multiboxing on size or weight.<br>
-        Aligned icon with text in few shipping modules.<br>
-        Modification of some SQL queries for database setting. <br>
-        Corrected bug in Japanese admin that prevented to see Customer list
-        page.<br>
-        Modified admin customer edit form so that less mandatory fields are
-        required.<br>
-        Last files Update to Zen Cart v1.5.8a.<br>
-        Updated instructions in readme files.<br>
+        v1.1.6 - January 14 2023<br>
+        Modified customer.php so that dob field is required or not depending on
+        field length setting in admin like for customer side.<br>
+        Typo corrections in language file relative to dob field.<br>
+        Added filter in function zen_get_country_zones to display only Japanese
+        name for Japan zones when in Japanese and English names otherwise.<br>
+        Updated categories and rates for Japanese Post Class jpparcel.php. Class
+        is ready for new Japan Post modules (coming soon).<br>
+        Renamed all files and variable from jppercel... to jpparcel... which
+        includes module file and language files.<br>
         <br>
-        V1.2.3 - May 15 2023<br>
-        Updated filter for Japanese prefectures names (Kanji or romaji) so it
-        does not filter out other languages using non-standard characters.<br>
-        Japanese prefecture Gunma spelling was corrected in zones table and SQL
-        queries. Please fix you database with this query:<br>
-        UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';<br>
-        Added comments in Japanese shipping modules class for Yamato, Sagawa and
-        Yupack. There are in a structured way more like example to make
-        customization easier.<br>
+        v1.1.5 - December 14 2022<br>
+        Important bug corrections to:<br>
+        - Shipping modules and zones database. Now working fine with shipping
+        estimator. You must use JP_zones_updates.sql to update zones database.<br>
+        - Customers.php in admin. You can now update customers data without any
+        problem.<br>
+        Some typos corrections in languages files and readme files.<br>
+        Made new Japanese admin buttons. It was the last part not translated
+        yet.<br>
+        Added furigana display under customers name in admin order details page.<br>
         <br>
-        V1.2.4 - May 25 2023<br>
-        All Japanese modules for shipping, payment and order total will install
-        in admin current language, Japanese or English. With this automatized,
-        file edit to choose language should not be necessary anymore.<br>
-        Pull down menus for Japanese zone will show prefectures (states) when in
-        Japanese in standard administrative order, which is North to South
-        (Hokkaido to Okinawa).<br>
+        v1.1.0 - December 7 2022<br>
+        Made some corrections to sale statistic graph legends so they display
+        correctly whatever the graph option.<br>
+        Added an extra function 'zen_set_local_calendar()' providing local
+        Japanese calendar with emperor era.<br>
+        By default date in admin header is displayed like this:
+        2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00 using IntlDate format
+        'r年（Gy年）MMMMd日 EEEE HH:mm:ss ZZZZ'. This format can be change by adding
+        a new string as an argument of function zen_set_local_calendar() at line
+        203 in '...YourAdminFolderName/includes/header.php'.<br>
         <br>
-        V1.2.5 - June 10 2023<br>
-        Changed code that display country zones pull down menu to work with
-        older MySQL 5.7 databases and not only 8.0.<br>
-        SQL files cleaning and update.<br>
-        Install and uninstall files have been improved to do as much default
-        setting as necessary for Japanese and then removing everything nicely
-        when uninstalling.<br>
-        Renamed admin-EN folder to admin.<br>
-        Updated to last Zen Cart version from GitHub files.<br>
-        Increased width of delivery time field for shipping modules that use it,
-        to accommodate more templates.<br>
+        v1.0.1 - November 29 2022<br>
+        Added readme file Japanese version.<br>
+        English readme file corrections.<br>
+        Moved directory 'dashboard_widgets' to the right place.<br>
         <br>
-        V1.3.0 - June 14 2023<br>
-        Added Zen Cart installer making this pack easy to install, at least for
-        a new cart. Installer can be use to install a new cart or update an
-        existing one.<br>
-        Replaced readme file explanation by a bilingual HTML documentation in
-        doc folder. This should also facilitate installation.<br>
-        <br>
-        V1.3.1 - June 27 2023<br>
-        Correction of a bug in Japanese admin language files that prevented to
-        display multiple pages in few admin listings.<br>
-        Added language files for admin log plugin translation.<br>
-        Updated Readme file and documentation.<br>
-        Admin menus translation added (tables product_types and
-        product_type_layout).<br>
-        <br>
-        V1.3.2 - August 7 2023<br>
-        Few corrections in language files.<br>
-        Shipping estimator bug fix. When only one item in cart, quote for
-        Yamato, Sagawa and YuPack was 0.<br>
-        <br>
-        V1.3.3 - October 29 2023<br>
-        Yamato October 2023 price increase update.<br>
-        Few corrections to fix minor bugs.<br>
-        <br>
-        V1.3.4 - March 2 2024<br>
-        Shipping module 'International ePacket' was deleted as Japan Post
-        discontinued this service.<br>
-        Few corrections to fix minor bugs.</p>
-      <p class="texte"> V2.0.0 - April 9 2024<br>
-        Updated version for Zen Cart v2.0.0.<br>
-        Change of Japanese zones dual name management.</p>
-      <p class="texte">V2.0.1 - May 21 2024<br>
-        Updated version for Zen Cart v2.0.1.<br>
-        Minor language files updates.<br>
-        Bug fix for invoice state displaying in romaji when using Japanese.</p>
-      <p class="texte">V2.1.0 - October 10 2024<br>
-        Updated version for Zen Cart v2.1.0-beta1.<br>
-        Uses new ZC function to replace database English admin menus by
-        translated constants on the fly.<br>
-        Added few modules translation constants.<br>
-        Minor language files updates.</p>
-      <p class="texte">V2.1.0 - November 25 2024<br>
-        Updated version for Zen Cart v2.1.0 official release.<br>
-        English admin menus option removed as now all menus in admin can be
-        switched instantly.</p>
-      <p class="texte">V2.1.0j1 - January 6 2025<br>
-        Added observers in shipping modules to easily deactivate them if
-        necessary.<br>
-        Updated products pages to display quantity properly in Japanese.<br>
-        Few translation strings update.</p>
+        v1.0.0 - November 23 2022<br>
+        Original release.<br>
+      </p>
     </div>
-    <div class="jp" id="jp"> <img id="lang" src="images/flags-US-JP_small.webp"
-        alt="言語を切り替えます" title="Click here to change language between English and Japanese"
+    <div class="jp" id="jp"> <img id="lang" src="images/flags-US-JP_small.webp"
+
+        alt="言語を切り替えます" title="Click here to change language between English and Japanese"
+
         onclick="chglan()" height="24" width="50">
       <div>
         <h1 class="title">Zen Cart v2 Japanese language pack 説明書</h1>
@@ -821,7 +854,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         このパックは Zen Cart 2.0.0 以降を対象としています。PHP および MySQL
         には古すぎるバージョンを使用しないでください。正確な要件については、Zen Cart サイトでご確認ください。ただし、PHP 8.1
         以降を使用することをお勧めします。</p>
-      <p class="texte">この言語パックは Zen Cart 2.0.0 以降用であることを忘れないでください。 <span class="HwtZe"
+      <p class="texte">この言語パックは Zen Cart 2.0.0 以降用であることを忘れないでください。 <span class="HwtZe"
+
           lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">古いバージョンとは互換性
               がありません</span></span></span>。ZC v1.5.8 および 1.5.8a の場合は、ZC 日本語言語パック
         v1.3.x を使用してください。</p>
@@ -880,9 +914,11 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           ボタンをクリックしないでください。データベースが消去されてしまいます！「アップグレード」ボタンが表示されない場合は、問題があります。データベースのバージョンが認
           識されていないか、バージョンが間違っているか、またはすでにアップグレードされていることを意味します。アップグレードできるようにするには、これ
           を整理して修正する必要があります。</p>
-        <p class="texte"><span class="HwtZe" lang="ja"><span class="jCAhz JxVs2d ChMk0b"><span
+        <p class="texte"><span class="HwtZe" lang="ja"><span class="jCAhz JxVs2d ChMk0b"><span
+
                 class="ryNqvb">「アップグレード」ボタンをクリックすると、次の画面で<b>スーパーユーザーの資格情報</b>を入力
-                する必要があります。</span></span></span><span class="HwtZe" lang="ja"><span
+                する必要があります。</span></span></span><span class="HwtZe" lang="ja"><span
+
               class="jCAhz JxVs2d ChMk0b"><span class="ryNqvb">ただし、その前に、上記のリストに、
                 お使いのバージョンに対応する「2.1.0 ～ 2.1.0210」などの<b>オプションが少なくとも 1 つあること</b>を確認
                 する必要があります。</span></span></span>その後、通常のインストールとして続行できます。</p>
@@ -913,7 +949,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte">コア ファイルが変更されている場合は、さらに多くの手順が必要になり、主に 2
           つの部分に対処する必要があります。1 つはファイルのアップグレードで、もう 1
           つはデータベースの更新です。更新を行う順序は重要ではありません。</p>
-        <p class="texte">Zen Cart のドキュメントには、ZC を更新するための非常に<a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
+        <p class="texte">Zen Cart のドキュメントには、ZC を更新するための非常に<a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
+
             target="_blank">役立つガイド</a>が記載されています。</p>
         <p class="title4">ファイルのアップグレード：</p>
         <p class="texte">すでに変更されたファイルのリストを作成し、この言語パックの「結合するファイル」リストと比較します。これらの変更
@@ -1023,9 +1060,11 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="title4">日本語版カートからファイルを更新:</p>
         <p class="texte">いくつかの注意点を除いて英語版として進めていきます。</p>
         <p></p>
-        <p class="texte"><span style="color: #cc0000;">ポイント１：</span><span class="HwtZe"
+        <p class="texte"><span style="color: #cc0000;">ポイント１：</span><span class="HwtZe"
+
             lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">
-                カスタマイズされたすべてのファイルをコピーするのではなく、必要に応じて確認してマージする必要があります</span></span></span><span
+                カスタマイズされたすべてのファイルをコピーするのではなく、必要に応じて確認してマージする必要があります</span></span></span><span
+
             class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">。</span></span></span></p>
         <dl style="margin-left: 40px;">
           <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/classes'
@@ -1035,11 +1074,15 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/languages/japanese/YOUR_TEMPLATE'
                   フォルダ内の 'lan.index.php' ファイル。</span></span></span></dd>
           <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/languages/japanese/html_includes/YOUR_TEMPLATE'
-                  フォルダ内の</span></span></span><span class="HwtZe" lang="ja"><span
-                class="jCAhz ChMk0b"><span class="ryNqvb"><span class="HwtZe" lang="ja"><span
+                  フォルダ内の</span></span></span><span class="HwtZe" lang="ja"><span
+
+                class="jCAhz ChMk0b"><span class="ryNqvb"><span class="HwtZe" lang="ja"><span
+
                       class="jCAhz ChMk0b"><span class="ryNqvb">「定義</span></span></span>ペー
-                  ジ</span></span></span><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
-                  class="ryNqvb"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+                  ジ</span></span></span><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+
+                  class="ryNqvb"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+
                         class="ryNqvb">の定義」</span></span></span>によって変更されたファイル。</span></span></span></dd>
           <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/templates/YOUR_TEMPLATE/images'
                   フォルダー内の変更されたまたは新しい画像ファイル (ロゴ)。<br>
@@ -1048,7 +1091,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
                   フォルダー内の変更されたまたは新しいアイコンファイル。<br>
                 </span></span></span></dd>
         </dl>
-        <p class="texte"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+        <p class="texte"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+
                 class="ryNqvb"><br>
               </span></span></span> </p>
         <p class="texte"><span style="color: #cc0000;"><span style="color: #cc0000;">ポ
@@ -1090,7 +1134,18 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           フォルダ内) で SQL クエリを<b>インポート/実行して</b>、注文ステータス テーブルを日本語で更新します。</p>
         <p class="title6">日本語カートから：</p>
         <p class="texte">データベース更新用の専用SQLファイルを提供します。ただし、<b>まず</b> Zen Cart v2 を<b>最
-            新バージョンにアップグレード</b>する必要があります。</p>
+            新の英語バージョンにアップグレード</b><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+
+                class="ryNqvb"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+
+                      class="ryNqvb">する必要があります。</span></span><span class="jCAhz ChMk0b"><span
+
+                      class="ryNqvb"></span></span></span>その後、</span></span></span><span
+
+            class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb"><span
+
+                  class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">状
+                      況に応じて次の操作を実行してください</span></span></span>。</span></span></span></p>
         <p class="texte"><i><b>ZC 日本語言語パック v1.3.x </b>(ZC v1.5.8、v1.5.8a)
             がすでにインストールされています:</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>v2.0.0にアップデート</b>す
@@ -1116,7 +1171,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="title2">構成</p>
       <p class="texte">特定の構成のほとんどはインストール時に行われていますが、店舗の場所と郵便番号を設定し、配送モジュール用にいくつ
         かの 地域ゾーンを定義し、これらのモジュールと支払いモジュールも設定する必要があります。<br>
-        ここから始まる Zen Cart のドキュメントをご覧ください（英語）： <a href="https://docs.zen-cart.com/user/new_user_topics/"
+        ここから始まる Zen Cart のドキュメントをご覧ください（英語）： <a href="https://docs.zen-cart.com/user/new_user_topics/"
+
           title="Zen Cart Documentation" target="_blank">https://docs.zen-cart.com/user/new_user_topics/</a></p>
       <p class="texte"> </p>
       <p class="title3">モジュールの設定</p>
@@ -1133,37 +1189,46 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         これら 2 つの配列 ('$a_pricerank' と '$a_dist_to_rank')
         を確認し、最終的に状況に合わせて設定する必要があります。
         残念ながら、ダウンロード可能な見積表を提供している配送会社はありませんが、オンラインで確認できます。<br>
-        ヤマト宅急便： <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+        ヤマト宅急便： <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
+
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
-        佐川急便発送： <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+        佐川急便発送： <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
+
           title="佐川急便送料" target="_blank">https://www.sagawa-exp.co.jp/send/fare/attention.html</a><br>
-        日本郵便ゆうパック： <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+        日本郵便ゆうパック： <a href="https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html"
+
           title="郵便胸腔ゆうパック" target="_blank">https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html</a><br>
-        日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
+        日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
+
           target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
         <br>
         最後に、一部の製品またはカテゴリ全体の配送モジュールを無効にする必要がある場合は、このフォルダー内のファイル（必要に応じて ID
         を変更/追加）「optional_for_shipping_modules/includes/classes/obervers/」をカート
         フォルダー「.../includes/classes/obervers/」にコピーして編集します。<br>
         <br>
-        質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+        質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
+
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
       <p class="title3">おすすめのプラグイン</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=30"
+
           title="Language/Currency Links in Header" target="_blank">Language/Currency
           Links in Header</a></p>
       <p class="texte"></p>
       <p class="texte">このプラグインは、多言語の Zen Cart に含まれている必要があります。
         ヘッダーに言語切り替えがあると、特にモバイル ディスプレイで非常に便利で実用的です。</p>
-      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+      <p class="texte"><a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ZCA
           Bootstrap Template for Japanese Language Pack</a></p>
       <p class="texte">これは、この言語パックに適合したこの素晴らしいテンプレートの日本語版です。 Zen Cart サイトのプラグイン
-        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+        セクションではまだリリースされていませんが、GitHub から<a href="https://github.com/piloujp/ZCA-Bootstrap-Template/tree/Bootstrap-JP"
+
           title="ZCA Bootstrap template JP - GitHub" target="_blank">ダウンロード</a>で
         きます。 携帯電話の画面では見栄えがします。<br>
       </p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2370"
+
           title="Postcode auto fill plugin part 1" target="_blank">Postcode auto
           fill</a></p>
       <p class="texte">このプラグインは、顧客がアカウント作成フォームまたは新しいアドレス
@@ -1171,7 +1236,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         所が一致しない住所の不一致などのエラーを回避します。欠点は、郵便番号データベースが大きく、プラグインを 2
         つの部分に分割する必要があることです。PHP と MySQL が適切に設定されていない場合、phpMyAdmin を使用して MySQL
         に大きなファイルをインポートする場合にも問題が発生する可能性があります。</p>
-      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+      <p class="texte"><a href="https://www.zen-cart.com/downloads.php?do=file&amp;id=2169"
+
           title="Image Handler 5" target="_blank">Image Handler 5 (Zen Cart
           1.5.7+)</a> </p>
       <p class="texte">このプラグインは、画像の自動サイズ変更、サムネイルのキャッシュなどを提供するハンドラーを追加することにより、
@@ -1204,48 +1270,95 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ださい。</p>
       <p class="texte"> </p>
       <p class="title2">バーションヒストリー</p>
-      <p class="texte">v1.0.0 - ２０２２年１１月２３日<br>
-        オリジナルリリース。<br>
+      <p class="texte"> V2.1.0j2 - ２０２５年２月２５日<br>
+        複数のプラグインの翻訳を追加しました。これで合計 23 個のプラグインが翻訳されました (カプセル化されたプラグイン 10
+        個、カプセル化されていないプラグイン 13 個)。<br>
+        ZCコアファイルの一部を更新しました(バグ修正)。<br>
         <br>
-        v1.0.1 - ２０２２年１１月２９日<br>
-        readme ファイルの日本語版を追加しました。<br>
-        英語の readme ファイルの修正。<br>
-        ディレクトリ「dashboard_widgets」を適切な場所に移動しました。<br>
+        V2.1.0j1 - ２０２５年１月６日<br>
+        必要に応じて簡単に無効にできるように、配送モジュールにオブザーバーを追加しました。<br>
+        日本語で数量が正しく表示されるように商品ページを更新しました。<br>
+        いくつかの翻訳の更新。<br>
         <br>
-        v1.1.0 - ２０２２年１２月７日<br>
-        販売統計グラフの凡例にいくつかの修正を加えて、グラフ オプションに関係なく正しく表示されるようにしました。<br>
-        日本の地方暦（元号付き）を提供する関数「zen_set_local_calendar()」を追加しました。<br>
-        デフォルトでは、管理ヘッダーの日付は次のように表示されます： 2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00<br>
-        この IntlDate 形式を使用して：'r年（Gy年）MMMMd日 EEEE HH:mm:ss
-        ZZZZ'。この形式は、'...YourAdminFolderName/includes/header.php' の 203
-        行目に関数zen_set_local_calendar()の引数として新しい文字列を追加することで変更できます。<br>
+        V2.1.0 - ２０２４年１１月２５日 <br>
+        Zen Cart v2.1.0 公式リリース用に更新されたバージョン。<br>
+        管理者のすべてのメニューを即座に切り替えることができるようになったため、英語の管理者メニュー オプションが削除されました。<br>
         <br>
-        v1.1.5 - ２０２２年１２月１４日<br>
-        重要なバグ修正：<br>
-        -
-        運送モジュールと地域データベース。配送見積もりツールで正常に動作しています。地域データベースを更新するには、JP_zones_updates.sql
-        を使用する必要があります。<br>
-        - 管理者の Customers.php。顧客データを問題なく更新できるようになりました。<br>
-        言語ファイルと readme ファイルのいくつかのタイプミスの修正。<br>
-        新しい日本語の管理ボタンを作成しました。まだ翻訳されていない最後の部分でした。<br>
-        管理の注文詳細ページのお客様名の下にふりがな表示を追加しました。<br>
+        V2.1.0 - ２０２４年１０月１０日<br>
+        Zen Cart v2.1.0-beta1 の更新バージョン。<br>
+        新しい ZC 関数を使用して、データベースの英語管理メニューを翻訳された定数に即座に置き換えます。<br>
+        いくつかのモジュールの翻訳定数を追加しました。<br>
+        言語ファイルのマイナー更新。<br>
         <br>
-        v1.1.6 - ２０２３年１月１４日<br>
-        顧客側のように、管理者のフィールド長設定に応じて dob フィールドが必要かどうかに応じて、customer.php を変更しました。<br>
-        dob フィールドに関連する言語ファイルのタイプミスを修正。<br>
-        関数 zen_get_country_zones
-        にフィルターを追加して、日本語の場合は日本のゾーンの日本語名のみを表示し、それ以外の場合は英語の名前を表示します。<br>
-        日本郵便クラスjpparcel.phpのカテゴリーと料金を更新しました。 クラスは、新しい日本郵便モジュール (近日公開予定)
-        の準備ができています。<br>
-        すべてのファイルと変数の名前を jppercel... から jpparcel... に変更しました。これには、モジュール
-        ファイルと言語ファイルが含まれます。<br>
+        V2.0.1 - ２０２４年５月２１日<br>
+        Zen Cart v2.0.1 の更新バージョン。<br>
+        言語ファイルのマイナー更新。<br>
+        日本語使用時に都道府県名がローマ字で表示される不具合を修正。<br>
         <br>
-        v1.1.8 - ２０２３年２月２４日<br>
-        新しい配送モジュール国際エペケットを追加しました。<br>
-        すべての日付形式を受け入れるzen_date_rawオーバーライド関数を追加しました。<br>
-        アカウントを作成するときにFuriganaを保存しないバグを修正します。<br>
-        EMSが特大ときにバグを修正します。<br>
-        日本語パックに関連していないが、日本語パックの変更があるファイルでは、少数のZen Cartバグの修正。<br>
+        V2.0.0 - ２０２４年4月9日<br>
+        Zen Cart v2.0.0 の更新バージョン。<br>
+        日本のゾーンの二重名管理の変更。<br>
+        <br>
+        V1.3.4 - ２０２４年３月２日<br>
+        日本郵便のサービス終了に伴い、配送モジュール「国際eパケット」は削除されました。<br>
+        軽微なバグを修正するための修正。<br>
+        <br>
+        V1.3.3 - ２０２３年１０月２９日<br>
+        ヤマト宅急便２０２３年１０月値上げ更新。<br>
+        軽微なバグを修正するための修正。<br>
+        <br>
+        V1.3.2 - ２０２３年８月７日<br>
+        言語ファイルをいくつか修正しました。<br>
+        送料見積りツールのバグ修正。 カートに商品が1個しか入っていない場合、ヤマト・佐川・ゆうパックの見積りは0でした。<br>
+        <br>
+        V1.3.1 - ２０２３年６月２７日<br>
+        いくつかの管理者リストで複数のページを表示できないという、日本語の管理者言語ファイルのバグを修正しました。<br>
+        管理ログプラグイン翻訳用の言語ファイルを追加しました。<br>
+        Readme ファイルとドキュメントを更新しました。<br>
+        管理者メニューの翻訳が追加されました (テーブル product_types および product_type_layout)。<br>
+        <br>
+        V1.3.0 - ２０２３年６月１４日<br>
+        Zen Cart インストーラーが追加され、少なくとも新しいカートの場合、このパックを簡単にインストールできるようになりました。
+        インストーラーを使用して、新しいカートをインストールしたり、既存のカートを更新したりできます。<br>
+        Readme ファイルの説明を doc フォルダー内のバイリンガル HTML
+        ドキュメントに置き換えました。これにより、インストールも容易になります。<br>
+        <br>
+        V1.2.5 - ２０２３年６月１０日<br>
+        国地域のプルダウン メニューを表示するコードを、8.0 だけでなく古い MySQL 5.7 データベースでも動作するように変更しました。<br>
+        SQL ファイルのクリーニングと更新。<br>
+        インストールおよびアンインストール
+        ファイルが改善され、日本語に必要なデフォルト設定が行われ、アンインストール時にすべてが適切に削除されるようになりました。<br>
+        admin-EN フォルダーの名前を admin に変更しました。<br>
+        GitHub ファイルから Zen Cart の最新バージョンに更新されました。<br>
+        より多くのテンプレートに対応するために、それを使用する出荷モジュールの配達時間フィールドの幅が増加しました。<br>
+        <br>
+        V1.2.4 - ２０２３年５月２５日<br>
+        配送、支払い、「注文合計」のすべての日本語モジュールは、管理者の現在の言語、日本語または英語でインストールされます。これが自動化されると、言
+        語を 選択するためのファイル編集はもう必要ありません。<br>
+        日本語の場合、日本の都道府県のプルダウン メニューは標準的な行政順序 (北から南) で表示されます。<br>
+        <br>
+        V1.2.3 - ２０２３年５月１５日<br>
+        日本の都道府県名 (漢字またはローマ字) のフィルターを更新し、非標準文字を使用する他の言語を除外しないようにしました。<br>
+        ゾーン テーブルと SQL クエリで日本の都道府県「Guma」のスペルが修正されました。次のクエリを使用してデータベースを修正してください。<br>
+        UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';<br>
+        ヤマト、佐川、ゆうパックの日本の配送モジュールクラスにコメントを追加しました。カスタマイズを容易にするために、より類似した構造の例がありま す。<br>
+        <br>
+        V1.2.2 - ２０２３年４月３０日<br>
+        クラス配送は、サイズまたは重量でマルチボックス化できるようになりました。<br>
+        配送モジュールでアイコンをテキストと揃えました。<br>
+        データベース設定のためのSQLクエリの変更。<br>
+        カスタマー リスト ページが表示されない日本語管理者のバグを修正しました。<br>
+        必要な必須フィールドが少なくなるように、管理者向けの顧客データ編集フォームを変更しました。<br>
+        最終ファイル Zen Cart v1.5.8a への更新。<br>
+        Readme ファイルの手順を更新しました。<br>
+        <br>
+        v1.2.1 - ２０２３年４月１２日<br>
+        配送クラスの小包サイズ計算のための新しい改善されたアルゴリズムを追加し、それを使用する配送モジュールを更新しました。<br>
+        配送モジュールの佐川、ヤマト、ゆうパックのコードと見積もり表を更新して、前回の値上げやその他の変更を反映させました。<br>
+        マルチボックスのサポートを改善するためのその他の出荷モジュール コードの変更。<br>
+        インストール手順を更新しました (この readme ファイル)。<br>
+        SQL クエリ エラーとその他のマイナーなタイプミスを修正しました。<br>
+        あちらこちらでお掃除。<br>
         <br>
         v1.2.0 - ２０２３年３月４日<br>
         日本郵便の発送モジュール「小包郵便物（航空）」と「小包郵便物（船便）」を追加。<br>
@@ -1259,84 +1372,49 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         管理者の注文画面でふりがなが空欄の場合、ふりがな「Reading :」が表示されないようにバグを修正しました。<br>
         多くのコードのクリーニングと最適化、およびいくつかのバグ修正。<br>
         <br>
-        v1.2.1 - ２０２３年４月１２日<br>
-        配送クラスの小包サイズ計算のための新しい改善されたアルゴリズムを追加し、それを使用する配送モジュールを更新しました。<br>
-        配送モジュールの佐川、ヤマト、ゆうパックのコードと見積もり表を更新して、前回の値上げやその他の変更を反映させました。<br>
-        マルチボックスのサポートを改善するためのその他の出荷モジュール コードの変更。<br>
-        インストール手順を更新しました (この readme ファイル)。<br>
-        SQL クエリ エラーとその他のマイナーなタイプミスを修正しました。<br>
-        あちらこちらでお掃除。<br>
+        v1.1.8 - ２０２３年２月２４日<br>
+        新しい配送モジュール国際エペケットを追加しました。<br>
+        すべての日付形式を受け入れるzen_date_rawオーバーライド関数を追加しました。<br>
+        アカウントを作成するときにFuriganaを保存しないバグを修正します。<br>
+        EMSが特大ときにバグを修正します。<br>
+        日本語パックに関連していないが、日本語パックの変更があるファイルでは、少数のZen Cartバグの修正。<br>
         <br>
-        V1.2.2 - ２０２３年４月３０日<br>
-        クラス配送は、サイズまたは重量でマルチボックス化できるようになりました。<br>
-        配送モジュールでアイコンをテキストと揃えました。<br>
-        データベース設定のためのSQLクエリの変更。<br>
-        カスタマー リスト ページが表示されない日本語管理者のバグを修正しました。<br>
-        必要な必須フィールドが少なくなるように、管理者向けの顧客データ編集フォームを変更しました。<br>
-        最終ファイル Zen Cart v1.5.8a への更新。<br>
-        Readme ファイルの手順を更新しました。<br>
+        v1.1.6 - ２０２３年１月１４日<br>
+        顧客側のように、管理者のフィールド長設定に応じて dob フィールドが必要かどうかに応じて、customer.php を変更しました。<br>
+        dob フィールドに関連する言語ファイルのタイプミスを修正。<br>
+        関数 zen_get_country_zones
+        にフィルターを追加して、日本語の場合は日本のゾーンの日本語名のみを表示し、それ以外の場合は英語の名前を表示します。<br>
+        日本郵便クラスjpparcel.phpのカテゴリーと料金を更新しました。 クラスは、新しい日本郵便モジュール (近日公開予定)
+        の準備ができています。<br>
+        すべてのファイルと変数の名前を jppercel... から jpparcel... に変更しました。これには、モジュール
+        ファイルと言語ファイルが含まれます。<br>
         <br>
-        V1.2.3 - ２０２３年５月１５日<br>
-        日本の都道府県名 (漢字またはローマ字) のフィルターを更新し、非標準文字を使用する他の言語を除外しないようにしました。<br>
-        ゾーン テーブルと SQL クエリで日本の都道府県「Guma」のスペルが修正されました。次のクエリを使用してデータベースを修正してください。<br>
-        UPDATE zones SET zone_name='Gunma' WHERE zone_name='Gumma';<br>
-        ヤマト、佐川、ゆうパックの日本の配送モジュールクラスにコメントを追加しました。カスタマイズを容易にするために、より類似した構造の例がありま す。<br>
+        v1.1.5 - ２０２２年１２月１４日<br>
+        重要なバグ修正：<br>
+        -
+        運送モジュールと地域データベース。配送見積もりツールで正常に動作しています。地域データベースを更新するには、JP_zones_updates.sql
+        を使用する必要があります。<br>
+        - 管理者の Customers.php。顧客データを問題なく更新できるようになりました。<br>
+        言語ファイルと readme ファイルのいくつかのタイプミスの修正。<br>
+        新しい日本語の管理ボタンを作成しました。まだ翻訳されていない最後の部分でした。<br>
+        管理の注文詳細ページのお客様名の下にふりがな表示を追加しました。<br>
         <br>
-        V1.2.4 - ２０２３年５月２５日<br>
-        配送、支払い、「注文合計」のすべての日本語モジュールは、管理者の現在の言語、日本語または英語でインストールされます。これが自動化されると、言
-        語を 選択するためのファイル編集はもう必要ありません。<br>
-        日本語の場合、日本の都道府県のプルダウン メニューは標準的な行政順序 (北から南) で表示されます。<br>
+        v1.1.0 - ２０２２年１２月７日<br>
+        販売統計グラフの凡例にいくつかの修正を加えて、グラフ オプションに関係なく正しく表示されるようにしました。<br>
+        日本の地方暦（元号付き）を提供する関数「zen_set_local_calendar()」を追加しました。<br>
+        デフォルトでは、管理ヘッダーの日付は次のように表示されます： 2022年（令和4年）12月10日 土曜日 00:43:37 GMT+09:00<br>
+        この IntlDate 形式を使用して：'r年（Gy年）MMMMd日 EEEE HH:mm:ss
+        ZZZZ'。この形式は、'...YourAdminFolderName/includes/header.php' の 203
+        行目に関数zen_set_local_calendar()の引数として新しい文字列を追加することで変更できます。<br>
         <br>
-        V1.2.5 - ２０２３年６月１０日<br>
-        国地域のプルダウン メニューを表示するコードを、8.0 だけでなく古い MySQL 5.7 データベースでも動作するように変更しました。<br>
-        SQL ファイルのクリーニングと更新。<br>
-        インストールおよびアンインストール
-        ファイルが改善され、日本語に必要なデフォルト設定が行われ、アンインストール時にすべてが適切に削除されるようになりました。<br>
-        admin-EN フォルダーの名前を admin に変更しました。<br>
-        GitHub ファイルから Zen Cart の最新バージョンに更新されました。<br>
-        より多くのテンプレートに対応するために、それを使用する出荷モジュールの配達時間フィールドの幅が増加しました。<br>
+        v1.0.1 - ２０２２年１１月２９日<br>
+        readme ファイルの日本語版を追加しました。<br>
+        英語の readme ファイルの修正。<br>
+        ディレクトリ「dashboard_widgets」を適切な場所に移動しました。<br>
         <br>
-        V1.3.0 - ２０２３年６月１４日<br>
-        Zen Cart インストーラーが追加され、少なくとも新しいカートの場合、このパックを簡単にインストールできるようになりました。
-        インストーラーを使用して、新しいカートをインストールしたり、既存のカートを更新したりできます。<br>
-        Readme ファイルの説明を doc フォルダー内のバイリンガル HTML
-        ドキュメントに置き換えました。これにより、インストールも容易になります。<br>
-        <br>
-        V1.3.1 - ２０２３年６月２７日<br>
-        いくつかの管理者リストで複数のページを表示できないという、日本語の管理者言語ファイルのバグを修正しました。<br>
-        管理ログプラグイン翻訳用の言語ファイルを追加しました。<br>
-        Readme ファイルとドキュメントを更新しました。<br>
-        管理者メニューの翻訳が追加されました (テーブル product_types および product_type_layout)。<br>
-        <br>
-        V1.3.2 - ２０２３年８月７日<br>
-        言語ファイルをいくつか修正しました。<br>
-        送料見積りツールのバグ修正。 カートに商品が1個しか入っていない場合、ヤマト・佐川・ゆうパックの見積りは0でした。<br>
-        <br>
-        V1.3.3 - ２０２３年１０月２９日<br>
-        ヤマト宅急便２０２３年１０月値上げ更新。<br>
-        軽微なバグを修正するための修正。</p>
-      <p class="texte"> V1.3.4 - ２０２４年３月２日<br>
-        日本郵便のサービス終了に伴い、配送モジュール「国際eパケット」は削除されました。<br>
-        軽微なバグを修正するための修正。</p>
-      <p class="texte"> V2.0.0 - ２０２４年4月9日<br>
-        Zen Cart v2.0.0 の更新バージョン。<br>
-        日本のゾーンの二重名管理の変更。</p>
-      <p class="texte"> V2.0.1 - ２０２４年５月２１日<br>
-        Zen Cart v2.0.1 の更新バージョン。<br>
-        言語ファイルのマイナー更新。<br>
-        日本語使用時に都道府県名がローマ字で表示される不具合を修正。</p>
-      <p class="texte">V2.1.0 - ２０２４年１０月１０日<br>
-        Zen Cart v2.1.0-beta1 の更新バージョン。<br>
-        新しい ZC 関数を使用して、データベースの英語管理メニューを翻訳された定数に即座に置き換えます。<br>
-        いくつかのモジュールの翻訳定数を追加しました。<br>
-        言語ファイルのマイナー更新。</p>
-      <p class="texte">V2.1.0 - ２０２４年１１月２５日 <br>
-        Zen Cart v2.1.0 公式リリース用に更新されたバージョン。<br>
-        管理者のすべてのメニューを即座に切り替えることができるようになったため、英語の管理者メニュー オプションが削除されました。</p>
-      <p class="texte">V2.1.0j1 - ２０２５年１月６日<br>
-        必要に応じて簡単に無効にできるように、配送モジュールにオブザーバーを追加しました。<br>
-        日本語で数量が正しく表示されるように商品ページを更新しました。<br>
-        いくつかの翻訳の更新。</p>
+        v1.0.0 - ２０２２年１１月２３日<br>
+        オリジナルリリース。<br>
+      </p>
       <br>
       <p></p>
     </div>
