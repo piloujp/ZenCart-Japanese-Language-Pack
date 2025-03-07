@@ -28,11 +28,6 @@ UPDATE configuration SET configuration_value = 'en', last_modified = now() WHERE
 
 DELETE FROM currencies WHERE title = 'Japanese Yen';
 UPDATE configuration SET configuration_value = 'USD', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
-UPDATE currencies SET value='1.000000', last_updated = now() WHERE code='USD';
-UPDATE currencies SET value='0.936071', last_updated = now() WHERE code='EUR';
-UPDATE currencies SET value='0.805954', last_updated = now() WHERE code='GBP';
-UPDATE currencies SET value='1.342504', last_updated = now() WHERE code='CAD';
-UPDATE currencies SET value='1.501196', last_updated = now() WHERE code='AUD';
 
 DELETE FROM tax_class WHERE tax_class_title = '消費税';
 DELETE FROM geo_zones WHERE geo_zone_name = '日本';
