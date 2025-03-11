@@ -2,7 +2,7 @@
 /**
  * Language definitions for the paypalr (PayPal Restful Api) payment module.
  *
- * Last updated: v1.0.5
+ * Last updated: v1.1.0
  */
 $define = [
     'MODULE_PAYMENT_PAYPALR_TEXT_TITLE' => 'PayPal支払い',
@@ -214,6 +214,14 @@ $define = [
     'MODULE_PAYMENT_PAYPALR_MERCHANT_EMAIL' => '販売者のメールアドレス：',
     'MODULE_PAYMENT_PAYPALR_MERCHANT_ID' => '販売者ID：',
     'MODULE_PAYMENT_PAYPALR_SELLER_PROTECTION' => '販売者保護：',
+    'MODULE_PAYMENT_PAYPALR_PROCESSOR_RESPONSE' => 'プロセッサの応答：',
+        'MODULE_PAYMENT_PAYPALR_AVS_CODE' => 'AVS コード（%s）',
+        'MODULE_PAYMENT_PAYPALR_RESPONSE_CODE' => '応答コード（%s）',
+        'MODULE_PAYMENT_PAYPALR_CVV_CODE' => 'CVV コード（%s）',
+    'MODULE_PAYMENT_PAYPALR_AUTH_RESULT' => '認証結果：',
+        'MODULE_PAYMENT_PAYPALR_LIABILITY' => '責任の移転（%s）',
+        'MODULE_PAYMENT_PAYPALR_AUTH_STATUS' => '認証ステータス（%s）',
+        'MODULE_PAYMENT_PAYPALR_ENROLL_STATUS' => '登録ステータス（%s）',
     'MODULE_PAYMENT_PAYPALR_AMOUNT_MISMATCH' => '注文金額の不一致： %s',    //- %s is the base order-calculation amount/currency-code
     'MODULE_PAYMENT_PAYPALR_CALCULATED_AMOUNT' => '計算金額：',
     'MODULE_PAYMENT_PAYPALR_INVOICE_NUMBER' => '請求書番号：',
@@ -330,6 +338,8 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_PAYPALR_CURRENCY' => 'PayPal への注文はどの通貨で送信すればよいですか？<br>注意： サポートされていない通貨が PayPal に送信された場合、<em>代替通貨</em>に自動的に変換されます。<br><strong>デフォルト：選択された通貨</strong>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALR_CURRENCY_FALLBACK' => '代替通貨',
     'CFGDESC_MODULE_PAYMENT_PAYPALR_CURRENCY_FALLBACK' => '<b>取引通貨</b>が<em>選択された通貨</em>に設定されている場合、顧客が選択した通貨が PayPal でサポートされていない場合に、どの通貨を代替として使用する必要がありますか？<br><b>デフォルト： USD</b>',
+    'CFGTITLE_MODULE_PAYMENT_PAYPALR_SCA_ALWAYS' => '<b>すべての</b>トランザクションで 3D セキュアをトリガーしますか？',
+    'CFGDESC_MODULE_PAYMENT_PAYPALR_SCA_ALWAYS' => 'SCA 要件に関係なく、<b>すべての</b>トランザクションに対して 3D Secure をトリガーするには、<var>true</var> を選択します。<br><br><b>デフォルト</b>：<var>false</var>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALR_ACCEPT_CARDS' => 'クレジットカードは使えますか？',
     'CFGDESC_MODULE_PAYMENT_PAYPALR_ACCEPT_CARDS' => '支払いモジュールはクレジットカードによる支払いを受け入れる必要がありますか？<var>ライブ</var> トランザクションを実行する場合、カード支払いを受け入れるには、<var>https</var> プロトコルを使用するようにストアフロントを設定する必要があります。<br><br>ストアで One-Page Checkout を使用している場合は、クレジットカードでの支払いをアカウント所有者に制限できます。<br><b>デフォルト： false</b>',
     'CFGTITLE_MODULE_PAYMENT_PAYPALR_HANDLING_OT' => '注文合計に<var>手数料</var>を記載する',
