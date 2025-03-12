@@ -1,66 +1,14 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2025 Jan 2 Modified in v2.1.0 $
+ * @version $Id: pilou2/piloujp 2025 March 11 Modified in v2.1.0 $
 **/
 
 class nekoposu  extends ZenShipping
 {
-    /**
-     * $_check is used to check the configuration key set up
-     * @var int
-    **/
-    protected $_check;
-    /**
-     * $code determines the internal 'code' name used to designate "this" shipping module
-     *
-     * @var string
-    **/
-    public $code;
-    /**
-     * $description is a soft name for this shipping method
-     * @var string 
-    **/
-    public $description;
-    /**
-     * $enabled determines whether this module shows or not... during checkout.
-     * @var boolean
-    **/
-    public $enabled;
-    /**
-     * $icon is the file name containing the Shipping method icon
-     * @var string
-    **/
-    public $icon;
-    /** 
-     * $quotes is an array containing all the quote information for this shipping module
-     * @var array
-    **/
-    public $quotes;
-    /**
-     * $sort_order is the order priority of this shipping module when displayed
-     * @var int
-    **/
-    public $sort_order;
-    /**
-     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
-     * @var string
-    **/
-    public $tax_basis;
-    /**
-     * $tax_class is the  Tax class to be applied to the shipping cost
-     * @var string
-    **/
-    public $tax_class;
-    /**
-     * $title is the displayed name for this shipping method
-     * @var string
-    **/
-    public $title;
-    
-    function __construct()
+    public function __construct()
     {
         $this->code = 'nekoposu';
         $this->title = MODULE_SHIPPING_NEKOPOSU_TEXT_TITLE;
@@ -83,7 +31,7 @@ class nekoposu  extends ZenShipping
     /**
      * Perform various checks to see whether this module should be visible
     **/
-    function update_status()
+    public function update_status()
     {
         global $order, $db, $shipping_weight, $box_sizes_array;
 
@@ -125,7 +73,7 @@ class nekoposu  extends ZenShipping
         }
     }
 
-    function quote($method = ''): array
+    public function quote($method = ''): array
     {
         global $order;
 
@@ -143,7 +91,7 @@ class nekoposu  extends ZenShipping
         return $this->quotes;
     }
 
-    function check()
+    public function check()
     {
         global $db;
         if (!isset($this->_check)) {
@@ -153,7 +101,7 @@ class nekoposu  extends ZenShipping
         return $this->_check;
     }
 
-    function install(): void
+    public function install(): void
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Nekoposu shipping method', 'MODULE_SHIPPING_NEKOPOSU_STATUS', 'True', 'Do you want to offer Nekoposu rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -169,14 +117,20 @@ class nekoposu  extends ZenShipping
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER', '0', 'Sort order of display.', '6', '0', now())");
     }
 
-    function remove(): void
+    public function keys(): array
     {
-        global $db;
-        $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_NEKOPOSU\_%'");
-    }
-
-    function keys(): array
-    {
-        return array('MODULE_SHIPPING_NEKOPOSU_STATUS', 'MODULE_SHIPPING_NEKOPOSU_COST', 'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH', 'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT', 'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH', 'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS', 'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS', 'MODULE_SHIPPING_NEKOPOSU_ZONE', 'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER');
+        return [
+            'MODULE_SHIPPING_NEKOPOSU_STATUS',
+            'MODULE_SHIPPING_NEKOPOSU_COST',
+            'MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT',
+            'MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH',
+            'MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH',
+            'MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT',
+            'MODULE_SHIPPING_NEKOPOSU_MAX_GIRTH',
+            'MODULE_SHIPPING_NEKOPOSU_TAX_CLASS',
+            'MODULE_SHIPPING_NEKOPOSU_TAX_BASIS',
+            'MODULE_SHIPPING_NEKOPOSU_ZONE',
+            'MODULE_SHIPPING_NEKOPOSU_SORT_ORDER',
+        ];
     }
 }

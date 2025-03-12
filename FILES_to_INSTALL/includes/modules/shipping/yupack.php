@@ -1,63 +1,13 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2025 Jan 2 Modified in v2.1.0 $
+ * @version $Id: pilou2/piloujp 2025 March 11 Modified in v2.1.0 $
 **/
 
-class yupack extends base {
-    /**
-     * $_check is used to check the configuration key set up
-     * @var int
-    **/
-    protected $_check;
-    /**
-     * $code determines the internal 'code' name used to designate "this" shipping module
-     *
-     * @var string
-    **/
-    public $code;
-    /**
-     * $description is a soft name for this shipping method
-     * @var string 
-    **/
-    public $description;
-    /**
-     * $enabled determines whether this module shows or not... during checkout.
-     * @var boolean
-    **/
-    public $enabled;
-    /**
-     * $icon is the file name containing the Shipping method icon
-     * @var string
-    **/
-    public $icon;
-    /** 
-     * $quotes is an array containing all the quote information for this shipping module
-     * @var array
-    **/
-    public $quotes;
-    /**
-     * $sort_order is the order priority of this shipping module when displayed
-     * @var int
-    **/
-    public $sort_order;
-    /**
-     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
-     * @var string
-    **/
-    public $tax_basis;
-    /**
-     * $tax_class is the  Tax class to be applied to the shipping cost
-     * @var string
-    **/
-    public $tax_class;
-    /**
-     * $title is the displayed name for this shipping method
-     * @var string
-    **/
-    public $title;
+class yupack extends ZenShipping
+{
     /**
      * $yupack_countries is the country number->code Yupack is shipping
      * @var array
@@ -74,7 +24,7 @@ class yupack extends base {
      *
      * @return yupack
     **/
-    function __construct()
+    public function __construct()
     {
         global $order,$db;
 
@@ -102,7 +52,7 @@ class yupack extends base {
     /**
      * Perform various checks to see whether this module should be visible
     **/
-    function update_status()
+    public function update_status()
     {
         global $order, $db;
         if (!$this->enabled) return;
@@ -141,9 +91,8 @@ class yupack extends base {
      *  Obtain quote from shipping system/calculations
      *
      * @param string $method
-     * @return unknown
     **/
-    function quote()
+    public function quote($method = ''): array
     {
         global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
         global $order;
@@ -231,7 +180,7 @@ class yupack extends base {
     }
 
     // 時刻を指定するプルダウンメニューの'value'を返す
-    function get_timespec()
+    protected function get_timespec()
     {
         global $a_yupack_time;
         global $shipping;
@@ -251,9 +200,8 @@ class yupack extends base {
     /**
      * Check to see whether module is installed
      *
-     * @return unknown
     **/
-    function check()
+    public function check()
     {
         global $db;
         if (!isset($this->_check)) {
@@ -266,7 +214,7 @@ class yupack extends base {
      * Install the shipping module and its configuration settings
      *
     **/
-    function install()
+    public function install(): void
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Yu-Pack shipping method', 'MODULE_SHIPPING_YUPACK_STATUS', 'True', 'Do you want to offer Yu-Pack rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -280,23 +228,24 @@ class yupack extends base {
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_YUPACK_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_YUPACK_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
     }
-    /**
-     * Remove the module and all its settings
-     *
-    **/
-    function remove()
-    {
-        global $db;
-        $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_YUPACK\_%'");
-    }
 
     /**
      * Internal list of configuration keys used for configuration of the module
      * 
-     * @return unknown
     **/
-    function keys()
+    public function keys(): array
     {
-        return array('MODULE_SHIPPING_YUPACK_STATUS', 'MODULE_SHIPPING_YUPACK_HANDLING', 'MODULE_SHIPPING_YUPACK_MAX_WEIGHT', 'MODULE_SHIPPING_YUPACK_MAX_GIRTH', 'MODULE_SHIPPING_YUPACK_FREE_SHIPPING', 'MODULE_SHIPPING_YUPACK_OVER', 'MODULE_SHIPPING_YUPACK_TAX_CLASS', 'MODULE_SHIPPING_YUPACK_TAX_BASIS', 'MODULE_SHIPPING_YUPACK_ZONE', 'MODULE_SHIPPING_YUPACK_SORT_ORDER');
+        return [
+            'MODULE_SHIPPING_YUPACK_STATUS',
+            'MODULE_SHIPPING_YUPACK_HANDLING',
+            'MODULE_SHIPPING_YUPACK_MAX_WEIGHT',
+            'MODULE_SHIPPING_YUPACK_MAX_GIRTH',
+            'MODULE_SHIPPING_YUPACK_FREE_SHIPPING',
+            'MODULE_SHIPPING_YUPACK_OVER',
+            'MODULE_SHIPPING_YUPACK_TAX_CLASS',
+            'MODULE_SHIPPING_YUPACK_TAX_BASIS',
+            'MODULE_SHIPPING_YUPACK_ZONE',
+            'MODULE_SHIPPING_YUPACK_SORT_ORDER',
+        ];
     }
 }

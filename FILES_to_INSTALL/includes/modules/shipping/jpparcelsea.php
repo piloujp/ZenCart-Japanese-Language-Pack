@@ -1,63 +1,13 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2025 Jan 2 Modified in v2.1.0 $
+ * @version $Id: pilou2/piloujp 2025 March 11 Modified in v2.1.0 $
 **/
 
-class jpparcelsea extends base {
-    /**
-     * $_check is used to check the configuration key set up
-     * @var int
-    **/
-    protected $_check;
-    /**
-     * $code determines the internal 'code' name used to designate "this" shipping module
-     *
-     * @var string
-    **/
-    public $code;
-    /**
-     * $description is a soft name for this shipping method
-     * @var string 
-    **/
-    public $description;
-    /**
-     * $enabled determines whether this module shows or not... during checkout.
-     * @var boolean
-    **/
-    public $enabled;
-    /**
-     * $icon is the file name containing the Shipping method icon
-     * @var string
-    **/
-    public $icon;
-    /** 
-     * $quotes is an array containing all the quote information for this shipping module
-     * @var array
-    **/
-    public $quotes;
-    /**
-     * $sort_order is the order priority of this shipping module when displayed
-     * @var int
-    **/
-    public $sort_order;
-    /**
-     * $tax_basis is used to indicate if tax is based on shipping, billing or store address.
-     * @var string
-    **/
-    public $tax_basis;
-    /**
-     * $tax_class is the  Tax class to be applied to the shipping cost
-     * @var string
-    **/
-    public $tax_class;
-    /**
-     * $title is the displayed name for this shipping method
-     * @var string
-    **/
-    public $title;
+class jpparcelsea extends ZenShipping
+{
     /**
      * $country_code is country ISO 2 letters code International Parcels Surface is shipping
      * @var int
@@ -70,7 +20,7 @@ class jpparcelsea extends base {
      *
      * @return jpparcelsea
     **/
-    function __construct()
+    public function __construct()
     {
         global $order,$db;
 
@@ -81,8 +31,8 @@ class jpparcelsea extends base {
         if (null === $this->sort_order) return false;
 
         $this->icon = ''; //DIR_WS_TEMPLATE_ICONS . 'shipping_jpparcelsea.gif';
-//        $this->tax_class = MODULE_SHIPPING_JPPARCELSEA_TAX_CLASS;
-//        $this->tax_basis = MODULE_SHIPPING_JPPARCELSEA_TAX_BASIS;
+        $this->tax_class = MODULE_SHIPPING_JPPARCELSEA_TAX_CLASS;
+        $this->tax_basis = MODULE_SHIPPING_JPPARCELSEA_TAX_BASIS;
         // disable only when entire cart is free shipping
         if (zen_get_shipping_enabled($this->code)) {
             $this->enabled = (MODULE_SHIPPING_JPPARCELSEA_STATUS == 'True');
@@ -94,7 +44,7 @@ class jpparcelsea extends base {
     /**
      * Perform various checks to see whether this module should be visible
     **/
-    function update_status()
+    public function update_status()
     {
         global $order, $db;
         if (!$this->enabled) return;
@@ -137,9 +87,8 @@ class jpparcelsea extends base {
      *  Obtain quote from shipping system/calculations
      *
      * @param string $method
-     * @return unknown
     **/
-    function quote()
+    public function quote($method = ''): array
     {
         global $shipping_weight, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $multiboxes;
         global $order;
@@ -205,9 +154,8 @@ class jpparcelsea extends base {
     /**
      * Check to see whether module is installed
      *
-     * @return unknown
     **/
-    function check()
+    public function check()
     {
         global $db;
         if (!isset($this->_check)) {
@@ -220,7 +168,7 @@ class jpparcelsea extends base {
      * Install the shipping module and its configuration settings
      *
     **/
-    function install()
+    public function install(): void
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable International Parcels Surface shipping method', 'MODULE_SHIPPING_JPPARCELSEA_STATUS', 'True', 'Do you want to offer International Parcels Surface rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
@@ -229,28 +177,29 @@ class jpparcelsea extends base {
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', '30', 'Maximum weight that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum order for free shipping', 'MODULE_SHIPPING_JPPARCELSEA_OVER', '50000', 'If you purchase more than the set amount, shipping will be free.', '6', '3', now())");
-//        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_JPPARCELSEA_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-//        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_JPPARCELSEA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_JPPARCELSEA_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_JPPARCELSEA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_JPPARCELSEA_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_JPPARCELSEA_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
-    }
-    /**
-     * Remove the module and all its settings
-     *
-    **/
-    function remove()
-    {
-        global $db;
-        $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key like 'MODULE\_SHIPPING\_JPPARCELSEA\_%'");
     }
 
     /**
      * Internal list of configuration keys used for configuration of the module
      * 
-     * @return unknown
     **/
-    function keys()
+    public function keys(): array
     {
-        return array('MODULE_SHIPPING_JPPARCELSEA_STATUS', 'MODULE_SHIPPING_JPPARCELSEA_MULTIBOX', 'MODULE_SHIPPING_JPPARCELSEA_HANDLING', 'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT', 'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING', 'MODULE_SHIPPING_JPPARCELSEA_OVER', 'MODULE_SHIPPING_JPPARCELSEA_ZONE', 'MODULE_SHIPPING_JPPARCELSEA_SORT_ORDER');
+        return [
+            'MODULE_SHIPPING_JPPARCELSEA_STATUS',
+            'MODULE_SHIPPING_JPPARCELSEA_MULTIBOX',
+            'MODULE_SHIPPING_JPPARCELSEA_HANDLING',
+            'MODULE_SHIPPING_JPPARCELSEA_MAX_WEIGHT',
+            'MODULE_SHIPPING_JPPARCELSEA_FREE_SHIPPING',
+            'MODULE_SHIPPING_JPPARCELSEA_OVER',
+            'MODULE_SHIPPING_JPPARCELSEA_TAX_CLASS',
+            'MODULE_SHIPPING_JPPARCELSEA_TAX_BASIS',
+            'MODULE_SHIPPING_JPPARCELSEA_ZONE',
+            'MODULE_SHIPPING_JPPARCELSEA_SORT_ORDER',
+        ];
     }
 }
