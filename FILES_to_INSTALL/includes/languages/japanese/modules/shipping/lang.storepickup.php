@@ -2,8 +2,8 @@
 $define = [
     'MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE' => '店頭で受け取り',
     'MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION' => '店頭で直接お受け取り。',
-    'MODULE_SHIPPING_STOREPICKUP_TEXT_WAY' => 'ウォークイン',
-    'MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS' => '',
+    'MODULE_SHIPPING_STOREPICKUP_TEXT_WAY' => '店頭で受け取り',
+    'MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS' => '店頭で受け取り',
 //bof constant configuration titles and descriptions for storepickup Shipping
     'CFGTITLE_MODULE_SHIPPING_STOREPICKUP_STATUS' => 'ネコポス配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_STOREPICKUP_STATUS' => 'ネコポスで発送しますか？',
