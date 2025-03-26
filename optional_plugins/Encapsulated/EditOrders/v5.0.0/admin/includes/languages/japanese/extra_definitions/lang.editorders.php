@@ -12,8 +12,6 @@ $define = [
 // Admin configuration
     'CFGTITLE_EO_ADDRESSES_DISPLAY_ORDER' => '住所、表示順序',
     'CFGDESC_EO_ADDRESSES_DISPLAY_ORDER' => '<em>注文編集</em>では、左から右にどのような順序で注文の住所を表示する必要がありますか？<b>CSB</b> を選択すると、<em>顧客</em>、<em>配送</em>、<em>請求</em> の順に表示されます。<b>CBS</b> を選択すると、<em>顧客</em>、<em>請求</em>、<em>配送</em> の順に表示されます。',
-    'CFGTITLE_EO_TOTAL_RESET_DEFAULT' => '更新時に合計をリセット - デフォルト',
-    'CFGDESC_EO_TOTAL_RESET_DEFAULT' => '<em>更新前に合計をリセット</em>チェックボックスのデフォルト値を選択します。ストアで税金関連の再計算を実行する注文合計モジュール（「グループ価格設定」など）を使用している場合は、この値を<b>オン</b>に設定します。',
     'CFGTITLE_EO_SHIPPING_DROPDOWN_STRIP_TAGS' => '配送モジュール名からタグを削除しますか？',
     'CFGDESC_EO_SHIPPING_DROPDOWN_STRIP_TAGS' => '有効にすると、配送モジュールのタイトルにある HTML および PHP タグが、配送ドロップダウン メニューに表示されるテキストから削除されます。<br><br>タイトルに部分的なタグや壊れたタグがある場合、予想よりも多くのテキストが削除される可能性があります。その場合は、影響を受ける配送モジュールを更新するか、このオプションを無効にする必要があります。',
     'CFGTITLE_EO_PRODUCT_PRICE_CALC_METHOD' => '製品価格の計算方法',

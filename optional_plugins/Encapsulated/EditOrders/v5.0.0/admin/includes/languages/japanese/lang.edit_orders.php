@@ -146,8 +146,11 @@ $define = [
     'TEXT_LABEL_MODULE' => 'モジュール：',
     'TEXT_LABEL_TITLE' => 'タイトル：',
     'TEXT_LABEL_VALUE' => '価値：',
+    'TEXT_LABEL_COST_INCL' => '料金（税込）：',
+    'TEXT_LABEL_COST_EXCL' => '料金（税抜）：',
     'TEXT_OT_ADD_MODAL_TITLE' => '注文合計を追加（%s）',
     'TEXT_OT_UPDATE_MODAL_TITLE' => '注文合計の編集（%s）',    //- %s is filled in with the order-total's class, e.g. ot_shipping
+    'TEXT_FIELD_CANNOT_BE_EMPTY' => 'このフィールドは空にできません。',
 
 // Adding/updating a product
     'ERROR_PRODUCT_NOT_FOUND' => '要求された商品（%s）は注文に存在しません。',
