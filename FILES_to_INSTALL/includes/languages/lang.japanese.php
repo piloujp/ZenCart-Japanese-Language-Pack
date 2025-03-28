@@ -459,6 +459,7 @@ $define = [
     'TEXT_LOGIN_TO_SHOP_BUTTON_REPLACE' => 'ログイン',
     'TEXT_MANUFACTURER' => 'メーカー：',
     'TEXT_MAXIMUM_CHARACTERS_ALLOWED' => ' 最大文字数',
+    'TEXT_MISSING_SHIPPING_INFO' => '警告：配送の詳細がありません',
     'TEXT_MORE_INFORMATION' => 'より詳しい情報はこの商品の<a href="%s" target="_blank">Webページ</a>へ。',
     'TEXT_NO_ALL_PRODUCTS' => '商品はまもなく登録されますので、また後ほどご覧ください。',
     'TEXT_NO_CAT_RESTRICTIONS' => 'この割引クーポンは全カテゴリ対象です。',
