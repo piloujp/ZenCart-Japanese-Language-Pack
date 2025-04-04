@@ -379,10 +379,6 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           content.<br>
           '.../email/ja/' all content.<br>
           '.../images/' all content.<br>
-          '.../includes/classes/_jpparcel.php'<br>
-          '.../includes/classes/_sagawa.php'<br>
-          '.../includes/classes/_yamato.php'<br>
-          '.../includes/classes/_yupack.php'<br>
           '.../includes/functions/extra_functions/function_japan_country_id.php'<br>
           '.../includes/languages/lang.japanese.php'<br>
 '.../includes/languages/english/extra_definitions/lang.japanese_extras.php'<br>
@@ -390,16 +386,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           '.../includes/languages/japanese/' all content.<br>
           '.../includes/modules/order_total/' all content.<br>
           '.../includes/modules/payment/' all content.<br>
-          '.../includes/modules/shipping/' all content.<br>
 '.../includes/templates/template_default/buttons/english/button_update_cart.png'<br>
           '.../includes/templates/template_default/buttons/japanese/' all
           content.<br>
-          '.../includes/templates/template_default/images/icons/' all content.<br>
           '.../zc_plugins/' all content.</p>
-        <p class="texte" style="margin-left: 80px;">Optionally, if you need to
-          deactivate shipping modules for some categories or products, copy and
-          edit adequate files in folder:<br>
-          '.../includes/classes/observers/'</p>
         <p class="title4">Files update from Japanese version cart:</p>
         <p></p>
         <p class="texte">Proceed as an English version except for few points to
@@ -409,9 +399,6 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           should check and merge if necessary all customized files instead of
           copying them:</p>
         <dl style="margin-left: 40px;">
-          <dd>Class files for the shipping modules in the '../includes/classes'
-            folder.&nbsp; If overwritten, you may lose the pricing of the
-            various shipping companies.</dd>
           <dd>'lan.header.php' file in '../includes/languages/japanese' folder.</dd>
           <dd>'lan.index.php' file in
             '../includes/languages/japanese/YOUR_TEMPLATE' folder.</dd>
@@ -487,9 +474,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql' </p>
         <p class="title4">Finally:</p>
         <p class="texte">If you have other (old) plugins installed that have
-          their own language files, you must copy these languages files from
-          English to their equivalent Japanese folder. Translation can be done
-          later from these files.</p>
+          their own language files, try to find them in <b>optional_plugins</b>
+          folder. If they are not there, you must copy these languages files
+          from English folder to their equivalent Japanese folder. Translation
+          can be done later from these files.</p>
       </div>
       <p class="title2">Configuration</p>
       <p class="texte">When upgrading database there are few settings that are
@@ -513,22 +501,29 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="texte">In this Language pack, shipping modules for main Japanese
         companies are included and you need to set them because shipping fees
         depends on your store location and eventually contract with shipping
-        companies. Files to set are '_jpparcel.php', '_sagawa.php',
-        '_yamato.php', '_yupack.php' in 'includes/classes/' folder. You need to
-        check and adjust rates if necessary.<br>
-        Quoting is based on three main arrays:<br>
-        One for quote/shipping cost with one row for each price range and
-        columns for size, '$a_pricerank'. This is where shipping cost is set.<br>
-        Second one defines which range (in first one) to use depending on
-        sending location and destination, '$a_dist_to_rank'. Coding system
-        starts with two letters, each one corresponding to a prefecture/state
-        group defined in third array ($a_zonemap). First letter is for sending
-        location and second one for destination. Then follows a row number to
-        use in first array for this location combination.<br>
+        companies. Files to set are '<b>ScriptedInstaller.php</b>' in respective
+        plugins' '<b>install</b>' folder. You need to check and adjust rates if
+        necessary.<br>
+        Quoting is based on arrays from these files that are saved in database
+        when installing plugins. This is where shipping cost is set.<br>
+        You will find more information through comments in class files where
+        arrays were saved in older versions.<br>
         <br>
-        You must check and eventually set the array '$a_pricerank' to fit your
-        situation. Unfortunately none of the shipping companies provide
-        downloadable quoting tables but you can check online:<br>
+        There is a special plugin '<b>Tarifs</b>' that allows you to edit latest
+        shipping rates saved in database from <b><code>admin::Modules-&gt;Shipping
+            Pricing</code></b>. But if you want to create a completely new one,
+        you must do it through file editing. It will be installed/copied in
+        database at next plugin install, keeping the old one too as a backup. Do
+        not forget to update implementation date ('<code>imple_date</code>'), it
+        needs to be different/more recent than any already installed rates, or
+        it won't be installed/used. If you use a future date, it will be
+        installed but won't be used until this date. The <b>rule is</b> that
+        when <b>multiple rates</b> are available for a module, the <b>most
+          recent</b> with a <b>past implementation date</b> will be <b>used</b>.<br>
+        <br>
+        You must check and eventually set the array to fit your situation.
+        Unfortunately none of the shipping companies provide downloadable
+        quoting tables but you can check online:<br>
         For Yamato : <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
         For Sagawa : <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
@@ -539,9 +534,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           title="郵便胸腔EMS" target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
       </p>
       <p class="texte">Finally, if you need to deactivate shipping modules for
-        some products or entire categories, copy and edit files in this folder
-        (by changing/adding IDs as necessary) '<b>optional_for_shipping_modules/includes/classes/obervers/</b>'
-        to your cart folder '<b>.../includes/classes/obervers/</b>'.<br>
+        some products or entire categories, edit files in these folder (by
+        changing/adding IDs as necessary) '<b>plugins/plugin_name/plugin_version/catalog/includes/classes/observers/</b>'.<br>
       </p>
       <p class="texte">If you have some question go to support forum : <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
@@ -614,7 +608,14 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         need to merge those rather than copy them.<br>
       </p>
       <p class="title2">Version history</p>
-      <p class="texte"> V2.1.0j2 - February 25 2025<br>
+      <p class="texte"> V2.1.1 - April 5 2025<br>
+        Japanese shipping/payment/order_total modules are now encapsulated.<br>
+        A new database table 'Tarifs' has been created for shipping modules
+        rates.<br>
+        Few plugins translation added.<br>
+        Updated to latest GitHub ZC files at this date..<br>
+        <br>
+        V2.1.0j2 - February 25 2025<br>
         Added multiple plugins translations which now makes a total of 23
         plugins translated (10 encapsulated and 13 non-encapsulated).<br>
         Updated few ZC cores files (bugs correction).<br>
@@ -1003,10 +1004,6 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           content.<br>
           '.../email/ja/' all content.<br>
           '.../images/' all content.<br>
-          '.../includes/classes/_jpparcel.php'<br>
-          '.../includes/classes/_sagawa.php'<br>
-          '.../includes/classes/_yamato.php'<br>
-          '.../includes/classes/_yupack.php'<br>
           '.../includes/functions/extra_functions/function_japan_country_id.php'<br>
           '.../includes/languages/lang.japanese.php'<br>
 '.../includes/languages/english/extra_definitions/lang.japanese_extras.php'<br>
@@ -1014,16 +1011,12 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           '.../includes/languages/japanese/' all content.<br>
           '.../includes/modules/order_total/' all content.<br>
           '.../includes/modules/payment/' all content.<br>
-          '.../includes/modules/shipping/' all content.<br>
 '.../includes/templates/template_default/buttons/english/button_update_cart.png'<br>
           '.../includes/templates/template_default/buttons/japanese/' all
           content.<br>
-          '.../includes/templates/template_default/images/icons/' all content.<br>
           '.../zc_plugins/' all content.<br>
           <br>
-          オプションとして、一部のカテゴリまたは商品
-          の配送モジュールを無効にする必要がある場合は、フォルダー内の適切なファイルをコピーして編集します：<br>
-          '.../includes/classes/observers/' </div>
+        </div>
         <p class="title4">日本語版カートからファイルを更新:</p>
         <p class="texte">いくつかの注意点を除いて英語版として進めていきます。</p>
         <p></p>
@@ -1032,29 +1025,19 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
                 カスタマイズされたすべてのファイルをコピーするのではなく、必要に応じて確認してマージする必要があります</span></span></span><span
             class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">。</span></span></span></p>
         <dl style="margin-left: 40px;">
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/classes'
-                  フォルダ内の配送モジュールのクラス ファイル。上書きすると、さまざまな配送会社の価格が失われる可能性があります。</span></span></span></dd>
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/languages/japanese'
-                  フォルダ内の 'lan.header.php' ファイル。</span></span></span></dd>
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/languages/japanese/YOUR_TEMPLATE'
-                  フォルダ内の 'lan.index.php' ファイル。</span></span></span></dd>
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/languages/japanese/html_includes/YOUR_TEMPLATE'
-                  フォルダ内の</span></span></span><span class="HwtZe" lang="ja"><span
-                class="jCAhz ChMk0b"><span class="ryNqvb"><span class="HwtZe" lang="ja"><span
-                      class="jCAhz ChMk0b"><span class="ryNqvb">「定義</span></span></span>ペー
-                  ジ</span></span></span><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
-                  class="ryNqvb"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
-                        class="ryNqvb">の定義」</span></span></span>によって変更されたファイル。</span></span></span></dd>
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/templates/YOUR_TEMPLATE/images'
-                  フォルダー内の変更されたまたは新しい画像ファイル (ロゴ)。<br>
-                </span></span></span></dd>
-          <dd><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">'../includes/templates/YOUR_TEMPLATE/images/icons'
-                  フォルダー内の変更されたまたは新しいアイコンファイル。<br>
-                </span></span></span></dd>
+          <dd>'../includes/languages/japanese'フォルダ内の 'lan.header.php' ファイル。</dd>
+          <dd>'../includes/languages/japanese/YOUR_TEMPLATE' フォルダ内の
+            'lan.index.php' ファイル。</dd>
+          <dd>'../includes/languages/japanese/html_includes/YOUR_TEMPLATE'
+            フォルダ内の「定義ページの定義」によって変更されたファイル。</dd>
+          <dd>'../includes/templates/YOUR_TEMPLATE/images'
+            フォルダー内の変更されたまたは新しい画像ファイル (ロゴ)。<br>
+          </dd>
+          <dd>'../includes/templates/YOUR_TEMPLATE/images/icons'
+            フォルダー内の変更されたまたは新しいアイコンファイル。<br>
+          </dd>
         </dl>
-        <p class="texte"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
-                class="ryNqvb"><br>
-              </span></span></span> </p>
+        <p class="texte"> </p>
         <p class="texte"><span style="color: #cc0000;"><span style="color: #cc0000;">ポ
               イント</span>２：</span> 一部のファイルは移動または削除されました。 Japanese Zen
           カートから更新する場合は削除する必要があります。 その場合は、次のファイルを削除してください：<br>
@@ -1114,9 +1097,9 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           新するには、アドレス形式のデータベースのマイナー更新が一つだけ必要です。この SQL ファイルを実行するだけです。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql'</p>
         <p class="title4">最後に：</p>
-        <p class="texte">最後に、独自の言語ファイルを持つ他のプラグインがインストールされている場合は、これらの言語ファイルを英語から対
-          応する日本語フォルダーにコピーする必要があります。</p>
-        <p class="texte">すべて問題なければ、構成の章に進むことができます。</p>
+        <p class="texte">独自の言語ファイルを持つ他のプラグインがインストールされている場合は、optional_plugins
+          フォルダーでそれらを探してみてください。存在しない場合は、これらの言語ファイルを英語フォルダから対応する日本語フォルダにコピーする必要があります。翻訳は後でこれ
+          らのファイルから行うことができます。</p>
       </div>
       <p class="title2">構成</p>
       <p class="texte">データベースをアップグレードするときは、デフォルト言語として日本語を設定したり、デフォルト通貨とし て日本円を設
@@ -1132,19 +1115,22 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ここから始まる Zen Cart のドキュメントをご覧ください（英語）： <a href="https://docs.zen-cart.com/user/new_user_topics/"
           title="Zen Cart Documentation" target="_blank">https://docs.zen-cart.com/user/new_user_topics/</a></p>
       <p class="title3">モジュールの設定</p>
-      <p class="texte">この言語パックには日本の主要企業の配送モジュールが含まれており、配送料は店舗の所在地や最終的に配送会社との契約
-        に応 じて異なるため、設定する必要があります。
-        設定するファイルは「includes/classes/」フォルダ内の「_jpparcel.php」、「_sagawa.php」、「_yamato.php」、
-        「_yupack.php」です。必要に応じて料金を確認し、調整する必要があります。<br>
-        クォートは 3 つの主要な配列に基づいています：<br>
-        見積もり/送料の「$a_pricerank」。価格帯ごとに 1 行、サイズの列が含まれます。送料の設定はこちらで行います。<br>
-        2 番目の '$a_dist_to_rank' は、送信場所と宛先に応じて (最初の範囲内の) どの範囲を使用するかを定義します。コーディング
-        システムは 2 つの文字で始まり、各文字は 3 番目の配列 ($a_zonemap) で定義された都道府県グループに対応します。1
-        番目の文字は送信場所、2 番目の文字は送信先を表します。次に、この位置の組み合わせの最初の配列で使用する行番号が続きます。<br>
-        <br>
-        これら 2 つの配列 ('$a_pricerank' と '$a_dist_to_rank')
-        を確認し、最終的に状況に合わせて設定する必要があります。
-        残念ながら、ダウンロード可能な見積表を提供している配送会社はありませんが、オンラインで確認できます。<br>
+      <p class="texte">この言語パックには、日本の主要企業向けの配送モジュールが含まれていますが、配送料はストアの所在地と配送会社との契約
+        によって異なるため、設定する必要があります。設定するファイルは、各プラグインの「<b>インストール</b>」フォルダ内の 「<b>ScriptedInstaller.php</b>」
+        です。必要に応じて料金を確認し、調整する必要があります。<br>
+        見積りは、プラグインのインストール時にデータベースに保存されるこれらのファイルの配列に基づいて行われます。ここで配送料が設定されます。<br>
+        古いバージョンで配列が保存されていたクラス ファイルのコメントから、詳細情報を確認できます。</p>
+      <p class="texte"><b><code>admin::Modules-&gt;Shipping Pricing</code></b>
+        からデータベースに保存されている最新の配送料を編集できる特別なプラグイン「<b>Tarifs</b>」があります。ただし、完全に新しいものを作成
+        したい場合は、ファイルの編集を
+        通じて行う必要があります。次のプラグインのインストール時にデータベースにインストール/コピーされ、古いものもバックアップとして保持されます。実装
+        日「<b><code>imple_date</code></b>」
+        を更新することを忘れないでください。すでにインストールされている料金とは異なる/新しい料金である必要があります。そうでない場合、インストール/使用されません。将
+        来の日付を使用すると、インストールされますが、その日付までは使用されません。<b>ルール</b>では、モジュールに<b>複数の料金</b>が使用
+        可能な場合は、<b>実装日が過去の 最新</b>の料金が使用されます。</p>
+      <p class="texte">
+        状況に合わせて配列を確認し、最終的に設定する必要があります。残念ながら、ダウンロード可能な見積表を提供している運送会社は存在しませんが、オンライ
+        ンで確認することはできます。<br>
         ヤマト宅急便： <a href="https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html"
           title="ヤマト宅急便送料" target="_blank">https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html</a><br>
         佐川急便発送： <a href="https://www.sagawa-exp.co.jp/send/fare/attention.html"
@@ -1154,9 +1140,9 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         日本郵便の海外サービス： <a href="https://www.post.japanpost.jp/int/charge/list/" title="郵便胸腔EMS"
           target="_blank">https://www.post.japanpost.jp/int/charge/list/</a><br>
         <br>
-        最後に、一部の製品またはカテゴリ全体の配送モジュールを無効にする必要がある場合は、このフォルダー内のファイル（必要に応じて ID
-        を変更/追加）「optional_for_shipping_modules/includes/classes/obervers/」をカート
-        フォルダー「.../includes/classes/obervers/」にコピーして編集します。<br>
+        最後に、一部の製品またはカテゴリ全体の配送モジュールを無効にする必要がある場合は、これらのフォルダー内のファイルを編集します (必要に応じて
+        ID を変更/追加します)
+        「plugins/plugin_name/plugin_version/catalog/includes/classes/observers/」。<br>
         <br>
         質問がある場合は、サポート フォーラムにアクセスしてください。 <a href="https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack"
           title="V158 Japanese language pack support forum" target="_blank">https://www.zen-cart.com/showthread.php?229157-V158-Japanese-language-pack</a></p>
@@ -1189,7 +1175,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="texte">このプラグインは、画像の自動サイズ変更、サムネイルのキャッシュなどを提供するハンドラーを追加することにより、
         Zen Cart 画像を強化します。 管理者イメージ ハンドラー ページから複数のサイズのイメージをアップロードできます。</p>
       <p class="texte"> </p>
-      <p class="title2">Uninstall</p>
+      <p class="title2">アンインストール</p>
       <p class="texte">まず、Zen Cart 管理メニューの「ローカリゼーション &gt; 言語」から日本語を削除する必要があります。<br>
         「<a class="anclink" href="#filecopyjp" onclick="montre('mergeinstjp')">コ
           ピーする新しいファイルのリスト</a>」にリストされている新しく追加されたファイルをすべて削除します。<br>
@@ -1216,7 +1202,13 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ださい。</p>
       <p class="texte"> </p>
       <p class="title2">バーションヒストリー</p>
-      <p class="texte"> V2.1.0j2 - ２０２５年２月２５日<br>
+      <p class="texte"> V2.1.1 - ２０２５年４月５日<br>
+        日本の配送、支払い、注文合計モジュールがカプセル化されました.<br>
+        配送モジュール料金用の新しいデータベース テーブル「Tarifs」が作成されました。<br>
+        いくつかのプラグインの翻訳が追加されました。<br>
+        現時点で最新の GitHub ZC ファイルに更新されました。<br>
+        <br>
+        V2.1.0j2 - ２０２５年２月２５日<br>
         複数のプラグインの翻訳を追加しました。これで合計 23 個のプラグインが翻訳されました (カプセル化されたプラグイン 10
         個、カプセル化されていないプラグイン 13 個)。<br>
         ZCコアファイルの一部を更新しました(バグ修正)。<br>
