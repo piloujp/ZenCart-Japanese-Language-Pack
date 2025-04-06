@@ -10,14 +10,14 @@ if (!function_exists('zen_get_plugin_version')) {
     function zen_get_plugin_version(string $unique_key): ?string
       {
         global $db;
-        
+
         $result = $db->Execute(
             "SELECT version FROM plugin_control
             WHERE status = 1 AND unique_key = '" . $unique_key . "'",
             null,
             true
         );
-        
+
         return $result->RecordCount() !== 0 ? (string)$result->fields['version'] : null;
       } 
 }

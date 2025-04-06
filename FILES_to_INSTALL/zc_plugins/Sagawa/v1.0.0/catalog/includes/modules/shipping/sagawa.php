@@ -20,7 +20,7 @@ class sagawa extends ZenShipping
      * @var array
     **/
     public $sagawa_countries_nbr;
-    
+
     /**
      * constructor
      *

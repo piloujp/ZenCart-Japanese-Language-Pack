@@ -341,7 +341,7 @@ if (empty($order->info)) {
           }
       ?>
     </div>
-      
+
 <?php
 }
 ?>

@@ -60,7 +60,7 @@ if (zen_count_shipping_modules() > 0) {
     if (count($quotes) > 1 && count($quotes[0]) > 1) {
 ?>
                 <div id="shippingMethod-content" class="content"><?php echo TEXT_CHOOSE_SHIPPING_METHOD; ?></div>
- 
+
 <?php
     } elseif ($free_shipping === false) {
 ?>

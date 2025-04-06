@@ -110,7 +110,7 @@ if ($_SESSION['sendto'] != false) {
                             <address>
                                 <?= zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br>') ?>
                             </address>
-    
+
                             <div id="shipToAddress-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
                                 <?= zca_button_link($editShippingButtonLink, BUTTON_EDIT_SMALL_ALT, 'small_edit') ?>
                             </div>
@@ -261,7 +261,6 @@ if (MODULE_ORDER_TOTAL_INSTALLED) {
 <div id="cartContents-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
 <?php echo '<a href="' . zen_href_link(FILENAME_SHOPPING_CART, '', 'SSL') . '">' . zen_image_button(BUTTON_IMAGE_EDIT_SMALL, BUTTON_EDIT_SMALL_ALT) . '</a>'; ?>
 </div>
-
 
 </div>
 </div>

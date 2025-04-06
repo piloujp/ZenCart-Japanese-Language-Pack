@@ -5,7 +5,7 @@
  * BOOTSTRAP v3.7.0
  *
 */
- 
+
 // -----
 // This function returns a boolean value indicating whether (true) or not (false)
 // the ZCA bootstrap template is the currently-active template.  The definition is
@@ -128,7 +128,7 @@ function zca_get_rating_stars($rating, $size = '')
     $rating = (int)$rating;
     $rating = ($rating < 0) ? 0 : $rating;
     $rating = ($rating > 5) ? 5 : $rating;
-    
+
     $rating_stars = '<span class="sr-only">' . $rating . ' ' . (($rating === 1) ? ARIA_REVIEW_STAR : ARIA_REVIEW_STARS) . '</span>';
     $size = ($size != '') ? " fa-$size" : '';
     for ($i = 1; $i <= $rating; $i++) {

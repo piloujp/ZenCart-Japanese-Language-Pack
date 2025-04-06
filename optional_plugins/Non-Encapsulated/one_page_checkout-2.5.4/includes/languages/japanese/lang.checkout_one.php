@@ -152,7 +152,7 @@ $define = [
     // This constant defines the instructions you want displayed at the very top of the "checkout_one" page, before the form entry.
     //
     'TEXT_CHECKOUT_ONE_TOP_INSTRUCTIONS' => '', //-Displayed within a set of <p>...</p> tags if not empty.
-    
+
     // -----
     // These constants define the instructions that are inserted below the shopping-cart/totals and above the "confirm order" button.
     //

@@ -92,7 +92,7 @@
             }
         }
     }
-    
+
     function check() {
         global $db;
         if (!isset($this->_check)) {

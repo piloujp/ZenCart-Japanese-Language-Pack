@@ -16,7 +16,6 @@ class jpparcelsea extends ZenShipping
     **/
     public $country_code;
 
-    
     /**
      * constructor
      *

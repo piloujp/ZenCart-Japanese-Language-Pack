@@ -20,7 +20,7 @@ class yamato extends ZenShipping
      * @var array
     **/
     public $yamato_countries_nbr;
-    
+
     /**
      * constructor
      *

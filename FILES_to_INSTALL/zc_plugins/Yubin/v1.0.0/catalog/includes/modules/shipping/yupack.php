@@ -20,7 +20,7 @@ class yupack extends ZenShipping
      * @var array
     **/
     public $yupack_countries_nbr;
-    
+
     /**
      * constructor
      *

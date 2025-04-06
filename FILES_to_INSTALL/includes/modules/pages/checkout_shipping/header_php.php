@@ -133,7 +133,6 @@ if (isset($_SESSION['cart']->cartID)) {
     $comments = $_SESSION['comments'];
   }
 
-
 // process the selected shipping method
   if ( isset($_POST['action']) && ($_POST['action'] == 'process') ) {
     if (isset($_POST['comments'])) {
@@ -170,7 +169,7 @@ if (isset($_SESSION['cart']->cartID)) {
                 if (isset($quote[0]['methods'][0]['timespec'])) {
                     $_SESSION['shipping']['timespec'] = $quote[0]['methods'][0]['timespec']; //add for japanese shipping module or any module with delivery time option
                 }
-                
+
               zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
             }
           }

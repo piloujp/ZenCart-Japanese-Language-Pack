@@ -220,7 +220,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     if (PRODUCTS_IMAGE_NO_IMAGE_STATUS === '1' && !is_file($src)) {
         $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
     }
-    
+
     $zco_notifier->notify('NOTIFY_OPTIMIZE_IMAGE', $template_dir, $src, $title, $width, $height, $parameters);
 
     // Determine if the source-file exists.
@@ -336,7 +336,6 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     }
     return zen_image($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image, $alt, '', '', $parameters);
   }
-
 
 /**
  * Draw a <button> element
@@ -474,7 +473,6 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     return $css_button;
   }
 
-
 /*
  *  Output a separator either through whitespace, or with an image
  */
@@ -490,7 +488,6 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     }
     return zen_image($image, '', $width, $height);
   }
-
 
 /**
  * generates javascript for dynamically updating the states/provinces list when the country is changed
@@ -543,7 +540,6 @@ function zen_js_zone_list(string $country, string $form, string $field) {
         '  }' . "\n";
     return $output_string;
 }
-
 
 /*
  *  Output a form
@@ -780,7 +776,6 @@ function zen_js_zone_list(string $country, string $form, string $field) {
 
     return $field;
   }
-
 
 /*
  *  Hide form elements while including session id info

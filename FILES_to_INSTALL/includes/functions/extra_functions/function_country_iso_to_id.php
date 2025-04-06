@@ -9,7 +9,7 @@
 function zen_country_iso_to_id(string $country_code): ?int
   {
     global $db;
-    
+
     $result = $db->Execute(
         "SELECT countries_id FROM countries
         WHERE countries_iso_code_2 = '" . $country_code . "'
@@ -17,6 +17,6 @@ function zen_country_iso_to_id(string $country_code): ?int
         null,
         true
     );
-    
+
     return $result->RecordCount() !== 0 ? (int)$result->fields['countries_id'] : null;
   } 

@@ -15,7 +15,7 @@ class jpparcelems extends ZenShipping
      * @var int
     **/
     public $country_code;
-    
+
     /**
      * constructor
      *

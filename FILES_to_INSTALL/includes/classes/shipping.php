@@ -190,7 +190,7 @@ class shipping
     public function get_box_size()
     {
         global $weight_qty_sizes_array, $shipping_num_boxes, $sizes_array, $box_array, $max_size_array, $multiboxes, $box_sizes_array;
-        
+
         if (empty($multiboxes)) {$multiboxes = 'None';}
         if ($multiboxes == 'Size') {
             $items_size_array[0] = $sizes_array;
@@ -594,7 +594,7 @@ class shipping
     {
         global $shipping_weight, $uninsurable_value, $max_shipping_weight, $shipping_num_boxes, $weight_array, $box_array, $box_sizes_array, $multiboxes, $max_items, $max_size_array;
         $quotes_array = [];
-        
+
         // Stop calculations if one item is over weight limit set in admin
         $heaviest_item = $weight_array[0][1];
         if ($heaviest_item and $heaviest_item >= SHIPPING_MAX_WEIGHT) {
