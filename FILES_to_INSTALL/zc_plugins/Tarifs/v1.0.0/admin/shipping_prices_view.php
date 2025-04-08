@@ -33,7 +33,14 @@ if (isset($_POST['savetarifs'])) {
         WHERE id = :tid:
         ";
     $tarifs_update = $db->bindVars($tarifs_update, ':tid:', $_POST['tid'], 'integer');
-    $db->Execute($tarifs_update);
+    $result = $db->Execute($tarifs_update);
+    if (!$result) {
+        $messageStack->add_session(ERROR_SHIPPING_DATA_NOT_SAVED, 'error');
+        zen_redirect(zen_href_link(FILENAME_SHIPPING_PRICES_VIEW));
+    } else {
+        $messageStack->add_session(TEXT_SHIPPING_DATA_SAVED, 'success');
+        zen_redirect(zen_href_link(FILENAME_SHIPPING_PRICES_VIEW));
+    }
 }
 
 ?>
@@ -76,22 +83,23 @@ if (isset($_POST['savetarifs'])) {
 </head>
 <body>
 <!-- header //-->
-    <?php require DIR_WS_INCLUDES . 'header.php'; ?>
+    <?php require DIR_WS_INCLUDES . 'header.php' ?>
 <!-- header_eof //-->
 <!-- body //-->
     <div class="list-title">
-        <?= TARIFS_TITLE; ?>
+        <?= TARIFS_TITLE ?>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 configurationColumnLeft">
         <table class="table table-hover table-striped">
             <thead>
             <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?= TARIF_ID; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= PLUGIN_MODULE_NAME; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= SHIP_METHOD_NAME; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= RATES_APLICATION_DATE; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= PRICE_UPDATE_DATE; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= QUOTE_ARRAY; ?></th>
+                <th class="dataTableHeadingContent text-center"><?= PLUGIN_MODULE_LOGO ?></th>
+                <th class="dataTableHeadingContent text-center"><?= PLUGIN_MODULE_NAME ?></th>
+                <th class="dataTableHeadingContent text-center"><?= SHIP_METHOD_NAME ?></th>
+                <th class="dataTableHeadingContent text-center"><?= RATES_APLICATION_DATE ?></th>
+                <th class="dataTableHeadingContent text-center"><?= PRICE_UPDATE_DATE ?></th>
+                <th class="dataTableHeadingContent text-center"><?= QUOTE_ARRAY ?></th>
             </tr>
             </thead>
             <tbody>
@@ -121,19 +129,20 @@ if (isset($_POST['savetarifs'])) {
                 if ((isset($tInfo)) && ($item['id'] == $tInfo->id) && isset($_GET['tid'])) {
                     if ($_GET['action'] === 'edit') {
             ?>
-            <tr class="dataTableRowSelected" id="tarif<?= $item['id']; ?>">
+            <tr class="dataTableRowSelected" id="tarif<?= $item['id'] ?>">
                 <?php } else { ?>
-            <tr class="dataTableRowSelected" id="tarif<?= $item['id']; ?>" onclick="document.location.href = '<?= zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, zen_get_all_get_params(array('tid', 'action')) . 'tid=' . $tInfo->id . '&action=edit#tarif' . $tInfo->id); ?>'">
+            <tr class="dataTableRowSelected" id="tarif<?= $item['id'] ?>" onclick="document.location.href = '<?= zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, zen_get_all_get_params(array('tid', 'action')) . 'tid=' . $tInfo->id . '&action=edit#tarif' . $tInfo->id) ?>'">
                 <?php }} else { ?>
-            <tr class="dataTableRow"  id="tarif<?=  $item['id']; ?>" onclick="document.location.href = '<?= zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, zen_get_all_get_params(array('tid', 'action')) . 'tid=' . $item['id'] . '#tarif' . $item['id']); ?>'">
+            <tr class="dataTableRow"  id="tarif<?=  $item['id'] ?>" onclick="document.location.href = '<?= zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, zen_get_all_get_params(array('tid', 'action')) . 'tid=' . $item['id'] . '#tarif' . $item['id']) ?>'">
                 <?php
                         }
                 ?>
-                <td class="dataTableContent"><?= $item['id']; ?></td>
-                <td class="dataTableContent text-center"><?= $item['module']; ?></td>
-                <td class="dataTableContent text-center"><?= $item['method']; ?></td>
-                <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : ''); ?> text-center"><?= zen_date_short($item['imple_date']); ?></td>
-                <td class="dataTableContent text-center"><?= zen_date_short($item['update_date']);?></td>
+                <td class="dataTableContent"><?= $item['id'] ?></td>
+                <td class="dataTableContent text-center"><?=  '<img src="../zc_plugins/Tarifs/' . $installedPlugins[$item['module']]['version'] . '/admin/images/icons/' . $item['module'] . '_icon.png" alt="' . $item['module'] . ' logo" style="height:22px; vertical-align: middle">' ?></td>
+                <td class="dataTableContent text-center"><?= $item['module'] ?></td>
+                <td class="dataTableContent text-center"><?= $item['method'] ?></td>
+                <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : '') ?> text-center"><?= zen_date_short($item['imple_date']) ?></td>
+                <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
                 <td class="dataTableContent text-center">
                 <?php
                 $tr_array = json_decode($item['quote_zone'], true);
