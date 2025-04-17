@@ -293,7 +293,6 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
     $address['fax'] = !empty($incoming['fax']) ? zen_output_string_protected($incoming['fax']) : '';
 
     $address['streets'] = !empty($address['suburb']) ? $address['street'] . $address['cr'] . $address['suburb'] : $address['street'];
-    $address['statecomma'] = !empty($address['state']) ? $address['state'] . ', ' : '';
 
     $country = '';
     if (!empty($incoming['country_id'])) {
@@ -309,6 +308,7 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
         }
     }
     $address['country'] = $country;
+    $address['statecomma'] = !empty($address['state']) ? $address['state'] . ', ' : '';
 
     // add uppercase variants for backward compatibility
     $address['HR'] = $address['hr'];
@@ -400,5 +400,3 @@ function zen_address_label($customers_id, $address_id = 1, $html = false, $boln 
 
     return zen_address_format($format_id, $address->fields, $html, $boln, $eoln);
 }
-
-
