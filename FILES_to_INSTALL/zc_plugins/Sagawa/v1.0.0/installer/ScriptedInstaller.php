@@ -119,9 +119,9 @@ class ScriptedInstaller extends ScriptedInstallBase
     {
         $this->executeInstallerSql(
             "DELETE FROM " . TABLE_CONFIGURATION . "
-                WHERE configuration_key LIKE 'MODULE_SHIPPING_SAGAWA%'
-                    OR configuration_key LIKE 'MODULE_PAYMENT_SAGAWAECOLLECT%'
-                    OR configuration_key LIKE 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT%'
+                WHERE configuration_key LIKE 'MODULE\_SHIPPING\_SAGAWA%'
+                    OR configuration_key LIKE 'MODULE\_PAYMENT\_SAGAWAECOLLECT%'
+                    OR configuration_key LIKE 'MODULE\_ORDER\_TOTAL\_SAGAWAECOLLECT%'
             ;"
         );
 

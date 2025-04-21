@@ -71,10 +71,10 @@ class ScriptedInstaller extends ScriptedInstallBase
     {
         $this->executeInstallerSql(
             "DELETE FROM " . TABLE_CONFIGURATION . "
-                WHERE configuration_key LIKE 'MODULE_SHIPPING_YAMATO%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_NEKOPOSU%'
-                    OR configuration_key LIKE 'MODULE_PAYMENT_YAMATOECOLLECT%'
-                    OR configuration_key LIKE 'MODULE_ORDER_TOTAL_YAMATOECOLLECT%'
+                WHERE configuration_key LIKE 'MODULE\_SHIPPING\_YAMATO%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_NEKOPOSU%'
+                    OR configuration_key LIKE 'MODULE\_PAYMENT\_YAMATOECOLLECT%'
+                    OR configuration_key LIKE 'MODULE\_ORDER\_TOTAL\_YAMATOECOLLECT%'
             ;"
         );
 

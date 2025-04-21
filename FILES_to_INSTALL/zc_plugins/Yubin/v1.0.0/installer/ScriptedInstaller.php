@@ -183,12 +183,12 @@ class ScriptedInstaller extends ScriptedInstallBase
     {
         $this->executeInstallerSql(
             "DELETE FROM " . TABLE_CONFIGURATION . "
-                WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELAIR%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_JPPARCELSEA%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_JPPARCELEMS%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_YUPACK%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_LETTERPACKLITE%'
-                    OR configuration_key LIKE 'MODULE_SHIPPING_LETTERPACKPLUS%'
+                WHERE configuration_key LIKE 'MODULE\_SHIPPING\_JPPARCELAIR%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_JPPARCELSEA%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_JPPARCELEMS%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_YUPACK%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_LETTERPACKLITE%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_LETTERPACKPLUS%'
             ;"
         );
 
