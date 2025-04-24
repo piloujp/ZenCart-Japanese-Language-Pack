@@ -14,13 +14,44 @@ class zcObserverJpparcelair extends base
 
     protected function update(&$class, $eventID, $not_used, &$enabled)
     {
-/*        $products = $_SESSION['cart']->get_products();
-        foreach($products as $product) {
-            // disable for some categorie ids ($product['category']) or product ids ($product['id'])
-            if ($product['category'] == 44 || $product['category'] == 56 || $product['id'] == 27) {
-                $enabled = false;
-                return;
+        $cat_list = (!empty(MODULE_SHIPPING_JPPARCELAIR_CAT_LIST)) ? explode(',', MODULE_SHIPPING_JPPARCELAIR_CAT_LIST) : [-1];
+        $prod_list = (!empty(MODULE_SHIPPING_JPPARCELAIR_PROD_LIST)) ? explode(',', MODULE_SHIPPING_JPPARCELAIR_PROD_LIST) : [-1];
+        if (!empty($cat_list) && !empty($prod_list)) {
+            $products = $_SESSION['cart']->get_products();
+            switch (true) {
+                case MODULE_SHIPPING_JPPARCELAIR_CATEGORIES === 'Disable' && MODULE_SHIPPING_JPPARCELAIR_PRODUCTS === 'Disable':
+                    foreach($products as $product) {
+                        if (in_array($product["category"], $cat_list) || in_array($product['id'], $prod_list)) {
+                            $enabled = false;
+                            return;
+                        }
+                    }
+                    break;
+                case MODULE_SHIPPING_JPPARCELAIR_CATEGORIES === 'Disable' && MODULE_SHIPPING_JPPARCELAIR_PRODUCTS === 'Enable':
+                    foreach($products as $product) {
+                        if (in_array($product["category"], $cat_list) && !in_array($product['id'], $prod_list)) {
+                            $enabled = false;
+                            return;
+                        }
+                    }
+                    break;
+                case MODULE_SHIPPING_JPPARCELAIR_CATEGORIES === 'Enable' && MODULE_SHIPPING_JPPARCELAIR_PRODUCTS === 'Disable':
+                    foreach($products as $product) {
+                        if (!in_array($product["category"], $cat_list) || in_array($product['id'], $prod_list)) {
+                            $enabled = false;
+                            return;
+                        }
+                    }
+                    break;
+                case MODULE_SHIPPING_JPPARCELAIR_CATEGORIES === 'Enable' && MODULE_SHIPPING_JPPARCELAIR_PRODUCTS === 'Enable':
+                    foreach($products as $product) {
+                        if (!in_array($product["category"], $cat_list) && !in_array($product['id'], $prod_list)) {
+                            $enabled = false;
+                            return;
+                        }
+                    }
+                    break;
             }
-        }*/
+        }
     }
 }

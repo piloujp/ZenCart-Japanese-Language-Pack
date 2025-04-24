@@ -37,7 +37,7 @@ class yupack extends ZenShipping
         if (null === $this->sort_order) return false;
 
         $Pversion = zen_get_plugin_version('Yubin');
-        $this->icon = (!empty($Pversion)) ? HTTPS_SERVER . DIR_WS_CATALOG . 'zc_plugins/Yubin/' . $Pversion . '/catalog/includes/templates/default/images/icons/shipping_yupack.gif' : '';
+        $this->icon = (!empty($Pversion)) ? HTTPS_SERVER . DIR_WS_CATALOG . 'zc_plugins/Yubin/' . $Pversion . '/catalog/includes/templates/default/images/icons/shipping_yupack.png' : '';
         $this->tax_class = MODULE_SHIPPING_YUPACK_TAX_CLASS;
         $this->tax_basis = MODULE_SHIPPING_YUPACK_TAX_BASIS;
         // disable only when entire cart is free shipping
@@ -222,6 +222,10 @@ class yupack extends ZenShipping
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Yu-Pack shipping method', 'MODULE_SHIPPING_YUPACK_STATUS', 'True', 'Do you want to offer Yu-Pack rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Yupack shipping method for some categories', 'MODULE_SHIPPING_YUPACK_CATEGORIES', 'Disable', 'Do you want to enable or disable Yupack shipping for some categories?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_YUPACK_CAT_LIST', '', 'Comma separated list of categoies IDs to be enables or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Yupack shipping method for some products', 'MODULE_SHIPPING_YUPACK_PRODUCTS', 'Disable', 'Do you want to enable or disable Yupack shipping for some products?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_YUPACK_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_YUPACK_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_YUPACK_MAX_WEIGHT', '30', 'Maximum weight that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_YUPACK_MAX_GIRTH', '170', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
@@ -241,6 +245,10 @@ class yupack extends ZenShipping
     {
         return [
             'MODULE_SHIPPING_YUPACK_STATUS',
+            'MODULE_SHIPPING_YUPACK_CATEGORIES',
+            'MODULE_SHIPPING_YUPACK_CAT_LIST',
+            'MODULE_SHIPPING_YUPACK_PRODUCTS',
+            'MODULE_SHIPPING_YUPACK_PROD_LIST',
             'MODULE_SHIPPING_YUPACK_HANDLING',
             'MODULE_SHIPPING_YUPACK_MAX_WEIGHT',
             'MODULE_SHIPPING_YUPACK_MAX_GIRTH',

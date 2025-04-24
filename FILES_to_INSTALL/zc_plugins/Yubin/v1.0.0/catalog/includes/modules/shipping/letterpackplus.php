@@ -114,6 +114,10 @@ class letterpackplus extends ZenShipping
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Letter Pack Plus shipping', 'MODULE_SHIPPING_LETTERPACKPLUS_STATUS', 'True', 'Do you want to offer Letter Pack Plus rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Letter Pack Plus shipping method for some categories', 'MODULE_SHIPPING_LETTERPACKPLUS_CATEGORIES', 'Disable', 'Do you want to enable or disable Letter Pack Plus shipping for some categories?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_LETTERPACKPLUS_CAT_LIST', '', 'Comma separated list of categoies IDs to be enables or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Letter Pack Plus shipping method for some products', 'MODULE_SHIPPING_LETTERPACKPLUS_PRODUCTS', 'Disable', 'Do you want to enable or disable Letter Pack Plus shipping for some products?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_LETTERPACKPLUS_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Size - Add new boxes when size limit is reached', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Size\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, val_function, date_added) values ('Shipping Cost', 'MODULE_SHIPPING_LETTERPACKPLUS_COST', '600', 'The shipping cost for all orders using this shipping method.', '6', '0', '" . '{"error":"TEXT_POSITIVE_FLOAT","id":"FILTER_VALIDATE_FLOAT","options":{"options":{"min_range":0}}}'  . "', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Maximum shipping weight', 'MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT', '4', 'Maximum weight that can be ship with this method.', '6', '0', now())");
@@ -131,6 +135,10 @@ class letterpackplus extends ZenShipping
     {
         return [
             'MODULE_SHIPPING_LETTERPACKPLUS_STATUS',
+            'MODULE_SHIPPING_LETTERPACKPLUS_CATEGORIES',
+            'MODULE_SHIPPING_LETTERPACKPLUS_CAT_LIST',
+            'MODULE_SHIPPING_LETTERPACKPLUS_PRODUCTS',
+            'MODULE_SHIPPING_LETTERPACKPLUS_PROD_LIST',
             'MODULE_SHIPPING_LETTERPACKPLUS_MULTIBOX',
             'MODULE_SHIPPING_LETTERPACKPLUS_COST',
             'MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT',

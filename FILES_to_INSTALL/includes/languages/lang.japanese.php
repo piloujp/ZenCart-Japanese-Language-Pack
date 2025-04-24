@@ -366,6 +366,7 @@ $define = [
     'TABLE_HEADING_UPCOMING_PRODUCTS' => '入荷予定商品',
     'TABLE_HEADING_WEIGHT' => '重量',
     'TABLE_HEADING_FEATURED_CATEGORIES' => '注目のカテゴリー',
+    'TAX_EXEMPT_DESCRIPTION' => '免税',
     'TEXT_ADMIN_DOWN_FOR_MAINTENANCE' => 'お知らせ：ただいまメンテナンス作業のためサイトを休止しています。',
     'TEXT_ALL_CATEGORIES' => '全カテゴリ',
     'TEXT_ALL_MANUFACTURERS' => '全メーカー',

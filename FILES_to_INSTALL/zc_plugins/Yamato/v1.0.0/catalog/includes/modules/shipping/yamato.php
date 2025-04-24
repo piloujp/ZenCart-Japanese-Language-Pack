@@ -222,6 +222,10 @@ class yamato extends ZenShipping
     {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Yamato shipping method', 'MODULE_SHIPPING_YAMATO_STATUS', 'True', 'Do you want to offer Yamato rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Yamato shipping method for some categories', 'MODULE_SHIPPING_YAMATO_CATEGORIES', 'Disable', 'Do you want to enable or disable Yamato shipping for some categories?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_YAMATO_CAT_LIST', '', 'Comma separated list of categoies IDs to be enables or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Yamato shipping method for some products', 'MODULE_SHIPPING_YAMATO_PRODUCTS', 'Disable', 'Do you want to enable or disable Yamato shipping for some products?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_YAMATO_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_YAMATO_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_YAMATO_MAX_WEIGHT', '30', 'Maximum weight that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_YAMATO_MAX_GIRTH', '200', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
@@ -241,6 +245,10 @@ class yamato extends ZenShipping
     {
         return [
             'MODULE_SHIPPING_YAMATO_STATUS',
+            'MODULE_SHIPPING_YAMATO_CATEGORIES',
+            'MODULE_SHIPPING_YAMATO_CAT_LIST',
+            'MODULE_SHIPPING_YAMATO_PRODUCTS',
+            'MODULE_SHIPPING_YAMATO_PROD_LIST',
             'MODULE_SHIPPING_YAMATO_HANDLING',
             'MODULE_SHIPPING_YAMATO_MAX_WEIGHT',
             'MODULE_SHIPPING_YAMATO_MAX_GIRTH',
