@@ -40,6 +40,22 @@ class shipping
      * Initialized modules whose status is "enabled"
      */
     protected array $initialized_modules = [];
+    /**
+     * $weight_qty_sizes_array is an array of weight, dimension and quantity of each product in cart
+     */
+    public array $weight_qty_sizes_array;
+    /**
+     * $weight_array is ordered array of products weight in cart
+     */
+    public array $weight_array;
+    /**
+     * $sizes_array is ordered array of products dimension in cart
+     */
+    public array $sizes_array;
+    /**
+     * $max_item contains dimension of the biggest item in cart
+     */
+    public array $max_item;
 
     public function __construct($module = null)
     {
@@ -61,7 +77,7 @@ class shipping
      */
     protected function initialize_modules($module = null): void
     {
-        global $messageStack, $languageLoader, $installedPlugins, $weight_qty_sizes_array, $weight_array, $sizes_array, $max_items, $multiboxes;
+        global $messageStack, $languageLoader, $installedPlugins, $multiboxes;
 
         // -----
         // Locate all shipping modules, looking in both /includes/modules/shipping
@@ -125,15 +141,15 @@ class shipping
         $max_item_width = 0;
         $max_item_height = 0;
         $max_item_girth = 0;
-        $weight_qty_sizes_array = $this->get_weight_qty_sizes(); // function call to make an array of cart items including id, weight, quantity, length, width, height, girth and volume ordered by weight
-        foreach($weight_qty_sizes_array as $keys => $datas) { // make simplified arrays, one for cart items weight and another for cart items dimensions
-            $sorted_sizes_array = array($datas['length'], $datas['width'], $datas['height']);
+        $this->weight_qty_sizes_array = $this->get_weight_qty_sizes(); // function call to make an array of cart items including id, weight, quantity, length, width, height, girth and volume ordered by weight
+        foreach($this->weight_qty_sizes_array as $keys => $datas) { // make simplified arrays, one for cart items weight and another for cart items dimensions
+            $sorted_sizes_array = [$datas['length'], $datas['width'], $datas['height']];
             rsort($sorted_sizes_array,SORT_NUMERIC);
             $sorted_sizes_array[] = $datas['vol'];
             $sorted_sizes_array[] = $datas['id'];
             $sorted_sizes_array[] = $datas['qty'];
-            $sizes_array[] = $sorted_sizes_array;
-            $weight_array[] = array($datas['id'], $datas['weight'], $datas['qty']);
+            $this->sizes_array[] = $sorted_sizes_array;
+            $this->weight_array[] = [$datas['id'], $datas['weight'], $datas['qty']];
             if ($sorted_sizes_array[0] > $max_item_length) {
                 $max_item_length = $sorted_sizes_array[0];
             }
@@ -147,9 +163,9 @@ class shipping
                 $max_item_girth = $datas['girth'];
             }
         }
-        $max_items = array($max_item_length, $max_item_width, $max_item_height, $max_item_girth);
-        $colvol = array_column($sizes_array, 3);
-        array_multisort($colvol, SORT_DESC, $sizes_array);
+        $this->max_item = [$max_item_length, $max_item_width, $max_item_height, $max_item_girth];
+        $colvol = array_column($this->sizes_array, 3);
+        array_multisort($colvol, SORT_DESC, $this->sizes_array);
         $this->calculate_boxes_weight_and_tare();
         $this->get_box_size();
     }
@@ -189,16 +205,16 @@ class shipping
     // calculate box size with data from $weight_qty_sizes_array and or $sizes_array
     public function get_box_size()
     {
-        global $weight_qty_sizes_array, $shipping_num_boxes, $sizes_array, $box_array, $max_size_array, $multiboxes, $box_sizes_array;
+        global $shipping_num_boxes, $box_array, $max_size_array, $multiboxes, $box_sizes_array;
 
         if (empty($multiboxes)) {$multiboxes = 'None';}
         if ($multiboxes == 'Size') {
-            $items_size_array[0] = $sizes_array;
+            $items_size_array[0] = $this->sizes_array;
         } elseif ($shipping_num_boxes > 1) {
-            $items_size_array = array();
+            $items_size_array = [];
             for ($i =0; $i < $shipping_num_boxes; $i++) { // make an array of items for each box
-                foreach($sizes_array as $key => $value) {
-                    if (in_array($sizes_array[$key][4], array_column($box_array[$i]['items_ref'], 'ref'))) {
+                foreach($this->sizes_array as $key => $value) {
+                    if (in_array($this->sizes_array[$key][4], array_column($box_array[$i]['items_ref'], 'ref'))) {
                         $items_size_array[$i][] = $value;
                     }
                 }
@@ -207,12 +223,12 @@ class shipping
                 array_multisort($sort_col, SORT_DESC, $items_size_array[$i]); // array ordered by above column
             }
         } else {
-            $items_size_array[0] = $sizes_array;
+            $items_size_array[0] = $this->sizes_array;
             $shipping_num_boxes = 1;
         }
         // Begining of parcel size calculation
         $box_length = $box_width = $box_height = $sum_height = $count_height = 0;
-        foreach($weight_qty_sizes_array as $keys => $datas) { // calculate default height for empty height items using mean value of items with defined sizes.
+        foreach($this->weight_qty_sizes_array as $keys => $datas) { // calculate default height for empty height items using mean value of items with defined sizes.
             if ($datas['height'] > 0) {
                 $sum_height += $datas['height'];
                 $count_height++;
@@ -223,8 +239,8 @@ class shipping
         } else {
             return; // if there is no dimension
         }
-        $box_sizes_array = array();
-        $new_box_height = array();
+        $box_sizes_array = [];
+        $new_box_height = [];
         $add_box = 0;
         if ($multiboxes == 'Size') {
             $iter = 1;
@@ -432,12 +448,12 @@ class shipping
                 }
             }
             for ($c = 0; $c < count($new_box_height); $c++) {
-                $box_sizes_array[] = array($maxlength, $maxwidth, $new_box_height[$c]);
+                $box_sizes_array[] = [$maxlength, $maxwidth, $new_box_height[$c]];
                 if ($c > 0) {
                     $shipping_num_boxes++;
                 }
             }
-            $box_sizes_array[] = array($maxlength, $maxwidth, $box_height);
+            $box_sizes_array[] = [$maxlength, $maxwidth, $box_height];
         }
         return $box_sizes_array;
     }
@@ -446,23 +462,38 @@ class shipping
     public function get_weight_qty_sizes()
     {
         global $db;
-        $weight_quantity_sizes_array = array();
+        $weight_quantity_sizes_array = [];
         if (is_array($_SESSION['cart']->contents)) {
             foreach ($_SESSION['cart']->contents as $products_id => $data) {
                 $sql = "SELECT products_weight, products_length, products_width, products_height, product_is_always_free_shipping, products_virtual
                     FROM " . TABLE_PRODUCTS . "
-                    WHERE products_id = " . (int)$products_id;
+                    WHERE products_id = " . (int)$products_id . " AND (product_ships_in_own_box IS NULL OR product_ships_in_own_box != 1);";
                 if ($product = $db->Execute($sql)) {
-                    // adjusted count for free shipping
+                    // adjusted for free shipping items
                     if ($product->fields['product_is_always_free_shipping'] != 1 and $product->fields['products_virtual'] != 1) {
-                        $ind_product_weight = $product->fields['products_weight'];
+                        $weight_quantity_sizes_array[] = [
+                            'id' => $products_id,
+                            'weight' => $product->fields['products_weight'],
+                            'qty' => $_SESSION['cart']->contents[$products_id]['qty'],
+                            'length' => $product->fields['products_length'],
+                            'width' => $product->fields['products_width'],
+                            'height' => $product->fields['products_height'],
+                            'girth' => $product->fields['products_length']+$product->fields['products_width']+$product->fields['products_height'],
+                            'vol' => $product->fields['products_length']*$product->fields['products_width']*$product->fields['products_height'],
+                        ];
                     } else {
-                        $ind_product_weight = 0;
+                        $weight_quantity_sizes_array[] = [
+                            'id' => $products_id,
+                            'weight' => 0,
+                            'qty' => $_SESSION['cart']->contents[$products_id]['qty'],
+                            'length' => 1,
+                            'width' => 1,
+                            'height' => 1,
+                            'girth' => 1,
+                            'vol' => 1,
+                        ];
                     }
-                } else {
-                        $ind_product_weight = 0;
-                    }
-                $weight_quantity_sizes_array[] = ['id' => $products_id, 'weight' => $ind_product_weight, 'qty' => $_SESSION['cart']->contents[$products_id]['qty'], 'length' => $product->fields['products_length'], 'width' => $product->fields['products_width'], 'height' => $product->fields['products_height'], 'girth' => $product->fields['products_length']+$product->fields['products_width']+$product->fields['products_height'], 'vol' => $product->fields['products_length']*$product->fields['products_width']*$product->fields['products_height']];
+                }
             }
         }
         $col_weight = array_column($weight_quantity_sizes_array, 'weight');
@@ -478,7 +509,7 @@ class shipping
      */
     public function calculate_boxes_weight_and_tare()
     {
-        global $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $weight_array, $sizes_array, $max_item_length, $multiboxes;
+        global $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $max_item_length, $multiboxes;
 
         $this->abort_legacy_calculations = false;
         $this->notify('NOTIFY_SHIPPING_MODULE_PRE_CALCULATE_BOXES_AND_TARE', [], $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes);
@@ -524,31 +555,31 @@ class shipping
             $_SESSION['shipping_weight'] = $shipping_weight;
             $total_boxes_weight = 0;
             if ($shipping_weight > $max_shipping_weight and $multiboxes == 'Weight') { // Split into many boxes
-                $ItemNumber = count($weight_array);
-                $box_array[] = array('box_weight' => '0', 'box_items' => '0', 'items_ref' => array());
+                $ItemNumber = count($this->weight_array);
+                $box_array[] = ['box_weight' => '0', 'box_items' => '0', 'items_ref' => []];
                 $max_weight_tare = round(($max_shipping_weight - $zc_large_weight) / (1 + ($zc_large_percent/100)), 2); // compensate for box tare
                 // algorithm to calculate number of boxes : Add each item weight starting with bigger ones until max weight is reached, then add next item to new box, then go to next smaller item and try to add it, and do this loop until end of array.
                 for ($k=0; $k < $ItemNumber; $k++) {
-                    if ($weight_array[$k][1] > $max_weight_tare) {
-                        // Echo 'Some item is too heavy (' . $weight_array[$k][1] . ' Kg) to ship ! Max weight limit is ' . $max_weight_tare . " Kg.\n";
+                    if ($this->weight_array[$k][1] > $max_weight_tare) {
+                        // Echo 'Some item is too heavy (' . $this->weight_array[$k][1] . ' Kg) to ship ! Max weight limit is ' . $max_weight_tare . " Kg.\n";
                         break;
                     }
                     $qty_per_box =0;
-                    for ($i=0; $i < $weight_array[$k][2]; $i++) {
+                    for ($i=0; $i < $this->weight_array[$k][2]; $i++) {
                     for ($j=0; $j < $shipping_num_boxes; $j++) {
-                        if (($box_array[$j]['box_weight'] + $weight_array[$k][1]) <= $max_weight_tare) {
-                            $box_array[$j]['box_weight'] += $weight_array[$k][1];
+                        if (($box_array[$j]['box_weight'] + $this->weight_array[$k][1]) <= $max_weight_tare) {
+                            $box_array[$j]['box_weight'] += $this->weight_array[$k][1];
                             $box_array[$j]['box_items'] += 1;
                             $qty_per_box++;
                             if ($qty_per_box == 1) {
-                                $box_array[$j]['items_ref'][] = array('ref' => $weight_array[$k][0], 'qty' => $qty_per_box);
+                                $box_array[$j]['items_ref'][] = ['ref' => $this->weight_array[$k][0], 'qty' => $qty_per_box];
                             } else {
                                 $box_array[$j]['items_ref']['qty'] = $qty_per_box;
                             }
                             break;
                         } elseif ($j == $shipping_num_boxes-1 and $box_array[0]['box_weight'] != 0) {
                             $shipping_num_boxes++;
-                            $box_array[$j+1] = array('box_weight' => '0', 'box_items' => '0', 'items_ref' => array());
+                            $box_array[$j+1] = ['box_weight' => '0', 'box_items' => '0', 'items_ref' => []];
                             $qty_per_box =0;
                         }
                     }
@@ -569,12 +600,12 @@ class shipping
                 $shipping_weight = ceil($shipping_weight*100/$shipping_num_boxes)/100;
             } else {
                 $tot_items = 0;
-                $item_ref = array();
-                foreach ($weight_array as $key => $value) {
+                $item_ref = [];
+                foreach ($this->weight_array as $key => $value) {
                     $tot_items += $value[2];
-                    $item_ref[] = array('ref' => $value[0], 'qty' => $value[2]);
+                    $item_ref[] = ['ref' => $value[0], 'qty' => $value[2]];
                 }
-                $box_array[] = array('box_weight' => $shipping_weight, 'box_items' => $tot_items , 'items_ref' => $item_ref);
+                $box_array[] = ['box_weight' => $shipping_weight, 'box_items' => $tot_items , 'items_ref' => $item_ref];
             }
         }
         $this->notify('NOTIFY_SHIPPING_MODULE_CALCULATE_BOXES_AND_TARE', [], $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight);
@@ -592,11 +623,11 @@ class shipping
      */
     public function quote($method = '', $module = '', $calc_boxes_weight_tare = true, $insurance_exclusions = []): array
     {
-        global $shipping_weight, $uninsurable_value, $max_shipping_weight, $shipping_num_boxes, $weight_array, $box_array, $box_sizes_array, $multiboxes, $max_items, $max_size_array;
+        global $shipping_weight, $uninsurable_value, $max_shipping_weight, $shipping_num_boxes, $box_array, $box_sizes_array, $multiboxes, $max_size_array;
         $quotes_array = [];
 
         // Stop calculations if one item is over weight limit set in admin
-        $heaviest_item = $weight_array[0][1];
+        $heaviest_item = $this->weight_array[0][1];
         if ($heaviest_item and $heaviest_item >= SHIPPING_MAX_WEIGHT) {
         return $quotes_array;
         }
@@ -652,21 +683,21 @@ class shipping
                     $max_girth = NULL;
                 }
                 if (!empty($max_length) && !empty($max_width) && !empty($max_height) && !empty($max_girth)) {
-                    $max_size_array = array('Max_length' => $max_length, 'Max_width' => $max_width, 'Max_height' => $max_height, 'Max_girth' => $max_girth);
+                    $max_size_array = ['Max_length' => $max_length, 'Max_width' => $max_width, 'Max_height' => $max_height, 'Max_girth' => $max_girth];
                 } else {
-                    $max_size_array = array();
+                    $max_size_array = [];
                 }
                 if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MULTIBOX')) { // check if a MULTIBOX constant is defined for this module
                     $multiboxes = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MULTIBOX");
                     if ((count($max_size_array) > 0) && $multiboxes != 'None') {
-                        if ($max_items[0] >= $max_size_array['Max_length'] || $max_items[1] >= $max_size_array['Max_width'] || $max_items[2] >= $max_size_array['Max_height'] || $max_items[3] >= $max_size_array['Max_girth']) {
+                        if ($this->max_item[0] >= $max_size_array['Max_length'] || $this->max_item[1] >= $max_size_array['Max_width'] || $this->max_item[2] >= $max_size_array['Max_height'] || $this->max_item[3] >= $max_size_array['Max_girth']) {
                             continue;
                         }
                     }
                 } else {
                     $multiboxes = 'None';
                 }
-                $box_array = array();
+                $box_array = [];
                 $this->calculate_boxes_weight_and_tare(); // calculates boxes number and their weight with tare and put results in $box_array
                 $this->get_box_size(); // calculates boxes dimensions
                 $save_shipping_weight = $shipping_weight;
