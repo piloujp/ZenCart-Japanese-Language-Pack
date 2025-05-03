@@ -176,7 +176,7 @@ class jpparcelair extends ZenShipping
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable International Parcels Air shipping method', 'MODULE_SHIPPING_JPPARCELAIR_STATUS', 'True', 'Do you want to offer International Parcels Air rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Japan Air Parcel shipping method for some categories', 'MODULE_SHIPPING_JPPARCELAIR_CATEGORIES', 'Disable', 'Do you want to enable or disable Japan Air Parcel shipping for some categories?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_JPPARCELAIR_CAT_LIST', '', 'Comma separated list of categoies IDs to be enables or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_JPPARCELAIR_CAT_LIST', '', 'Comma separated list of categoies IDs to be enabled or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Japan Air Parcel shipping method for some products', 'MODULE_SHIPPING_JPPARCELAIR_PRODUCTS', 'Disable', 'Do you want to enable or disable Japan Air Parcel shipping for some products?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_JPPARCELAIR_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_JPPARCELAIR_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Weight - New boxes based on weight limit', '6', '0', 'zen_cfg_select_option(array(\'None\', \'Weight\'), ', now())");
@@ -207,9 +207,9 @@ class jpparcelair extends ZenShipping
             'MODULE_SHIPPING_JPPARCELAIR_MAX_WEIGHT',
             'MODULE_SHIPPING_JPPARCELAIR_FREE_SHIPPING',
             'MODULE_SHIPPING_JPPARCELAIR_OVER',
-            'MODULE_SHIPPING_JPPARCELAIR_ZONE',
             'MODULE_SHIPPING_JPPARCELAIR_TAX_CLASS',
             'MODULE_SHIPPING_JPPARCELAIR_TAX_BASIS',
+            'MODULE_SHIPPING_JPPARCELAIR_ZONE',
             'MODULE_SHIPPING_JPPARCELAIR_SORT_ORDER',
         ];
     }
