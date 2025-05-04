@@ -68,9 +68,6 @@ UPDATE configuration cf JOIN japan_zones jz ON cf.configuration_value = jz.zone_
 # Delete temporary table
 DROP TABLE japan_zones;
 
-#Update address format (remove 様)
-UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様' WHERE address_format LIKE '〒%';
-
 #Set units to Kg and cm
 UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
 UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
@@ -85,4 +82,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_minor = '1.0200', project_version_comment = 'Manual version update with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '1.0210', project_version_comment = 'Manual version update with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

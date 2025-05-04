@@ -2,9 +2,9 @@
 # * This SQL script upgrades the core Zen Cart database structure from v2.0.0 to v2.1.0
 # *
 # * @access private
-# * @copyright Copyright 2003-2024 Zen Cart Development Team
+# * @copyright Copyright 2003-2025 Zen Cart Development Team
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: pilou2/piloujp 2024 Aug 19 Modified in v2.1.0-alpha1 $
+# * @version $Id: pilou2/piloujp 2025 May 4 Modified in v2.1.0 $
 #
 
 #PROGRESS_FEEDBACK:!TEXT=Purging caches ...
@@ -126,7 +126,7 @@ UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layou
 
 #通貨設定
 INSERT INTO currencies (title, code, symbol_left, symbol_right, decimal_point, thousands_point, decimal_places, value, last_updated) VALUES ('Japanese Yen','JPY','￥','','.',',','0','1.000000', now());
-UPDATE configuration SET configuration_value = 'JPY', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
+
 
 # 税金・税率設定
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
@@ -134,8 +134,6 @@ INSERT INTO geo_zones (geo_zone_name, geo_zone_description, last_modified, date_
 INSERT INTO zones_to_geo_zones (zone_country_id, geo_zone_id, last_modified, date_added) SELECT @japan_id, geo_zone_id, now(), now() FROM geo_zones WHERE geo_zone_name = '日本';
 INSERT INTO tax_rates (tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) SELECT ztg.association_id, tc.tax_class_id, '1', '10.0', '（内消費税：10%）', now(), now() FROM tax_class tc, zones_to_geo_zones ztg JOIN geo_zones gz ON ztg.geo_zone_id = gz.geo_zone_id WHERE tc.tax_class_title = '消費税' AND gz.geo_zone_name ='日本';
 
-#販売国
-#UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key='STORE_COUNTRY';
 
 #一般設定
 UPDATE configuration SET configuration_value = '&pound;,£:&euro;,€:&yen;,￥:&reg;,®:&trade;,™', last_modified = now() WHERE configuration_key = 'CURRENCIES_TRANSLATIONS';
@@ -146,6 +144,37 @@ UPDATE configuration SET configuration_value = 'false', last_modified = now() WH
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'DISPLAY_PRICE_WITH_TAX';
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
+
+#PROGRESS_FEEDBACK:!TEXT=Installing Japanese Language
+#日本語を設定
+INSERT IGNORE INTO languages (name, code, image, directory, sort_order) VALUES ('Japanese', 'ja', 'icon.gif', 'japanese', '1');
+
+Set @lan_id = (SELECT languages_id FROM languages WHERE code = 'ja');
+Set @default_lang = (SELECT languages_id FROM languages WHERE code = (SELECT configuration_value FROM configuration WHERE configuration_key = 'DEFAULT_LANGUAGE'));
+
+INSERT IGNORE INTO categories_description (categories_id, language_id, categories_name, categories_description) SELECT categories_id, @lan_id, categories_name, categories_description FROM categories_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO products_description (products_id, language_id, products_name, products_description, products_url) SELECT products_id, @lan_id, products_name, products_description, products_url FROM products_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO meta_tags_products_description (products_id, language_id, metatags_title, metatags_keywords, metatags_description) SELECT products_id, @lan_id, metatags_title, metatags_keywords, metatags_description FROM meta_tags_products_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO meta_tags_categories_description (categories_id, language_id, metatags_title, metatags_keywords, metatags_description) SELECT categories_id, @lan_id, metatags_title, metatags_keywords, metatags_description FROM meta_tags_categories_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO products_options (products_options_id, language_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style) SELECT products_options_id, @lan_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style FROM products_options WHERE language_id = @default_lang;
+INSERT IGNORE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) SELECT products_options_values_id, @lan_id, products_options_values_name, products_options_values_sort_order FROM products_options_values WHERE language_id = @default_lang;
+INSERT IGNORE INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_url) SELECT manufacturers_id, @lan_id, manufacturers_url FROM manufacturers_info WHERE languages_id = @default_lang;
+INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, sort_order FROM orders_status WHERE language_id = @default_lang;
+INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
+
+UPDATE orders_status SET orders_status_name='処理待ち', sort_order=0 WHERE language_id=@lan_id AND orders_status_name='Pending';
+UPDATE orders_status SET orders_status_name='処理中', sort_order=10 WHERE language_id=@lan_id AND orders_status_name='Processing';
+UPDATE orders_status SET orders_status_name='完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
+UPDATE orders_status SET orders_status_name='更新', sort_order=30 WHERE language_id=@lan_id AND orders_status_name='Update';
+UPDATE orders_status SET orders_status_name='配送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
+
+# if POSM is installed
+SET @tbl_exists = (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = 'products_options_stock_names');
+SET @sql = IF(@tbl_exists = 0,'SELECT ""','UPDATE IGNORE products_options_stock_names SET pos_name="バックオーダー" WHERE language_id=@lan_id AND pos_name_id=1');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 
 #### VERSION UPDATE STATEMENTS

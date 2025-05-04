@@ -116,7 +116,7 @@ return [
 'TEXT_UPGRADE_TO_VER_X_COMPLETED' => 'バージョン %s へのアップグレードが完了しました。',
 'TEXT_CANNOT_DETECT_VERSION' => '致命的なエラー: 既存の Zen Cart データベースのバージョンを検出できません。バージョンが古すぎるか (v1.2.6 より前の場合は、まず v1.2.6 にアップグレードしてください)、または深刻な損傷を受けています。',
 'TEXT_NO_REMAINING_UPGRADE_STEPS' => '問題無いことが確認できました！アップグレードに必要なステップはありません。',
-'TEXT_CONTINUE' => '続行する',
+'TEXT_CONTINUE' => '続行',
 'TEXT_CANCEL' => 'キャンセル',
 'TEXT_CONTINUE_FIX' => '前に戻って修正する',
 'TEXT_REFRESH' => '再読込',
