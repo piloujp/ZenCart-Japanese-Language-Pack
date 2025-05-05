@@ -1,8 +1,8 @@
 <?php
 return [
-    'pluginVersion' => 'v1.0.0',
-    'pluginName' => "Kuroneko Yamato",
-    'pluginDescription' => 'This plugin enables the Yamato Takyubin and Nekoposu shipping method.',
+    'pluginVersion' => 'v1.0.1',
+    'pluginName' => "Nihon Yubinkyoku",
+    'pluginDescription' => 'This plugin enables the Japanese Postoffice shipping methods.',
     'pluginAuthor' => 'piloujp',
     'pluginId' => 0, // ID from Zen Cart forum
     'zcVersions' => [],
