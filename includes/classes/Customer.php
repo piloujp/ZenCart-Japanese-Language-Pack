@@ -35,7 +35,7 @@ class Customer extends base
         }
     }
 
-    public function getData(string $element = null)
+    public function getData(?string $element = null)
     {
         if (empty($element)) {
             return $this->data;
@@ -72,7 +72,7 @@ class Customer extends base
      * @param int|null $idToCheck
      * @return bool
      */
-    public function isSameAsLoggedIn(int $idToCheck = null)
+    public function isSameAsLoggedIn(?int $idToCheck = null)
     {
         if (empty($idToCheck)) $idToCheck = $this->customer_id;
         $is_currently_logged_in = !empty($_SESSION['customer_id']) && $idToCheck === (int)$_SESSION['customer_id'];
@@ -177,7 +177,7 @@ class Customer extends base
         return (bool)$in_guest_checkout;
     }
 
-    public function customerExistsInDatabase(int $customer_id = null): bool
+    public function customerExistsInDatabase(?int $customer_id = null): bool
     {
         global $db;
 
@@ -434,7 +434,7 @@ class Customer extends base
         return false;
     }
 
-    public function getAddressBookEntries(int $customer_id = null): object
+    public function getAddressBookEntries(?int $customer_id = null): object
     {
         global $db;
 
@@ -451,7 +451,7 @@ class Customer extends base
         return $result;
     }
 
-    public function getNumberOfAddressBookEntries(int $customer_id = null): int
+    public function getNumberOfAddressBookEntries(?int $customer_id = null): int
     {
         if (empty($customer_id)) $customer_id = $this->customer_id;
         if (empty($customer_id)) return 0;
@@ -459,7 +459,7 @@ class Customer extends base
         return count($this->getAddressBookEntries());
     }
 
-    public function getFormattedAddressBookList(int $customer_id = null): array
+    public function getFormattedAddressBookList(?int $customer_id = null): array
     {
         global $db;
 
