@@ -1005,7 +1005,7 @@ if ($action === 'edit' || $action === 'update') {
                     echo zen_draw_input_field(
                         'entry_telephone',
                         htmlspecialchars(
-                            $cInfo->entry_telephone,
+                            (string)($cInfo->entry_telephone ?? $cInfo->customers_telephone),
                             ENT_COMPAT,
                             CHARSET,
                             true
