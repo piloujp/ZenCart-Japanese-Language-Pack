@@ -76,13 +76,13 @@ ALTER TABLE orders       ADD COLUMN billing_name_kana        varchar(64) NULL;
 
 #PROGRESS_FEEDBACK:!TEXT=Adding Japanese invoice data
 # 住所に電話番号を追加、個人情報側からは電話番号削除
-ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32);
-ALTER TABLE address_book ADD COLUMN entry_fax varchar(32);
-ALTER TABLE orders ADD COLUMN delivery_telephone varchar(32);
-ALTER TABLE orders ADD COLUMN delivery_fax varchar(32);
-ALTER TABLE orders ADD COLUMN billing_telephone varchar(32);
-ALTER TABLE orders ADD COLUMN billing_fax varchar(32);
-ALTER TABLE orders ADD COLUMN customers_fax varchar(32);
+ALTER TABLE address_book ADD COLUMN entry_telephone varchar(32) NULL;
+ALTER TABLE address_book ADD COLUMN entry_fax varchar(32) NULL;
+ALTER TABLE orders ADD COLUMN delivery_telephone varchar(32) NULL;
+ALTER TABLE orders ADD COLUMN delivery_fax varchar(32) NULL;
+ALTER TABLE orders ADD COLUMN billing_telephone varchar(32) NULL;
+ALTER TABLE orders ADD COLUMN billing_fax varchar(32) NULL;
+ALTER TABLE orders ADD COLUMN customers_fax varchar(32) NULL;
 
 #送信モヂュール用
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
@@ -133,7 +133,7 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 UPDATE configuration SET configuration_value = @japan_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'true', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
-#PROGRESS_FEEDBACK:!TEXT=Installing Japanese Language
+#PROGRESS_FEEDBACK:!TEXT=Adding Japanese Language
 #日本語を設定
 INSERT IGNORE INTO languages (name, code, image, directory, sort_order) VALUES ('Japanese', 'ja', 'icon.gif', 'japanese', '1');
 
@@ -150,6 +150,15 @@ INSERT IGNORE INTO manufacturers_info (manufacturers_id, languages_id, manufactu
 INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, sort_order FROM orders_status WHERE language_id = @default_lang;
 INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
+
+CREATE TABLE IF NOT EXISTS products_options_stock_names (
+            pos_name_id int NOT NULL default 0,
+            language_id int NOT NULL default 1,
+            pos_name varchar(64) NOT NULL default '',
+            PRIMARY KEY (pos_name_id, language_id)
+        ) ENGINE=MyISAM;
+INSERT IGNORE INTO products_options_stock_names (pos_name_id, language_id, pos_name) VALUE (1, @default_lang, 'Back-ordered');
+INSERT IGNORE INTO products_options_stock_names (pos_name_id, language_id, pos_name) VALUE (1, @lan_id, 'バックオーダー');
 
 UPDATE orders_status SET orders_status_name='処理待ち', sort_order=0 WHERE language_id=@lan_id AND orders_status_name='Pending';
 UPDATE orders_status SET orders_status_name='処理中', sort_order=10 WHERE language_id=@lan_id AND orders_status_name='Processing';
