@@ -590,6 +590,16 @@ if (!empty($action) && $order_exists === true) {
                 <td><strong><?php echo ENTRY_TELEPHONE_NUMBER; ?></strong></td>
                 <td><a href="tel:<?php echo preg_replace('/\s+/', '', zen_output_string_protected($order->customer['telephone'])); ?>"><?php echo zen_output_string_protected($order->customer['telephone']); ?></a></td>
               </tr>
+              <?php
+              if (!empty($order->customer['fax']) && (preg_replace('/\s+/', '', zen_output_string_protected($order->customer['fax'])) != preg_replace('/\s+/', '', zen_output_string_protected($order->customer['telephone'])))) {
+                  ?>
+              <tr>
+                <td><strong><?php echo ENTRY_FAX_NUMBER; ?></strong></td>
+                <td><a href="tel:<?php echo preg_replace('/\s+/', '', zen_output_string_protected($order->customer['fax'])); ?>"><?php echo zen_output_string_protected($order->customer['fax']); ?></a></td>
+              </tr>
+              <?php
+              }
+              ?>
               <tr>
                 <td><strong><?php echo ENTRY_EMAIL_ADDRESS; ?></strong></td>
                 <td><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
@@ -640,6 +650,7 @@ if (!empty($action) && $order_exists === true) {
                 <td><?php echo (empty($order->delivery)) ? TEXT_NONE : zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br>');
                     echo !empty($order->delivery['name_kana']) ? '<br><small>' . ENTRY_NAME_KANA . $order->delivery['name_kana'] . '</small>' : '';
                     echo !empty($order->delivery['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $order->delivery['telephone'] . '</small>' : '';
+                    echo (!empty($order->delivery['fax']) && $order->delivery['fax'] != $order->delivery['telephone']) ? '<br><small>' . ENTRY_FAX_NUMBER . $order->delivery['fax'] . '</small>' : '';
                     echo !empty($order->delivery['timespec']) ? '<br><small>' . TEXT_TIME_SPECIFY . $order->delivery['timespec'] . '</small>' :'';
                 ?></td>
               </tr>
@@ -679,6 +690,7 @@ if (!empty($action) && $order_exists === true) {
                 <td><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, '', '<br>');
                     echo !empty($order->billing['name_kana']) ? '<br><small>' . ENTRY_NAME_KANA . $order->billing['name_kana'] . '</small>' : '';
                     echo !empty($order->billing['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $order->billing['telephone'] . '</small>' : '';
+                    echo (!empty($order->delivery['fax']) && $order->delivery['fax'] != $order->delivery['telephone']) ? '<br><small>' . ENTRY_FAX_NUMBER . $order->delivery['fax'] . '</small>' : '';
                 ?></td>
               </tr>
               <tr>

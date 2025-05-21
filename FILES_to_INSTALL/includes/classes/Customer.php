@@ -584,6 +584,7 @@ class Customer extends base
                     entry_country_id AS country_id,
                     countries_name AS country_name,
                     countries_iso_code_3 AS country_iso,
+                    countries_iso_code_2 AS country_iso_2,
                     entry_telephone AS telephone,
                     entry_fax AS fax
                FROM " . TABLE_ADDRESS_BOOK . " ab
