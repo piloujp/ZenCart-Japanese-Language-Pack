@@ -1,8 +1,8 @@
 <?php
 
 $define = [
-    'ADMIN_PLUGIN_MANAGER_NAME_FOR_REFERRAL' => '私たちのことをどこで知りましたか',
-    'ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_REFERRAL' => 'このプラグインは、顧客がサイトをどこで見つけたのかを識別するよう促すプルダウン メニューを作成します。',
+    'ADMIN_PLUGIN_MANAGER_NAME_FOR_HOWDIDYOUHEAR' => '私たちのことをどこで知りましたか',
+    'ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_HOWDIDYOUHEAR' => 'このプラグインは、顧客がサイトをどこで見つけたのかを識別するよう促すプルダウン メニューを作成します。',
 // Admin configuration
     'CFGTITLE_DISPLAY_REFERRAL_OTHER' => '「その他」紹介オプションを表示しますか？',
     'CFGDESC_DISPLAY_REFERRAL_OTHER' => 'アカウント作成時に紹介元にテキストボックスで「その他 - 指定してください」と表示する',
