@@ -1487,7 +1487,7 @@ class order extends base
         }
         return null;
     }
-    
+
     private function getAddress(array $customerAddresses, int $arrayKey): array
     {
         $address = $customerAddresses[$arrayKey]['address'];

@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 /* https://developers.google.com/recaptcha/docs/verify
 Last updated 2024-10-14 UTC.
-    missing-input-secret	The secret parameter is missing.
-    invalid-input-secret	The secret parameter is invalid or malformed.
-    missing-input-response	The response parameter is missing.
-    invalid-input-response	The response parameter is invalid or malformed.
-    bad-request	            The request is invalid or malformed.
-    timeout-or-duplicate	The response is no longer valid: either is too old or has been used previously
+    missing-input-secret    The secret parameter is missing.
+    invalid-input-secret    The secret parameter is invalid or malformed.
+    missing-input-response  The response parameter is missing.
+    invalid-input-response  The response parameter is invalid or malformed.
+    bad-request             The request is invalid or malformed.
+    timeout-or-duplicate    The response is no longer valid: either is too old or has been used previously
  */
 $define = [
      'RECAPTCHA_UNDEFINED_SITEKEY' => '** reCaptcha: サイトキーが未定義  **',
