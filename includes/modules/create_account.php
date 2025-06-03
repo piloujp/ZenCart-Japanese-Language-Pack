@@ -293,7 +293,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'process') && !isset($login_
         $customer = new Customer;
 
     if ($_SESSION['language'] == 'japanese') {
-    	$data = compact(
+        $data = compact(
         'firstname', 'firstname_kana', 'lastname', 'lastname_kana', 'email_address', 'nick', 'email_format', 'telephone', 'fax',
         'newsletter', 'password', 'customers_authorization', 'customers_referral',
         'gender', 'dob', 'company', 'street_address',

@@ -32,8 +32,8 @@ require(DIR_WS_MODULES . zen_get_module_directory('checkout_address_book.php'));
   <br class="clearBoth">
    <address>
        <?php echo zen_address_format(zen_get_address_format_id($address['country_id']), $address['address'], true, ' ', '<br>');
-		echo !empty($address['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $address['telephone'] . '</small>' : '';
-		echo !empty($address['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $address['fax'] . '</small>' : ''; ?>
+        echo !empty($address['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $address['telephone'] . '</small>' : '';
+        echo !empty($address['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $address['fax'] . '</small>' : ''; ?>
    </address>
 
 <?php

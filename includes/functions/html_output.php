@@ -221,7 +221,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     if (PRODUCTS_IMAGE_NO_IMAGE_STATUS === '1' && !is_file($src)) {
         $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
     }
-    
+
     $zco_notifier->notify('NOTIFY_OPTIMIZE_IMAGE', $template_dir, $src, $title, $width, $height, $parameters);
 
     // Determine if the source-file exists.
@@ -516,17 +516,17 @@ function zen_js_zone_list(string $country, string $form, string $field) {
             $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
         }
 
-		if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
-			$sql = "SELECT zone_name, zone_id
-					FROM " . TABLE_ZONES . "
-					WHERE zone_country_id =  107  AND  (zone_name REGEXP '^[一-龠]')
-					ORDER BY zone_id";
-		} else {
-			$sql = "SELECT zone_name, zone_id
-					FROM " . TABLE_ZONES . "
-					WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
-					ORDER BY zone_name";
-		}
+        if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
+            $sql = "SELECT zone_name, zone_id
+                    FROM " . TABLE_ZONES . "
+                    WHERE zone_country_id =  107  AND  (zone_name REGEXP '^[一-龠]')
+                    ORDER BY zone_id";
+        } else {
+            $sql = "SELECT zone_name, zone_id
+                    FROM " . TABLE_ZONES . "
+                    WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
+                    ORDER BY zone_name";
+        }
         $results = $db->Execute($sql);
         $num_state = 1;
         foreach ($results as $state) {

@@ -104,14 +104,14 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $error = true;
       $messageStack->add('addressbook', ENTRY_LAST_NAME_KANA_ERROR);
     }
-	$entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
-	if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
-    	$error = true;
-    	$messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
-	}
-	if (ACCOUNT_FAX_NUMBER == 'true') {
-    	$entry_fax = zen_db_prepare_input($_POST['entry_fax']);
-	}
+    $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
+    if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
+        $error = true;
+        $messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
+    }
+    if (ACCOUNT_FAX_NUMBER == 'true') {
+        $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
+    }
   }
   if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
@@ -217,7 +217,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         if (ACCOUNT_FAX_NUMBER == 'true') {
           $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$entry_fax, 'type'=>'stringIgnoreNull');
         }
-	  }
+      }
 
     if ($_POST['action'] == 'update') {
       $where_clause = "address_book_id = :edit and customers_id = :customersID";

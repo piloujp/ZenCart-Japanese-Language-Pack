@@ -427,7 +427,7 @@ function zen_draw_products_pull_down_attributes($field_name, $parameters = '', $
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
    return zen_draw_pulldown_products_having_attributes($field_name, $parameters, $exclude, $order_by, $filter_by_option_name); 
 }
- 
+
 function zen_draw_products_pull_down_categories($field_name, $parameters = '', $exclude = [], $show_id = false, $show_parent = false) {
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
    return zen_draw_pulldown_categories_having_products($field_name, $parameters, $exclude, $show_id, $show_parent); 
@@ -443,4 +443,3 @@ function zen_get_orders_status()
    trigger_error('Call to deprecated function; please use new names', E_USER_DEPRECATED);
    return zen_get_orders_status_pulldown_array(); 
 }
-

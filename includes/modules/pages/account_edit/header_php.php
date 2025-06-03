@@ -145,7 +145,7 @@ if ($_SESSION['language'] == 'japanese') {
                             array('fieldName'=>'customers_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull'),
                             array('fieldName'=>'customers_email_format', 'value'=>$email_format, 'type'=>'stringIgnoreNull')
     );
-	}
+    }
 
     if ((CUSTOMERS_REFERRAL_STATUS == '2' and $customers_referral != '')) {
       $sql_data_array[] = array('fieldName'=>'customers_referral', 'value'=>$customers_referral, 'type'=>'stringIgnoreNull');

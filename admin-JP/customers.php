@@ -393,12 +393,12 @@ if (!empty($action)) {
             } else {
                 if ($error == true) {
                     $cInfo = new objectInfo($_POST);
-					$cInfo->company = $cInfo->entry_company;
-					$cInfo->street_address = $cInfo->entry_street_address;
-					$cInfo->suburb = $cInfo->entry_suburb;
-					$cInfo->postcode = $cInfo->entry_postcode;
-					$cInfo->city =  $cInfo->entry_city;
-					$cInfo->state = $cInfo->entry_state;
+                    $cInfo->company = $cInfo->entry_company;
+                    $cInfo->street_address = $cInfo->entry_street_address;
+                    $cInfo->suburb = $cInfo->entry_suburb;
+                    $cInfo->postcode = $cInfo->entry_postcode;
+                    $cInfo->city =  $cInfo->entry_city;
+                    $cInfo->state = $cInfo->entry_state;
                     $processed = true;
                 }
             }
@@ -706,12 +706,12 @@ if (!empty($action)) {
                             echo zen_draw_input_field(
                                 'customers_dob',
                                 ((empty($cInfo->customers_dob) || $cInfo->customers_dob <= '0001-01-01' || $cInfo->customers_dob == '0001-01-01 00:00:00') ? '' :
-									(($action == 'edit') ? zen_date_short($cInfo->customers_dob) : $cInfo->customers_dob)
+                                    (($action == 'edit') ? zen_date_short($cInfo->customers_dob) : $cInfo->customers_dob)
                                 ),
                                 'maxlength="10" class="form-control" id="customers_dob" minlength="' . ENTRY_DOB_MIN_LENGTH . '"',
                                 (ACCOUNT_DOB == 'true' && (int)ENTRY_DOB_MIN_LENGTH != 0 ? true : false)
                             );
-							echo($error == true && $entry_date_of_birth_error == true ? '&nbsp;' . ENTRY_DATE_OF_BIRTH_ERROR : '');?>
+                            echo($error == true && $entry_date_of_birth_error == true ? '&nbsp;' . ENTRY_DATE_OF_BIRTH_ERROR : '');?>
                         </div>
                     </div>
                 <?php
@@ -739,8 +739,8 @@ if (!empty($action)) {
                                 50
                             ) . ' class="form-control" id="customers_email_address" minlength="' . ENTRY_EMAIL_ADDRESS_MIN_LENGTH . '"',
                             true
-							);
-							echo($error == true && $entry_email_address_check_error == true ? '&nbsp;' . ENTRY_EMAIL_ADDRESS_ERROR : '');?>
+                            );
+                            echo($error == true && $entry_email_address_check_error == true ? '&nbsp;' . ENTRY_EMAIL_ADDRESS_ERROR : '');?>
                     </div>
                 </div>
                 <?php
@@ -1203,11 +1203,11 @@ if (!empty($action)) {
                     foreach ($addressArray as $addresses) {
                         ?>
                         <h3 class="addressBookDefaultName"><?php
-							echo !empty($addresses['firstname_kana']) ? '<small>' . $addresses['firstname_kana'] . '</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : '';
-							echo !empty($addresses['lastname_kana']) ? '&nbsp;<small>' . $addresses['lastname_kana'] . '</small><br>' : '';
+                            echo !empty($addresses['firstname_kana']) ? '<small>' . $addresses['firstname_kana'] . '</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : '';
+                            echo !empty($addresses['lastname_kana']) ? '&nbsp;<small>' . $addresses['lastname_kana'] . '</small><br>' : '';
                             echo zen_output_string_protected($addresses['firstname'] . ' ' . $addresses['lastname']);?>
-							<?php echo((int)$addresses['address_book_id'] === zen_get_customers_address_primary((int)$_GET['cID']) ? '&nbsp;' . PRIMARY_ADDRESS : '');
-							?></h3>
+                            <?php echo((int)$addresses['address_book_id'] === zen_get_customers_address_primary((int)$_GET['cID']) ? '&nbsp;' . PRIMARY_ADDRESS : '');
+                            ?></h3>
                         <address><?php
                             echo zen_address_format(
                                 $addresses['format_id'],
@@ -1216,8 +1216,8 @@ if (!empty($action)) {
                                 ' ',
                                 '<br>'
                             );
-							echo !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '';
-							echo !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : ''; ?></address>
+                            echo !empty($addresses['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $addresses['telephone'] . '</small>' : '';
+                            echo !empty($addresses['fax']) ? '<br><small>' . ENTRY_FAX_NUMBER . $addresses['fax'] . '</small>' : ''; ?></address>
 
                         <br class="clearBoth">
                     <?php

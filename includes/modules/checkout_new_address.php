@@ -177,7 +177,7 @@ if (isset($_POST['action']) && ($_POST['action'] == 'submit')) {
       }
       $sql_data_array[] = array('fieldName'=>'entry_telephone', 'value'=>$telephone, 'type'=>'stringIgnoreNull');
       if (ACCOUNT_FAX_NUMBER == 'true') {
-      	$sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull');
+          $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull');
       }
       if ($_SESSION['language'] == 'japanese') {
         $sql_data_array[] = array('fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull');

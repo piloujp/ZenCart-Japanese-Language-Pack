@@ -7,7 +7,7 @@
 */
 
 $define = [
-	'EMAIL_GREET' => '',
+    'EMAIL_GREET' => '',
     'OSH_EMAIL_SEPARATOR' => '------------------------------------------------------',
     'OSH_EMAIL_TEXT_SUBJECT' => 'Order Update',
     'OSH_EMAIL_TEXT_ORDER_NUMBER' => 'Order Number:',

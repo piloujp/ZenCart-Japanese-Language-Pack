@@ -162,19 +162,19 @@ if (isset($_SESSION['cart']->cartID)) {
             unset($_SESSION['shipping']);
           } else {
             if ( (isset($quote[0]['methods'][0]['title'])) && (isset($quote[0]['methods'][0]['cost'])) ) {
-				if (isset($quote[0]['methods'][0]['timespec'])) {
-					$_SESSION['shipping'] = array('id' => $_POST['shipping'],
+                if (isset($quote[0]['methods'][0]['timespec'])) {
+                    $_SESSION['shipping'] = array('id' => $_POST['shipping'],
                                 'title' => (($free_shipping == true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . ' (' . $quote[0]['methods'][0]['title'] . ')'),
                                 'cost' => $quote[0]['methods'][0]['cost'],
                                 'timespec' => $quote[0]['methods'][0]['timespec']//add for japanese shipping module or any module with delivery time option
                                 );
-				} else {
-					$_SESSION['shipping'] = array('id' => $_POST['shipping'],
+                } else {
+                    $_SESSION['shipping'] = array('id' => $_POST['shipping'],
                                 'title' => (($free_shipping == true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . ' (' . $quote[0]['methods'][0]['title'] . ')'),
                                 'cost' => $quote[0]['methods'][0]['cost']
                                 );
-				}
-                
+                }
+
               zen_redirect(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
             }
           }

@@ -204,17 +204,17 @@ function zen_image_submit($image, $alt = '', $parameters = '')
         $output_string .= '  } else if (' . $country . ' == "' . $countries->fields['zone_country_id'] . '") {' . "\n";
       }
 
-	  if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
+      if ($_SESSION['language'] == "japanese" AND (int)$countries->fields['zone_country_id'] == 107) {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = 107  AND  (zone_name REGEXP '^[一-龠]')
                               ORDER BY zone_id");
-	  } else {
+      } else {
       $states = $db->Execute("SELECT zone_name, zone_id
                               FROM " . TABLE_ZONES . "
                               WHERE zone_country_id = " . (int)$countries->fields['zone_country_id'] . " AND (zone_name NOT REGEXP '^[一-龠]')
                               ORDER BY zone_name");
-	  }
+      }
 
       $num_state = 1;
       while (!$states->EOF) {

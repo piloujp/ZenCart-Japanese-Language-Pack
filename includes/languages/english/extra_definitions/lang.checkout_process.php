@@ -15,7 +15,7 @@ $define = [
     'EMAIL_TEXT_PAYMENT_METHOD' => 'Payment Method',
     'EMAIL_SEPARATOR' => '------------------------------------------------------',
     'EMAIL_ORDER_NUMBER_SUBJECT' => ' No: ',
-	'EMAIL_GREET' => '',
+    'EMAIL_GREET' => '',
 ];
 
 return $define;
