@@ -35,10 +35,10 @@ if (isset($_POST['savetarifs'])) {
     $tarifs_update = $db->bindVars($tarifs_update, ':tid:', $_POST['tid'], 'integer');
     $result = $db->Execute($tarifs_update);
     if (!$result) {
-        $messageStack->add_session(ERROR_SHIPPING_DATA_NOT_SAVED, 'error');
+        $messageStack->add_session(TARIFS_ERROR_SHIPPING_DATA_NOT_SAVED, 'error');
         zen_redirect(zen_href_link(FILENAME_SHIPPING_PRICES_VIEW));
     } else {
-        $messageStack->add_session(TEXT_SHIPPING_DATA_SAVED, 'success');
+        $messageStack->add_session(TARIFS_TEXT_SHIPPING_DATA_SAVED, 'success');
         zen_redirect(zen_href_link(FILENAME_SHIPPING_PRICES_VIEW));
     }
 }
@@ -79,6 +79,11 @@ if (isset($_POST['savetarifs'])) {
     .future {
         color: red;
     }
+    .no-plugin {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body>
@@ -86,6 +91,7 @@ if (isset($_POST['savetarifs'])) {
     <?php require DIR_WS_INCLUDES . 'header.php' ?>
 <!-- header_eof //-->
 <!-- body //-->
+<?php if (defined('TABLE_TARIFS')) {?>
     <div class="list-title">
         <?= TARIFS_TITLE ?>
     </div>
@@ -93,13 +99,13 @@ if (isset($_POST['savetarifs'])) {
         <table class="table table-hover table-striped">
             <thead>
             <tr class="dataTableHeadingRow">
-                <th class="dataTableHeadingContent"><?= TARIF_ID; ?></th>
-                <th class="dataTableHeadingContent text-center"><?= PLUGIN_MODULE_LOGO ?></th>
-                <th class="dataTableHeadingContent text-center"><?= PLUGIN_MODULE_NAME ?></th>
-                <th class="dataTableHeadingContent text-center"><?= SHIP_METHOD_NAME ?></th>
-                <th class="dataTableHeadingContent text-center"><?= RATES_APLICATION_DATE ?></th>
-                <th class="dataTableHeadingContent text-center"><?= PRICE_UPDATE_DATE ?></th>
-                <th class="dataTableHeadingContent text-center"><?= QUOTE_ARRAY ?></th>
+                <th class="dataTableHeadingContent"><?= TARIFS_ID; ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_PLUGIN_MODULE_LOGO ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_PLUGIN_MODULE_NAME ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_SHIP_METHOD_NAME ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_RATES_APLICATION_DATE ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_PRICE_UPDATE_DATE ?></th>
+                <th class="dataTableHeadingContent text-center"><?= TARIFS_QUOTE_ARRAY ?></th>
             </tr>
             </thead>
             <tbody>
@@ -138,7 +144,7 @@ if (isset($_POST['savetarifs'])) {
                         }
                 ?>
                 <td class="dataTableContent"><?= $item['id'] ?></td>
-                <td class="dataTableContent text-center"><?=  '<img src="../zc_plugins/' . $item['module'] . '/' . $installedPlugins[$item['module']]['version'] . '/admin/images/icons/' . $item['module'] . '_icon.png" alt="' . $item['module'] . ' logo" style="height:22px; vertical-align: middle">' ?></td>
+                <td class="dataTableContent text-center"><?=  (array_key_exists($item['module'], $installedPlugins)) ? '<img src="../zc_plugins/' . $item['module'] . '/' . $installedPlugins[$item['module']]['version'] . '/admin/images/icons/' . $item['module'] . '_icon.png" alt="' . $item['module'] . ' logo" style="height:22px; vertical-align: middle">' : TARIFS_PLUGIN_NOT_INSTALLED ?></td>
                 <td class="dataTableContent text-center"><?= $item['module'] ?></td>
                 <td class="dataTableContent text-center"><?= $item['method'] ?></td>
                 <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : '') ?> text-center"><?= zen_date_short($item['imple_date']) ?></td>
@@ -216,6 +222,11 @@ if (isset($_POST['savetarifs'])) {
             </tbody>
         </table>
     </div>
+<?php } else {?>
+    <div class="no-plugin">
+    <?= TARIFS_NO_PLUGIN ?>
+    </div>
+<?php }?>
 <!-- body_eof //-->
 <!-- footer //-->
     <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
