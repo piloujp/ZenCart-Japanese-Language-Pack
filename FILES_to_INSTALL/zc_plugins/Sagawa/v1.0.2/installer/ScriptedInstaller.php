@@ -78,7 +78,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         'N65' => [2552,4807,7579,11220,14740,19580,22000,26840,31680,41360,51040],
         ];
 
-        $imple_date = '2024-08-01'; // Update this to save a new rates tablbe in database
+        $imple_date = '2024-08-01'; // Update this to save a new rates table in database
 
         global $sniffer;
         zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');

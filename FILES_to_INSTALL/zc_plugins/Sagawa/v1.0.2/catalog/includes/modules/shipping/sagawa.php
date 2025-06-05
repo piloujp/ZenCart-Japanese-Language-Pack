@@ -117,8 +117,7 @@ class sagawa extends ZenShipping
 
         if (in_array($country_id, $this->sagawa_countries_nbr)) {
             $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");
-            $a_zonevalues = $zoneinfo->fields;
-            $s_zone_code = $a_zonevalues['zone_code'];
+            $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
             if ( (MODULE_SHIPPING_SAGAWA_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_SAGAWA_OVER) ) {
