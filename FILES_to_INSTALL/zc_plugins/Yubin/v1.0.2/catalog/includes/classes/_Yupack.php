@@ -93,7 +93,7 @@ class _Yupack {
             [3, 120, 30],
             [4, 140, 30],
             [5, 160, 30],
-            [5, 170, 30],
+            [6, 170, 30],
         ];
 
         if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
