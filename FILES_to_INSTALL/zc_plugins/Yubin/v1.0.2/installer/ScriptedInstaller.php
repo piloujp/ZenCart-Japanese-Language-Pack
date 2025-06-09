@@ -138,6 +138,10 @@ class ScriptedInstaller extends ScriptedInstallBase
         'N12' => [1750,2050,2380,2680,3060,3380,5090],
         ];
 
+        // Based charge for Yupack Chilled is same as Yupack, with 160 corresponding to 150, and 170 not used.
+        // クール便追加コスト(60,80,100,120,140,150)
+        $default_yupackchilled_surcharge = [225, 360, 675, 675, 1330, 2100];
+
         $imple_date = '2024-08-01'; // Update this to save a new rates tablbe in database
 
         global $sniffer;
@@ -163,7 +167,8 @@ class ScriptedInstaller extends ScriptedInstallBase
                 ('Yubin', 'jpparcelair', '" . $imple_date . "', NOW(), '" . json_encode($default_jpparcelair) . "'),
                 ('Yubin', 'jpparcelsea', '" . $imple_date . "', NOW(), '" . json_encode($default_jpparcelsea) . "'),
                 ('Yubin', 'jpparcelems', '" . $imple_date . "', NOW(), '" . json_encode($default_jpparcelems) . "'),
-                ('Yubin', 'Yupack', '" . $imple_date . "', NOW(), '" . json_encode($default_yupack_pricerank) . "')
+                ('Yubin', 'Yupack', '" . $imple_date . "', NOW(), '" . json_encode($default_yupack_pricerank) . "'),
+                ('Yubin', 'YupackChilled', '" . $imple_date . "', NOW(), '" . json_encode($default_yupackchilled_surcharge) . "')
                 ;"
         );
     }

@@ -1,15 +1,15 @@
 <?php
 /*
- * Yupack Class.
+ * Yupack Chilled Class.
  *
  * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2025 Mar 24 Modified in v2.1.0 $
+ * @version $Id: pilou2/piloujp, Gernot 2025 June 10 Modified in v2.1.0 $
  */
 
 /*
-    $rate = new _Yupack('yupack','通常便');
+    $rate = new _YupackChilled('yupackchilled','通常便');
     $rate->SetOrigin('北海道', 'JP');   // 北海道から
     $rate->SetDest('東京都', 'JP');     // 東京都まで
     $rate->SetWeight(10);               // kg
@@ -21,7 +21,7 @@
 
 namespace Zencart\Plugins\Catalog\Yubin;
 
-class _Yupack {
+class _YupackChilled {
     public $quote;
     public $OriginZone;
     public $OrigineChio;
@@ -73,26 +73,28 @@ class _Yupack {
             $this->Height = $height;
         }
     }
-    // サイズ区分(0～6)を返す
-    //
-    // 区分  サイズ名  ３辺計   重量
-    // ----------------------------------
-    // 0     60サイズ  60cmまで  30kgまで
-    // 1     80サイズ  80cmまで  30kgまで
-    // 2    100サイズ 100cmまで 30kgまで
-    // 3    120サイズ 120cmまで 30kgまで
-    // 4    140サイズ 140cmまで 30kgまで
-    // 5    160サイズ 160cmまで 30kgまで
-    // 6    170サイズ 170cmまで 30kgまで
+    // Post Office Refregerated Yu-Pack (updated 2019/10)
+	// サイズ区分(0～5)を返す
+	// 規格外の場合は9を返す(not true: returns -1)
+	//
+	// 区分  サイズ名  ３辺計   重量     クール便
+	// ------------------------------------------
+	// 0     60サイズ  60cmまで 25kgまで + 225 JPY
+	// 1     80サイズ  80cmまで 25kgまで + 360 JPY
+	// 2    100サイズ 100cmまで 25kgまで + 675 JPY
+	// 3    120サイズ 120cmまで 25kgまで + 675 JPY
+    // 4    140サイズ 140cmまで 25kgまで + 1330 JPY
+    // 5    150サイズ 150cmまで 25kgまで + 2100 JPY - only for chilled
+	// 9    規格外
+    // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
     function GetSizeClass() {
         $a_classes = [
-            [0,  60,  30],  // 区分,３辺計,重量 [over 25kgs is 重量ゆうパック]
-            [1,  80,  30],
-            [2, 100, 30],
-            [3, 120, 30],
-            [4, 140, 30],
-            [5, 160, 30],
-            [6, 170, 30],
+            [0,  60, 25],  // 区分,３辺計,重量
+            [1,  80, 25],
+            [2, 100, 25],
+            [3, 120, 25],
+            [4, 140, 25],
+            [5, 150, 25],
         ];
 
         if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
@@ -201,11 +203,15 @@ class _Yupack {
 
     function GetQuote() {
         global $db;
-        // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,170)
+        // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,150)
         // https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html
 
-        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
-        $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
+        $jsonarraybase = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+        $a_pricerank = json_decode($jsonarraybase->fields["quote_zone"], true);
+
+        // クール便追加コスト(60,80,100,120,140,150)
+        $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'YupackChilled' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+        $a_coolcharge = json_decode($jsonarraycharges->fields["quote_zone"], true);
 
 //        $a_pricerank = [
 // ゆうパック運輸との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
@@ -383,18 +389,15 @@ class _Yupack {
             if ( $s_rank ) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
-                    $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE : MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING;
+                    $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YUPACKCHILLED_TEXT_OVERSIZE : MODULE_SHIPPING_YUPACKCHILLED_TEXT_DIMENSION_MISSING;
                 } else {
-                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
-                }
-                if ($this->Weight >= 25) { // 重量ゆうパックは+５６０円になります
-                    $this->quote['cost'] += 560;
+                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass] + $a_coolcharge[$n_sizeclass];
                 }
             } else {
-                $this->quote['error'] = MODULE_SHIPPING_YUPACK_TEXT_OUT_OF_AREA . '(' . $s_key .')';
+                $this->quote['error'] = MODULE_SHIPPING_YUPACKCHILLED_TEXT_OUT_OF_AREA . '(' . $s_key .')';
             }
         } else {
-            $this->quote['error'] = MODULE_SHIPPING_YUPACK_TEXT_ILLEGAL_ZONE . '(' . $this->OriginZone . '=>' . $this->DestZone . ')';
+            $this->quote['error'] = MODULE_SHIPPING_YUPACKCHILLED_TEXT_ILLEGAL_ZONE . '(' . $this->OriginZone . '=>' . $this->DestZone . ')';
         }
         return $this->quote;
     }
