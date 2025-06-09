@@ -388,13 +388,8 @@ class _Yupack {
                 } else {
                     $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
                 }
-                if ($this->Weight >= 25) { // 重量ゆうパックは+５１０か+５２０円になります
-                    if ($s_rank > 8) {
-                        $omoi = 510;
-                    } else {
-                        $omoi = 520;
-                    }
-                    $this->quote['cost'] += $omoi;
+                if ($this->Weight >= 25) { // 重量ゆうパックは+５６０円になります
+                    $this->quote['cost'] += 560;
                 }
             } else {
                 $this->quote['error'] = MODULE_SHIPPING_YUPACK_TEXT_OUT_OF_AREA . '(' . $s_key .')';
