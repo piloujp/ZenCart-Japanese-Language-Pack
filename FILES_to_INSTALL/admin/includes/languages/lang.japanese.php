@@ -235,6 +235,7 @@ $define = [
     'ERROR_PASSWORDS_NOT_MATCHING' => 'パスワードとパスワード(確認用)は同じでなければなりません。',
     'ERROR_PASSWORD_RULES' => 'パスワードは半角英数字を混在させ、%s 文字以上でなければなりません。現在のパスワードと直近4つのパスワードは使用できません。パスワードは、90日おきに期限切れになり、新しいパスワードの入力を求められるようになります。',
     'ERROR_PAYMENT_MODULES_NOT_DEFINED' => '注: 支払いモジュールが起動していません。モジュールから支払いをクリックし、設定してください。',
+    'ERROR_PRODUCT_OPTION_SELECTION' => '<br> ・・・無効なオプション値が選択されました',
     'ERROR_SHIPPING_CONFIGURATION' => '<strong>配送設定エラー!</strong>',
     'ERROR_SHIPPING_MODULES_NOT_DEFINED' => '注: 配送モジュールが起動していません。モジュールから配送をクリックし、設定してください。',
     'ERROR_SHIPPING_ORIGIN_ZIP' => '<strong>警告:</strong> ショップの郵便番号が設定されていません。',
