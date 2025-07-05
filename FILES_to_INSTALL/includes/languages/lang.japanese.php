@@ -520,6 +520,7 @@ $define = [
     'TEXT_TOTAL_AMOUNT' => '&nbsp;&nbsp;金額：',
     'TEXT_TOTAL_ITEMS' => '合計点数：',
     'TEXT_TOTAL_WEIGHT' => '&nbsp;&nbsp;重量：',
+    'TEXT_UNKNOWN_ORDERS_STATUS_NAME' => '不明（%u）',   //- %u is filled in by the Customer class to contain the missing orders_status_id
     'TEXT_UNKNOWN_TAX_RATE' => '税率不明',
     'TEXT_VALID_COUPON' => '割引クーポンを引き換えました',
     'TEXT_WORDS_FREE' => ' 無料語数 ',

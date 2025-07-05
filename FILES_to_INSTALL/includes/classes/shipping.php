@@ -657,6 +657,7 @@ class shipping
                 if (false === $GLOBALS[$quoting_module]->enabled) {
                     continue;
                 }
+
                 if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
                     $max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_WEIGHT");
                 } else {

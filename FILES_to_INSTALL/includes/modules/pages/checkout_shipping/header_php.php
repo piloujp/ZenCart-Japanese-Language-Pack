@@ -133,6 +133,7 @@ if (isset($_SESSION['cart']->cartID)) {
     $comments = $_SESSION['comments'];
   }
 
+
 // process the selected shipping method
   if ( isset($_POST['action']) && ($_POST['action'] == 'process') ) {
     if (isset($_POST['comments'])) {
