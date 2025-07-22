@@ -110,35 +110,35 @@ for ($i = 0; $i < $report->size; $i++) {
   // column name
   echo "           ['";
 
-if ($_SESSION['language'] == 'japanese') {
-  if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW) {
-    echo $report->info[$i]['text'];
-  } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
-    echo $report->info[$i]['text'];
-  } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
-    echo substr($report->info[$i]['text'], 5, 5) . ' ～ ' . substr($report->info[$i]['text'], 18, 5);
-  } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
-    echo ltrim(substr($report->info[$i]['text'], 0, 2), '0');
-  } elseif ($report->size > 5) {
-    echo substr($report->info[$i]['text'], 8, 2);
-  } else {
-    echo substr($report->info[$i]['text'], 5, 5);
+  Switch ($sales_report_view) {
+      case statsSalesReportGraph::YEARLY_VIEW:
+          echo $report->info[$i]['text'];
+          break;
+      case statsSalesReportGraph::MONTHLY_VIEW:
+          echo mb_substr($report->info[$i]['text'], 0, -3);
+          break;
+      case statsSalesReportGraph::WEEKLY_VIEW:
+          if ($_SESSION['language'] == 'japanese') {
+              echo substr($report->info[$i]['text'], 5, 5);
+          } else {
+              echo substr($report->info[$i]['text'], 0, 5);
+          }
+          break;
+      case statsSalesReportGraph::DAILY_VIEW:
+          if ($_SESSION['language'] == 'japanese') {
+              echo substr($report->info[$i]['text'], 5, 5);
+          } else {
+            echo substr($report->info[$i]['text'], 0, 5);
+          }
+          break;
+      case statsSalesReportGraph::HOURLY_VIEW:
+          if (strpos(substr($report->info[$i]['text'], 0, 2), '00') === 0) {
+              echo '0';
+          } else {
+              echo ltrim(substr($report->info[$i]['text'], 0, 2), '0');
+          }
+          break;
   }
-} else {
-  if ($sales_report_view == statsSalesReportGraph::YEARLY_VIEW && $report->size > 5) {
-    echo substr($report->info[$i]['text'], 0, 1);
-  } elseif ($sales_report_view == statsSalesReportGraph::MONTHLY_VIEW) {
-    echo substr($report->info[$i]['text'], 0, 3);
-  } elseif ($sales_report_view == statsSalesReportGraph::WEEKLY_VIEW) {
-    echo substr($report->info[$i]['text'], 0, 5);
-  } elseif ($sales_report_view == statsSalesReportGraph::HOURLY_VIEW) {
-    echo ltrim(substr($report->info[$i]['text'], 0, 2), '0');
-  } elseif ($report->size > 5) {
-    echo substr($report->info[$i]['text'], 3, 2);
-  } else {
-    echo substr($report->info[$i]['text'], 0, 5);
-  }
-}
 
   echo "', ";
 
@@ -189,7 +189,7 @@ if ($_SESSION['language'] == 'japanese') {
     <!-- header_eof //-->
     <!-- body //-->
     <div class="container-fluid">
-      <h1><?php echo $report_desc . ' ' . HEADING_TITLE; ?></h1>
+      <h1><?php echo HEADING_TITLE; ?></h1>
       <!-- body_text //-->
       <table class="table">
         <tr>

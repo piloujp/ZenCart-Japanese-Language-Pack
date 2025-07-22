@@ -9,7 +9,7 @@
 $define = [
     'FILTER_STATUS' => '<b>注文ステータスでフィルタ</b>',
     'FILTER_VALUE' => '<b>フィルタ On/Off</b>',
-    'HEADING_TITLE' => '売上',
+    'HEADING_TITLE' => '売上レポート',
     'TODAY_TO_DATE' => '本日 合計',
     'WEEK_TO_DATE' => '週 合計',
     'MONTH_TO_DATE' => '月 合計',
@@ -23,7 +23,7 @@ $define = [
     'REPORT_TEXT_CONVERSION' => '売上金額',
     'REPORT_TEXT_VARIANCE' => '差異',
     'REPORT_TEXT_HOURLY' => '時間別',
-    'REPORT_TEXT_DAILY' => '本日',
+    'REPORT_TEXT_DAILY' => '日次',
     'REPORT_TEXT_WEEKLY' => '週別',
     'REPORT_TEXT_MONTHLY' => '月別',
     'REPORT_TEXT_YEARLY' => '年別',
