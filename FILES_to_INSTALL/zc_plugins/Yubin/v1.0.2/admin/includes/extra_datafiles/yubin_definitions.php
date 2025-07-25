@@ -1,2 +1,2 @@
 <?php
-if (!defined('TABLE_TARIFS')) define('TABLE_TARIFS', DB_PREFIX . 'tarifs');
+zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
