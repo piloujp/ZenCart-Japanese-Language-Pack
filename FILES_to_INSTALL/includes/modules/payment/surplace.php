@@ -45,11 +45,6 @@
      * @var int
      */
     public $sort_order;
-    /**
-     * $email_footer is used to provide specific instructions of this module use to user by email.
-     * @var string
-     */
-    public $email_footer;
 
 // class constructor
     function __construct() {
@@ -64,8 +59,6 @@
         if (defined('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID > 0) {
             $this->order_status = MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID;
         }
-
-        $this->email_footer = MODULE_PAYMENT_SURPLACE_TEXT_EMAIL_FOOTER;
 
         if (is_object($order)) $this->update_status();
     }
@@ -93,7 +86,7 @@
             }
         }
 
-        // disable the module if the order only contains virtual products
+        // disable the module if the order only contains virtual products or shipping module is not 'storepickup'
         if ($this->enabled == true) {
             if ($order->content_type != 'physical' || (substr_count($_SESSION['shipping']['id'], 'storepickup') == 0)) {
                 $this->enabled = false;
@@ -145,20 +138,10 @@
 
     function install() {
         global $db, $messageStack;
-        if ($_SESSION['language'] == 'japanese') {
-        // Japanese
-            if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
-                $messageStack->add_session('店頭支払いモジュール搭載済み。', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
-                return 'failed';
-            }
-        } else {
-        // English
-            if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
-                $messageStack->add_session('Paiement at the shop module already installed.', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
-                return 'failed';
-            }
+        if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
+            $messageStack->add_session(MODULE_PAYMENT_SURPLACE_TEXT_ALREADY_INSTALLED, 'error');
+            zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
+            return 'failed';
         }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable shop payment', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', 'Do you want to accept payment at the shop?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");

@@ -2,7 +2,7 @@
 $define = [
     'MODULE_PAYMENT_SURPLACE_TEXT_TITLE' => '直払い（店に）',
     'MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION' => '<br>直接支払い。',
-    'MODULE_PAYMENT_SURPLACE_TEXT_EMAIL_FOOTER' => '<br>直接受取・支払の場合は事前にお電話下さい。',
+    'MODULE_PAYMENT_SURPLACE_TEXT_ALREADY_INSTALLED' => '店頭支払いモジュール搭載済み。',
 // bof constant configuration titles and descriptions for payment module surplace
     'CFGTITLE_MODULE_PAYMENT_SURPLACE_STATUS' => '店頭支払いを有効にする',
     'CFGDESC_MODULE_PAYMENT_SURPLACE_STATUS' => '店頭支払いを受け取りますか？',
