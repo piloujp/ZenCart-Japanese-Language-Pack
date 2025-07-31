@@ -2,8 +2,10 @@
 /**
  * ot_sagawaecollect_fee order-total module
  *
- * @package orderTotal
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: pilou2/piloujp 2025 Mar 24 Modified in v2.1.0 $
  */
 /**
  * SAGAWAECOLLECT-FEE Order Totals Module
