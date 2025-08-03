@@ -302,7 +302,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
  */
   function zen_image_submit($image, $alt = '', $parameters = '', $sec_class = '') {
     global $template, $current_page_base, $zco_notifier;
-    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes' && strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
+    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes' && mb_strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_SUBMIT');
 
     $image_submit = '<input type="image" src="' . zen_output_string($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image) . '" alt="' . zen_output_string($alt) . '"';
@@ -337,7 +337,6 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     }
     return zen_image($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image, $alt, '', '', $parameters);
   }
-
 
 /**
  * Draw a <button> element
@@ -475,7 +474,6 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     return $css_button;
   }
 
-
 /*
  *  Output a separator either through whitespace, or with an image
  */
@@ -491,7 +489,6 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     }
     return zen_image($image, '', $width, $height);
   }
-
 
 /**
  * generates javascript for dynamically updating the states/provinces list when the country is changed
@@ -544,7 +541,6 @@ function zen_js_zone_list(string $country, string $form, string $field) {
         '  }' . "\n";
     return $output_string;
 }
-
 
 /*
  *  Output a form
@@ -781,7 +777,6 @@ function zen_js_zone_list(string $country, string $form, string $field) {
 
     return $field;
   }
-
 
 /*
  *  Hide form elements while including session id info

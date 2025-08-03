@@ -144,11 +144,11 @@ if ($_SESSION['language'] == 'japanese') {
 
   if ($j == 0) {
   // first value
-  echo round($report->info[$i]['sum'], 2);
-  } else { 
+  echo round($report->info[$i]['sum'], $currencies->get_decimal_places(DEFAULT_CURRENCY));
+  } else {
     // second value
     if ($sales_report_view < statsSalesReportGraph::YEARLY_VIEW) {
-      echo round($report->info[$i]['avg'], 2);
+      echo round($report->info[$i]['avg'], $currencies->get_decimal_places(DEFAULT_CURRENCY));
     }
   }
   echo ']';
@@ -257,7 +257,7 @@ if ($_SESSION['language'] == 'japanese') {
                 <?php
               }
               ?>
-            <tbody>
+            </tbody>
             <tfoot>
                 <?php
                 if (strlen($report->previous . " " . $report->next) > 1) {
@@ -308,7 +308,7 @@ if ($_SESSION['language'] == 'japanese') {
             <td class="dataTableContent text-right"><?php echo FILTER_VALUE ?></td>
           </tr>
           <?php
-          if (($sales_report_filter) == 0) {
+          if (empty($sales_report_filter)) {
             for ($i = 0; $i < $report->status_available_size; $i++) {
               $sales_report_filter .= "0";
             }

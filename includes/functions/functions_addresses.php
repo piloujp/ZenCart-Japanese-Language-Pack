@@ -97,8 +97,8 @@ function zen_get_countries(int $country_id = 0, bool $with_iso_codes = false, bo
  */
 function zen_get_country_name($country_id, $activeOnly = true)
 {
-    $country_array = zen_get_countries($country_id, false, $activeOnly);
-    return $country_array['countries_name'];
+    $country_array = zen_get_countries((int)$country_id, false, $activeOnly);
+    return $country_array['countries_name'] ?? '';
 }
 
 
@@ -109,7 +109,7 @@ function zen_get_country_name($country_id, $activeOnly = true)
  */
 function zen_get_countries_with_iso_codes($country_id, $activeOnly = TRUE)
 {
-    return zen_get_countries($country_id, true, $activeOnly);
+    return zen_get_countries((int)$country_id, true, $activeOnly);
 }
 
 
@@ -117,20 +117,20 @@ function zen_get_countries_with_iso_codes($country_id, $activeOnly = TRUE)
  * returns a pulldown array with zones defined for the specified country
  * used by zen_prepare_country_zones_pull_down()
  *
- * @param int $country_id
+ * @param int|string $country_id
  * @return array for pulldown
  */
-function zen_get_country_zones($country_id)
+function zen_get_country_zones(int|string $country_id): array
 {
     global $db;
     $zones_array = array();
-    if ($_SESSION['language'] == "japanese" AND $country_id == 107) {
-        $zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+    if ($_SESSION['language'] == "japanese" && $country_id == 107) {
+        $zones = $db->Execute("SELECT zone_id, zone_code, zone_name
                             FROM " . TABLE_ZONES . "
                             WHERE zone_country_id = 107 AND  (zone_name REGEXP '^[一-龠]')
                             ORDER BY zone_id");
     } else {
-        $zones = $db->Execute("SELECT zone_id, zone_name, zone_code
+        $zones = $db->Execute("SELECT zone_id, zone_code, zone_name
                             FROM " . TABLE_ZONES . "
                             WHERE zone_country_id = " . (int)$country_id . " AND (zone_name NOT REGEXP '^[一-龠]')
                             ORDER BY zone_name");
@@ -194,14 +194,12 @@ function zen_get_zone_code(int $country_id, int $zone_id, ?string $default_zone 
 }
 
 /**
- * Build an array for pulldown use, including padding for browser-specific constraints
+ * Build an array of country zones for pulldown use
  *
- * @TODO - rework to remove unnecessary code for Mozilla/IE concerns
- *
- * @param string $country_id
+ * @param int|string|null $country_id
  * @return array
  */
-function zen_prepare_country_zones_pull_down($country_id = '')
+function zen_prepare_country_zones_pull_down(int|string|null $country_id = 0): array
 {
 // preset the width of the drop-down for Netscape
     $pre = '';
@@ -209,24 +207,17 @@ function zen_prepare_country_zones_pull_down($country_id = '')
         for ($i = 0; $i < 45; $i++) $pre .= '&nbsp;';
     }
 
-    $zones = zen_get_country_zones($country_id);
+    $zones = zen_get_country_zones($country_id ?? 0);
 
     if (count($zones) > 0) {
-        $zones_select = array(array('id' => '', 'text' => PLEASE_SELECT));
+        $zones_select = [['id' => '', 'text' => PLEASE_SELECT]];
         $zones = array_merge($zones_select, $zones);
     } else {
-        $zones = array(array('id' => '', 'text' => TYPE_BELOW));
-// create dummy options for Netscape to preset the height of the drop-down
-        if ((!zen_browser_detect('MSIE')) && (zen_browser_detect('Mozilla/4'))) {
-            for ($i = 0; $i < 9; $i++) {
-                $zones[] = array('id' => '', 'text' => $pre);
-            }
-        }
+        $zones = [['id' => '', 'text' => TYPE_BELOW]];
     }
 
     return $zones;
 }
-
 
 /**
  * Get array of address_format_ids, suitable for a dropdown
@@ -300,7 +291,6 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
     $address['fax'] = !empty($incoming['fax']) ? zen_output_string_protected($incoming['fax']) : '';
 
     $address['streets'] = !empty($address['suburb']) ? $address['street'] . $address['cr'] . $address['suburb'] : $address['street'];
-    $address['statecomma'] = !empty($address['state']) ? $address['state'] . ', ' : '';
 
     $country = '';
     if (!empty($incoming['country_id'])) {
@@ -316,6 +306,7 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
         }
     }
     $address['country'] = $country;
+    $address['statecomma'] = !empty($address['state']) ? $address['state'] . ', ' : '';
 
     // add uppercase variants for backward compatibility
     $address['HR'] = $address['hr'];
@@ -403,9 +394,7 @@ function zen_address_label($customers_id, $address_id = 1, $html = false, $boln 
 
     $zco_notifier->notify('NOTIFY_ZEN_ADDRESS_LABEL', null, $customers_id, $address_id, $address->fields);
 
-    $format_id = zen_get_address_format_id($address->fields['country_id']);
+    $format_id = zen_get_address_format_id((int)$address->fields['country_id']);
 
     return zen_address_format($format_id, $address->fields, $html, $boln, $eoln);
 }
-
-

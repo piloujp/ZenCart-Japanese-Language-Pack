@@ -49,7 +49,7 @@ class order extends base
      */
     public $delivery = [];
     /**
-     * $doStockDecrement is a flag used by a notifier to prevent the default stock decrement processing 
+     * $doStockDecrement is a flag used by a notifier to prevent the default stock decrement processing
      * @var boolean
      */
     public $doStockDecrement;
@@ -80,7 +80,7 @@ class order extends base
     protected $orderId = null;
     /**
      * $products is an array containing details of the products for the order
-     * @var array 
+     * @var array
      */
     public $products = [];
     /**
@@ -115,17 +115,17 @@ class order extends base
     public $statuses = [];
     /**
      * $total_cost is the total cost of the order
-     * @var float 
+     * @var float
      */
     public $total_cost;
     /**
      * $total_tax is the total amount of tax for the order
-     * @var float 
+     * @var float
      */
     public $total_tax;
     /**
      * $total_weight is the total weight of the order
-     * @var float 
+     * @var float
      */
     public $total_weight;
     /**
@@ -250,7 +250,7 @@ class order extends base
             'fax' => $order->fields['customers_fax'],
             'name_kana' => $order->fields['customers_name_kana'],
         ];
-        $this->customer['zone_id'] = $this->getCountryZoneId((int)$this->customer['country'], $this->customer['state']);
+        $this->customer['zone_id'] = $this->getCountryZoneId((int)$this->customer['country']['id'], $this->customer['state']);
 
         $this->delivery = [
             'name' => $order->fields['delivery_name'],
@@ -288,7 +288,7 @@ class order extends base
             'fax' => $order->fields['billing_fax'],
             'name_kana' => $order->fields['billing_name_kana'],
         ];
-        $this->billing['zone_id'] = $this->getCountryZoneId((int)$this->billing['country'], $this->billing['state']);
+        $this->billing['zone_id'] = $this->getCountryZoneId((int)$this->billing['country']['id'], $this->billing['state']);
 
         $index = 0;
         $orders_products_query = "SELECT *
@@ -406,12 +406,13 @@ class order extends base
             }
         }
 
+        $customer_notified_clause = (IS_ADMIN_FLAG === true) ? '' : ' AND osh.customer_notified >= 0';
         $sql = "SELECT os.orders_status_name, osh.*
                 FROM   " . TABLE_ORDERS_STATUS . " os
                 LEFT JOIN " . TABLE_ORDERS_STATUS_HISTORY . " osh USING (orders_status_id)
                 WHERE osh.orders_id = :ordersID
                 AND os.language_id = :languageID
-                AND osh.customer_notified >= 0
+                $customer_notified_clause
                 ORDER BY osh.date_added";
 
         $sql = $db->bindVars($sql, ':ordersID', $order_id, 'integer');
@@ -557,7 +558,7 @@ class order extends base
             'currency_value' => $currencies->currencies[$_SESSION['currency']]['value'],
             'payment_method' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->title : '',
             'payment_module_code' => (isset($GLOBALS[$paymentModule]) && is_object($GLOBALS[$paymentModule])) ? $GLOBALS[$paymentModule]->code : '',
-            'coupon_code' => isset($coupon_code) && is_object($coupon_code) ? $coupon_code->fields['coupon_code'] : '',
+            'coupon_code' => $coupon_code->fields['coupon_code'] ?? '',
 //            'cc_type' => (isset($GLOBALS['cc_type']) ? $GLOBALS['cc_type'] : ''),
 //            'cc_owner' => (isset($GLOBALS['cc_owner']) ? $GLOBALS['cc_owner'] : ''),
 //            'cc_number' => (isset($GLOBALS['cc_number']) ? $GLOBALS['cc_number'] : ''),
@@ -600,7 +601,9 @@ class order extends base
         if ($this->content_type == 'virtual') {
             $this->delivery = [
                 'firstname' => '',
+                'firstname_kana' => '',
                 'lastname' => '',
+                'lastname_kana' => '',
                 'company' => '',
                 'street_address' => '',
                 'suburb' => '',
@@ -770,7 +773,6 @@ class order extends base
         $this->notify('NOTIFY_ORDER_CART_FINISHED');
     }
 
-
     function determineTaxAddressZones($billToAddressId, $shipToAddressId)
     {
         global $db;
@@ -834,6 +836,7 @@ class order extends base
             $this->products[$index]['tax_groups'] = $taxRates;
             return $taxRates;
         }
+
         $taxRates = zen_get_multiple_tax_rates($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
         $this->products[$index]['tax'] = zen_get_tax_rate($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
         $this->products[$index]['tax_description'] = zen_get_tax_description($products[$loop]['tax_class_id'], $taxCountryId, $taxZoneId);
@@ -1333,12 +1336,12 @@ class order extends base
 
         //intro area
         $email_order = EMAIL_TEXT_HEADER . "\n\n" .
-        $customerGreet . "\n\n" .
-        EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
-        EMAIL_SEPARATOR . "\n" .
-        EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
-        EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
-        EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
+            $customerGreet . "\n\n" .
+            EMAIL_THANKS_FOR_SHOPPING . "\n" . EMAIL_DETAILS_FOLLOW . "\n" .
+            EMAIL_SEPARATOR . "\n" .
+            EMAIL_TEXT_ORDER_NUMBER . ' ' . $zf_insert_id . "\n" .
+            EMAIL_TEXT_DATE_ORDERED . ' ' . $zcDate->output(DATE_FORMAT_LONG) . "\n" .
+            EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
 
         $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
         $html_msg['INTRO_STORE_NAME'] = STORE_NAME;
@@ -1402,10 +1405,11 @@ class order extends base
             } else {
             $email_order .= "\n" . EMAIL_TEXT_DELIVERY_ADDRESS . "\n" .
                 EMAIL_SEPARATOR . "\n" .
-                zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n" .
-                EMAIL_TEXT_TELEPHONE . $this->delivery['telephone'] . "\n\n";
-;
+                zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], false, '', "\n") . "\n";
             }
+        }
+        if (!empty($this->customer['telephone'])) {
+            $email_order .= EMAIL_TEXT_TELEPHONE . $this->delivery['telephone'] . "\n\n";
         }
 
         //addresses area: Billing

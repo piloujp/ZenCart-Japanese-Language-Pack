@@ -9,8 +9,8 @@ $define = [
     'TEXT_CONTACT_STORE_OWNER' => 'ご質問などございましたら<a href="' . zen_href_link(FILENAME_CONTACT_US) . '">お問い合わせページ</a>からどうぞ。',
     'TEXT_THANKS_FOR_SHOPPING' => 'ご注文ありがとうございました',
     'FOOTER_DOWNLOAD' => '\'%s\'こちらから、後で商品をダウンロードすることもできます。',
-    'TEXT_YOUR_ORDER_NUMBER' => '<strong>ご注文番号:</strong> ',
-    'TEXT_CHECKOUT_LOGOFF_GUEST' => 'NOTE: To complete your order, a temporary account was created. You may close this account by clicking Log Off. Clicking Log Off also ensures that your receipt and purchase information is not visible to the next person using this computer. If you wish to continue shopping, feel free! You may log off at anytime using the link at the top of the page.',
+    'TEXT_YOUR_ORDER_NUMBER' => '<strong>ご注文番号：</strong> ',
+    'TEXT_CHECKOUT_LOGOFF_GUEST' => '注意：注文を完了するために、一時的なアカウントが作成されました。[ログオフ] をクリックすると、このアカウントを閉じることができます。[ログオフ] をクリックすると、このコンピューターを次に使用する人には領収書や購入情報が表示されなくなります。ショッピングを続けたい場合は、お気軽に！ページ上部のリンクを使用していつでもログオフできます。',
     'TEXT_CHECKOUT_LOGOFF_CUSTOMER' => 'この度は当店にてご購入いただき、誠にありがとうございます。<br>お客様の履歴や購入情報が、同じパソコンをお使いの方に見られることの無いように、ログオフのリンクをクリックして下さい。',
 ];
 

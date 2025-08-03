@@ -42,27 +42,27 @@ if (!empty($_POST['action']) && $_POST['action'] == 'process') {
     }
   }
 
-  if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+  if (mb_strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_FIRST_NAME_ERROR);
   }
 
 if ($_SESSION['language'] == 'japanese') {
   $firstname_kana = zen_db_prepare_input($_POST['firstname_kana']);
-  if (strlen($firstname_kana) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+  if (mb_strlen($firstname_kana) < ENTRY_FIRST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_FIRST_NAME_KANA_ERROR);
   }
 }
 
-  if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+  if (mb_strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_LAST_NAME_ERROR);
   }
 
 if ($_SESSION['language'] == 'japanese') {
   $lastname_kana = zen_db_prepare_input($_POST['lastname_kana']);
-  if (strlen($lastname_kana) < ENTRY_LAST_NAME_MIN_LENGTH) {
+  if (mb_strlen($lastname_kana) < ENTRY_LAST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_LAST_NAME_KANA_ERROR);
   }
@@ -84,7 +84,7 @@ if ($_SESSION['language'] == 'japanese') {
     }
   }
 
-  if (strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
+  if (mb_strlen($email_address) < ENTRY_EMAIL_ADDRESS_MIN_LENGTH) {
     $error = true;
     $messageStack->add('account_edit', ENTRY_EMAIL_ADDRESS_ERROR);
   }
@@ -209,8 +209,6 @@ if (ACCOUNT_GENDER == 'true') {
 }
 
 if (!(isset($_POST['action']) && ($_POST['action'] == 'process'))) {
-  // Posted page content is not requested to be processed, populate dob with customer's database entry.
-  // Using ISO-8601 format of date display to support javascript/jQuery driven date picker data handling.
   $dob = zen_date_short($account->fields['customers_dob']);
   if ($dob <= '0001-01-01') {
     $dob = '0001-01-01 00:00:00';

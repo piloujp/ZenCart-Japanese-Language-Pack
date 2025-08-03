@@ -7,7 +7,7 @@
  */
 require('includes/application_top.php');
 
-// To override the $show_* values or $attr_img_width, see 
+// To override the $show_* values or $attr_img_width, see
 // https://docs.zen-cart.com/user/admin/site_specific_overrides/
 
 $show_product_images_pack = $show_product_images_pack ?? $show_product_images ?? true;
@@ -61,7 +61,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
       </table>
       <div><?php echo zen_draw_separator(); ?></div>
       <?php
-        $additional_content = false; 
+        $additional_content = false;
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_PACKINGSLIP_ADDITIONAL_DATA_TOP', $oID, $additional_content);
           if ($additional_content !== false) {
       ?>
@@ -94,11 +94,17 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
               </tr>
+<?php
+    if (!empty($order->customer['telephone'])) {
+?>
               <tr>
                 <td class="main">
                     <?php echo ENTRY_TELEPHONE_NUMBER . ' ' . $order->customer['telephone']; ?>
                 </td>
               </tr>
+<?php
+    }
+?>
               <tr>
                 <td class="main"><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
               </tr>
@@ -299,16 +305,16 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
                   ?>
                 <tr>
                   <td class="text-center"><?php echo zen_datetime_short($order_history['date_added']); ?></td>
-                  <td><?php echo $orders_status_array[$order_history['orders_status_id']]; ?></td>
+                  <td><?php echo $orders_status_array[$order_history['orders_status_id']] ?? ''; ?></td>
                   <td class="text-left">
-                  <?php 
+                  <?php
                   if (empty($order_history['comments'])) {
                      echo TEXT_NONE;
                   } else {
                      if ($count_comments == 1) {
-                        echo nl2br(zen_output_string_protected($order_history['comments'])); 
+                        echo nl2br(zen_output_string_protected($order_history['comments']));
                      } else {
-                        echo $order_history['comments']; 
+                        echo $order_history['comments'];
                      }
                   }
                   ?>
@@ -332,7 +338,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
         </table>
       <?php } // order comments ?>
       <?php
-        $additional_content = false; 
+        $additional_content = false;
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_PACKINGSLIP_ADDITIONAL_DATA_BOTTOM', $oID, $additional_content);
           if ($additional_content !== false) {
       ?>
@@ -347,4 +353,4 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
     <!-- body_text_eof //-->
   </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); 
+<?php require(DIR_WS_INCLUDES . 'application_bottom.php');

@@ -93,7 +93,7 @@ return [
 'TEXT_COMPLETION_HEADER_MAIN' => '',
 'TEXT_COMPLETION_INSTALL_COMPLETE' => 'インストールが完了しました。',
 'TEXT_COMPLETION_INSTALL_LINKS_BELOW' => '以下のリンクより、ショップ画面や管理画面にアクセスすることが出来ます。',
-'TEXT_COMPLETION_UPGRADE_COMPLETE' => 'おめでとうございます。アップグレードが完了しました。',
+'TEXT_COMPLETION_UPGRADE_COMPLETE' => 'おめでとうございます。Zen Cart コア アプリケーションのデータベース アップグレードが完了しました。<br>インストールしたプラグインも必ずアップグレードしてください。',
 'TEXT_COMPLETION_ADMIN_DIRECTORY_WARNING' => '管理画面用ディレクトリ名を自動変換できませんでした。管理画面にアクセスするためには、ディレクトリ名リネームする必要があります。',
 'TEXT_COMPLETION_INSTALLATION_DIRECTORY_WARNING' => "'zc_install'フォルダを削除してください",
 'TEXT_COMPLETION_INSTALLATION_DIRECTORY_EXPLANATION' => "権限を持たない第三者によって上書きインストールされてしまわないように、インストールプログラムの入ったフォルダを必ず削除してください。それまでの間は管理画面にはアクセスすることが出来ません。",
@@ -116,7 +116,7 @@ return [
 'TEXT_UPGRADE_IN_PROGRESS' => 'アップグレードの実行中です。処理の各ステップの進行状況については、以下に表示されます ...',
 'TEXT_UPGRADE_TO_VER_X_COMPLETED' => 'バージョン %s へのアップグレードが完了しました。',
 'TEXT_NO_REMAINING_UPGRADE_STEPS' => '問題無いことが確認できました！アップグレードに必要なステップはありません。',
-'TEXT_CONTINUE' => '続行する',
+'TEXT_CONTINUE' => '続行',
 'TEXT_CANCEL' => 'キャンセル',
 'TEXT_CONTINUE_FIX' => '前に戻って修正する',
 'TEXT_REFRESH' => '再読込',
@@ -152,7 +152,7 @@ return [
 'TEXT_ERROR_PUB_FOLDER' => '%%DIR_FS_DOWNLOAD_PUBLIC%%' . ' フォルダに書き込み権限がありません',
 'TEXT_ERROR_NGINX_FOLDER' => '/zc_install/includes/nginx_conf/ フォルダーは書き込み可能ではありません',
 'TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE' => '現在の configure.phpファイルは、古いバージョンのものであるため、処理を続行する前に更新が必要です。',
-'TEXT_ERROR_HTACCESS_SUPPORT' => ' ".htaccess" ファイル対応が有効になっていません。<br>[ <i><b>注意：</b> もし、Nginxを使用している場合は、この問題の解決方法について、このインストールウィザードの<u>最終画面</u>に進んでください。<i> ]',
+'TEXT_ERROR_HTACCESS_SUPPORT' => '「.htaccess」 ファイル対応が有効になっていません。<br>[ <i><b>注意：</b> もし、Nginxを使用している場合は、この問題の解決方法について、このインストールウィザードの<u>最終画面</u>に進んでください。<i> ]',
 'TEXT_ERROR_SESSION_SUPPORT' => 'セッションサポートに問題',
 'TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID' => 'iniファイルで session.use_trans_sid 設定が有効になっています',
 'TEXT_ERROR_SESSION_SUPPORT_AUTO_START' => 'iniファイルで session.auto_start 設定が有効になっています',
@@ -173,11 +173,11 @@ return [
 'TEXT_ERROR_FUNCTION_DOES_NOT_EXIST' => 'PHP function %s が有りません',
 'TEXT_ERROR_CURL_LIVE_TEST' => 'ライブサーバに接続する際に CURL が利用できません',
 'TEXT_ERROR_HTTPS' => 'ヒント: 可能であれば、SSL証明書をインストールした状態で、 "https://"を使用してインストーラを実行する必要があります。',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => '既存の configure.php ファイルが見つかりました。 下の[アップグレード...]を選択すると、インストーラはデータベース構造のアップグレードを試みます。',
-'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 データベースは最新のようです。 稼働中のライブサイトで作業していますか？ インストールを続行すると、現在のデータベースの内容が消去されます。 本当にインストールしてよろしいですか？',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE' => '既存の configure.php ファイルが見つかりました。 下の[アップグレード...]を選択すると、インストーラはデータベース構造のアップグレードを試みます。下のボタンを使用してアップグレードできます（[アップグレード] ボタンがない場合は、DB_PREFIX がデータベースと一致していない可能性があります）。<strong>注意：</strong> クリーン インストールを続行すると、既存のデータが消去されます。',
+'TEXT_ERROR_SUCCESS_EXISTING_CONFIGURE_NO_UPDATE' => '既存の configure.php ファイルが見つかりました。 ただし、データベースは最新のようです。これは、ライブ サイトにアクセスしていることを示しています。<strong>注意：</strong> クリーン インストールを続行すると、現在のデータベースの内容が削除されます。クリーン インストールを続行してもよろしいですか？',
 'TEXT_ERROR_MULTIPLE_ADMINS_NONE_SELECTED' => '複数の管理ディレクトリが存在するようです。古い管理ディレクトリを削除して [更新] をクリックするか、以下の正しい管理ディレクトリを選択して [更新] をクリックしてください。',
 'TEXT_ERROR_MULTIPLE_ADMINS_SELECTED' => '複数の管理画面ディレクトリが存在するようです。 古い管理画面ディレクトリを削除して[更新]をクリックするか、または下の正しい管理ディレクトリを選択して[更新]をクリックしてください。',
-'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムにエラーや警告は検出されませんでした。 インストールを続けることができます。',
+'TEXT_ERROR_SUCCESS_NO_ERRORS' => 'システムでエラーは検出されませんでした。以下のいずれかのインストール (またはアップグレード (利用可能な場合)) オプションを選択して続行できます。',
 'TEXT_UPGRADE_INFO' => '%%TEXT_UPGRADE%%：データベースを検査し、現在のバージョンにアップグレードするために必要な手順 (新しいフィールドの追加/既存のフィールドの変更) を提供します。これは非破壊的なプロセスであることを目的としていますが、他のすべての変更と同様、続行する前にデータベースの検証済みのバックアップが利用可能であることを確認する必要があります。',
 'TEXT_CLEAN_INSTALL_INFO' => '%%TEXT_CLEAN_INSTALL%%：データベースを新しい状態に戻し、すべてのデータを削除します。オプションで、このプロセスの一部としてデモンストレーション データをロードすることもできます。',
 'TEXT_FORM_VALIDATION_REQUIRED' => '必須',
@@ -194,7 +194,7 @@ return [
 'TEXT_HELP_TITLE_CONNECTIONDATABASECHECK' => '初期データベース接続',
 'TEXT_HELP_CONTENT_CONNECTIONDATABASECHECK' => 'localhost接続を使用してMySQLに接続しようとしました。 一部のホストではMySQLデータベースにIPアドレスまたはホスト名が必要なため、この失敗は必ずしもMySQLが動作していないことを意味するわけではありません。<br> <br>データベースサーバーにlocalhostを使用している場合は、MySQLが正常に動作していることを確認してください。',
 'TEXT_HELP_TITLE_CHECKCURL' => '%%TEXT_ERROR_CURL%%',
-'TEXT_HELP_CONTENT_CHECKCURL' => 'CURLは、PHPプログラムがショップで決済処理を行ったり、リアルタイムの配送料見積もりを得るために支払いや配送プロバイダーのような外部のサーバーやサービスに接続するのに使われるバックグラウンドプロセスです。 お客様のサーバーでCURL機能をテストしたところ、接続を確立できませんでした。 これはWebサーバの設定に問題があることを示している可能性があります。 あなたのサーバー上でCURLサポートを有効にするための支援を求めてあなたのホスティング会社に連絡してください。<br> <br>あなたがオフライン開発サーバー上でこのサイトを運営している開発者であれば、CURLがこのテストに接続できないのは当然です。 CURLは、オンライン接続が要求されるトランザクションアクティビティのテストを除き、開発目的には必要ありません。',
+'TEXT_HELP_CONTENT_CHECKCURL' => 'CURLは、PHPプログラムがショップで決済処理を行ったり、リアルタイムの配送料見積もりを得るために支払いや配送プロバイダーのような外部のサーバーやサービスに接続するのに使われるバックグラウンドプロセスです。また、Zen Cartやインストール済みプラグインのアップデートバージョンを確認し、通知するためにも使用されます。現在、サーバー上でCURL機能をテストしていますが、接続を確立できませんでした。これは、Webサーバーの設定に問題があることを示している可能性があります。ホスティング会社に連絡して、サーバー上のPHPでCURLサポートを有効にするよう支援を受けてください。<br><br>このサイトをオフラインの開発サーバーで実行している開発者の場合、このテストでCURLに接続できないのは当然のことです。CURLは開発目的には不要です（そのため、この問題は一時的に無視できます）。ただし、トランザクションアクティビティのテストの場合は、オンライン接続が必要になります。',
 'TEXT_HELP_TITLE_ADMINSERVERDOMAIN' => '管理画面サーバードメイン',
 'TEXT_HELP_CONTENT_ADMINSERVERDOMAIN' => "管理画面にアクセスするためのドメイン名を入力してください。 このアドレスにはHTTPS（SSL）を使用することを強くお勧めします。 サイトでSSLを有効にする方法については、サーバー管理者様にご相談ください。",
 'TEXT_HELP_TITLE_ENABLESSLCATALOG' => 'ショップ画面でSSLを有効にしますか？',
@@ -311,7 +311,7 @@ See below to implement a similar set of measures for the Nginx Webserver.</p>
 </li>
 <ol>
 </div>
-<div class="alert-box alert"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
+<div class="alert alert-danger"> <strong>IMPORTANT:</strong> These location blocks should be <strong>BEFORE</strong> any other location blocks in your Nginx configuration server block for Zen Cart.</div>
 <hr>',
 'TEXT_HELP_TITLE_AGREETOTERMS' => '規約に同意する',
 'TEXT_HELP_CONTENT_AGREETOTERMS' => '<a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" rel="noopener" target="_blank">Original GPL 2.0 text</a>

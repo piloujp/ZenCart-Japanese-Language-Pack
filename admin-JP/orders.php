@@ -65,7 +65,7 @@ if (isset($_POST['oID'])) {
 if ($oID) {
   $orders = $db->Execute("SELECT orders_id
                           FROM " . TABLE_ORDERS . "
-                          WHERE orders_id = " . $oID);
+                          WHERE orders_id = " . $oID, 1);
   $order_exists = true;
   if ($orders->RecordCount() <= 0) {
     $order_exists = false;
@@ -189,7 +189,7 @@ if (!empty($action) && $order_exists === true) {
         $chk_products_download_time = $db->Execute($chk_products_download_time_query);
 
         if ($chk_products_download_time->EOF) {
-          $zc_max_days = DOWNLOAD_MAX_DAYS == 0 ? 0 : zen_date_diff($order->info['date_purchased'], date('Y-m-d H:i:s')) + intval(DOWNLOAD_MAX_DAYS);
+          $zc_max_days = DOWNLOAD_MAX_DAYS == 0 ? 0 : zen_date_diff($order->info['date_purchased'], date('Y-m-d H:i:s')) + (int)DOWNLOAD_MAX_DAYS;
           $update_downloads_query = "UPDATE " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . "
                                      SET download_maxdays = " . (int)$zc_max_days . ",
                                          download_count = " . (int)DOWNLOAD_MAX_COUNT . "
@@ -281,7 +281,7 @@ if (!empty($action) && $order_exists === true) {
             $chk_products_download_time = $db->Execute($chk_products_download_time_query);
 
             if ($chk_products_download_time->EOF) {
-              $zc_max_days = DOWNLOAD_MAX_DAYS == 0 ? 0 : zen_date_diff($order->info['date_purchased'], date('Y-m-d H:i:s')) + intval(DOWNLOAD_MAX_DAYS);
+              $zc_max_days = DOWNLOAD_MAX_DAYS == 0 ? 0 : zen_date_diff($order->info['date_purchased'], date('Y-m-d H:i:s')) + (int)DOWNLOAD_MAX_DAYS;
               $update_downloads_query = "UPDATE " . TABLE_ORDERS_PRODUCTS_DOWNLOAD . "
                                          SET download_maxdays = " . (int)$zc_max_days . ",
                                              download_count = " . (int)DOWNLOAD_MAX_COUNT . "
@@ -559,7 +559,7 @@ if (!empty($action) && $order_exists === true) {
           <div class="col-sm-3 col-lg-4 text-left noprint">
             <?php echo $left_side_buttons; ?>
           </div>
-          <div class="col-sm-6 col-lg-6 noprint">
+          <div class="col-sm-6 col-lg-4 noprint">
             <div class="input-group">
               <span class="input-group-btn">
                   <?php echo $prev_button; ?>
@@ -588,7 +588,7 @@ if (!empty($action) && $order_exists === true) {
               <tr>
                 <td><strong><?php echo ENTRY_CUSTOMER_ADDRESS; ?></strong></td>
                 <td><?php echo zen_address_format($order->customer['format_id'], $order->customer, 1, '', '<br>');
-                    echo !empty(trim($order->customer['name_kana'])) ? '<br><small>' . ENTRY_NAME_KANA . $order->customer['name_kana'] . '</small>' : '';
+                    echo !empty($order->customer['name_kana']) ? '<br><small>' . ENTRY_NAME_KANA . $order->customer['name_kana'] . '</small>' : '';
                 ?></td>
               </tr>
               <tr>
@@ -942,14 +942,14 @@ if (!empty($action) && $order_exists === true) {
                         }
                         ?>
                     </td>
-                    <td><?php echo $orders_status_array[$item['orders_status_id']]; ?></td>
+                    <td><?php echo $orders_status_array[$item['orders_status_id']] ?? ''; ?></td>
 <?php
                     // -----
                     // A watching observer can provide an associative array in the form:
                     //
                     // $extra_data = array(
                     //     array(
-                    //       'align' => $alignment,    // One of 'center', 'right', or 'left' (optional)
+                    //       'align' => $alignment,    // One of 'center', 'right' or 'left' (optional)
                     //       'text' => $value
                     //     ),
                     // );
@@ -1276,10 +1276,10 @@ if (!empty($action) && $order_exists === true) {
                     $check_count = 0;
                     if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS_ORDERS) {
                       while (!$check_page->EOF) {
+                        $check_count++;
                         if ($check_page->fields['orders_id'] == $_GET['oID']) {
                           break;
                         }
-                        $check_count++;
                         $check_page->MoveNext();
                       }
                       $_GET['page'] = round((($check_count / MAX_DISPLAY_SEARCH_RESULTS_ORDERS) + (fmod_round($check_count, MAX_DISPLAY_SEARCH_RESULTS_ORDERS) != 0 ? .5 : 0)), 0);
@@ -1349,7 +1349,7 @@ if (!empty($action) && $order_exists === true) {
 <?php echo $orders->fields['delivery_state'] . '<br>' . $orders->fields['delivery_country']; ?>
                 </td>
 <?php } ?>
-                <td class="dataTableContent text-right" title="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br>' => '', '<hr>' => "----\n"]); ?>">
+                <td class="dataTableContent text-right" title="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br>' => '', '<br />' => '', '<hr>' => "----\n"]); ?>">
                   <?php echo strip_tags($currencies->format($orders->fields['order_total'], true, $orders->fields['currency'], $orders->fields['currency_value'])); ?>
                 </td>
 <?php if ($quick_view_popover_enabled) { ?>
@@ -1358,14 +1358,14 @@ if (!empty($action) && $order_exists === true) {
                        data-trigger="focus"
                        data-placement="left"
                        title="<?php echo TEXT_PRODUCT_POPUP_TITLE; ?>"
-                       data-content="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br>' => '<br>']); ?>"
+                       data-content="<?php echo zen_output_string($product_details, ['"' => '&quot;', "'" => '&#39;', '<br />' => '<br>']); ?>"
                     >
                         <?php echo TEXT_PRODUCT_POPUP_BUTTON; ?>
                     </a>
                 </td>
 <?php } ?>
                 <td class="dataTableContent text-center"><?php echo zen_datetime_short($orders->fields['date_purchased']); ?></td>
-                <td class="dataTableContent text-right"><?php echo ($orders->fields['orders_status_name'] !== '' ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS); ?></td>
+                <td class="dataTableContent text-right"><?php echo !empty($orders->fields['orders_status_name']) ? $orders->fields['orders_status_name'] : TEXT_INVALID_ORDER_STATUS; ?></td>
                 <?php
                    $order_comments = zen_output_string_protected(zen_get_orders_comments($orders->fields['orders_id']));
                    if (!empty($order_comments)) {
@@ -1457,7 +1457,7 @@ if (!empty($action) && $order_exists === true) {
 
                   $contents = ['form' => zen_draw_form('orders', FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . '&action=deleteconfirm', 'post', 'class="form-horizontal"', true) . zen_draw_hidden_field('oID', $oInfo->orders_id)];
 //      $contents[] = array('text' => TEXT_INFO_DELETE_INTRO . '<br><br><strong>' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</strong>');
-                  $contents[] = ['text' => TEXT_INFO_DELETE_INTRO . '<br><br><strong>' . ENTRY_ORDER_ID . $oInfo->orders_id . '<br>' . $oInfo->order_total . '<br>' . $oInfo->customers_name . ($oInfo->customers_company !== '' ? '<br>' . $oInfo->customers_company : '') . '</strong>'];
+                  $contents[] = ['text' => TEXT_INFO_DELETE_INTRO . '<br><br><strong>' . ENTRY_ORDER_ID . $oInfo->orders_id . '<br>' . $oInfo->order_total . '<br>' . $oInfo->customers_name . ($oInfo->customers_company !== '' ? '<br>' . zen_output_string_protected($oInfo->customers_company) : '') . '</strong>'];
                   $contents[] = ['text' => '<br><label>' . zen_draw_checkbox_field('restock', 'on') . ' ' . TEXT_INFO_RESTOCK_PRODUCT_QUANTITY . '</label>'];
                   $contents[] = ['align' => 'text-center', 'text' => '<br><button type="submit" class="btn btn-danger">' . IMAGE_DELETE . '</button> <a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(['oID', 'action']) . 'oID=' . $oInfo->orders_id, 'NONSSL') . '" class="btn btn-default" role="button">' . IMAGE_CANCEL . '</a>'];
                   break;

@@ -5,7 +5,7 @@
  * Loaded automatically by index.php?main_page=checkout_shipping.
  * Displays allowed shipping modules for selection by customer.
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: torvista 2022 Aug 03 Modified in v1.5.8-alpha2 $
@@ -61,9 +61,7 @@
       $radio_buttons = 0;
       for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
       // bof: field set
-// allows FedEx to work comment comment out Standard and Uncomment FedEx
-//      if ($quotes[$i]['id'] != '' || $quotes[$i]['module'] != '') { // FedEx
-      if ($quotes[$i]['module'] != '') { // Standard
+      if (!empty($quotes[$i]['module'])) { 
 ?>
 <fieldset>
 <legend><?php echo $quotes[$i]['module']; ?>&nbsp;<?php if (isset($quotes[$i]['icon']) && !empty($quotes[$i]['icon'])) { echo $quotes[$i]['icon']; } ?></legend>
@@ -79,11 +77,6 @@
             $checked = FALSE;
             if (isset($_SESSION['shipping']) && isset($_SESSION['shipping']['id'])) {
               $checked = ($quotes[$i]['id'] . '_' . $quotes[$i]['methods'][$j]['id'] == $_SESSION['shipping']['id']);
-            }
-            if ( ($checked == true) || ($n == 1 && $n2 == 1) ) {
-              //echo '      <div id="defaultSelected" class="moduleRowSelected">' . "\n";
-            //} else {
-              //echo '      <div class="moduleRow">' . "\n";
             }
 ?>
 <?php
@@ -105,7 +98,6 @@
 if (isset ($quotes[$i]['methods'][$j]['option'])) {
 echo $quotes[$i]['methods'][$j]['option'];}
 ?>
-<!--</div>-->
 <br class="clearBoth">
 <?php
             $radio_buttons++;

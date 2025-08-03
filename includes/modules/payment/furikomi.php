@@ -51,46 +51,46 @@
 
 // class constructor
     function __construct() {
-      global $order;
+        global $order;
 
-      $this->code = 'furikomi';
-      $this->title = MODULE_PAYMENT_FURIKOMI_TEXT_TITLE;
-      $this->description = MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION;
-      $this->enabled = (defined('MODULE_PAYMENT_FURIKOMI_STATUS') && MODULE_PAYMENT_FURIKOMI_STATUS == 'True');
-      $this->sort_order = defined('MODULE_PAYMENT_FURIKOMI_SORT_ORDER') ? MODULE_PAYMENT_FURIKOMI_SORT_ORDER : null;
-      if (null === $this->sort_order) return false;
+        $this->code = 'furikomi';
+        $this->title = MODULE_PAYMENT_FURIKOMI_TEXT_TITLE;
+        $this->description = MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION;
+        $this->enabled = (defined('MODULE_PAYMENT_FURIKOMI_STATUS') && MODULE_PAYMENT_FURIKOMI_STATUS == 'True');
+        $this->sort_order = defined('MODULE_PAYMENT_FURIKOMI_SORT_ORDER') ? MODULE_PAYMENT_FURIKOMI_SORT_ORDER : null;
+        if (null === $this->sort_order) return false;
 
-      if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID > 0) {
-        $this->order_status = MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID;
-      }
+        if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID > 0) {
+            $this->order_status = MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID;
+        }
 
-      if (is_object($order)) $this->update_status();
+        if (is_object($order)) $this->update_status();
 
-      $this->email_footer = MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER;
+        $this->email_footer = MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER;
     }
 
 // class methods
     function update_status() {
-      global $order, $db;
+        global $order, $db;
 
-      if ($this->enabled && (int)MODULE_PAYMENT_FURIKOMI_ZONE > 0 && isset($order->billing['country']['id'])) {
-        $check_flag = false;
-        $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_FURIKOMI_ZONE . "' and zone_country_id = '" . (int)$order->billing['country']['id'] . "' order by zone_id");
-        while (!$check->EOF) {
-          if ($check->fields['zone_id'] < 1) {
-            $check_flag = true;
-            break;
-          } elseif ($check->fields['zone_id'] == $order->billing['zone_id']) {
-            $check_flag = true;
-            break;
-          }
-          $check->MoveNext();
-        }
+        if ($this->enabled && (int)MODULE_PAYMENT_FURIKOMI_ZONE > 0 && isset($order->billing['country']['id'])) {
+            $check_flag = false;
+            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_FURIKOMI_ZONE . "' and zone_country_id = '" . (int)$order->billing['country']['id'] . "' order by zone_id");
+            while (!$check->EOF) {
+                if ($check->fields['zone_id'] < 1) {
+                    $check_flag = true;
+                    break;
+                } elseif ($check->fields['zone_id'] == $order->billing['zone_id']) {
+                    $check_flag = true;
+                    break;
+                }
+                $check->MoveNext();
+            }
 
-        if ($check_flag == false) {
-          $this->enabled = false;
+            if ($check_flag == false) {
+              $this->enabled = false;
+            }
         }
-      }
 
       // other status checks?
       if ($this->enabled) {
@@ -99,45 +99,45 @@
     }
 
     function javascript_validation() {
-      return false;
+        return false;
     }
 
     function selection() {
-      return array('id' => $this->code,
+        return array('id' => $this->code,
                    'module' => $this->title);
     }
 
     function pre_confirmation_check() {
-      return false;
+        return false;
     }
 
     function confirmation() {
-      return array('title' => MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION);
+        return array('title' => MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION);
     }
 
     function process_button() {
-      return false;
+        return false;
     }
 
     function before_process() {
-      return false;
+        return false;
     }
 
     function after_process() {
-      return false;
+        return false;
     }
 
     function get_error() {
-      return false;
+        return false;
     }
 
     function check() {
-      global $db;
-      if (!isset($this->_check)) {
-        $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_FURIKOMI_STATUS'");
-        $this->_check = $check_query->RecordCount();
-      }
-      return $this->_check;
+        global $db;
+        if (!isset($this->_check)) {
+            $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_FURIKOMI_STATUS'");
+            $this->_check = $check_query->RecordCount();
+        }
+        return $this->_check;
     }
 
     function install() {
@@ -192,11 +192,11 @@
     }
 
     function remove() {
-      global $db;
-      $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+        global $db;
+        $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
 
     function keys() {
-      return array('MODULE_PAYMENT_FURIKOMI_STATUS', 'MODULE_PAYMENT_FURIKOMI_SORT_ORDER', 'MODULE_PAYMENT_FURIKOMI_ZONE', 'MODULE_PAYMENT_FURIKOMI_BANKNAM', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH', 'MODULE_PAYMENT_FURIKOMI_ACCNUM', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE', 'MODULE_PAYMENT_FURIKOMI_SWIFT', 'MODULE_PAYMENT_FURIKOMI_ACCNAM', 'MODULE_PAYMENT_FURIKOMI_BANKNAM2', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH2', 'MODULE_PAYMENT_FURIKOMI_ACCNUM2', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE2', 'MODULE_PAYMENT_FURIKOMI_SWIFT2', 'MODULE_PAYMENT_FURIKOMI_ACCNAM2', 'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID');
+        return array('MODULE_PAYMENT_FURIKOMI_STATUS', 'MODULE_PAYMENT_FURIKOMI_SORT_ORDER', 'MODULE_PAYMENT_FURIKOMI_ZONE', 'MODULE_PAYMENT_FURIKOMI_BANKNAME', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH', 'MODULE_PAYMENT_FURIKOMI_ACCNUM', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE', 'MODULE_PAYMENT_FURIKOMI_ACCNAM', 'MODULE_PAYMENT_FURIKOMI_SWIFT', 'MODULE_PAYMENT_FURIKOMI_BANKNAME2', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH2', 'MODULE_PAYMENT_FURIKOMI_ACCNUM2', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE2', 'MODULE_PAYMENT_FURIKOMI_ACCNAM2', 'MODULE_PAYMENT_FURIKOMI_SWIFT2', 'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID');
     }
   }

@@ -6,7 +6,7 @@
  * @version $Id: Scott C Wilson 2022 Sep 17 Modified in v1.5.8 $
  */
 require('includes/application_top.php');
-// To override the $show_* or $attr_img_width values, see 
+// To override the $show_* or $attr_img_width values, see
 // https://docs.zen-cart.com/user/admin/site_specific_overrides/
 $show_product_images = $show_product_images ?? true;
 $show_attrib_images =  $show_attrib_images ?? true;
@@ -66,7 +66,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
       </table>
       <div><?php echo zen_draw_separator(); ?></div>
       <?php
-        $additional_content = false; 
+        $additional_content = false;
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_INVOICE_ADDITIONAL_DATA_TOP', $oID, $additional_content);
           if ($additional_content !== false) {
       ?>
@@ -99,11 +99,17 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
               </tr>
+<?php
+    if (!empty($order->customer['telephone'])) {
+?>
               <tr>
                 <td class="main">
                     <?php echo ENTRY_TELEPHONE_NUMBER . ' ' . $order->customer['telephone']; ?>
                 </td>
               </tr>
+<?php
+    }
+?>
               <tr>
                 <td class="main"><?php echo '<a href="mailto:' . $order->customer['email_address'] . '">' . $order->customer['email_address'] . '</a>'; ?></td>
               </tr>
@@ -211,7 +217,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
           //   'NOTIFY_ADMIN_INVOICE_DATA_AFTER_TAX' notification.
           //
           $extra_headings = false;
-          $zco_notifier->notify('NOTIFY_ADMIN_INVOIVE_HEADERS_AFTER_TAX', '', $extra_headings);
+          $zco_notifier->notify('NOTIFY_ADMIN_INVOICE_HEADERS_AFTER_TAX', '', $extra_headings);
           if (is_array($extra_headings)) {
               foreach ($extra_headings as $heading_info) {
                   $align = (isset($heading_info['align'])) ? (' text-' . $heading_info['align']) : '';
@@ -353,7 +359,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
                   ?>
                 </strong>
               </td>
-<?php } 
+<?php }
               // -----
               // Additional fields can be added into columns after the Tax columns.
               //
@@ -429,16 +435,16 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
                   ?>
                 <tr>
                   <td class="text-left"><?php echo zen_datetime_short($order_history['date_added']); ?></td>
-                  <td class="text-left"><?php echo $orders_status_array[$order_history['orders_status_id']]; ?></td>
+                  <td class="text-left"><?php echo $orders_status_array[$order_history['orders_status_id']] ?? ''; ?></td>
                   <td class="text-left">
-                  <?php 
+                  <?php
                   if (empty($order_history['comments'])) {
                      echo TEXT_NONE;
                   } else {
                      if ($count_comments == 1) {
-                        echo nl2br(zen_output_string_protected($order_history['comments'])); 
+                        echo nl2br(zen_output_string_protected($order_history['comments']));
                      } else {
-                        echo $order_history['comments']; 
+                        echo $order_history['comments'];
                      }
                   }
                   ?>
@@ -462,7 +468,7 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
         </table>
       <?php } // order comments ?>
       <?php
-        $additional_content = false; 
+        $additional_content = false;
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_INVOICE_ADDITIONAL_DATA_BOTTOM', $oID, $additional_content);
           if ($additional_content !== false) {
       ?>

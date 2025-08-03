@@ -2,10 +2,10 @@
 /**
  * Header code file for the Address Book Process page
  *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: torvista 2022 May 25 Modified in v1.5.8-alpha $
+ * @version $Id: Scott Wilson 2024 Apr 07 Modified in v2.0.1 $
  */
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ADDRESS_BOOK_PROCESS');
@@ -83,27 +83,28 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     }
   }
 
-  if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+  if (mb_strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_FIRST_NAME_ERROR);
   }
 
-  if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
+  if (mb_strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_LAST_NAME_ERROR);
   }
 
   if ($_SESSION['language'] == 'japanese') {
     $firstname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['firstname_kana']));
-    $lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['lastname_kana']));
-    if (strlen($firstname_kana) < ENTRY_FIRST_NAME_MIN_LENGTH) {
+    if (mb_strlen($firstname_kana) < ENTRY_FIRST_NAME_MIN_LENGTH) {
       $error = true;
       $messageStack->add('addressbook', ENTRY_FIRST_NAME_KANA_ERROR);
     }
-    if (strlen($lastname_kana) < ENTRY_LAST_NAME_MIN_LENGTH) {
+    $lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['lastname_kana']));
+    if (mb_strlen($lastname_kana) < ENTRY_LAST_NAME_MIN_LENGTH) {
       $error = true;
       $messageStack->add('addressbook', ENTRY_LAST_NAME_KANA_ERROR);
     }
+  }
     $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
     if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
         $error = true;
@@ -112,13 +113,12 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     if (ACCOUNT_FAX_NUMBER == 'true') {
         $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
     }
-  }
-  if (strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
+  if (mb_strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);
   }
 
-  if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
+  if (mb_strlen($city) < ENTRY_CITY_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_CITY_ERROR);
   }
@@ -135,7 +135,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
                      FROM " . TABLE_ZONES . "
                      WHERE zone_country_id = :zoneCountryID
                      AND " .
-                     ((trim($state) != '' && $zone_id == 0) ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
+                     ((trim($state) != '' && (int)$zone_id === 0) ? "(upper(zone_name) like ':zoneState%' OR upper(zone_code) like '%:zoneState%') OR " : "") .
                     "zone_id = :zoneID
                      ORDER BY zone_code ASC, zone_name";
 
@@ -165,7 +165,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
         $messageStack->add('addressbook', ENTRY_STATE_ERROR_SELECT);
       }
     } else {
-      if (strlen($state) < ENTRY_STATE_MIN_LENGTH) {
+      if (mb_strlen($state) < ENTRY_STATE_MIN_LENGTH) {
         $error = true;
         $error_state_input = true;
         $messageStack->add('addressbook', ENTRY_STATE_ERROR);
@@ -173,7 +173,7 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
     }
   }
 
-  if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
+  if (mb_strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_POST_CODE_ERROR);
   }
@@ -213,11 +213,11 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       if ($_SESSION['language'] == 'japanese') {
         $sql_data_array[] = array('fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull');
         $sql_data_array[] = array('fieldName'=>'entry_lastname_kana', 'value'=>$lastname_kana, 'type'=>'stringIgnoreNull');
+      }
         $sql_data_array[] = array('fieldName'=>'entry_telephone', 'value'=>$entry_telephone, 'type'=>'stringIgnoreNull');
         if (ACCOUNT_FAX_NUMBER == 'true') {
           $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$entry_fax, 'type'=>'stringIgnoreNull');
         }
-      }
 
     if ($_POST['action'] == 'update') {
       $where_clause = "address_book_id = :edit and customers_id = :customersID";
