@@ -261,7 +261,7 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
   $classes = $iconMap[$icon];
   if (is_array($classes)) {
     return "<div class=\"icon-{$icon} fa-stack\"{$tooltip}{$fw}>" .
-      join(
+      implode(
         '',
         array_map(
           function ($cls) {
@@ -289,7 +289,7 @@ function zen_icon(string $icon, ?string $tooltip = null, string $size = '', bool
   function zen_draw_separator($image = 'pixel_black.gif', $width = '100%', $height = '1') {
     if (!empty($width)) {
         if (substr(rtrim($width), -1) !== '%') {
-            $width = $width . 'px';
+            $width .= 'px';
         }
         $param = 'style="width:' . $width . ';"';
     } else {

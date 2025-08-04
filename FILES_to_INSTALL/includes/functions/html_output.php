@@ -887,7 +887,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     //$countriesAtTopOfList[] = 222;
 
     //process array of top-of-list entries:
-    foreach ($countriesAtTopOfList as $key=>$val) {
+    foreach ($countriesAtTopOfList as $val) {
       // -----
       // Account for the possibility that one of the top-of-list countries has been disabled.  If
       // that's the case, issue a PHP notice since the condition really shouldn't happen!
@@ -902,7 +902,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     // now add anything not in the defaults list:
     for ($i=0, $n=count($countries); $i<$n; $i++) {
       $alreadyInList = FALSE;
-      foreach($countriesAtTopOfList as $key=>$val) {
+      foreach($countriesAtTopOfList as $val) {
         if ($countries[$i]['countries_id'] == $val)
         {
           // If you don't want to exclude entries already at the top of the list, comment out this next line:

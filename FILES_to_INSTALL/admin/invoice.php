@@ -237,7 +237,7 @@ if (empty($order->info)) {
              */
             $sort_order = false;
             $zco_notifier->notify('NOTIFY_ADMIN_INVOICE_SORT_DISPLAY', $order->products, $sort_order);
-            for ($ii = 0, $n = sizeof($order->products); $ii < $n; $ii++) {
+            for ($ii = 0, $n = count($order->products); $ii < $n; $ii++) {
                 if (is_array($sort_order)) {
                     $i = $sort_order[$ii];
                 } else {
@@ -262,7 +262,7 @@ if (empty($order->info)) {
               </td>
               <td class="dataTableContent"><?php echo $product_name; ?>
                   <?php
-                  if (isset($order->products[$i]['attributes']) && (($k = sizeof($order->products[$i]['attributes'])) > 0)) {
+                  if (isset($order->products[$i]['attributes']) && (($k = count($order->products[$i]['attributes'])) > 0)) {
                     ?>
                   <ul>
                       <?php
@@ -406,7 +406,7 @@ if (empty($order->info)) {
       ?>
       <table class="table">
           <?php
-          for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
+          for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
             ?>
           <tr>
             <td>&nbsp;</td>

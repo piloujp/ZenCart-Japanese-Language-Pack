@@ -163,7 +163,7 @@ function selectAll(FormName, SelectBox) {
     }
 
     $confirm_string = '<div class="row">' . PHP_EOL;
-    $confirm_string .= '<div class="col-sm-12"><span class="text-danger"><strong>' . sprintf(TEXT_COUNT_CUSTOMERS, sizeof($audience)) . '</strong></span></div>' . PHP_EOL;
+    $confirm_string .= '<div class="col-sm-12"><span class="text-danger"><strong>' . sprintf(TEXT_COUNT_CUSTOMERS, count($audience)) . '</strong></span></div>' . PHP_EOL;
     $confirm_string .= '</div>' . PHP_EOL;
     $confirm_string .= '<div class="row">' . PHP_EOL;
     $confirm_string .= zen_draw_separator() . PHP_EOL;
@@ -188,11 +188,11 @@ function selectAll(FormName, SelectBox) {
     $confirm_string .= '</div>' . PHP_EOL;
     $confirm_string .= zen_draw_form('confirm', FILENAME_NEWSLETTERS, 'page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm_send') . PHP_EOL;
     $confirm_string .= '<div class="row text-right">' . PHP_EOL;
-    if (sizeof($audience) > 0) {
+    if (count($audience) > 0) {
       if (isset($_GET['global']) && ($_GET['global'] == 'true')) {
         $confirm_string .= zen_draw_hidden_field('global', 'true') . PHP_EOL;
       } else {
-        for ($i = 0, $n = sizeof($chosen); $i < $n; $i++) {
+        for ($i = 0, $n = count($chosen); $i < $n; $i++) {
           $confirm_string .= zen_draw_hidden_field('chosen[]', $chosen[$i]) . PHP_EOL;
         }
       }
@@ -273,7 +273,7 @@ function selectAll(FormName, SelectBox) {
 
 //send emails
     $i = 0;
-    foreach ($audience as $key => $value) {
+    foreach ($audience as $value) {
       $i++;
       $html_msg['EMAIL_SALUTATION'] = EMAIL_SALUTATION;
       $html_msg['EMAIL_FIRST_NAME'] = $value['firstname'];

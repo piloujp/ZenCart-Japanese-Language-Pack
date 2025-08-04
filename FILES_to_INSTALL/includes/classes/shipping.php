@@ -142,7 +142,7 @@ class shipping
         $max_item_height = 0;
         $max_item_girth = 0;
         $this->weight_qty_sizes_array = $this->get_weight_qty_sizes(); // function call to make an array of cart items including id, weight, quantity, length, width, height, girth and volume ordered by weight
-        foreach($this->weight_qty_sizes_array as $keys => $datas) { // make simplified arrays, one for cart items weight and another for cart items dimensions
+        foreach($this->weight_qty_sizes_array as $datas) { // make simplified arrays, one for cart items weight and another for cart items dimensions
             $sorted_sizes_array = [$datas['length'], $datas['width'], $datas['height']];
             rsort($sorted_sizes_array,SORT_NUMERIC);
             $sorted_sizes_array[] = $datas['vol'];
@@ -228,7 +228,7 @@ class shipping
         }
         // Begining of parcel size calculation
         $box_length = $box_width = $box_height = $sum_height = $count_height = 0;
-        foreach($this->weight_qty_sizes_array as $keys => $datas) { // calculate default height for empty height items using mean value of items with defined sizes.
+        foreach($this->weight_qty_sizes_array as $datas) { // calculate default height for empty height items using mean value of items with defined sizes.
             if ($datas['height'] > 0) {
                 $sum_height += $datas['height'];
                 $count_height++;
@@ -283,7 +283,7 @@ class shipping
             $box_height = 0;
             $long = 0;
             $larg = 0;
-            foreach($items_size_array[$i] as $keys => $datas) {
+            foreach($items_size_array[$i] as $datas) {
                 for ($q=0; $q < $datas[5]; $q++) {
                     switch (true) {
                     case (($datas[0] <= intval($maxlength / 2)) and ($datas[1] <= intval($maxwidth / 2))):
@@ -601,7 +601,7 @@ class shipping
             } else {
                 $tot_items = 0;
                 $item_ref = [];
-                foreach ($this->weight_array as $key => $value) {
+                foreach ($this->weight_array as $value) {
                     $tot_items += $value[2];
                     $item_ref[] = ['ref' => $value[0], 'qty' => $value[2]];
                 }

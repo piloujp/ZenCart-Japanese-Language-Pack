@@ -1018,7 +1018,7 @@ class order extends base
         // lowstock email report
         $this->email_low_stock = '';
 
-        for ($i = 0, $n = sizeof($this->products); $i < $n; $i++) {
+        for ($i = 0, $n = count($this->products); $i < $n; $i++) {
             $custom_insertable_text = '';
 
             $this->doStockDecrement = (STOCK_LIMITED == 'true');
@@ -1120,7 +1120,7 @@ class order extends base
             $this->products_ordered_attributes = '';
             if (isset($this->products[$i]['attributes'])) {
                 $attributes_exist = '1';
-                for ($j = 0, $n2 = sizeof($this->products[$i]['attributes']); $j < $n2; $j++) {
+                for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
                     if (DOWNLOAD_ENABLED == 'true') {
                         $attributes_query = "SELECT popt.products_options_name, poval.products_options_values_name,
                                  pa.options_values_price, pa.price_prefix,
@@ -1354,7 +1354,7 @@ class order extends base
 
         //order totals area
         $html_ot = '<tr><td class="order-totals-text" align="right" width="100%">' . '&nbsp;' . '</td> ' . "\n" . '<td class="order-totals-num" align="right" nowrap="nowrap">' . '---------' . '</td> </tr>' . "\n";
-        for ($i = 0, $n = sizeof($order_totals); $i < $n; $i++) {
+        for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
             $email_order .= strip_tags($order_totals[$i]['title']) . ' ' . strip_tags($order_totals[$i]['text']) . "\n";
             $html_ot .= '<tr><td class="order-totals-text" align="right" width="100%">' . $order_totals[$i]['title'] . '</td> ' . "\n" . '<td class="order-totals-num" align="right" nowrap="nowrap">' . ($order_totals[$i]['text']) . '</td> </tr>' . "\n";
         }

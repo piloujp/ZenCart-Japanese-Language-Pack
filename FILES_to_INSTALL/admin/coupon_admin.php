@@ -1044,7 +1044,7 @@ switch ($_GET['action']) {
             }
             if (empty($coupon_finishdate)) {
               $coupon_finishdate = preg_split("/[-]/", date('Y-m-d'));
-              $coupon_finishdate[0] = $coupon_finishdate[0] + 1;
+              $coupon_finishdate[0] += 1;
             } else {
               $coupon_finishdate = preg_split("/[-]/", $coupon_finishdate);
             }

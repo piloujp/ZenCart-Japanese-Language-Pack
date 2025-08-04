@@ -106,7 +106,7 @@ class _Sagawa {
         }
         $n_totallength = $this->Length + $this->Width + $this->Height;
 
-        foreach ($a_classes as $n_index => $a_limit) {
+        foreach ($a_classes as $a_limit) {
             if ($n_totallength <= $a_limit[1] && $this->Weight <= $a_limit[2]) {
                 return $a_limit[0];
             }
