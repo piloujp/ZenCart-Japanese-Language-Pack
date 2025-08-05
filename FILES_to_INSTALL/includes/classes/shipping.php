@@ -242,11 +242,7 @@ class shipping
         $box_sizes_array = [];
         $new_box_height = [];
         $add_box = 0;
-        if ($multiboxes == 'Size') {
-            $iter = 1;
-        } else {
-            $iter = $shipping_num_boxes;
-        }
+        $iter = $multiboxes == 'Size' ? 1 : $shipping_num_boxes;
         for ($i =0; $i < $iter; $i++) {
             $maxlength = $maxwidth = $maxheight = $defitems = 0;
             if ($multiboxes == 'Size' and !empty($max_size_array)) {

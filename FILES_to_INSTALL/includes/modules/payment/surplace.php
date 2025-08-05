@@ -55,7 +55,7 @@
         $this->description = MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION;
         $this->enabled = (defined('MODULE_PAYMENT_SURPLACE_STATUS') && MODULE_PAYMENT_SURPLACE_STATUS == 'True');
         $this->sort_order = defined('MODULE_PAYMENT_SURPLACE_SORT_ORDER') ? MODULE_PAYMENT_SURPLACE_SORT_ORDER : null;
-        if (null === $this->sort_order) return false;
+        if (null === $this->sort_order) return;
         if (defined('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID > 0) {
             $this->order_status = MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID;
         }
