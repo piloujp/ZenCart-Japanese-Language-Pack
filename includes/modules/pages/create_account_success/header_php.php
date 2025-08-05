@@ -23,7 +23,7 @@ if (!zen_is_logged_in()) {
 }
 //-EOF-lat9
 
-if (sizeof($_SESSION['navigation']->snapshot) > 0) {
+if (count($_SESSION['navigation']->snapshot) > 0) {
   $origin_href = zen_href_link($_SESSION['navigation']->snapshot['page'], zen_array_to_string($_SESSION['navigation']->snapshot['get'], array(zen_session_name())), $_SESSION['navigation']->snapshot['mode']);
   $_SESSION['navigation']->clear_snapshot();
 } else {

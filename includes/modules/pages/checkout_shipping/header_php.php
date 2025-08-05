@@ -39,7 +39,7 @@
 // Stock Check
   if ( (STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true') ) {
     $products = $_SESSION['cart']->get_products();
-    for ($i=0, $n=sizeof($products); $i<$n; $i++) {
+    for ($i=0, $n=count($products); $i<$n; $i++) {
       $qtyAvailable = zen_get_products_stock($products[$i]['id']);
       // compare against product inventory, and against mixed=YES
       if ($qtyAvailable - $products[$i]['quantity'] < 0 || $qtyAvailable - $_SESSION['cart']->in_cart_mixed($products[$i]['id']) < 0) {
@@ -195,9 +195,9 @@ if (isset($_SESSION['cart']->cartID)) {
   // check that the currently selected shipping method is still valid (in case a zone restriction has disabled it, etc)
   if (isset($_SESSION['shipping']['id'])) {
     $checklist = [];
-    foreach ($quotes as $key=>$val) {
+    foreach ($quotes as $val) {
       if (is_array($val['methods'])) {
-        foreach($val['methods'] as $key2=>$method) {
+        foreach($val['methods'] as $method) {
           $checklist[] = $val['id'] . '_' . $method['id'];
         }
       }

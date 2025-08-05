@@ -38,7 +38,7 @@ function zen_is_whitelisted_admin_ip($ip = null)
 function zen_round($value, $precision)
 {
     $value = round($value * pow(10, $precision), 0);
-    $value = $value / pow(10, $precision);
+    $value /= pow(10, $precision);
     return $value;
 }
 

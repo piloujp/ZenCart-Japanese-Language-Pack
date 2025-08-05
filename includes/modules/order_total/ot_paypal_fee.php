@@ -153,7 +153,7 @@
       global $db;
       $keys = '';
       $keys_array = $this->keys();
-      $keys_size = sizeof($keys_array);
+      $keys_size = count($keys_array);
       for ($i=0; $i<$keys_size; $i++) {
         $keys .= "'" . $keys_array[$i] . "',";
       }

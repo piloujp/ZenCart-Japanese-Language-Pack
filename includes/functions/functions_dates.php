@@ -453,7 +453,7 @@ function zen_count_days($start_date, $end_date, $lookup = 'm')
             $counter++;
             $calculated_date_unixtimestamp = strtotime($start_date . " +{$counter} months");
         }
-        if (($counter == 1) && ($end_date_month == $start_date_month)) $counter = ($counter - 1);
+        if (($counter == 1) && ($end_date_month == $start_date_month)) $counter -= 1;
     }
     return $counter;
 }

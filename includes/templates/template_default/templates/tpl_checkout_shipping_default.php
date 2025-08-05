@@ -37,7 +37,7 @@
 <h2 id="checkoutShippingHeadingMethod"><?php echo HEADING_SHIPPING_METHOD; ?></h2>
 
 <?php
-    if (sizeof($quotes) > 1 && sizeof($quotes[0]) > 1) {
+    if (count($quotes) > 1 && count($quotes[0]) > 1) {
 ?>
 
 <div id="checkoutShippingContentChoose" class="important"><?php echo TEXT_CHOOSE_SHIPPING_METHOD; ?></div>
@@ -59,7 +59,7 @@
 <?php
     } else {
       $radio_buttons = 0;
-      for ($i=0, $n=sizeof($quotes); $i<$n; $i++) {
+      for ($i=0, $n=count($quotes); $i<$n; $i++) {
       // bof: field set
       if (!empty($quotes[$i]['module'])) { 
 ?>
@@ -72,7 +72,7 @@
       <div><?php echo $quotes[$i]['error']; ?></div>
 <?php
         } else {
-          for ($j=0, $n2=sizeof($quotes[$i]['methods']); $j<$n2; $j++) {
+          for ($j=0, $n2=count($quotes[$i]['methods']); $j<$n2; $j++) {
 // set the radio button to be checked if it is the method chosen
             $checked = FALSE;
             if (isset($_SESSION['shipping']) && isset($_SESSION['shipping']['id'])) {

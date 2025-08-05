@@ -111,7 +111,7 @@ if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
   }
 
   $languages = zen_get_languages();
-  for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
+  for ($i = 0, $n = count($languages); $i < $n; $i++) {
     $language_id = $languages[$i]['id'];
 
     $sql_data_array = array(
