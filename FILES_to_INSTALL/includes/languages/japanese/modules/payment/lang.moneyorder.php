@@ -5,14 +5,14 @@ $define = [
 // bof constant configuration titles and descriptions for payment module moneyorder
     'CFGTITLE_MODULE_PAYMENT_MONEYORDER_STATUS' => '小切手／マネーオーダーを有効にする',
     'CFGDESC_MODULE_PAYMENT_MONEYORDER_STATUS' => '小切手／マネーオーダーを受け取りますか？',
+    'CFGTITLE_MODULE_PAYMENT_MONEYORDER_PAYTO' => '支払先：',
+    'CFGDESC_MODULE_PAYMENT_MONEYORDER_PAYTO' => '支払いの受取人は誰ですか？',
+    'CFGTITLE_MODULE_PAYMENT_MONEYORDER_SORT_ORDER' => '表示順',
+    'CFGDESC_MODULE_PAYMENT_MONEYORDER_SORT_ORDER' => '表示順を設定します。 最下位が最初に表示されます。',
     'CFGTITLE_MODULE_PAYMENT_MONEYORDER_ZONE' => '支払い地帯',
     'CFGDESC_MODULE_PAYMENT_MONEYORDER_ZONE' => '地帯が選択されている場合は、その地帯に対してのみこの支払い方法を有効にしてください。',
     'CFGTITLE_MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID' => '注文ステータスの設定',
     'CFGDESC_MODULE_PAYMENT_MONEYORDER_ORDER_STATUS_ID' => 'この支払いモジュールで行われた注文のステータスを設定します。',
-    'CFGTITLE_MODULE_PAYMENT_MONEYORDER_SORT_ORDER' => '表示順',
-    'CFGDESC_MODULE_PAYMENT_MONEYORDER_SORT_ORDER' => '表示順を設定します。 最下位が最初に表示されます。',
-    'CFGTITLE_MODULE_PAYMENT_MONEYORDER_PAYTO' => '支払先：',
-    'CFGDESC_MODULE_PAYMENT_MONEYORDER_PAYTO' => '支払いの受取人は誰ですか？',
 // eof constant configuration titles and descriptions for payment module moneyorder
 ];
 if (defined('MODULE_PAYMENT_MONEYORDER_STATUS')) {

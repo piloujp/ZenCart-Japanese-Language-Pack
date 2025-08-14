@@ -60,10 +60,6 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_TXNKEY' => 'トランザクションデータを送信するために使用されるトランザクションキー。<br><a href="https://support.authorize.net/s/article/How-do-I-obtain-my-API-Login-ID-and-Transaction-Key" rel="noopener" target="_blank">API ログイン ID とトランザクション キーを取得する方法</a>を参照してください。',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE' => '支払いアクション',
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_TESTMODE' => '注文の処理に使用されるトランザクション モード。<br><strong>Production=</strong>実際のアカウント認証情報を使用したライブ処理<br><strong>Test=</strong>実際のアカウント認証情報を使用したシミュレーション<br><strong>Sandbox=</strong>特別なサンドボックス トランザクション キーを使用して、トランザクション応答の成功/失敗の特別なテストを実行します（developer.authorize.net 経由でサンドボックス資格情報を取得します）',
-    'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => '取引通貨',
-    'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => 'Authnet Gateway アカウントはどの通貨を受け入れるように設定されていますか？<br>（他の通貨での購入は、ストア管理の為替レートを使用して、送信前にこの通貨に事前変換されます。）',
-    'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_METHOD' => '取引方法',
-    'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_METHOD' => '注文の処理に使用される取引方法',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_AUTHORIZATION_TYPE' => '承認タイプ',
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_AUTHORIZATION_TYPE' => '送信されたクレジットカード取引を承認のみにしますか、それとも承認とキャプチャの両方にしますか？',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_STORE_DATA' => 'データベースストレージを有効にする',
@@ -86,6 +82,8 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_REVIEW_ORDER_STATUS_ID' => 'この支払いモジュールで行われたが、処理のために確認が必要な注文のステータスを設定します。',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_DEBUGGING' => 'デバッグモード',
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_DEBUGGING' => 'デバッグモードを有効にしますか？失敗したトランザクションの完全な詳細ログがストア所有者に電子メールで送信されます。',
+    'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => '取引通貨',
+    'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => 'Authnet Gateway アカウントはどの通貨を受け入れるように設定されていますか？<br>（他の通貨での購入は、ストア管理の為替レートを使用して、送信前にこの通貨に事前変換されます。）',
 // eof constant configuration titles and descriptions for payment module authorizenet
 ];
 
