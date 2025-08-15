@@ -309,11 +309,11 @@ systemChecks:
     methods:
       checkHttpsRequest:
 
-  checkDBVersion210210:
+  checkDBVersion220210:
     runLevel: dbVersion
     errorLevel: WARN
-    version: '2.1.0210'
-    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.1.0210') . PHP_EOL; ?>
+    version: '2.2.0210'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.2.0210') . PHP_EOL; ?>
     methods:
       dbVersionChecker:
         parameters:
@@ -376,6 +376,34 @@ systemChecks:
           - checkType: fieldSchema
             tableName: orders
             fieldName: delivery_timespec
+            fieldCheck: Exists
+
+  checkDBVersion220:
+    runLevel: dbVersion
+    errorLevel: WARN
+    version: '2.2.0'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.2.0') . PHP_EOL; ?>
+    methods:
+      dbVersionChecker:
+        parameters:
+          - checkType: configKeyExists
+            keyName: PASSWORD_RESET_TOKEN_LENGTH
+          - checkType: fieldSchema
+            tableName: customer_password_reset_tokens
+            fieldName: token
+            fieldCheck: Exists
+          - checkType: fieldSchema
+            tableName: orders
+            fieldName: currency
+            fieldCheck: Type
+            expectedResult: 'CHAR(4)'
+          - checkType: fieldSchema
+            tableName: tax_rates_description
+            fieldName: tax_rates_id
+            fieldCheck: Exists
+          - checkType: fieldSchema
+            tableName: tax_rates_description
+            fieldName: tax_description
             fieldCheck: Exists
 
   checkDBVersion210:
