@@ -11,6 +11,7 @@
 #
 
 Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
+Set @default_lang = (SELECT languages_id FROM languages WHERE code = (SELECT configuration_value FROM configuration WHERE configuration_key = 'DEFAULT_LANGUAGE'));
 
 
 #PROGRESS_FEEDBACK:!TEXT=Adding Japanese zones...
@@ -117,7 +118,11 @@ UPDATE currencies SET value='0.010993', last_updated = now() WHERE code='AUD';
 INSERT INTO tax_class (tax_class_title, tax_class_description, last_modified, date_added) VALUES ('消費税', '消費税（日本）', now(), now());
 INSERT INTO geo_zones (geo_zone_name, geo_zone_description, last_modified, date_added) VALUES ('日本', '日本（消費税）', now(), now());
 INSERT INTO zones_to_geo_zones (zone_country_id, geo_zone_id, last_modified, date_added) SELECT @japan_id, geo_zone_id, now(), now() FROM geo_zones WHERE geo_zone_name = '日本';
-INSERT INTO tax_rates (tax_zone_id, tax_class_id, tax_priority, tax_rate, tax_description, last_modified, date_added) SELECT ztg.association_id, tc.tax_class_id, '1', '10.0', '（内消費税：10%）', now(), now() FROM tax_class tc, zones_to_geo_zones ztg JOIN geo_zones gz ON ztg.geo_zone_id = gz.geo_zone_id WHERE tc.tax_class_title = '消費税' AND gz.geo_zone_name ='日本';
+SET @taxdescription = 'Japan Sale Tax: 10%' COLLATE utf8mb4_general_ci;
+INSERT INTO tax_rates (tax_zone_id, tax_class_id, tax_priority, tax_rate, last_modified, date_added) SELECT ztg.association_id, tc.tax_class_id, '1', '10.0', now(), now()
+FROM tax_class tc, zones_to_geo_zones ztg INNER JOIN geo_zones gz ON ztg.geo_zone_id = gz.geo_zone_id WHERE tc.tax_class_title = '消費税' AND gz.geo_zone_name ='日本';
+INSERT INTO tax_rates_description (tax_rates_id, language_id, tax_description)
+VALUES (LAST_INSERT_ID(), @default_lang, @taxdescription);
 
 #PROGRESS_FEEDBACK:!TEXT=Updating admin configuration
 #販売国
@@ -138,7 +143,6 @@ UPDATE configuration SET configuration_value = 'true', last_modified = now() WHE
 INSERT IGNORE INTO languages (name, code, image, directory, sort_order) VALUES ('Japanese', 'ja', 'icon.gif', 'japanese', '1');
 
 Set @lan_id = (SELECT languages_id FROM languages WHERE code = 'ja');
-Set @default_lang = (SELECT languages_id FROM languages WHERE code = (SELECT configuration_value FROM configuration WHERE configuration_key = 'DEFAULT_LANGUAGE'));
 
 INSERT IGNORE INTO categories_description (categories_id, language_id, categories_name, categories_description) SELECT categories_id, @lan_id, categories_name, categories_description FROM categories_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO products_description (products_id, language_id, products_name, products_description, products_url) SELECT products_id, @lan_id, products_name, products_description, products_url FROM products_description WHERE language_id = @default_lang;
@@ -148,6 +152,7 @@ INSERT IGNORE INTO products_options (products_options_id, language_id, products_
 INSERT IGNORE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) SELECT products_options_values_id, @lan_id, products_options_values_name, products_options_values_sort_order FROM products_options_values WHERE language_id = @default_lang;
 INSERT IGNORE INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_url) SELECT manufacturers_id, @lan_id, manufacturers_url FROM manufacturers_info WHERE languages_id = @default_lang;
 INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, sort_order FROM orders_status WHERE language_id = @default_lang;
+INSERT IGNORE INTO tax_rates_description (tax_rates_id, language_id, tax_description) SELECT tax_rates_id, @lan_id, tax_description FROM tax_rates_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
 
@@ -158,13 +163,14 @@ CREATE TABLE IF NOT EXISTS products_options_stock_names (
             PRIMARY KEY (pos_name_id, language_id)
         ) ENGINE=MyISAM;
 INSERT IGNORE INTO products_options_stock_names (pos_name_id, language_id, pos_name) VALUE (1, @default_lang, 'Back-ordered');
-INSERT IGNORE INTO products_options_stock_names (pos_name_id, language_id, pos_name) VALUE (1, @lan_id, 'バックオーダー');
+INSERT INTO products_options_stock_names (pos_name_id, language_id, pos_name) VALUE (1, @lan_id, 'バックオーダー') ON DUPLICATE KEY UPDATE pos_name='バックオーダー';
 
 UPDATE orders_status SET orders_status_name='処理待ち', sort_order=0 WHERE language_id=@lan_id AND orders_status_name='Pending';
 UPDATE orders_status SET orders_status_name='処理中', sort_order=10 WHERE language_id=@lan_id AND orders_status_name='Processing';
 UPDATE orders_status SET orders_status_name='完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
 UPDATE orders_status SET orders_status_name='更新', sort_order=30 WHERE language_id=@lan_id AND orders_status_name='Update';
 UPDATE orders_status SET orders_status_name='配送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
+UPDATE tax_rates_description SET tax_description='（内消費税：１０％）' WHERE language_id=@lan_id AND tax_description=@taxdescription;
 
 
 #### VERSION UPDATE STATEMENTS
@@ -176,5 +182,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_comment = 'New Installation-v210 with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '1.0210', project_version_comment = 'New Installation-v210 with Japanese Pack v2.1.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_comment = 'New Installation-v220 with Japanese Pack v2.2.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '2.0210', project_version_comment = 'New Installation-v220 with Japanese Pack v2.2.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

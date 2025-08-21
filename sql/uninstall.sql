@@ -44,34 +44,15 @@ UPDATE configuration SET configuration_value = 'false', last_modified = now() WH
 UPDATE configuration SET configuration_value = @USA_id, last_modified = now() WHERE configuration_key = 'SHOW_CREATE_ACCOUNT_DEFAULT_COUNTRY';
 UPDATE configuration SET configuration_value = 'false', last_modified = now() WHERE configuration_key = 'ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN';
 
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_NEKOPOSU%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_LETTERPACKLITE%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_LETTERPACKPLUS%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_SAGAWA%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_YAMATO%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_YUPACK%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELSEA%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELAIR%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_SHIPPING_JPPARCELEMS%';
-
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_PAYMENT_SURPLACE%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_PAYMENT_FURIKOMI%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_PAYMENT_SAGAWAECOLLECT%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_PAYMENT_YAMATOECOLLECT%';
-
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_ORDER_TOTAL_YAMATOECOLLECT%';
-DELETE FROM configuration WHERE configuration_key LIKE 'MODULE_ORDER_TOTAL_PAYPAL%';
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
 ##The following updates the version HISTORY to store the prior version info (Essentially "moves" the prior version info from the "project_version" to "project_version_history" table
 SET @prec_minor_version = (SELECT project_version_minor FROM project_version_history WHERE project_version_key = 'Zen-Cart Main' AND project_version_comment NOT LIKE '%Japanese%' ORDER BY project_version_id DESC LIMIT 1);
 SET @prec_minor_version_db = (SELECT project_version_minor FROM project_version_history WHERE project_version_key = 'Zen-Cart Database' AND project_version_comment NOT LIKE '%Japanese%' ORDER BY project_version_id DESC LIMIT 1);
-#NEXT_X_ROWS_AS_ONE_COMMAND:3
 INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)
 SELECT project_version_key, project_version_major, project_version_minor, project_version_patch1 as project_version_patch, project_version_date_applied, project_version_comment
 FROM project_version;
 
-UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v210', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = @prec_minor_version_db, project_version_comment = 'Uninstall Japanese Language Pack v210', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = @prec_minor_version, project_version_comment = 'Uninstall Japanese Language Pack v220', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = @prec_minor_version_db, project_version_comment = 'Uninstall Japanese Language Pack v220', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';

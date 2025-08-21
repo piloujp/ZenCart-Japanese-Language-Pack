@@ -1,10 +1,3 @@
-SET @japan_id = (SELECT countries_id FROM countries WHERE countries_iso_code_2 = 'JP' LIMIT 1);
-
-#住所フォーマット
-SET @Formid = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%' ORDER BY address_format_id DESC LIMIT 1);
-REPLACE INTO address_format (address_format_id, address_format, address_summary) VALUES (@formid, '〒$postcode$cr$state$city$streets$cr$lastname $firstname 様', '$city $country');
-UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%' ORDER BY address_format_id DESC LIMIT 1) WHERE countries_id = @japan_id;
-
 # if POSM is installed
 Set @lan_id = (SELECT languages_id FROM languages WHERE code = 'ja');
 SET @tbl_posm_exists = (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = 'products_options_stock_names');
