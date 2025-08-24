@@ -2,7 +2,7 @@
 $define = [
     'MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE' => 'PayPal決済標準',
     'MODULE_PAYMENT_PAYPAL_TEXT_ADMIN_TITLE_NONUSA' => 'PayPal ウェブサイト決済標準',
-    'MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_TITLE' => 'PayPal',
+    'MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_TITLE' => 'ペイパル',
     'MODULE_PAYMENT_PAYPAL_MARK_BUTTON_IMG' => 'https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif',
     'MODULE_PAYMENT_PAYPAL_MARK_BUTTON_ALT' => 'PayPalでチェックアウト',
     'MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT' => '時間を節約。安全にチェックアウト。<br>財務情報を共有せずにお支払いいただけます。',
@@ -42,7 +42,7 @@ $define = [
     'MODULE_PAYMENT_PAYPAL_ENTRY_TXN_ID' => '取引ID：',
     'MODULE_PAYMENT_PAYPAL_ENTRY_PARENT_TXN_ID' => '親取引ID：',
     'MODULE_PAYMENT_PAYPAL_ENTRY_COMMENTS' => 'システムコメント：',
-// bof constant configuration titles and descriptions for order payment paypal
+// bof constant configuration titles and descriptions for payment module paypal
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_STATUS' => 'この支払いモジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_PAYPAL_STATUS' => 'この支払いモジュールを有効にしますか？',
     'CFGTITLE_MODULE_PAYMENT_PAYPAL_BUSINESS_ID' => 'ビジネスID',
@@ -79,9 +79,9 @@ $define = [
 ];
 
 if (IS_ADMIN_FLAG === true) {
-    $define['MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION'] = '<strong>PayPal 決済標準</strong>（古い PayPal サービスで、Express Checkout よりも信頼性が低い）<br><a href="https://www.paypal.com" rel="noreferrer noopener" target="_blank">PayPal アカウントを管理します。</a><br><br><b>設定手順：</b><br>1. <a href="https://www.zen-cart.com/partners/paypal-std" rel="noopener" target="_blank">PayPal アカウントにサインアップするには、ここをクリックしてください。</a><br>2. PayPal アカウントの「プロフィール」で、<ul><li><strong>即時支払い通知設定</strong> URL を次のように設定します：<br><pre>' . str_replace('index.php?main_page=index', 'ipn_main_handler.php', zen_catalog_href_link(FILENAME_DEFAULT)) . '</pre><br>（別の有効な URL がすでに入力されている場合は、そのままにしておきます。）<br><span class="alert">IPN を有効にするチェックボックスがオンになっていることを確認してください。</span><br><br></li><li><strong>ウェブサイトの支払い設定</strong>で、<strong>自動返信URL</strong>を次のように設定します：<br><pre>' . zen_catalog_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL', false) . '</pre></li>' . (defined('MODULE_PAYMENT_PAYPALSTD_STATUS') ? '' : '<li>...そして、上の「インストール」をクリックして PayPal 標準サポートを有効にします...そして「編集」をクリックして Zen Cart に PayPal 設定を伝えます。</li>') . '</ul><hr><strong>要件：</strong><br><br>*<strong>PayPalアカウント</strong>（<a href="https://www.zen-cart.com/partners/paypal-std" rel="noopener" target="_blank">クリックしてセットアップ/構成する</a>）<br>*<strong>SSL を使用した CURL</strong> を強く推奨します。<br>*<strong>ポート８０（SSL が有効な場合はポート４４３）</strong>はゲートウェイとの <strong>*双方向*</strong>通信に使用されるため、ホストのルーター/ファイアウォールで開いている必要があります。<br>*PayPal アカウント内の<strong>設定</strong>は、上記のように構成する必要があります。';
+    $define['MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION'] = '<strong>ペイパル決済標準</strong>（古い PayPal サービスで、Express Checkout よりも信頼性が低い）<br><a href="https://www.paypal.com" rel="noreferrer noopener" target="_blank">PayPal アカウントを管理します。</a><br><br><b>設定手順：</b><br>1. <a href="https://www.zen-cart.com/partners/paypal-std" rel="noopener" target="_blank">PayPal アカウントにサインアップするには、ここをクリックしてください。</a><br>2. PayPal アカウントの「プロフィール」で、<ul><li><strong>即時支払い通知設定</strong> URL を次のように設定します：<br><pre>' . str_replace('index.php?main_page=index', 'ipn_main_handler.php', zen_catalog_href_link(FILENAME_DEFAULT)) . '</pre><br>（別の有効な URL がすでに入力されている場合は、そのままにしておきます。）<br><span class="alert">IPN を有効にするチェックボックスがオンになっていることを確認してください。</span><br><br></li><li><strong>ウェブサイトの支払い設定</strong>で、<strong>自動返信URL</strong>を次のように設定します：<br><pre>' . zen_catalog_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL', false) . '</pre></li>' . (defined('MODULE_PAYMENT_PAYPALSTD_STATUS') ? '' : '<li>...そして、上の「インストール」をクリックして PayPal 標準サポートを有効にします...そして「編集」をクリックして Zen Cart に PayPal 設定を伝えます。</li>') . '</ul><hr><strong>要件：</strong><br><br>*<strong>PayPalアカウント</strong>（<a href="https://www.zen-cart.com/partners/paypal-std" rel="noopener" target="_blank">クリックしてセットアップ/構成する</a>）<br>*<strong>SSL を使用した CURL</strong> を強く推奨します。<br>*<strong>ポート８０（SSL が有効な場合はポート４４３）</strong>はゲートウェイとの <strong>*双方向*</strong>通信に使用されるため、ホストのルーター/ファイアウォールで開いている必要があります。<br>*PayPal アカウント内の<strong>設定</strong>は、上記のように構成する必要があります。';
 } else {
-    $define['MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION'] = '<strong>PayPal</strong>';
+    $define['MODULE_PAYMENT_PAYPAL_TEXT_DESCRIPTION'] = '<strong>ペイパル</strong>';
 }
 $define['MODULE_PAYMENT_PAYPAL_TEXT_CATALOG_LOGO'] = '<img src="' . $define['MODULE_PAYMENT_PAYPAL_MARK_BUTTON_IMG'] . '" alt="' . $define['MODULE_PAYMENT_PAYPAL_MARK_BUTTON_ALT'] . '" title="' . $define['MODULE_PAYMENT_PAYPAL_MARK_BUTTON_ALT'] . '"> &nbsp;' .
         '<span class="smallText">' . $define['MODULE_PAYMENT_PAYPAL_ACCEPTANCE_MARK_TEXT'] . '</span>';

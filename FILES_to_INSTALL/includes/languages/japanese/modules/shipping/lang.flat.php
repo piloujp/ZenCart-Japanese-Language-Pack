@@ -3,7 +3,7 @@ $define = [
     'MODULE_SHIPPING_FLAT_TEXT_TITLE' => '定額送料',
     'MODULE_SHIPPING_FLAT_TEXT_DESCRIPTION' => '定額送料',
     'MODULE_SHIPPING_FLAT_TEXT_WAY' => '弊社指定宅配サービス',
-    // bof constant configuration titles and descriptions for flat shipping
+// bof constant configuration titles and descriptions for flat shipping
     'CFGTITLE_MODULE_SHIPPING_FLAT_STATUS' => '定額配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_FLAT_STATUS' => '定額配送を提供しますか？',
     'CFGTITLE_MODULE_SHIPPING_FLAT_COST' => '送料',
@@ -16,7 +16,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_FLAT_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_FLAT_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_FLAT_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-    // eof constant configuration titles and descriptions for flat shipping
+// eof constant configuration titles and descriptions for flat shipping
 ];
 
 return $define;

@@ -154,7 +154,7 @@ $define = [
     'MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_SUBJECT' => '不正利用チェックステータスの注文： ',
     'MODULES_PAYMENT_PAYPALDP_TEXT_EMAIL_FMF_INTRO' => 'これは新規の注文で利用された支払に対して、Paypalの不正利用チェックチームにより支払情報の再確認をするよう取引にフラグが立てられた事を自動でお知らせするものです。通常、この再確認処理には 36時間程度が掛かります。支払手続きの再確認が完了するまで、商品を出荷しないように強くお勧めいたします。Paypal アカウントにログインして最近の取引履歴より、この注文に対する最新状況を確認できます。',
     'MODULES_PAYMENT_PAYPALWPP_AGGREGATE_CART_CONTENTS' => 'ショッピングカート内の全てのアイテム（ショップ内で詳細を御確認いただくか、レシートを御確認ください）。',
-// bof constant configuration titles and descriptions for order payment paypaldp
+// bof constant configuration titles and descriptions for payment module paypaldp
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_STATUS' => 'この支払いモジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_PAYPALDP_STATUS' => 'この支払いモジュールを有効にしますか？この支払いモジュールを削除する予定だが、このモジュールを使用して行われた注文に対して管理アクションを実行する必要がある場合には、「<strong>廃止</strong>」設定を使用します。',
     'CFGTITLE_MODULE_PAYMENT_PAYPALDP_SERVER' => 'ライブまたはサンドボックス',
@@ -191,7 +191,7 @@ $define = [
 ];
 
 if (IS_ADMIN_FLAG === true) {
-    $define['MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_DESCRIPTION'] = '<strong>PayPal Payments Pro</strong>%s<br>' . '<a href="https://www.paypal.com" rel="noreferrer noopener" target="_blank">PayPal アカウントを管理します。</a>' . '<br><br><font color="green">セットアップ手順：</font><br><span class="alert">1. </span><a href="https://www.zen-cart.com/partners/paypal-pro" rel="noopener" target="_blank">PayPal アカウントにサインアップします - ここをクリックしてください。</a><br>' .
+    $define['MODULE_PAYMENT_PAYPALDP_TEXT_ADMIN_DESCRIPTION'] = '<strong>ペイパルペイメントプロ</strong>%s<br><a href="https://www.paypal.com" rel="noreferrer noopener" target="_blank">ペイパルアカウントを管理します。</a><br><br><font color="green">設定手順：</font><br><span class="alert">1. </span><a href="https://www.zen-cart.com/partners/paypal-pro" rel="noopener" target="_blank">ペイパルアカウントにサインアップするには、ここをクリックしてください。</a><br>' .
         (isset($define['MODULE_PAYMENT_PAYPALDP_STATUS']) ? '' : '...そして、上の「インストール」をクリックして PayPal Payments Pro を有効にします。<br><a href="https://www.zen-cart.com/getpaypal" rel="noopener" target="_blank">さらに詳細なヘルプについては、この FAQ 記事を参照してください。</a><br>') .
         (!isset($define['MODULE_PAYMENT_PAYPALWPP_APISIGNATURE']) || $define['MODULE_PAYMENT_PAYPALWPP_APISIGNATURE'] === '' ? '<span class="alert">2. </span>PayPal プロファイル設定領域の <strong>API認証情報</strong>オプションからの API 認証情報。このモジュールは<strong>API 署名</strong>オプションを使用します。ユーザー名、パスワード、署名を以下のフィールドに入力する必要があります。' : '<span class="alert">2. </span>ユーザー名/パスワードなどの適切なセキュリティ データを以下に入力していることを確認してください。') .
         '<font color="green"><hr><strong>要件：</strong></font><br><hr>*<strong>PayPal の利用規約に従って、PayPal Payments Pro を使用するには、 エクスプレス チェックアウト</strong>をインストールして有効にする必要があります。<br>*アウトバウンド通信には CURL over SSL も必要です。 CURL はポート 80 および 443 に対して有効にする必要があります。<hr>';

@@ -3,7 +3,7 @@ $define = [
     'MODULE_ORDER_TOTAL_PAYPAL_TITLE' => 'PayPal手数料',
     'MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION' => 'PayPal手数料',
     'TEXT_INFO_PAYPAL_FEES' => '<strong>注：</strong> 手数料がかかります。',
-//bof constant configuration titles and descriptions for ot_paypal_fee
+//bof constant configuration titles and descriptions for order total module ot_paypal_fee
     'CFGTITLE_MODULE_ORDER_TOTAL_PAYPAL_STATUS' => 'PayPal手数料を有効にする',
     'CFGDESC_MODULE_ORDER_TOTAL_PAYPAL_STATUS' => 'PayPal手数料を表示しますか？',
     'CFGTITLE_MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER' => '表示順',
@@ -26,7 +26,7 @@ $define = [
     'CFGDESC_MODULE_ORDER_TOTAL_PAYPAL_FEE10000' => '１０００万円以上の支払いに対する PayPal 手数料 (%)',
     'CFGTITLE_MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE' => '固定料金',
     'CFGDESC_MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE' => 'PayPal固定料金',
-//eof constant configuration titles and descriptions for ot_paypal_fee
+//eof constant configuration titles and descriptions for order total module ot_paypal_fee
 ];
 
 return $define;

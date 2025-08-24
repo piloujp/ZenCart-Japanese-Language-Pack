@@ -2,9 +2,9 @@
 $define = [
     'MODULE_ORDER_TOTAL_LOWORDERFEE_TITLE' => '少額注文手数料',
     'MODULE_ORDER_TOTAL_LOWORDERFEE_DESCRIPTION' => '少額注文手数料',
-//bof constant configuration titles and descriptions for ot_loworderfee
+// bof constant configuration titles and descriptions for order total module ot_loworderfee
     'CFGTITLE_MODULE_ORDER_TOTAL_LOWORDERFEE_STATUS' => 'このモジュールはインストールされています',
-//    'CFGDESC_MODULE_ORDER_TOTAL_LOWORDERFEE_STATUS' => '',
+    'CFGDESC_MODULE_ORDER_TOTAL_LOWORDERFEE_STATUS' => '',
     'CFGTITLE_MODULE_ORDER_TOTAL_LOWORDERFEE_SORT_ORDER' => '表示順',
     'CFGDESC_MODULE_ORDER_TOTAL_LOWORDERFEE_SORT_ORDER' => '表示順を設定します。 最下位が最初に表示されます。',
     'CFGTITLE_MODULE_ORDER_TOTAL_LOWORDERFEE_LOW_ORDER_FEE' => '少額注文手数料を許可する',
@@ -21,7 +21,7 @@ $define = [
     'CFGDESC_MODULE_ORDER_TOTAL_LOWORDERFEE_VIRTUAL' => 'カートに仮想商品のみが含まれている場合は、少額注文手数料を請求しません。',
     'CFGTITLE_MODULE_ORDER_TOTAL_LOWORDERFEE_GV' => 'ギフト券の少額注文手数料はかかりません',
     'CFGDESC_MODULE_ORDER_TOTAL_LOWORDERFEE_GV' => 'カートにギフト券のみが含まれている場合は、少額注文手数料を請求しません。',
-//eof constant configuration titles and descriptions for ot_loworderfee
+// eof constant configuration titles and descriptions for order total module ot_loworderfee
 ];
 
 return $define;

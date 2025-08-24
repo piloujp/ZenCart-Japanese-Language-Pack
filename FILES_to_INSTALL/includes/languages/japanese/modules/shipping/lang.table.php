@@ -3,7 +3,7 @@ $define = [
     'MODULE_SHIPPING_TABLE_TEXT_TITLE' => '配送料金表方式',
     'MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION' => '配送料金表方式',
     'MODULE_SHIPPING_TABLE_TEXT_WAY' => '最良の方法',
-    // bof constant configuration titles and descriptions for table shipping
+// bof constant configuration titles and descriptions for table shipping
     'CFGTITLE_MODULE_SHIPPING_TABLE_STATUS' => '配送料金表方式の送料を有効にする',
     'CFGDESC_MODULE_SHIPPING_TABLE_STATUS' => '配送料金表方式の送料を提供しますか？',
     'CFGTITLE_MODULE_SHIPPING_TABLE_COST' => '配送料金表',
@@ -22,7 +22,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_TABLE_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_TABLE_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_TABLE_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-    // eof constant configuration titles and descriptions for table shipping
+// eof constant configuration titles and descriptions for table shipping
 ];
 
 return $define;

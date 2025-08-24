@@ -2,8 +2,8 @@
 $define = [
     'MODULE_SHIPPING_ITEM_TEXT_TITLE' => '商品ごとの送料',
     'MODULE_SHIPPING_ITEM_TEXT_DESCRIPTION' => '商品ごとの送料',
-    'MODULE_SHIPPING_ITEM_TEXT_WAY' => '',
-    // bof constant configuration titles and descriptions for item shipping
+    'MODULE_SHIPPING_ITEM_TEXT_WAY' => '最良の方法',
+// bof constant configuration titles and descriptions for item shipping
     'CFGTITLE_MODULE_SHIPPING_ITEM_STATUS' => '商品ごとの送料を有効にする',
     'CFGDESC_MODULE_SHIPPING_ITEM_STATUS' => '商品ごとの送料を提供しますか？',
     'CFGTITLE_MODULE_SHIPPING_ITEM_COST' => '送料',
@@ -18,7 +18,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_ITEM_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_ITEM_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_ITEM_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-    // eof constant configuration titles and descriptions for item shipping
+// eof constant configuration titles and descriptions for item shipping
 ];
 
 return $define;

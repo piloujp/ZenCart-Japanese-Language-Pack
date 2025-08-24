@@ -3,7 +3,7 @@ $define = [
     'MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_TITLE' => '重量単位',
     'MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_DESCRIPTION' => '重量単位',
     'MODULE_SHIPPING_PERWEIGHTUNIT_TEXT_WAY' => '最良の方法',
-    // bof constant configuration titles and descriptions for perweightunit shipping
+// bof constant configuration titles and descriptions for perweightunit shipping
     'CFGTITLE_MODULE_SHIPPING_PERWEIGHTUNIT_STATUS' => '重量単位の送料を有効にする',
     'CFGDESC_MODULE_SHIPPING_PERWEIGHTUNIT_STATUS' => '重量単位の送料を提供しますか？<br><br>製品数量 * 単位（商品重量） * 単位あたりのコスト',
     'CFGTITLE_MODULE_SHIPPING_PERWEIGHTUNIT_COST' => '１ユニットあたりの配送料',
@@ -20,7 +20,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_PERWEIGHTUNIT_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_PERWEIGHTUNIT_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-    // eof constant configuration titles and descriptions for perweightunit shipping
+// eof constant configuration titles and descriptions for perweightunit shipping
 ];
 
 return $define;

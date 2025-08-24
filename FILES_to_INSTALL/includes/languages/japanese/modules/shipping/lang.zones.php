@@ -5,7 +5,7 @@ $define = [
     'MODULE_SHIPPING_ZONES_TEXT_WAY' => '配送先',
     'MODULE_SHIPPING_ZONES_INVALID_ZONE' => '選択された国には配送できません。',
     'MODULE_SHIPPING_ZONES_UNDEFINED_RATE' => '現在は配送料金が決まっていません。',
-    // bof constant configuration titles and descriptions for zones shipping
+// bof constant configuration titles and descriptions for zones shipping
     'CFGTITLE_MODULE_SHIPPING_ZONES_STATUS' => '配送先に応じて配送料を有効にする',
     'CFGDESC_MODULE_SHIPPING_ZONES_STATUS' => '場所配送料の送料を提供しますか？',
     'CFGTITLE_MODULE_SHIPPING_ZONES_METHOD' => '送料計算方法',
@@ -42,7 +42,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_ZONES_HANDLING_3' => 'この配送方法の手数料。',
     'CFGTITLE_MODULE_SHIPPING_ZONES_HANDLING_METHOD_3' => 'ゾーン３手数料は注文ごとまたは箱ごとにかかります（重量の場合）',
     'CFGDESC_MODULE_SHIPPING_ZONES_HANDLING_METHOD_3' => '手数料は注文ごとに請求しますか、それとも箱ごとに請求しますか？',
-    // eof constant configuration titles and descriptions for zones shipping
+// eof constant configuration titles and descriptions for zones shipping
 ];
 
 return $define;

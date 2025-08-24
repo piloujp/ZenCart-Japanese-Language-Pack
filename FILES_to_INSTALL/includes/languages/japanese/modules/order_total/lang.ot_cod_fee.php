@@ -3,7 +3,7 @@ $define = [
     'MODULE_ORDER_TOTAL_COD_TITLE' => '代金引換手数料',
     'MODULE_ORDER_TOTAL_COD_DESCRIPTION' => '代金引換手数料',
     'TEXT_INFO_COD_FEES' => '<strong>注意：</strong> 代金引換手数料がかかります。',
-//bof constant configuration titles and descriptions for ot_cod_fee
+// bof constant configuration titles and descriptions for order total module ot_cod_fee
     'CFGTITLE_MODULE_ORDER_TOTAL_COD_STATUS' => '代金引換を表示',
     'CFGDESC_MODULE_ORDER_TOTAL_COD_STATUS' => 'このモジュールを表示しますか？',
     'CFGTITLE_MODULE_ORDER_TOTAL_COD_SORT_ORDER' => '表示順',
@@ -38,7 +38,7 @@ $define = [
     'CFGDESC_MODULE_ORDER_TOTAL_COD_FEE_FEDEX' => 'FedEx： &lt;国コード&gt;：&lt;代引手数料&gt;、.... 国コード 00 はすべての国に適用されます。国コードが 00 の場合は、最後の文にする必要があります。00:9.99 が表示されない場合、海外での代引配送は計算されません（不可能）',
     'CFGTITLE_MODULE_ORDER_TOTAL_COD_TAX_CLASS' => '税区分',
     'CFGDESC_MODULE_ORDER_TOTAL_COD_TAX_CLASS' => '代金引換手数料には以下の税区分が適用されます。',
-//eof constant configuration titles and descriptions for ot_cod_fee
+// eof constant configuration titles and descriptions for order total module ot_cod_fee
 ];
 
 return $define;

@@ -3,7 +3,7 @@ $define = [
     'MODULE_SHIPPING_FREESHIPPER_TEXT_TITLE' => '弊社指定宅配サービス',
     'MODULE_SHIPPING_FREESHIPPER_TEXT_DESCRIPTION' => '配送料無料',
     'MODULE_SHIPPING_FREESHIPPER_TEXT_WAY' => '弊社指定宅配サービス(配送料無料)',
-    // bof constant configuration titles and descriptions for freeshipper shipping
+// bof constant configuration titles and descriptions for freeshipper shipping
     'CFGTITLE_MODULE_SHIPPING_FREESHIPPER_STATUS' => '送料無料を有効にする',
     'CFGDESC_MODULE_SHIPPING_FREESHIPPER_STATUS' => '送料無料を提供しますか？',
     'CFGTITLE_MODULE_SHIPPING_FREESHIPPER_COST' => '送料',
@@ -16,7 +16,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_FREESHIPPER_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_FREESHIPPER_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_FREESHIPPER_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-    // eof constant configuration titles and descriptions for freeshipper shipping
+// eof constant configuration titles and descriptions for freeshipper shipping
 ];
 
 return $define;

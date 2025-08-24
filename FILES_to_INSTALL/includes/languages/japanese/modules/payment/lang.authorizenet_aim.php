@@ -51,7 +51,7 @@ $define = [
     'MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_TEXT_COMMENTS' => '注記（注文履歴に表示されます）：',
     'MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_DEFAULT_MESSAGE' => '取引はキャンセルされました',
     'MODULE_PAYMENT_AUTHORIZENET_AIM_ENTRY_VOID_SUFFIX' => '無効化は、元の取引が毎日のバッチで決済される前に完了する必要があります。',
-// bof constant configuration titles and descriptions for order payment authorizenet
+// bof constant configuration titles and descriptions for payment module authorizenet_aim
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS' => 'Authorize.net （AIM）モジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS' => 'AIM 方式で Authorize.net の支払いを受け入れますか？',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_LOGIN' => 'ログインID',
@@ -84,7 +84,7 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_DEBUGGING' => 'デバッグモードを有効にしますか？失敗したトランザクションの完全な詳細ログがストア所有者に電子メールで送信されます。',
     'CFGTITLE_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => '取引通貨',
     'CFGDESC_MODULE_PAYMENT_AUTHORIZENET_AIM_CURRENCY' => 'Authnet Gateway アカウントはどの通貨を受け入れるように設定されていますか？<br>（他の通貨での購入は、ストア管理の為替レートを使用して、送信前にこの通貨に事前変換されます。）',
-// eof constant configuration titles and descriptions for payment module authorizenet
+// eof constant configuration titles and descriptions for payment module authorizenet_aim
 ];
 
 if (defined('MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS') && MODULE_PAYMENT_AUTHORIZENET_AIM_STATUS == 'True') {

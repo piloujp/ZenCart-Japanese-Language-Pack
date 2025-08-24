@@ -3,8 +3,8 @@ $define = [
     'MODULE_SHIPPING_STOREPICKUP_TEXT_TITLE' => '店頭で受け取り',
     'MODULE_SHIPPING_STOREPICKUP_TEXT_DESCRIPTION' => '店頭で直接お受け取り。',
     'MODULE_SHIPPING_STOREPICKUP_TEXT_WAY' => '店頭で受け取り',
-    'MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS' => '店頭で受け取り',
-//bof constant configuration titles and descriptions for storepickup Shipping
+    'MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS' => '',
+// bof constant configuration titles and descriptions for storepickup Shipping
     'CFGTITLE_MODULE_SHIPPING_STOREPICKUP_STATUS' => 'ネコポス配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_STOREPICKUP_STATUS' => 'ネコポスで発送しますか？',
     'CFGTITLE_MODULE_SHIPPING_STOREPICKUP_LOCATIONS_LIST' => '受け取り場所',
@@ -19,7 +19,7 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_STOREPICKUP_ZONE' => '配送地域を選択すると選択された地域のみで利用可能となります。',
     'CFGTITLE_MODULE_SHIPPING_STOREPICKUP_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_STOREPICKUP_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
-//eof constant configuration titles and descriptions for storepickup Shipping
+// eof constant configuration titles and descriptions for storepickup Shipping
 ];
 
 // MODULE_SHIPPING_STOREPICKUP_MULTIPLE_WAYS は、言語ごとに複数の場所/メソッドを定義するためのものです。 これは、買い物客がストアのデフォルト以外の言語を選択した場合にのみ使用されます。

@@ -1,16 +1,16 @@
 <?php
 $define = [
     'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_EC' => 'PayPal（ペイパル）エクスプレスチェックアウト',
-    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PRO20' => 'PayPal Express Checkout (Pro 2.0 Payflow Edition) (UK)',
-    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC' => 'PayPal Payflow Pro - Gateway',
-    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY' => 'PayPal Express Checkout via Payflow Pro',
-    'MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION' => '<strong>PayPal</strong>',
+    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PRO20' => 'ペイパルエクスプレスチェックアウト (Pro 2.0 Payflowエディション) (UK)',
+    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_EC' => 'ペイパルペイフロープロ - ゲートウェイ',
+    'MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_TITLE_PF_GATEWAY' => 'ペイパルエクスプレスチェックアウトvia Payflow Pro',
+    'MODULE_PAYMENT_PAYPALWPP_TEXT_DESCRIPTION' => '<strong>ペイパル</strong>',
     'MODULE_PAYMENT_PAYPALWPP_TEXT_TITLE' => 'クレジットカード',
-    'MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TITLE' => 'PayPal',
-    'MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER' => 'PayPalで早くて安全な決済を：',
-    'MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE' => 'PayPalエクスプレスチェックアウト',
-    'MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE' => 'PayPal Direct Payment',
-    'MODULE_PAYMENT_PAYPALWPP_PF_TEXT_TYPE' => 'Credit Card',
+    'MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TITLE' => 'ペイパル',
+    'MODULE_PAYMENT_PAYPALWPP_TEXT_EC_HEADER' => 'ペイパルで早くて安全な決済を：',
+    'MODULE_PAYMENT_PAYPALWPP_EC_TEXT_TYPE' => 'ペイパルエクスプレスチェックアウト',
+    'MODULE_PAYMENT_PAYPALWPP_DP_TEXT_TYPE' => 'ペイパルダイレクト支払い',
+    'MODULE_PAYMENT_PAYPALWPP_PF_TEXT_TYPE' => 'クレジットカード',
     'MODULE_PAYMENT_PAYPALWPP_ERROR_HEADING' => '申し訳ありません、こちらのクレジットカードは取り扱いできません。',
     'MODULE_PAYMENT_PAYPALWPP_TEXT_CARD_ERROR' => '入力されたクレジットカード情報にエラーが含まれています。入力内容をご確認の上、再度お試しください。',
     'MODULE_PAYMENT_PAYPALWPP_TEXT_CREDIT_CARD_FIRSTNAME' => 'カード名義名：',
@@ -68,7 +68,7 @@ $define = [
     'MODULE_PAYMENT_PAYPALWPP_TEXT_BUTTON_ALTTEXT' => 'ここをクリックして PayPalエクスプレスチェックアウト',
     'MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_IMG' => 'https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png',
     'MODULE_PAYMENT_PAYPALWPP_EC_BUTTON_SM_IMG' => 'https://www.paypalobjects.com/en_US/i/btn/btn_xpressCheckoutsm.gif',
-    'MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT' => 'PayPal(ペイパル)でお支払い',
+    'MODULE_PAYMENT_PAYPALWPP_MARK_BUTTON_TXT' => '',
     'MODULE_PAYMENT_PAYPALEC_MARK_BUTTON_IMG' => 'https://www.paypalobjects.com/en_US/i/btn/btn1_for_hub.gif',
     'MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_CHECK' => '確認',
     'MODULE_PAYMENT_PAYPALWPP_TEXT_VOID_CONFIRM_ERROR' => '取引承認の取り消しのリクエストを行いましたが「確認」のチェックが行われておりませんでした。',
@@ -213,7 +213,7 @@ $define = [
 
 if (IS_ADMIN_FLAG === true) {
     if (!isset($define['MODULE_PAYMENT_PAYPALWPP_MODULE_MODE'])) {
-        $define['MODULE_PAYMENT_PAYPALWPP_MODULE_MODE'] = 'undefined';
+        $define['MODULE_PAYMENT_PAYPALWPP_MODULE_MODE'] = '未定義';
     }
     $define['MODULE_PAYMENT_PAYPALWPP_TEXT_ADMIN_DESCRIPTION'] = '<strong>PayPalエクスプレスチェックアウト</strong>%s<br>' . (substr($define['MODULE_PAYMENT_PAYPALWPP_MODULE_MODE'], 0, 7) == 'Payflow' ? '<a href="https://manager.paypal.com/loginPage.do?partner=ZenCart" rel="noreferrer noopener" target="_blank">PayPalアカウントを設定</a>' : '<a href="https://www.paypal.com" rel="noopener" target="_blank">PayPalアカウントを設定</a>') . '<br><br><font color="green">設定手順：</font><br><span class="alert">1. </span><a href="https://www.zen-cart.com/partners/paypal-ec" rel="noopener" target="_blank">ここをクリックして PayPal に新規アカウント登録。</a><br>' .
         (defined('MODULE_PAYMENT_PAYPALWPP_STATUS') ? '' : '... 次に上部の『インストール』をクリックして PayPalエクスプレスチェックアウトを有効にします。<br><a href="https://www.zen-cart.com/getpaypal" rel="noopener" target="_blank">さらに詳細なヘルプをご希望の場合には、こちらの FAQ をご利用ください</a><br>') .
