@@ -5,7 +5,7 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2024 Jan 27 Modified in v2.0.0-alpha1 $
+ * @version $Id: DrByte 2025 Aug 25  Modified in v2.2.0-alpha1 $
  */
 // This should be first line of the script:
   $zco_notifier->notify('NOTIFY_HEADER_START_CHECKOUT_SHIPPING');
@@ -40,7 +40,7 @@ if (zen_get_customer_validate_session($_SESSION['customer_id']) === false) {
 // Stock Check
   if ( (STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true') ) {
     $products = $_SESSION['cart']->get_products();
-    for ($i=0, $n=count($products); $i<$n; $i++) {
+    for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       $qtyAvailable = zen_get_products_stock($products[$i]['id']);
       // compare against product inventory, and against mixed=YES
       if ($qtyAvailable - $products[$i]['quantity'] < 0 || $qtyAvailable - $_SESSION['cart']->in_cart_mixed($products[$i]['id']) < 0) {
@@ -191,9 +191,9 @@ if (isset($_SESSION['cart']->cartID)) {
   // check that the currently selected shipping method is still valid (in case a zone restriction has disabled it, etc)
   if (isset($_SESSION['shipping']['id'])) {
     $checklist = [];
-    foreach ($quotes as $val) {
-      if (is_array($val['methods'])) {
-        foreach($val['methods'] as $method) {
+    foreach ($quotes as $key=>$val) {
+      if (is_array($val['methods'] ?? null)) {
+        foreach($val['methods'] as $key2=>$method) {
           $checklist[] = $val['id'] . '_' . $method['id'];
         }
       }
