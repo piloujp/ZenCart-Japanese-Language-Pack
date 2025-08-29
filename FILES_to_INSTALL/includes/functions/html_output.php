@@ -301,7 +301,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
  */
   function zen_image_submit($image, $alt = '', $parameters = '', $sec_class = '') {
     global $template, $current_page_base, $zco_notifier;
-    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes' && mb_strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
+    if ((strtolower(IMAGE_USE_CSS_BUTTONS) === 'yes' || (strtolower(IMAGE_USE_CSS_BUTTONS) === 'found' && !file_exists(DIR_FS_CATALOG . DIR_WS_TEMPLATE . 'buttons/' . $_SESSION['language'] . '/' . $image))) && mb_strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_SUBMIT');
 
     $image_submit = '<input type="image" src="' . zen_output_string($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image) . '" alt="' . zen_output_string($alt) . '"';
@@ -327,7 +327,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     }
 
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_BUTTON');
-    if (strtolower(IMAGE_USE_CSS_BUTTONS) == 'yes') {
+    if (strtolower(IMAGE_USE_CSS_BUTTONS) === 'yes' || (strtolower(IMAGE_USE_CSS_BUTTONS) === 'found' && !file_exists(DIR_FS_CATALOG . DIR_WS_TEMPLATE . 'buttons/' . $_SESSION['language'] . '/' . $image))) {
         if (preg_match('/\.(png|gif|jpe?g|webp)/i', $image)) {
             return zenCssButton($image, $alt, 'button', $sec_class, $parameters);
         } else {
@@ -336,6 +336,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     }
     return zen_image($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image, $alt, '', '', $parameters);
   }
+
 
 /**
  * Draw a <button> element
@@ -473,6 +474,7 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     return $css_button;
   }
 
+
 /*
  *  Output a separator either through whitespace, or with an image
  */
@@ -488,6 +490,7 @@ function zen_draw_button($text = '', $added_classes = '', $id = '', $parameters 
     }
     return zen_image($image, '', $width, $height);
   }
+
 
 /**
  * generates javascript for dynamically updating the states/provinces list when the country is changed
@@ -540,6 +543,7 @@ function zen_js_zone_list(string $country, string $form, string $field) {
         '  }' . "\n";
     return $output_string;
 }
+
 
 /*
  *  Output a form
@@ -777,6 +781,7 @@ function zen_js_zone_list(string $country, string $form, string $field) {
     return $field;
   }
 
+
 /*
  *  Hide form elements while including session id info
  *  IMPORTANT: This should be used in every FORM that has an OnSubmit() function tied to it, to prevent unexpected logouts
@@ -887,7 +892,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     //$countriesAtTopOfList[] = 222;
 
     //process array of top-of-list entries:
-    foreach ($countriesAtTopOfList as $val) {
+    foreach ($countriesAtTopOfList as $key=>$val) {
       // -----
       // Account for the possibility that one of the top-of-list countries has been disabled.  If
       // that's the case, issue a PHP notice since the condition really shouldn't happen!
@@ -902,7 +907,7 @@ function zen_draw_pull_down_menu($name, $values, $default = '', $parameters = ''
     // now add anything not in the defaults list:
     for ($i=0, $n=count($countries); $i<$n; $i++) {
       $alreadyInList = FALSE;
-      foreach($countriesAtTopOfList as $val) {
+      foreach($countriesAtTopOfList as $key=>$val) {
         if ($countries[$i]['countries_id'] == $val)
         {
           // If you don't want to exclude entries already at the top of the list, comment out this next line:
