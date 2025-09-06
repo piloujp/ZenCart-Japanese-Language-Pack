@@ -74,18 +74,18 @@ class _YupackChilled {
         }
     }
     // Post Office Refregerated Yu-Pack (updated 2019/10)
-	// サイズ区分(0～5)を返す
-	// 規格外の場合は9を返す(not true: returns -1)
-	//
-	// 区分  サイズ名  ３辺計   重量     クール便
-	// ------------------------------------------
-	// 0     60サイズ  60cmまで 25kgまで + 225 JPY
-	// 1     80サイズ  80cmまで 25kgまで + 360 JPY
-	// 2    100サイズ 100cmまで 25kgまで + 675 JPY
-	// 3    120サイズ 120cmまで 25kgまで + 675 JPY
+    // サイズ区分(0～5)を返す
+    // 規格外の場合は9を返す(not true: returns -1)
+    //
+    // 区分  サイズ名  ３辺計   重量     クール便
+    // ------------------------------------------
+    // 0     60サイズ  60cmまで 25kgまで + 225 JPY
+    // 1     80サイズ  80cmまで 25kgまで + 360 JPY
+    // 2    100サイズ 100cmまで 25kgまで + 675 JPY
+    // 3    120サイズ 120cmまで 25kgまで + 675 JPY
     // 4    140サイズ 140cmまで 25kgまで + 1330 JPY
     // 5    150サイズ 150cmまで 25kgまで + 2100 JPY - only for chilled
-	// 9    規格外
+    // 9    規格外
     // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
     function GetSizeClass() {
         $a_classes = [

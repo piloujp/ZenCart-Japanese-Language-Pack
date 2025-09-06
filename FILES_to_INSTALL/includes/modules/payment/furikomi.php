@@ -50,7 +50,8 @@
     public $sort_order;
 
 // class constructor
-    function __construct() {
+    function __construct()
+    {
         global $order;
 
         $this->code = 'furikomi';
@@ -70,7 +71,8 @@
     }
 
 // class methods
-    function update_status() {
+    function update_status()
+    {
         global $order, $db;
 
         if ($this->enabled && (int)MODULE_PAYMENT_FURIKOMI_ZONE > 0 && isset($order->billing['country']['id'])) {
@@ -98,40 +100,49 @@
       }
     }
 
-    function javascript_validation() {
+    function javascript_validation()
+    {
         return false;
     }
 
-    function selection() {
+    function selection()
+    {
         return array('id' => $this->code,
                    'module' => $this->title);
     }
 
-    function pre_confirmation_check() {
+    function pre_confirmation_check()
+    {
         return false;
     }
 
-    function confirmation() {
+    function confirmation()
+    {
         return array('title' => MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION);
     }
 
-    function process_button() {
+    function process_button()
+    {
         return false;
     }
 
-    function before_process() {
+    function before_process()
+    {
         return false;
     }
 
-    function after_process() {
+    function after_process()
+    {
         return false;
     }
 
-    function get_error() {
+    function get_error()
+    {
         return false;
     }
 
-    function check() {
+    function check()
+    {
         global $db;
         if (!isset($this->_check)) {
             $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_FURIKOMI_STATUS'");
@@ -140,22 +151,13 @@
         return $this->_check;
     }
 
-    function install() {
+    function install()
+    {
         global $db, $messageStack;
-        if ($_SESSION['language'] == 'japanese') {
-        // Japanese
-            if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
-                $messageStack->add_session('銀行振込モジュール搭載済み。', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=furikomi', 'NONSSL'));
-                return 'failed';
-            }
-        } else {
-        // English
-            if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
-                $messageStack->add_session('Furikomi module already installed.', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=furikomi', 'NONSSL'));
-                return 'failed';
-            }
+        if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
+            $messageStack->add_session(MODULE_PAYMENT_FURIKOMI_ALREADY_INSTALLED, 'error');
+            zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=furikomi', 'NONSSL'));
+            return 'failed';
         }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable bank transfer Module', 'MODULE_PAYMENT_FURIKOMI_STATUS', 'True', 'Do you want to accept direct bank transfer payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_FURIKOMI_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
@@ -175,12 +177,31 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
     }
 
-    function remove() {
+    function remove()
+    {
         global $db;
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
 
-    function keys() {
-        return array('MODULE_PAYMENT_FURIKOMI_STATUS', 'MODULE_PAYMENT_FURIKOMI_SORT_ORDER', 'MODULE_PAYMENT_FURIKOMI_ZONE', 'MODULE_PAYMENT_FURIKOMI_BANKNAME', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH', 'MODULE_PAYMENT_FURIKOMI_ACCNUM', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE', 'MODULE_PAYMENT_FURIKOMI_ACCNAM', 'MODULE_PAYMENT_FURIKOMI_SWIFT', 'MODULE_PAYMENT_FURIKOMI_BANKNAME2', 'MODULE_PAYMENT_FURIKOMI_BANKBRANCH2', 'MODULE_PAYMENT_FURIKOMI_ACCNUM2', 'MODULE_PAYMENT_FURIKOMI_ACCTYPE2', 'MODULE_PAYMENT_FURIKOMI_ACCNAM2', 'MODULE_PAYMENT_FURIKOMI_SWIFT2', 'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID');
+    function keys()
+    {
+        return [
+            'MODULE_PAYMENT_FURIKOMI_STATUS',
+            'MODULE_PAYMENT_FURIKOMI_SORT_ORDER',
+            'MODULE_PAYMENT_FURIKOMI_ZONE',
+            'MODULE_PAYMENT_FURIKOMI_BANKNAME',
+            'MODULE_PAYMENT_FURIKOMI_BANKBRANCH',
+            'MODULE_PAYMENT_FURIKOMI_ACCNUM',
+            'MODULE_PAYMENT_FURIKOMI_ACCTYPE',
+            'MODULE_PAYMENT_FURIKOMI_ACCNAM',
+            'MODULE_PAYMENT_FURIKOMI_SWIFT',
+            'MODULE_PAYMENT_FURIKOMI_BANKNAME2',
+            'MODULE_PAYMENT_FURIKOMI_BANKBRANCH2',
+            'MODULE_PAYMENT_FURIKOMI_ACCNUM2',
+            'MODULE_PAYMENT_FURIKOMI_ACCTYPE2',
+            'MODULE_PAYMENT_FURIKOMI_ACCNAM2',
+            'MODULE_PAYMENT_FURIKOMI_SWIFT2',
+            'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID',
+            ];
     }
   }
