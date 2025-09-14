@@ -45,11 +45,11 @@ class shipping
      */
     public array $weight_qty_sizes_array;
     /**
-     * $weight_array is ordered array of products weight in cart
+     * $weight_array is an ordered array of products by weight in cart
      */
     public array $weight_array;
     /**
-     * $sizes_array is ordered array of products dimension in cart
+     * $sizes_array is an ordered array of products dimension in cart
      */
     public array $sizes_array;
     /**
