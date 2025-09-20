@@ -74,6 +74,12 @@ $define = [
     'TEXT_PRODUCTS_PRICE_INFO' => '価格：',
     'WARNING_PRODUCT_DOES_NOT_EXIST' => '警告：商品 ID#%u は存在しないため、変更できません。',
     'TEXT_PRODUCTS_WHOLESALE_PRICE' => '卸売価格：',
+    'TEXT_PRODUCTS_ADDITIONAL_IMAGES' => '追加の製品画像',
+    'TEXT_PRODUCTS_ADDITIONAL_IMAGES_ADD' => '追加の製品画像を追加する',
+    'TEXT_IMAGES_OVERWRITE' => 'サーバー上の既存の画像を上書きしますか? メイン画像と追加画像に適用されます。',
+    'TEXT_IMAGE_USED_BY_OTHER_PRODUCTS' => '画像ファイルは別の製品で使用されているため、サーバーから削除されません。',
+    'TEXT_BUTTON_ADD_ADDITIONAL_IMAGE' => '追加の画像を追加',
+    'TEXT_BUTTON_DRAG_DROP_ADDITIONAL_IMAGE' => '画像をここにドラッグ＆ドロップするかクリックして選択してください',
 ];
 
 return $define;

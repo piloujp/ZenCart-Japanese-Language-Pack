@@ -188,13 +188,13 @@ if (isset($_POST['action']) && ($_POST['action'] === 'submit')) {
                     $sql_data_array[] = ['fieldName' => 'entry_state', 'value' => $state, 'type' => 'stringIgnoreNull'];
                 }
             }
-          $sql_data_array[] = array('fieldName'=>'entry_telephone', 'value'=>$telephone, 'type'=>'stringIgnoreNull');
+          $sql_data_array[] = ['fieldName'=>'entry_telephone', 'value'=>$telephone, 'type'=>'stringIgnoreNull'];
           if (ACCOUNT_FAX_NUMBER == 'true') {
-              $sql_data_array[] = array('fieldName'=>'entry_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull');
+              $sql_data_array[] = ['fieldName'=>'entry_fax', 'value'=>$fax, 'type'=>'stringIgnoreNull'];
           }
           if ($_SESSION['language'] == 'japanese') {
-            $sql_data_array[] = array('fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull');
-            $sql_data_array[] = array('fieldName'=>'entry_lastname_kana', 'value'=>$lastname_kana, 'type'=>'stringIgnoreNull');
+            $sql_data_array[] = ['fieldName'=>'entry_firstname_kana', 'value'=>$firstname_kana, 'type'=>'stringIgnoreNull'];
+            $sql_data_array[] = ['fieldName'=>'entry_lastname_kana', 'value'=>$lastname_kana, 'type'=>'stringIgnoreNull'];
           }
             $db->perform(TABLE_ADDRESS_BOOK, $sql_data_array);
             $address_book_id = $db->Insert_ID();
