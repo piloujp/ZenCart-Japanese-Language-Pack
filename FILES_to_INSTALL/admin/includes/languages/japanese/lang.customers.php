@@ -44,6 +44,7 @@ $define = [
     'EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE' => 'あなたのパスワードがショップの管理者によって変更されました。新しいパスワード： ',
     'EMAIL_CUSTOMER_PWD_CHANGE_SUBJECT' => 'パスワードのリセット',
     'EMAIL_CUSTOMER_PWD_CHANGE_MESSAGE_FOR_ADMIN' => '顧客のパスワードのリセットを行いました： ' . "\n" . '%1$s' . "\n\n" . '管理者ID： %2$s',
+    'CUSTOMERS_AUTH_WAITING_FOR_ACTIVATION' => 'アカウントの有効化を待機中',
     'CUSTOMERS_AUTHORIZATION' => '顧客の承認ステータス',
     'CUSTOMERS_AUTHORIZATION_0' => '承認済み',
     'CUSTOMERS_AUTHORIZATION_1' => '未承認 - ブラウズするために認可が必要',
