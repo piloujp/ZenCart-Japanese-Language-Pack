@@ -257,20 +257,22 @@ a.anclink {
           you might not be able to copy this Japanese language pack files over
           and expect everything to work. There are two possible situations,
           whether installed plugins have modified Zen Cart core files or not.</p>
-        <p class="texte"><b>First</b> you need to <b>upgrade</b> Zen Cart v2 <b>to
+        <p class="texte">If none of the Zen cart original files have been
+          modified, if you use only encapsulated plugins for example, then it is
+          easy. Copy files over and use the installer following instructions
+          from precedent chapter above.</p>
+        <p class="texte">If core files have been modified (by plugins or other),
+          there will be more steps and mainly <b>two parts</b> to deal with.
+          One is <b>files upgrade</b> and the other is <b>database upgrade</b>.
+          It is then better to <b>uninstall</b> all your <b>plugins</b>,
+          especially if they are old, without forgetting to save all their
+          settings and additional information.</p>
+        <p class="texte"><b>First</b>, you need to <b>upgrade</b> Zen Cart <b>to
+the&nbsp;
             latest version corresponding to this language pack</b>. Please,
           refer to <a href="https://docs.zen-cart.com/user/upgrading/" title="Upgrading"
             target="_blank">Zen Cart documentation</a> if needed.</p>
-        <p class="texte">If none of the Zen cart original files have been
-          modified, then it is easy, copy files over and use the installer
-          following instructions from precedent chapter above.</p>
-        <p class="texte">If core files have been modified (by plugins or other),
-          there will be more steps and mainly <b>two parts</b> to deal with.
-          One is <b>files update</b> and the other is <b>database update</b>.
-          You can take care of these in any order, it is not important.</p>
-        <p class="texte">In Zen Cart documentation you will find some <a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
-            target="_blank">guide to update ZC</a> that could be very useful.</p>
-        <p class="title4">Files update:</p>
+        <p class="title4">Files upgrade:</p>
         <p class="texte">Make a <b>list of already modified files</b> and
           compare with the 'files to merge' list from this language pack. These
           modified files should be merged with language pack file, other files
@@ -320,6 +322,7 @@ a.anclink {
           '.../includes/languages/lang.english.php'<br>
           '.../includes/modules/checkout_new_address.php'<br>
           '.../includes/modules/create_account.php'<br>
+          '.../includes/modules/create_account_send_email.php'<br>
           '.../includes/modules/pages/account_edit/header_php.php'<br>
           '.../includes/modules/pages/address_book_process/header_php.php'<br>
           '.../includes/modules/pages/checkout_shipping/header_php.php'<br>
@@ -356,16 +359,14 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           content.<br>
           '.../email/ja/' all content.<br>
           '.../images/' all content.<br>
-          '.../includes/functions/extra_functions/function_japan_country_id.php'<br>
+'.../includes/functions/extra_functions/function_country_iso_to_id.php'<br>
           '.../includes/languages/lang.japanese.php'<br>
 '.../includes/languages/english/extra_definitions/lang.japanese_extras.php'<br>
           '.../includes/languages/english/modules/' all content.<br>
           '.../includes/languages/japanese/' all content.<br>
           '.../includes/modules/order_total/' all content.<br>
           '.../includes/modules/payment/' all content.<br>
-'.../includes/templates/template_default/buttons/english/button_update_cart.png'<br>
-          '.../includes/templates/template_default/buttons/japanese/' all
-          content.<br>
+          '.../includes/templates/template_default/buttons/' all content.<br>
           '.../zc_plugins/' all content.</p>
         <p class="title4">Files update from Japanese version cart:</p>
         <p></p>
@@ -399,7 +400,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
 '...(YourAdminFolderName)/includes/languages/japanese/extra_definitions/lang.product.php'<br>
           &nbsp;&nbsp;&nbsp;
           '.../includes/languages/english/extra_definitions/lang.checkout_process.php'</p>
-        <p class="title4">Database update:</p>
+        <p class="title4">Database upgrade:</p>
         <p class="texte">For this step a good tool will make things easier and
           faster, something like 'phpMyAdmin' is perfect for this job. <b>Zen
             Cart 'admin&gt;Tools&gt;Install SQL Patches'</b> can be used too for
@@ -424,10 +425,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           like '2.2.0 to 2.2.0210' that correspond to your version. You can then
           proceed as a normal install.</p>
         <p class="texte"> If there is no upgrade button or no correct option for
-          database update, Something might have gone wrong. But if you can't
+          database upgrade, Something might have gone wrong. But if you can't
           find any major problem, you can <b>upgrade the database manually</b>.
           There is a <b>folder named 'sql'</b> where you will find the SQL file
-          we need to update Zen Cart database:</p>
+          we need to upgrade Zen Cart database:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
           'mysql_upgrade_zencart_220210.sql' to upgrade to Japanese Language
           Pack v2.2.0 (database v210).</p>
@@ -439,28 +440,28 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           <b>Import this file</b> in your cart's database using phpMyAdmin
           import function or Zen Cart admin tool.</p>
         <p class="title6">From Japanese Zen Cart:</p>
-        <p class="texte">Special SQL files for actual database update are
+        <p class="texte">Special SQL files for actual database upgrade are
           provided. But <b>first</b> you need to <b>upgrade</b> Zen Cart v2 <b>to
             latest English version</b>. Then do as follows depending on your
           case.</p>
         <p class="texte"><i><b>v1.3.x </b>of ZC Japanese Language Pack (ZC
             v1.5.8, v1.5.8a) already installed :</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; To <b>update</b> from older version
-          to<b> ZC v2.2.0</b>, <b>import</b> or run the SQL commands from the
-          provided <b>file</b> in 'sql' folder:</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp; To <b>upgrade</b> from older
+          version to<b> ZC v2.2.0</b>, <b>import</b> or run the SQL commands
+          from the provided <b>file</b> in 'sql' folder:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.sql' will
           update zones table and few other things.</p>
         <p class="texte"><i><b>v2.0.x </b>of ZC Japanese Language Pack (ZC
             v2.0.0 and above) already installed :</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; To update <b>from ZC Japanese
-            Language Pack v2.0.x</b>, there is only one minor database <b>update
+        <p class="texte">&nbsp;&nbsp;&nbsp; To upgrade <b>from ZC Japanese
+            Language Pack v2.0.x</b>, there is only one minor database <b>upgrade
             of address format</b>. Just run this SQL file.</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql' </p>
         <p class="texte"><i><b>v2.1.x </b>of ZC Japanese Language Pack (ZC
             v2.1.0 and above) already installed :</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; To update <b>from ZC Japanese
-            Language Pack v2.1.x</b>, there is no database update. But, to <b>update
+        <p class="texte">&nbsp;&nbsp;&nbsp; To upgrade <b>from ZC Japanese
+            Language Pack v2.1.x</b>, there is no database upgrade. But, to <b>update
             version number</b> in database, you should run this SQL file.</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_update_zc_v2.2.0.sql' </p>
         <p class="title4">Finally:</p>
@@ -909,18 +910,17 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           プラグインやその他のカスタム設定を含む英語版カートまたは日本語版カートへのインストール</a></p>
       <div id="mergeinstjp">
         <p class="texte">すでに Zen Cart とプラグインがインストールされている場合は、この日本語言語パック
-          ファイルをコピーしてもすべてが動作することは期待できない可能性があります。インストールされているプラグインが Zen Cart 2.x.x
-          コア ファイルを変更したかどうかに関係なく、2 つの状況が考えられます。</p>
-        <p class="texte">まず、<b>Zen Cart v2をこの言語パックに対応する最新バージョンにアップグレードする必要</b>があ
+          ファイルをコピーしてもすべてが動作することは期待できない可能性があります。インストールされているプラグインが Zen Cart コア
+          ファイルを変更したかどうかに関係なく、二つの状況が考えられます。</p>
+        <p class="texte">Zen Cart のオリジナル
+          ファイルがまったく変更されていない場合、たとえばカプセル化されたプラグインのみを使用する場合は簡単です。上記の前の章の手順に従ってファイルをコピーし、インストー
+          ラーを使用します。</p>
+        <p class="texte">コア ファイルが変更されている場合は、さらに多くの手順が必要になり、主に<b>二つの部分</b>に対処する必
+          要があります。一つは<b>ファイルのアップグレード</b>で、もう一つは<b>データベースの更新</b>です。特に古いプラグインの場合は、す
+          べての設定と追加情報を保存することを忘れずに、すべての<b>プラグインをアンインストールする</b>ことをお勧めします。</p>
+        <p class="texte">まず、<b>Zen Cart をこの言語パックに対応する最新バージョンにアップグレードする必要</b>があ
           ります。必要に応じて、<a href="https://docs.zen-cart.com/user/upgrading/" title="アップグレード"
             target="_blank">Zen Cartのドキュメント</a>を参照してください。</p>
-        <p class="texte">Zen カートのオリジナル
-          ファイルが何も変更されていない場合は、上記の前章の指示に従ってインストーラーを使用するのは簡単です。</p>
-        <p class="texte">コア ファイルが変更されている場合は、さらに多くの手順が必要になり、主に<b>２ つの部分</b>に対処する必
-          要があります。1 つは<b>ファイルのアップグレード</b>で、もう 1 つは<b>データベースの更新</b>です。更新を行う順序は重要では
-          ありません。</p>
-        <p class="texte">Zen Cart のドキュメントには、ZC を更新するための非常に<a href="https://docs.zen-cart.com/user/upgrading/detailed_upgrading/"
-            target="_blank">役立つガイド</a>が記載されています。</p>
         <p class="title4">ファイルのアップグレード：</p>
         <p class="texte">すでに変更されたファイルのリストを作成し、この言語パックの「結合するファイル」リストと比較します。これらの変更
           されたファイルは言語パック ファイルとマージする必要があり、他のファイルは言語パック
@@ -966,6 +966,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           '.../includes/languages/lang.english.php'<br>
           '.../includes/modules/checkout_new_address.php'<br>
           '.../includes/modules/create_account.php'<br>
+          '.../includes/modules/create_account_send_email.php'<br>
           '.../includes/modules/pages/account_edit/header_php.php'<br>
           '.../includes/modules/pages/address_book_process/header_php.php'<br>
           '.../includes/modules/pages/checkout_shipping/header_php.php'<br>
@@ -1002,16 +1003,14 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           content.<br>
           '.../email/ja/' all content.<br>
           '.../images/' all content.<br>
-          '.../includes/functions/extra_functions/function_japan_country_id.php'<br>
+'.../includes/functions/extra_functions/function_country_iso_to_id.php'<br>
           '.../includes/languages/lang.japanese.php'<br>
 '.../includes/languages/english/extra_definitions/lang.japanese_extras.php'<br>
           '.../includes/languages/english/modules/' all content.<br>
           '.../includes/languages/japanese/' all content.<br>
           '.../includes/modules/order_total/' all content.<br>
           '.../includes/modules/payment/' all content.<br>
-'.../includes/templates/template_default/buttons/english/button_update_cart.png'<br>
-          '.../includes/templates/template_default/buttons/japanese/' all
-          content.<br>
+          '.../includes/templates/template_default/buttons/' all content.<br>
           '.../zc_plugins/' all content.<br>
           <br>
         </div>
@@ -1049,7 +1048,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
 '...(YourAdminFolderName)/includes/languages/japanese/extra_definitions/lang.product.php'<br>
           &nbsp;&nbsp;&nbsp;
           '.../includes/languages/english/extra_definitions/lang.checkout_process.php'</p>
-        <p class="title4">データベースの更新：</p>
+        <p class="title4">データベースのアップグレード：</p>
         <p class="texte">
           このステップを実行するには、優れたツールを使用すると作業が簡単かつ迅速になります。「phpMyAdmin」のよ
           うなツールがこの作業に最適です。Zen Cart の「管理者 &gt; ツール &gt; SQL パッチのインストール」も SQL
@@ -1094,8 +1093,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
                       況に応じて次の操作を実行してください</span></span></span>。</span></span></span></p>
         <p class="texte"><i><b>ZC 日本語言語パック v1.3.x </b>(ZC v1.5.8、v1.5.8a)
             がすでにインストールされています:</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>v2.2.0にアップデート</b>す
-          るには、「sql」フォルダー内 の提供された<b>ファイル</b>から SQL コマンドを<b>インポート</b>または実行します:</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>v2.2.0に</b><span
+            class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">アッ
+                プグレード</span></span></span>す るには、「sql」フォルダー内 の提供された<b>ファイル</b>から
+          SQL コマンドを<b>インポート</b>または実行します:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.sql' は、ゾーン
           テーブルとその他のいくつかのものを更新します。</p>
@@ -1106,9 +1107,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql'</p>
         <p class="texte"><i><b>ZC 日本語言語パック v2.1.x</b> (ZC v2.0.0 以上)
             がすでにインストールされています:</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック v2.1.x から</b>アッ
-          プデートする場合、データベースの更新は不要です。ただし、<b>データベースのバージョン番号を更新する</b> には、この SQL
-          ファイルを実行する必要があります。</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック v2.1.x から</b><span
+            class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">アッ
+                プグレード</span></span></span>する場合、データベースの更新は不要です。ただし、<b>データベースのバージョ
+            ン番号を更新する</b> には、この SQL ファイルを実行する必要があります。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_update_zc_v2.2.0.sql'</p>
         <p class="title4">最後に：</p>
         <p class="texte">独自の言語ファイルを持つ他のプラグインがインストールされている場合は、optional_plugins
