@@ -1350,7 +1350,7 @@ class order extends base
         // make an array to store the html version
         $html_msg = [];
         $japan_id = zen_country_iso_to_id('JP');
-        $customerGreet = $this->customer['country']['id'] == $japan_id ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
+        $customerGreet = $this->customer['country']['id'] == $japan_id || $_SESSION['language'] === 'japanese' ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] . EMAIL_GREET : $this->customer['firstname'] . ' ' . $this->customer['lastname'];
 
         //intro area
         $email_order = EMAIL_TEXT_HEADER . "\n\n" .
@@ -1362,6 +1362,7 @@ class order extends base
             EMAIL_TEXT_INVOICE_URL . ' ' . zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . $zf_insert_id, 'SSL', false) . "\n\n";
 
         $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
+        $html_msg['EMAIL_TEXT_FROM'] = EMAIL_TEXT_FROM;
         $html_msg['INTRO_STORE_NAME'] = STORE_NAME;
         $html_msg['EMAIL_GREET'] = EMAIL_GREET;
         $html_msg['EMAIL_THANKS_FOR_SHOPPING'] = EMAIL_THANKS_FOR_SHOPPING;
@@ -1476,9 +1477,8 @@ class order extends base
 
         $email_order = str_replace('&nbsp;', ' ', $email_order);
 
-        $html_msg['EMAIL_FIRST_NAME'] = ($this->customer['country']['id'] == $japan_id) ? $this->customer['lastname'] . ' ' . $this->customer['firstname'] : $this->customer['firstname'];
-        $html_msg['EMAIL_LAST_NAME'] = ($this->customer['country']['id'] == $japan_id) ? '' : $this->customer['lastname'];
-        $html_msg['EMAIL_GREET'] = EMAIL_GREET;
+        $html_msg['EMAIL_FIRST_NAME'] = $this->customer['firstname'];
+        $html_msg['EMAIL_LAST_NAME'] = $this->customer['lastname'];
         //  $html_msg['EMAIL_TEXT_HEADER'] = EMAIL_TEXT_HEADER;
 
         $html_msg['EXTRA_INFO'] = '';

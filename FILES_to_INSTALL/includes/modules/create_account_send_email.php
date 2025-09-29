@@ -45,7 +45,7 @@ if ($send_welcome_email !== true) {
 $name = $firstname . ' ' . $lastname;
 
 if ($_SESSION['language'] == 'japanese') {
-    $email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname);
+    $email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname . EMAIL_GREET);
 } else {
     if (ACCOUNT_GENDER === 'true') {
         $email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
