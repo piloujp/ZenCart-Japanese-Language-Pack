@@ -10,6 +10,7 @@
  * Prepares order from cart contents, and populates an order from database history
  * Stores new orders and sends order confirmation emails
  *
+ * @since ZC v1.0.3
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -155,11 +156,17 @@ class order extends base
         }
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     public function getOrderId()
     {
         return $this->orderId;
     }
 
+    /**
+     * @since ZC v1.0.3
+     */
     function query($order_id)
     {
         global $db;
@@ -383,6 +390,7 @@ class order extends base
 
         /**
          * @deprecated since v1.5.6; use NOTIFY_ORDER_AFTER_QUERY instead
+         * @since ZC v1.5.8
          */
         if (IS_ADMIN_FLAG === true) {
             $this->notify('ORDER_QUERY_ADMIN_COMPLETE', ['orders_id' => $this->orderId]);
@@ -424,6 +432,9 @@ class order extends base
         return $statusArray;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function getCountryInfo(string $country)
     {
         global $db;
@@ -452,6 +463,9 @@ class order extends base
         return $return;
     }
 
+    /**
+     * @since ZC v1.5.8
+     */
     protected function getCountryZoneId(int $countries_id, string $state)
     {
         global $db;
@@ -468,6 +482,9 @@ class order extends base
         return ($results->EOF) ? '0' : $results->fields['zone_id'];
     }
 
+    /**
+     * @since ZC v1.0.3
+     */
     function cart()
     {
         global $db, $currencies, $customer;
@@ -730,6 +747,9 @@ class order extends base
         $this->notify('NOTIFY_ORDER_CART_FINISHED');
     }
 
+    /**
+     * @since ZC v1.5.7
+     */
     function determineTaxAddressZones($billToAddressId, $shipToAddressId)
     {
         global $db;
@@ -776,6 +796,7 @@ class order extends base
 
     /**
      * Determine tax RATES for product
+     * @since ZC v1.5.7
      */
     function setTaxRatesForProduct($products, $loop, $index, $taxCountryId, $taxZoneId)
     {
@@ -805,6 +826,7 @@ class order extends base
     /**
      * Calculate taxes for a specific product and add them to the order's sub-total
      * and running-sub-total array for the final tax calculations.
+     * @since ZC v1.5.7
      */
     protected function calculateTaxForProduct($index, $taxRates)
     {
@@ -845,6 +867,7 @@ class order extends base
     /**
      * Using the per-tax-group product totals calculated by calculateTaxForProduct, above,
      * calculate the *overall* product-related tax to be applied to the order
+     * @since ZC v2.0.0
      */
     protected function calculateProductsTaxForOrder()
     {
@@ -860,6 +883,7 @@ class order extends base
     /**
      * @param array $zf_ot_modules OrderTotalModules array from during checkout_process. Used to lookup OT prices to store into order
      * @return int|string
+     * @since ZC v1.2.2d
      */
     function create($zf_ot_modules)
     {
@@ -1006,6 +1030,7 @@ class order extends base
     /**
      * @param bool|string $restock Should the items within the order be restocked into inventory.
      * @return void
+     * @since ZC v2.2.0
      */
     function delete(bool|string $restock = false)
     {
@@ -1048,6 +1073,7 @@ class order extends base
     /**
      * @param null $zf_insert_id - OrderNumber - deprecated since 1.5.7
      * @param bool $zf_mode Deprecated/unused since 1.5.0
+     * @since ZC v1.2.2d
      */
     function create_add_products($zf_insert_id = null, $zf_mode = false)
     {
@@ -1330,6 +1356,7 @@ class order extends base
 
     /**
      * @param int|null $zf_insert_id OrderNumber for display - unused/deprecated since 1.5.7.
+     * @since ZC v1.2.2d
      */
     function send_order_email($zf_insert_id = null)
     {
@@ -1525,6 +1552,9 @@ class order extends base
         $this->notify('NOTIFY_ORDER_AFTER_SEND_ORDER_EMAIL', $zf_insert_id, $email_order, $extra_info, $html_msg);
     }
 
+    /**
+     * @since ZC v2.2.0
+     */
     private function getAddressKey(array $customerAddresses, int $bookId): null|int
     {
         foreach ($customerAddresses as $k => $address) {
@@ -1535,6 +1565,9 @@ class order extends base
         return null;
     }
 
+    /**
+     * @since ZC v2.2.0
+     */
     private function getAddress(array $customerAddresses, int $arrayKey): array
     {
         $address = $customerAddresses[$arrayKey]['address'];
