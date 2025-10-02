@@ -700,8 +700,6 @@ $define = [
     'CFGDESC_SESSION_USE_FQDN' => 'クッキーに保存するドメイン名について設定します。<br>・True = ドメインネーム全体をクッキーに保存(例：www.mydomain.com)<br>・False = ドメインネームの一部を保存(例：mydomain.com)。<br>よくわからない場合はこの設定はTrueにしておいてください。',
     'CFGTITLE_SESSION_FORCE_COOKIE_USE' => 'クッキー利用を必須にする',
     'CFGDESC_SESSION_FORCE_COOKIE_USE' => 'セッションに必ずクッキーを利用します。True指定するとブラウザのクッキーがオフになっている場合はセッションを開始しません。セキュリティ上の理由から余程の理由のない限りはTrue指定のままとすることを強く推奨します。',
-    'CFGTITLE_SESSION_CHECK_SSL_SESSION_ID' => 'SSLセッションIDチェック',
-    'CFGDESC_SESSION_CHECK_SSL_SESSION_ID' => '全てのHTTPSリクエストでSSLセッションIDをチェックしますか？',
     'CFGTITLE_SESSION_CHECK_USER_AGENT' => 'User Agentチェック',
     'CFGDESC_SESSION_CHECK_USER_AGENT' => '全てのリクエスト時にUser Agentのチェックを行いますか？',
     'CFGTITLE_SESSION_CHECK_IP_ADDRESS' => 'IPアドレスチェック',
