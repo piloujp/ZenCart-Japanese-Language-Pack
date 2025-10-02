@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilou2/piloujp 2025 March 11 Modified in v2.1.0 $
+ * @version $Id: pilou2/piloujp 2025 Oct 1 Modified in v2.2.0-alpha $
 **/
 
 class letterpacklite extends ZenShipping
@@ -24,6 +24,8 @@ class letterpacklite extends ZenShipping
         // disable only when entire cart is free shipping
         if (zen_get_shipping_enabled($this->code)) {
             $this->enabled = (MODULE_SHIPPING_LETTERPACKLITE_STATUS == 'True');
+        } else {
+            $this->enabled = false;
         }
 
         $this->update_status();
@@ -36,8 +38,9 @@ class letterpacklite extends ZenShipping
     {
         global $order, $db, $shipping_weight, $box_sizes_array;
 
-        if (!$this->enabled) return;
-        if (IS_ADMIN_FLAG === true) return;
+        if ($this->enabled === false || IS_ADMIN_FLAG === true) {
+            return;
+        }
 
         if (!empty($box_sizes_array)) {
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
@@ -47,24 +50,7 @@ class letterpacklite extends ZenShipping
             }
         }
 
-        if ((int)MODULE_SHIPPING_LETTERPACKLITE_ZONE > 0) {
-            $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_LETTERPACKLITE_ZONE . "' and zone_country_id = '" . $order->delivery['country']['id'] . "' order by zone_id");
-            while (!$check->EOF) {
-                if ($check->fields['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-                    $check_flag = true;
-                    break;
-                }
-                $check->MoveNext();
-            }
-
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
-        }
+        $this->checkEnabledForZone(MODULE_SHIPPING_LETTERPACKLITE_ZONE);
 
         if ($this->enabled) {
             // -----
@@ -78,16 +64,24 @@ class letterpacklite extends ZenShipping
     {
         global $order;
 
-        $this->quotes = array('id' => $this->code,
-                              'module' => MODULE_SHIPPING_LETTERPACKLITE_TEXT_TITLE,
-                              'methods' => array(array('id' => $this->code,
-                                                       'title' => MODULE_SHIPPING_LETTERPACKLITE_TEXT_WAY,
-                                                       'cost' => MODULE_SHIPPING_LETTERPACKLITE_COST)));
+        $this->quotes = [
+            'id' => $this->code,
+            'module' => MODULE_SHIPPING_LETTERPACKLITE_TEXT_TITLE,
+            'methods' => [
+                [
+                    'id' => $this->code,
+                    'title' => MODULE_SHIPPING_LETTERPACKLITE_TEXT_WAY,
+                    'cost' => MODULE_SHIPPING_LETTERPACKLITE_COST,
+                ],
+            ],
+        ];
         if ($this->tax_class > 0) {
             $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
         }
 
-        if (!empty($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
+        if (!empty($this->icon)) {
+            $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
+        }
 
         return $this->quotes;
     }
