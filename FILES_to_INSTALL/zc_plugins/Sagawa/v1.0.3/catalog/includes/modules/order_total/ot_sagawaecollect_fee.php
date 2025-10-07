@@ -12,8 +12,8 @@
  *
  */
 
-  class ot_sagawaecollect_fee {
-
+class ot_sagawaecollect_fee
+{
    /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -50,7 +50,8 @@
      */
     public $output = [];
 
-    function __construct() {
+    function __construct()
+    {
         $this->code = 'ot_sagawaecollect_fee';
         $this->title = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_TITLE;
         $this->description = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_DESCRIPTION;
@@ -61,7 +62,8 @@
         $this->output = array();
     }
 
-    function process() {
+    function process()
+    {
         global $order, $currencies, $sagawaecollect_cost;
         $orderTotal = $order->info['total'];
         if (MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS == 'true') {
@@ -95,7 +97,8 @@
         }
     }
 
-    function check() {
+    function check()
+    {
         global $db;
         if (!isset($this->_check)) {
             $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS'");
@@ -105,11 +108,13 @@
         return $this->_check;
     }
 
-    function keys() {
+    function keys()
+    {
         return array('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000');
     }
 
-    function install() {
+    function install()
+    {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display SAGAWAECOLLECT', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS', 'true', 'Do you want this module to display?', '6', '1','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER', '462', 'Sort order of display.', '6', '2', now())");
@@ -119,9 +124,10 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 55000 to 100000 JPY', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000', '880', 'Sagawa fee for COD payment between 55001 and 100 000 Yens', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 100000 to 300000JPY', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000', '1320', 'Sagawa fee for COD payment between 100 001 Yens and 300 000 Yens', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 300000 to 500000JPY', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000', '2420', 'Sagawa fee for COD payment over 300 001 Yens', '6', '3', now())");
-   }
+    }
 
-    function remove() {
+    function remove()
+    {
         global $db;
         $keys = '';
         $keys_array = $this->keys();
@@ -133,4 +139,4 @@
 
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in (" . $keys . ")");
     }
-  }
+}

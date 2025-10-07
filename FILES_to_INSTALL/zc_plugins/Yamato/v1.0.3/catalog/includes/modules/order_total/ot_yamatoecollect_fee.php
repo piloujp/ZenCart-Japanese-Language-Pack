@@ -12,8 +12,8 @@
  *
  */
 
-  class ot_yamatoecollect_fee {
-
+class ot_yamatoecollect_fee
+{
    /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -50,7 +50,8 @@
      */
     public $output = [];
 
-    function __construct() {
+    function __construct()
+    {
         $this->code = 'ot_yamatoecollect_fee';
         $this->title = MODULE_ORDER_TOTAL_YAMATOECOLLECT_TITLE;
         $this->description = MODULE_ORDER_TOTAL_YAMATOECOLLECT_DESCRIPTION;
@@ -61,7 +62,8 @@
         $this->output = array();
     }
 
-    function process() {
+    function process()
+    {
         global $order, $currencies, $yamatoecollect_cost;
         $orderTotal = $order->info['total'];
         if (MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS == 'true') {
@@ -92,7 +94,8 @@
         }
     }
 
-    function check() {
+    function check()
+    {
         global $db;
         if (!isset($this->_check)) {
             $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS'");
@@ -102,11 +105,13 @@
         return $this->_check;
     }
 
-    function keys() {
+    function keys()
+    {
         return array('MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_SORT_ORDER', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000');
     }
 
-    function install() {
+    function install()
+    {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display YAMATOECOLLECT', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS', 'true', 'Do you want this module to display?', '6', '1','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_SORT_ORDER', '461', 'Sort order of display.', '6', '2', now())");
@@ -115,9 +120,10 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 30000 to 55000 JPY', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000', '660', 'Yamato fee for COD payment between 30001 and 55 000 Yens', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 55000 to 100000 JPY', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000', '880', 'Yamato fee for COD payment between 55001 and 100 000 Yens', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for more than 100000 JPY', 'MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000', '1320', 'Yamato fee for COD payment over 100 001 Yens', '6', '3', now())");
-   }
+    }
 
-    function remove() {
+    function remove()
+    {
         global $db;
         $keys = '';
         $keys_array = $this->keys();
@@ -129,4 +135,4 @@
 
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in (" . $keys . ")");
     }
-  }
+}

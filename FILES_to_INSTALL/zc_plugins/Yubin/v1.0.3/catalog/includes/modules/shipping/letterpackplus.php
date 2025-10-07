@@ -66,7 +66,7 @@ class letterpackplus extends ZenShipping
 
     public function quote($method = ''): array
     {
-        global $order, $shipping_num_boxes;
+        global $order, $shipping_num_boxes, $box_sizes_array;
 
         $BQTY = $shipping_num_boxes > 1 ? ' x ' . $shipping_num_boxes : '';
         $this->quotes = [
@@ -86,6 +86,10 @@ class letterpackplus extends ZenShipping
 
         if (!empty($this->icon)) {
             $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
+        }
+
+        if (empty($box_sizes_array) || $box_sizes_array[0][0] == 0 || $box_sizes_array[0][1] == 0 || $box_sizes_array[0][2] == 0) {
+            $this->quotes['error'] = MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DIMENSION_MISSING;
         }
 
         return $this->quotes;

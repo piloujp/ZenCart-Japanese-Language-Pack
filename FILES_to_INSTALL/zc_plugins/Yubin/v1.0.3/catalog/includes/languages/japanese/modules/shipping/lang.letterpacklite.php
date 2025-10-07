@@ -3,6 +3,7 @@ $define = [
     'MODULE_SHIPPING_LETTERPACKLITE_TEXT_TITLE' => 'レターパックライト',
     'MODULE_SHIPPING_LETTERPACKLITE_TEXT_DESCRIPTION' => 'レターパックライト',
     'MODULE_SHIPPING_LETTERPACKLITE_TEXT_WAY' => '日本郵便局',
+    'MODULE_SHIPPING_LETTERPACKLITE_TEXT_DIMENSION_MISSING' => 'エラー、一部の製品寸法が欠落しています。',
 //bof constant configuration titles and descriptions for letterpacklite Shipping
     'CFGTITLE_MODULE_SHIPPING_LETTERPACKLITE_STATUS' => 'レターパックライト配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_LETTERPACKLITE_STATUS' => 'レターパックライトでの発送を希望しますか？',

@@ -163,7 +163,7 @@ INSERT IGNORE INTO products_options (products_options_id, language_id, products_
 INSERT IGNORE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) SELECT products_options_values_id, @lan_id, products_options_values_name, products_options_values_sort_order FROM products_options_values WHERE language_id = @default_lang;
 INSERT IGNORE INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_url) SELECT manufacturers_id, @lan_id, manufacturers_url FROM manufacturers_info WHERE languages_id = @default_lang;
 INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, sort_order FROM orders_status WHERE language_id = @default_lang;
-INSERT IGNORE INTO tax_rates_description (tax_rates_id, language_id, tax_description) SELECT tax_rates_id, @lan_id, tax_description FROM tax_rates_description WHERE language_id = @default_lang;
+#INSERT IGNORE INTO tax_rates_description (tax_rates_id, language_id, tax_description) SELECT tax_rates_id, @lan_id, tax_description FROM tax_rates_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
 

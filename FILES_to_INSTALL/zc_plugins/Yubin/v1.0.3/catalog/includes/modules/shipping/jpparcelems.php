@@ -49,29 +49,14 @@ class jpparcelems extends ZenShipping
     public function update_status()
     {
         global $order, $db;
-        if (!$this->enabled) return;
-        if (IS_ADMIN_FLAG === true) return;
-
-        if ((int)MODULE_SHIPPING_JPPARCELEMS_ZONE > 0) {
-            $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_JPPARCELEMS_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
-            while (!$check->EOF) {
-                if ($check->fields['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-                    $check_flag = true;
-                    break;
-                }
-                $check->MoveNext();
-            }
-
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
+        if ($this->enabled === false || IS_ADMIN_FLAG === true) {
+            return;
         }
+
+        $this->checkEnabledForZone(MODULE_SHIPPING_JPPARCELEMS_ZONE);
+
         if ( $this->enabled == true ) {
-            $countries = $db->Execute("SELECT countries_iso_code_2 FROM " . TABLE_COUNTRIES . " WHERE countries_id = '" . (int)$order->delivery['country']['id'] . "' ORDER BY countries_name");
+            $countries = $db->Execute("SELECT countries_iso_code_2 FROM " . TABLE_COUNTRIES . " WHERE countries_id = '" . (int)$order->delivery['country']['id'] . "' ORDER BY countries_name LIMIT 1");
             $this->country_code = $countries->fields['countries_iso_code_2'];
             if ($this->country_code === 'JP') {
                 $this->enabled = false;

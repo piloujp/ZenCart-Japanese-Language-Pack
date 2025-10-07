@@ -10,8 +10,8 @@
  *
  */
 
-  class ot_paypal_fee {
-
+class ot_paypal_fee
+{
    /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -24,7 +24,7 @@
     public $code;
     /**
      * $description is a soft name for this order total method
-     * @var string 
+     * @var string
      */
     public $description;
     /**
@@ -48,78 +48,80 @@
      */
     public $output = [];
 
-    function __construct() {
-      $this->code = 'ot_paypal_fee';
-      $this->title = MODULE_ORDER_TOTAL_PAYPAL_TITLE;
-      $this->description = MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION;
-//      $this->enabled = ((MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true') ? true : false);
-//      $this->sort_order = MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER;
-      $this->enabled = (defined('MODULE_ORDER_TOTAL_PAYPAL_STATUS') && MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true');
-      $this->sort_order = defined('MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER') ? MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER : null;
-      if (null === $this->sort_order) return;
+    function __construct()
+    {
+        $this->code = 'ot_paypal_fee';
+        $this->title = MODULE_ORDER_TOTAL_PAYPAL_TITLE;
+        $this->description = MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION;
+        $this->enabled = (defined('MODULE_ORDER_TOTAL_PAYPAL_STATUS') && MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true');
+        $this->sort_order = defined('MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER') ? MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER : null;
+        if (null === $this->sort_order) return;
 
-      $this->output = array();
+        $this->output = array();
     }
 
-    function process() {
-      global $order, $currencies, $paypal_cost;
-      $orderTotal = $order->info['total'];
-      if (MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true') {
-        //check if payment method is PayPal.
-        if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'paypalwpp') {
-            $japan_id = zen_country_iso_to_id('JP');
-            switch ($orderTotal) {
-                case ($orderTotal <= 300000):
-                if ($order->delivery['country']['id'] == $japan_id) {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100));
-                } else {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));}
+    function process()
+    {
+        global $order, $currencies, $paypal_cost;
+        $orderTotal = $order->info['total'];
+        if (MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true') {
+            //check if payment method is PayPal.
+            if (isset($_SESSION['payment']) && ($_SESSION['payment'] === 'paypalr' || $_SESSION['payment'] === 'paypalwpp' || $_SESSION['payment'] === 'paypaldp' || $_SESSION['payment'] === 'paypal')) {
+                switch ($orderTotal) {
+                    case ($orderTotal <= 300000):
+                    if ($order->delivery['country']['id'] == STORE_COUNTRY) {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100));
+                    } else {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));}
+                        break;
+                    case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
+                    if ($order->delivery['country']['id'] == STORE_COUNTRY) {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100));
+                    } else {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300/100));}
+                        break;
+                    case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
+                    if ($order->delivery['country']['id'] == STORE_COUNTRY) {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100));
+                    } else {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100));}
+                        break;
+                    case ($orderTotal > 10000000):
+                    if ($order->delivery['country']['id'] == STORE_COUNTRY) {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100));
+                    } else {
+                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100));}
+                        break;
+                    default:
+                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));
                     break;
-                case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
-                if ($order->delivery['country']['id'] == $japan_id) {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100));
-                } else {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300/100));}
-                    break;
-                case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
-                if ($order->delivery['country']['id'] == $japan_id) {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100));
-                } else {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100));}
-                    break;
-                case ($orderTotal > 10000000):
-                if ($order->delivery['country']['id'] == $japan_id) {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100));
-                } else {
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100));}
-                    break;
-                default:
-                $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));
-                break;
+                }
+                $order->info['total'] += $paypal_cost;
+                $this->output[] = array('title' => $this->title . ':',
+                                          'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
+                                          'value' => $paypal_cost);
             }
-            $order->info['total'] += $paypal_cost;
-            $this->output[] = array('title' => $this->title . ':',
-                                      'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
-                                      'value' => $paypal_cost);
         }
-      }
     }
 
-    function check() {
-      global $db;
-      if (!isset($this->_check)) {
-        $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_ORDER_TOTAL_PAYPAL_STATUS'");
-        $this->_check = $check_query->RecordCount();
-      }
+    function check()
+    {
+        global $db;
+        if (!isset($this->_check)) {
+            $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_ORDER_TOTAL_PAYPAL_STATUS'");
+            $this->_check = $check_query->RecordCount();
+        }
 
-      return $this->_check;
+        return $this->_check;
     }
 
-    function keys() {
-      return array('MODULE_ORDER_TOTAL_PAYPAL_STATUS', 'MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000', 'MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE');
+    function keys()
+    {
+        return array('MODULE_ORDER_TOTAL_PAYPAL_STATUS', 'MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000', 'MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE');
     }
 
-    function install() {
+    function install()
+    {
         global $db;
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display PayPal fees', 'MODULE_ORDER_TOTAL_PAYPAL_STATUS', 'true', 'Do you want this module to display?', '6', '1','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER', '450', 'Sort order of display.', '6', '2', now())");
@@ -132,18 +134,19 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for more than 10 000 0000JPY in Japan', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP', '2.9', 'PayPal fee in % for payment over 10 000 001 JPY in Japan', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for more than 10 000 0000JPY', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000', '3.4', 'PayPal fee in % for payment over 10 000 001 JPY', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fixed Fee', 'MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE', '40', 'PayPal fixed fee', '6', '3', now())");
-   }
-
-    function remove() {
-      global $db;
-      $keys = '';
-      $keys_array = $this->keys();
-      $keys_size = count($keys_array);
-      for ($i=0; $i<$keys_size; $i++) {
-        $keys .= "'" . $keys_array[$i] . "',";
-      }
-      $keys = substr($keys, 0, -1);
-
-      $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in (" . $keys . ")");
     }
-  }
+
+    function remove()
+    {
+        global $db;
+        $keys = '';
+        $keys_array = $this->keys();
+        $keys_size = count($keys_array);
+        for ($i=0; $i<$keys_size; $i++) {
+            $keys .= "'" . $keys_array[$i] . "',";
+        }
+        $keys = substr($keys, 0, -1);
+
+        $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in (" . $keys . ")");
+    }
+}

@@ -62,7 +62,7 @@ class letterpacklite extends ZenShipping
 
     public function quote($method = ''): array
     {
-        global $order;
+        global $order, $box_sizes_array;
 
         $this->quotes = [
             'id' => $this->code,
@@ -81,6 +81,10 @@ class letterpacklite extends ZenShipping
 
         if (!empty($this->icon)) {
             $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
+        }
+
+        if (empty($box_sizes_array) || $box_sizes_array[0][0] == 0 || $box_sizes_array[0][1] == 0 || $box_sizes_array[0][2] == 0) {
+            $this->quotes['error'] = MODULE_SHIPPING_LETTERPACKLITE_TEXT_DIMENSION_MISSING;
         }
 
         return $this->quotes;

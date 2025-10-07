@@ -36,11 +36,11 @@ class nekoposu  extends ZenShipping
     {
         global $order, $db, $shipping_weight, $box_sizes_array;
 
-        if (!$this->enabled) return;
-        if (IS_ADMIN_FLAG === true) return;
+        if ($this->enabled === false || IS_ADMIN_FLAG === true) {
+            return;
+        }
 
         if (!empty($box_sizes_array)) {
-            //echo ' Box size array: ';print_r($box_sizes_array[0]);echo ' Weight: ' . $shipping_weight;
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
             // disable if too big 
             if (IS_ADMIN_FLAG == false && ($box_sizes_array[0][0] > MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT || $girth > 48 || $shipping_weight > MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT)) { 
@@ -48,23 +48,7 @@ class nekoposu  extends ZenShipping
             }
         }
 
-        if ((int)MODULE_SHIPPING_NEKOPOSU_ZONE > 0) {
-            $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_NEKOPOSU_ZONE . "' and zone_country_id = '" . $order->delivery['country']['id'] . "' order by zone_id");
-            while (!$check->EOF) {
-                if ($check->fields['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-                    $check_flag = true;
-                    break;
-                }
-                $check->MoveNext();
-            }
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
-        }
+        $this->checkEnabledForZone(MODULE_SHIPPING_NEKOPOSU_ZONE);
 
         if ($this->enabled) {
             // -----

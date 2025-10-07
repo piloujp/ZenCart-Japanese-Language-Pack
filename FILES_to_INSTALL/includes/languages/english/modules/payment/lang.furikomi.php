@@ -16,7 +16,6 @@ $define = [
 //    . "\nAccount Name: " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? MODULE_PAYMENT_FURIKOMI_ACCNAM2 : 'Account name')
 //    . "\nSwift Code:   " . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'Swift Code')
     . '</pre><p>Thanks for your order which will ship after we receive payment in the above account.',
-    'MODULE_PAYMENT_FURIKOMI_ALREADY_INSTALLED' => 'Furikomi module already installed.',
 ];
 if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
     $define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "Please use the following details to transfer your total order value:\n"

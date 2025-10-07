@@ -1,9 +1,9 @@
 <?php
 // -----
 // Part of the "Product Options Stock" plugin by Cindy Merkin (cindy@vinosdefrutastropicales.com)
-// Copyright (c) 2014-2024 Vinos de Frutas Tropicales
+// Copyright (c) 2014-2025 Vinos de Frutas Tropicales
 //
-// Last updated: POSM 6.1.0
+// Last updated: POSM 6.1.1
 //
 $define = [
     'BOX_REPORTS_PRODUCTS_OPTIONS_STOCK' => '商品オプション別売上',
@@ -67,5 +67,11 @@ $define = [
     //
     'POSM_JS_CAUTION_OPTION_REMOVAL' => '注意！\n\nこの製品の属性は、製品オプション在庫マネージャーによって管理されます。\n\nこのオプションの削除を確認すると、**すべての**管理対象オプションが削除され、製品の数量が 0 に設定されます。',
     'POSM_JS_CAUTION_ATTRIBUTE_REMOVAL' => '注意！\n\nこの製品の属性は、製品オプション在庫マネージャーによって管理されます。\n\nこの属性の削除を確認すると、%u 個の管理オプションが削除され、それに応じて製品の数量が更新されます。',
+
+    // -----
+    // Used by includes/javascript/product_posm.php.
+    //
+    'POSM_BUTTON_MANAGE_STOCK' => '在庫管理',
+    'POSM_TEXT_PRODUCTS_QTY_CLICK' => 'この商品のオプションの在庫を管理するにはクリックしてください：',
 ];
 return $define;

@@ -7,8 +7,8 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: pilou2/piloujp 2025 Mar 24 Modified in v2.1.0 $
  */
-  class yamatoecollect { 
-
+class yamatoecollect
+{ 
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -46,7 +46,8 @@
     public $sort_order;
 
 // class constructor
-    function __construct() {
+    function __construct()
+    {
         global $order;
 
         $this->code = 'yamatoecollect';
@@ -63,7 +64,8 @@
     }
 
 // class methods
-    function update_status() {
+    function update_status()
+    {
         global $order, $db;
 
         if ($this->enabled && (int)MODULE_PAYMENT_YAMATOECOLLECT_ZONE > 0 && isset($order->delivery['country']['id'])) {
@@ -101,40 +103,49 @@
         }
     }
 
-    function javascript_validation() {
+    function javascript_validation()
+    {
         return false;
     }
 
-    function selection() {
+    function selection()
+    {
         return array('id' => $this->code,
                    'module' => $this->title);
     }
 
-    function pre_confirmation_check() {
+    function pre_confirmation_check()
+    {
         return false;
     }
 
-    function confirmation() {
+    function confirmation()
+    {
         return false;
     }
 
-    function process_button() {
+    function process_button()
+    {
         return false;
     }
 
-    function before_process() {
+    function before_process()
+    {
         return false;
     }
 
-    function after_process() {
+    function after_process()
+    {
         return false;
     }
 
-    function get_error() {
+    function get_error()
+    {
         return false;
     }
 
-    function check() {
+    function check()
+    {
         global $db;
         if (!isset($this->_check)) {
             $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_YAMATOECOLLECT_STATUS'");
@@ -143,23 +154,9 @@
         return $this->_check;
     }
 
-    function install() {
+    function install()
+    {
         global $db, $messageStack;
-        if ($_SESSION['language'] == 'japanese') {
-        // Japanese
-            if (defined('MODULE_PAYMENT_YAMATOECOLLECT_STATUS')) {
-                $messageStack->add_session('ヤマト代引替えモジュール搭載済み。', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=yamatoecollect', 'NONSSL'));
-                return 'failed';
-            }
-        } else {
-        // English
-            if (defined('MODULE_PAYMENT_YAMATOECOLLECT_STATUS')) {
-                $messageStack->add_session('Yamato COD module already installed.', 'error');
-                zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=yamatoecollect', 'NONSSL'));
-                return 'failed';
-            }
-        }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Yamato Cash On Delivery Module', 'MODULE_PAYMENT_YAMATOECOLLECT_STATUS', 'True', 'Do you want to accept Yamato Cash On Delivery payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_YAMATOECOLLECT_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Payment limit max:', 'MODULE_PAYMENT_YAMATOECOLLECT_LIMIT', '300000', 'Limit max for payment with this option.', '6', '0', now())");
@@ -167,12 +164,14 @@
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
    }
 
-    function remove() {
+    function remove()
+    {
         global $db;
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
 
-    function keys() {
+    function keys()
+    {
         return array('MODULE_PAYMENT_YAMATOECOLLECT_STATUS', 'MODULE_PAYMENT_YAMATOECOLLECT_ZONE', 'MODULE_PAYMENT_YAMATOECOLLECT_LIMIT', 'MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID', 'MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER');
     }
-  }
+}

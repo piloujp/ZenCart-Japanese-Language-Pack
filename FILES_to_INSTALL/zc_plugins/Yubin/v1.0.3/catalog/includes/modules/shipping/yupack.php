@@ -58,30 +58,12 @@ class yupack extends ZenShipping
     public function update_status()
     {
         global $order, $db;
-        if (!$this->enabled) return;
-        if (IS_ADMIN_FLAG === true) return;
 
-        if ((int)MODULE_SHIPPING_YUPACK_ZONE > 0) {
-            $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_SHIPPING_YUPACK_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
-            while (!$check->EOF) {
-                if ($check->fields['zone_id'] < 1) {
-                    $check_flag = true;
-                    break;
-                } elseif ($check->fields['zone_id'] == $order->delivery['zone_id']) {
-                    $check_flag = true;
-                    break;
-                }
-                $check->MoveNext();
-            }
+        if ($this->enabled === false || IS_ADMIN_FLAG === true) {
+            return;
+        }
 
-            if ($check_flag == false) {
-                $this->enabled = false;
-            }
-        }
-        if ( $this->enabled == true ) {
-            if (!in_array((int)$order->delivery['country']['id'], $this->yupack_countries_nbr)) $this->enabled = false;
-        }
+        $this->checkEnabledForZone(MODULE_SHIPPING_YUPACK_ZONE);
 
         if ($this->enabled) {
             // -----
@@ -116,7 +98,7 @@ class yupack extends ZenShipping
         $shipping_num_boxes = 1;
 
         if (in_array($country_id, $this->yupack_countries_nbr)) {
-            $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");
+            $zoneinfo = $db->Execute("SELECT zone_code FROM " . TABLE_ZONES . " WHERE zone_id = '" . $zone_id . "'");
             $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
@@ -213,6 +195,7 @@ class yupack extends ZenShipping
         }
         return $this->_check;
     }
+
     /**
      * Install the shipping module and its configuration settings
      *

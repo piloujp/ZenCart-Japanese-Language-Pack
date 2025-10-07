@@ -8,8 +8,8 @@
  * @version $Id: pilou2 2025 July 30 Modified in v2.1.0 $
  */
 
-  class surplace {
-
+class surplace
+{
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -47,7 +47,8 @@
     public $sort_order;
 
 // class constructor
-    function __construct() {
+    function __construct()
+    {
         global $order;
 
         $this->code = 'surplace';
@@ -64,7 +65,8 @@
     }
 
 // class methods
-    function update_status() {
+    function update_status()
+    {
         global $order, $db;
 
         if ($this->enabled && (int)MODULE_PAYMENT_SURPLACE_ZONE > 0 && isset($order->delivery['country']['id'])) {
@@ -94,24 +96,29 @@
         }
     }
 
-    function javascript_validation() {
+    function javascript_validation()
+    {
         return false;
     }
 
-    function selection() {
+    function selection()
+    {
         return array('id' => $this->code,
                      'module' => $this->title);
     }
 
-    function pre_confirmation_check() {
+    function pre_confirmation_check()
+    {
         return false;
     }
 
-    function confirmation() {
+    function confirmation()
+    {
         return array('title' => MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION);
     }
 
-    function process_button() {
+    function process_button()
+    {
         return false;
     }
 
@@ -119,15 +126,18 @@
         return false;
     }
 
-    function after_process() {
+    function after_process()
+    {
         return false;
     }
 
-    function get_error() {
+    function get_error()
+    {
         return false;
     }
 
-    function check() {
+    function check()
+    {
         global $db;
         if (!isset($this->_check)) {
             $check_query = $db->Execute("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_PAYMENT_SURPLACE_STATUS'");
@@ -136,25 +146,23 @@
         return $this->_check;
     }
 
-    function install() {
+    function install()
+    {
         global $db, $messageStack;
-        if (defined('MODULE_PAYMENT_SURPLACE_STATUS')) {
-            $messageStack->add_session(MODULE_PAYMENT_SURPLACE_TEXT_ALREADY_INSTALLED, 'error');
-            zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=surplace', 'NONSSL'));
-            return 'failed';
-        }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable shop payment', 'MODULE_PAYMENT_SURPLACE_STATUS', 'True', 'Do you want to accept payment at the shop?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_SURPLACE_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
-   }
+    }
 
-    function remove() {
+    function remove()
+    {
         global $db;
         $db->Execute("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
     }
 
-    function keys() {
+    function keys()
+    {
         return array('MODULE_PAYMENT_SURPLACE_STATUS', 'MODULE_PAYMENT_SURPLACE_ZONE', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID');
     }
-  }
+}

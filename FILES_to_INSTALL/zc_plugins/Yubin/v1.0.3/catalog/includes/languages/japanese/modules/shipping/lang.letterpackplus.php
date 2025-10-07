@@ -3,6 +3,7 @@ $define = [
     'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE' => 'レターパックプラス',
     'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DESCRIPTION' => 'レターパックプラス',
     'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_WAY' => '日本郵便局',
+    'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DIMENSION_MISSING' => 'エラー、一部の製品寸法が欠落しています。',
 //bof constant configuration titles and descriptions for letterpackplus Shipping
     'CFGTITLE_MODULE_SHIPPING_LETTERPACKPLUS_STATUS' => 'レターパックプラス配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_LETTERPACKPLUS_STATUS' => 'レターパックプラス配送を有効にする',

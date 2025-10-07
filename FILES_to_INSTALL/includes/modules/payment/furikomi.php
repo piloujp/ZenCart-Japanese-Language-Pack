@@ -6,9 +6,9 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: pilou2 2025 July 30 Modified in v2.1.0 $
  */
-  class furikomi {
-
-      /**
+class furikomi
+{
+    /**
      * $_check is used to check the configuration key set up
      * @var int
      */
@@ -94,10 +94,10 @@
             }
         }
 
-      // other status checks?
-      if ($this->enabled) {
-        // other checks here
-      }
+        // other status checks?
+        if ($this->enabled) {
+            // other checks here
+        }
     }
 
     function javascript_validation()
@@ -154,11 +154,6 @@
     function install()
     {
         global $db, $messageStack;
-        if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
-            $messageStack->add_session(MODULE_PAYMENT_FURIKOMI_ALREADY_INSTALLED, 'error');
-            zen_redirect(zen_href_link(FILENAME_MODULES, 'set=payment&module=furikomi', 'NONSSL'));
-            return 'failed';
-        }
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable bank transfer Module', 'MODULE_PAYMENT_FURIKOMI_STATUS', 'True', 'Do you want to accept direct bank transfer payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now());");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort order of display.', 'MODULE_PAYMENT_FURIKOMI_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_FURIKOMI_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
@@ -204,4 +199,4 @@
             'MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID',
             ];
     }
-  }
+}

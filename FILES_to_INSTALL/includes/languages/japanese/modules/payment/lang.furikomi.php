@@ -16,7 +16,6 @@ $define = [
 //    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? MODULE_PAYMENT_FURIKOMI_ACCNAM2 : '口座名義人')
 //    . "\nSWIFTコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'SWIFTコード')
     . '</pre><p>ご注文ありがとう御座いました。入金確認後、商品を送ります。',
-    'MODULE_PAYMENT_FURIKOMI_ALREADY_INSTALLED' => '銀行振込モジュール搭載済み。',
 // bof constant configuration titles and descriptions for payment module furikomi
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込モジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込による支払いを受け入れますか？',
