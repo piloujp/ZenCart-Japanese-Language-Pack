@@ -6,6 +6,9 @@ PREPARE stmt_posm FROM @sql_posm;
 EXECUTE stmt_posm;
 DEALLOCATE PREPARE stmt_posm;
 
+Set @japan_id = (Select countries_id from countries where countries_iso_code_2 = 'JP' LIMIT 1);
+UPDATE address_format SET address_format = '〒$postcode$cr$state$city$streets$cr$lastname$firstname$salutation', address_summary = '〒$postcode$state$city' WHERE countries_id = @japan_id;
+
 
 # Update version history
 INSERT INTO project_version_history (project_version_key, project_version_major, project_version_minor, project_version_patch, project_version_date_applied, project_version_comment)

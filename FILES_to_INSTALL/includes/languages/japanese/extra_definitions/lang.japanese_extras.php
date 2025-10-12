@@ -15,6 +15,7 @@ $define = [
     'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">' . ENTRY_LAST_NAME_MIN_LENGTH . '文字以上</span>',
     'ENTRY_LAST_NAME_KANA_TEXT' => '*',
     'TEXT_TIME_SPECIFY' => 'お届け時間帯： ',
+    'ADDRESS_SALUTATION' => '様',
 ];
 
 return $define;

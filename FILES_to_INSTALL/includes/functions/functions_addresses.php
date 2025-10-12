@@ -302,6 +302,7 @@ function zen_address_format($address_format_id = 1, $incoming = array(), $html =
     $address['zip'] = $address['postcode'];
     $address['telephone'] = !empty($incoming['telephone']) ? zen_output_string_protected($incoming['telephone']) : '';
     $address['fax'] = !empty($incoming['fax']) ? zen_output_string_protected($incoming['fax']) : '';
+    $address['salutation'] = !empty($incoming['salutation']) ? zen_output_string_protected($incoming['salutation']) : (!empty($incoming['firstname']) || !empty($incoming['lastname']) ? ADDRESS_SALUTATION : '');
 
     $address['streets'] = !empty($address['suburb']) ? $address['street'] . $address['cr'] . $address['suburb'] : $address['street'];
 

@@ -15,6 +15,7 @@ $define = [
     'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your last name(furigana) correct? Our system requires a minimum of ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
     'ENTRY_LAST_NAME_KANA_TEXT' => '',
     'TEXT_TIME_SPECIFY' => 'Prefered delivery time: ',
+    'ADDRESS_SALUTATION' => '様',
 ];
 
 return $define;
