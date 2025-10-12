@@ -105,14 +105,14 @@ if (isset($_POST['action']) && (($_POST['action'] == 'process') || ($_POST['acti
       $messageStack->add('addressbook', ENTRY_LAST_NAME_KANA_ERROR);
     }
   }
-    $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
-    if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
-        $error = true;
-        $messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
-    }
-    if (ACCOUNT_FAX_NUMBER == 'true') {
-        $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
-    }
+  $entry_telephone = zen_db_prepare_input($_POST['entry_telephone']);
+  if (strlen($entry_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
+      $error = true;
+      $messageStack->add('addressbook', ENTRY_TELEPHONE_NUMBER_ERROR);
+  }
+  if (ACCOUNT_FAX_NUMBER == 'true') {
+      $entry_fax = zen_db_prepare_input($_POST['entry_fax']);
+  }
   if (mb_strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
     $error = true;
     $messageStack->add('addressbook', ENTRY_STREET_ADDRESS_ERROR);

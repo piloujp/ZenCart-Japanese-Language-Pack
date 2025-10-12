@@ -22,6 +22,7 @@ $define = [
     'TEXT_WARNING_SSL_INSTALL' => '警告：<a href="https://docs.zen-cart.com/user/installing/enable_ssl/" target="_blank">セキュリティ上の理由により、管理画面がSSL対応するまで、このモジュールは無効になっています。',
     'TEXT_POSITIVE_INT' => '%s は、0 以上の整数値でなければなりません',
     'TEXT_POSITIVE_FLOAT' => '%s は、0以上の少数値でなければなりません',
+    'TEXT_ERROR_MODULE_ALREADY_INSTALLED' => '%s モジュールはすでにインストールされています。',
 ];
 
 return $define;
