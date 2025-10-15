@@ -9,12 +9,12 @@
 $define = [
     'EMAIL_GREET' => '',
     'ENTRY_FIRST_NAME_KANA' => 'First Name (furigana):',
-    'ENTRY_FIRST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your first name(furigana) correct? Our system requires a minimum of ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
+    'ENTRY_FIRST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your first name (furigana) correct? Our system requires a minimum of ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
     'ENTRY_FIRST_NAME_KANA_TEXT' => '',
     'ENTRY_LAST_NAME_KANA' => 'Last Name (furigana):',
-    'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your last name(furigana) correct? Our system requires a minimum of ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
+    'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your last name (furigana) correct? Our system requires a minimum of ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
     'ENTRY_LAST_NAME_KANA_TEXT' => '',
-    'TEXT_TIME_SPECIFY' => 'Prefered delivery time: ',
+    'TEXT_TIME_SPECIFY' => 'Preferred delivery time: ',
     'ADDRESS_SALUTATION' => '様',
 ];
 

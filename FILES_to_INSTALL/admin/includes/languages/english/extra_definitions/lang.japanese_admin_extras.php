@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: pilouJP 2024 Oct 09 v2.1.0-beta1 $
+ * @version $Id: pilouJP 2025 Oct 13 v2.2.0-alpha1 $
 */
 
 $define = [
@@ -12,11 +12,11 @@ $define = [
     'ADMIN_NAV_DATE_CALENDAR' => '',
     'EMAIL_GREET' => '',
     'ENTRY_FIRST_NAME_KANA' => 'First Name (furigana):',
-    'ENTRY_FIRST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your first name(furigana) correct? Our system requires a minimum of ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
+    'ENTRY_FIRST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your first name (furigana) correct? Our system requires a minimum of ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
     'ENTRY_LAST_NAME_KANA' => 'Last Name (furigana):',
-    'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your last name(furigana) correct? Our system requires a minimum of ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
+    'ENTRY_LAST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your last name (furigana) correct? Our system requires a minimum of ' . ENTRY_LAST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',
     'ENTRY_NAME_KANA' => 'Reading: ',
-    'TEXT_TIME_SPECIFY' => 'Prefered delivery time: ',
+    'TEXT_TIME_SPECIFY' => 'Preferred delivery time: ',
     'ADDRESS_SALUTATION' => '様',
 ];
 
