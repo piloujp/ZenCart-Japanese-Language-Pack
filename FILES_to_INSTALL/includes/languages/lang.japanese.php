@@ -530,6 +530,7 @@ $define = [
     'WARNING_NO_FILE_UPLOADED' => '警告：何もアップロードされていません。',
     'WARNING_PRODUCT_QUANTITY_ADJUSTED' => '商品数量が購入可能な残り在庫数にあわせて変更されました。',
     'WARNING_SHOPPING_CART_COMBINED' => '注意：カート内には、前回のログイン時にカートに入れた商品も含まれております。<br>お支払い手続きに進む前に、必ずご確認下さい。',
+    'WHOLESALE_CUSTOMER_SHOPPING' => '価格は卸売割引を考慮して表示されます。',
 ];
 
 // Definitions that require references to other definitions
