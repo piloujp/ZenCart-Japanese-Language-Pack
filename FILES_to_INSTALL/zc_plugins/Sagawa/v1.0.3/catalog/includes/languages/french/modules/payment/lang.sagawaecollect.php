@@ -11,8 +11,8 @@ $define = [
     'CFGDESC_MODULE_PAYMENT_SAGAWAECOLLECT_LIMIT' => 'Limite maximale de paiement avec cette option.',
     'CFGTITLE_MODULE_PAYMENT_SAGAWAECOLLECT_ORDER_STATUS_ID' => 'Définir le statut de la commande',
     'CFGDESC_MODULE_PAYMENT_SAGAWAECOLLECT_ORDER_STATUS_ID' => 'Définir le statut des commandes effectuées avec ce module de paiement sur cette valeur :',
-    'CFGTITLE_MODULE_PAYMENT_SAGAWAECOLLECT_SORT_ORDER' => 'Ordre de tri d\'affichage',
-    'CFGDESC_MODULE_PAYMENT_SAGAWAECOLLECT_SORT_ORDER' => 'Ordre de tri d\'affichage. Le numéro le plus bas est affiché en premier.',
+    'CFGTITLE_MODULE_PAYMENT_SAGAWAECOLLECT_SORT_ORDER' => 'Ordre de tri d’affichage',
+    'CFGDESC_MODULE_PAYMENT_SAGAWAECOLLECT_SORT_ORDER' => 'Ordre de tri d’affichage. Le numéro le plus bas est affiché en premier.',
 // eof constant configuration titles and descriptions for payment module sagawaecollect
 ];
 return $define;
