@@ -197,9 +197,8 @@ a.anclink {
             folder 'FILES_to_INSTALL' overwriting</b> Zen Cart original files
           when necessary. Don't reverse order! Do Zen Cart first then language
           pack.</p>
-        <p class="texte">Now you should open your browser and in address bar
-          type your site address using your real domain in place of 'yoursite'
-          and http or https depending on your case:<br>
+        <p class="texte">Now you should open your browser and, in address bar,
+          type your site address using your real domain in place of 'yoursite':<br>
           <b>https://yoursite.com/zc_install/</b> (or https://yoursite.com/ and
           click on 'Click here' link)<br>
         </p>
@@ -227,9 +226,8 @@ a.anclink {
           your already installed ZC admin folder. Then <b>copy everything in
             folder FILES_to_INSTALL </b>to your cart, <b> overwriting </b>original
           files.</p>
-        <p class="texte">Now you should open your browser and in address bar
-          type your site address using your real domain in place of 'yoursite'
-          and http or https depending on your case:<br>
+        <p class="texte">Now you should open your browser and, in address bar,
+          type your site address using your real domain in place of 'yoursite':<br>
           <b>https://yoursite.com/zc_install/</b></p>
         <p class="texte">Zen Cart installer will start in Japanese (you can
           change to English) and do some system checks. If there is no big
@@ -263,15 +261,15 @@ a.anclink {
           from precedent chapter above.</p>
         <p class="texte">If core files have been modified (by plugins or other),
           there will be more steps and mainly <b>two parts</b> to deal with.
-          One is <b>files upgrade</b> and the other is <b>database upgrade</b>.
-          It is then better to <b>uninstall</b> all your <b>plugins</b>,
-          especially if they are old, without forgetting to save all their
-          settings and additional information.</p>
+          One is <b>files upgrade</b> and the other is <b>database upgrade</b>.</p>
         <p class="texte"><b>First</b>, you need to <b>upgrade</b> Zen Cart <b>to
 the&nbsp;
             latest version corresponding to this language pack</b>. Please,
           refer to <a href="https://docs.zen-cart.com/user/upgrading/" title="Upgrading"
-            target="_blank">Zen Cart documentation</a> if needed.</p>
+            target="_blank">Zen Cart documentation</a> if needed. In this case,
+          it is better to <b>uninstall</b> all your <b>plugins</b>, especially
+          if they are old, without forgetting to save all their settings and
+          additional information.</p>
         <p class="title4">Files upgrade:</p>
         <p class="texte">Make a <b>list of already modified files</b> and
           compare with the 'files to merge' list from this language pack. These
@@ -284,7 +282,11 @@ the&nbsp;
           differences between two files and merge or not any difference you
           found. Then you can <b>copy new files</b> 'as is'. Use the '<a class="anclink"
             href="#filecopy">List of new files to copy</a>' below to identify
-          them.</p>
+          them. If you use a <b>custom template</b> that overrides some of the
+          template files below, you must update these files too with
+          modifications done by this language pack to ZC core template files.
+          Some of these template modifications are provided for commonly used
+          templates in folder '<b>optional_templates</b>'.</p>
         <span class="title5"><a id="filemerge">List of files to merge</a>:</span><br>
         <span class="note">Replace 'YourAdminFolderName' by your actual admin
           folder name:</span>
@@ -871,8 +873,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
             フォルダーにコピーします</b>。<b>Zen Cart 日本語言語パックも抽出し</b>、必要に応じて、Zen Cart の元の<b>ファ
             イルを上書きして</b>、フォルダー <b>'FILES_to_INSTALL' のすべてのコンテンツをコピーします</b>。順序を逆
           にしないでください！ 最初に Zen Cart を実行し、次に言語パックを実行します。</p>
-        <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
-          http または https を使用してサイト アドレスを入力する必要があります。<br>
+        <p class="texte">次にブラウザを開き、アドレス
+          バーに「yoursite」の代わりに実際のドメインを使用してサイトのアドレスを入力します。<br>
           <b>https://yoursite.com/zc_install/</b></p>
         <p class="texte">Zen Cartインストーラーは日本語で起動し (英語に変更できます)、いくつかのシステム
           チェックを行います。システムチェックで大きな問題がなければ、「続行」ボタンをクリックして通常のZen　Cartと同様にインストールを進めてくださ
@@ -889,8 +891,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
             日本語言語パックを抽出し</b>、admin フォルダーの名前を既にインストールされている admin
           フォルダーと同じ名前に変更します。次に、<b>FILES_to_INSTALL フォルダー内のすべて</b>の ものを<b>カートにコピーし</b>、
           元のファイルを<b>上書きします</b>。</p>
-        <p class="texte">次に、ブラウザを開き、アドレス バーに、「yoursite」の代わりに実際のドメインを使用し、場合に応じて
-          http または https を使用してサイト アドレスを入力する必要があります。<br>
+        <p class="texte">次にブラウザを開き、アドレス
+          バーに「yoursite」の代わりに実際のドメインを使用してサイトのアドレスを入力します。<br>
           <b>https://yoursite.com/zc_install/</b></p>
         <p class="texte">Zen Cartインストーラーは日本語で起動し (英語に変更できます)、いくつかのシステム
           チェックを行います。システムチェックで大きな問題がなければ、<b>「アップグレード」ボタンをクリック</b>してデータベースをアップグレード
@@ -917,19 +919,23 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           ファイルがまったく変更されていない場合、たとえばカプセル化されたプラグインのみを使用する場合は簡単です。上記の前の章の手順に従ってファイルをコピーし、インストー
           ラーを使用します。</p>
         <p class="texte">コア ファイルが変更されている場合は、さらに多くの手順が必要になり、主に<b>二つの部分</b>に対処する必
-          要があります。一つは<b>ファイルのアップグレード</b>で、もう一つは<b>データベースの更新</b>です。特に古いプラグインの場合は、す
-          べての設定と追加情報を保存することを忘れずに、すべての<b>プラグインをアンインストールする</b>ことをお勧めします。</p>
+          要があります。一つは<b>ファイルのアップグレード</b>で、もう一つは<b>データベースの更新</b>です。</p>
         <p class="texte">まず、<b>Zen Cart をこの言語パックに対応する最新バージョンにアップグレードする必要</b>があ
           ります。必要に応じて、<a href="https://docs.zen-cart.com/user/upgrading/" title="アップグレード"
-            target="_blank">Zen Cartのドキュメント</a>を参照してください。</p>
+            target="_blank">Zen Cartのドキュメント</a>を参照してください。この場合、すべての<b>プラグイン</b>（特
+          に古いもの）<b>をアンインストールし</b>、その設定と追加情報をすべて保存するのを忘れないようにすることをお勧めします。</p>
         <p class="title4">ファイルのアップグレード：</p>
         <p class="texte">すでに変更されたファイルのリストを作成し、この言語パックの「結合するファイル」リストと比較します。これらの変更
           されたファイルは言語パック ファイルとマージする必要があり、他のファイルは言語パック
           ファイルによって上書きされる必要があります。数が多すぎる場合は、以下のリストを使用していとつずつ確認し、必要に応じて結合してください。。</p>
         <p class="texte">以下の「<a class="anclink" href="#filemergejp">結合するファイルのリスト</a>」
           内のファイルを<b> 結合する</b>ことから始めます。ここでは、WinMerge のような特殊なツールが非常に役立ちます。2
-          つのファイル間の相違点を確認し、見つかった相違点を結合するかどうかを確認できます。次に、以下の「<a class="anclink" href="#filecopyjp">コ
-            ピーする新しいファイルのリ スト</a>」を使用して<b>新しいファイル</b>を識別し、<b>コピー</b>できます。</p>
+          つのファイル間の相違点を確認し、見つかった相違点を結合するかどうかを確認できます。その後、<b>新しいファイル</b>をそのまま<b>コピー</b>し
+          ます。コピーする新しいファイルを確認するには、以下の「<a class="anclink" href="#filecopyjp">コ
+            ピーする新しいファイルのリ スト</a>」を参照してください。以下のテンプレートファイルの一部をオーバーライドする<b>カスタムテンプ
+            レート</b>を使用する場合は、この言語パックによるZCコアテンプレートファイルへの変更を反映させて、これらのファイルも更新する必要があ
+          ります。これらのテンプレート変更の一部は、よく使用されるテンプレート用として「optional_templates」フォルダに提供されていま
+          す。</p>
         <span class="title5"><a id="filemergejp">結合するファイルのリスト</a>：</span><br>
         <span class="note">「YourAdminFolderName」を実際の管理フォルダ名に置き換えます。</span>
         <p class="texte"></p>
@@ -1110,8 +1116,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
             がすでにインストールされています:</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック v2.1.x から</b><span
             class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">アッ
-                プグレード</span></span></span>する場合、データベースの<b>住所形式にはわずかな更新のみ</b>があります。
-          このSQLファイルを実行するだけです。</p>
+                プグレード</span></span></span>する場合、データベースの<b>住所形式にはわずかな更新のみ</b>がありま
+          す。 このSQLファイルを実行するだけです。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; 'version_update_zc_v2.2.0.sql'</p>
         <p class="title4">最後に：</p>
         <p class="texte">独自の言語ファイルを持つ他のプラグインがインストールされている場合は、optional_plugins

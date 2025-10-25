@@ -6,7 +6,7 @@
 * @version $Id: Jeff Rutt 2024 Aug 28 Modified in v2.1.0-alpha2 $
 */
 
-@setlocale(LC_TIME, ['ja_JP', 'ja_JP.utf8', 'ja', 'Japanese.932']);
+@setlocale(LC_TIME, ['ja', 'ja_JP', 'ja_JP.utf8', 'Japanese_Japan.932']);
 
 $define = [
     'ADMIN_NAV_DATE_TIME_FORMAT' => 'r年（Gy年）MMMMd日 EEEE HH:mm (ZZZZ)',

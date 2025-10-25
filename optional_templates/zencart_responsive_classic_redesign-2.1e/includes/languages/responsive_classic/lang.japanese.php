@@ -216,7 +216,7 @@ $define = [
     'ERROR_TO_DATE_LESS_THAN_FROM_DATE' => '終了日は開始日以上である必要があります。',
     'FAILED_TO_ADD_UNAVAILABLE_PRODUCTS' => '選択された製品は現在購入できません...',
     'FEMALE' => '女性',
-    'FOOTER_TEXT_BODY' => 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '">' . STORE_NAME . '</a>. Powered by <a href="https://www.zen-cart.com" rel="noopener noreferrer" target="_blank">Zen Cart</a>',
+    'FOOTER_TEXT_BODY' => 'Copyright &copy; ' . date('Y') . ' <a href="' . zen_href_link(FILENAME_DEFAULT) . '" aria-label="Visit our store homepage">' . STORE_NAME . '</a> Powered by <a href="https://www.zen-cart.com" rel="noopener noreferrer" target="_blank" aria-label="Visit Zen Cart Official Website">Zen Cart</a>',
     'FORM_REQUIRED_INFORMATION' => '* 必須項目',
     'FREE_SHIPPING_DESCRIPTION' => '%s以上お買い上げの場合、配送料が無料になります。',
     'HEADING_ADDRESS_INFORMATION' => 'ご住所',
