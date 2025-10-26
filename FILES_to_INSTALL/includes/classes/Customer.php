@@ -858,7 +858,7 @@ class Customer extends base
     }
 
     /**
-     * Unconditionally authorizes the specified customer, returning an array containing 
+     * Unconditionally authorizes the specified customer, returning an array containing
      * the customer's current information, if that customer is present in the database.
      *
      * @since ZC v1.5.8
@@ -920,7 +920,7 @@ class Customer extends base
     /**
      * @since ZC v1.5.8
      */
-    public function getAddressBookEntries(?int $customer_id = null): object
+    public function getAddressBookEntries(?int $customer_id = null): queryFactoryResult|array
     {
         global $db;
 
