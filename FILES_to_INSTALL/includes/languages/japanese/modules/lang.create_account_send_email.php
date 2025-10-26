@@ -10,9 +10,9 @@
  */
 $define = [
     'EMAIL_SUBJECT' => STORE_NAME . 'へようこそ',
-    'EMAIL_GREET_MR' => '%s 様' . "\n\n",
-    'EMAIL_GREET_MS' => '%s 様' . "\n\n",
-    'EMAIL_GREET_NONE' => '%s 様' . "\n\n",
+    'EMAIL_GREET_MR' => '%s様' . "\n\n",
+    'EMAIL_GREET_MS' => '%s様' . "\n\n",
+    'EMAIL_GREET_NONE' => '%s様' . "\n\n",
     'EMAIL_WELCOME' => '謹啓　この度は<strong>' . STORE_NAME . 'にご登録いただきありがとうございました。</strong>',
     'EMAIL_SEPARATOR' => '--------------------',
     'EMAIL_COUPON_INCENTIVE_HEADER' => 'ご登録いただいたお礼に次回<strong>' . STORE_NAME . '</strong>をご利用の際にお使い' . "\n" .'いただける「割引クーポン」をお送りします!' . "\n\n",

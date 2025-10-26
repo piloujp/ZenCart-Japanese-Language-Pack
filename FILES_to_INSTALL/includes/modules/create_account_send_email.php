@@ -44,14 +44,10 @@ if ($send_welcome_email !== true) {
 // build the message content
 $name = $firstname . ' ' . $lastname;
 
-if ($_SESSION['language'] == 'japanese') {
-    $email_text = sprintf(EMAIL_GREET_NONE,$lastname . $firstname . EMAIL_GREET);
+if (ACCOUNT_GENDER === 'true') {
+    $email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
 } else {
-    if (ACCOUNT_GENDER === 'true') {
-        $email_text = sprintf(($gender === 'm') ? EMAIL_GREET_MR : EMAIL_GREET_MS, $lastname);
-    } else {
-        $email_text = sprintf(EMAIL_GREET_NONE, $firstname);
-    }
+    $email_text = sprintf(EMAIL_GREET_NONE, $_SESSION['language'] == 'japanese' ? $lastname : $firstname);
 }
 $html_msg['EMAIL_GREETING'] = str_replace('\n', '', $email_text);
 $html_msg['EMAIL_FIRST_NAME'] = $firstname;
