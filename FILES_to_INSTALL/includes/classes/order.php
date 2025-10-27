@@ -560,29 +560,14 @@ class order extends base
             $billKey = $this->getAddressKey($customerAddresses, $billto);
         }
 
-        // -----
-        // Provide a watching observer (think EO!) a means to override the order's information as
-        // well as the customer/delivery/billing addresses.
-        //
-        // Note: Any address-override array returned must provide ALL address-array keys as used by this class!
-        // For example, the $customer_address_override array must include a 'firstname' element, not 'customers_firstname'.
-        //
-        $customer_address_override = [];
-        $delivery_address_override = [];
-        $billing_address_override = [];
-        $this->notify('NOTIFY_ORDER_CART_ADDRESS_OVERRIDES', [], $customer_address_override, $delivery_address_override, $billing_address_override);
-
-        if (count($customer_address_override) !== 0) {
-            $this->customer = $customer_address_override;
-
-        } elseif (!empty($customer->getData('customers_firstname'))) {
+        if (!empty($customer->getData('customers_firstname'))) {
             $this->customer = $this->getAddress($customerAddresses, $this->getAddressKey($customerAddresses, $customer->getData('customers_default_address_id')));
             $this->customer['telephone'] = $customer->getData('customers_telephone');
             $this->customer['fax'] = $customer->getData('customers_fax');
             $this->customer['email_address'] = $customer->getData('customers_email_address');
         }
 
-        if ($this->content_type == 'virtual') {
+        if ($this->content_type === 'virtual') {
             $this->delivery = [
                 'firstname' => '',
                 'firstname_kana' => '',
@@ -606,20 +591,41 @@ class order extends base
                 'telephone' => '',
                 'fax' => '',
             ];
-        } elseif (count($delivery_address_override) !== 0) {
-            $this->delivery = $delivery_address_override;
-
         } elseif (!is_null($deliveryKey)) {
             $this->delivery = $this->getAddress($customerAddresses, $deliveryKey);
             $this->delivery['timespec'] = (isset($_SESSION['shipping']['timespec'])) ? $_SESSION['shipping']['timespec'] : '';
         }
 
-        if (count($billing_address_override) !== 0) {
-            $this->billing = $billing_address_override;
-
-        } elseif (!is_null($billKey)) {
+        if (!is_null($billKey)) {
             $this->billing = $this->getAddress($customerAddresses, $billKey);
         }
+
+        // -----
+        // Provide a watching observer (think EO!) a means to override the order's information as
+        // well as the customer/delivery/billing addresses.
+        //
+        // Note: Any address-override array returned must provide ALL address-array keys as used by this class!
+        // For example, the $customer_address_override array must include a 'firstname' element, not 'customers_firstname'.
+        //
+        $customer_address_override = [];
+        $delivery_address_override = [];
+        $billing_address_override = [];
+        $current_addresses = [
+            'customer' => $this->customer,
+            'delivery' => $this->delivery,
+            'billing' => $this->billing,
+        ];
+        $this->notify('NOTIFY_ORDER_CART_ADDRESS_OVERRIDES', $current_addresses, $customer_address_override, $delivery_address_override, $billing_address_override);
+        if (count($customer_address_override) !== 0) {
+            $this->customer = $customer_address_override;
+        }
+        if (count($delivery_address_override) !== 0) {
+            $this->delivery = $delivery_address_override;
+        }
+        if (count($billing_address_override) !== 0) {
+            $this->billing = $billing_address_override;
+        }
+        unset($current_addresses, $customer_address_override, $delivery_address_override, $billing_address_override);
 
         [$taxCountryId, $taxZoneId] = $this->determineTaxAddressZones($billto, $sendto);
 
