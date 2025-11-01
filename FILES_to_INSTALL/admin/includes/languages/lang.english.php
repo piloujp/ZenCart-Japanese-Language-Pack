@@ -610,7 +610,7 @@ $define = [
     'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa-solid fa-comment-dots"></i>',
     'TEXT_PRODUCT_POPUP_TITLE' => 'Products Ordered',
     'TEXT_PRODUCT_TO_VIEW' => 'Select a Product to View and Press Display ...',
-    'TEXT_PRODUCT_WEIGHT_UNIT' => 'kg',
+    'TEXT_PRODUCT_WEIGHT_UNIT' => 'kgs',
     'TEXT_RESULT_PAGE' => 'Page %1$s of %2$d',
     'TEXT_SALEMAKER_IMMEDIATELY' => 'Immediately',
     'TEXT_SALEMAKER_NEVER' => 'Never',

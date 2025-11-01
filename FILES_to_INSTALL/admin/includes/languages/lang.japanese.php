@@ -610,7 +610,7 @@ $define = [
     'TEXT_PRODUCT_POPUP_BUTTON' => '<i class="fa-solid fa-comment-dots"></i>',
     'TEXT_PRODUCT_POPUP_TITLE' => '注文商品',
     'TEXT_PRODUCT_TO_VIEW' => '商品を選択し、表示ボタンを押してください。',
-    'TEXT_PRODUCT_WEIGHT_UNIT' => 'kg',
+    'TEXT_PRODUCT_WEIGHT_UNIT' => 'kgs',
     'TEXT_RESULT_PAGE' => '%1$sページ （全%2$dページ）',
     'TEXT_SALEMAKER_IMMEDIATELY' => 'すぐに',
     'TEXT_SALEMAKER_NEVER' => '一度もない',
