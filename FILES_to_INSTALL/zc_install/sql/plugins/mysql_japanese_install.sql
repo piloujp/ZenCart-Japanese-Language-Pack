@@ -156,6 +156,9 @@ INSERT IGNORE INTO tax_rates_description (tax_rates_id, language_id, tax_descrip
 INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
 
+#Set Japanese as default language
+UPDATE configuration SET configuration_value = 'ja', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
+
 CREATE TABLE IF NOT EXISTS products_options_stock_names (
             pos_name_id int NOT NULL default 0,
             language_id int NOT NULL default 1,

@@ -7,9 +7,9 @@
  *
  * THIS FILE SHOULD NEVER BE EDITED MANUALLY !!!!!!!!
  *
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: 2025-Aug-15 Modified in v2.2.0 $
+ * @version $Id: DrByte 2025 Aug 15 Modified in v2.2.0 $
  * @private
  */
 
@@ -25,4 +25,4 @@ define('PROJECT_VERSIONSERVER_URL', 'https://ping.zen-cart.com/zcversioncheck');
 define('PLUGIN_VERSIONSERVER_URL', 'https://ping.zen-cart.com/plugincheck');
 define('PROJECT_NOTIFICATIONSERVER_URL', 'https://ping.zen-cart.com/api/notifications');
 define('EXPECTED_DATABASE_VERSION_MAJOR', '2');
-define('EXPECTED_DATABASE_VERSION_MINOR', '2.0-alpha');
+define('EXPECTED_DATABASE_VERSION_MINOR', '2.0210');
