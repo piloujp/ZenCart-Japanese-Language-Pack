@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: piloujp 2025 Aug 09 in v2.2.0-alpha1 $
+ * @version $Id: lat9 2025 Sep 24 Modified in v2.2.0 $
 */
 
 $define = [
