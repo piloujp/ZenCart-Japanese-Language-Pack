@@ -30,6 +30,11 @@ class ScriptedInstaller extends ScriptedInstallBase
             'N16' => [2340,2950,3590,4240,4910,5560,9080,10730],
         ];
 
+        // Based charge for Cool Yamato is same as Yamato takyubin, but limited to 120 size.
+        // クール便追加コスト(60,80,100,120)
+        // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
+        $default_coolyamato_surcharge = [275, 330, 440, 715];
+
         $imple_date = '2024-04-01'; // Update this to save a new rates tablbe in database
 
         global $sniffer;
@@ -52,7 +57,9 @@ class ScriptedInstaller extends ScriptedInstallBase
             "INSERT IGNORE INTO " . TABLE_TARIFS . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
-                ('Yamato', 'Takyubin', '" . $imple_date . "', NOW(), '" . json_encode($default_priceranks) . "');"
+                ('Yamato', 'Takyubin', '" . $imple_date . "', NOW(), '" . json_encode($default_priceranks) . "'),
+                ('Yamato', 'CoolTakyubin', '" . $imple_date . "', NOW(), '" . json_encode($default_coolyamato_surcharge) . "')
+            ;"
         );
     }
 

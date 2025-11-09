@@ -1,0 +1,38 @@
+<?php
+$define = [
+    'MODULE_SHIPPING_COOLYAMATO_TEXT_TITLE' => 'Yamato Express Réfrigéré 1-4 jours',
+    'MODULE_SHIPPING_COOLYAMATO_TEXT_DESCRIPTION' => 'Réglages du module Yamato Express Réfrigéré',
+    'MODULE_SHIPPING_COOLYAMATO_TEXT_WAY_NORMAL' => 'Standard Froid (COD possible)',
+    'MODULE_SHIPPING_COOLYAMATO_TEXT_NOTAVAILABLE' => 'Ce service n’est pas offert entre les régions sélectionnées.',
+//bof constant configuration titles and descriptions for Yamato Refrigerqted Shipping
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'Activer la méthode d’expédition Yamato Réfrigéré',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'Souhaitez-vous proposer une livraison au tarif Yamato Réfrigéré ?',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_CATEGORIES' => 'Activer ou désactiver la méthode d’expédition Yamato Réfrigéré pour certaines catégories',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_CATEGORIES' => 'Souhaitez-vous activer ou désactiver la méthode d’expédition Yamato Réfrigéré pour certaines catégories ?',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_CAT_LIST' => 'Liste des identifiants des catégories à activer/désactiver',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_CAT_LIST' => 'Liste séparée par des virgules des identifiants de catégories à activer ou à désactiver, selon l’option ci-dessus.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_PRODUCTS' => 'Activer ou désactiver la méthode d’expédition Yamato Réfrigéré pour certains produits',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_PRODUCTS' => 'Souhaitez-vous activer ou désactiver la méthode d’expédition Yamato Réfrigéré pour certains produits ?',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_PROD_LIST' => 'Liste des identifiants de produits à activer/désactiver',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_PROD_LIST' => 'Liste séparée par des virgules des identifiants de produits à activer ou à désactiver, selon l’option ci-dessus.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_HANDLING' => 'Frais de traitement',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_HANDLING' => 'Frais de traitement pour ce mode d’expédition.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_MAX_WEIGHT' => 'Poids d’expédition maximal',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_MAX_WEIGHT' => 'Poids maximum pouvant être expédié avec cette méthode.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_MAX_GIRTH' => '« Circonférence » intérieure maximale',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_MAX_GIRTH' => 'Valeur maximale de la somme des trois côtés du volume intérieur de l’enveloppe.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_FREE_SHIPPING' => 'Paramètres de livraison gratuite',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_FREE_SHIPPING' => 'Souhaitez-vous activer le paramètre de livraison gratuite ? Sélectionnez « Faux » pour donner la priorité aux autres modules [Frais de livraison]-[Options gratuites]...',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_OVER' => 'Commande minimum pour une livraison gratuite',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_OVER' => 'Si vous achetez plus que la quantité fixée, la livraison sera gratuite.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_TAX_CLASS' => 'Type de taxe',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_TAX_CLASS' => 'Veuillez sélectionner le type de taxe qui s’applique à vos frais d’expédition.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_TAX_BASIS' => 'Base de la taxe',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_TAX_BASIS' => 'Sur quelle base la taxe d’expédition est-elle calculée ? Les options sont :<br>Shipping - En fonction de l’adresse de livraison du client<br>Billing - Basée sur l’adresse de facturation du client<br>Store - Basé sur l’adresse du magasin si la zone de facturation/d’expédition est identique à la zone du magasin',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_ZONE' => 'Zone d’expédition',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_ZONE' => 'Si une zone est sélectionnée, activez uniquement ce mode d’expédition pour cette zone.',
+    'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_SORT_ORDER' => 'Ordre de tri d’affichage',
+    'CFGDESC_MODULE_SHIPPING_COOLYAMATO_SORT_ORDER' => 'Ordre de tri d’affichage. Le numéro le plus bas est affiché en premier.',
+//eof constant configuration titles and descriptions for Yamato Refrigerqted Shipping
+];
+return $define;

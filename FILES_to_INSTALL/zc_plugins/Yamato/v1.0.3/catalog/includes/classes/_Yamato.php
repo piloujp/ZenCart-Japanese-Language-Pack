@@ -85,16 +85,26 @@ class _Yamato {
     // 6    180サイズ 180cmまで 30kgまで
     // 7    200サイズ 200cmまで 30kgまで
     function GetSizeClass() {
-        $a_classes = [
-            [0,  60,  2],  // 区分,３辺計,重量
-            [1,  80,  5],
-            [2, 100, 10],
-            [3, 120, 15],
-            [4, 140, 20],
-            [5, 160, 25],
-            [6, 180, 30],
-            [7, 200, 30],
-        ];
+        if ($this->quote['id'] === 'coolyamato') {
+            // https://www.kuronekoyamato.co.jp/ytc/customer/send/services/cool/
+            $a_classes = [
+                [0,  60, 2],  // 区分,３辺計,重量
+                [1,  80, 5],
+                [2, 100, 10],
+                [3, 120, 15],
+            ];
+        } else {
+            $a_classes = [
+                [0,  60,  2],  // 区分,３辺計,重量
+                [1,  80,  5],
+                [2, 100, 10],
+                [3, 120, 15],
+                [4, 140, 20],
+                [5, 160, 25],
+                [6, 180, 30],
+                [7, 200, 30],
+            ];
+        }
 
         if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
             return -9;
@@ -193,8 +203,14 @@ class _Yamato {
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,180,200)
         // (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
 
-        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
+
+        if ($this->quote['id'] === 'coolyamato') {
+            // クール便追加コスト(60,80,100,120)
+            $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato' AND method = 'CoolTakyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $a_coolcharge = json_decode($jsonarraycharges->fields["quote_zone"], true);
+        }
 
 //        $a_pricerank = [
 // ヤマト運輸との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
@@ -372,7 +388,7 @@ class _Yamato {
                 if ($n_sizeclass < 0) {
                     $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE : MODULE_SHIPPING_YAMATO_TEXT_DIMENSION_MISSING;
                 } else {
-                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
+                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass] + (!empty($a_coolcharge) ? $a_coolcharge[$n_sizeclass] : 0);
                 }
             } else {
                 $this->quote['error'] = MODULE_SHIPPING_YAMATO_TEXT_OUT_OF_AREA . '(' . $s_key .')';

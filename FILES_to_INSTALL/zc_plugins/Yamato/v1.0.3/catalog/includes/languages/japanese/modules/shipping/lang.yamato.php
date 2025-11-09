@@ -1,22 +1,18 @@
 <?php
 $define = [
-    'MODULE_SHIPPING_YAMATO_TEXT_TITLE' => 'ヤマト運輸(宅急便)、１－４日',
+    'MODULE_SHIPPING_YAMATO_TEXT_TITLE' => 'ヤマト運輸（宅急便）、１－４日',
     'MODULE_SHIPPING_YAMATO_TEXT_DESCRIPTION' => '宅急便配送設定',
     'MODULE_SHIPPING_YAMATO_TEXT_WAY_NORMAL' => '宅急便、代引きは可能です。',
     'MODULE_SHIPPING_YAMATO_TEXT_NOTAVAILABLE' => 'このサービスは、選択された地域間では提供されません。',
-    'MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE' => '重量またはサイズが制限を超えています。',
-    'MODULE_SHIPPING_YAMATO_TEXT_ILLEGAL_ZONE' => '指定された都道府県が正しくありません。',
-    'MODULE_SHIPPING_YAMATO_TEXT_OUT_OF_AREA' => '配達区域外です。',
-    'MODULE_SHIPPING_YAMATO_TEXT_DIMENSION_MISSING' => 'エラー！一部の製品寸法が欠落しています。',
 // Admin configuration
-    'CFGTITLE_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸(宅急便)の配送を有効にする',
-    'CFGDESC_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸(宅急便)の配送を提供しますか？',
-    'CFGTITLE_MODULE_SHIPPING_YAMATO_CATEGORIES' => '一部のカテゴリーでヤマト運輸(宅急便)配送方法を有効または無効にする',
-    'CFGDESC_MODULE_SHIPPING_YAMATO_CATEGORIES' => '一部のカテゴリーに対してヤマト運輸(宅急便)配送を有効または無効にしますか？',
+    'CFGTITLE_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸（宅急便）の配送を有効にする',
+    'CFGDESC_MODULE_SHIPPING_YAMATO_STATUS' => 'ヤマト運輸（宅急便）の配送を提供しますか？',
+    'CFGTITLE_MODULE_SHIPPING_YAMATO_CATEGORIES' => '一部のカテゴリーでヤマト運輸（宅急便）配送方法を有効または無効にする',
+    'CFGDESC_MODULE_SHIPPING_YAMATO_CATEGORIES' => '一部のカテゴリーに対してヤマト運輸（宅急便）配送を有効または無効にしますか？',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_CAT_LIST' => '有効/無効カテゴリIDリスト',
     'CFGDESC_MODULE_SHIPPING_YAMATO_CAT_LIST' => '上記のオプションに応じて有効または無効にするカテゴリ ID のコンマ区切りリスト。',
-    'CFGTITLE_MODULE_SHIPPING_YAMATO_PRODUCTS' => '一部の商品でヤマト運輸(宅急便)配送方法を有効または無効にする',
-    'CFGDESC_MODULE_SHIPPING_YAMATO_PRODUCTS' => '一部の商品に対してヤマト運輸(宅急便)配送を有効または無効にしますか？',
+    'CFGTITLE_MODULE_SHIPPING_YAMATO_PRODUCTS' => '一部の商品でヤマト運輸（宅急便）配送方法を有効または無効にする',
+    'CFGDESC_MODULE_SHIPPING_YAMATO_PRODUCTS' => '一部の商品に対してヤマト運輸（宅急便）配送を有効または無効にしますか？',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_PROD_LIST' => '有効/無効の商品IDリスト',
     'CFGDESC_MODULE_SHIPPING_YAMATO_PROD_LIST' => '上記のオプションに応じて有効または無効にする製品 ID のコンマ区切りリスト。',
     'CFGTITLE_MODULE_SHIPPING_YAMATO_HANDLING' => '取扱い手数料',
@@ -38,12 +34,4 @@ $define = [
     'CFGTITLE_MODULE_SHIPPING_YAMATO_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_YAMATO_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
 ];
-$GLOBALS['a_yamato_time']=array(
-  array('id'=>'希望なし','text'=>'希望なし'),
-  array('id'=>'午前中','text'=>'午前中'),
-  array('id'=>'１４時～１６時','text'=>'１４時～１６時'),
-  array('id'=>'１６時～１８時','text'=>'１６時～１８時'),
-  array('id'=>'１８時～２０時','text'=>'１８時～２０時'),
-  array('id'=>'１９時～２１時','text'=>'１９時～２１時'),
-);
 return $define;
