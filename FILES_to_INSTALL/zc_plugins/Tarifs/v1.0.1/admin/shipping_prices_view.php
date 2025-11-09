@@ -165,7 +165,7 @@ if (isset($_POST['savetarifs'])) {
                     <?php
                     $rownumb = 0;
                     $columnnumb = 0;
-                    if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack') {
+                    if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack' && $item['method'] !== 'YupackChilled') {
                         foreach($tr_array as $rquote) {
                             echo  '<tr>';
                             foreach($rquote as $qprice) {
@@ -176,6 +176,14 @@ if (isset($_POST['savetarifs'])) {
                             $columnnumb = 0;
                             echo '</tr>';
                         }
+                    } elseif ($item['method'] === 'YupackChilled') {
+                        echo  '<tr>';
+                        foreach($tr_array as $rquote) {
+                            echo '<td><input type="text" id="' . $columnnumb . '" name="tarif[' . $columnnumb . ']" placeholder="' . $rquote . '" value="' . $rquote . '"></td>';
+                            $columnnumb++;
+                        }
+                        $columnnumb = 0;
+                        echo  '</tr>';
                     } else {
                         foreach($tr_array as $key=>$rquote) {
                             echo '<tr><td>' . $key . ': </td>';
@@ -205,7 +213,7 @@ if (isset($_POST['savetarifs'])) {
                 <?php
                     if ((isset($tInfo)) && ($item['id'] == $tInfo->id) && isset($_GET['tid'])) {
                         echo '<div class="tarifscontainer"><table class="tarifscenter">';
-                        if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack') {
+                        if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack' && $item['method'] !== 'YupackChilled') {
                             foreach($tr_array as $rquote) {
                                 echo  '<tr>';
                                 foreach($rquote as $qprice) {
@@ -213,6 +221,12 @@ if (isset($_POST['savetarifs'])) {
                                 }
                                 echo '</tr>';
                             }
+                        } elseif ($item['method'] === 'YupackChilled') {
+                            echo  '<tr>';
+                            foreach($tr_array as $rquote) {
+                                echo '<td>' . $rquote . '</td>';
+                            }
+                            echo  '</tr>';
                         } else {
                             foreach($tr_array as $key=>$rquote) {
                                 echo '<tr><td>' . $key . ': </td>';
