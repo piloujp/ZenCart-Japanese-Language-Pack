@@ -4,10 +4,6 @@ $define = [
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_DESCRIPTION' =>  'チルドゆうパック配送設定',
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL' =>   '郵便局（チルドゆうパック）',
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_NOTAVAILABLE' => 'このサービスは、選択された地域間では提供されません。',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_OVERSIZE' =>     '重量またはサイズが制限を超えています。',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_ILLEGAL_ZONE' => '指定された都道府県が正しくありません。',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_OUT_OF_AREA' =>  '配達区域外です。',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_DIMENSION_MISSING' => 'エラー！一部の製品寸法が欠落しています。',
 //bof constant configuration titles and descriptions for YuPack Chilled Shipping
     'CFGTITLE_MODULE_SHIPPING_YUPACKCHILLED_STATUS' => 'チルドゆうパック配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_YUPACKCHILLED_STATUS' => 'チルドゆうパック運輸（宅急便）の配送を提供しますか？',

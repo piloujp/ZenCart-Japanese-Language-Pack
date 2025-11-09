@@ -6,7 +6,7 @@
  * @version $Id: pilou2/piloujp, Gernot 2025 June 10 Modified in v2.1.0 $
 **/
 
-use Zencart\Plugins\Catalog\Yubin\_YupackChilled;
+use Zencart\Plugins\Catalog\Yubin\_Yupack;
 
 class yupackchilled extends ZenShipping
 {
@@ -103,7 +103,7 @@ class yupackchilled extends ZenShipping
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
             if ( (MODULE_SHIPPING_YUPACKCHILLED_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YUPACKCHILLED_OVER) ) {
-                $rate = new _YupackChilled($this->code, MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
+                $rate = new _Yupack($this->code, MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
                 $rate->SetDest($s_zone_code, $this->yupackchilled_countries[$country_id]);
                 if (!empty($box_sizes_array)) {
                     $total_boxes_quote = 0;

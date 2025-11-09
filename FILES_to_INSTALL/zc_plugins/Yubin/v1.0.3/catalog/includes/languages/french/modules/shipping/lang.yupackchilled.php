@@ -4,10 +4,6 @@ $define = [
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_DESCRIPTION' =>  'Réglages du module Refrigerated Yu-Pack de la poste japonaise',
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL' =>   'Standard',
     'MODULE_SHIPPING_YUPACKCHILLED_TEXT_NOTAVAILABLE' => 'Ce service n’est pas offert entre les régions sélectionnées.',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_OVERSIZE' =>     'Le poids ou la taille dépasse les limites.',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_ILLEGAL_ZONE' => 'Préfecture spécifiée incorrecte.',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_OUT_OF_AREA' =>  'Hors zone de livraison.',
-    'MODULE_SHIPPING_YUPACKCHILLED_TEXT_DIMENSION_MISSING' => 'Erreur! Dimension(s) de produit(s) manquante(s).',
 //bof constant configuration titles and descriptions for Refrigerated Yu-Pack Shipping
     'CFGTITLE_MODULE_SHIPPING_YUPACKCHILLED_STATUS' => 'Activer la méthode d’expédition Refrigerated Yu-Pack',
     'CFGDESC_MODULE_SHIPPING_YUPACKCHILLED_STATUS' => 'Souhaitez-vous proposer une livraison au tarif Refrigerated Yu-Pack ?',

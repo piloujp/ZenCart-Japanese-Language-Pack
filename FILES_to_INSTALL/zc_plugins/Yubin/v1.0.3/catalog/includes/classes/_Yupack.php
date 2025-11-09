@@ -85,15 +85,27 @@ class _Yupack {
     // 5    160サイズ 160cmまで 30kgまで
     // 6    170サイズ 170cmまで 30kgまで
     function GetSizeClass() {
-        $a_classes = [
-            [0,  60,  30],  // 区分,３辺計,重量 [over 25kgs is 重量ゆうパック]
-            [1,  80,  30],
-            [2, 100, 30],
-            [3, 120, 30],
-            [4, 140, 30],
-            [5, 160, 30],
-            [6, 170, 30],
-        ];
+        if ($this->quote['id'] === 'yupackchilled') {
+            // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
+            $a_classes = [
+                [0,  60, 25],  // 区分,３辺計,重量
+                [1,  80, 25],
+                [2, 100, 25],
+                [3, 120, 25],
+                [4, 140, 25],
+                [5, 150, 25],
+            ];
+            } else {
+            $a_classes = [
+                [0,  60,  30],  // 区分,３辺計,重量 [over 25kgs is 重量ゆうパック]
+                [1,  80,  30],
+                [2, 100, 30],
+                [3, 120, 30],
+                [4, 140, 30],
+                [5, 160, 30],
+                [6, 170, 30],
+            ];
+        }
 
         if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
             return -9;
@@ -202,6 +214,12 @@ class _Yupack {
 
         $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
+
+        if ($this->quote['id'] === 'yupackchilled') {
+            // クール便追加コスト(60,80,100,120,140,150)
+            $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'YupackChilled' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $a_coolcharge = json_decode($jsonarraycharges->fields["quote_zone"], true);
+        }
 
 //        $a_pricerank = [
 // ゆうパック運輸との契約によりサイズや重さの制限が変わりますので、「 function GetSizeClass()」で調整が必要です。
@@ -381,7 +399,7 @@ class _Yupack {
                 if ($n_sizeclass < 0) {
                     $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE : MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING;
                 } else {
-                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass];
+                    $this->quote['cost'] = $a_pricerank[$s_rank][$n_sizeclass] + (!empty($a_coolcharge) ? $a_coolcharge[$n_sizeclass] : 0);
                 }
                 if ($this->Weight >= 25) { // 重量ゆうパックは+５６０円になります
                     $this->quote['cost'] += 560;

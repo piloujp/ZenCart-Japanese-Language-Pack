@@ -140,6 +140,7 @@ class ScriptedInstaller extends ScriptedInstallBase
 
         // Based charge for Yupack Chilled is same as Yupack, with 160 corresponding to 150, and 170 not used.
         // クール便追加コスト(60,80,100,120,140,150)
+        // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
         $default_yupackchilled_surcharge = [225, 360, 675, 675, 1330, 2100];
 
         $imple_date = '2024-08-01'; // Update this to save a new rates tablbe in database
