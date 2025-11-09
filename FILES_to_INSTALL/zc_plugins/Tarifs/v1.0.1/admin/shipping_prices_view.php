@@ -13,26 +13,38 @@ if (isset($_POST['savetarifs'])) {
     $i = 0;
     $j = 0;
     while (isset($_POST['tarif'][$i . '-' . $j])) {
-        if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack') {
+        if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack' && $_POST['method'] !== 'YupackChilled') {
             if ($j == 0) {
                 $newtarifs_key = $i;
             }
-        } else {
+        } elseif ($_POST['method'] !== 'CoolTakyubin' && $_POST['method'] !== 'YupackChilled') {
             $newtarifs_key = ($i <= 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
         }
         while (isset($_POST['tarif'][$i . '-' . $j])) {
-            $newtarifs[$newtarifs_key][] = $_POST['tarif'][$i . '-' . $j];
+            if ($_POST['method'] === 'YupackChilled' || $_POST['method'] === 'CoolTakyubin') {
+                $newtarifs[] = (int)$_POST['tarif'][$i . '-' . $j];
+            } else {
+                $newtarifs[$newtarifs_key][] = $_POST['tarif'][$i . '-' . $j];
+            }
             $j++;
         }
         $i++;
         $j = 0;
     }
+    if (!empty($_POST['imple_date'])) {
     $tarifs_update = 
         "UPDATE " . TABLE_TARIFS . " t1
         SET t1.imple_date = :imd:, t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newtarifs) . "'
         WHERE id = :tid:
         ";
     $tarifs_update = $db->bindVars($tarifs_update, ':imd:', $_POST['imple_date'], 'string');
+    } else {
+        $tarifs_update = 
+            "UPDATE " . TABLE_TARIFS . " t1
+            SET t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newtarifs) . "'
+            WHERE id = :tid:
+            ";
+    }
     $tarifs_update = $db->bindVars($tarifs_update, ':tid:', $_POST['tid'], 'integer');
     $result = $db->Execute($tarifs_update);
     if (!$result) {
@@ -176,10 +188,10 @@ if (isset($_POST['savetarifs'])) {
                             $columnnumb = 0;
                             echo '</tr>';
                         }
-                    } elseif ($item['method'] === 'YupackChilled') {
+                    } elseif ($item['method'] === 'YupackChilled' || $item['method'] === 'CoolTakyubin') {
                         echo  '<tr>';
                         foreach($tr_array as $rquote) {
-                            echo '<td><input type="text" id="' . $columnnumb . '" name="tarif[' . $columnnumb . ']" placeholder="' . $rquote . '" value="' . $rquote . '"></td>';
+                            echo '<td><input type="text" id="0-' . $columnnumb . '" name="tarif[0-' . $columnnumb . ']" placeholder="' . $rquote . '" value="' . $rquote . '"></td>';
                             $columnnumb++;
                         }
                         $columnnumb = 0;
@@ -221,7 +233,7 @@ if (isset($_POST['savetarifs'])) {
                                 }
                                 echo '</tr>';
                             }
-                        } elseif ($item['method'] === 'YupackChilled') {
+                        } elseif ($item['method'] === 'YupackChilled' || $item['method'] === 'CoolTakyubin') {
                             echo  '<tr>';
                             foreach($tr_array as $rquote) {
                                 echo '<td>' . $rquote . '</td>';

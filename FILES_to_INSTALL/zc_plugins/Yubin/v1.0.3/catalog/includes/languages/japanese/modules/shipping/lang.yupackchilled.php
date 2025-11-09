@@ -35,13 +35,4 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_YUPACKCHILLED_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
 //eof constant configuration titles and descriptions for YuPack Chilled Shipping
 ];
-$GLOBALS['a_yupackchilled_time']=array(
-  array('id'=>'希望なし','text'=>'希望なし'),
-  array('id'=>'午前中','text'=>'午前中'),
-  array('id'=>'１２時～１４時','text'=>'１２時～１４時'),
-  array('id'=>'１４時～１６時','text'=>'１４時～１６時'),
-  array('id'=>'１６時～１８時','text'=>'１６時～１８時'),
-  array('id'=>'１８時～２０時','text'=>'１８時～２０時'),
-  array('id'=>'１９時～２１時','text'=>'１９時～２１時'),
-);
 return $define;

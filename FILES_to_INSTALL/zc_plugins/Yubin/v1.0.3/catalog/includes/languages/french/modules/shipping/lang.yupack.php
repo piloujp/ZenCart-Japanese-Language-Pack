@@ -4,10 +4,6 @@ $define = [
     'MODULE_SHIPPING_YUPACK_TEXT_DESCRIPTION' =>  'Réglages du module Yu-Pack de la poste japonaise',
     'MODULE_SHIPPING_YUPACK_TEXT_WAY_NORMAL' =>   'Standard',
     'MODULE_SHIPPING_YUPACK_TEXT_NOTAVAILABLE' => 'Ce service n’est pas offert entre les régions sélectionnées.',
-    'MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE' =>     'Le poids ou la taille dépasse les limites.',
-    'MODULE_SHIPPING_YUPACK_TEXT_ILLEGAL_ZONE' => 'Préfecture spécifiée incorrecte.',
-    'MODULE_SHIPPING_YUPACK_TEXT_OUT_OF_AREA' =>  'Hors zone de livraison.',
-    'MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING' => 'Erreur! Dimension(s) de produit(s) manquante(s).',
 //bof constant configuration titles and descriptions for YuPack Shipping
     'CFGTITLE_MODULE_SHIPPING_YUPACK_STATUS' => 'Activer la méthode d’expédition Yu-Pack',
     'CFGDESC_MODULE_SHIPPING_YUPACK_STATUS' => 'Souhaitez-vous proposer une livraison au tarif Yu-Pack ?',
@@ -39,13 +35,4 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_YUPACK_SORT_ORDER' => 'Ordre de tri d’affichage. Le numéro le plus bas est affiché en premier.',
 //eof constant configuration titles and descriptions for YuPack Shipping
 ];
-$GLOBALS['a_yupack_time']=array(
-  array('id'=>'Sans préférence','text'=>'Sans préférence'),
-  array('id'=>'Le matin','text'=>'Le matin'),
-  array('id'=>'12h-14h','text'=>'12h-14h'),
-  array('id'=>'14h-16h','text'=>'14h-16h'),
-  array('id'=>'16h-18h','text'=>'16h-18h'),
-  array('id'=>'18h-20h','text'=>'18h-20h'),
-  array('id'=>'19h-21h','text'=>'19h-21h'),
-);
 return $define;

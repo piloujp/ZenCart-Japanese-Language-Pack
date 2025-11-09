@@ -99,6 +99,8 @@ UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_
 #単位を kg と cm に設定します
 UPDATE configuration SET configuration_value = 'kgs' WHERE configuration_key = 'SHIPPING_WEIGHT_UNITS';
 UPDATE configuration SET configuration_value = 'centimeters' WHERE configuration_key = 'SHIPPING_DIMENSION_UNITS';
+UPDATE configuration SET configuration_value = '10:0.15' WHERE configuration_key = 'SHIPPING_BOX_WEIGHT';
+UPDATE configuration SET configuration_value = '10:0.4' WHERE configuration_key = 'SHIPPING_BOX_PADDING';
 
 #言語設定
 UPDATE layout_boxes SET layout_box_status=1, layout_box_sort_order=0 WHERE layout_box_name = 'languages.php';

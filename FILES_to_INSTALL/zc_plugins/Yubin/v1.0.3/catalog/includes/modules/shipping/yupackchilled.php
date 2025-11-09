@@ -82,7 +82,7 @@ class yupackchilled extends ZenShipping
     {
         global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
         global $order;
-        global $a_yupackchilled_time;
+        global $a_yupack_time;
         global $db;
 
         if (empty($order->delivery['zone_id']) == true) { return [];}
@@ -148,7 +148,7 @@ class yupackchilled extends ZenShipping
             if (!isset($tmpQuote['error'])) {
                 // 配送時刻指定
                 $timespec = $this->get_timespec();
-                $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('yupackchilled_timespec', $a_yupackchilled_time, $timespec,'style="width: 160px;"');
+                $tmpQuote['option'] = TEXT_TIME_SPECIFY.zen_draw_pull_down_menu('yupackchilled_timespec', $a_yupack_time, $timespec,'style="width: 160px;"');
                 $tmpQuote['timespec'] = $timespec;
             }
 
@@ -166,10 +166,10 @@ class yupackchilled extends ZenShipping
     // 時刻を指定するプルダウンメニューの'value'を返す
     protected function get_timespec()
     {
-        global $a_yupackchilled_time;
+        global $a_yupack_time;
         global $shipping;
 
-        $selected = $a_yupackchilled_time[0]['id'];
+        $selected = $a_yupack_time[0]['id'];
         if ( isset($_POST['yupackchilled_timespec']) ) {
             $selected = $_POST['yupackchilled_timespec'];
         } elseif ( is_array($shipping) ) {
