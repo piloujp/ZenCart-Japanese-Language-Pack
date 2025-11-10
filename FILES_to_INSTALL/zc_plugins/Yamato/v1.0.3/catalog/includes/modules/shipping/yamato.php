@@ -96,7 +96,9 @@ class yamato extends ZenShipping
         $max_shipping_weight = MODULE_SHIPPING_YAMATO_MAX_WEIGHT;
         $max_shipping_girth = MODULE_SHIPPING_YAMATO_MAX_GIRTH;
         $country_id = $order->delivery['country']['id'];
-        $zone_id    = $order->delivery['zone_id'];
+        $zone_id = $order->delivery['zone_id'];
+        $zone_city = $order->delivery['city'];
+        $zone_banshi = $order->delivery['street_address'];
 
         $shipping_num_boxes = 1;
 
@@ -107,7 +109,7 @@ class yamato extends ZenShipping
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
             if ( (MODULE_SHIPPING_YAMATO_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATO_OVER) ) {
                 $rate = new _Yamato($this->code, MODULE_SHIPPING_YAMATO_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
-                $rate->SetDest($s_zone_code, $this->yamato_countries[$country_id]);
+                $rate->SetDest($s_zone_code, $this->yamato_countries[$country_id], $zone_city, $zone_banshi);
                 if (!empty($box_sizes_array)) {
                     $total_boxes_quote = 0;
                     $safefactor = 1.05; // when you build a box you need safety margins

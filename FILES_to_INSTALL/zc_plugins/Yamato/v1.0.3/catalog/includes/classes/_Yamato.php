@@ -11,7 +11,7 @@
 /*
     $rate = new _Yamato('yamato','通常便');
     $rate->SetOrigin('北海道', 'JP');   // 北海道から
-    $rate->SetDest('東京都', 'JP');     // 東京都まで
+    $rate->SetDest('東京都', 'JP', '中央区', '銀座8丁目−18−4'); // 東京都まで、それ以降はオプションです。離島などの特別な配送料金の場合のみ使用されます。
     $rate->SetWeight(10);               // kg
     $rate->SetSize(20, 15, 10);         // Length, Width, Height (cm)
     $quote = $rate->GetQuote();
@@ -31,6 +31,11 @@ class _Yamato {
     var $Length = 0;
     var $Width  = 0;
     var $Height = 0;
+    // Array of remote islands that need a special rate.
+    const LITO = ['沖縄県' => ['島尻郡久米島町' => 'All', '島尻郡南大東村' => 'All', '島尻郡北大東村' => 'All', '島尻郡粟国村' => 'All', '島尻郡渡名喜村' => 'All', '島尻郡渡嘉敷村' => 'All',
+                  '島尻郡座間味村' => 'All', '宮古島市' => 'All', '宮古郡多良間村' => 'All', '石垣市' => 'All', '八重山郡竹富町' => 'All', '八重山郡与那国町' => 'All',
+                  'うるま市' => '勝連津堅', '南城市' => '知念久高', '島尻郡伊是名村' => 'All', '国頭郡伊江村' => 'All', '島尻郡伊平屋村' => 'All']
+                  ];
 
     // コンストラクタ
     // $id:   module id
@@ -52,8 +57,14 @@ class _Yamato {
             $this->OriginCountryCode = $country;
         }
     }
-    function SetDest($zone, $country = NULL) {
-        $this->DestZone = $zone;
+    function SetDest($zone, $country = NULL, $city = NULL, $banshi = NULL) {
+        if (!in_array($zone, array_keys(self::LITO))) {
+            $this->DestZone = $zone;
+        } elseif (array_key_exists($city, self::LITO[$zone]) && !empty(self::LITO[$zone][$city]) && (self::LITO[$zone][$city] === 'All' || str_contains($banshi, self::LITO[$zone][$city]))) {
+            $this->DestZone = '離島';
+        } else {
+            $this->DestZone = $zone;
+        }
         if($country) {
             $this->DestCountryCode = $country;
         }
@@ -194,6 +205,7 @@ class _Yamato {
         '宮崎県'=>'K',
         '鹿児島県'=>'K',
         '沖縄県'=>'L',
+        '離島'=>'M',
         ];
         return $a_zonemap[$zone];
     }
@@ -205,6 +217,7 @@ class _Yamato {
 
         $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
+        $a_coolcharge = [];
 
         if ($this->quote['id'] === 'coolyamato') {
             // クール便追加コスト(60,80,100,120)
@@ -337,6 +350,7 @@ class _Yamato {
         'N09' => [1610,2230,2860,3510,4180,4830,8020,9670], // 沖縄:L >  北陸:F FL=>N09 - 信越:E EL=>N09
         'N07' => [1460,2070,2710,3360,4030,4680,7210,8860], // 沖縄:L >  四国:J JL=>N07 - 中国:I IL=>N07 - 関西:H HL=>N07 - 中部:G GL=>N07 - 関東:D DL=>N07
         'N05' => [1320,1940,2580,3230,3900,4550,6970,8620], // 沖縄:L >  九州:K KL=>N05
+        'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720], // 沖縄:L >  離島:M ML=>N17
         'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720], // 沖縄:L >  沖縄:L LL=>N01
 */
 
@@ -358,6 +372,7 @@ class _Yamato {
         'N14' => [2070,2360,2670,2990,3330,3650,6180,7770],
         'N15' => [2340,2620,2930,3250,3590,3910,6550,8140],
         'N16' => [2340,2950,3590,4240,4910,5560,9080,10730],
+        'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720],
 */
 //        ];
         // 地帯 - 地帯間の価格ランク
@@ -373,9 +388,9 @@ class _Yamato {
         /* 中国  'I'*/  'AI'=>'N14','BI'=>'N06','CI'=>'N06','DI'=>'N03','EI'=>'N03','FI'=>'N02','GI'=>'N02','HI'=>'N01','II'=>'N01',
         /* 四国  'J'*/  'AJ'=>'N14','BJ'=>'N06','CJ'=>'N06','DJ'=>'N03','EJ'=>'N03','FJ'=>'N02','GJ'=>'N02','HJ'=>'N01','IJ'=>'N01','JJ'=>'N01',
         /* 九州  'K'*/  'AK'=>'N15','BK'=>'N10','CK'=>'N10','DK'=>'N06','EK'=>'N06','FK'=>'N03','GK'=>'N03','HK'=>'N02','IK'=>'N01','JK'=>'N02','KK'=>'N01',
-        /* 沖縄  'L'*/  'AL'=>'N16','BL'=>'N13','CL'=>'N11','DL'=>'N07','EL'=>'N09','FL'=>'N09','GL'=>'N07','HL'=>'N07','IL'=>'N07','JL'=>'N07','KL'=>'N05','LL'=>'N01',
+        /* 沖縄  'L'*/  'AL'=>'N16','BL'=>'N13','CL'=>'N11','DL'=>'N07','EL'=>'N09','FL'=>'N09','GL'=>'N07','HL'=>'N07','IL'=>'N07','JL'=>'N07','KL'=>'N05','LL'=>'N01','LM'=>'N17',
         //---------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //              |A 北海道  | B 北東北  | C 南東北  |  D関東    | E信越     | F 北陸    | G中部     | H 近畿    | I 中国    | J 四国    | K 九州    | L沖縄    | 
+        //              |A 北海道  | B 北東北  | C 南東北  |  D関東    | E信越     | F 北陸    | G中部     | H 近畿    | I 中国    | J 四国    | K 九州    | L沖縄    | M離島
 
         ];
 

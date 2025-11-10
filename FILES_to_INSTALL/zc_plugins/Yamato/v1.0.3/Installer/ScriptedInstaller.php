@@ -28,6 +28,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             'N14' => [2070,2360,2670,2990,3330,3650,6180,7770],
             'N15' => [2340,2620,2930,3250,3590,3910,6550,8140],
             'N16' => [2340,2950,3590,4240,4910,5560,9080,10730],
+            'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720], // small islands
         ];
 
         // Based charge for Cool Yamato is same as Yamato takyubin, but limited to 120 size.
@@ -35,7 +36,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
         $default_coolyamato_surcharge = [275, 330, 440, 715];
 
-        $imple_date = '2024-04-01'; // Update this to save a new rates tablbe in database
+        $imple_date = '2025-11-10'; // Update this to save a new rates tablbe in database
 
         global $sniffer;
         zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
