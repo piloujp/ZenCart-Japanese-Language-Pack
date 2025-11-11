@@ -663,28 +663,28 @@ class shipping
                     continue;
                 }
 
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
-                    $max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_WEIGHT");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
+                    $max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_WEIGHT");
                 } else {
                     $max_shipping_weight = NULL;
                 }
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_LENGTH')) { // check if a max length constant is defined for this module
-                    $max_length = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_LENGTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_LENGTH')) { // check if a max length constant is defined for this module
+                    $max_length = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_LENGTH");
                 } else {
                     $max_length = NULL;
                 }
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_WIDTH')) { // check if a max width constant is defined for this module
-                    $max_width = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_WIDTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_WIDTH')) { // check if a max width constant is defined for this module
+                    $max_width = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_WIDTH");
                 } else {
                     $max_width = NULL;
                 }
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_HEIGHT')) { // check if a max height constant is defined for this module
-                    $max_height = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_HEIGHT");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_HEIGHT')) { // check if a max height constant is defined for this module
+                    $max_height = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_HEIGHT");
                 } else {
                     $max_height = NULL;
                 }
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MAX_GIRTH')) { // check if a max girth constant is defined for this module
-                    $max_girth = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MAX_GIRTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_GIRTH')) { // check if a max girth constant is defined for this module
+                    $max_girth = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_GIRTH");
                 } else {
                     $max_girth = NULL;
                 }
@@ -693,8 +693,8 @@ class shipping
                 } else {
                     $max_size_array = [];
                 }
-                if (!empty($GLOBALS[$quoting_module]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . '_MULTIBOX')) { // check if a MULTIBOX constant is defined for this module
-                    $multiboxes = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$quoting_module]->quote($module)['id']) . "_MULTIBOX");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MULTIBOX')) { // check if a MULTIBOX constant is defined for this module
+                    $multiboxes = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MULTIBOX");
                     if ((count($max_size_array) > 0) && $multiboxes != 'None') {
                         if ($this->max_item[0] >= $max_size_array['Max_length'] || $this->max_item[1] >= $max_size_array['Max_width'] || $this->max_item[2] >= $max_size_array['Max_height'] || $this->max_item[3] >= $max_size_array['Max_girth']) {
                             continue;
