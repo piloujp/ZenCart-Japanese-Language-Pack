@@ -4,6 +4,8 @@ $define = [
     'MODULE_SHIPPING_COOLYAMATO_TEXT_DESCRIPTION' => 'Réglages du module Yamato Express Réfrigéré',
     'MODULE_SHIPPING_COOLYAMATO_TEXT_WAY_NORMAL' => 'Standard Froid (COD possible)',
     'MODULE_SHIPPING_COOLYAMATO_TEXT_NOTAVAILABLE' => 'Ce service n’est pas offert entre les régions sélectionnées.',
+    'MODULE_SHIPPING_COOLYAMATO_CHOOSE_TYPE' => '|&nbsp;&nbsp;Type de refroidissement :',
+    'MODULE_SHIPPING_COOLYAMATO_DEFAULT_COOLING' => 'Réfrigéré',
 //bof constant configuration titles and descriptions for Yamato Refrigerqted Shipping
     'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'Activer la méthode d’expédition Yamato Réfrigéré',
     'CFGDESC_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'Souhaitez-vous proposer une livraison au tarif Yamato Réfrigéré ?',
@@ -35,4 +37,5 @@ $define = [
     'CFGDESC_MODULE_SHIPPING_COOLYAMATO_SORT_ORDER' => 'Ordre de tri d’affichage. Le numéro le plus bas est affiché en premier.',
 //eof constant configuration titles and descriptions for Yamato Refrigerqted Shipping
 ];
+$GLOBALS['coolyamato_type'] = [['id'=>'Réfrigéré','text'=>'Réfrigéré'], ['id'=>'Congelé','text'=>'Congelé']];
 return $define;

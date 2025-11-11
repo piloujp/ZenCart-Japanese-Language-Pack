@@ -85,7 +85,7 @@ class coolyamato extends ZenShipping
     {
         global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
         global $order;
-        global $a_yamato_time;
+        global $a_yamato_time, $coolyamato_type;
         global $db;
 
         if (empty($order->delivery['zone_id']) == true) { return [];}
@@ -132,7 +132,7 @@ class coolyamato extends ZenShipping
                                 $this->quotes['module'] .= ', ' . $box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT . ', ' . $bgirth[$b] . 'cm';
                             }
                             if ($b == $shipping_num_boxes-1) {
-                                $this->quotes['module'] .= ')';
+                                $this->quotes['module'] .= ')' . ' <span style="color:red;">' . ($_POST['coolyamato_type'] ?? '') . '</span>';
                             }
                             $total_boxes_quote += $tmpQuote['cost'];
                         }
@@ -153,7 +153,10 @@ class coolyamato extends ZenShipping
             if (!isset($tmpQuote['error'])) {
                 // 配送時刻指定
                 $timespec = $this->get_timespec();
-                $tmpQuote['option'] = TEXT_TIME_SPECIFY . zen_draw_pull_down_menu('coolyamato_timespec', $a_yamato_time, $timespec,'style="width: 160px;"');
+                $cooltype = $_POST['coolyamato_type'] ?? MODULE_SHIPPING_COOLYAMATO_DEFAULT_COOLING;
+                $tmpQuote['option'] = MODULE_SHIPPING_COOLYAMATO_CHOOSE_TYPE . zen_draw_pull_down_menu('coolyamato_type', $coolyamato_type, $cooltype,'style="width: 70px;"') .
+                                      '&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;' .
+                                      TEXT_TIME_SPECIFY . zen_draw_pull_down_menu('coolyamato_timespec', $a_yamato_time, $timespec,'style="width: 160px;"');
                 $tmpQuote['timespec'] = $timespec;
             }
 

@@ -4,6 +4,8 @@ $define = [
     'MODULE_SHIPPING_COOLYAMATO_TEXT_DESCRIPTION' => 'クール宅急便配送設定',
     'MODULE_SHIPPING_COOLYAMATO_TEXT_WAY_NORMAL' => 'クール宅急便、代引きは可能です。',
     'MODULE_SHIPPING_COOLYAMATO_TEXT_NOTAVAILABLE' => 'このサービスは、選択された地域間では提供されません。',
+    'MODULE_SHIPPING_COOLYAMATO_CHOOSE_TYPE' => '|&nbsp;&nbsp;冷却タイプ：',
+    'MODULE_SHIPPING_COOLYAMATO_DEFAULT_COOLING' => '冷蔵',
 // Admin configuration
     'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'ヤマト運輸（クール宅急便）の配送を有効にする',
     'CFGDESC_MODULE_SHIPPING_COOLYAMATO_STATUS' => 'ヤマト運輸（クール宅急便）の配送を提供しますか？',
@@ -34,4 +36,5 @@ $define = [
     'CFGTITLE_MODULE_SHIPPING_COOLYAMATO_SORT_ORDER' => '表示の整列順',
     'CFGDESC_MODULE_SHIPPING_COOLYAMATO_SORT_ORDER' => '表示の整列順を設定できます。数字が小さいほど上位に表示されます。',
 ];
+$GLOBALS['coolyamato_type'] = [['id'=>'冷蔵','text'=>'冷蔵'], ['id'=>'冷凍','text'=>'冷凍']];
 return $define;
