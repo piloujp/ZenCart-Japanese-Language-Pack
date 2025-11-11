@@ -3,15 +3,7 @@ use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
 
 class ScriptedInstaller extends ScriptedInstallBase
 {
-
-    protected function executeInstall()
-    {
-        if (!$this->purgeOldFiles()) {
-            return false;
-        }
-
-        // Yamato Takyubin install
-        $default_priceranks = [ // Tarification from April 2024
+    private array $default_priceranks = [ // Tarification from April 2024
             'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720],
             'N02' => [1060,1350,1650,1970,2310,2630,3730,4500],
             'N03' => [1190,1480,1790,2110,2450,2770,4090,5190],
@@ -34,9 +26,16 @@ class ScriptedInstaller extends ScriptedInstallBase
         // Based charge for Cool Yamato is same as Yamato takyubin, but limited to 120 size.
         // クール便追加コスト(60,80,100,120)
         // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
-        $default_coolyamato_surcharge = [275, 330, 440, 715];
+    private array $default_coolyamato_surcharge = [275, 330, 440, 715];
 
-        $imple_date = '2025-11-10'; // Update this to save a new rates tablbe in database
+    private string $imple_date = '2024-04-01'; // Update this to save a new rates tablbe in database
+
+
+    protected function executeInstall()
+    {
+        if (!$this->purgeOldFiles()) {
+            return false;
+        }
 
         global $sniffer;
         zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
@@ -58,10 +57,12 @@ class ScriptedInstaller extends ScriptedInstallBase
             "INSERT IGNORE INTO " . TABLE_TARIFS . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
-                ('Yamato', 'Takyubin', '" . $imple_date . "', NOW(), '" . json_encode($default_priceranks) . "'),
-                ('Yamato', 'CoolTakyubin', '" . $imple_date . "', NOW(), '" . json_encode($default_coolyamato_surcharge) . "')
+                ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
+                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "')
             ;"
         );
+
+        parent::executeInstall();
     }
 
     // -----
@@ -73,6 +74,19 @@ class ScriptedInstaller extends ScriptedInstallBase
     //
     protected function executeUpgrade($oldVersion)
     {
+        $this->executeInstallerSql(
+            "INSERT INTO " . TABLE_TARIFS . "
+                (module, method, imple_date, update_date, quote_zone)
+            VALUES
+                ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
+                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "')
+            AS newtarifs
+            ON DUPLICATE KEY UPDATE
+                quote_zone = newtarifs.quote_zone
+            ;"
+        );
+
+        parent::executeUpgrade($oldVersion);
     }
 
     protected function executeUninstall()
@@ -80,11 +94,14 @@ class ScriptedInstaller extends ScriptedInstallBase
         $this->executeInstallerSql(
             "DELETE FROM " . TABLE_CONFIGURATION . "
                 WHERE configuration_key LIKE 'MODULE\_SHIPPING\_YAMATO%'
+                    OR configuration_key LIKE 'MODULE\_SHIPPING\_COOLYAMATO%'
                     OR configuration_key LIKE 'MODULE\_SHIPPING\_NEKOPOSU%'
                     OR configuration_key LIKE 'MODULE\_PAYMENT\_YAMATOECOLLECT%'
                     OR configuration_key LIKE 'MODULE\_ORDER\_TOTAL\_YAMATOECOLLECT%'
             ;"
         );
+
+        parent::executeUninstall();
 
         return true;
     }
