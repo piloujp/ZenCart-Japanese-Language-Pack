@@ -558,36 +558,35 @@ class shipping extends base
                 }
             }
 
-            $modulnb = count($include_quotes);
-            for ($i = 0; $i < $modulnb; $i++) {
-                if (method_exists($GLOBALS[$include_quotes[$i]], 'update_status')) {
-                    $GLOBALS[$include_quotes[$i]]->update_status();
+            foreach ($include_quotes as $quoting_module) {
+                if (method_exists($GLOBALS[$quoting_module], 'update_status')) {
+                    $GLOBALS[$quoting_module]->update_status();
                 }
-                if (false === $GLOBALS[$include_quotes[$i]]->enabled) {
+                if (false === $GLOBALS[$quoting_module]->enabled) {
                     continue;
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
-                    $max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_WEIGHT");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_WEIGHT')) { // check if a max weight constant is defined for this module
+                    $max_shipping_weight = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_WEIGHT");
                 } else {
                     $max_shipping_weight = NULL;
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_LENGTH')) { // check if a max length constant is defined for this module
-                    $max_length = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_LENGTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_LENGTH')) { // check if a max length constant is defined for this module
+                    $max_length = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_LENGTH");
                 } else {
                     $max_length = NULL;
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_WIDTH')) { // check if a max width constant is defined for this module
-                    $max_width = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_WIDTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_WIDTH')) { // check if a max width constant is defined for this module
+                    $max_width = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_WIDTH");
                 } else {
                     $max_width = NULL;
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_HEIGHT')) { // check if a max height constant is defined for this module
-                    $max_height = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_HEIGHT");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_HEIGHT')) { // check if a max height constant is defined for this module
+                    $max_height = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_HEIGHT");
                 } else {
                     $max_height = NULL;
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MAX_GIRTH')) { // check if a max girth constant is defined for this module
-                    $max_girth = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MAX_GIRTH");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MAX_GIRTH')) { // check if a max girth constant is defined for this module
+                    $max_girth = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MAX_GIRTH");
                 } else {
                     $max_girth = NULL;
                 }
@@ -596,8 +595,8 @@ class shipping extends base
                 } else {
                     $max_size_array = array();
                 }
-                if (!empty($GLOBALS[$include_quotes[$i]]->quote($module)['id']) && defined('MODULE_SHIPPING_' . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . '_MULTIBOX')) { // check if a MULTIBOX constant is defined for this module
-                    $multiboxes = constant("MODULE_SHIPPING_" . strtoupper($GLOBALS[$include_quotes[$i]]->quote($module)['id']) . "_MULTIBOX");
+                if (!empty($quoting_module) && defined('MODULE_SHIPPING_' . strtoupper($quoting_module) . '_MULTIBOX')) { // check if a MULTIBOX constant is defined for this module
+                    $multiboxes = constant("MODULE_SHIPPING_" . strtoupper($quoting_module) . "_MULTIBOX");
                     if ((count($max_size_array) > 0) && $multiboxes != 'None') {
                         if ($max_items[0] >= $max_size_array['Max_length'] || $max_items[1] >= $max_size_array['Max_width'] || $max_items[2] >= $max_size_array['Max_height'] || $max_items[3] >= $max_size_array['Max_girth']) {
                             continue;
@@ -610,7 +609,7 @@ class shipping extends base
                 $this->calculate_boxes_weight_and_tare(); // calculates boxes number and their weight with tare and put results in $box_array
                 $this->get_box_size(); // calculates boxes dimensions
                 $save_shipping_weight = $shipping_weight;
-                $quotes = $GLOBALS[$include_quotes[$i]]->quote($method);
+                $quotes = $GLOBALS[$quoting_module]->quote($method);
                     //if ($shipping_num_boxes > 0) {echo ' - ';print_r($box_array);echo '*';}
                 if (!isset($quotes['tax']) && !empty($quotes)) {
                     $quotes['tax'] = 0;
