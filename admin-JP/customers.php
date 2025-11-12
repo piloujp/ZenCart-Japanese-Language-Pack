@@ -96,7 +96,7 @@ if (!empty($action)) {
             $customers_telephone = zen_db_prepare_input($_POST['customers_telephone']);
             $customers_fax = '';
             if (ACCOUNT_FAX_NUMBER == 'true') {
-            	$customers_fax = zen_db_prepare_input($_POST['customers_fax'] ?? '');
+                $customers_fax = zen_db_prepare_input($_POST['customers_fax'] ?? '');
             }
             $customers_newsletter = zen_db_prepare_input($_POST['customers_newsletter']);
             $customers_group_pricing = (int)($_POST['customers_group_pricing'] ?? 0);
