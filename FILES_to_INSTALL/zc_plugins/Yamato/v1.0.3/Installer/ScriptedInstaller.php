@@ -30,6 +30,21 @@ class ScriptedInstaller extends ScriptedInstallBase
 
     private string $imple_date = '2024-04-01'; // Update this to save a new rates tablbe in database
 
+    private array $default_yamatocompact_priceranks = [ // Only one size
+            'N01' => [ 720],
+            'N02' => [ 780],
+            'N03' => [ 830],
+            'N04' => [ 890],
+            'N05' => [ 940],
+            'N06' => [1000],
+            'N07' => [1050],
+            'N08' => [1110],
+            'N09' => [1160],
+            'N10' => [1270],
+        ];
+
+    private string $imple_yamatocompact_date = '2024-04-01'; // Update this to save a new rates tablbe in database
+
 
     protected function executeInstall()
     {
@@ -58,7 +73,8 @@ class ScriptedInstaller extends ScriptedInstallBase
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
-                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "')
+                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "'),
+                ('Yamato', 'Compact', '" . $this->imple_yamatocompact_date . "', NOW(), '" . json_encode($this->default_yamatocompact_priceranks) . "')
             ;"
         );
 
@@ -79,7 +95,8 @@ class ScriptedInstaller extends ScriptedInstallBase
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
-                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "')
+                ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "'),
+                ('Yamato', 'Compact', '" . $this->imple_yamatocompact_date . "', NOW(), '" . json_encode($this->default_yamatocompact_priceranks) . "')
             AS newtarifs
             ON DUPLICATE KEY UPDATE
                 quote_zone = newtarifs.quote_zone

@@ -89,7 +89,7 @@ class yamatoecollect
 
         // disable the module if the order only contains virtual products
         if ($this->enabled == true) {
-            if ($order->content_type != 'physical' || (substr_count($_SESSION['shipping']['id'], 'yamato') == 0)) {
+            if ($order->content_type != 'physical' || !str_contains($_SESSION['shipping']['id'], 'yamato')) {
                 $this->enabled = false;
             }
         }

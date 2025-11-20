@@ -212,17 +212,23 @@ class _Yamato {
 
     function GetQuote() {
         global $db;
+        $a_coolcharge = [];
+        
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,180,200)
         // (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
 
-        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
-        $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
-        $a_coolcharge = [];
+        if ($this->quote['id'] === 'yamatocompact') {
+            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Compact' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $a_pricerank = json_decode($jsonarray->fields['quote_zone'], true);
+        } else {
+            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $a_pricerank = json_decode($jsonarray->fields['quote_zone'], true);
 
-        if ($this->quote['id'] === 'coolyamato') {
-            // クール便追加コスト(60,80,100,120)
-            $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato' AND method = 'CoolTakyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
-            $a_coolcharge = json_decode($jsonarraycharges->fields["quote_zone"], true);
+            if ($this->quote['id'] === 'coolyamato') {
+                // クール便追加コスト(60,80,100,120)
+                $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato' AND method = 'CoolTakyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+                $a_coolcharge = json_decode($jsonarraycharges->fields['quote_zone'], true);
+            }
         }
 
 //        $a_pricerank = [
@@ -374,25 +380,57 @@ class _Yamato {
         'N16' => [2340,2950,3590,4240,4910,5560,9080,10730],
         'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720],
 */
+
+//        ２０２４年０４月以降の宅急便コンパクトの送料（契約無し、税込み）　Full tarafication (no contract, tax included) from April 2024 for takyubin compact
+/*
+        'N01' => [ 720],
+        'N02' => [ 780],
+        'N03' => [ 830],
+        'N04' => [ 890],
+        'N05' => [ 940],
+        'N06' => [1000],
+        'N07' => [1050],
+        'N08' => [1110],
+        'N09' => [1160],
+        'N10' => [1270],
+*/
 //        ];
         // 地帯 - 地帯間の価格ランク
-        $a_dist_to_rank = [
-        /* 北海道'A'*/  'AA'=>'N01',
-        /* 北東北'B'*/  'AB'=>'N03','BB'=>'N01',
-        /* 南東北'C'*/  'AC'=>'N04','BC'=>'N01','CC'=>'N01',
-        /* 関東  'D'*/  'AD'=>'N06','BD'=>'N02','CD'=>'N01','DD'=>'N01',
-        /* 信越  'E'*/  'AE'=>'N06','BE'=>'N02','CE'=>'N01','DE'=>'N01','EE'=>'N01',
-        /* 北陸  'F'*/  'AF'=>'N08','BF'=>'N03','CF'=>'N02','DF'=>'N01','EF'=>'N01','FF'=>'N01',
-        /* 中部  'G'*/  'AG'=>'N08','BG'=>'N03','CG'=>'N02','DG'=>'N01','EG'=>'N01','FG'=>'N01','GG'=>'N01',
-        /* 関西  'H'*/  'AH'=>'N12','BH'=>'N04','CH'=>'N03','DH'=>'N02','EH'=>'N02','FH'=>'N01','GH'=>'N01','HH'=>'N01',
-        /* 中国  'I'*/  'AI'=>'N14','BI'=>'N06','CI'=>'N06','DI'=>'N03','EI'=>'N03','FI'=>'N02','GI'=>'N02','HI'=>'N01','II'=>'N01',
-        /* 四国  'J'*/  'AJ'=>'N14','BJ'=>'N06','CJ'=>'N06','DJ'=>'N03','EJ'=>'N03','FJ'=>'N02','GJ'=>'N02','HJ'=>'N01','IJ'=>'N01','JJ'=>'N01',
-        /* 九州  'K'*/  'AK'=>'N15','BK'=>'N10','CK'=>'N10','DK'=>'N06','EK'=>'N06','FK'=>'N03','GK'=>'N03','HK'=>'N02','IK'=>'N01','JK'=>'N02','KK'=>'N01',
-        /* 沖縄  'L'*/  'AL'=>'N16','BL'=>'N13','CL'=>'N11','DL'=>'N07','EL'=>'N09','FL'=>'N09','GL'=>'N07','HL'=>'N07','IL'=>'N07','JL'=>'N07','KL'=>'N05','LL'=>'N01',
-        /* 離島  'M'*/  'AM'=>'N16','BM'=>'N13','CM'=>'N11','DM'=>'N07','EM'=>'N09','FM'=>'N09','GM'=>'N07','HM'=>'N07','IM'=>'N07','JM'=>'N07','KM'=>'N05','LM'=>'N17','MM'=>'N01',
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //              |A 北海道  | B 北東北  | C 南東北  |  D関東    | E信越     | F 北陸    | G中部     | H 近畿    | I 中国    | J 四国    | K 九州    | L沖縄    | M離島
-        ];
+        if ($this->quote['id'] === 'yamatocompact') {
+            $a_dist_to_rank = [
+            /* 北海道'A'*/  'AA'=>'N01',
+            /* 北東北'B'*/  'AB'=>'N03','BB'=>'N01',
+            /* 南東北'C'*/  'AC'=>'N04','BC'=>'N01','CC'=>'N01',
+            /* 関東  'D'*/  'AD'=>'N05','BD'=>'N02','CD'=>'N01','DD'=>'N01',
+            /* 信越  'E'*/  'AE'=>'N05','BE'=>'N02','CE'=>'N01','DE'=>'N01','EE'=>'N01',
+            /* 北陸  'F'*/  'AF'=>'N06','BF'=>'N03','CF'=>'N02','DF'=>'N01','EF'=>'N01','FF'=>'N01',
+            /* 中部  'G'*/  'AG'=>'N06','BG'=>'N03','CG'=>'N02','DG'=>'N01','EG'=>'N01','FG'=>'N01','GG'=>'N01',
+            /* 関西  'H'*/  'AH'=>'N08','BH'=>'N04','CH'=>'N03','DH'=>'N02','EH'=>'N02','FH'=>'N01','GH'=>'N01','HH'=>'N01',
+            /* 中国  'I'*/  'AI'=>'N09','BI'=>'N05','CI'=>'N05','DI'=>'N03','EI'=>'N03','FI'=>'N02','GI'=>'N02','HI'=>'N01','II'=>'N01',
+            /* 四国  'J'*/  'AJ'=>'N09','BJ'=>'N05','CJ'=>'N05','DJ'=>'N03','EJ'=>'N03','FJ'=>'N02','GJ'=>'N02','HJ'=>'N01','IJ'=>'N01','JJ'=>'N01',
+            /* 九州  'K'*/  'AK'=>'N10','BK'=>'N07','CK'=>'N07','DK'=>'N05','EK'=>'N05','FK'=>'N03','GK'=>'N03','HK'=>'N02','IK'=>'N01','JK'=>'N02','KK'=>'N01',
+            /* 沖縄  'L'*/  'AL'=>'N10','BL'=>'N08','CL'=>'N07','DL'=>'N05','EL'=>'N06','FL'=>'N06','GL'=>'N05','HL'=>'N05','IL'=>'N05','JL'=>'N05','KL'=>'N04','LL'=>'N01',
+            /* 離島  'M'*/  'AM'=>'N10','BM'=>'N08','CM'=>'N07','DM'=>'N05','EM'=>'N06','FM'=>'N06','GM'=>'N05','HM'=>'N05','IM'=>'N05','JM'=>'N05','KM'=>'N04','LM'=>'N01','MM'=>'N01',
+            ];
+        } else {
+            $a_dist_to_rank = [
+            /* 北海道'A'*/  'AA'=>'N01',
+            /* 北東北'B'*/  'AB'=>'N03','BB'=>'N01',
+            /* 南東北'C'*/  'AC'=>'N04','BC'=>'N01','CC'=>'N01',
+            /* 関東  'D'*/  'AD'=>'N06','BD'=>'N02','CD'=>'N01','DD'=>'N01',
+            /* 信越  'E'*/  'AE'=>'N06','BE'=>'N02','CE'=>'N01','DE'=>'N01','EE'=>'N01',
+            /* 北陸  'F'*/  'AF'=>'N08','BF'=>'N03','CF'=>'N02','DF'=>'N01','EF'=>'N01','FF'=>'N01',
+            /* 中部  'G'*/  'AG'=>'N08','BG'=>'N03','CG'=>'N02','DG'=>'N01','EG'=>'N01','FG'=>'N01','GG'=>'N01',
+            /* 関西  'H'*/  'AH'=>'N12','BH'=>'N04','CH'=>'N03','DH'=>'N02','EH'=>'N02','FH'=>'N01','GH'=>'N01','HH'=>'N01',
+            /* 中国  'I'*/  'AI'=>'N14','BI'=>'N06','CI'=>'N06','DI'=>'N03','EI'=>'N03','FI'=>'N02','GI'=>'N02','HI'=>'N01','II'=>'N01',
+            /* 四国  'J'*/  'AJ'=>'N14','BJ'=>'N06','CJ'=>'N06','DJ'=>'N03','EJ'=>'N03','FJ'=>'N02','GJ'=>'N02','HJ'=>'N01','IJ'=>'N01','JJ'=>'N01',
+            /* 九州  'K'*/  'AK'=>'N15','BK'=>'N10','CK'=>'N10','DK'=>'N06','EK'=>'N06','FK'=>'N03','GK'=>'N03','HK'=>'N02','IK'=>'N01','JK'=>'N02','KK'=>'N01',
+            /* 沖縄  'L'*/  'AL'=>'N16','BL'=>'N13','CL'=>'N11','DL'=>'N07','EL'=>'N09','FL'=>'N09','GL'=>'N07','HL'=>'N07','IL'=>'N07','JL'=>'N07','KL'=>'N05','LL'=>'N01',
+            /* 離島  'M'*/  'AM'=>'N16','BM'=>'N13','CM'=>'N11','DM'=>'N07','EM'=>'N09','FM'=>'N09','GM'=>'N07','HM'=>'N07','IM'=>'N07','JM'=>'N07','KM'=>'N05','LM'=>'N17','MM'=>'N01',
+            //---------------------------------------------------------------------------------------------------------------------------------------------------------------
+            //              |A 北海道  | B 北東北  | C 南東北  |  D関東    | E信越     | F 北陸    | G中部     | H 近畿    | I 中国    | J 四国    | K 九州    | L沖縄    | M離島
+            ];
+        }
 
         $s_key = $this->GetDistKey();
         $this->quote['cost'] = null;
