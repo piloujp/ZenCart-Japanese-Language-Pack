@@ -76,7 +76,7 @@ class coolyamato extends ZenShipping
     **/
     public function quote($method = ''): array
     {
-        global $box_array, $box_sizes_array, $max_shipping_weight, $max_shipping_girth;
+        global $box_array, $box_sizes_array, $max_shipping_weight;
         global $order;
         global $a_yamato_time, $coolyamato_type;
         global $db;
@@ -87,11 +87,10 @@ class coolyamato extends ZenShipping
         if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
 
         $max_shipping_weight = MODULE_SHIPPING_COOLYAMATO_MAX_WEIGHT;
-        $max_shipping_girth = MODULE_SHIPPING_COOLYAMATO_MAX_GIRTH;
         $country_id = $order->delivery['country']['id'];
         $zone_id = $order->delivery['zone_id'];
-        $zone_city = $order->delivery['city'];
-        $zone_banshi = $order->delivery['street_address'];
+        $zone_city = $order->delivery['city'] ?? '';
+        $zone_banshi = $order->delivery['street_address'] ?? '';
 
         $shipping_num_boxes = 1;
 

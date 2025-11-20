@@ -102,6 +102,8 @@ class ScriptedInstaller extends ScriptedInstallBase
             VALUES
                 ('Sagawa', 'Express', '" . $imple_date . "', NOW(), '" . json_encode($default_priceranks) . "');"
         );
+
+        parent::executeInstall();
     }
 
     // -----
@@ -113,6 +115,19 @@ class ScriptedInstaller extends ScriptedInstallBase
     //
     protected function executeUpgrade($oldVersion)
     {
+        $this->executeInstallerSql(
+            "INSERT INTO " . TABLE_TARIFS . "
+                (module, method, imple_date, update_date, quote_zone)
+            VALUES
+                ('Sagawa', 'Express', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "')
+            AS newtarifs
+            ON DUPLICATE KEY UPDATE
+                update_date = NOW(),
+                quote_zone = newtarifs.quote_zone
+            ;"
+        );
+
+        parent::executeUpgrade($oldVersion);
     }
 
     protected function executeUninstall()
@@ -124,6 +139,8 @@ class ScriptedInstaller extends ScriptedInstallBase
                     OR configuration_key LIKE 'MODULE\_ORDER\_TOTAL\_SAGAWAECOLLECT%'
             ;"
         );
+
+        parent::executeUninstall();
 
         return true;
     }

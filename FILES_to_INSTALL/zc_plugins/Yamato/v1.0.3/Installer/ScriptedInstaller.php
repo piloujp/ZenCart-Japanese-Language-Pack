@@ -99,6 +99,7 @@ class ScriptedInstaller extends ScriptedInstallBase
                 ('Yamato', 'Compact', '" . $this->imple_yamatocompact_date . "', NOW(), '" . json_encode($this->default_yamatocompact_priceranks) . "')
             AS newtarifs
             ON DUPLICATE KEY UPDATE
+                update_date = NOW(),
                 quote_zone = newtarifs.quote_zone
             ;"
         );
