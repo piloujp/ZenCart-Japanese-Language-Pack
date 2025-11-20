@@ -11,15 +11,10 @@ use Zencart\Plugins\Catalog\Yamato\_Yamato;
 class yamato extends ZenShipping
 {
     /**
-     * $yamato_countries is the country number->code Yamato is shipping
+     * $japan_id is the country number for Japan
      * @var array
     **/
-    public $yamato_countries;
-    /**
-     * $yamato_countries_nbr is country number Yamato is shipping
-     * @var array
-    **/
-    public $yamato_countries_nbr;
+    public $japan_id;
 
     /**
      * constructor
@@ -45,9 +40,7 @@ class yamato extends ZenShipping
             $this->enabled = (MODULE_SHIPPING_YAMATO_STATUS == 'True');
         }
 
-        $japan_id = zen_country_iso_to_id('JP');
-        $this->yamato_countries = array($japan_id => 'JP');
-        $this->yamato_countries_nbr = array($japan_id);
+        $this->japan_id = (int)zen_country_iso_to_id('JP');
 
         $this->update_status();
     }
@@ -64,8 +57,8 @@ class yamato extends ZenShipping
 
         $this->checkEnabledForZone(MODULE_SHIPPING_YAMATO_ZONE);
 
-        if ( $this->enabled == true ) {
-            if (!in_array((int)$order->delivery['country']['id'], $this->yamato_countries_nbr)) $this->enabled = false;
+        if ( $this->enabled == true && (int)$order->delivery['country']['id'] !== $this->japan_id) {
+            $this->enabled = false;
         }
 
         if ($this->enabled) {
@@ -102,14 +95,14 @@ class yamato extends ZenShipping
 
         $shipping_num_boxes = 1;
 
-        if (in_array($country_id, $this->yamato_countries_nbr)) {
+        if ((int)$country_id === $this->japan_id) {
             $zoneinfo = $db->Execute("SELECT zone_code FROM ".TABLE_ZONES." WHERE zone_id = '".$zone_id."'");
             $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
             if ( (MODULE_SHIPPING_YAMATO_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATO_OVER) ) {
                 $rate = new _Yamato($this->code, MODULE_SHIPPING_YAMATO_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
-                $rate->SetDest($s_zone_code, $this->yamato_countries[$country_id], $zone_city, $zone_banshi);
+                $rate->SetDest($s_zone_code, 'JP', $zone_city, $zone_banshi);
                 if (!empty($box_sizes_array)) {
                     $total_boxes_quote = 0;
                     $safefactor = 1.05; // when you build a box you need safety margins
