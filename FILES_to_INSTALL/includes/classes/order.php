@@ -1565,7 +1565,7 @@ class order extends base
     private function getAddressKey(array $customerAddresses, int $bookId): null|int
     {
         foreach ($customerAddresses as $k => $address) {
-            if (isset($address['address_book_id']) && $bookId === (int) $address['address_book_id']) {
+            if (isset($address['address_book_id']) && $bookId === (int)$address['address_book_id']) {
                 return $k;
             }
         }
@@ -1603,5 +1603,4 @@ class order extends base
             'fax' => $address['fax'],
         ];
     }
-
 }
