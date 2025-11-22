@@ -50,9 +50,19 @@ class yamatocompact extends ZenShipping
     **/
     public function update_status()
     {
-        global $order, $db;
+        global $order, $db, $shipping_weight, $box_sizes_array;
         if ($this->enabled === false || IS_ADMIN_FLAG === true) {
             return;
+        }
+
+        if (!empty($box_sizes_array)) {
+            $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
+            // disable if too big 
+            if (IS_ADMIN_FLAG == false && (($box_sizes_array[0][0] > MODULE_SHIPPING_YAMATOCOMPACT_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_YAMATOCOMPACT_MAX_WIDTH ||
+            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_MAX_GIRTH) ||
+            ($shipping_weight > MODULE_SHIPPING_YAMATOCOMPACT_MAX_WEIGHT))) { 
+                $this->enabled = false;
+            }
         }
 
         $this->checkEnabledForZone(MODULE_SHIPPING_YAMATOCOMPACT_ZONE);
@@ -204,6 +214,8 @@ class yamatocompact extends ZenShipping
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_YAMATOCOMPACT_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_YAMATOCOMPACT_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_YAMATOCOMPACT_MAX_WEIGHT', '2', 'Maximum weight that can be ship with this method.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping length', 'MODULE_SHIPPING_YAMATOCOMPACT_MAX_LENGTH', '33', 'Maximum length that can be ship with this method.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping width', 'MODULE_SHIPPING_YAMATOCOMPACT_MAX_WIDTH', '24.8', 'Maximum width that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping height', 'MODULE_SHIPPING_YAMATOCOMPACT_MAX_HEIGHT', '4.8', 'Maximum thickness (height) that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_YAMATOCOMPACT_MAX_GIRTH', '50', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_YAMATOCOMPACT_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting? Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
@@ -228,6 +240,8 @@ class yamatocompact extends ZenShipping
             'MODULE_SHIPPING_YAMATOCOMPACT_PROD_LIST',
             'MODULE_SHIPPING_YAMATOCOMPACT_HANDLING',
             'MODULE_SHIPPING_YAMATOCOMPACT_MAX_WEIGHT',
+            'MODULE_SHIPPING_YAMATOCOMPACT_MAX_LENGTH',
+            'MODULE_SHIPPING_YAMATOCOMPACT_MAX_WIDTH',
             'MODULE_SHIPPING_YAMATOCOMPACT_MAX_HEIGHT',
             'MODULE_SHIPPING_YAMATOCOMPACT_MAX_GIRTH',
             'MODULE_SHIPPING_YAMATOCOMPACT_FREE_SHIPPING',
