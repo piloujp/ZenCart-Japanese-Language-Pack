@@ -69,7 +69,7 @@ class _Yamato {
             $this->DestCountryCode = $country;
         }
     }
-    function SetWeight($weight) {
+    function SetWeight($weight = 0) {
         $this->Weight = $weight;
     }
     function SetSize($length = NULL, $width = NULL, $height = NULL) {
@@ -96,16 +96,15 @@ class _Yamato {
     // 6    180サイズ 180cmまで 30kgまで
     // 7    200サイズ 200cmまで 30kgまで
     function GetSizeClass() {
-        if ($this->quote['id'] === 'coolyamato') {
-            // https://www.kuronekoyamato.co.jp/ytc/customer/send/services/cool/
-            $a_classes = [
+        $a_classes = match ($this->quote['id']) {
+            'yamatocompact' => [[0, 58, 25]], // https://www.kuronekoyamato.co.jp/ytc/customer/send/services/compact/ No weight limit
+            'coolyamato' => [ // https://www.kuronekoyamato.co.jp/ytc/customer/send/services/cool/
                 [0,  60, 2],  // 区分,３辺計,重量
                 [1,  80, 5],
                 [2, 100, 10],
                 [3, 120, 15],
-            ];
-        } else {
-            $a_classes = [
+            ],
+            default => [ // https://www.kuronekoyamato.co.jp/ytc/customer/send/services/takkyubin/
                 [0,  60,  2],  // 区分,３辺計,重量
                 [1,  80,  5],
                 [2, 100, 10],
@@ -114,8 +113,8 @@ class _Yamato {
                 [5, 160, 25],
                 [6, 180, 30],
                 [7, 200, 30],
-            ];
-        }
+            ],
+        };
 
         if (empty($this->Length) || empty($this->Width) || empty($this->Height)) {
             return -9;

@@ -4,5 +4,7 @@ $define = [
     'MODULE_SHIPPING_YAMATOCOMPACT_TEXT_DESCRIPTION' => 'Yamato Express Compact’ Settings',
     'MODULE_SHIPPING_YAMATOCOMPACT_TEXT_WAY_NORMAL' => 'Compact (COD possible)',
     'MODULE_SHIPPING_YAMATOCOMPACT_TEXT_NOTAVAILABLE' => 'Service is not available between the areas.',
+    'MODULE_SHIPPING_YAMATOCOMPACT_TEXT_ENVELOPE' => '(Env.)',
+    'MODULE_SHIPPING_YAMATOCOMPACT_TEXT_BOX' => '(Box)',
 ];
 return $define;
