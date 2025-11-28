@@ -110,8 +110,8 @@ class yamatoecollect
 
     function selection()
     {
-        return array('id' => $this->code,
-                   'module' => $this->title);
+        return ['id' => $this->code,
+                   'module' => $this->title];
     }
 
     function pre_confirmation_check()
@@ -157,7 +157,7 @@ class yamatoecollect
     function install()
     {
         global $db, $messageStack;
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Yamato Cash On Delivery Module', 'MODULE_PAYMENT_YAMATOECOLLECT_STATUS', 'True', 'Do you want to accept Yamato Cash On Delivery payments?', '6', '1', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable Yamato Cash On Delivery Module', 'MODULE_PAYMENT_YAMATOECOLLECT_STATUS', 'True', 'Do you want to accept Yamato Cash On Delivery payments?', '6', '1', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Payment Zone', 'MODULE_PAYMENT_YAMATOECOLLECT_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', '6', '2', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Payment limit max:', 'MODULE_PAYMENT_YAMATOECOLLECT_LIMIT', '300000', 'Limit max for payment with this option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) values ('Set Order Status', 'MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID', '0', 'Set the status of orders made with this payment module to this value', '6', '0', 'zen_cfg_pull_down_order_statuses(', 'zen_get_order_status_name', now())");
@@ -172,6 +172,12 @@ class yamatoecollect
 
     function keys()
     {
-        return array('MODULE_PAYMENT_YAMATOECOLLECT_STATUS', 'MODULE_PAYMENT_YAMATOECOLLECT_ZONE', 'MODULE_PAYMENT_YAMATOECOLLECT_LIMIT', 'MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID', 'MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER');
+        return [
+            'MODULE_PAYMENT_YAMATOECOLLECT_STATUS',
+            'MODULE_PAYMENT_YAMATOECOLLECT_ZONE',
+            'MODULE_PAYMENT_YAMATOECOLLECT_LIMIT',
+            'MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID',
+            'MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER',
+        ];
     }
 }

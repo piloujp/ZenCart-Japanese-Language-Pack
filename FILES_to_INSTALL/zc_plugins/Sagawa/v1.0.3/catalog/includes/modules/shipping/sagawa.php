@@ -46,8 +46,8 @@ class sagawa extends ZenShipping
         }
 
         $japan_id = zen_country_iso_to_id('JP');
-        $this->sagawa_countries = array($japan_id => 'JP');
-        $this->sagawa_countries_nbr = array($japan_id);
+        $this->sagawa_countries = [$japan_id => 'JP'];
+        $this->sagawa_countries_nbr = [$japan_id];
 
         $this->update_status();
     }
@@ -90,7 +90,7 @@ class sagawa extends ZenShipping
 
         if (empty($order->delivery['zone_id']) == true) { return [];}
 
-        $this->quotes = array('id' => $this->code, 'module' => $this->title);
+        $this->quotes = ['id' => $this->code, 'module' => $this->title];
         if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
 
         $max_shipping_weight = MODULE_SHIPPING_SAGAWA_MAX_WEIGHT;
@@ -144,7 +144,7 @@ class sagawa extends ZenShipping
                 // 手数料
                 $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
             } else {
-                $tmpQuote = array('id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0);
+                $tmpQuote = ['id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0];
             }
 
             if (!isset($tmpQuote['error'])) {
@@ -204,18 +204,18 @@ class sagawa extends ZenShipping
     public function install(): void
     {
         global $db;
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Sagawa shipping method', 'MODULE_SHIPPING_SAGAWA_STATUS', 'True', 'Do you want to offer Sagawa rate shipping?', '6', '0', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Sagawa shipping method for some categories', 'MODULE_SHIPPING_SAGAWA_CATEGORIES', 'Disable', 'Do you want to enable or disable Sagawa shipping for some categories?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable Sagawa shipping method', 'MODULE_SHIPPING_SAGAWA_STATUS', 'True', 'Do you want to offer Sagawa rate shipping?', '6', '0', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Sagawa shipping method for some categories', 'MODULE_SHIPPING_SAGAWA_CATEGORIES', 'Disable', 'Do you want to enable or disable Sagawa shipping for some categories?', '6', '0', 'zen_cfg_select_option([\'Enable\', \'Disable\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_SAGAWA_CAT_LIST', '', 'Comma separated list of categoies IDs to be enabled or disabled, depending on above option.', '6', '0', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Sagawa shipping method for some products', 'MODULE_SHIPPING_SAGAWA_PRODUCTS', 'Disable', 'Do you want to enable or disable Sagawa shipping for some products?', '6', '0', 'zen_cfg_select_option(array(\'Enable\', \'Disable\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable Sagawa shipping method for some products', 'MODULE_SHIPPING_SAGAWA_PRODUCTS', 'Disable', 'Do you want to enable or disable Sagawa shipping for some products?', '6', '0', 'zen_cfg_select_option([\'Enable\', \'Disable\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_SAGAWA_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_SAGAWA_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', '50', 'Maximum weight that can be ship with this method.', '6', '0', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping girth', 'MODULE_SHIPPING_SAGAWA_MAX_GIRTH', '260', 'Maximum size (girth) that can be ship with this method.', '6', '0', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option(array(\'True\', \'False\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_SAGAWA_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum order for free shipping', 'MODULE_SHIPPING_SAGAWA_OVER', '50000', 'If you purchase more than the set amount, shipping will be free.', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_SAGAWA_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option(array(\'Shipping\', \'Billing\', \'Store\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_SAGAWA_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option([\'Shipping\', \'Billing\', \'Store\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_SAGAWA_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_SAGAWA_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
     }

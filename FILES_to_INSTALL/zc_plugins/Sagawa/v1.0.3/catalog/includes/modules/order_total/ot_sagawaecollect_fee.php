@@ -59,7 +59,7 @@ class ot_sagawaecollect_fee
         $this->sort_order = defined('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER') ? MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER : null;
         if (null === $this->sort_order) return;
 
-        $this->output = array();
+        $this->output = [];
     }
 
     function process()
@@ -90,9 +90,9 @@ class ot_sagawaecollect_fee
                         break;
                 }
                 $order->info['total'] += $sagawaecollect_cost;
-                $this->output[] = array('title' => $this->title . ':',
+                $this->output[] = ['title' => $this->title . ':',
                                           'text' => $currencies->format($sagawaecollect_cost, true,  $order->info['currency'], $order->info['currency_value']),
-                                          'value' => $sagawaecollect_cost);
+                                          'value' => $sagawaecollect_cost];
             }
         }
     }
@@ -110,13 +110,22 @@ class ot_sagawaecollect_fee
 
     function keys()
     {
-        return array('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000');
+        return [
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000',
+            'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000'
+        ];
     }
 
     function install()
     {
         global $db;
-        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display SAGAWAECOLLECT', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS', 'true', 'Do you want this module to display?', '6', '1','zen_cfg_select_option(array(\'true\', \'false\'), ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display SAGAWAECOLLECT', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS', 'true', 'Do you want this module to display?', '6', '1','zen_cfg_select_option([\'true\', \'false\'], ', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER', '462', 'Sort order of display.', '6', '2', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for less than 10000 JPY', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE', '330', 'Sagawa fee for COD payment between 0 and 10000 Yens', '6', '3', now())");
         $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Fee for 10000 to 30000 JPY', 'MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000', '440', 'Sagawa fee for COD payment between 10000 and 30000 Yens', '6', '3', now())");
