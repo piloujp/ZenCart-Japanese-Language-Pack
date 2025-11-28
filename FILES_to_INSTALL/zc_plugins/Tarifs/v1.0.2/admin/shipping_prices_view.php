@@ -13,25 +13,38 @@ if (isset($_POST['savetarifs'])) {
     $i = 0;
     $j = 0;
     while (isset($_POST['tarif'][$i . '-' . $j])) {
-        if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack') {
+        if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack' && $_POST['method'] !== 'YupackChilled') {
             if ($j == 0) {
                 $newtarifs_key = $i;
             }
-        } else {
+        } elseif ($_POST['method'] !== 'CoolTakyubin' && $_POST['method'] !== 'YupackChilled') {
             $newtarifs_key = ($i <= 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
         }
         while (isset($_POST['tarif'][$i . '-' . $j])) {
-            $newtarifs[$newtarifs_key][] = $_POST['tarif'][$i . '-' . $j];
+            if ($_POST['method'] === 'YupackChilled' || $_POST['method'] === 'CoolTakyubin') {
+                $newtarifs[] = (int)$_POST['tarif'][$i . '-' . $j];
+            } else {
+                $newtarifs[$newtarifs_key][] = $_POST['tarif'][$i . '-' . $j];
+            }
             $j++;
         }
         $i++;
         $j = 0;
     }
+    if (!empty($_POST['imple_date'])) {
     $tarifs_update = 
         "UPDATE " . TABLE_TARIFS . " t1
-        SET t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newtarifs) . "'
+        SET t1.imple_date = :imd:, t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newtarifs) . "'
         WHERE id = :tid:
         ";
+    $tarifs_update = $db->bindVars($tarifs_update, ':imd:', $_POST['imple_date'], 'string');
+    } else {
+        $tarifs_update = 
+            "UPDATE " . TABLE_TARIFS . " t1
+            SET t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newtarifs) . "'
+            WHERE id = :tid:
+            ";
+    }
     $tarifs_update = $db->bindVars($tarifs_update, ':tid:', $_POST['tid'], 'integer');
     $result = $db->Execute($tarifs_update);
     if (!$result) {
@@ -49,9 +62,8 @@ if (isset($_POST['savetarifs'])) {
 <head>
     <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 <style> 
-    input[type=text] {
-        width: 4em;
-        box-sizing: border-box;
+    #imple_date  {
+        width: 7em;
         border: none;
     }
     .list-title {
@@ -66,6 +78,11 @@ if (isset($_POST['savetarifs'])) {
         width: 100%;
         padding: 10px;
         text-align: center;
+    }
+    .tarifscontainer input[type=text] {
+        width: 4em;
+        box-sizing: border-box;
+        border: none;
     }
     .tarifscenter {
         margin: auto;
@@ -147,19 +164,20 @@ if (isset($_POST['savetarifs'])) {
                 <td class="dataTableContent text-center"><?=  (array_key_exists($item['module'], $installedPlugins)) ? '<img src="../zc_plugins/' . $item['module'] . '/' . $installedPlugins[$item['module']]['version'] . '/admin/images/icons/' . $item['module'] . '_icon.png" alt="' . $item['module'] . ' logo" style="height:22px; vertical-align: middle">' : TARIFS_PLUGIN_NOT_INSTALLED ?></td>
                 <td class="dataTableContent text-center"><?= $item['module'] ?></td>
                 <td class="dataTableContent text-center"><?= $item['method'] ?></td>
-                <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : '') ?> text-center"><?= zen_date_short($item['imple_date']) ?></td>
-                <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
-                <td class="dataTableContent text-center">
                 <?php
                 $tr_array = json_decode($item['quote_zone'], true);
                 if ($_GET['action'] === 'edit' && isset($_GET['tid']) && $_GET['tid'] == $item['id']) {
                     echo zen_draw_form('tarifs_editor_form', FILENAME_SHIPPING_PRICES_VIEW, 'tid=' . (int)$tInfo->id . '&#tarif' . (int)$tInfo->id, 'post', 'class="form-horizontal"');
                 ?>
+                <td class="dataTableContent<?= strtotime($item['imple_date']) > time() ? ' future text-center"><input type="text" id="imple_date" name="imple_date" placeholder="' . zen_date_short($item['imple_date']) . '" value="' . zen_date_short($item['imple_date']) . '">' : ' text-center">' . zen_date_short($item['imple_date']) ?>
+                </td>
+                <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
+                <td class="dataTableContent text-center">
                     <div class="tarifscontainer"><table class="tarifseditcenter">
                     <?php
                     $rownumb = 0;
                     $columnnumb = 0;
-                    if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack') {
+                    if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack' && $item['method'] !== 'YupackChilled') {
                         foreach($tr_array as $rquote) {
                             echo  '<tr>';
                             foreach($rquote as $qprice) {
@@ -170,6 +188,14 @@ if (isset($_POST['savetarifs'])) {
                             $columnnumb = 0;
                             echo '</tr>';
                         }
+                    } elseif ($item['method'] === 'YupackChilled' || $item['method'] === 'CoolTakyubin') {
+                        echo  '<tr>';
+                        foreach($tr_array as $rquote) {
+                            echo '<td><input type="text" id="0-' . $columnnumb . '" name="tarif[0-' . $columnnumb . ']" placeholder="' . $rquote . '" value="' . $rquote . '"></td>';
+                            $columnnumb++;
+                        }
+                        $columnnumb = 0;
+                        echo  '</tr>';
                     } else {
                         foreach($tr_array as $key=>$rquote) {
                             echo '<tr><td>' . $key . ': </td>';
@@ -183,19 +209,23 @@ if (isset($_POST['savetarifs'])) {
                         }
                     }
                     ?>
+                    </table>
                     <input type="hidden" name="tid" value="<?= $item['id'] ?>">
                     <input type="hidden" name="module" value="<?= $item['module'] ?>">
                     <input type="hidden" name="method" value="<?= $item['method'] ?>">
-                    </table>
                     </div>
                     <input type="submit" value="<?= IMAGE_SAVE ?>" name="savetarifs" class="btn btn-primary">
                     </form>
                     <?php
-                    echo '&nbsp;&nbsp;<a id="Canceledit" href="' . zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'tid=' . (int)$tInfo->id . '#tarif' . (int)$tInfo->id) . '" class="btn btn-primary" role="button">' . IMAGE_CANCEL . '</a>';
-                } else {
+                    echo '&nbsp;&nbsp;<a id="Canceledit" href="' . zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'tid=' . (int)$tInfo->id . '#tarif' . (int)$tInfo->id) . '" class="btn btn-primary" role="button">' . IMAGE_CANCEL . '</a></td>';
+                } else {?>
+                <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : '') ?> text-center"><?= zen_date_short($item['imple_date']) ?></td>
+                <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
+                <td class="dataTableContent text-center">
+                <?php
                     if ((isset($tInfo)) && ($item['id'] == $tInfo->id) && isset($_GET['tid'])) {
                         echo '<div class="tarifscontainer"><table class="tarifscenter">';
-                        if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack') {
+                        if ($item['module'] === 'Yubin' && $item['method'] !== 'Yupack' && $item['method'] !== 'YupackChilled') {
                             foreach($tr_array as $rquote) {
                                 echo  '<tr>';
                                 foreach($rquote as $qprice) {
@@ -203,6 +233,12 @@ if (isset($_POST['savetarifs'])) {
                                 }
                                 echo '</tr>';
                             }
+                        } elseif ($item['method'] === 'YupackChilled' || $item['method'] === 'CoolTakyubin') {
+                            echo  '<tr>';
+                            foreach($tr_array as $rquote) {
+                                echo '<td>' . $rquote . '</td>';
+                            }
+                            echo  '</tr>';
                         } else {
                             foreach($tr_array as $key=>$rquote) {
                                 echo '<tr><td>' . $key . ': </td>';
@@ -216,7 +252,6 @@ if (isset($_POST['savetarifs'])) {
                     }
                 }
                     ?>
-                </td>
             </tr>
             <?php } ?>
             </tbody>
