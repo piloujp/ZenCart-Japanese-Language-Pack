@@ -3,14 +3,9 @@ use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
 
 class ScriptedInstaller extends ScriptedInstallBase
 {
+    private string $imple_date = '2025-12-01'; // Update this to save a new rates table in database
 
-    protected function executeInstall()
-    {
-        if (!$this->purgeOldFiles()) {
-            return false;
-        }
-
-        $default_priceranks = [ // Tarification from August 2024
+    private array $default_priceranks = [ // Tarification from August 2024
         'N01' => [910,1220,1520,2180,2440,2600,2890,3480,4070,5240,6420],
         'N02' => [910,1220,1520,2180,2440,2710,2890,3480,4070,5240,6420],
         'N03' => [910,1220,1520,2180,2440,2770,2950,3480,4070,5240,6420],
@@ -78,7 +73,12 @@ class ScriptedInstaller extends ScriptedInstallBase
         'N65' => [2552,4807,7579,11220,14740,19580,22000,26840,31680,41360,51040],
         ];
 
-        $imple_date = '2024-08-01'; // Update this to save a new rates table in database
+
+    protected function executeInstall()
+    {
+        if (!$this->purgeOldFiles()) {
+            return false;
+        }
 
         global $sniffer;
         zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
@@ -100,15 +100,13 @@ class ScriptedInstaller extends ScriptedInstallBase
             "INSERT IGNORE INTO " . TABLE_TARIFS . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
-                ('Sagawa', 'Express', '" . $imple_date . "', NOW(), '" . json_encode($default_priceranks) . "');"
+                ('Sagawa', 'Express', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "');"
         );
 
         parent::executeInstall();
     }
 
     // -----
-    // Not used, initially, but included for the possibility of future upgrades!
-    //
     // Note: This (https://github.com/zencart/zencart/pull/6498) Zen Cart PR must
     // be present in the base code or a PHP Fatal error is generated due to the
     // function signature difference.
@@ -141,8 +139,6 @@ class ScriptedInstaller extends ScriptedInstallBase
         );
 
         parent::executeUninstall();
-
-        return true;
     }
 
     protected function purgeOldFiles(): bool

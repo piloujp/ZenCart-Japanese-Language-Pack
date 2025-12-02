@@ -140,6 +140,7 @@ $define = [
     'ENTRY_LAST_NAME' => '姓：',
     'ENTRY_LAST_NAME_ERROR' => '姓は最低' . ENTRY_LAST_NAME_MIN_LENGTH . '文字以上入力してください',
     'ENTRY_LAST_NAME_TEXT' => '*',
+    'ENTRY_NAME' => 'フルネーム：',
     'ENTRY_NEWSLETTER' => 'メールマガジンを購読する。',
     'ENTRY_NEWSLETTER_TEXT' => '',
     'ENTRY_NICK' => 'フォーラムニックネーム：',

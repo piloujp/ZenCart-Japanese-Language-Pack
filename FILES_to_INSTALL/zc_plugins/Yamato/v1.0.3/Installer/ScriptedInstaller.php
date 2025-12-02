@@ -3,7 +3,7 @@ use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
 
 class ScriptedInstaller extends ScriptedInstallBase
 {
-    private array $default_priceranks = [ // Tarification from April 2024
+    private array $default_priceranks = [ // Tarification from Oct. 2025
             'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720],
             'N02' => [1060,1350,1650,1970,2310,2630,3730,4500],
             'N03' => [1190,1480,1790,2110,2450,2770,4090,5190],
@@ -28,7 +28,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         // https://www.post.japanpost.jp/service/you_pack/chilled/index.html
     private array $default_coolyamato_surcharge = [275, 330, 440, 715];
 
-    private string $imple_date = '2024-04-01'; // Update this to save a new rates tablbe in database
+    private string $imple_date = '2025-10-10'; // Update this to save a new rates table in database
 
     private array $default_yamatocompact_priceranks = [ // Only one size
             'N01' => [ 720],
@@ -43,7 +43,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             'N10' => [1270],
         ];
 
-    private string $imple_yamatocompact_date = '2024-04-01'; // Update this to save a new rates tablbe in database
+    private string $imple_yamatocompact_date = '2025-10-10'; // Update this to save a new rates table in database
 
 
     protected function executeInstall()
