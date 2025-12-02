@@ -110,8 +110,7 @@ class yamatoecollect
 
     function selection()
     {
-        return ['id' => $this->code,
-                   'module' => $this->title];
+        return ['id' => $this->code, 'module' => $this->title];
     }
 
     function pre_confirmation_check()

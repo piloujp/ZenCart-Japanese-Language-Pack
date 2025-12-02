@@ -63,10 +63,12 @@ class nekoposu  extends ZenShipping
         global $order, $box_sizes_array;
 
         $this->quotes = ['id' => $this->code,
-                              'module' => MODULE_SHIPPING_NEKOPOSU_TEXT_TITLE,
-                              'methods' => [['id' => $this->code,
-                                                       'title' => MODULE_SHIPPING_NEKOPOSU_TEXT_WAY,
-                                                       'cost' => MODULE_SHIPPING_NEKOPOSU_COST]]];
+                         'module' => MODULE_SHIPPING_NEKOPOSU_TEXT_TITLE,
+                         'methods' => [['id' => $this->code,
+                                        'title' => MODULE_SHIPPING_NEKOPOSU_TEXT_WAY,
+                                        'cost' => MODULE_SHIPPING_NEKOPOSU_COST
+                                      ]]
+                        ];
         if ($this->tax_class > 0) {
             $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
         }
