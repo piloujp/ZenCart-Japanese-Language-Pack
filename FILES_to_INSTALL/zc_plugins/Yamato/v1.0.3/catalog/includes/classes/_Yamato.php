@@ -60,7 +60,7 @@ class _Yamato {
     function SetDest($zone, $country = NULL, $city = NULL, $banshi = NULL) {
         if (!in_array($zone, array_keys(self::LITO))) {
             $this->DestZone = $zone;
-        } elseif (array_key_exists($city, self::LITO[$zone]) && !empty(self::LITO[$zone][$city]) && (self::LITO[$zone][$city] === 'All' || str_contains($banshi, self::LITO[$zone][$city]))) {
+        } elseif (array_key_exists($city ?? '', self::LITO[$zone]) && !empty(self::LITO[$zone][$city]) && (self::LITO[$zone][$city] === 'All' || str_contains($banshi, self::LITO[$zone][$city]))) {
             $this->DestZone = '離島';
         } else {
             $this->DestZone = $zone;
