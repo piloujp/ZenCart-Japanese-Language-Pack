@@ -8,6 +8,8 @@ class ScriptedInstaller extends ScriptedInstallBase
     {
         zen_deregister_admin_pages(['TarifsView']);
         zen_register_admin_page('TarifsView', 'BOX_MODULES_PRICES_VIEW', 'FILENAME_SHIPPING_PRICES_VIEW', '', 'modules', 'Y');
+
+        parent::executeInstall();
     }
 
     // -----
@@ -19,13 +21,14 @@ class ScriptedInstaller extends ScriptedInstallBase
     //
     protected function executeUpgrade($oldVersion)
     {
+        parent::executeUpgrade();
     }
 
     protected function executeUninstall()
     {
         zen_deregister_admin_pages(['TarifsView']);
 
-        return true;
+        parent::executeUninstall();
     }
 
 }
