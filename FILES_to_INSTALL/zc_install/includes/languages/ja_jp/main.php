@@ -153,7 +153,6 @@ return [
 'TEXT_ERROR_CONFIGURE_REQUIRES_UPDATE' => '現在の configure.phpファイルは、古いバージョンのものであるため、処理を続行する前に更新が必要です。',
 'TEXT_ERROR_HTACCESS_SUPPORT' => '「.htaccess」 ファイル対応が有効になっていません。<br>[ <i><b>注意：</b> もし、Nginxを使用している場合は、この問題の解決方法について、このインストールウィザードの<u>最終画面</u>に進んでください。<i> ]',
 'TEXT_ERROR_SESSION_SUPPORT' => 'セッションサポートに問題',
-'TEXT_ERROR_SESSION_SUPPORT_USE_TRANS_SID' => 'iniファイルで session.use_trans_sid 設定が有効になっています',
 'TEXT_ERROR_SESSION_SUPPORT_AUTO_START' => 'iniファイルで session.auto_start 設定が有効になっています',
 'TEXT_ERROR_DB_CONNECTION' => 'データベース接続に問題があります',
 'TEXT_ERROR_DB_CONNECTION_DEFAULT' => 'データベース接続で問題が発生する可能性',
