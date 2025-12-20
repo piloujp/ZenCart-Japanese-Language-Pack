@@ -8,6 +8,7 @@ $define = [
     'TARIFS_RATES_APLICATION_DATE' => 'Implementation date',
     'TARIFS_PRICE_UPDATE_DATE' => 'Update date',
     'TARIFS_QUOTE_ARRAY' => 'Rates by zones/dimension classes',
+    'TARIFS_HEADING_TITLE' => '%%BOX_MODULES_PRICES_VIEW%%',
     'TARIFS_TITLE' => 'Click on a row to view rates for the shipping module.<br>Click again to edit.',
     'TARIFS_TEXT_SHIPPING_DATA_SAVED' => 'Data saved succesfully.',
     'TARIFS_ERROR_SHIPPING_DATA_NOT_SAVED' => 'Data not saved. A problem occurred when attempting to save data to database!',

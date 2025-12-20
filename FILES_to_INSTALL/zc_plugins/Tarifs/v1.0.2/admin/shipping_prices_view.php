@@ -109,11 +109,17 @@ if (isset($_POST['savetarifs'])) {
 <!-- header_eof //-->
 <!-- body //-->
 <?php if (defined('TABLE_TARIFS')) {?>
+  <div class="container-fluid">
+    <h1><?= TARIFS_HEADING_TITLE ?></h1>
     <div class="list-title">
         <?= TARIFS_TITLE ?>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 configurationColumnLeft">
         <table class="table table-hover table-striped">
+            <colgroup>
+                <col span="6" style="width: auto;">
+                <col style="width: 50%;">
+            </colgroup>
             <thead>
             <tr class="dataTableHeadingRow">
                 <th class="dataTableHeadingContent"><?= TARIFS_ID; ?></th>
@@ -263,6 +269,7 @@ if (isset($_POST['savetarifs'])) {
     </div>
 <?php }?>
 <!-- body_eof //-->
+  </div>
 <!-- footer //-->
     <?php require DIR_WS_INCLUDES . 'footer.php'; ?>
 <!-- footer_eof //-->
