@@ -7,14 +7,14 @@ $define = [
     . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? MODULE_PAYMENT_FURIKOMI_ACCNUM : '口座番号')
     . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE : '預金科目')
     . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? MODULE_PAYMENT_FURIKOMI_ACCNAM : '口座名義人')
-//    . "\nSWIFTコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? MODULE_PAYMENT_FURIKOMI_SWIFT : 'SWIFTコード')
+//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? MODULE_PAYMENT_FURIKOMI_SWIFT : 'スイフトコード')
 //    . "\n\n２番目の銀行の選択肢："
 //    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME2') ? MODULE_PAYMENT_FURIKOMI_BANKNAME2 : '銀行名')
 //    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH2 : '支店名')
 //    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM2') ? MODULE_PAYMENT_FURIKOMI_ACCNUM2 : '口座番号')
 //    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE2 : '預金科目')
 //    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? MODULE_PAYMENT_FURIKOMI_ACCNAM2 : '口座名義人')
-//    . "\nSWIFTコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'SWIFTコード')
+//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'スイフトコード')
     . '</pre><p>ご注文ありがとう御座いました。入金確認後、商品を送ります。',
 // bof constant configuration titles and descriptions for payment module furikomi
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込モジュールを有効にする',
