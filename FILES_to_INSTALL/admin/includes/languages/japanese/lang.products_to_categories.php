@@ -22,6 +22,8 @@ $define = [
     'TEXT_HEADING_LINKED_CATEGORIES' => 'リンク先カテゴリ',
     'TEXT_SET_MASTER_CATEGORIES_ID' => '<strong>警告：</strong>マスターカテゴリーの登録が必要です。',
     'BUTTON_UPDATE_CATEGORY_LINKS' => 'カテゴリーリンク登録の更新',
+    'BUTTON_HIDE_LINKED_CATEGORIES' => 'リンクされたカテゴリを非表示',
+    'BUTTON_SHOW_LINKED_CATEGORIES' => 'リンクされたカテゴリを表示',
     'TEXT_INFO_PRODUCTS_TO_CATEGORIES_LINKER_INTRO' => '<p>この商品は現在、以下で選択したカテゴリにリンクされています。（以下の表の列の数は<a target="_blank" href="configuration.php?&amp;gID=3">「ショップ全般の設定」ページ</a>より、変更可能です。）<br>リンクを追加/削除する場合は、希望のカテゴリのチェックボックスにチェックを入れたのち、' . '%%BUTTON_UPDATE_CATEGORY_LINKS%%' . ' ボタンを押して、情報を更新してください。</p><p>さらに、下部の一括更新ツールを使って商品やカテゴリ登録の一括変更も可能です。</p>',
     'TEXT_LABEL_CATEGORY_DISPLAY_ROOT' => '指定カテゴリ以下のサブカテゴリを表示：',
     'BUTTON_SET_DEFAULT_TARGET_CATEGORY' => 'デフォルトに指定',
