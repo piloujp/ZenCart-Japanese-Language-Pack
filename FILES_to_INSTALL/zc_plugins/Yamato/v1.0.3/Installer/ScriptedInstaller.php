@@ -3,7 +3,7 @@ use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
 
 class ScriptedInstaller extends ScriptedInstallBase
 {
-    private array $default_priceranks = [ // Tarification from Oct. 2025
+    private array $default_priceranks = [ // Shipping rates from Oct. 2025
             'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720],
             'N02' => [1060,1350,1650,1970,2310,2630,3730,4500],
             'N03' => [1190,1480,1790,2110,2450,2770,4090,5190],
@@ -53,10 +53,10 @@ class ScriptedInstaller extends ScriptedInstallBase
         }
 
         global $sniffer;
-        zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
-        if (!$sniffer->table_exists(TABLE_TARIFS)) {
+        zen_define_default('TABLE_SHIPPING_RATES', DB_PREFIX . 'shipping_rates');
+        if (!$sniffer->table_exists(TABLE_SHIPPING_RATES)) {
             $this->executeInstallerSql(
-                "CREATE TABLE " . TABLE_TARIFS . " (
+                "CREATE TABLE " . TABLE_SHIPPING_RATES . " (
                     id INT NOT NULL AUTO_INCREMENT,
                     module VARCHAR(32) NOT NULL DEFAULT '',
                     method varchar(32) NOT NULL DEFAULT '',
@@ -69,7 +69,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             );
         }
         $this->executeInstallerSql(
-            "INSERT IGNORE INTO " . TABLE_TARIFS . "
+            "INSERT IGNORE INTO " . TABLE_SHIPPING_RATES . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
@@ -91,16 +91,16 @@ class ScriptedInstaller extends ScriptedInstallBase
     protected function executeUpgrade($oldVersion)
     {
         $this->executeInstallerSql(
-            "INSERT INTO " . TABLE_TARIFS . "
+            "INSERT INTO " . TABLE_SHIPPING_RATES . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Yamato', 'Takyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "'),
                 ('Yamato', 'CoolTakyubin', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_coolyamato_surcharge) . "'),
                 ('Yamato', 'Compact', '" . $this->imple_yamatocompact_date . "', NOW(), '" . json_encode($this->default_yamatocompact_priceranks) . "')
-            AS newtarifs
+            AS newshippingrates
             ON DUPLICATE KEY UPDATE
                 update_date = NOW(),
-                quote_zone = newtarifs.quote_zone
+                quote_zone = newshippingrates.quote_zone
             ;"
         );
 

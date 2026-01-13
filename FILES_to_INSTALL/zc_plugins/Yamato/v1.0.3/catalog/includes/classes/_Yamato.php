@@ -217,15 +217,15 @@ class _Yamato {
         // (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
 
         if ($this->quote['id'] === 'yamatocompact') {
-            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Compact' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yamato'  AND method = 'Compact' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
             $a_pricerank = json_decode($jsonarray->fields['quote_zone'], true);
         } else {
-            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yamato'  AND method = 'Takyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
             $a_pricerank = json_decode($jsonarray->fields['quote_zone'], true);
 
             if ($this->quote['id'] === 'coolyamato') {
                 // クール便追加コスト(60,80,100,120)
-                $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yamato' AND method = 'CoolTakyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+                $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yamato' AND method = 'CoolTakyubin' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
                 $a_coolcharge = json_decode($jsonarraycharges->fields['quote_zone'], true);
             }
         }

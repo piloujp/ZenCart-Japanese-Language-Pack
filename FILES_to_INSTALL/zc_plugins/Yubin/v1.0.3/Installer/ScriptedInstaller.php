@@ -146,10 +146,10 @@ class ScriptedInstaller extends ScriptedInstallBase
         $imple_date = '2024-08-01'; // Update this to save a new rates tablbe in database
 
         global $sniffer;
-        zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
-        if (!$sniffer->table_exists(TABLE_TARIFS)) {
+        zen_define_default('TABLE_SHIPPING_RATES', DB_PREFIX . 'shipping_rates');
+        if (!$sniffer->table_exists(TABLE_SHIPPING_RATES)) {
             $this->executeInstallerSql(
-                "CREATE TABLE " . TABLE_TARIFS . " (
+                "CREATE TABLE " . TABLE_SHIPPING_RATES . " (
                     id INT NOT NULL AUTO_INCREMENT,
                     module VARCHAR(32) NOT NULL DEFAULT '',
                     method varchar(32) NOT NULL DEFAULT '',
@@ -162,7 +162,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             );
         }
         $this->executeInstallerSql(
-            "INSERT IGNORE INTO " . TABLE_TARIFS . "
+            "INSERT IGNORE INTO " . TABLE_SHIPPING_RATES . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Yubin', 'jpparcelair', '" . $imple_date . "', NOW(), '" . json_encode($default_jpparcelair) . "'),

@@ -250,9 +250,9 @@ class _JpParcel {
     function GetQuote() {
         global $db;
 
-        // retrieve most recent tarification for each method
-        $jsonarray = $db->Execute("SELECT t1.method, t1.quote_zone from (select * FROM " . TABLE_TARIFS . " t3 WHERE t3.imple_date <= NOW()) AS t1
-                                    LEFT JOIN (select * FROM " . TABLE_TARIFS . " t4 WHERE t4.imple_date <= NOW()) AS t2 ON t1.method = t2.method AND t1.update_date < t2.update_date
+        // retrieve most recent rates for each method
+        $jsonarray = $db->Execute("SELECT t1.method, t1.quote_zone from (select * FROM " . TABLE_SHIPPING_RATES . " t3 WHERE t3.imple_date <= NOW()) AS t1
+                                    LEFT JOIN (select * FROM " . TABLE_SHIPPING_RATES . " t4 WHERE t4.imple_date <= NOW()) AS t2 ON t1.method = t2.method AND t1.update_date < t2.update_date
                                     WHERE t2.update_date IS NULL AND t1.module = 'Yubin' AND t1.method <> 'Yupack'
                                     ORDER BY t1.method ASC
                                  ");

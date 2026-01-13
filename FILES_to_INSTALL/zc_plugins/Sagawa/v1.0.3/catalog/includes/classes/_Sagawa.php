@@ -201,7 +201,7 @@ class _Sagawa {
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,140,160,180,200,220,240,260)
         // https://www.sagawa-exp.co.jp/send/fare/attention.html
 
-        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Sagawa' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Sagawa' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
 
 //        $a_pricerank = [

@@ -1,7 +1,7 @@
 <?php
 return [
-    'pluginVersion' => 'v1.0.1',
-    'pluginName' => "Rates editor",
+    'pluginVersion' => 'v1.0.2',
+    'pluginName' => "Shipping Rates Editor",
     'pluginDescription' => 'With this plugin, it is possible to view and edit Japanese shipping modules rates.',
     'pluginAuthor' => 'piloujp',
     'pluginId' => 0, // ID from Zen Cart forum

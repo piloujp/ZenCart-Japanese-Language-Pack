@@ -212,12 +212,12 @@ class _Yupack {
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,170)
         // https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html
 
-        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+        $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);
 
         if ($this->quote['id'] === 'yupackchilled') {
             // クール便追加コスト(60,80,100,120,140,150)
-            $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_TARIFS . " WHERE module = 'Yubin' AND method = 'YupackChilled' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
+            $jsonarraycharges = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yubin' AND method = 'YupackChilled' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
             $a_coolcharge = json_decode($jsonarraycharges->fields["quote_zone"], true);
         }
 

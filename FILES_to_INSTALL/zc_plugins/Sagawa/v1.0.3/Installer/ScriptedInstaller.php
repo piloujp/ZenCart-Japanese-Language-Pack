@@ -5,7 +5,7 @@ class ScriptedInstaller extends ScriptedInstallBase
 {
     private string $imple_date = '2025-12-01'; // Update this to save a new rates table in database
 
-    private array $default_priceranks = [ // Tarification from August 2024
+    private array $default_priceranks = [ // Shipping rates from August 2024
         'N01' => [910,1220,1520,2180,2440,2600,2890,3480,4070,5240,6420],
         'N02' => [910,1220,1520,2180,2440,2710,2890,3480,4070,5240,6420],
         'N03' => [910,1220,1520,2180,2440,2770,2950,3480,4070,5240,6420],
@@ -81,10 +81,10 @@ class ScriptedInstaller extends ScriptedInstallBase
         }
 
         global $sniffer;
-        zen_define_default('TABLE_TARIFS', DB_PREFIX . 'tarifs');
-        if (!$sniffer->table_exists(TABLE_TARIFS)) {
+        zen_define_default('TABLE_SHIPPING_RATES', DB_PREFIX . 'shipping_rates');
+        if (!$sniffer->table_exists(TABLE_SHIPPING_RATES)) {
             $this->executeInstallerSql(
-                "CREATE TABLE " . TABLE_TARIFS . " (
+                "CREATE TABLE " . TABLE_SHIPPING_RATES . " (
                     id INT NOT NULL AUTO_INCREMENT,
                     module VARCHAR(32) NOT NULL DEFAULT '',
                     method varchar(32) NOT NULL DEFAULT '',
@@ -97,7 +97,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             );
         }
         $this->executeInstallerSql(
-            "INSERT IGNORE INTO " . TABLE_TARIFS . "
+            "INSERT IGNORE INTO " . TABLE_SHIPPING_RATES . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Sagawa', 'Express', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "');"
@@ -114,14 +114,14 @@ class ScriptedInstaller extends ScriptedInstallBase
     protected function executeUpgrade($oldVersion)
     {
         $this->executeInstallerSql(
-            "INSERT INTO " . TABLE_TARIFS . "
+            "INSERT INTO " . TABLE_SHIPPING_RATES . "
                 (module, method, imple_date, update_date, quote_zone)
             VALUES
                 ('Sagawa', 'Express', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_priceranks) . "')
-            AS newtarifs
+            AS newshippingrates
             ON DUPLICATE KEY UPDATE
                 update_date = NOW(),
-                quote_zone = newtarifs.quote_zone
+                quote_zone = newshippingrates.quote_zone
             ;"
         );
 
