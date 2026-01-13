@@ -7,6 +7,9 @@
 */
 
 $define = [
+    'TEXT_PRODUCT_WEIGHT_UNIT' => ' kgs',
+    'TEXT_SHIPPING_WEIGHT' => ' kgs',
+// Extra constants for Japanese
     'EMAIL_GREET' => '',
     'ENTRY_FIRST_NAME_KANA' => 'First Name (furigana):',
     'ENTRY_FIRST_NAME_KANA_ERROR' => '&nbsp;<span class="errorText">Is your first name (furigana) correct? Our system requires a minimum of ' . ENTRY_FIRST_NAME_MIN_LENGTH . ' characters. Please try again.</span>',

@@ -7,6 +7,8 @@
 */
 
 $define = [
+    'TEXT_PRODUCT_WEIGHT_UNIT' => 'kgs',
+// additional constants for Japanese
     'TABLE_HEADING_FIRSTNAME_KANA' => 'First Name reading',
     'TABLE_HEADING_LASTNAME_KANA' => 'Last Name reading',
     'ADMIN_NAV_DATE_CALENDAR' => '',
