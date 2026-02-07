@@ -14,7 +14,7 @@ class zcObserverYamato extends base
         );
     }
 
-    protected function update(&$class, $eventID, $not_used, &$enabled):void
+    protected function update(&$class, string $eventID, array $not_used, bool &$enabled): void
     {
         $cat_list_constant = constant('MODULE_SHIPPING_' . strtoupper($class->code) . '_CAT_LIST');
         $prod_list_constant = constant('MODULE_SHIPPING_' . strtoupper($class->code) . '_PROD_LIST');
