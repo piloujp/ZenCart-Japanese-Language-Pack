@@ -20,6 +20,10 @@ $define = [
     'ERROR_REMOVE_DEFAULT_ORDER_STATUS' => 'エラー： デフォルトの注文ステータスは削除できません。他の注文ステータスをデフォルトに設定してからもう一度操作してください。',
     'ERROR_STATUS_USED_IN_ORDERS' => 'エラー： この注文ステータスは現在注文に使用されています。',
     'ERROR_STATUS_USED_IN_HISTORY' => 'エラー： この注文ステータスは、現在注文履歴に使用されています。',
+    'TEXT_INFO_HEADING_COLOR_CODE' => 'カラーコード',
+    'TEXT_INFO_COLOR_BOX_PLACEHOLDER' => 'デフォルトまたはラベルなしの場合は空白のままにします',
+    'TEXT_INFO_COLOR_CODE' => '１６進コードを入力するかボックスをクリックしてください',
+    'TEXT_INFO_COLOR_CODE_WARNING' => '<strong>警告：</strong>ラベル内のテキストは白になりますので、明るい色は避けてください。',
 ];
 
 return $define;
