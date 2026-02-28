@@ -222,6 +222,12 @@ class order extends base
             'order_weight' => $order->fields['order_weight'],
             'is_wholesale' => $order->fields['is_wholesale'],  //- Note: Either 0/1 or null if not recorded
         ];
+        /**
+         * Dev Notes:
+         * - 'shipping_cost' is in the $this->totals array, where 'class' = 'ot_shipping'
+         * - 'subtotal' is in the $this->totals array, where 'class' = 'ot_subtotal'
+         * - 'comments' is in the $this->statuses array, where the first entry contains the order comments. Not populated until the end of this function.
+         */
 
         $this->customer = [
             'id' => $order->fields['customers_id'],
@@ -529,6 +535,10 @@ class order extends base
             'language_code' => $_SESSION['languages_code'],
             'is_wholesale' => (int)Customer::isWholesaleCustomer(),
         ];
+        /**
+         * Dev Notes:
+         * - 'date_purchased' is set when order is created.
+         */
 
         $customer ??= new Customer();
         $customerAddresses = $customer->getData('addresses');

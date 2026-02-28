@@ -109,7 +109,7 @@ if (!empty($action) && $order_exists === true) {
         $order = new order($oID);
         $module = false;
         global $installedPlugins;
-        $moduleFinder = new ModuleFinder('payment', new Filesystem());
+        $moduleFinder = new ModuleFinder('payment', new FileSystem());
         $modules_found = $moduleFinder->findFromFilesystem($installedPlugins);
         $payment = ($order->info['payment_module_code'] ?? 'nothing') . '.php';
         if (array_key_exists($payment, $modules_found) && file_exists(DIR_FS_CATALOG . $modules_found[$payment] . $payment)) {
