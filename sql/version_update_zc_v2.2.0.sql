@@ -12,6 +12,9 @@ SET @Formid = (SELECT address_format_id FROM address_format WHERE address_format
 REPLACE INTO address_format (address_format_id, address_format, address_summary) VALUES (@formid, '〒$postcode$cr$state$city$streets$cr$lastname$firstname$salutation', '〒$postcode$state$city');
 UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%' ORDER BY address_format_id DESC LIMIT 1) WHERE countries_id = @japan_id;
 
+# Orders status color code update
+UPDATE orders_status AS t1 JOIN orders_status AS t2 ON t1.orders_status_id = t2.orders_status_id AND t1.language_id != t2.language_id SET t1.orders_status_color_code = t2.orders_status_color_code WHERE t1.language_id = @japan_id AND (t1.orders_status_color_code IS NULL OR t1.orders_status_color_code = '');
+
 # Japan Tax description update
 SET @JapanTaxRateID = (SELECT tax_rates_id FROM tax_rates tr INNER JOIN tax_class tc ON tr.tax_class_id = tc.tax_class_id WHERE tc.tax_class_title = '消費税' LIMIT 1);
 UPDATE tax_rates_description SET tax_description='Japan Sale Tax: 10%' WHERE language_id = 1 AND tax_rates_id = @JapanTaxRateID;

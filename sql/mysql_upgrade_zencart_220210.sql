@@ -109,7 +109,8 @@ ALTER TABLE orders ADD COLUMN customers_fax varchar(32) NULL;
 ALTER TABLE orders ADD COLUMN delivery_timespec     varchar(32) default null;
 
 #注文ステータス
-INSERT IGNORE INTO orders_status VALUES ('5', '1', 'Sent', 15);
+SET @last_status_id = (SELECT orders_status_id FROM orders_status WHERE language_id = '1' ORDER BY orders_status_id DESC LIMIT 1) + 1;
+INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, orders_status_color_code, sort_order) VALUES (@last_status_id, '1', 'Sent', '#004040', 15);
 
 # Updating address related data...
 #住所フォーマット
@@ -162,8 +163,7 @@ INSERT IGNORE INTO meta_tags_categories_description (categories_id, language_id,
 INSERT IGNORE INTO products_options (products_options_id, language_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style) SELECT products_options_id, @lan_id, products_options_name, products_options_sort_order, products_options_type, products_options_length, products_options_comment, products_options_size, products_options_images_per_row, products_options_images_style FROM products_options WHERE language_id = @default_lang;
 INSERT IGNORE INTO products_options_values (products_options_values_id, language_id, products_options_values_name, products_options_values_sort_order) SELECT products_options_values_id, @lan_id, products_options_values_name, products_options_values_sort_order FROM products_options_values WHERE language_id = @default_lang;
 INSERT IGNORE INTO manufacturers_info (manufacturers_id, languages_id, manufacturers_url) SELECT manufacturers_id, @lan_id, manufacturers_url FROM manufacturers_info WHERE languages_id = @default_lang;
-INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, sort_order FROM orders_status WHERE language_id = @default_lang;
-INSERT IGNORE INTO tax_rates_description (tax_rates_id, language_id, tax_description) SELECT tax_rates_id, @lan_id, tax_description FROM tax_rates_description WHERE language_id = @default_lang;
+INSERT IGNORE INTO orders_status (orders_status_id, language_id, orders_status_name, orders_status_color_code, sort_order) SELECT orders_status_id, @lan_id, orders_status_name, orders_status_color_code, sort_order FROM orders_status WHERE language_id = @default_lang;
 INSERT IGNORE INTO coupons_description (coupon_id, language_id, coupon_name, coupon_description) SELECT coupon_id, @lan_id, coupon_name, coupon_description FROM coupons_description WHERE language_id = @default_lang;
 INSERT IGNORE INTO ezpages_content (pages_id, languages_id, pages_title, pages_html_text) SELECT pages_id, @lan_id, pages_title, pages_html_text FROM ezpages_content WHERE languages_id = @default_lang;
 
