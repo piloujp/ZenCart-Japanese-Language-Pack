@@ -388,6 +388,7 @@ $define = [
     'SUCCESS_CATEGORY_MOVED' => '成功： カテゴリは正常に移動しました。',
     'SUCCESS_FILE_SAVED_SUCCESSFULLY' => '成功： アップロードされたファイルが保存されました。%s',
     'SUCCESS_PRODUCT_UPDATE_SORT' => '商品の並べ替え順の更新に成功しました　－　ID#　',
+    'SUCCESS_USER_DETAILS_UPDATED' => '管理者情報を更新しました。',
     'TABLE_ATTRIBUTES_QTY_PRICE_PRICE' => '価格',
     'TABLE_ATTRIBUTES_QTY_PRICE_QTY' => '数量',
     'TABLE_HEADING_ACTION' => 'アクション',

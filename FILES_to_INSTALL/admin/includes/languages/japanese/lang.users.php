@@ -25,7 +25,6 @@ $define = [
     'ERROR_ADMIN_NAME_TOO_SHORT' => '管理者ユーザー名は半角英数字、%s文字以上でなければなりません。',
     'ERROR_PASSWORD_TOO_SHORT' => 'パスワードは%s文字以上でなければなりません',
     'SUCCESS_NEW_USER_ADDED' => '新しい管理者を追加しました。',
-    'SUCCESS_USER_DETAILS_UPDATED' => '管理者情報を更新しました。',
     'SUCCESS_PASSWORD_UPDATED' => 'パスワードを更新しました。',
     'ERROR_ADMIN_INVALID_EMAIL_ADDRESS' => 'メールアドレスに不備があるか、入力されていない為、登録することができません。',
     'ERROR_ADMIN_INVALID_CHARS_IN_USERNAME' => '管理者ユーザー名に不備があるか、入力されていない為、登録することができません。',
