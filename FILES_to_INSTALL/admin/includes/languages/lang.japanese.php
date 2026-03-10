@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: Jeff Rutt 2024 Aug 28 Modified in v2.1.0-alpha2 $
+* @version $Id: Leonard 2025 Sep 14 Modified in v2.2.0 $
 */
 
 @setlocale(LC_TIME, ['ja', 'ja_JP', 'ja_JP.utf8', 'Japanese_Japan.932']);
@@ -360,7 +360,7 @@ $define = [
     'OTHER_IMAGE_CALL_FOR_PRICE' => 'call_for_prices.png',
     'OTHER_IMAGE_PRICE_IS_FREE' => 'free.png',
     'PAYMENT_MODULE_GV' => 'GV/DC',     //- 注：　この値は、ストアフロントの lang.japanese.phpでも定義されています。これが変更された場合は、必ず両方を更新してください！
-    'PHP_DATE_TIME_FORMAT' => 'm/d/Y H:i:s',
+    'PHP_DATE_TIME_FORMAT' => 'Y/m/d H:i:s',
     'PLEASE_SELECT' => '選択してください...',
     'PLUGIN_INSTALL_SQL_FAILURE' => 'データベースエラーが発生しています',
     'PREVNEXT_BUTTON_NEXT' => '[次&nbsp;&raquo;]',
