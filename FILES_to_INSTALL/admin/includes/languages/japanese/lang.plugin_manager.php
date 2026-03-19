@@ -50,6 +50,7 @@ $define = [
     'ERROR_NOT_FOUND_IN_SQL_FUNCTIONS_MAP' => 'SQLステートメントを確認してください。SQL 関数マップが見つかりません：',
     'ERROR_INVALID_SYNTAX' => '構文が無効なため、テーブルを識別できません：',
     'ERROR_SQL_PATCH' => 'SQL インストールの処理中にエラーが発生しました。　',
+    'WARNING_NONENCAPSULATED_REMOVAL' => '<b>注意：</b>このプラグインをインストールすると、非カプセル化バージョンによって提供されるファイル（存在する場合）が<b>完全に</b>削除されます。',
 ];
 
 return $define;

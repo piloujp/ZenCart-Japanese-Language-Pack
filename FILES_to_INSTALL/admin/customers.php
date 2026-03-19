@@ -34,7 +34,7 @@ if (!empty($action)) {
             $customer = new Customer($customers_id);
             $custinfo = $customer->getData();
             if (empty($custinfo)) {
-                zen_redirect(zen_href_list(FILENAME_CUSTOMERS, zen_get_all_get_params(['cID', 'action'])));
+                zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(['cID', 'action'])));
             }
 
             $current_authorization = $custinfo['customers_authorization'];
