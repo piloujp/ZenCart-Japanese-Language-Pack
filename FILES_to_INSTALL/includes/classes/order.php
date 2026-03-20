@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 2025 Oct 23 Modified in v2.2.0 $
+ * @version $Id: DrByte 2026 Feb 26 Modified in v2.2.1 $
  */
 /**
  * order class
@@ -1513,7 +1513,7 @@ class order extends base
         }
 
         // send additional emails
-        if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
+        if (SEND_EXTRA_ORDER_EMAILS_TO !== '') {
             $extra_info = email_collect_extra_info('', '', $this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], $this->customer['telephone']);
             $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
 

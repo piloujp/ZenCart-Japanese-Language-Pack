@@ -163,7 +163,7 @@ a.anclink {
       <p class="texte">ZC v1.5.8-1.5.8a --&gt; Japanese Language Pack v1.3.4<br>
         ZC v2.0.0-2.0.1 --&gt; Japanese Language Pack v2.0.1<br>
         ZC v2.1.0 --&gt; Japanese Language Pack v2.1.0<br>
-        ZC v2.2.0 --&gt; Japanese Language Pack v2.2.0</p>
+        ZC v2.2.1 --&gt; Japanese Language Pack v2.2.0</p>
       <p class="texte">If you don't respect this, database version will not be
         recognized correctly and database will not be updated to Japanese
         version.</p>
@@ -190,7 +190,7 @@ a.anclink {
           this database.<br>
           Please don't use too old versions of PHP and MySQL. You can check on
           Zen Cart site for exact requirement, but a good choice would be to use
-          PHP 8.1 or newer and MySQL 8.xx.</p>
+          PHP 8.2 or newer and MySQL 8.xx.</p>
         <p class="texte"><b>Extract latest Zen Cart</b> you have just downloaded
           and <b>copy all English ZC files</b> in your site folder. <b>Extract
             Zen Cart Japanese Language Pack</b> too and <b>copy all content of
@@ -213,7 +213,7 @@ a.anclink {
       <p class="title3"><a class="menu_links" onclick="shide('allinst')">Updating
           an already installed English cart but still close to default setting</a></p>
       <div id="allinst">
-        <p class="texte">When installing over an existing Zen Cart 2.1.0 with no
+        <p class="texte">When installing over an existing Zen Cart with no
           plugin that modify core files installed, it is nearly as easy as a new
           install but there are few points you need to check.</p>
         <p class="texte">Best is to update ZC to latest English version then use
@@ -451,8 +451,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte"><i><b>v1.3.x </b>of ZC Japanese Language Pack (ZC
             v1.5.8, v1.5.8a) already installed :</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp; To <b>upgrade</b> from older
-          version to<b> ZC v2.2.0</b>, <b>import</b> or run the SQL commands
-          from the provided <b>file</b> in 'sql' folder:</p>
+          version to<b> Japanese Language Pack v2.2.0</b>, <b>import</b> or run
+          the SQL commands from the provided <b>file</b> in 'sql' folder:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.sql' will
           update zones table and few other things.</p>
@@ -461,13 +461,14 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte">&nbsp;&nbsp;&nbsp; To upgrade <b>from ZC Japanese
             Language Pack v2.0.x</b>, there is only one minor database <b>upgrade
             of address format</b>. Just run this SQL file.</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql' </p>
+        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_2xx_to_220_update.sql' </p>
         <p class="texte"><i><b>v2.1.x </b>of ZC Japanese Language Pack (ZC
             v2.1.0 and above) already installed :</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp; To upgrade <b>from ZC Japanese
-            Language Pack v2.1.x</b>, there is only a minor database <b>upgrade
-            of address format</b>. To update, you should run this SQL file.</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_update_zc_v2.2.0.sql' </p>
+            Language Pack v2.1.x</b>, there is only a database <b>version
+            update</b>. To update, you should run this SQL file.</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;
+          'version_update_zc_database_v2.2.0.sql' </p>
         <p class="title4">Finally:</p>
         <p class="texte">If you have other (old) plugins installed that have
           their own language files, try to find them in <b>optional_plugins</b>
@@ -505,8 +506,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         You will find more information through comments in class files where
         arrays were saved in older versions.<br>
         <br>
-        There is a special plugin '<b>Tarifs</b>' that allows you to edit latest
-        shipping rates saved in database from <b><code>admin::Modules-&gt;Shipping
+        There is a special plugin '<b>Shipping Rates Editor</b>' that allows you
+        to edit latest shipping rates saved in database from <b><code>admin::Modules-&gt;Shipping
             Pricing</code></b>. But if you want to create a completely new one,
         you must do it through file editing. It will be installed/copied in
         database at next plugin install, keeping the old one too as a backup. Do
@@ -609,11 +610,11 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         need to merge those rather than copy them.<br>
       </p>
       <p class="title2">Version history</p>
-      <p class="texte">V2.2.0 - ???? ?? 2026<br>
-        Update for new Zen Cart version 2.2.0.<br>
+      <p class="texte">V2.2.0 - March 27 2026<br>
+        Update for new Zen Cart version 2.2.1.<br>
         Languages constants corrections and updates.<br>
         Minor database update.<br>
-        Zen Cart cores files updated.<br>
+        Zen Cart modified cores files updated.<br>
         <br>
         V2.1.3j - July 30 2025<br>
         Japanese Shipping modules update. Refrigerated Yu-Pack shipping module
@@ -852,7 +853,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="texte">ZC v1.5.8-1.5.8a --&gt; 日本語言語パック v1.3.4<br>
         ZC v2.0.0-2.0.1 --&gt; 日本語言語パック v2.0.1<br>
         ZC v2.1.0 --&gt; 日本語言語パック v2.1.<br>
-        ZC v2.2.0 --&gt; 日本語言語パック v2.2.0</p>
+        ZC v2.2.1 --&gt; 日本語言語パック v2.2.0</p>
       <p class="texte">これを尊重しないと、データベースのバージョンが正しく認識され ず、データベースが日本語バージョンに更新されません。</p>
       <p class="texte">最後に、カートがすでにインストールされている場合は、<span id="important">データベースを含む完
           全なバックアップを実行する必要があります</span>。ファイルの場合、コピーは簡単ですが、データベースの場合は、必要に応じて再度インポート
@@ -870,7 +871,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           次に、空の MySQL データベース (utf8mb4_general_ci 照合)
           と、このデータベースに対する標準の書き込み、読み取り、編集、削除の権限を持つユーザーを設定する必要があります。<br>
           PHPとMySQLのバージョンが古すぎる場合は使用しないでください。正確な要件はZen Cartのサイトでご確認いただけますが、PHP
-          8.1以降とMySQL 8.xxを使用することをお勧めします。</p>
+          8.2以降とMySQL 8.xxを使用することをお勧めします。</p>
         <p class="texte">ダウンロードした<b>最新の Zen Cart を抽出し</b>、<b>すべての英語の ZC ファイルをサイト
             フォルダーにコピーします</b>。<b>Zen Cart 日本語言語パックも抽出し</b>、必要に応じて、Zen Cart の元の<b>ファ
             イルを上書きして</b>、フォルダー <b>'FILES_to_INSTALL' のすべてのコンテンツをコピーします</b>。順序を逆
@@ -886,7 +887,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="title3"><a class="menu_links" onclick="shide('allinstjp')">すでにイン
           ストールされている英語のカートを更新していますが、まだデフォルト設定に近いです</a></p>
       <div id="allinstjp">
-        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart 2.1.0
+        <p class="texte">コア ファイルを変更するプラグインがインストールされていない既存の Zen Cart
           に上書きインストールする場合、新規インストールとほぼ同じくらい簡単ですが、確認する必要がある点がいくつかあります。</p>
         <p class="texte">ZC を最新の英語バージョンに更新してから、対応する最新の日本語言語パックを使用することをお勧めします。</p>
         <p class="texte">まず、インストールしたカートの<b>バックアップ</b>を作成した後、<b>Zen Cart
@@ -1104,10 +1105,10 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
                       況に応じて次の操作を実行してください</span></span></span>。</span></span></span></p>
         <p class="texte"><i><b>ZC 日本語言語パック v1.3.x </b>(ZC v1.5.8、v1.5.8a)
             がすでにインストールされています:</i></p>
-        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>v2.2.0に</b><span
-            class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">アッ
-                プグレード</span></span></span>す るには、「sql」フォルダー内 の提供された<b>ファイル</b>から
-          SQL コマンドを<b>インポート</b>または実行します:</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 旧バージョンから<b>日本語言語パック
+            v2.2.0に</b><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
+                class="ryNqvb">アッ プグレード</span></span></span>す るには、「sql」フォルダー内
+          の提供された<b>ファイル</b>から SQL コマンドを<b>インポート</b>または実行します:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           'mysql_japanese_zones_database_update_from_v1.3.x_to_v2.sql' は、ゾーン
           テーブルとその他のいくつかのものを更新します。</p>
@@ -1115,14 +1116,16 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
             がすでにインストールされています:</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック v2.0.x から</b>更
           新するには、<b>データベースの住所形式</b>に必要なのは、一つの小さな更新だけです。この SQL ファイルを実行するだけです。</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_200_to_210_update.sql'</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_2xx_to_220_update.sql'</p>
         <p class="texte"><i><b>ZC 日本語言語パック v2.1.x</b> (ZC v2.0.0 以上)
             がすでにインストールされています:</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック v2.1.x から</b><span
+            class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">ア</span></span></span><span
             class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span class="ryNqvb">アッ
-                プグレード</span></span></span>する場合、データベースの<b>住所形式にはわずかな更新のみ</b>がありま
-          す。 このSQLファイルを実行するだけです。</p>
-        <p class="texte">&nbsp;&nbsp;&nbsp; 'version_update_zc_v2.2.0.sql'</p>
+                プグレードするには、データベースの<b>バージョンアップ</b>のみが必要です</span></span></span>。
+          このSQLファイルを実行するだけです。</p>
+        <p class="texte">&nbsp;&nbsp;&nbsp;
+          'version_update_zc_database_v2.2.0.sql'</p>
         <p class="title4">最後に：</p>
         <p class="texte">独自の言語ファイルを持つ他のプラグインがインストールされている場合は、optional_plugins
           フォルダーでそれらを探してみてください。存在しない場合は、これらの言語ファイルを英語フォルダから対応する日本語フォルダにコピーする必要があります。翻訳は後でこれ
@@ -1148,8 +1151,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         見積りは、プラグインのインストール時にデータベースに保存されるこれらのファイルの配列に基づいて行われます。ここで配送料が設定されます。<br>
         古いバージョンで配列が保存されていたクラス ファイルのコメントから、詳細情報を確認できます。</p>
       <p class="texte"><b><code>admin::Modules-&gt;Shipping Pricing</code></b>
-        からデータベースに保存されている最新の配送料を編集できる特別なプラグイン「<b>Tarifs</b>」があります。ただし、完全に新しいものを作成
-        したい場合は、ファイルの編集を
+        からデータベースに保存されている最新の配送料を編集できる特別なプラグイン「<b>配送料金マネージャー</b>」があります。ただし、完全に新しいも
+        のを作成 したい場合は、ファイルの編集を
         通じて行う必要があります。次のプラグインのインストール時にデータベースにインストール/コピーされ、古いものもバックアップとして保持されます。実装
         日「<b><code>imple_date</code></b>」
         を更新することを忘れないでください。すでにインストールされている料金とは異なる/新しい料金である必要があります。そうでない場合、インストール/使用されません。将
@@ -1231,11 +1234,11 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ださい。</p>
       <p class="texte"> </p>
       <p class="title2">バーションヒストリー</p>
-      <p class="texte">V2.2.0 - ２０２６年？月？？日<br>
-        新しい Zen Cart バージョン 2.2.0 へのアップデート。<br>
+      <p class="texte">V2.2.0 - ２０２６年３月２７日<br>
+        新しい Zen Cart バージョン 2.2.1 へのアップデート。<br>
         言語定数の修正と更新。<br>
         マイナーデータベース更新。<br>
-        Zen Cart コアファイルが更新されました。<br>
+        Zen Cartの修正済みコアファイルが更新されました。<br>
         <br>
         V2.1.3j - ２０２５年７月３０日<br>
         日本の配送モジュールを更新しました。冷蔵ゆうパックの配送モジュールを追加しました。<br>

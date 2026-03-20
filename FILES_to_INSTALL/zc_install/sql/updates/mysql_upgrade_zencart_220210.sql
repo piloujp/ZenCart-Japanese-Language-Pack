@@ -1,10 +1,10 @@
 #
-# * This SQL script upgrades the Zen Cart database structure from v2.0.0 to Japanese Language Pack database v2.1.0
+# * This SQL script upgrades the Zen Cart database structure from v2.2.0 to Japanese Language Pack database v2.1.0
 # *
 # * @access private
-# * @copyright Copyright 2003-2025 Zen Cart Development Team
+# * @copyright Copyright 2003-2026 Zen Cart Development Team
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: pilou2/piloujp 2025 August 21 Modified in v2.2.0-alpha $
+# * @version $Id: pilou2/piloujp 2026 Mar 20 Modified in v2.2.1 $
 #
 
 #PROGRESS_FEEDBACK:!TEXT=Purging caches ...

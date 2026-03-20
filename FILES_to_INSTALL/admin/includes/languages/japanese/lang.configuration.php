@@ -391,7 +391,7 @@ $define = [
     'CFGTITLE_IMAGE_SUFFIX_LARGE' => '商品情報 - 画像(大)のファイル接尾辞(Suffix)',
     'CFGDESC_IMAGE_SUFFIX_LARGE' => '商品画像のファイル接尾辞を設定します。<br>・デフォルト = _LRG',
     'CFGTITLE_ADDITIONAL_IMAGES_MODE' => '追加画像ファイル名の一致パターン',
-    'CFGDESC_ADDITIONAL_IMAGES_MODE' => '&quot;strict&quot; = 常に &quot;_&quot; サフィックスを使用する<br>&quot;legacy&quot; = サブディレクトリでのみ &quot;_&quot; サフィックスを使用する<br>（v210 より前は legacy がデフォルトでした）<br>デフォルト = strict',
+    'CFGDESC_ADDITIONAL_IMAGES_MODE' => 'ファイル名一致モードでは、「_」サフィックスを次の2つの形式で使用できます。<br>「strict」=常に「_」サフィックスを使用する<br>「legacy」=サブディレクトリでのみ「_」サフィックスを使用する<br>（v210 より前は「legacy」がデフォルトでした）<br>デフォルト = strict',
     'CFGTITLE_IMAGES_AUTO_ADDED' => '商品情報 - １行に表示する追加画像数',
     'CFGDESC_IMAGES_AUTO_ADDED' => '商品情報で１行に表示する追加画像数を設定します。<br>・デフォルト = 3',
     'CFGTITLE_ADDITIONAL_IMAGES_HANDLING' => '追加の画像処理',

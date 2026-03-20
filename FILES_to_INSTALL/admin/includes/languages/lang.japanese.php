@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: Leonard 2025 Sep 14 Modified in v2.2.0 $
+* @version $Id: lat9 2026 Feb 28 Modified in v2.2.1 $
 */
 
 @setlocale(LC_TIME, ['ja', 'ja_JP', 'ja_JP.utf8', 'Japanese_Japan.932']);
