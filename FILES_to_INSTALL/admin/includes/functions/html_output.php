@@ -140,6 +140,7 @@ function zen_catalog_base_link($connection = '')
  * HTML image wrapper function
  * @since ZC v1.0.3
  */
+if (!function_exists('zen_image')) {
   function zen_image($src, $alt = '', $width = '', $height = '', $params = '') {
     if ($src === DIR_WS_CATALOG_IMAGES) {
       return '';
@@ -177,6 +178,7 @@ function zen_catalog_base_link($connection = '')
 
     return $image;
   }
+}
 
 /**
  * @deprecated since v1.5.8. Use <button> markup instead

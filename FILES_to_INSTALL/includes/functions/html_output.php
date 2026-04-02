@@ -189,6 +189,7 @@ function zen_image_OLD($src, $title = '', $width = '', $height = '', $parameters
  * HTML image wrapper function
  * @since ZC v1.0.3
  */
+if (!function_exists('zen_image')) {
 function zen_image($src, $title = '', $width = '', $height = '', $parameters = '')
 {
     global $template_dir, $zco_notifier;
@@ -299,6 +300,7 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
     $image .= '>';
 
     return $image;
+}
 }
 
 /**

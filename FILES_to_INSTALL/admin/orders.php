@@ -1451,7 +1451,7 @@ if ($show_orders_weights === true) {
                                         }
                                     }
 
-//        $orders_query_numrows = '';
+                                    $orders_query_numrows = $orders_query_numrows ?? 0;
                                     $orders_split = new splitPageResults($_GET['page'], MAX_DISPLAY_SEARCH_RESULTS_ORDERS, $orders_query_raw, $orders_query_numrows);
                                     $orders = $db->Execute($orders_query_raw);
 

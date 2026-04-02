@@ -1472,6 +1472,7 @@ if ($action === 'edit' || $action === 'update') {
         }
     }
 
+    $customers_query_numrows = $customers_query_numrows ?? 0;
     $customers_split = new splitPageResults(
         $_GET['page'],
         MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER,
