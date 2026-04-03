@@ -212,7 +212,7 @@ class _Yamato {
     function GetQuote() {
         global $db;
         $a_coolcharge = [];
-        
+
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,180,200)
         // (参照) https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
 

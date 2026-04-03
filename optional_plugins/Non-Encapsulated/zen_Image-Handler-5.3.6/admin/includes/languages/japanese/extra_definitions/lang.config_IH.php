@@ -7,7 +7,7 @@
 */
 
 $define = [
-    'CFGTITLE_IH_RESIZE' => 'IH による画像のサイズ変更',    'CFGDESC_IH_RESIZE' => '-no- (古い Zen Cart の動作) を選択するか、-yes- を選択して自動サイズ変更と画像キャッシュを有効にします。 --Remarque : Si vous sélectionnez -no-, tous les paramètres d\'image spécifiques au gestionnaire d\'images ne seront pas disponibles, notamment : 画像ファイルの種類、背景色、圧縮、画像ホバー、透かしの選択。 ImageMagick を使用する場合は、「<em>includes/extra_configures/bmz_image_handler_conf.php</em>」 で<strong>変換</strong>実行可能ファイルの場所を指定する必要があります。',
+    'CFGTITLE_IH_RESIZE' => 'IH による画像のサイズ変更',    'CFGDESC_IH_RESIZE' => '従来の Zen-Cart の動作を選択する場合は「no」を、画像の自動サイズ変更とキャッシュを有効にする場合は「yes」を選択してください。--注:「no」を選択した場合、画像ファイルタイプの選択、背景色、圧縮、画像ホバー、透かしなど、イメージハンドラー固有の画像設定はすべて利用できなくなります-- ImageMagick を使用する場合は、<em>includes/extra_configures/bmz_image_handler_conf.php</em> で <strong>convert</strong> バイナリの場所を指定する必要があります。',
     'CFGTITLE_SMALL_IMAGE_FILETYPE' => 'IH 小さな画像ファイルタイプ',
     'CFGDESC_SMALL_IMAGE_FILETYPE' => '-jpg-、-gif-、-png-、-webp- のいずれかを選択します。Internet Explorer の古いバージョン (v6.0 以前) では、透明な領域のある -png- 画像の表示に問題があります。Internet Explorer の古いバージョンをサポートする必要がある場合は、透過性のために -gif- を使用することをお勧めします。ただし、透過性には -png- の方がはるかに優れた形式です。大きい画像には -jpg- または -png- を使用してください。-no_change- は古い Zen-Cart の動作で、小さい画像にはアップロードした画像と同じファイル拡張子を使用します。',
     'CFGTITLE_SMALL_IMAGE_BACKGROUND' => '小さなIH画像の背景',

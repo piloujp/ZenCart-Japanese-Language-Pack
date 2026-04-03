@@ -7,7 +7,7 @@ class ScriptedInstaller extends ScriptedInstallBase
     protected function executeInstall()
     {
         global $sniffer;
-        
+
         zen_deregister_admin_pages(['TarifsView']);
         if ($sniffer->table_exists(DB_PREFIX . 'tarifs')) {
             zen_define_default('TABLE_SHIPPING_RATES', DB_PREFIX . 'shipping_rates');

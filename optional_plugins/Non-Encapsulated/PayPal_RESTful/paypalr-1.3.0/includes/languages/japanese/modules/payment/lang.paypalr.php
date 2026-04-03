@@ -63,7 +63,7 @@ $define = [
 
     'MODULE_PAYMENT_PAYPALR_TEXT_CC_ERROR' => 'クレジットカードの処理中にエラーが発生しました。',
     'MODULE_PAYMENT_PAYPALR_TEXT_CARD_DECLINED' => '<var>%s</var> で終わるカードは拒否されました。',     //- %s is the last-4 of the card-number.
-    'MODULE_PAYMENT_PAYPALR_TEXT_DECLINED_REASON_UNKNOWN' => 'このメッセージが引き続き表示される場合は、理由コード \'%s\' を添えてお問い合わせください。', //- %s is ['processor_response']['response_code']
+    'MODULE_PAYMENT_PAYPALR_TEXT_DECLINED_REASON_UNKNOWN' => 'このメッセージが引き続き表示される場合は、理由コード「%s」を添えてお問い合わせください。', //- %s is ['processor_response']['response_code']
 
     'MODULE_PAYMENT_PAYPALR_TEXT_TRY_AGAIN' => 'もう一度お試しいただくか、別のお支払い方法を選択するか、サポートにお問い合わせください。',
 
@@ -82,11 +82,11 @@ $define = [
         'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_TOTAL_MISMATCH' => '計算の不一致',
         'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_CONFIRMATION_ERROR' => '支払い方法の選択を確認', 
 
-    'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATION' => 'ペイパルの応答ステータスが \'%2$s\' であるため、注文番号 %1$u のステータスは強制的に「処理待ち」になりました。',
+    'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATION' => 'ペイパルの応答ステータスが「%2$s」であるため、注文番号 %1$u のステータスは強制的に「処理待ち」になりました。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_OBSERVER' => '支払いモジュールのオブザーバー（auto.paypalrestful.php）が読み込まれませんでした。支払いモジュールは無効になっています。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_NOTIFICATIONS' => 'order_total.php クラスで必要な通知が適用されなかったため、支払いモジュールは注文を行うことができません。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_ROOT_FILES' => '必要なルートディレクトリファイル（%s）が見つかりません。ファイルシステムの権限を確認してください。',
-    'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATE' => '注文を開始しようとしたときにペイパルからエラーが返されました。礼儀として、エラー \'code\' のみが顧客に表示されました。エラーの詳細は以下に表示されます。' . "\n\n",
+    'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATE' => '注文を開始しようとしたときにペイパルからエラーが返されました。礼儀として、エラーコードのみが顧客に表示されました。エラーの詳細は以下に表示されます。' . "\n\n",
     'MODULE_PAYMENT_PAYPALR_ALERT_TOTAL_MISMATCH' => '注文の総額と内訳に矛盾が見つかりました。注文は、商品と費用の内訳が含まれないままペイパルに送信されています。',
     'MODULE_PAYMENT_PAYPALR_ALERT_CONFIRMATION_ERROR' => 'ペイパルウォレットから顧客の支払い選択を確認しようとしたときに、ペイパルから処理できない返品を受け取りました。',
     'MODULE_PAYMENT_PAYPALR_ALERT_EXTERNAL_TXNS' => '注文番号 %u のステータスを確認してください。ペイパル取引は支払いモジュールの処理外で追加されました。',
@@ -149,7 +149,7 @@ $define = [
     // Admin messages, from an order's display, viewing the PayPal transaction history.
     //
     'MODULE_PAYMENT_PAYPALR_TEXT_GETDETAILS_ERROR' => 'ペイパル取引の詳細を取得中に問題が発生しました。',
-    'MODULE_PAYMENT_PAYPALR_NO_RECORDS' => '注文番号 %2$u のデータベースに \'%1$s\' レコードが見つかりませんでした。',
+    'MODULE_PAYMENT_PAYPALR_NO_RECORDS' => '注文番号 %2$u のデータベースに「%1$s」レコードが見つかりませんでした。',
     'MODULE_PAYMENT_PAYPALR_EXTERNAL_ADDITION' => 'ペイパル取引が支払いモジュールの処理外で追加されました。注文のステータスが正しいことを確認してください。',
 
     // -----

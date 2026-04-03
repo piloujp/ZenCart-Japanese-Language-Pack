@@ -37,7 +37,7 @@ $define = [
 
     'TEXT_LOOKUP_INSTRUCTIONS' => '注文のステータスを確認するには、注文番号と注文時のメールアドレスを入力してください。',
 
-    'FOOTER_DOWNLOAD' => '後で \'%s\' から商品をダウンロードすることも可能です。',
+    'FOOTER_DOWNLOAD' => '後で「%s」から商品をダウンロードすることも可能です。',
     'FOOTER_DOWNLOAD_COWOA' => '最大ダウンロード数に達するか、時間がなくなるまで、「注文状況ページ」を使用して商品をダウンロードできます。',
 ];
 return $define;

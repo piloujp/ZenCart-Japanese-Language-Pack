@@ -17,7 +17,7 @@ class zcObserverSagawa extends base
         $prod_list_constant = constant('MODULE_SHIPPING_' . strtoupper($class->code) . '_PROD_LIST');
         $cat_constant = constant('MODULE_SHIPPING_' . strtoupper($class->code) . '_CATEGORIES');
         $prod_constant = constant('MODULE_SHIPPING_' . strtoupper($class->code) . '_PRODUCTS');
-        
+
         $cat_list = (!empty($cat_list_constant)) ? explode(',', $cat_list_constant) : [-1];
         $prod_list = (!empty($prod_list_constant)) ? explode(',', $prod_list_constant) : [-1];
         if (!empty($cat_list) && !empty($prod_list)) {
