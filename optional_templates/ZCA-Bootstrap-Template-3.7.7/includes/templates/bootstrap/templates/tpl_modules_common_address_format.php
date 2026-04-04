@@ -212,6 +212,16 @@ if (ACCOUNT_STATE === 'true') {
 
 <?php } ?>
 
+<label class="inputLabel" for="telephone"><?php echo ENTRY_TELEPHONE_NUMBER; ?></label>
+<?php echo zen_draw_input_field('entry_telephone', $entry->fields['entry_telephone'], zen_set_field_length(TABLE_CUSTOMERS, 'customers_telephone', '40') . ' id="telephone" placeholder="' . ENTRY_TELEPHONE_NUMBER_TEXT . '"' . ((int)ENTRY_TELEPHONE_MIN_LENGTH > 0 ? ' required' : ''), 'tel'); ?>
+<br class="clearBoth">
+
+<?php  if (ACCOUNT_FAX_NUMBER == 'true') { ?>
+<label class="inputLabel" for="fax"><?php echo ENTRY_FAX_NUMBER; ?></label>
+<?php echo zen_draw_input_field('entry_fax', $entry->fields['entry_fax'], 'id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel'); ?>
+<br class="clearBoth">
+<?php } ?>
+
 <?php
 if ($current_page_base === FILENAME_ADDRESS_BOOK_PROCESS && (!isset($_GET['edit']) || (int)$_SESSION['customer_default_address_id'] !== (int)$_GET['edit'])) {
 ?>
