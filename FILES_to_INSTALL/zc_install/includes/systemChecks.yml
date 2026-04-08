@@ -39,9 +39,9 @@ systemChecks:
       checkPhpVersionMin:
         method: checkPhpVersion
         parameters:
-          version: 8.2.0
+          version: 8.3.0
           versionTest: ge
-          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '8.2') . PHP_EOL; ?>
+          localErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_MIN, '8.3') . PHP_EOL; ?>
       checkPhpVersionMax:
         method: checkPhpVersion
         parameters:
@@ -51,12 +51,12 @@ systemChecks:
   checkPhpVersionRecommendation:
     runLevel: always
     errorLevel: WARN
-    mainErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_RECOMMENDED, '8.4') . PHP_EOL; ?>
+    mainErrorText: <?php echo sprintf(TEXT_ERROR_PHP_VERSION_RECOMMENDED, '8.5') . PHP_EOL; ?>
     methods:
       checkPhpVersionRecommended:
         method: checkPhpVersion
         parameters:
-          version: 8.4.0
+          version: 8.5.0
           versionTest: ge
   checkZCversion:
     runLevel: always
@@ -303,11 +303,11 @@ systemChecks:
     methods:
       checkHttpsRequest:
 
-  checkDBVersion220210:
+  checkDBVersion300210:
     runLevel: dbVersion
     errorLevel: WARN
-    version: '2.2.0210'
-    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v2.2.0210') . PHP_EOL; ?>
+    version: '3.0.0210'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v3.0.0210') . PHP_EOL; ?>
     methods:
       dbVersionChecker:
         parameters:
@@ -371,6 +371,18 @@ systemChecks:
             tableName: orders
             fieldName: delivery_timespec
             fieldCheck: Exists
+
+  checkDBVersion300:
+    runLevel: dbVersion
+    errorLevel: WARN
+    version: '3.0.0'
+    mainErrorText: <?php echo sprintf(TEXT_DB_VERSION_NOT_FOUND, 'v3.0.0') . PHP_EOL; ?>
+    methods:
+      dbVersionChecker:
+        parameters:
+          # TODO: The following checkType is merely a placeholder copied from 220 below as a stub. Update with an actual db change that can be inspected, and remove this comment.
+          - checkType: configKeyExists
+            keyName: PASSWORD_RESET_TOKEN_LENGTH
 
   checkDBVersion220:
     runLevel: dbVersion

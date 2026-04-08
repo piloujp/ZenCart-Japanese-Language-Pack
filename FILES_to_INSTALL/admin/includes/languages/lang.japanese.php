@@ -3,8 +3,8 @@
  * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-* @version $Id: lat9 2026 Feb 28 Modified in v2.2.1 $
-*/
+ * @version $Id: ZenExpert 2026 Jan 14 Modified in v3.0.0 $
+ */
 
 @setlocale(LC_TIME, ['ja', 'ja_JP', 'ja_JP.utf8', 'Japanese_Japan.932']);
 
@@ -246,19 +246,36 @@ $define = [
     'ERROR_UNABLE_TO_DISPLAY_SERVER_INFORMATION' => '申し訳ありません。 PHP 設定情報を表示することが出来ません。ご利用のサーバーでは、php.ini の[disable_functions] 設定において、[phpinfo] が利用できない様に設定されているようです。',
     'FEMALE' => '女性',
     'HEADER_ALT_TEXT' => '管理 Powered by Zen Cart :: The Art of E-Commerce',
+    'HEADER_LOGO_IMAGE_HOME' => '',
     'HEADER_LOGO_IMAGE' => 'logo.gif',
     'HEADER_LOGO_WIDTH' => '192',
     'HEADER_LOGO_HEIGHT' => '68',
+    'HEADER_TEXT_ADMIN' => '管理',
+    'HEADER_TEXT_HOSTNAME' => 'ホスト名',
+    'HEADER_TEXT_IP_ADDRESS' => 'IPアドレス',
+    'HEADER_TEXT_JUMP_TO_CATEGORY' => 'カテゴリの変更：',
+    'HEADER_TEXT_LANGUAGES' => '言語',
+    'HEADER_TEXT_LOCALE' => '言語ロケール',
+    'HEADER_TEXT_SEARCH_CUSTOMERS' => '顧客を検索...',
+    'HEADER_TEXT_SEARCH_ORDERS' => '注文を検索...',
+    'HEADER_TEXT_SECURITY_WARNING' => '警告：管理者アクティビティログの操作が必要です！',
+    'HEADER_TEXT_TIMEZONE' => 'タイムゾーン',
     'HEADER_TITLE_ACCOUNT' => 'マイアカウント',
     'HEADER_TITLE_LOGOFF' => 'ログオフ',
+    'HEADER_TITLE_MENU' => 'メニュー',
+    'HEADER_TITLE_MENU_ERROR' => 'メニューが空であるか、設定エラーが発生しています。',
     'HEADER_TITLE_ONLINE_CATALOG' => 'オンラインショップ',
+    'HEADER_TITLE_QUICK_ACTIONS' => 'クイックアクション',
     'HEADER_TITLE_SUPPORT_SITE' => 'サポート',
     'HEADER_TITLE_TOP' => 'ホーム',
     'HEADER_TITLE_VERSION' => 'バージョン',
-    'HEADING_TITLE_VAL' => 'オプション値',
+    'HEADER_TITLE_VERSION_SYSTEM_CHECK' => 'システムチェック',
+    'HEADER_TITLE_VERSION_UP_TO_DATE' => 'システムは最新の状態です。',
     'HEADING_TITLE_SEARCH_DETAIL' => '検索： ',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS' => '商品ID検索（コンマ区切り）',
     'HEADING_TITLE_SEARCH_DETAIL_REPORTS_NAME_MODEL' => '商品名・型番で検索',
+    'HEADING_TITLE_VAL' => 'オプション値',
+    'HEADER_TOGGLE_NAVIGATION' => 'ナビゲーションの切り替え',
     'HELPTEXT_WHOLESALE_POPUP_TITLE' => '卸売価格の設定',
     'HELPTEXT_WHOLESALE_PRICES' => '小売価格のみの場合は 0 を入力します。 それ以外の場合は、卸売価格レベルをマイナス記号 (-) で区切って入力します。 価格レベルは、固定金額またはパーセントオフのいずれかです。 たとえば、「2.00-10%-1.00」の場合、レベル 1 の顧客には 2.00、レベル 2 の顧客には 10% オフ、レベル 3 以上の顧客には 1.00 の価格が与えられます。',
     'HTML_PARAMS' => 'dir="ltr" lang="ja"',
@@ -623,6 +640,7 @@ $define = [
     'TEXT_SHOW_GV_QUEUE' => '%s 承認待ち ',
     'TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_OFF' => 'オプション一括設定メニュー - 非表示',
     'TEXT_SHOW_OPTION_NAMES_VALUES_COPIER_ON' => 'オプション一括設定メニュー - 表示',
+    'TEXT_SINCE_DATE' => '%s から',
     'TEXT_SORT_CATEGORIES_NAME' => 'カテゴリ名順',
     'TEXT_SORT_CATEGORIES_SORT_ORDER_CATEGORIES_NAME' => 'カテゴリの並び順＞カテゴリ名順',
     'TEXT_SORT_ORDER' => '順',

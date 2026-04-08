@@ -164,6 +164,7 @@ a.anclink {
         ZC v2.0.0-2.0.1 --&gt; Japanese Language Pack v2.0.1<br>
         ZC v2.1.0 --&gt; Japanese Language Pack v2.1.3j<br>
         ZC v2.2.x --&gt; Japanese Language Pack v2.2.1<br>
+        ZC v3.0.0 --&gt; GitHub branch in development</p>
       <p class="texte">If you don't respect this, database version will not be
         recognized correctly and database will not be updated to Japanese
         version.</p>
@@ -190,7 +191,7 @@ a.anclink {
           this database.<br>
           Please don't use too old versions of PHP and MySQL. You can check on
           Zen Cart site for exact requirement, but a good choice would be to use
-          PHP 8.2 or newer and MySQL 8.xx.</p>
+          PHP 8.3 or newer and MySQL 8.xx.</p>
         <p class="texte"><b>Extract latest Zen Cart</b> you have just downloaded
           and <b>copy all English ZC files</b> in your site folder. <b>Extract
             Zen Cart Japanese Language Pack</b> too and <b>copy all content of
@@ -242,7 +243,7 @@ a.anclink {
         <p class="texte">After clicking on 'Upgrade' button, on next screen you
           will have to <b>enter your superuser credentials</b>, but before you
           must check that on the list above there is at least <b>one option</b>
-          like '2.2.0 to 2.2.0210' that correspond to your version. You can then
+          like '3.0.0 to 3.0.0210' that correspond to your version. You can then
           proceed as a normal install.</p>
         <p class="texte">If all is good, you can go to configuration chapter.</p>
       </div>
@@ -434,8 +435,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           There is a <b>folder named 'sql'</b> where you will find the SQL file
           we need to upgrade Zen Cart database:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-          'mysql_upgrade_zencart_220210.sql' to upgrade to Japanese Language
-          Pack v2.2.0 (database v210).</p>
+          'mysql_upgrade_zencart_300300.sql' to upgrade to Japanese Language
+          Pack v3.0.0 (database v300).</p>
         <p class="texte">This file contains database modifications and
           configurations for this Japanese Language Pack. It includes new fields
           for furigana, phone, fax number and delivery time in tables orders,
@@ -445,7 +446,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           import function or Zen Cart admin tool.</p>
         <p class="title6">From Japanese Zen Cart:</p>
         <p class="texte">Special SQL files for actual database upgrade are
-          provided. But <b>first</b> you need to <b>upgrade</b> Zen Cart v2 <b>to
+          provided. But <b>first</b> you need to <b>upgrade</b> Zen Cart v3 <b>to
             latest English version</b>. Then do as follows depending on your
           case.</p>
         <p class="texte"><i><b>v1.3.x </b>of ZC Japanese Language Pack (ZC
@@ -860,6 +861,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ZC v2.0.0-2.0.1 --&gt; 日本語言語パック v2.0.1<br>
         ZC v2.1.0 --&gt; 日本語言語パック v2.1.3j<br>
         ZC v2.2.1 --&gt; 日本語言語パック v2.2.1<br>
+        ZC v3.0.0 --&gt; GitHubブランチは開発中です</p>
       <p class="texte">これを尊重しないと、データベースのバージョンが正しく認識され ず、データベースが日本語バージョンに更新されません。</p>
       <p class="texte">最後に、カートがすでにインストールされている場合は、<span id="important">データベースを含む完
           全なバックアップを実行する必要があります</span>。ファイルの場合、コピーは簡単ですが、データベースの場合は、必要に応じて再度インポート
@@ -877,7 +879,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           次に、空の MySQL データベース (utf8mb4_general_ci 照合)
           と、このデータベースに対する標準の書き込み、読み取り、編集、削除の権限を持つユーザーを設定する必要があります。<br>
           PHPとMySQLのバージョンが古すぎる場合は使用しないでください。正確な要件はZen Cartのサイトでご確認いただけますが、PHP
-          8.2以降とMySQL 8.xxを使用することをお勧めします。</p>
+          8.3以降とMySQL 8.xxを使用することをお勧めします。</p>
         <p class="texte">ダウンロードした<b>最新の Zen Cart を抽出し</b>、<b>すべての英語の ZC ファイルをサイト
             フォルダーにコピーします</b>。<b>Zen Cart 日本語言語パックも抽出し</b>、必要に応じて、Zen Cart の元の<b>ファ
             イルを上書きして</b>、フォルダー <b>'FILES_to_INSTALL' のすべてのコンテンツをコピーします</b>。順序を逆
@@ -914,7 +916,7 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
                 class="ryNqvb">「アップグレード」ボタンをクリックすると、次の画面で<b>スーパーユーザーの資格情報</b>を入力
                 する必要があります。</span></span></span><span class="HwtZe" lang="ja"><span
               class="jCAhz JxVs2d ChMk0b"><span class="ryNqvb">ただし、その前に、上記のリストに、
-                お使いのバージョンに対応する「2.2.0 ～ 2.2.0210」などの<b>オプションが少なくとも 1 つあること</b>を確認
+                お使いのバージョンに対応する「3.0.0 ～ 3.0.0210」などの<b>オプションが少なくとも 1 つあること</b>を確認
                 する必要があります。</span></span></span>その後、通常のインストールとして続行できます。</p>
         <p class="texte">すべて問題なければ、構成の章に進むことができます。</p>
       </div>
@@ -1094,14 +1096,14 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           動でアップグレードできます。次、<b>「sql」という名前のフォルダー</b>があり、そこに Zen Cart
           データベースを更新するために必要な SQL ファイルがあります。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;
-          'mysql_upgrade_zencart_220210.sql' 、日本語言語パックを v2.2.0（データベース
-          v210）にアップグレードします。</p>
+          'mysql_upgrade_zencart_300300.sql' 、日本語言語パックを v3.0.0（データベース
+          v300）にアップグレードします。</p>
         <p class="texte"> このファイルには、この日本語言語パックのデータベースの変更と構成が含まれています。これには、テーブル
           order、address_book、customers にフリガナ、電話番号、FAX 番号、配達時間の新しいフィールドが追加され。<br>
           「phpMyAdmin」 インポート機能または Zen Cart admin を使用して、<b>このファイルを</b>カートのデータベースに<b>イ
             ンポート</b>すれば完了です。</p>
         <p class="title6">日本語カートから：</p>
-        <p class="texte">データベース更新用の専用SQLファイルを提供します。ただし、<b>まず</b> Zen Cart v2 を<b>最
+        <p class="texte">データベース更新用の専用SQLファイルを提供します。ただし、<b>まず</b> Zen Cart v3 を<b>最
             新の英語バージョンにアップグレード</b><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
                 class="ryNqvb"><span class="HwtZe" lang="ja"><span class="jCAhz ChMk0b"><span
                       class="ryNqvb">する必要があります。</span></span><span class="jCAhz ChMk0b"><span
