@@ -11,6 +11,7 @@ $define = [
     'EMAIL_PRODUCT_REVIEW_CONTENT_DETAILS' => 'レビューの内容：%s',
     'TEXT_REVIEW_SUBMITTED_FOR_REVIEW' => 'ありがとうございます。ご意見がレビューに投稿されました。',
     'TEXT_REVIEW_SUBMITTED' => 'レビューへの投稿をありがとうございます！',
+    'TEXT_REVIEW_TITLE' => 'レビュータイトル：',
 ];
 
 return $define;

@@ -621,6 +621,7 @@ $define = [
     'TEXT_PRODUCTS' => '商品：',
     'TEXT_PRODUCTS_ID' => '商品 ID# ',
     'TEXT_PRODUCTS_IMAGE_MANUAL' => '<br><strong>または、サーバーから既存の画像ファイル名を入力して下さい。　ファイル名：</strong>',
+    'TEXT_PRODUCTS_IS_CALL_EDIT' => '※この商品は「価格はお問い合わせください」と表示されています',
     'TEXT_PRODUCTS_MIX_OFF' => '*オプション含まず',
     'TEXT_PRODUCTS_MIX_ON' => '*オプション込み',
     'TEXT_PRODUCTS_MODEL' => '商品型番：',

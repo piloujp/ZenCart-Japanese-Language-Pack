@@ -20,7 +20,6 @@ $define = [
     'TEXT_PRODUCT_IS_FREE' => '無料商品：',
     'TEXT_PRODUCTS_IS_FREE_EDIT' => '<br>*「無料」マーク付きの商品',
     'TEXT_PRODUCT_IS_CALL' => '価格問い合わせ商品：',
-    'TEXT_PRODUCTS_IS_CALL_EDIT' => '<br>*「価格問い合わせ」マーク付きの商品',
     'TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES' => '商品属性による価格：',
     'TEXT_PRODUCTS_PRICED_BY_ATTRIBUTES_EDIT' => '<br>*表示価格は最も安いグループ属性の価格を含む',
     'TEXT_PRODUCTS_MIXED' => '最低注文数と注文単位のミックス：',

@@ -50,6 +50,13 @@ $define = [
     'ERROR_NOT_FOUND_IN_SQL_FUNCTIONS_MAP' => 'SQLステートメントを確認してください。SQL 関数マップが見つかりません：',
     'ERROR_INVALID_SYNTAX' => '構文が無効なため、テーブルを識別できません：',
     'ERROR_SQL_PATCH' => 'SQL インストールの処理中にエラーが発生しました。　',
+    'ERROR_UNKNOWN_FAILURE' => 'プラグインは%sアクションを拒否しましたが、その理由を示すメッセージは表示しませんでした。',
+        'ERROR_UNKNOWN_FAILURE_DISABLE' => '無効にする',
+        'ERROR_UNKNOWN_FAILURE_ENABLE' => '有効にする',
+        'ERROR_UNKNOWN_FAILURE_INSTALL' => 'インストール',
+        'ERROR_UNKNOWN_FAILURE_UNINSTALL' => 'アンインストール',
+        'ERROR_UNKNOWN_FAILURE_UPGRADE' => 'アップグレード',
+
     'WARNING_NONENCAPSULATED_REMOVAL' => '<b>注意：</b>このプラグインをインストールすると、非カプセル化バージョンによって提供されるファイル（存在する場合）が<b>完全に</b>削除されます。',
 ];
 
