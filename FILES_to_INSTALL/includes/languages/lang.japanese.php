@@ -8,6 +8,16 @@ global $locales;
 $locales = ['ja', 'ja_JP', 'ja_JP.utf8', 'Japanese_Japan.932'];
 @setlocale(LC_TIME, $locales);
 
+$define_locales = [
+    'CHARSET' => 'UTF-8',
+    'DATE_FORMAT' => 'Y/m/d',
+    'DATE_FORMAT_LONG' => '%Y年%m月%d日(%a)',
+    'DATE_TIME_FORMAT_WITHOUT_SECONDS' => '%Y/%m/%d %H:%M',
+    'DOB_FORMAT_STRING' => 'yyyy/mm/dd',
+    'ENTRY_DATE_OF_BIRTH_ERROR' => '生年月日は正しいですか？私たちのシステムでは、次の形式の日付が必要です：YYYY/MM/DD （1970/05/21）',
+    'ENTRY_DATE_OF_BIRTH_TEXT' => '*（例：1970/05/21）',
+];
+
 $define = [
     'ARIA_DELETE_ITEM_FROM_CART' => 'カートからこの商品を削除',
     'ARIA_EDIT_QTY_IN_CART' => 'カート内の数量を変更',
@@ -91,12 +101,7 @@ $define = [
 
     'CATEGORY_COMPANY' => '会社名（会社でご利用の場合）',
     'CATEGORY_PERSONAL' => '個人情報',
-    'CHARSET' => 'UTF-8',
-    'DATE_FORMAT' => 'Y/m/d',
-    'DATE_FORMAT_LONG' => '%Y年%m月%d日(%a)',
-    'DATE_TIME_FORMAT_WITHOUT_SECONDS' => '%Y/%m/%d %H:%M',
     'DB_ERROR_NOT_CONNECTED' => 'エラー - データベースに接続できません',
-    'DOB_FORMAT_STRING' => 'yyyy/mm/dd',
     'DOWNLOADS_CONTROLLER_ON_HOLD_MSG' => '注意：お支払いが完了するまで商品のダウンロードはできません。',
     'EMAIL_SALUTATION' => '',
     'EMAIL_SEND_FAILED' => 'エラー：Eメールの送信に失敗しました。宛先："%1$s" <%2$s> 件名："%3$s"',
@@ -114,8 +119,6 @@ $define = [
     'ENTRY_CUSTOMERS_REFERRAL' => '照会コード：',
     'ENTRY_DATE_FROM' => '開始日：',
     'ENTRY_DATE_OF_BIRTH' => '誕生日：',
-    'ENTRY_DATE_OF_BIRTH_ERROR' => '生年月日は正しいですか？私たちのシステムでは、次の形式の日付が必要です：YYYY/MM/DD （1970/05/21）',
-    'ENTRY_DATE_OF_BIRTH_TEXT' => '誕生日は「1970/05/21」（西暦/月/日）の書式で入力してください。',
     'ENTRY_DATE_TO' => '終了日：',
     'ENTRY_EMAIL' => 'メールアドレス：',
     'ENTRY_EMAIL_ADDRESS' => 'メールアドレス：',
@@ -553,4 +556,4 @@ $define = [
     $define['TEXT_SEND_OR_SPEND'] = 'お客様の' . $define['TEXT_GV_NAME'] . 'アカウントに残高があります。 お使いいただくことも、どなたかに送ることもできます。送る場合は下記のボタンをクリックしてください。';
     $define['VOUCHER_BALANCE'] = $define['TEXT_GV_NAME'] . ' 残高 ';
 
-return $define;
+return array_merge($define, $define_locales);
