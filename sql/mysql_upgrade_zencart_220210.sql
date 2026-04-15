@@ -187,9 +187,9 @@ INSERT INTO products_options_stock_names (pos_name_id, language_id, pos_name) VA
 # Translation for Order Status and Tax description
 UPDATE orders_status SET orders_status_name='処理待ち', sort_order=0 WHERE language_id=@lan_id AND orders_status_name='Pending';
 UPDATE orders_status SET orders_status_name='処理中', sort_order=10 WHERE language_id=@lan_id AND orders_status_name='Processing';
-UPDATE orders_status SET orders_status_name='完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
+UPDATE orders_status SET orders_status_name='配達済み／完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
 UPDATE orders_status SET orders_status_name='更新', sort_order=30 WHERE language_id=@lan_id AND orders_status_name='Update';
-UPDATE orders_status SET orders_status_name='配送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
+UPDATE orders_status SET orders_status_name='発送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
 UPDATE tax_rates_description SET tax_description='（内消費税：１０％）' WHERE language_id=@lan_id AND tax_description=@taxdescription;
 
 
