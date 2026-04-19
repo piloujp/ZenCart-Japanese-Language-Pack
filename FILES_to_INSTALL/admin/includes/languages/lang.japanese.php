@@ -11,7 +11,7 @@
 // locale-specific strings that are used in the date functions;
 $define_locales = [
     'ADMIN_NAV_DATE_TIME_FORMAT' => 'r年（Gy年）MMMMd日 EEEE HH:mm',
-    'ADMIN_NAV_TIMEZONE_FORMAT' => '(ZZZZ)',
+    'ADMIN_NAV_TIMEZONE_FORMAT' => '(%z)',
     'CHARSET' => 'utf-8',
     'DATE_FORMAT' => 'Y/m/d',
     'DATE_FORMAT_DATE_PICKER' => 'yy-mm-dd',
