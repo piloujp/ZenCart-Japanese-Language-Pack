@@ -72,7 +72,7 @@ $admin_ip = $_SERVER['REMOTE_ADDR'];
 $admin_host = gethostname();
 $admin_time = mb_convert_encoding($zcDate->output(ADMIN_NAV_DATE_TIME_FORMAT, time(), ADMIN_NAV_DATE_CALENDAR), 'UTF-8');
 $admin_tz = date_default_timezone_get() . ' ' . $zcDate->output(ADMIN_NAV_TIMEZONE_FORMAT, time());
-$admin_locale = setlocale(LC_TIME, 0);
+$admin_locale = setlocale(LC_TIME, '0');
 
 // Prepare menu items for upper-right nav bar, allowing observers to modify via NOTIFY_ADMIN_HEADER_UPPERMENU
 $upperMenuArray = [];
@@ -80,7 +80,7 @@ $upperMenuArray['nav-search-orders-form'] = [
     'enabled' => true,
 ];
 $upperMenuArray['nav-search-customers-form'] = [
-    'enabled' => false,
+    'enabled' => true,
 ];
 $upperMenuArray['nav-goto-category-form'] = [
     'enabled' => false,
@@ -201,8 +201,8 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
 
                     <?php if ($upperMenuArray['nav-admin-home-link']['enabled'] ?? false) { ?>
                     <li class="hidden-xs" id="nav-admin-home">
-                        <a href="<?= zen_href_link(FILENAME_DEFAULT) ?>" title="<?= $upperMenuArray['nav-admin-home-link']['title'] ?>">
-                            <i class="fa fa-home"></i> <?= ($upperMenuArray['nav-admin-home-link']['show-title'] ?? false) ? $upperMenuArray['nav-admin-home-link']['title'] : '' ?>
+                        <a href="<?= $upperMenuArray['nav-admin-home-link']['a'] ?? zen_href_link(FILENAME_DEFAULT) ?>" title="<?= $upperMenuArray['nav-admin-home-link']['title'] ?>">
+                            <i class="fa fa-home"></i> <span class="nav-item-label"><?= ($upperMenuArray['nav-admin-home-link']['show-title'] ?? false) ? $upperMenuArray['nav-admin-home-link']['title'] : '' ?></span>
                         </a>
                     </li>
                     <?php } ?>
@@ -218,8 +218,8 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
 
                     <?php if ($upperMenuArray['nav-storefront-link']['enabled'] ?? false) { ?>
                     <li id="nav-storefront">
-                        <a href="<?= zen_catalog_href_link(FILENAME_DEFAULT) ?>" target="_blank" title="<?= $upperMenuArray['nav-storefront-link']['title'] ?>" rel="noopener">
-                            <i class="fa fa-store"></i> <?= ($upperMenuArray['nav-storefront-link']['show-title'] ?? false) ? $upperMenuArray['nav-storefront-link']['title'] : ''?>
+                        <a href="<?= $upperMenuArray['nav-storefront-link']['a'] ?? zen_catalog_href_link(FILENAME_DEFAULT) ?>" target="_blank" title="<?= $upperMenuArray['nav-storefront-link']['title'] ?>" rel="noopener">
+                            <i class="fa fa-store"></i> <span class="nav-item-label"><?= ($upperMenuArray['nav-storefront-link']['show-title'] ?? false) ? $upperMenuArray['nav-storefront-link']['title'] : ''?></span>
                         </a>
                     </li>
                     <?php } ?>
@@ -262,7 +262,7 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                     <li class="dropdown" id="nav-user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="user-avatar"></span>
-                            <?= zen_output_string_protected(zen_get_admin_name($_SESSION['admin_id'])) ?>
+                            <span class="nav-item-label"><?= zen_output_string_protected(zen_get_admin_name($_SESSION['admin_id'])) ?></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
