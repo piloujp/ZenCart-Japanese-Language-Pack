@@ -239,7 +239,7 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                                     <div id="versionCheckAlert"></div>
                                 </div>
                                 <div class="version-dropdown-footer" id="versionCheckFooter">
-                                    <?= TEXT_CURRENT_VER_IS . ' v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR . (PROJECT_VERSION_PATCH1 != '' ? 'p' . PROJECT_VERSION_PATCH1 : '') ?>
+                                    <?= TEXT_CURRENT_VER_IS . ' v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR ?>
                                 </div>
                             </li>
                         </ul>
