@@ -55,7 +55,7 @@ class jpparcelair extends ZenShipping
 
         $this->checkEnabledForZone(MODULE_SHIPPING_JPPARCELAIR_ZONE);
 
-        if ( $this->enabled == true ) {
+        if ($this->enabled == true) {
             $countries = $db->Execute("SELECT countries_iso_code_2 FROM " . TABLE_COUNTRIES . " WHERE countries_id = '" . (int)$order->delivery['country']['id'] . "' ORDER BY countries_name");
             $this->country_code = $countries->fields['countries_iso_code_2'];
             if ($this->country_code === 'JP') {
@@ -87,7 +87,7 @@ class jpparcelair extends ZenShipping
         if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
 
         $max_shipping_weight = MODULE_SHIPPING_JPPARCELAIR_MAX_WEIGHT;
-        if ( (MODULE_SHIPPING_JPPARCELAIR_FREE_SHIPPING != 'True') || ((int)$cart->show_total() < (int)MODULE_SHIPPING_JPPARCELAIR_OVER) ) {
+        if ((MODULE_SHIPPING_JPPARCELAIR_FREE_SHIPPING != 'True') || ((int)$cart->show_total() < (int)MODULE_SHIPPING_JPPARCELAIR_OVER)) {
             $rate = new _JpParcel($this->code, MODULE_SHIPPING_JPPARCELAIR_TEXT_WAY_NORMAL, $this->country_code);
             $multiboxes = MODULE_SHIPPING_JPPARCELAIR_MULTIBOX;
             if (!empty($box_array)) {

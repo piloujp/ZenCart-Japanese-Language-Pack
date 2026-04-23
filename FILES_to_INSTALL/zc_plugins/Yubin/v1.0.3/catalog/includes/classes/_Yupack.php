@@ -392,9 +392,9 @@ class _Yupack {
 
         $s_key = $this->GetDistKey();
         $this->quote['cost'] = null;
-        if ( $s_key ) {
+        if ($s_key) {
             $s_rank = $a_dist_to_rank[$s_key];
-            if ( $s_rank ) {
+            if ($s_rank) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
                     $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YUPACK_TEXT_OVERSIZE : MODULE_SHIPPING_YUPACK_TEXT_DIMENSION_MISSING;
