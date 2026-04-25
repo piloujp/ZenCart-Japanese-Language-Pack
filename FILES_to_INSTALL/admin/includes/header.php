@@ -291,7 +291,7 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                                 <span class="info-val"><?= $admin_host ?></span>
 
                                 <span class="info-label"><?= HEADER_TEXT_TIMEZONE ?></span>
-                                <span class="info-val"><?= $admin_time ?></span>
+                                <span class="info-val"><?= $admin_time ?></span><br>
                                 <span class="info-val"><?= $admin_tz ?></span>
 
                                 <span class="info-label"><?= HEADER_TEXT_LOCALE ?></span>
