@@ -41,17 +41,17 @@ if (empty($action) && count($languages) > 1) {
     $languages_selected = $_SESSION['language'];
     $missing_languages = '';
     $count = 0;
-    for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        $test_directory = DIR_WS_LANGUAGES . $languages[$i]['directory'];
-        $test_file = DIR_WS_LANGUAGES . 'lang.' . $languages[$i]['directory'] . '.php';
-        if (file_exists($test_file) && file_exists($test_directory)) {
+    foreach ($languages as $lang) {
+        $test_directory = DIR_WS_LANGUAGES . $lang['directory'];
+        $test_file = DIR_WS_LANGUAGES . 'lang.' . $lang['directory'] . '.php';
+        if (is_file($test_file) && is_dir($test_directory)) {
             $count++;
-            $languages_array[] = array('id' => $languages[$i]['code'], 'text' => $languages[$i]['name']);
+            $languages_array[$lang['code']] = $lang;
         } else {
-            $missing_languages .= ' ' . ucfirst($languages[$i]['directory']) . ' ' . $languages[$i]['name'];
+            $missing_languages .= ' ' . ucfirst($lang['directory']) . ' ' . $lang['name'];
         }
     }
-    if ($count != count($languages)) {
+    if ($count !== count($languages)) {
         $messageStack->add('MISSING LANGUAGE FILES OR DIRECTORIES ...' . $missing_languages, 'caution');
     }
 }
@@ -208,12 +208,12 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                     <?php } ?>
 
                     <?php if (!empty($new_gv_queue_cnt)) { ?>
-                        <li id="nav-gift-queue">
-                            <a href="<?= zen_href_link(FILENAME_GV_QUEUE) ?>" title="<?= strip_tags(IMAGE_GIFT_QUEUE) ?>">
-                                <i class="fa fa-gift"></i>
-                                <span class="badge"><?= $new_gv_queue_cnt ?></span>
-                            </a>
-                        </li>
+                    <li id="nav-gift-queue">
+                        <a href="<?= zen_href_link(FILENAME_GV_QUEUE) ?>" title="<?= strip_tags(IMAGE_GIFT_QUEUE) ?>">
+                            <i class="fa fa-gift"></i>
+                            <span class="badge"><?= $new_gv_queue_cnt ?></span>
+                        </a>
+                    </li>
                     <?php } ?>
 
                     <?php if ($upperMenuArray['nav-storefront-link']['enabled'] ?? false) { ?>
@@ -247,16 +247,33 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                     <?php } ?>
 
                     <?php if (!empty($languages_array)) { ?>
-                        <li class="dropdown" id="nav-language-selector">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag"></i> <span class="visible-xs-inline"> <?= HEADER_TEXT_LANGUAGES ?></span> <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php foreach($languages_array as $lang) { ?>
-                                    <li><a href="<?= zen_href_link(basename($PHP_SELF), zen_get_all_get_params(array('language', 'action')) . 'language=' . $lang['id']) ?>"><?= $lang['text'] ?></a></li>
+                        <?php if (count($languages_array) === 2) { ?>
+                            <?php foreach ($languages_array as $lang_code => $lang) { ?>
+                                <?php if ($lang_code !== $_SESSION['languages_code']) { ?>
+                    <li id="nav-language-2nd">
+                        <a href="<?= zen_href_link(basename($PHP_SELF), zen_get_all_get_params(['language', 'action']) . 'language=' . $lang_code) ?>">
+                            <?= zen_image(DIR_WS_CATALOG_LANGUAGES . $lang['directory'] . '/images/' . $lang['image'], $lang['name']) ?></span>
+                        </a>
+                    </li>
+                                    <?php break; ?>
                                 <?php } ?>
-                            </ul>
-                        </li>
+                            <?php } ?>
+                        <?php } else { ?>
+                    <li class="dropdown" id="nav-language-selector">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag"></i> <span class="visible-xs-inline"> <?= HEADER_TEXT_LANGUAGES ?></span> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php foreach($languages_array as $lang_code => $lang) { ?>
+                            <li>
+                                <a href="<?= zen_href_link(basename($PHP_SELF), zen_get_all_get_params(['language', 'action']) . 'language=' . $lang_code) ?>">
+                                    <?= $lang['name'] ?>
+                                </a>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                        <?php } ?>
                     <?php } ?>
 
                     <li class="dropdown" id="nav-user-menu">
