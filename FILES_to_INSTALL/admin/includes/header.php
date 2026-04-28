@@ -252,7 +252,7 @@ if (!empty($upperMenuOverrideArray) && is_array($upperMenuOverrideArray)) {
                                 <?php if ($lang_code !== $_SESSION['languages_code']) { ?>
                     <li id="nav-language-2nd">
                         <a href="<?= zen_href_link(basename($PHP_SELF), zen_get_all_get_params(['language', 'action']) . 'language=' . $lang_code) ?>">
-                            <?= zen_image(DIR_WS_CATALOG_LANGUAGES . $lang['directory'] . '/images/' . $lang['image'], $lang['name']) ?></span>
+                            <?= zen_image(DIR_WS_CATALOG_LANGUAGES . $lang['directory'] . '/images/' . $lang['image'], $lang['name']) ?>
                         </a>
                     </li>
                                     <?php break; ?>
