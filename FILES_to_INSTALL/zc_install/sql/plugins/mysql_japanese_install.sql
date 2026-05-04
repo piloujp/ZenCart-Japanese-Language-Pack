@@ -5,7 +5,7 @@
 # * @copyright Copyright 2003-2026 Zen Cart Development Team
 # * @copyright Portions Copyright 2003 osCommerce
 # * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
-# * @version $Id: pilou2/piloujp 2026 Mar 20 Modified in v2.2.1 $
+# * @version $Id: pilou2/piloujp 2026 Apr 09 Modified in v3.0.0-alpha1 $
 #
 # NOTE: UTF8 files need to be saved with encoding format set to UTF8-without-BOM.
 #
@@ -173,9 +173,9 @@ INSERT INTO products_options_stock_names (pos_name_id, language_id, pos_name) VA
 
 UPDATE orders_status SET orders_status_name='処理待ち', sort_order=0 WHERE language_id=@lan_id AND orders_status_name='Pending';
 UPDATE orders_status SET orders_status_name='処理中', sort_order=10 WHERE language_id=@lan_id AND orders_status_name='Processing';
-UPDATE orders_status SET orders_status_name='配達済み／完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
+UPDATE orders_status SET orders_status_name='完了', sort_order=20 WHERE language_id=@lan_id AND orders_status_name='Delivered';
 UPDATE orders_status SET orders_status_name='更新', sort_order=30 WHERE language_id=@lan_id AND orders_status_name='Update';
-UPDATE orders_status SET orders_status_name='発送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
+UPDATE orders_status SET orders_status_name='配送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
 UPDATE tax_rates_description SET tax_description='（内消費税：１０％）' WHERE language_id=@lan_id AND tax_description=@taxdescription;
 
 
@@ -188,5 +188,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_comment = 'New Installation with Japanese Pack v2.2.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '2.0210', project_version_comment = 'New Installation with Japanese Pack v2.2.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_comment = 'New Installation with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '0.0300', project_version_comment = 'New Installation with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
