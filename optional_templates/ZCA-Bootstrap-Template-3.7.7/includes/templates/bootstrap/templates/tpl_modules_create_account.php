@@ -28,7 +28,7 @@ if (DISPLAY_PRIVACY_CONDITIONS === 'true') {
 
             <div class="custom-control custom-checkbox">
                 <?php echo
-                    zen_draw_checkbox_field('privacy_conditions', '1', false, 'id="privacy"') . 
+                    zen_draw_checkbox_field('privacy_conditions', '1', false, 'id="privacy"') .
                     '<label class="custom-control-label" for="privacy">' . TEXT_PRIVACY_CONDITIONS_CONFIRM . '</label>'; ?>
             </div>
         </div>
@@ -273,7 +273,7 @@ if (ACCOUNT_NEWSLETTER_STATUS !== '0') {
 }
 ?>
             <div class="custom-control custom-radio custom-control-inline">
-                <?php echo zen_draw_radio_field('email_format', 'HTML', ($email_format === 'HTML'),'id="email-format-html"') . '<label class="custom-control-label" for="email-format-html">' . ENTRY_EMAIL_HTML_DISPLAY . '</label>'; ?> 
+                <?php echo zen_draw_radio_field('email_format', 'HTML', ($email_format === 'HTML'),'id="email-format-html"') . '<label class="custom-control-label" for="email-format-html">' . ENTRY_EMAIL_HTML_DISPLAY . '</label>'; ?>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <?php echo zen_draw_radio_field('email_format', 'TEXT', ($email_format === 'TEXT'), 'id="email-format-text"') . '<label class="custom-control-label" for="email-format-text">' . ENTRY_EMAIL_TEXT_DISPLAY . '</label>'; ?>

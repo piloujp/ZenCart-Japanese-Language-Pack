@@ -13,7 +13,7 @@
 
   Released under the GNU General Public License
   available at www.zen-cart.com/license/2_0.txt
-  or see "license.txt" in the downloaded zip 
+  or see "license.txt" in the downloaded zip
 
   DESCRIPTION: Monthly Sales Report
 */
@@ -88,9 +88,9 @@ $sms_version = $define['SMS_VERSION'];
  * I know, naughty HTML contained in language definitions, but there's no equivalent of a
  * define-page in the admin :-( - lat9
  *
- * Be careful about editing this out. If you want to use a define, create a variable and 
+ * Be careful about editing this out. If you want to use a define, create a variable and
  * assign the constant there. THEN use the new variable where you want to put the constant.
- * Otherwise... uhh... look up how PHP Heredocs work. (keep the first line as is and keep 
+ * Otherwise... uhh... look up how PHP Heredocs work. (keep the first line as is and keep
  * the EOF; at the end on its own separate line.
  * - retched
  */

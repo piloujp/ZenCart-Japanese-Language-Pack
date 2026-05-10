@@ -42,8 +42,8 @@ class nekoposu  extends ZenShipping
         if (!empty($box_sizes_array)) {
             //echo ' Box size array: ';print_r($box_sizes_array[0]);echo ' Weight: ' . $shipping_weight;
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
-            // disable if too big 
-            if (IS_ADMIN_FLAG == false && ($box_sizes_array[0][0] > MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT || $girth > 48 || $shipping_weight > MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT)) { 
+            // disable if too big
+            if (IS_ADMIN_FLAG == false && ($box_sizes_array[0][0] > MODULE_SHIPPING_NEKOPOSU_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_NEKOPOSU_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_NEKOPOSU_MAX_HEIGHT || $girth > 48 || $shipping_weight > MODULE_SHIPPING_NEKOPOSU_MAX_WEIGHT)) {
                 $this->enabled = false;
             }
         }

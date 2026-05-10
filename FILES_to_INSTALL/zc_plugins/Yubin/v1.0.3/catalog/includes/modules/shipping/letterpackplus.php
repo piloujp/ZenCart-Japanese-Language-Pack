@@ -47,9 +47,9 @@ class letterpackplus extends ZenShipping
         $max_size_array = ['Max_length' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH, 'Max_width' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH, 'Max_height' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT, 'Max_girth' => MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH];
         if (!empty($box_sizes_array)) {
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
-            // disable if too big 
-            if (IS_ADMIN_FLAG == false && ((($box_sizes_array[0][0] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT || $girth > MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH) && $multiboxes != 'Size') || ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes != 'Size'))) { 
-            //if (IS_ADMIN_FLAG == false && ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes == 'None')) { 
+            // disable if too big
+            if (IS_ADMIN_FLAG == false && ((($box_sizes_array[0][0] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WIDTH || $box_sizes_array[0][2] > MODULE_SHIPPING_LETTERPACKPLUS_MAX_HEIGHT || $girth > MODULE_SHIPPING_LETTERPACKPLUS_MAX_GIRTH) && $multiboxes != 'Size') || ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes != 'Size'))) {
+            //if (IS_ADMIN_FLAG == false && ($shipping_weight > MODULE_SHIPPING_LETTERPACKPLUS_MAX_WEIGHT && $multiboxes == 'None')) {
                 $this->enabled = false;
             }
         }

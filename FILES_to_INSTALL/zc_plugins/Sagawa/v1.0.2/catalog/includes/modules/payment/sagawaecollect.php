@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: pilou2/piloujp 2025 Mar 24 Modified in v2.1.0 $
  */
-  class sagawaecollect { 
+  class sagawaecollect {
 
     /**
      * $_check is used to check the configuration key set up
@@ -21,7 +21,7 @@
     public $code;
     /**
      * $description is a soft name for this payment method
-     * @var string 
+     * @var string
      */
     public $description;
     /**

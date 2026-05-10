@@ -23,8 +23,8 @@ $define = [
     'TEXT_INFO_MAX_COUNT' => 'ダウンロード回数：',
     'TEXT_INFO_FILENAME_MISSING' => '&nbsp;ファイル名不明',
     'TEXT_INFO_FILENAME_GOOD' => '&nbsp;ファイル名有効',
-    'TEXT_WARNING_PRODUCT_MISCONFIGURED_SHORT' => 'ダウンロード可能な商品が正しく構成されていません', 
-    'TEXT_WARNING_PRODUCT_MISCONFIGURED' => '商品は送料無料または仮想であってはなりません。<a href="https://docs.zen-cart.com/user/products/downloadable/#additional-notes-about-downloads-and-shipping-costs">送料のドキュメンテーション</a>を参照してください。',  
+    'TEXT_WARNING_PRODUCT_MISCONFIGURED_SHORT' => 'ダウンロード可能な商品が正しく構成されていません',
+    'TEXT_WARNING_PRODUCT_MISCONFIGURED' => '商品は送料無料または仮想であってはなりません。<a href="https://docs.zen-cart.com/user/products/downloadable/#additional-notes-about-downloads-and-shipping-costs">送料のドキュメンテーション</a>を参照してください。',
 ];
 
 return $define;

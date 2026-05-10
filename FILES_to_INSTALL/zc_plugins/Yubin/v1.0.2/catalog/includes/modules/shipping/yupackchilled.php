@@ -238,7 +238,7 @@ class yupackchilled extends ZenShipping
 
     /**
      * Internal list of configuration keys used for configuration of the module
-     * 
+     *
     **/
     public function keys(): array
     {

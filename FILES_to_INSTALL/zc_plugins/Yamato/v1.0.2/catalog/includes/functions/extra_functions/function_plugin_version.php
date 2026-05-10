@@ -19,5 +19,5 @@ if (!function_exists('zen_get_plugin_version')) {
         );
 
         return $result->RecordCount() !== 0 ? (string)$result->fields['version'] : null;
-      } 
+      }
 }

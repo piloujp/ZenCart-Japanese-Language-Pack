@@ -260,12 +260,12 @@ class _JpParcel {
         $a_price_parcel[$quotearray['method']] = json_decode($quotearray['quote_zone'], true);
         }
 
-        $filename = "jpparcel.php"; 
-        $folder = "/modules/shipping/";  // end with slash 
-        $new_langfile = __DIR__ . '/../languages/' . $_SESSION['language'] . $folder .  "lang." . $filename; 
+        $filename = "jpparcel.php";
+        $folder = "/modules/shipping/";  // end with slash
+        $new_langfile = __DIR__ . '/../languages/' . $_SESSION['language'] . $folder .  "lang." . $filename;
         if (file_exists($new_langfile)) {
-            global $languageLoader; 
-            $languageLoader->loadExtraLanguageFiles(__DIR__ . '/../languages/',  $_SESSION['language'], $filename, $folder); 
+            global $languageLoader;
+            $languageLoader->loadExtraLanguageFiles(__DIR__ . '/../languages/',  $_SESSION['language'], $filename, $folder);
         }
 
         $this->quote['cost'] = 0;

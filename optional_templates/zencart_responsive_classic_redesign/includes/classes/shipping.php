@@ -270,9 +270,9 @@ class shipping
                     }
                 } else { // get track of default sizes for non assigned items
                     $defitems += $items_size_array[$i][$key][5];
-                    $items_size_array[$i][$key][0] = ($items_size_array[$i][$key][0] == 0) ? $maxlength : $items_size_array[$i][$key][0]; 
-                    $items_size_array[$i][$key][1] = ($items_size_array[$i][$key][1] == 0) ? $maxwidth : $items_size_array[$i][$key][1]; 
-                    $items_size_array[$i][$key][2] = ($items_size_array[$i][$key][2] == 0) ? $ave_height : $items_size_array[$i][$key][2]; 
+                    $items_size_array[$i][$key][0] = ($items_size_array[$i][$key][0] == 0) ? $maxlength : $items_size_array[$i][$key][0];
+                    $items_size_array[$i][$key][1] = ($items_size_array[$i][$key][1] == 0) ? $maxwidth : $items_size_array[$i][$key][1];
+                    $items_size_array[$i][$key][2] = ($items_size_array[$i][$key][2] == 0) ? $ave_height : $items_size_array[$i][$key][2];
                 }
             }
             $default_zero_rate = 4; // 4 means up to 1/4 of items can have missing dimensions

@@ -170,7 +170,7 @@ if ($flagAnyOutOfStock) {
                 <div class="table-responsive">
 <?php
 // -----
-// Determine if more than one 'tax_group' is associated with the order. 
+// Determine if more than one 'tax_group' is associated with the order.
 //
 $tax_column_present = (count($order->info['tax_groups']) > 1);
 ?>

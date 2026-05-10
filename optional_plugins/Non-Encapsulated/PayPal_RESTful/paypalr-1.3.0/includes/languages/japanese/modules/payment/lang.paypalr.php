@@ -80,7 +80,7 @@ $define = [
         'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_UNKNOWN_DENIAL' => '拒否理由不明',
         'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_LOST_STOLEN_CARD' => '紛失/盗難/不正カード',
         'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_TOTAL_MISMATCH' => '計算の不一致',
-        'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_CONFIRMATION_ERROR' => '支払い方法の選択を確認', 
+        'MODULE_PAYMENT_PAYPALR_ALERT_SUBJECT_CONFIRMATION_ERROR' => '支払い方法の選択を確認',
 
     'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATION' => 'ペイパルの応答ステータスが「%2$s」であるため、注文番号 %1$u のステータスは強制的に「処理待ち」になりました。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_OBSERVER' => '支払いモジュールのオブザーバー（auto.paypalrestful.php）が読み込まれませんでした。支払いモジュールは無効になっています。',

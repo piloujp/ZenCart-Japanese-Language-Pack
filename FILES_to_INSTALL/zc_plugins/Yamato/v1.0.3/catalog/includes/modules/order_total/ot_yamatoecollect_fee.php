@@ -26,7 +26,7 @@ class ot_yamatoecollect_fee
     public $code;
     /**
      * $description is a soft name for this order total method
-     * @var string 
+     * @var string
      */
     public $description;
     /**

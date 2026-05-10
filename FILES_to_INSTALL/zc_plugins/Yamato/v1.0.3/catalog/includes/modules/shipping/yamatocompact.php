@@ -67,16 +67,16 @@ class yamatocompact extends ZenShipping
 
         if (!empty($box_sizes_array)) {
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
-            // disable if too big 
+            // disable if too big
             if ($this->envelope_enabled === true && ($box_sizes_array[0][0] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_WIDTH ||
-            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_GIRTH)) { 
+            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_GIRTH)) {
                 $this->envelope_enabled = false;
             }
             if ($this->box_enabled === true && ($box_sizes_array[0][0] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_WIDTH ||
-            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_GIRTH)) { 
+            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_GIRTH)) {
                 $this->box_enabled = false;
             }
-            if (IS_ADMIN_FLAG === false && ($this->envelope_enabled === false && $this->box_enabled === false)) { 
+            if (IS_ADMIN_FLAG === false && ($this->envelope_enabled === false && $this->box_enabled === false)) {
                 $this->enabled = false;
             }
         }
@@ -250,7 +250,7 @@ class yamatocompact extends ZenShipping
 
     /**
      * Internal list of configuration keys used for configuration of the module
-     * 
+     *
     **/
     public function keys(): array
     {

@@ -7,7 +7,7 @@
  *
  * @author     Frank Koehl (PM: BlindSide)
  * @author     Conor Kerr <conor.kerr_zen-cart@dev.ceon.net>
- * @updated by stellarweb to work with version 1.5.0 02-29-12 
+ * @updated by stellarweb to work with version 1.5.0 02-29-12
  * @updated by lat9 for continued operation under zc155/zc156, 20190622
  * @copyright  Portions Copyright 2003-2006 Zen Cart Development Team
  * @copyright  Portions Copyright 2003 osCommerce
@@ -41,7 +41,7 @@ $defines = [
     // gets too long, this printout can be disabled with
     // the DISPLAY booleans below.
     //
-    // If you often want a specific product, you can set a 
+    // If you often want a specific product, you can set a
     // default here, e.g.:
     // define('INCLUDE_PRODUCTS', '10, 15');
     //

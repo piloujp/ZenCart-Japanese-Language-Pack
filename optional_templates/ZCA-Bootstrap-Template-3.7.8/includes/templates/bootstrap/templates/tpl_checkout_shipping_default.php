@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * 
+ *
  * BOOTSTRAP v3.7.0
  *
  * Loaded automatically by index.php?main_page=checkout_shipping.<br>
@@ -33,7 +33,7 @@ if ($messageStack->size('checkout_shipping') > 0) {
             <div class="card-body p-3">
                 <div class="row">
                     <div class="shipToAddress col-sm-5">
-                        <address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], true, ' ', '<br>'); ?></address>      
+                        <address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['sendto'], true, ' ', '<br>'); ?></address>
                     </div>
                     <div class="col-sm-7">
                         <?php echo TEXT_CHOOSE_SHIPPING_DESTINATION; ?>
