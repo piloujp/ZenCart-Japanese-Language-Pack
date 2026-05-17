@@ -188,7 +188,7 @@ $define = [
     'ERROR_DATABASE_MAINTENANCE_NEEDED' => '<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/" rel="noopener" target="_blank">ERROR 0071 There appears to be a problem with the database. Maintenance is required.</a>',
     'ERROR_DESTINATION_DOES_NOT_EXIST' => 'エラー：保存ディレクトリが存在しません',
     'ERROR_DESTINATION_NOT_WRITEABLE' => 'エラー：保存ディレクトリが書き込み可能になっていません',
-    'ERROR_FILETYPE_NOT_ALLOWED' => 'エラー: このファイルタイプは許可されていません',
+    'ERROR_FILETYPE_NOT_ALLOWED' => 'エラー：アップロードされたファイルの種類（%1$s）はサポートされていません。もう一度お試しください。',
     'ERROR_FILE_NOT_SAVED' => 'エラー:  ファイルが保存されていません',
     'ERROR_FILE_TOO_BIG' => '警告: アップロードファイルが大きすぎます。<br>注文可能ですけど、アップロードのヘルプについては、サイトにお問い合わせください',
     'ERROR_INVALID_FROM_DATE' => '開始日が無効です。',
