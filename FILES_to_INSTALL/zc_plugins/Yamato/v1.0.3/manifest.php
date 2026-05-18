@@ -1,6 +1,6 @@
 <?php
 return [
-    'pluginVersion' => 'v1.0.2',
+    'pluginVersion' => 'v1.0.3',
     'pluginName' => "Kuroneko Yamato",
     'pluginDescription' => 'This plugin enables the Yamato Takyubin and Nekoposu shipping method.',
     'pluginAuthor' => 'piloujp',

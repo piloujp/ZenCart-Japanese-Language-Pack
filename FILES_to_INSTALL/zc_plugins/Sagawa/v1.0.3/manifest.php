@@ -1,6 +1,6 @@
 <?php
 return [
-    'pluginVersion' => 'v1.0.2',
+    'pluginVersion' => 'v1.0.3',
     'pluginName' => "Sagawa Express",
     'pluginDescription' => 'This plugin enables the Sagawa Express shipping method.',
     'pluginAuthor' => 'piloujp',

@@ -1,6 +1,6 @@
 <?php
 return [
-    'pluginVersion' => 'v1.0.2',
+    'pluginVersion' => 'v1.0.3',
     'pluginName' => "Nihon Yubinkyoku",
     'pluginDescription' => 'This plugin enables the Japanese Postoffice shipping methods.',
     'pluginAuthor' => 'piloujp',
