@@ -15,10 +15,10 @@ $define = [
     // Additions for catalog invoice
     'ENTRY_SHIP_TO' => '送り先：',
     'ENTRY_SOLD_TO' => '販売先：',
-    'ENTRY_ORDER_ID' => '注文番号 ',    
+    'ENTRY_ORDER_ID' => '注文番号 ',
     'ENTRY_DATE_PURCHASED' => '購入日：',
     'TABLE_HEADING_PRODUCTS_MODEL' => 'モデル',
-    'TABLE_HEADING_PRODUCTS_NAME' => '商品名', 
+    'TABLE_HEADING_PRODUCTS_NAME' => '商品名',
     'TABLE_HEADING_TAX' => '税',
     'TABLE_HEADING_DATE_ADDED' => '追加日',
     'TABLE_HEADING_STATUS' => '状態',

@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * 
+ *
  * BOOTSTRAP v3.5.2
  *
  * Loaded automatically by index.php?main_page=checkout_confirmation.
@@ -31,7 +31,7 @@ if ($messageStack->size('checkout') > 0) {
     echo $messageStack->output('checkout');
 }
 ?>
-    <div class="card-columns">  
+    <div class="card-columns">
         <div id="billingAddress-card" class="card mb-3">
             <h4 id="billingAddress-card-header" class="card-header"><?php echo HEADING_BILLING_ADDRESS; ?></h4>
             <div id="billingAddress-card-body" class="card-body p-3">
@@ -39,14 +39,14 @@ if ($messageStack->size('checkout') > 0) {
                     <div id="billToAddress-card" class="card">
                         <div id="billToAddress-card-body" class="card-body">
                             <address><?php echo zen_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br>'); ?></address>
-<?php 
+<?php
 if (!$flagDisablePaymentAddressChange) {
 ?>
                             <div id="billToAddress-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
                                 <?php echo zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), BUTTON_EDIT_SMALL_ALT, 'small_edit'); ?>
                             </div>
-<?php 
-} 
+<?php
+}
 ?>
                         </div>
                     </div>
@@ -135,18 +135,18 @@ if ($_SESSION['sendto'] != false) {
         <div id="cartContents-card" class="card mb-3">
             <h4 id="cartContents-card-header" class="card-header"><?php echo HEADING_PRODUCTS; ?></h4>
             <div id="cartContents-card-body" class="card-body p-3">
-<?php  
+<?php
 if ($flagAnyOutOfStock) {
-    if (STOCK_ALLOW_CHECKOUT == 'true') {  
+    if (STOCK_ALLOW_CHECKOUT == 'true') {
 ?>
                 <div class="alert alert-danger" role="alert"><?php echo OUT_OF_STOCK_CAN_CHECKOUT; ?></div>
-<?php    
+<?php
     } else {
 ?>
                 <div class="alert alert-danger" role="alert"><?php echo OUT_OF_STOCK_CANT_CHECKOUT; ?></div>
-<?php    
+<?php
     } //endif STOCK_ALLOW_CHECKOUT
-} //endif flagAnyOutOfStock 
+} //endif flagAnyOutOfStock
 ?>
                 <div class="table-responsive">
 <?php
@@ -172,14 +172,14 @@ if ($flagAnyOutOfStock) {
 ?>
                             <th scope="col" id="cartTableDisplay-totalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
                         </tr>
-<?php 
+<?php
 // now loop thru all products to display quantity and price
     for ($i = 0, $n = count($order->products); $i < $n; $i++) {
 ?>
                         <tr>
                             <td  class="qtyCell"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
                             <td class="productsCell"><?php echo $order->products[$i]['name'] . ((!empty($stock_check[$i])) ? $stock_check[$i] : ''); ?>
-<?php 
+<?php
         // if there are attributes, loop thru them and display one per line
         if (isset($order->products[$i]['attributes']) && count($order->products[$i]['attributes']) > 0) {
 ?>
@@ -199,16 +199,16 @@ if ($flagAnyOutOfStock) {
 ?>
                             </td>
 
-<?php 
+<?php
         // display tax info if exists
-        if ($tax_column_present)  { 
+        if ($tax_column_present)  {
 ?>
                             <td class="taxCell"><?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
-<?php    
-        }  // endif tax info display  
+<?php
+        }  // endif tax info display
 ?>
                             <td class="totalCell">
-<?php 
+<?php
         echo $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']);
         if ($order->products[$i]['onetime_charges'] != 0 ) {
             echo '<br> ' . $currencies->display_price($order->products[$i]['onetime_charges'], $order->products[$i]['tax'], 1);
@@ -216,7 +216,7 @@ if ($flagAnyOutOfStock) {
 ?>
                             </td>
                         </tr>
-<?php  
+<?php
     }  // end for loopthru all products
 
     if (MODULE_ORDER_TOTAL_INSTALLED) {

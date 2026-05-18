@@ -134,7 +134,7 @@ class _Yamato {
         $s_key = '';
         $s_z1 = $this->GetLZone($this->OriginZone);
         $s_z2 = $this->GetLZone($this->DestZone);
-        if ( $s_z1 && $s_z2 ) {
+        if ($s_z1 && $s_z2) {
             // 地帯コードをアルファベット順に連結する
             $s_key = ord($s_z1) < ord($s_z2) ? $s_z1 . $s_z2 : $s_z2 . $s_z1;
         }
@@ -259,7 +259,7 @@ class _Yamato {
         'N13' => [1920,2530,3170,3820,4490,5140,8550,10200], // 北東北:B >  沖縄:L BL=>N13
 */
 
-//   //  南東北から////////////////////////////////( 60, 80,100,120,140,160,180,200)サイズ   
+//   //  南東北から////////////////////////////////( 60, 80,100,120,140,160,180,200)サイズ
 /*
         'N04' => [1320,1610,1920,2240,2580,2900,4220,5320], // 南東北:C >北海道:A AC=>N04
         'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720], // 南東北:C >  信越:E CE=>N01 - 関東:D CD=>N01 - 南東北:C CC=>N01 - 北東北:B BC=>N01
@@ -433,9 +433,9 @@ class _Yamato {
 
         $s_key = $this->GetDistKey();
         $this->quote['cost'] = null;
-        if ( $s_key ) {
+        if ($s_key) {
             $s_rank = $a_dist_to_rank[$s_key];
-            if ( $s_rank ) {
+            if ($s_rank) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
                     $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_YAMATO_TEXT_OVERSIZE : MODULE_SHIPPING_YAMATO_TEXT_DIMENSION_MISSING;

@@ -87,7 +87,7 @@ class _Sagawa {
     // 8    220サイズ 220cmまで 50kgまで
     // 9    240サイズ 240cmまで 50kgまで
     // 10   260サイズ 260cmまで 50kgまで
-    // 11   規格外  
+    // 11   規格外
     function GetSizeClass() {
         $a_classes = [
             [0,  60,  2],  // 区分,３辺計,重量
@@ -121,7 +121,7 @@ class _Sagawa {
         $s_key = '';
         $s_z1 = $this->GetLZone($this->OriginZone);
         $s_z2 = $this->GetLZone($this->DestZone);
-        if ( $s_z1 && $s_z2 ) {
+        if ($s_z1 && $s_z2) {
             // 地帯コードをアルファベット順に連結する
             $s_key = ord($s_z1) < ord($s_z2) ? $s_z1 . $s_z2 : $s_z2 . $s_z1;
         }
@@ -473,7 +473,7 @@ class _Sagawa {
         'N64' => [2442,4158,6292,9185,12595,17435,19855,24695,29535,39215,48895],
         'N65' => [2552,4807,7579,11220,14740,19580,22000,26840,31680,41360,51040],
 */
-//        ];   
+//        ];
         // 地帯 - 地帯間の価格ランク
         // Zone - Price rank between zones
         $a_dist_to_rank = [
@@ -498,9 +498,9 @@ class _Sagawa {
 
         $s_key = $this->GetDistKey();
         $this->quote['cost'] = null;
-        if ( $s_key ) {
+        if ($s_key) {
             $s_rank = $a_dist_to_rank[$s_key];
-            if ( $s_rank ) {
+            if ($s_rank) {
                 $n_sizeclass = $this->GetSizeClass();
                 if ($n_sizeclass < 0) {
                     $this->quote['error'] = ($n_sizeclass == -1) ? MODULE_SHIPPING_SAGAWA_TEXT_OVERSIZE : MODULE_SHIPPING_SAGAWA_TEXT_DIMENSION_MISSING;

@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Template
- * 
+ *
  * BOOTSTRAP v3.7.4
  *
  * Loaded automatically by index.php?main_page=account_edit.
@@ -185,7 +185,7 @@ if (!empty($statusArray)) {
                                 <th scope="col" id="orderHistoryStatusTableDisplay-commentsHeading"><?= TABLE_HEADING_STATUS_COMMENTS ?></th>
                             </tr>
 <?php
-    $protected = true; 
+    $protected = true;
     foreach ($statusArray as $statuses) {
 ?>
                             <tr>
@@ -204,12 +204,12 @@ if (!empty($statusArray)) {
         }
 ?>
                                 <td class="commentsCell">
-<?php 
+<?php
         if (!empty($statuses['comments'])) {
             echo nl2br(zen_output_string($statuses['comments'], false, $protected));
         }
 ?>
-                                </td> 
+                                </td>
                             </tr>
 <?php
         $protected = false;

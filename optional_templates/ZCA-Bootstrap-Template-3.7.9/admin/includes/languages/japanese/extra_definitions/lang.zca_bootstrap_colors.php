@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  *  zca_bootstrap_colors.php
  *
  * @package zencart_auto_installer

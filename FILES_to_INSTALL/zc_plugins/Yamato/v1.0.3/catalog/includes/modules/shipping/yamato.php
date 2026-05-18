@@ -57,7 +57,7 @@ class yamato extends ZenShipping
 
         $this->checkEnabledForZone(MODULE_SHIPPING_YAMATO_ZONE);
 
-        if ( $this->enabled == true && (int)$order->delivery['country']['id'] !== $this->japan_id) {
+        if ($this->enabled == true && (int)$order->delivery['country']['id'] !== $this->japan_id) {
             $this->enabled = false;
         }
 
@@ -99,7 +99,7 @@ class yamato extends ZenShipping
             $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
-            if ( (MODULE_SHIPPING_YAMATO_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATO_OVER) ) {
+            if ((MODULE_SHIPPING_YAMATO_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATO_OVER)) {
                 $rate = new _Yamato($this->code, MODULE_SHIPPING_YAMATO_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
                 $rate->SetDest($s_zone_code, 'JP', $zone_city, $zone_banshi);
                 if (!empty($box_sizes_array)) {
@@ -167,9 +167,9 @@ class yamato extends ZenShipping
         global $shipping;
 
         $selected = $a_yamato_time[0]['id'];
-        if ( isset($_POST['yamato_timespec']) ) {
+        if (isset($_POST['yamato_timespec'])) {
             $selected = $_POST['yamato_timespec'];
-        } elseif ( is_array($shipping) ) {
+        } elseif (is_array($shipping)) {
             list($module, $method) = explode('_', $shipping['id']);
             if ($module == $this->code) {
                 $selected = $shipping['timespec'];
@@ -217,7 +217,7 @@ class yamato extends ZenShipping
 
     /**
      * Internal list of configuration keys used for configuration of the module
-     * 
+     *
     **/
     public function keys(): array
     {

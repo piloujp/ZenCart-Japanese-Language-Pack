@@ -220,7 +220,7 @@ class _JpParcel {
     // 国コードが見つからなければ空文字を返す
     function GetAreaName($contry_code) {
         foreach ($this->Areas as $areaname => $a_country) {
-            if ( in_array($contry_code, $a_country) ) {
+            if (in_array($contry_code, $a_country)) {
                 return $areaname;
             }
         }
@@ -260,19 +260,19 @@ class _JpParcel {
         $a_price_parcel[$quotearray['method']] = json_decode($quotearray['quote_zone'], true);
         }
 
-        $filename = "jpparcel.php"; 
-        $folder = "/modules/shipping/";  // end with slash 
-        $new_langfile = __DIR__ . '/../languages/' . $_SESSION['language'] . $folder .  "lang." . $filename; 
+        $filename = "jpparcel.php";
+        $folder = "/modules/shipping/";  // end with slash
+        $new_langfile = __DIR__ . '/../languages/' . $_SESSION['language'] . $folder .  "lang." . $filename;
         if (file_exists($new_langfile)) {
-            global $languageLoader; 
-            $languageLoader->loadExtraLanguageFiles(__DIR__ . '/../languages/',  $_SESSION['language'], $filename, $folder); 
+            global $languageLoader;
+            $languageLoader->loadExtraLanguageFiles(__DIR__ . '/../languages/',  $_SESSION['language'], $filename, $folder);
         }
 
         $this->quote['cost'] = 0;
         $areaname = $this->GetAreaName($this->DestCountryCode);
-        if ( $areaname ) {
+        if ($areaname) {
             $no = $this->GetZoneNo($areaname);
-            if ( $no ) {
+            if ($no) {
                 // 価格ランク: (最大重量(kg),第1地帯,第2地帯,第3地帯,第4地帯,第5地帯)
                 foreach($a_price_parcel[$this->quote['id']] as $a_set) {
                     if ($this->Weight <= $a_set[0]) {

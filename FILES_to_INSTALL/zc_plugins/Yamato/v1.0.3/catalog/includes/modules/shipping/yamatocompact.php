@@ -67,23 +67,23 @@ class yamatocompact extends ZenShipping
 
         if (!empty($box_sizes_array)) {
             $girth = $box_sizes_array[0][0] + $box_sizes_array[0][1] + $box_sizes_array[0][2];
-            // disable if too big 
+            // disable if too big
             if ($this->envelope_enabled === true && ($box_sizes_array[0][0] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_WIDTH ||
-            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_GIRTH)) { 
+            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_ENVELOPE_MAX_GIRTH)) {
                 $this->envelope_enabled = false;
             }
             if ($this->box_enabled === true && ($box_sizes_array[0][0] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_LENGTH || $box_sizes_array[0][1] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_WIDTH ||
-            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_GIRTH)) { 
+            $box_sizes_array[0][2] > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_HEIGHT || $girth > MODULE_SHIPPING_YAMATOCOMPACT_BOX_MAX_GIRTH)) {
                 $this->box_enabled = false;
             }
-            if (IS_ADMIN_FLAG === false && ($this->envelope_enabled === false && $this->box_enabled === false)) { 
+            if (IS_ADMIN_FLAG === false && ($this->envelope_enabled === false && $this->box_enabled === false)) {
                 $this->enabled = false;
             }
         }
 
         $this->checkEnabledForZone(MODULE_SHIPPING_YAMATOCOMPACT_ZONE);
 
-        if ( $this->enabled == true && (int)$order->delivery['country']['id'] !== $this->japan_id) {
+        if ($this->enabled == true && (int)$order->delivery['country']['id'] !== $this->japan_id) {
             $this->enabled = false;
         }
 
@@ -122,7 +122,7 @@ class yamatocompact extends ZenShipping
             $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
-            if ( (MODULE_SHIPPING_YAMATOCOMPACT_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATOCOMPACT_OVER) ) {
+            if ((MODULE_SHIPPING_YAMATOCOMPACT_FREE_SHIPPING != 'True') || ((int)$order->info['subtotal'] < (int)MODULE_SHIPPING_YAMATOCOMPACT_OVER)) {
                 $rate = new _Yamato($this->code, MODULE_SHIPPING_YAMATOCOMPACT_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
                 $rate->SetDest($s_zone_code, 'JP');
                 if (!empty($box_sizes_array)) {
@@ -193,9 +193,9 @@ class yamatocompact extends ZenShipping
         global $shipping;
 
         $selected = $a_yamato_time[0]['id'];
-        if ( isset($_POST['yamatocompact_timespec']) ) {
+        if (isset($_POST['yamatocompact_timespec'])) {
             $selected = $_POST['yamatocompact_timespec'];
-        } elseif ( is_array($shipping) ) {
+        } elseif (is_array($shipping)) {
             list($module, $method) = explode('_', $shipping['id']);
             if ($module == $this->code) {
                 $selected = $shipping['timespec'];
@@ -250,7 +250,7 @@ class yamatocompact extends ZenShipping
 
     /**
      * Internal list of configuration keys used for configuration of the module
-     * 
+     *
     **/
     public function keys(): array
     {

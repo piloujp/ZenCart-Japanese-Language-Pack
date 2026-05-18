@@ -8,7 +8,7 @@
  * @version $Id: pilou2/piloujp 2025 Mar 24 Modified in v2.1.0 $
  */
 class yamatoecollect
-{ 
+{
     /**
      * $_check is used to check the configuration key set up
      * @var int
@@ -21,7 +21,7 @@ class yamatoecollect
     public $code;
     /**
      * $description is a soft name for this payment method
-     * @var string 
+     * @var string
      */
     public $description;
     /**

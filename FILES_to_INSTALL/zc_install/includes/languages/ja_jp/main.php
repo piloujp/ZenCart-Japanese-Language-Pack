@@ -187,7 +187,7 @@ return [
 'TEXT_NAVBAR_INSTALLATION_INSTRUCTIONS' => 'インストール手順',
 'TEXT_NAVBAR_FORUM_LINK' => 'フォーラム',
 'TEXT_HELP_TITLE_HTACCESSSUPPORT' => '.htaccess support',
-'TEXT_HELP_CONTENT_HTACCESSSUPPORT' => '".htaccess"ファイルのサポートに問題があるようです。<br>Zen Cartでは通常機密性の高いファイルやフォルダは、付属の ".htaccess"ファイルのセキュリティルールによってブロックされるはずですが、、現在アクセス可能な状態になっています。<br> <br>考えられる原因: 
+'TEXT_HELP_CONTENT_HTACCESSSUPPORT' => '".htaccess"ファイルのサポートに問題があるようです。<br>Zen Cartでは通常機密性の高いファイルやフォルダは、付属の ".htaccess"ファイルのセキュリティルールによってブロックされるはずですが、、現在アクセス可能な状態になっています。<br> <br>考えられる原因:
 <ul style="list-style-type:square"><li>WebサーバとしてApacheを使用していない可能性があります（ ".htaccess"ファイルはApache Webサーバに固有のものです）。もしくは、</li><li>".htaccess"のサポートが無効になっているか、設定が間違っているかもしれません。もしくは、</li><li>Zen Cartに標準で付属している ".htaccess"ファイルがサイトにアップロードされていません。<br><strong><i> ".htaccess" のような、"."で始まるファイルは通常「隠しファイル」として扱われるため、FTPソフトの設定でファイルの表示や転送をオフにしていると、これらのファイルのアップロードに失敗することがあります。</i></strong></li></ul><br>
 現在の状況でもインストールを続行することはできますが、サイトは本来あるべきものより安全性が低くなるでしょう（Apache Web Serverを使用している場合）。<br><br>Nginx Webサーバーを使用している場合は、このインストールウィザードの[セットアップが完了しました]セクションにある "<strong> Nginxの重要なセキュリティ情報</strong>" に記載されている対応するNginxディレクティブを使用してインストールを進めます。<br><br>どのWebサーバーソフトが使用されているかわからない場合は、Apache Webサーバであると想定して、サーバー管理者に ".htaccess"サポートを有効にするように依頼してください。<br><br>',
 'TEXT_HELP_TITLE_FOLDERPERMS' => 'フォルダのパミッション',

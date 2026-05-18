@@ -32,14 +32,14 @@ if (isset($_POST['saverates'])) {
         $j = 0;
     }
     if (!empty($_POST['imple_date'])) {
-    $rates_update = 
+    $rates_update =
         "UPDATE " . TABLE_SHIPPING_RATES . " t1
         SET t1.imple_date = :imd:, t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newrates) . "'
         WHERE id = :tid:
         ";
     $rates_update = $db->bindVars($rates_update, ':imd:', $_POST['imple_date'], 'string');
     } else {
-        $rates_update = 
+        $rates_update =
             "UPDATE " . TABLE_SHIPPING_RATES . " t1
             SET t1.update_date = NOW(), t1.quote_zone = '" . json_encode($newrates) . "'
             WHERE id = :tid:
@@ -61,7 +61,7 @@ if (isset($_POST['saverates'])) {
 <html <?= HTML_PARAMS ?>>
 <head>
     <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
-<style> 
+<style>
     #imple_date  {
         width: 7em;
         border: none;
