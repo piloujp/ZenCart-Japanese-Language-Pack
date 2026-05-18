@@ -1,0 +1,40 @@
+<?php
+
+$define = [
+    'ADMIN_PLUGIN_MANAGER_NAME_FOR_PACKAGETRACKER' => 'Ty パッケージトラッカー',
+    'ADMIN_PLUGIN_MANAGER_DESCRIPTION_FOR_PACKAGETRACKER' => 'このプラグインにより、顧客と管理者はさまざまな運送業者からの荷物を追跡できるようになります。詳細については、プラグインの<a href="https://github.com/lat9/zen_TyPackageTracker/wiki" target="_blank" rel="noopener noreferrer">ウイキ</a>を参照してください。',
+// Admin configuration
+    'CFGTITLE_CARRIER_STATUS_1' => '荷物追跡 - 運送業者１のステータス',
+    'CFGDESC_CARRIER_STATUS_1' => 'キャリア１の追跡を有効にする。<br><br>管理注文詳細ページまたは顧客注文ステータスページにキャリア１を表示したくない場合は、Falseに設定してください。',
+    'CFGTITLE_CARRIER_NAME_1' => '荷物追跡 - 運送業者１名',
+    'CFGDESC_CARRIER_NAME_1' => '運送業者１の名前を入力します。<br><br><strong>例:</strong> FedEx、UPS、USPS、Canada Post、Royal Mailなど...<br>（デフォルト： FedEx）',
+    'CFGTITLE_CARRIER_LINK_1' => '荷物追跡 - 運送業者１追跡リンク',
+    'CFGDESC_CARRIER_LINK_1' => '運送業者１の追跡リンクを入力します。<br><br><strong>例：</strong> https://www.fedex.com/fedextrack/summary?trknbr=',
+    'CFGTITLE_CARRIER_STATUS_2' => '荷物追跡 - 運送業者２のステータス',
+    'CFGDESC_CARRIER_STATUS_2' => 'キャリア２の追跡を有効にする。<br><br>管理注文詳細ページまたは顧客注文ステータスページにキャリア２を表示したくない場合は、Falseに設定してください。',
+    'CFGTITLE_CARRIER_NAME_2' => '荷物追跡 - 運送業者２名',
+    'CFGDESC_CARRIER_NAME_2' => '運送業者２の名前を入力します。<br><br><strong>例:</strong> FedEx、UPS、USPS、Canada Post、Royal Mailなど...<br>（デフォルト： UPS）',
+    'CFGTITLE_CARRIER_LINK_2' => '荷物追跡 - 運送業者２追跡リンク',
+    'CFGDESC_CARRIER_LINK_2' => '運送業者２の追跡リンクを入力します。<br><br><strong>例：</strong> https://www.fedex.com/fedextrack/summary?trknbr=',
+    'CFGTITLE_CARRIER_STATUS_3' => '荷物追跡 - 運送業者３のステータス',
+    'CFGDESC_CARRIER_STATUS_3' => 'キャリア３の追跡を有効にする。<br><br>管理注文詳細ページまたは顧客注文ステータスページにキャリア３を表示したくない場合は、Falseに設定してください。',
+    'CFGTITLE_CARRIER_NAME_3' => '荷物追跡 - 運送業者３名',
+    'CFGDESC_CARRIER_NAME_3' => '運送業者３の名前を入力します。<br><br><strong>例:</strong> FedEx、UPS、USPS、Canada Post、Royal Mailなど...<br>（デフォルト： USPS）',
+    'CFGTITLE_CARRIER_LINK_3' => '荷物追跡 - 運送業者３追跡リンク',
+    'CFGDESC_CARRIER_LINK_3' => '運送業者３の追跡リンクを入力します。<br><br><strong>例：</strong> https://www.fedex.com/fedextrack/summary?trknbr=',
+    'CFGTITLE_CARRIER_STATUS_4' => '荷物追跡 - 運送業者４のステータス',
+    'CFGDESC_CARRIER_STATUS_4' => 'キャリア４の追跡を有効にする。<br><br>管理注文詳細ページまたは顧客注文ステータスページにキャリア４を表示したくない場合は、Falseに設定してください。',
+    'CFGTITLE_CARRIER_NAME_4' => '荷物追跡 - 運送業者４名',
+    'CFGDESC_CARRIER_NAME_4' => '運送業者４の名前を入力します。<br><br><strong>例:</strong> FedEx、UPS、USPS、Canada Post、Royal Mailなど...<br>（デフォルト： Canada Post）',
+    'CFGTITLE_CARRIER_LINK_4' => '荷物追跡 - 運送業者４追跡リンク',
+    'CFGDESC_CARRIER_LINK_4' => '運送業者４の追跡リンクを入力します。<br><br><strong>例：</strong> https://www.fedex.com/fedextrack/summary?trknbr=',
+    'CFGTITLE_CARRIER_STATUS_5' => '荷物追跡 - 運送業者５のステータス',
+    'CFGDESC_CARRIER_STATUS_5' => 'キャリア５の追跡を有効にする。<br><br>管理注文詳細ページまたは顧客注文ステータスページにキャリア５を表示したくない場合は、Falseに設定してください。',
+    'CFGTITLE_CARRIER_NAME_5' => '荷物追跡 - 運送業者５名',
+    'CFGDESC_CARRIER_NAME_5' => '運送業者５の名前を入力します。<br><br><strong>例:</strong> FedEx、UPS、USPS、Canada Post、Royal Mailなど...<br>（デフォルト： Royal Mail）',
+    'CFGTITLE_CARRIER_LINK_5' => '荷物追跡 - 運送業者５追跡リンク',
+    'CFGDESC_CARRIER_LINK_5' => '運送業者５の追跡リンクを入力します。<br><br><strong>例：</strong> https://www.fedex.com/fedextrack/summary?trknbr=',
+    'CFGTITLE_MAX_DISPLAY_PRODUCTS_IN_TRACK_ORDERS_BOX' => '「注文の追跡」サイドボックスの最大表示',
+    'CFGDESC_MAX_DISPLAY_PRODUCTS_IN_TRACK_ORDERS_BOX' => '「注文の追跡」サイドボックスに表示される注文の最大数。',];
+
+return $define;
