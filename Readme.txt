@@ -1,4 +1,4 @@
-Zen Cart v2.2.1 Japanese language pack v2.2.0
+Zen Cart v3.0.0-dev Japanese language pack v3.0.0
 
 All information for this plugin are in doc folder in index.html file. Please have a look there.
 
