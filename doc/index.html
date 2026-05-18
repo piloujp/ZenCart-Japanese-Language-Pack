@@ -163,7 +163,8 @@ a.anclink {
       <p class="texte">ZC v1.5.8-1.5.8a --&gt; Japanese Language Pack v1.3.4<br>
         ZC v2.0.0-2.0.1 --&gt; Japanese Language Pack v2.0.1<br>
         ZC v2.1.0 --&gt; Japanese Language Pack v2.1.3j<br>
-        ZC v2.2.x --&gt; Japanese Language Pack v2.2.1<br>
+        ZC v2.2.x --&gt; Japanese Language Pack v2.2.2<br>
+      </p>
       <p class="texte">If you don't respect this, database version will not be
         recognized correctly and database will not be updated to Japanese
         version.</p>
@@ -434,8 +435,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           There is a <b>folder named 'sql'</b> where you will find the SQL file
           we need to upgrade Zen Cart database:</p>
         <p class="texte">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-          'mysql_upgrade_zencart_220210.sql' to upgrade to Japanese Language
-          Pack v2.2.0 (database v210).</p>
+          'mysql_upgrade_zencart_220210.sql' to upgrade from ZC database v2.2.0
+          to Japanese Language Pack v2.2.2 (database v210).</p>
         <p class="texte">This file contains database modifications and
           configurations for this Japanese Language Pack. It includes new fields
           for furigana, phone, fax number and delivery time in tables orders,
@@ -610,7 +611,12 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         need to merge those rather than copy them.<br>
       </p>
       <p class="title2">Version history</p>
-      <p class="texte"> V2.2.1 - April 4 2026<br>
+      <p class="texte">V2.2.2 - May 19 2026<br>
+        This is mainly a plugins update of Japanese modules and optional ones
+        too.<br>
+        Manifest files error corrected for Japanese plugins.<br>
+        <br>
+        V2.2.1 - April 4 2026<br>
         Important bug fix for a problem with telephone number in Bootstrap
         template.<br>
         This bug prevented to edit or add a new address in address book when
@@ -859,7 +865,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
       <p class="texte">ZC v1.5.8-1.5.8a --&gt; 日本語言語パック v1.3.4<br>
         ZC v2.0.0-2.0.1 --&gt; 日本語言語パック v2.0.1<br>
         ZC v2.1.0 --&gt; 日本語言語パック v2.1.3j<br>
-        ZC v2.2.1 --&gt; 日本語言語パック v2.2.1<br>
+        ZC v2.2.1 --&gt; 日本語言語パック v2.2.2<br>
+      </p>
       <p class="texte">これを尊重しないと、データベースのバージョンが正しく認識され ず、データベースが日本語バージョンに更新されません。</p>
       <p class="texte">最後に、カートがすでにインストールされている場合は、<span id="important">データベースを含む完
           全なバックアップを実行する必要があります</span>。ファイルの場合、コピーは簡単ですが、データベースの場合は、必要に応じて再度インポート
@@ -1094,8 +1101,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
           動でアップグレードできます。次、<b>「sql」という名前のフォルダー</b>があり、そこに Zen Cart
           データベースを更新するために必要な SQL ファイルがあります。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;
-          'mysql_upgrade_zencart_220210.sql' 、日本語言語パックを v2.2.0（データベース
-          v210）にアップグレードします。</p>
+          'mysql_upgrade_zencart_220210.sql'
+          、ZCデータベースv2.2.0から日本語言語パックv2.2.2（データベースv210）にアップグレードします。</p>
         <p class="texte"> このファイルには、この日本語言語パックのデータベースの変更と構成が含まれています。これには、テーブル
           order、address_book、customers にフリガナ、電話番号、FAX 番号、配達時間の新しいフィールドが追加され。<br>
           「phpMyAdmin」 インポート機能または Zen Cart admin を使用して、<b>このファイルを</b>カートのデータベースに<b>イ
@@ -1126,8 +1133,8 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         <p class="texte"><i><b>ZC 日本語言語パック v2.1.x</b> または <b>v2.1.x</b> (ZC
             v2.0.0 以上) がすでにインストールされています:</i></p>
         <p class="texte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZC <b>日本語言語パック
-            v2.1.x/v2.2.x から</b>アップグレードするには、データベースの<b>バー
-                  ジョンアップ</b>のみが必要です。 このSQLファイルを実行するだけです。</p>
+            v2.1.x/v2.2.x から</b>アップグレードするには、データベースの<b>バー ジョンアップ</b>のみが必要です。
+          このSQLファイルを実行するだけです。</p>
         <p class="texte">&nbsp;&nbsp;&nbsp;
           'version_update_zc_database_v2.2.0.sql'</p>
         <p class="title4">最後に：</p>
@@ -1238,7 +1245,11 @@ YourAdminFolderName)/includes/languages/english/extra_definitions/lang.japanese_
         ださい。</p>
       <p class="texte"> </p>
       <p class="title2">バーションヒストリー</p>
-      <p class="texte">V2.2.1 - ２０２６年４月４日<br>
+      <p class="texte">V2.2.2 - ２０２６年５月１９日<br>
+        これは主に日本語モジュールとオプションモジュールのプラグインアップデートです。<br>
+        日本語プラグインのマニフェストファイルのエラーを修正しました。<br>
+        <br>
+        V2.2.1 - ２０２６年４月４日<br>
         Bootstrapテンプレートにおける電話番号に関する問題に対する重要なバグ修正。<br>
         このバグにより、ZCA Bootstrap Template v
         3.7.7～3.7.9を使用している場合、アドレス帳のアドレスを編集したり、新しいアドレスを追加したりすることができませんでした。<br>

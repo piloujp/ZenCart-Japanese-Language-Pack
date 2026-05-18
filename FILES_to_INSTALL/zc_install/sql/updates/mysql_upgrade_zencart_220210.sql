@@ -202,7 +202,7 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v2.2.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '2.0210', project_version_comment = 'Version Update with Japanese Pack v2.2.1', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v2.2.2', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '2.0210', project_version_comment = 'Version Update with Japanese Pack v2.2.2', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
 
 ##### END OF UPGRADE SCRIPT
