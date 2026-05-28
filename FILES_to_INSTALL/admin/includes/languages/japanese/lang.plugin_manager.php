@@ -63,6 +63,7 @@ $define = [
     'TEXT_VERSION_INSTALLED' => '<strong>インストール済みバージョン：</strong>%s',
 
     'WARNING_NONENCAPSULATED_REMOVAL' => '<b>注意：</b>このプラグインをインストールすると、非カプセル化バージョンによって提供されるファイル（存在する場合）が<b>完全に</b>削除されます。',
+    'WARNING_TEMPLATE_IS_ACTIVE' => 'このプラグインには、<a href="%1$s">%2$s</a>ツールによって現在選択されているテンプレートが含まれています。別のテンプレートを選択する前にプラグインをアンインストールすると、予期せぬ結果が生じる可能性があります。',
 ];
 
 return $define;

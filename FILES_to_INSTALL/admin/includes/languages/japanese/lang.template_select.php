@@ -32,6 +32,7 @@ $define = [
     'TEXT_VIEW_TEMPLATE_SETTINGS' => 'テンプレート設定の表示',
     'TEXT_MODAL_HEADING_INTRO' => 'テンプレート設定：',
     'ERROR_COULD_NOT_READ_FILE' => '申し訳ありませんが、ファイルを読み取れませんでした。',
+    'ERROR_TEMPLATE_SELECTION_NOT_AVAILABLE' => '選択されたテンプレートは利用できません。プラグインテンプレートは、割り当てる前にインストールする必要があります。',
 ];
 
 return $define;
