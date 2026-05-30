@@ -192,6 +192,9 @@ UPDATE orders_status SET orders_status_name='更新', sort_order=30 WHERE langua
 UPDATE orders_status SET orders_status_name='配送済み', sort_order=15 WHERE language_id=@lan_id AND orders_status_name='Sent';
 UPDATE tax_rates_description SET tax_description='（内消費税：１０％）' WHERE language_id=@lan_id AND tax_description=@taxdescription;
 
+# Orders status color code update
+UPDATE orders_status AS t1 JOIN orders_status AS t2 ON t1.orders_status_id = t2.orders_status_id AND t1.language_id != t2.language_id SET t1.orders_status_color_code = t2.orders_status_color_code WHERE t1.language_id = @lan_id AND (t1.orders_status_color_code IS NULL OR t1.orders_status_color_code = '');
+
 
 #### VERSION UPDATE STATEMENTS
 ## THE FOLLOWING 2 SECTIONS SHOULD BE THE "LAST" ITEMS IN THE FILE, so that if the upgrade fails prematurely, the version info is not updated.
@@ -203,6 +206,6 @@ FROM project_version;
 
 ## Now set to new version
 UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '0.0300', project_version_comment = 'Version Update with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_minor = '0.0210', project_version_comment = 'Version Update with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
 
 ##### END OF UPGRADE SCRIPT

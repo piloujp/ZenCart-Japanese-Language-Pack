@@ -24,17 +24,13 @@ DELETE FROM zones WHERE zone_country_id = @japan_id;
 DELETE FROM address_format WHERE address_format LIKE '〒%';
 UPDATE countries SET address_format_id = 1 WHERE countries_id = @japan_id;
 
-UPDATE configuration SET configuration_value = 'en', last_modified = now() WHERE configuration_key = 'DEFAULT_LANGUAGE';
-
-DELETE FROM currencies WHERE title = 'Japanese Yen';
 UPDATE configuration SET configuration_value = 'USD', last_modified = now() WHERE configuration_key = 'DEFAULT_CURRENCY';
+DELETE FROM currencies WHERE title = 'Japanese Yen';
 
 DELETE FROM tax_class WHERE tax_class_title = '消費税';
 DELETE FROM geo_zones WHERE geo_zone_name = '日本';
 DELETE FROM zones_to_geo_zones WHERE zone_country_id = @japan_id;
 DELETE FROM tax_rates WHERE tax_description = '（内消費税：10%）';
-
-UPDATE configuration SET configuration_value = @USA_id, last_modified = now() WHERE configuration_key='STORE_COUNTRY';
 
 UPDATE configuration SET configuration_value = '2', last_modified = now() WHERE configuration_key = 'ENTRY_FIRST_NAME_MIN_LENGTH';
 UPDATE configuration SET configuration_value = '2', last_modified = now() WHERE configuration_key = 'ENTRY_LAST_NAME_MIN_LENGTH';

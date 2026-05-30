@@ -13,7 +13,7 @@ REPLACE INTO address_format (address_format_id, address_format, address_summary)
 UPDATE countries SET address_format_id = (SELECT address_format_id FROM address_format WHERE address_format LIKE '〒%' ORDER BY address_format_id DESC LIMIT 1) WHERE countries_id = @japan_id;
 
 # Orders status color code update
-UPDATE orders_status AS t1 JOIN orders_status AS t2 ON t1.orders_status_id = t2.orders_status_id AND t1.language_id != t2.language_id SET t1.orders_status_color_code = t2.orders_status_color_code WHERE t1.language_id = @japan_id AND (t1.orders_status_color_code IS NULL OR t1.orders_status_color_code = '');
+UPDATE orders_status AS t1 JOIN orders_status AS t2 ON t1.orders_status_id = t2.orders_status_id AND t1.language_id != t2.language_id SET t1.orders_status_color_code = t2.orders_status_color_code WHERE t1.language_id = @lan_id AND (t1.orders_status_color_code IS NULL OR t1.orders_status_color_code = '');
 
 # Japan Tax description update
 SET @JapanTaxRateID = (SELECT tax_rates_id FROM tax_rates tr INNER JOIN tax_class tc ON tr.tax_class_id = tc.tax_class_id WHERE tc.tax_class_title = '消費税' LIMIT 1);
@@ -27,5 +27,5 @@ SELECT project_version_key, project_version_major, project_version_minor, projec
 FROM project_version;
 
 ## Now set to new version
-UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v2.2.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
-UPDATE project_version SET project_version_minor = '2.0210', project_version_comment = 'Manual version update with Japanese Pack v2.2.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
+UPDATE project_version SET project_version_comment = 'Version Update with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Main';
+UPDATE project_version SET project_version_minor = '0.0210', project_version_comment = 'Manual version update with Japanese Pack v3.0.0', project_version_date_applied = now() WHERE project_version_key = 'Zen-Cart Database';
