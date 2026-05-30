@@ -26,8 +26,8 @@ $define = [
     'ERROR_NO_AMOUNT_ENTERED' => 'エラー：引換額が正しく指定されていません。',
     'ERROR_NO_SUBJECT' => 'エラー： 件名が入力されていません。',
     'TEXT_GV_ANNOUNCE' => '大切なお客様であるあなたに、%sの' . '%%TEXT_GV_NAME%%' . 'を贈ります。',
-    'TEXT_GV_TO_REDEEM_TEXT' => '以下のリンクから' . '%%TEXT_GV_NAME%%' . "\n\n ". '%1$s%2$s' . "\n\n" . 'の引換を行うか、' . STORE_NAME . " URL: " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . ' でのお支払い手続きページで、ギフト券引換コード %2$s を入力してご利用ください。',
-    'TEXT_GV_TO_REDEEM_HTML' => '<a href="%1$s%2$s">ここをクリックしてギフト券を引換' . '%%TEXT_GV_NAME%%' . '</a> するか、<a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . STORE_NAME . '</a> でのお支払い手続きページでギフト券引換コード <strong>%2$s</strong> を入力してご利用ください。',
+    'TEXT_GV_TO_REDEEM_TEXT' => '以下のリンクから' . '%%TEXT_GV_NAME%%' . "\n\n ". '%1$s%2$s' . "\n\n" . 'の引換を行うか、' . zen_config('STORE_NAME') . " URL: " . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . "\n" . ' でのお支払い手続きページで、ギフト券引換コード %2$s を入力してご利用ください。',
+    'TEXT_GV_TO_REDEEM_HTML' => '<a href="%1$s%2$s">ここをクリックしてギフト券を引換' . '%%TEXT_GV_NAME%%' . '</a> するか、<a href="' . HTTP_CATALOG_SERVER . DIR_WS_CATALOG . '">' . zen_config('STORE_NAME') . '</a> でのお支払い手続きページでギフト券引換コード <strong>%2$s</strong> を入力してご利用ください。',
 ];
 
 return $define;

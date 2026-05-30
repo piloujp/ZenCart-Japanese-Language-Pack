@@ -508,7 +508,7 @@ $define = [
     'TEXT_PRODUCT_OPTIONS' => '選択してください：',
     'TEXT_PRODUCT_QUANTITY' => ' 在庫：',
     'TEXT_PRODUCT_WEIGHT' => '重量：',
-    'TEXT_PRODUCT_WEIGHT_UNIT' => ' kgs',
+    'TEXT_PRODUCT_WEIGHT_UNIT' => ' kg',
     'TEXT_REMOVE_REDEEM_COUPON_ZONE' => '入力された割引クーポンコードは、お客様のご住所ではご利用いただけません。',
     'TEXT_RESULT_PAGE' => '',
     'TEXT_REVIEW_BY' => 'by %s',
@@ -517,7 +517,7 @@ $define = [
     'TEXT_SEARCH_HELP_LINK' => '検索ヘルプ [?]',
     'TEXT_SEARCH_IN_DESCRIPTION' => '製品説明で検索',
     'TEXT_SHIPPING_BOXES' => '個口',
-    'TEXT_SHIPPING_WEIGHT' => ' kgs',
+    'TEXT_SHIPPING_WEIGHT' => ' kg',
     'TEXT_SHOWCASE_ONLY' => 'お問い合わせ',
     'TEXT_SORT_PRODUCTS' => '商品の並べ替え ',
     'TEXT_TOP' => 'トップ',
@@ -542,7 +542,7 @@ $define = [
     $define['BOX_HEADING_GIFT_VOUCHER'] = $define['TEXT_GV_NAME'] . ' アカウント';
     $define['BOX_INFORMATION_GV'] = $define['TEXT_GV_NAME'] . ' よくある質問';
     $define['ENTRY_EMAIL_PREFERENCE'] = 'ニュースレターと電子メールの詳細';
-    if (zen_config('ACCOUNT_NEWSLETTER_STATUS') === '0') {
+    if ((int)zen_config('ACCOUNT_NEWSLETTER_STATUS') === 0) {
        $define['ENTRY_EMAIL_PREFERENCE'] = 'メールの詳細';
     }
     $define['ERROR_NO_INVALID_REDEEM_GV'] = '無効 ' . $define['TEXT_GV_NAME'] . ' ' . $define['TEXT_GV_REDEEM'];
