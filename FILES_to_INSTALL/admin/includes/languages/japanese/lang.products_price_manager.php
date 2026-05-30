@@ -58,7 +58,7 @@ $define = [
     'TEXT_INFO_HEADING_DELETE_FEATURED' => 'おすすめ商品から削除',
     'TEXT_INFO_DELETE_INTRO' => 'このおすすめ商品を本当に削除しますか?',
     'TEXT_PRODUCTS_PRICE' => '商品価格：',
-    'TEXT_ADD_ADDITIONAL_DISCOUNT', DISCOUNT_QTY_ADD . ' レベルの割引レベルを追加する',
+    'TEXT_ADD_ADDITIONAL_DISCOUNT' => '数量割引を ' . DISCOUNT_QTY_ADD . 'つ追加してください：',
     'TEXT_BLANKS_INFO' => '全ての0 の割引レベルは更新の際に削除されます',
     'TEXT_INFO_NO_DISCOUNTS' => 'まとめ購入割引はまだ作成されていません',
     'TEXT_PRODUCTS_DISCOUNT_QTY_TITLE' => '割引レベル',

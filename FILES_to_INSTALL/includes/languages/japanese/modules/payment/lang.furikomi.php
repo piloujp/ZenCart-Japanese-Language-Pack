@@ -63,7 +63,7 @@ if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
 //    . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME2
 //    . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH2
 //    . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM2
-//    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYP2E
+//    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYPE2
 //    . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM2
 //    . "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT2
     . "\n\nご注文ありがとう御座いました。入金確認後、商品を送ります。\n";
