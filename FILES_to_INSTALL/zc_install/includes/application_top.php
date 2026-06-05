@@ -134,6 +134,8 @@ foreach (glob(DIR_FS_INSTALL . 'includes/extra_configures/*.php') ?? [] as $file
 
 require DIR_FS_ROOT . 'includes/classes/traits/ObserverManager.php';
 require DIR_FS_ROOT . 'includes/classes/traits/NotifierManager.php';
+require DIR_FS_ROOT . 'includes/classes/traits/Singleton.php';
+require DIR_FS_ROOT . 'includes/classes/EventDto.php';
 require DIR_FS_ROOT . 'includes/classes/class.base.php';
 require DIR_FS_ROOT . 'includes/classes/class.notifier.php';
 require DIR_FS_INSTALL . 'includes/functions/general.php';
@@ -144,15 +146,15 @@ $languageManager = new LanguageManager();
 
 zen_sanitize_request();
 /**
- * set the type of request (secure or not)
+ * Inspect the type of request (using SSL or not)
  */
-$request_type = ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) ||
+$request_type = ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) === 'on' || $_SERVER['HTTPS'] === '1')) ||
     (isset($_SERVER['HTTP_X_FORWARDED_BY']) && stripos($_SERVER['HTTP_X_FORWARDED_BY'], 'SSL') !== false) ||
     (isset($_SERVER['HTTP_X_FORWARDED_HOST']) && (stripos($_SERVER['HTTP_X_FORWARDED_HOST'], 'SSL') !== false)) ||
     (isset($_SERVER['SCRIPT_URI']) && stripos($_SERVER['SCRIPT_URI'], 'https:') === 0) ||
-    (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'] == '1' || strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) == 'on')) ||
-    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'ssl' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https')) ||
-    (isset($_SERVER['HTTP_SSLSESSIONID']) && $_SERVER['HTTP_SSLSESSIONID'] != '') ||
+    (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'] == '1' || strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on')) ||
+    (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && (strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'ssl' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')) ||
+    (isset($_SERVER['HTTP_SSLSESSIONID']) && $_SERVER['HTTP_SSLSESSIONID'] !== '') ||
     (isset($_SERVER['HTTP_X_FORWARDED_PORT']) && $_SERVER['HTTP_X_FORWARDED_PORT'] == '443') ||
     (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443')) ? 'SSL' : 'NONSSL';
 
