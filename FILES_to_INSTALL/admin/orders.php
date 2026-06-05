@@ -685,7 +685,7 @@ if (!empty($action) && $order_exists === true) {
                                 <td><?= (empty($order->delivery) ? TEXT_NONE : zen_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br>'))
                                     . (!empty($order->delivery['name_kana']) ? '<br><small>' . ENTRY_NAME_KANA . $order->delivery['name_kana'] . '</small>' : '')
                                     . (!empty($order->delivery['telephone']) ? '<br><small>' . ENTRY_TELEPHONE_NUMBER . $order->delivery['telephone'] . '</small>' : '')
-                                    . (!empty($order->delivery['fax']) && $order->delivery['fax'] != $order->delivery['telephone']) ? '<br><small>' . ENTRY_FAX_NUMBER . $order->delivery['fax'] . '</small>' : '')
+                                    . (!empty($order->delivery['fax']) && $order->delivery['fax'] != $order->delivery['telephone'] ? '<br><small>' . ENTRY_FAX_NUMBER . $order->delivery['fax'] . '</small>' : '')
                                     . (!empty($order->delivery['timespec']) ? '<br><small>' . TEXT_TIME_SPECIFY . $order->delivery['timespec'] . '</small>' :'') ?>
                                 </td>
                             </tr>
