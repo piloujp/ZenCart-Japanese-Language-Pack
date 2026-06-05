@@ -61,6 +61,10 @@ class furikomi
         $this->sort_order = defined('MODULE_PAYMENT_FURIKOMI_SORT_ORDER') ? MODULE_PAYMENT_FURIKOMI_SORT_ORDER : null;
         if (null === $this->sort_order) return ;
 
+        if (IS_ADMIN_FLAG === true && (MODULE_PAYMENT_FURIKOMI_ACCNUM == '1234567' || MODULE_PAYMENT_FURIKOMI_ACCNUM == '')) {
+            $this->title .= '<span class="alert">' .  MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO . '</span>';
+        }
+
         if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID > 0) {
             $this->order_status = MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID;
         }

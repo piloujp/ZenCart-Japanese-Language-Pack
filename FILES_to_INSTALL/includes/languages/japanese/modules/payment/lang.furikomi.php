@@ -2,20 +2,21 @@
 $define = [
     'MODULE_PAYMENT_FURIKOMI_TEXT_TITLE' => '振込',
     'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => '<br>以下の口座に振り込んで下さい：<br><pre>'
-    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? MODULE_PAYMENT_FURIKOMI_BANKNAME : '銀行名')
-    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH : '支店名')
-    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? MODULE_PAYMENT_FURIKOMI_ACCNUM : '口座番号')
-    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE : '預金科目')
-    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? MODULE_PAYMENT_FURIKOMI_ACCNAM : '口座名義人')
-//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? MODULE_PAYMENT_FURIKOMI_SWIFT : 'スイフトコード')
+    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME') : '銀行名')
+    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') : '支店名')
+    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM') : '口座番号')
+    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE') : '預金科目')
+    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM') : '口座名義人')
+//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT') : 'スイフトコード')
 //    . "\n\n２番目の銀行の選択肢："
-//    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME2') ? MODULE_PAYMENT_FURIKOMI_BANKNAME2 : '銀行名')
-//    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') ? MODULE_PAYMENT_FURIKOMI_BANKBRANCH2 : '支店名')
-//    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM2') ? MODULE_PAYMENT_FURIKOMI_ACCNUM2 : '口座番号')
-//    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') ? MODULE_PAYMENT_FURIKOMI_ACCTYPE2 : '預金科目')
-//    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? MODULE_PAYMENT_FURIKOMI_ACCNAM2 : '口座名義人')
-//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? MODULE_PAYMENT_FURIKOMI_SWIFT2 : 'スイフトコード')
+//    . "\n銀行名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME2') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME2') : '銀行名')
+//    . "\n支店名：     " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') : '支店名')
+//    . "\n口座番号：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM2') : '口座番号')
+//    . "\n預金科目：   " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') : '預金科目')
+//    . "\n口座名義人： " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM2') : '口座名義人')
+//    . "\nスイフトコード：" . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT2') : 'スイフトコード')
     . '</pre><p>ご注文ありがとう御座いました。入金確認後、商品を送ります。',
+    'MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO' => '（未設定 - 転送データが不足しています）)',
 // bof constant configuration titles and descriptions for payment module furikomi
     'CFGTITLE_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込モジュールを有効にする',
     'CFGDESC_MODULE_PAYMENT_FURIKOMI_STATUS' => '銀行振込による支払いを受け入れますか？',
@@ -53,19 +54,19 @@ $define = [
 ];
 if (defined('MODULE_PAYMENT_FURIKOMI_STATUS')) {
     $define['MODULE_PAYMENT_FURIKOMI_TEXT_EMAIL_FOOTER'] = "以下の口座に振り込んで下さい：\n"
-    . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME
-    . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH
-    . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM
-    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYPE
-    . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM
-//    . "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT
+    . "\n銀行名：     " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME')
+    . "\n支店名：     " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH')
+    . "\n口座番号：   " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM')
+    . "\n預金科目：   " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE')
+    . "\n口座名義人： " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM')
+//    . "\nSWIFTコード：" . zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT')
 //    . "\n２番目の銀行の選択肢："
-//    . "\n銀行名：     " . MODULE_PAYMENT_FURIKOMI_BANKNAME2
-//    . "\n支店名：     " . MODULE_PAYMENT_FURIKOMI_BANKBRANCH2
-//    . "\n口座番号：   " . MODULE_PAYMENT_FURIKOMI_ACCNUM2
-//    . "\n預金科目：   " . MODULE_PAYMENT_FURIKOMI_ACCTYP2E
-//    . "\n口座名義人： " . MODULE_PAYMENT_FURIKOMI_ACCNAM2
-//    . "\nSWIFTコード：" . MODULE_PAYMENT_FURIKOMI_SWIFT2
+//    . "\n銀行名：     " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME2')
+//    . "\n支店名：     " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2')
+//    . "\n口座番号：   " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM2')
+//    . "\n預金科目：   " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE2')
+//    . "\n口座名義人： " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM2')
+//    . "\nSWIFTコード：" . zen_config('zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT2')
     . "\n\nご注文ありがとう御座いました。入金確認後、商品を送ります。\n";
 }
 
