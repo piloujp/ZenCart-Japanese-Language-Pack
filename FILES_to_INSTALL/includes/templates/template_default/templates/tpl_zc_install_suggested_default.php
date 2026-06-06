@@ -238,15 +238,15 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
           <br>
           <ul style='list-style-type:square'>
             <li>
-              <tt><strong>「/includes/configure.php」</strong></tt>および/または<tt><strong>「/admin/includes/configure.php」</strong></tt>ファイルには、無効な<em>パス</em>情報および/または無効な<em>データベース接続情報</em>が含まれています。
+              <tt><strong>/includes/configure.php</strong></tt> ファイルには無効な <em>パス情報</em> および/または無効な <em>データベース接続情報</em> が含まれています。
             <br>
             </li>
             <li>
-              最近、configure.php ファイルを編集した場合、またはサイトを別のフォルダーまたは別のサーバーに移動した場合は、すべての設定を確認し、サーバーの正しい値に更新する必要があります。
+              最近、何らかの理由でconfigure.phpファイルを編集した場合、あるいはサイトを別のフォルダや別のサーバーに移動した場合は、すべての設定を確認し、サーバーに適した値に更新する必要があります。
               <br>
             </li>
             <li>
-              さらに、configure.php ファイルの権限が変更されている場合は、ファイルを読み取るには権限が低すぎる可能性があります。
+              さらに、configure.php ファイルのパーミッションが変更されている場合、そのパーミッションが低すぎてファイルを読み取ることができない可能性があります。
               <br>
             </li>
             <li>
@@ -254,11 +254,11 @@ $docsPath = (file_exists('docs/index.html')) ? 'docs/index.html' : (file_exists(
               <br>
             </li>
             <li>
-              または、Web ホスティングプロバイダーが最近サーバーの PHP 構成を変更した（またはバージョンをアップグレードした）場合、同様に問題が発生している可能性があります。
+              あるいは、ウェブホスティングプロバイダーが最近サーバーのPHP設定を変更した（またはバージョンをアップグレードした）場合、それが原因で問題が発生している可能性もあります。
               <br>
             </li>
             <li>
-              サポートが必要な場合は、Zen Cart<sup>&reg;</sup> Web サイトの<a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ドキュメント</a>エリアを参照してください（英語のみ）。
+              サポートが必要な場合は、Zen Cart<sup>&reg;</sup> Web サイトの <a href="https://docs.zen-cart.com" rel="noopener" target="_blank">オンライン ドキュメント</a> を参照してください。
             </li>
           </ul>
         </li>

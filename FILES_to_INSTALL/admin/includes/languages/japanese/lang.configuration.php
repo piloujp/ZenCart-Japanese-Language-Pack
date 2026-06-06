@@ -626,7 +626,7 @@ $define = [
     'CFGTITLE_PRODUCTS_OPTIONS_TYPE_READONLY_IGNORED' => 'Read Only属性の商品 -「カートに追加」ボタンの表示',
     'CFGDESC_PRODUCTS_OPTIONS_TYPE_READONLY_IGNORED' => 'READONLY属性だけが設定された商品に「カートに追加」ボタンを表示しますか？<br>0= オフ<br>1= オン',
     'CFGTITLE_SESSION_WRITE_DIRECTORY' => 'セッション情報保存ディレクトリ',
-    'CFGDESC_SESSION_WRITE_DIRECTORY' => 'セッション管理がファイルベースの場合に保存するディレクトリを設定します。',
+    'CFGDESC_SESSION_WRITE_DIRECTORY' => 'これは、configure.php ファイルの DIR_FS_SQL_CACHE 設定で指定されたフォルダを指している必要があります。',
     'CFGTITLE_SESSION_USE_FQDN' => 'クッキーに保存するドメイン名の設定',
     'CFGDESC_SESSION_USE_FQDN' => 'クッキーに保存するドメイン名について設定します。<br>・True = ドメインネーム全体をクッキーに保存(例：www.mydomain.com)<br>・False = ドメインネームの一部を保存(例：mydomain.com)。<br>よくわからない場合はこの設定はTrueにしておいてください。',
     'CFGTITLE_SESSION_FORCE_COOKIE_USE' => 'クッキー利用を必須にする',
