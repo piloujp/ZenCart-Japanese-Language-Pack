@@ -60,8 +60,8 @@ class shipping
 
     public function __construct($module = null)
     {
-        if (defined('MODULE_SHIPPING_INSTALLED') && !empty(MODULE_SHIPPING_INSTALLED)) {
-            $this->modules = explode(';', MODULE_SHIPPING_INSTALLED);
+        if (!empty(zen_config('MODULE_SHIPPING_INSTALLED'))) {
+            $this->modules = explode(';', zen_config('MODULE_SHIPPING_INSTALLED'));
         }
         $this->notify('NOTIFY_SHIPPING_CLASS_GET_INSTALLED_MODULES', $module);
 
@@ -534,11 +534,11 @@ class shipping
             $shipping_num_boxes = 1;
             $shipping_weight = $total_weight;
 
-            $za_tare_array = preg_split("/[:,]/", str_replace(' ', '', !empty(SHIPPING_BOX_WEIGHT) ? SHIPPING_BOX_WEIGHT : '0:0'));
+            $za_tare_array = preg_split("/[:,]/", str_replace(' ', '', !empty(zen_config('SHIPPING_BOX_WEIGHT')) ? zen_config('SHIPPING_BOX_WEIGHT') : '0:0'));
             $zc_tare_percent = (float)$za_tare_array[0];
             $zc_tare_weight = (float)$za_tare_array[1];
 
-            $za_large_array = preg_split("/[:,]/", str_replace(' ', '', !empty(SHIPPING_BOX_PADDING) ? SHIPPING_BOX_PADDING : '0:0'));
+            $za_large_array = preg_split("/[:,]/", str_replace(' ', '', !empty(zen_config('SHIPPING_BOX_PADDING')) ? zen_config('SHIPPING_BOX_PADDING') : '0:0'));
             $zc_large_percent = (float)$za_large_array[0];
             $zc_large_weight = (float)$za_large_array[1];
 
@@ -546,7 +546,7 @@ class shipping
             // SHIPPING_BOX_PADDING = Large Box % increase
             // SHIPPING_MAX_WEIGHT = Largest package
 
-            if (empty($max_shipping_weight) or $max_shipping_weight >= SHIPPING_MAX_WEIGHT) {
+            if (empty($max_shipping_weight) or $max_shipping_weight >= zen_config('SHIPPING_MAX_WEIGHT')) {
                 $max_shipping_weight = SHIPPING_MAX_WEIGHT;
             }
 
