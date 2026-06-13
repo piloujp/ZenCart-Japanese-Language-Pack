@@ -15,7 +15,7 @@ $define = [
     'TEXT_HINT_PASSWORD_RESET_TOKEN_LENGTH' => '１２〜１００の整数を指定してください。',
     'TEXT_HINT_PASSWORD_RESET_TOKEN_VALID_MINUTES' => '１〜１４４０の整数を指定してください。',
 
-    'TEXT_VALUE_SAVED' => '「%1s」の値が「%2s」から「%3s」に変更されました。',
+    'TEXT_VALUE_SAVED' => '「%1s」の値が %2s から %3s に変更されました。',
 // bof constant configuration group page titles
 //    'CFG_GRP_TITLE_MY_STORE' => 'ショップ全般の設定',
 //    'CFG_GRP_TITLE_MINIMUM_VALUES' => '最小値の設定',

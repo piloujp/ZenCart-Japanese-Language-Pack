@@ -1462,7 +1462,7 @@ if ($action === 'edit' || $action === 'update') {
             $_GET['page'] = round(
                 (($check_count / zen_config('MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER')) + (fmod_round(
                         $check_count,
-                        MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER
+                        zen_config('MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER')
                     ) != 0 ? .5 : 0)),
                 0
             );
@@ -1475,7 +1475,7 @@ if ($action === 'edit' || $action === 'update') {
     $customers_query_numrows = $customers_query_numrows ?? 0;
     $customers_split = new splitPageResults(
         $_GET['page'],
-        zen_config('MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER'),
+        (int)zen_config('MAX_DISPLAY_SEARCH_RESULTS_CUSTOMER'),
         $customers_query_raw,
         $customers_query_numrows
     );
