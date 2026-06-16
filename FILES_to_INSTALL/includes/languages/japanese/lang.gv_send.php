@@ -4,7 +4,7 @@ $define = [
     'HEADING_TITLE_CONFIRM_SEND' => TEXT_GV_NAME . '送信の確認',
     'HEADING_TITLE_COMPLETED' => TEXT_GV_NAME . 'を送信しました',
     'NAVBAR_TITLE' => '' . TEXT_GV_NAME . '送信',
-    'EMAIL_SUBJECT' => STORE_NAME . 'からのメッセージ',
+    'EMAIL_SUBJECT' => zen_config('STORE_NAME') . 'からのメッセージ',
     'HEADING_TEXT' => '<br>以下のフォームに' . TEXT_GV_NAME . 'のお受取人情報などをご記入ください。<br>' . TEXT_GV_NAME . 'についての詳しい情報は<a href="' . zen_href_link(FILENAME_GV_FAQ).'">' . GV_FAQ . '</a>でご覧になれます。<br>',
     'ENTRY_MESSAGE' => 'メッセージ：',
     'ENTRY_AMOUNT' => '金額：',

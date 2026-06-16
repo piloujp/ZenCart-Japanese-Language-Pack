@@ -14,7 +14,7 @@ $define = [
 
     'TEXT_MAIN' => '以下のメールアドレスを入力すると、パスワードをリセットする方法についての手順が送信されます。',
 
-    'EMAIL_PASSWORD_RESET_SUBJECT' => STORE_NAME . ' - パスワードのリセット',
+    'EMAIL_PASSWORD_RESET_SUBJECT' => zen_config('STORE_NAME') . ' - パスワードのリセット',
 
     'EMAIL_PASSWORD_RESET_BODY' =>
         "こんにちは,\n\n" .
@@ -24,7 +24,7 @@ $define = [
         "このリンクはパスワードリセット専用です。ご自身でリクエストされていない場合は、このメールを無視していただいて構いません。パスワードは変更されません。\n\n" .
         "セキュリティ上の理由から、このリクエストはIPアドレスから送信されました： %1\$s\n\n" .
         "敬具、\n" .
-        STORE_NAME . "\n",
+        zen_config('STORE_NAME') . "\n",
 
     'EMAIL_PASSWORD_RESET_HTML' =>
         '<p>こんにちは,</p>' .

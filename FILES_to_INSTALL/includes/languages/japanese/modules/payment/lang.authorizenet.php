@@ -8,8 +8,8 @@ $define = [
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_CREDIT_CARD_EXPIRES' => '有効期限：',
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_CVV' => 'CVV番号：',
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_POPUP_CVV_LINK' => 'これは何ですか？',
-    'MODULE_PAYMENT_AUTHORIZENET_TEXT_JS_CC_OWNER' => '* カード名義は' . CC_OWNER_MIN_LENGTH . '文字以上必要です。\n',
-    'MODULE_PAYMENT_AUTHORIZENET_TEXT_JS_CC_NUMBER' => '* カード番号は' . CC_NUMBER_MIN_LENGTH . '文字以上必要です。\n',
+    'MODULE_PAYMENT_AUTHORIZENET_TEXT_JS_CC_OWNER' => '* カード名義は' . zen_config('CC_OWNER_MIN_LENGTH') . '文字以上必要です。\n',
+    'MODULE_PAYMENT_AUTHORIZENET_TEXT_JS_CC_NUMBER' => '* カード番号は' . zen_config('CC_NUMBER_MIN_LENGTH') . '文字以上必要です。\n',
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_JS_CC_CVV' => '* クレジットカードの裏面にある３桁または４桁の CVV 番号を入力する必要があります。\n',
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_ERROR_MESSAGE' => 'クレジットカードの処理にエラーが発生しました. もう一度試してください。',
     'MODULE_PAYMENT_AUTHORIZENET_TEXT_DECLINED_MESSAGE' => 'クレジットカードの受付が拒否されました。他のクレジットカードを試すか詳細を加盟クレジット会社へ問い合わせてください。',
@@ -50,7 +50,7 @@ $define = [
 // eof constant configuration titles and descriptions for payment module authorizenet
 ];
 
-if (defined('MODULE_PAYMENT_AUTHORIZENET_STATUS') && MODULE_PAYMENT_AUTHORIZENET_STATUS == 'True') {
+if (zen_config('MODULE_PAYMENT_AUTHORIZENET_STATUS') === 'True') {
     $define['MODULE_PAYMENT_AUTHORIZENET_TEXT_DESCRIPTION'] = '<a rel="noreferrer noopener" target="_blank" href="https://account.authorize.net/">Authorize.net Merchant Login</a>' . (MODULE_PAYMENT_AUTHORIZENET_TESTMODE != '本番' ? '<br><br>テスト情報：<br><b>自動承認クレジットカード番号：</b><br>Visa#: 4007000000027<br>MC#: 5424000000000015<br>Discover#: 6011000000000012<br>AMEX#: 370000000000002<br><br><b>注記：</b>これらのクレジットカード番号は、ライブ モードでは拒否され、テスト モードでは承認されます。有効期限には任意の将来の日付を使用でき、CVV コードには任意の３桁または４桁（AMEX）の数字を使用できます。<br><br><b>自動拒否クレジットカード番号：</b><br><br>カード番号： 4222222222222<br><br>このカード番号は、テスト目的で拒否通知を受信するために使用できます。' : '') . '<br><br><strong>設定</strong><br>Authorize.net マーチャント プロファイルの「応答」と「受領」および「リレー」の URL 設定は空白のままにしておくことができます。または、必要に応じて「リレー URL」を https://your_domain.com/foldername/index.php?main_page=checkout_process を指すように設定することもできます。<br><br>これに問題がある場合は、詳細なセットアップ手順については、<a href="https://docs.zen-cart.com/user/payment/authorizenet_sim/" rel="noreferrer noopener" target="_blank">SIM セットアップに関する FAQ 記事</a>を参照してください。';
 } else {
     $define['MODULE_PAYMENT_AUTHORIZENET_TEXT_DESCRIPTION'] = '<a rel="noreferrer noopener" target="_blank" href="https://reseller.authorize.net/application?resellerId=10023">アカウント登録はこちらをクリック</a><br><br><a rel="noreferrer noopener" target="_blank" href="https://account.authorize.net/">Authorize.net マーチャントエリアにログインするにはクリックしてください</a><br><br><strong>要件：</strong><br><hr>*<strong>Authorize.net アカウント</strong>(サインアップするには上記のリンクを参照してください)<br>*<strong>Authorize.net のユーザー名とトランザクションキー</strong>は、マーチャントエリアから入手できます。<br><br>詳細なセットアップ手順については、<a href="https://docs.zen-cart.com/user/payment/authorizenet_sim/" rel="noreferrer noopener" target="_blank">SIM セットアップに関する FAQ 記事</a>を参照してください。';
