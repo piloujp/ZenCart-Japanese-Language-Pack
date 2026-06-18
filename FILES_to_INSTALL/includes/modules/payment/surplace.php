@@ -54,10 +54,10 @@ class surplace
         $this->code = 'surplace';
         $this->title = MODULE_PAYMENT_SURPLACE_TEXT_TITLE;
         $this->description = MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION;
-        $this->enabled = (defined('MODULE_PAYMENT_SURPLACE_STATUS') && MODULE_PAYMENT_SURPLACE_STATUS == 'True');
-        $this->sort_order = defined('MODULE_PAYMENT_SURPLACE_SORT_ORDER') ? MODULE_PAYMENT_SURPLACE_SORT_ORDER : null;
+        $this->enabled = (zen_config('MODULE_PAYMENT_SURPLACE_STATUS') === 'True');
+        $this->sort_order = zen_config('MODULE_PAYMENT_SURPLACE_SORT_ORDER');
         if (null === $this->sort_order) return;
-        if (defined('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID > 0) {
+        if (defined('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') && (int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') > 0) {
             $this->order_status = MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID;
         }
 
@@ -69,7 +69,7 @@ class surplace
     {
         global $order, $db;
 
-        if ($this->enabled && (int)MODULE_PAYMENT_SURPLACE_ZONE > 0 && isset($order->delivery['country']['id'])) {
+        if ($this->enabled && (int)zen_config('MODULE_PAYMENT_SURPLACE_ZONE') > 0 && isset($order->delivery['country']['id'])) {
             $check_flag = false;
             $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_SURPLACE_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
             while (!$check->EOF) {

@@ -123,7 +123,7 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
         $messageStack->add('create_account', ENTRY_LAST_NAME_ERROR);
     }
 
-    if ($_SESSION['language'] == 'japanese') {
+    if ($_SESSION['language'] === 'japanese') {
         $firstname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['firstname_kana']));
         $lastname_kana = zen_db_prepare_input(zen_sanitize_string($_POST['lastname_kana']));
         if (mb_strlen($firstname_kana) < zen_config('ENTRY_FIRST_NAME_MIN_LENGTH')) {
@@ -295,7 +295,7 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
 
         $customer = new Customer();
 
-        if ($_SESSION['language'] == 'japanese') {
+        if ($_SESSION['language'] === 'japanese') {
             $data = compact(
                 'firstname', 'firstname_kana', 'lastname', 'lastname_kana', 'email_address', 'nick', 'email_format', 'telephone', 'fax',
                 'newsletter', 'password', 'customers_authorization', 'customers_referral',

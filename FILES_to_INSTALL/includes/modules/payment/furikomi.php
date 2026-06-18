@@ -57,15 +57,15 @@ class furikomi
         $this->code = 'furikomi';
         $this->title = MODULE_PAYMENT_FURIKOMI_TEXT_TITLE;
         $this->description = MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION;
-        $this->enabled = (defined('MODULE_PAYMENT_FURIKOMI_STATUS') && MODULE_PAYMENT_FURIKOMI_STATUS == 'True');
-        $this->sort_order = defined('MODULE_PAYMENT_FURIKOMI_SORT_ORDER') ? MODULE_PAYMENT_FURIKOMI_SORT_ORDER : null;
+        $this->enabled = (zen_config('MODULE_PAYMENT_FURIKOMI_STATUS') === 'True');
+        $this->sort_order = zen_config('MODULE_PAYMENT_FURIKOMI_SORT_ORDER');
         if (null === $this->sort_order) return ;
 
         if (IS_ADMIN_FLAG === true && (MODULE_PAYMENT_FURIKOMI_ACCNUM == '1234567' || MODULE_PAYMENT_FURIKOMI_ACCNUM == '')) {
             $this->title .= '<span class="alert">' .  MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO . '</span>';
         }
 
-        if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID > 0) {
+        if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)zen_config('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') > 0) {
             $this->order_status = MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID;
         }
 
@@ -79,9 +79,9 @@ class furikomi
     {
         global $order, $db;
 
-        if ($this->enabled && (int)MODULE_PAYMENT_FURIKOMI_ZONE > 0 && isset($order->billing['country']['id'])) {
+        if ($this->enabled && (int)zen_config('MODULE_PAYMENT_FURIKOMI_ZONE') > 0 && isset($order->billing['country']['id'])) {
             $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_FURIKOMI_ZONE . "' and zone_country_id = '" . (int)$order->billing['country']['id'] . "' order by zone_id");
+            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . zen_config('MODULE_PAYMENT_FURIKOMI_ZONE') . "' and zone_country_id = '" . (int)$order->billing['country']['id'] . "' order by zone_id");
             while (!$check->EOF) {
                 if ($check->fields['zone_id'] < 1) {
                     $check_flag = true;
