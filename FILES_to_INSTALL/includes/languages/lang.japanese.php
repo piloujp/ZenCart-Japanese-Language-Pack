@@ -186,6 +186,7 @@ $define = [
     'ERROR_CORRECTIONS_HEADING' => '以下の内容に修正が必要です：<br>',
     'ERROR_CUSTOMERS_ID_INVALID' => 'アカウント情報が確認できませんでした。<br>ログインか、アカウント登録を行って下さい。',
     'ERROR_DATABASE_MAINTENANCE_NEEDED' => '<a href="https://docs.zen-cart.com/user/troubleshooting/error_71_maintenance_required/" rel="noopener" target="_blank">ERROR 0071 There appears to be a problem with the database. Maintenance is required.</a>',
+    'ERROR_SESSION_INVALID_DUE_TO_PASSWORD_CHANGE' => 'パスワードが変更されたため、セッションの有効期限が切れました。再度ログインしてください。',
     'ERROR_DESTINATION_DOES_NOT_EXIST' => 'エラー：保存ディレクトリが存在しません',
     'ERROR_DESTINATION_NOT_WRITEABLE' => 'エラー：保存ディレクトリが書き込み可能になっていません',
     'ERROR_FILETYPE_NOT_ALLOWED' => 'エラー：アップロードされたファイルの種類（%1$s）はサポートされていません。もう一度お試しください。',

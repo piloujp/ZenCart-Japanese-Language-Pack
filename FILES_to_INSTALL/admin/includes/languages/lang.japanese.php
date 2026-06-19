@@ -223,6 +223,7 @@ $define = [
     'ENTRY_TELEPHONE_NUMBER' => '電話番号：',
     'ENTRY_TELEPHONE_NUMBER_ERROR' => '&nbsp;<span class="errorText">' . zen_config('ENTRY_TELEPHONE_MIN_LENGTH') . '文字以上</span>',
     'ERROR_ADMIN_SECURITY_WARNING' => '警告: 管理者ログインが安全ではありません ... 初期ログイン設定の Admin admin がまだ残っているか、demo demoonly が、まだ削除されていないか、変更されていません。<br />セキュリティのためにすぐにこれらの管理者設定を変更してください。',
+    'ERROR_ADMIN_SESSION_INVALID_DUE_TO_PASSWORD_CHANGE' => 'パスワードが変更されたため、セッションの有効期限が切れました。再度ログインしてください。',
     'ERROR_CANNOT_DELETE_CUSTOMER_GROUP_DUE_TO_LINKED_CUSTOMERS' => 'エラー： %s の顧客がまだ割り当てられており、オーバーライドが指定されていないため、グループを削除できません。',
     'ERROR_CANNOT_LINK_TO_SAME_CATEGORY' => 'エラー： 同じカテゴリ内に商品リンクすることはできません。',
     'ERROR_CANNOT_MOVE_CATEGORY_TO_CATEGORY_SELF' => 'エラー： 同じカテゴリにカテゴリを移動することはできません！ ID: ',

@@ -16,6 +16,7 @@ $define = [
     'TEXT_ADMIN_CONFIRM_PASSWORD' => '新しいパスワード（確認用）：',
     'ERROR_WRONG_LOGIN' => 'ユーザIDまたはパスワードが間違っています。',
     'ERROR_SECURITY_ERROR' => 'ログイン時にセキュリティエラーが発生しました。',
+    'ERROR_ADMIN_SESSION_INVALID_DUE_TO_PASSWORD_CHANGE' => 'パスワードが変更されたため、セッションの有効期限が切れました。再度ログインしてください。',
     'TEXT_PASSWORD_FORGOTTEN' => 'パスワードをお忘れですか ',
     'LOGIN_EXPIRY_NOTICE' => '',
     'ERROR_PASSWORD_EXPIRED' => '注：パスワードは有効期限切れになりました。新しいパスワードを選択して下さい。パスワードは<strong>半角英数字を混在させ、7文字以上でなければなりません。</strong>',
