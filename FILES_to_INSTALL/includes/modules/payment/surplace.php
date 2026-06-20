@@ -56,9 +56,9 @@ class surplace
         $this->description = MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_PAYMENT_SURPLACE_STATUS') === 'True');
         $this->sort_order = zen_config('MODULE_PAYMENT_SURPLACE_SORT_ORDER');
-        if (null === $this->sort_order) return;
-        if (defined('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') && (int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') > 0) {
-            $this->order_status = MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID;
+        if (null === $this->sort_order) return false;
+        if ((int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') > 0) {
+            $this->order_status = (int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID');
         }
 
         if (is_object($order)) $this->update_status();
@@ -163,6 +163,11 @@ class surplace
 
     function keys()
     {
-        return array('MODULE_PAYMENT_SURPLACE_STATUS', 'MODULE_PAYMENT_SURPLACE_ZONE', 'MODULE_PAYMENT_SURPLACE_SORT_ORDER', 'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID');
+        return [
+            'MODULE_PAYMENT_SURPLACE_STATUS',
+            'MODULE_PAYMENT_SURPLACE_ZONE',
+            'MODULE_PAYMENT_SURPLACE_SORT_ORDER',
+            'MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID',
+        ];
     }
 }

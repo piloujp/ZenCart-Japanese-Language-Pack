@@ -55,7 +55,7 @@ class ot_paypal_fee
         $this->description = MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_ORDER_TOTAL_PAYPAL_STATUS') === 'true');
         $this->sort_order = zen_config('MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER');
-        if (null === $this->sort_order) return;
+        if (null === $this->sort_order) return false;
 
         $this->output = array();
     }
@@ -63,44 +63,43 @@ class ot_paypal_fee
     function process()
     {
         global $order, $currencies, $paypal_cost;
+        if ($this->enabled === false) {
+            return;
+        }
         $orderTotal = $order->info['total'];
-        if (MODULE_ORDER_TOTAL_PAYPAL_STATUS == 'true') {
-            //check if payment method is PayPal.
-            if (isset($_SESSION['payment']) && ($_SESSION['payment'] === 'paypalr' || $_SESSION['payment'] === 'paypalwpp' || $_SESSION['payment'] === 'paypaldp' || $_SESSION['payment'] === 'paypal')) {
-                switch ($orderTotal) {
-                    case ($orderTotal <= 300000):
-                    if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0JP/100));
-                    } else {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));}
-                        break;
-                    case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
-                    if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300JP/100));
-                    } else {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE300/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE300/100));}
-                        break;
-                    case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
-                    if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP/100));
-                    } else {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE1000/100));}
-                        break;
-                    case ($orderTotal > 10000000):
-                    if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP/100));
-                    } else {
-                        $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE10000/100));}
-                        break;
-                    default:
-                    $paypal_cost = (($orderTotal*MODULE_ORDER_TOTAL_PAYPAL_FEE0/100)+MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE)/(1-(MODULE_ORDER_TOTAL_PAYPAL_FEE0/100));
+        //check if payment method is PayPal.
+        if (isset($_SESSION['payment']) && ($_SESSION['payment'] === 'paypalr' || $_SESSION['payment'] === 'paypalwpp' || $_SESSION['payment'] === 'paypaldp' || $_SESSION['payment'] === 'paypal')) {
+            $paypalFixedFee = (int)zen_config('MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE');
+            switch ($orderTotal) {
+                case ($orderTotal <= 300000):
+                if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE0JP') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE0JP') / 100));
+                } else {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE0') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE0') / 100));}
                     break;
-                }
-                $order->info['total'] += $paypal_cost;
-                $this->output[] = array('title' => $this->title . ':',
-                                          'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
-                                          'value' => $paypal_cost);
+                case (($orderTotal > 300000) && ($orderTotal <= 1000000)):
+                if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE300JP') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE300JP') / 100));
+                } else {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE300') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE300') / 100));}
+                    break;
+                case (($orderTotal > 1000000) && ($orderTotal <= 10000000)):
+                if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP') / 100));
+                } else {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE1000') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE1000') / 100));}
+                    break;
+                case ($orderTotal > 10000000):
+                if ($order->delivery['country']['id'] == zen_config('STORE_COUNTRY')) {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP') / 100));
+                } else {
+                    $paypal_cost = (($orderTotal * zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE10000') / 100) + $paypalFixedFee) / (1 - (zen_config('MODULE_ORDER_TOTAL_PAYPAL_FEE10000') / 100));}
+                    break;
             }
+            $order->info['total'] += $paypal_cost;
+            $this->output[] = array('title' => $this->title . ':',
+                                      'text' => $currencies->format($paypal_cost, true,  $order->info['currency'], $order->info['currency_value']),
+                                      'value' => $paypal_cost);
         }
     }
 
@@ -117,7 +116,19 @@ class ot_paypal_fee
 
     function keys()
     {
-        return array('MODULE_ORDER_TOTAL_PAYPAL_STATUS', 'MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE0', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE300', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE1000', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP', 'MODULE_ORDER_TOTAL_PAYPAL_FEE10000', 'MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE');
+        return [
+            'MODULE_ORDER_TOTAL_PAYPAL_STATUS',
+            'MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE0JP',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE0',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE300JP',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE300',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE1000JP',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE1000',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE10000JP',
+            'MODULE_ORDER_TOTAL_PAYPAL_FEE10000',
+            'MODULE_ORDER_TOTAL_PAYPAL_FIXEDFEE',
+        ];
     }
 
     function install()

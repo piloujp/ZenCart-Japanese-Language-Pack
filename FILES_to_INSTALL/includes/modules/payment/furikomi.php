@@ -59,14 +59,14 @@ class furikomi
         $this->description = MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_PAYMENT_FURIKOMI_STATUS') === 'True');
         $this->sort_order = zen_config('MODULE_PAYMENT_FURIKOMI_SORT_ORDER');
-        if (null === $this->sort_order) return ;
+        if (null === $this->sort_order) return false;
 
-        if (IS_ADMIN_FLAG === true && (MODULE_PAYMENT_FURIKOMI_ACCNUM == '1234567' || MODULE_PAYMENT_FURIKOMI_ACCNUM == '')) {
+        if (IS_ADMIN_FLAG === true && (zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM') === '1234567' || empty(zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM')))) {
             $this->title .= '<span class="alert">' .  MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO . '</span>';
         }
 
-        if (defined('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') && (int)zen_config('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') > 0) {
-            $this->order_status = MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID;
+        if ((int)zen_config('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID') > 0) {
+            $this->order_status = (int)zen_config('MODULE_PAYMENT_FURIKOMI_ORDER_STATUS_ID');
         }
 
         if (is_object($order)) $this->update_status();
