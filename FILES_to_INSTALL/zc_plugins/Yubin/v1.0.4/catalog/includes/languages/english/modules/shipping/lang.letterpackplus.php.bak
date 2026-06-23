@@ -1,0 +1,9 @@
+<?php
+$define = [
+    'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_TITLE' => 'LetterPack Plus',
+    'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DESCRIPTION' => 'LetterPack Plus\' settings',
+    'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_WAY' => 'Fixed rate for all Japan',
+    'MODULE_SHIPPING_LETTERPACKLITE_TEXT_NOTAVAILABLE' => 'Service is not available for this area.',
+    'MODULE_SHIPPING_LETTERPACKPLUS_TEXT_DIMENSION_MISSING' => 'Error, some product dimension is missing!',
+];
+return $define;
