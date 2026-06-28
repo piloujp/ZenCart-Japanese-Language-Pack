@@ -50,6 +50,7 @@ $define = [
     'TEXT_INFO_ATTRIBUTES_FEATURES_DELETE' => '<strong>全ての</strong> 商品オプションを削除する：<br>',
     'TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_PRODUCT' => '以下の商品の商品オプションを<strong>他の商品</strong>にコピー：<br>',
     'TEXT_INFO_ATTRIBUTES_FEATURES_COPY_TO_CATEGORY' => '以下の商品の商品オプションを<strong>カテゴリ</strong>にコピー：<br>',
+    'TEXT_COPY_ADDITIONAL_IMAGES' => '製品の追加画像をコピーしますか？',
     'TEXT_COPY_ATTRIBUTES' => '商品オプションも複製しますか？',
     'TEXT_COPY_SPECIALS' => '商品の特売価格を複製しますか?',
     'TEXT_COPY_DISCOUNTS_ONLY' => '「まとめ購入割引」のある商品の複製時にのみ使用...',
