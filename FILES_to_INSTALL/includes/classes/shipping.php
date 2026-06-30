@@ -99,11 +99,14 @@ class shipping
             ];
         } else {
             foreach ($this->modules as $value) {
-                $class = pathinfo($value, PATHINFO_FILENAME);
-                $modules_to_quote[] = [
-                    'class' => $class,
-                    'file' => $value,
-                ];
+                // double check that the module really exists before adding to the array
+                if (isset($modules_found[$value])) {
+                    $class = pathinfo($value, PATHINFO_FILENAME);
+                    $modules_to_quote[] = [
+                        'class' => $class,
+                        'file' => $value,
+                    ];
+                }
             }
         }
 
