@@ -873,7 +873,7 @@ if ($action === 'edit' || $action === 'update') {
                 <div class="col-sm-9 col-md-6">
 <?php
         if ($processed === true) {
-            echo $cInfo->entry_fax . zen_draw_hidden_field('entry_fax');
+            echo htmlspecialchars((string)$cInfo->entry_fax, ENT_COMPAT, CHARSET, true) . zen_draw_hidden_field('entry_fax');
         } else {
             echo zen_draw_input_field(
                 'entry_fax',
@@ -1520,10 +1520,10 @@ if ($action === 'edit' || $action === 'update') {
                                         $zc_address_book_count
                                     ) ?>
                                 </td>
-                                <td class="dataTableContent"><?= $customer['customers_lastname'] ?></td>
-                                <td class="dataTableContent"><?= $customer['customers_lastname_kana'] ?></td>
-                                <td class="dataTableContent"><?= $customer['customers_firstname'] ?></td>
-                                <td class="dataTableContent"><?= $customer['customers_firstname_kana'] ?></td>
+                                <td class="dataTableContent"><?= zen_output_string_protected($customer['customers_lastname']) ?></td>
+                                <td class="dataTableContent"><?= zen_output_string_protected($customer['customers_lastname_kana']) ?></td>
+                                <td class="dataTableContent"><?= zen_output_string_protected($customer['customers_firstname']) ?></td>
+                                <td class="dataTableContent"><?= zen_output_string_protected($customer['customers_firstname_kana']) ?></td>
 <?php
         if (zen_config('ACCOUNT_COMPANY') === 'true') {
 ?>
@@ -1783,10 +1783,10 @@ if ($action === 'edit' || $action === 'update') {
                     'text' =>
                         '<h4>' .
                             TABLE_HEADING_ID . ' ' . $cInfo->customers_id . ' ' .
-                            $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname .
+                            zen_output_string_protected($cInfo->customers_firstname) . ' ' . zen_output_string_protected($cInfo->customers_lastname) .
                         '</h4>' .
                         '<br>' .
-                        $cInfo->customers_email_address
+                        zen_output_string_protected($cInfo->customers_email_address)
                 ];
 
                 $contents[] = [

@@ -12,6 +12,7 @@ $define = [
     'TEXT_REVIEW_SUBMITTED_FOR_REVIEW' => 'ありがとうございます。ご意見がレビューに投稿されました。',
     'TEXT_REVIEW_SUBMITTED' => 'レビューへの投稿をありがとうございます！',
     'TEXT_REVIEW_TITLE' => 'レビュータイトル：',
+    'ERROR_REVIEW_SUBMIT_TOO_SOON' => '別のレビューを投稿する前に、しばらくお待ちください。',
 ];
 
 return $define;
