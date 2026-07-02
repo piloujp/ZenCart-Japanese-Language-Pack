@@ -1054,8 +1054,8 @@ class order extends base
         $db->Execute("DELETE FROM " . TABLE_ORDERS_STATUS_HISTORY . "
                                 WHERE orders_id = " . (int)$this->orderId);
 
-        $db->Execute("delete from " . TABLE_ORDERS_TOTAL . "
-                                    where orders_id = " . (int)$this->orderId);
+        $db->Execute("DELETE FROM " . TABLE_ORDERS_TOTAL . "
+                                WHERE orders_id = " . (int)$this->orderId);
 
         $db->Execute("DELETE FROM " . TABLE_COUPON_GV_QUEUE . "
                                 WHERE order_id = " . (int)$this->orderId . " AND release_flag = 'N'");
