@@ -193,7 +193,14 @@ if (!function_exists('zen_image')) {
 function zen_image($src, $title = '', $width = '', $height = '', $parameters = '')
 {
     global $template_dir, $zco_notifier;
+    // off-site images hook
+    $image_html = '';
+    $GLOBALS['zco_notifier']->notify('NOTIFY_CATALOG_ZEN_IMAGE_OVERRIDE', compact('src', 'title', 'width', 'height', 'parameters'), $image_html);
 
+    if ($image_html !== '') {
+        return $image_html;
+    }
+    // end hook
     // soft clean the title attribute's value
     $title = zen_clean_html($title);
 
@@ -310,10 +317,10 @@ function zen_image($src, $title = '', $width = '', $height = '', $parameters = '
  */
   function zen_image_submit($image, $alt = '', $parameters = '', $sec_class = '') {
     global $template, $current_page_base, $zco_notifier;
-    if ((strtolower(IMAGE_USE_CSS_BUTTONS) === 'yes' || (strtolower(IMAGE_USE_CSS_BUTTONS) === 'found' && !file_exists(DIR_FS_CATALOG . DIR_WS_TEMPLATE . 'buttons/' . $_SESSION['language'] . '/' . $image))) && mb_strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
+    if ((strtolower(IMAGE_USE_CSS_BUTTONS) === 'yes' || (strtolower(IMAGE_USE_CSS_BUTTONS) === 'found' && !is_file(DIR_FS_CATALOG . DIR_WS_TEMPLATE . 'buttons/' . $_SESSION['language'] . '/' . $image))) && mb_strlen($alt)<30) return zenCssButton($image, $alt, 'submit', $sec_class, $parameters);
     $zco_notifier->notify('PAGE_OUTPUT_IMAGE_SUBMIT');
 
-    $image_submit = '<input type="image" src="' . zen_output_string($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language'] . '/') . $image) . '" alt="' . zen_output_string($alt) . '"';
+    $image_submit = '<input type="image" src="' . zen_output_string($template->get_template_dir($image, DIR_WS_TEMPLATE, $current_page_base, 'buttons/' . $_SESSION['language']) . '/' . $image) . '" alt="' . zen_output_string($alt) . '"';
 
     if (!empty($alt)) $image_submit .= ' title="' . zen_output_string($alt) . '"';
 
@@ -598,7 +605,7 @@ function zen_draw_input_field($name, $value = '', $parameters = '', $type = 'tex
     }
 
     $field = '<input type="' . zen_output_string($type) . '" name="' . zen_sanitize_string(zen_output_string($name)) . '"';
-    if (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && $reinsert_value == true) {
+    if (isset($GLOBALS[$name]) && is_string($GLOBALS[$name]) && $GLOBALS[$name] !== '' && $reinsert_value == true) {
       $field .= ' value="' . zen_output_string(stripslashes($GLOBALS[$name])) . '"';
     } elseif (zen_not_null($value)) {
       $field .= ' value="' . zen_output_string($value) . '"';
