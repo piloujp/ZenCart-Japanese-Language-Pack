@@ -522,14 +522,14 @@ class shipping
      * DOES NOT TAKE PACKAGE DIMENSIONS INTO ACCOUNT.
      * @since ZC v1.3.8
      */
-    public function calculate_boxes_weight_and_tare(): array|null
+    public function calculate_boxes_weight_and_tare(): void
     {
         global $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $max_item_length, $multiboxes;
 
         $this->abort_legacy_calculations = false;
         $this->notify('NOTIFY_SHIPPING_MODULE_PRE_CALCULATE_BOXES_AND_TARE', [], $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes);
         if ($this->abort_legacy_calculations) {
-            return false;
+            return;
         }
 
         if (empty($multiboxes)) {$multiboxes = 'None';}
@@ -624,7 +624,6 @@ class shipping
             }
         }
         $this->notify('NOTIFY_SHIPPING_MODULE_CALCULATE_BOXES_AND_TARE', [], $total_weight, $shipping_weight, $shipping_quoted, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight);
-        return $box_array;
     }
 
     /**

@@ -34,7 +34,7 @@ if ($tplSetting->PRODUCT_LIST_ALPHA_SORTER === 'true') {
             'わ', // 'を', 'ん' No word starts with those
         ];
         foreach ($hiragana_gojuon as $kana) {
-            $letters_list[] = ['id' => mb_ord($kana), 'text' => $kana];
+            $letters_list[] = ['id' => mb_ord($kana, 'UTF-8'), 'text' => $kana];
         }
     }
     for ($i = 65; $i < 91; $i++) {
