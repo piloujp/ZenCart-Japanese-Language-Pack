@@ -221,7 +221,7 @@ class shipping
     }
 
     // calculate box size with data from $weight_qty_sizes_array and or $sizes_array
-    public function get_box_size()
+    public function get_box_size(): array
     {
         global $shipping_num_boxes, $box_array, $max_size_array, $multiboxes, $box_sizes_array;
 
@@ -473,7 +473,7 @@ class shipping
     }
 
     // return an array filled with id, weight, qty, length, width, height, girth and volume of each item in cart.
-    public function get_weight_qty_sizes()
+    public function get_weight_qty_sizes(): array
     {
         global $db;
         $weight_quantity_sizes_array = [];
@@ -643,7 +643,7 @@ class shipping
 
         // Stop calculations if one item is over weight limit set in admin
         $heaviest_item = $this->weight_array[0][1];
-        if ($heaviest_item and $heaviest_item >= SHIPPING_MAX_WEIGHT) {
+        if ($heaviest_item and $heaviest_item >= zen_config('SHIPPING_MAX_WEIGHT')) {
         return $quotes_array;
         }
 
