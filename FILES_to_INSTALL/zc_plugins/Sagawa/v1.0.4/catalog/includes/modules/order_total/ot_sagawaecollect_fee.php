@@ -55,8 +55,8 @@ class ot_sagawaecollect_fee
         $this->code = 'ot_sagawaecollect_fee';
         $this->title = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_TITLE;
         $this->description = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_DESCRIPTION;
-        $this->enabled = (defined('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS') && MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS == 'true');
-        $this->sort_order = defined('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER') ? MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER : null;
+        $this->enabled = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS') === 'true';
+        $this->sort_order = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_SORT_ORDER');
         if (null === $this->sort_order) return;
 
         $this->output = [];
@@ -66,27 +66,27 @@ class ot_sagawaecollect_fee
     {
         global $order, $currencies, $sagawaecollect_cost;
         $orderTotal = $order->info['total'];
-        if (MODULE_ORDER_TOTAL_SAGAWAECOLLECT_STATUS == 'true') {
+        if ($this->enabled == true) {
             //check if payment method is COD for Sagawa.
             if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'sagawaecollect') {
                 switch ($orderTotal) {
-                    case ($orderTotal <= (10000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000)) :
+                    case ($orderTotal <= (10000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000'))) :
                         $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE;
                         break;
-                    case (($orderTotal > (10000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000)) && ($orderTotal <= (30000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000))):
-                        $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000;
+                    case (($orderTotal > (10000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000'))) && ($orderTotal <= (30000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000')))):
+                        $sagawaecollect_cost = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE10000');
                         break;
-                    case (($orderTotal > (30000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000)) && ($orderTotal <= (55000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000))):
-                        $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000;
+                    case (($orderTotal > (30000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000'))) && ($orderTotal <= (55000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000')))):
+                        $sagawaecollect_cost = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE30000');
                         break;
-                    case (($orderTotal > (55000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000)) && ($orderTotal <= (100000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000))):
-                        $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000;
+                    case (($orderTotal > (55000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000'))) && ($orderTotal <= (100000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000')))):
+                        $sagawaecollect_cost = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE55000');
                         break;
-                    case (($orderTotal > (100000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000)) && ($orderTotal <= (300000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000))):
-                        $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000;
+                    case (($orderTotal > (100000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000'))) && ($orderTotal <= (300000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000')))):
+                        $sagawaecollect_cost = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE100000');
                         break;
-                    case (($orderTotal > (300000-MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000))):
-                        $sagawaecollect_cost = MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000;
+                    case (($orderTotal > (300000 - zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000')))):
+                        $sagawaecollect_cost = zen_config('MODULE_ORDER_TOTAL_SAGAWAECOLLECT_FEE300000');
                         break;
                 }
                 $order->info['total'] += $sagawaecollect_cost;

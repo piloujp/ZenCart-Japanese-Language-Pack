@@ -53,11 +53,11 @@ class yamatoecollect
         $this->code = 'yamatoecollect';
         $this->title = MODULE_PAYMENT_YAMATOECOLLECT_TEXT_TITLE;
         $this->description = MODULE_PAYMENT_YAMATOECOLLECT_TEXT_DESCRIPTION;
-        $this->sort_order = defined('MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER') ? MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER : null;
-        $this->enabled = (defined('MODULE_PAYMENT_YAMATOECOLLECT_STATUS') && MODULE_PAYMENT_YAMATOECOLLECT_STATUS == 'True');
+        $this->sort_order = zen_config('MODULE_PAYMENT_YAMATOECOLLECT_SORT_ORDER');
+        $this->enabled = zen_config('MODULE_PAYMENT_YAMATOECOLLECT_STATUS') === 'True';
         if (null === $this->sort_order) return;
-        if (defined('MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID') && (int)MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID > 0) {
-            $this->order_status = MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID;
+        if ((int)zen_config('MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID') > 0) {
+            $this->order_status = (int)zen_config('MODULE_PAYMENT_YAMATOECOLLECT_ORDER_STATUS_ID');
         }
 
         if (is_object($order)) $this->update_status();
@@ -68,9 +68,9 @@ class yamatoecollect
     {
         global $order, $db;
 
-        if ($this->enabled && (int)MODULE_PAYMENT_YAMATOECOLLECT_ZONE > 0 && isset($order->delivery['country']['id'])) {
+        if ($this->enabled && (int)zen_config('MODULE_PAYMENT_YAMATOECOLLECT_ZONE') > 0 && isset($order->delivery['country']['id'])) {
             $check_flag = false;
-            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . MODULE_PAYMENT_YAMATOECOLLECT_ZONE . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
+            $check = $db->Execute("select zone_id from " . TABLE_ZONES_TO_GEO_ZONES . " where geo_zone_id = '" . zen_config('MODULE_PAYMENT_YAMATOECOLLECT_ZONE') . "' and zone_country_id = '" . (int)$order->delivery['country']['id'] . "' order by zone_id");
             while (!$check->EOF) {
                 if ($check->fields['zone_id'] < 1) {
                     $check_flag = true;
@@ -97,7 +97,7 @@ class yamatoecollect
         // other status checks?
         if ($this->enabled) {
             // other checks here
-            if ($order->info['total'] > MODULE_PAYMENT_YAMATOECOLLECT_LIMIT) {
+            if ($order->info['total'] > (int)zen_config('MODULE_PAYMENT_YAMATOECOLLECT_LIMIT')) {
                 $this->enabled = false;
             }
         }

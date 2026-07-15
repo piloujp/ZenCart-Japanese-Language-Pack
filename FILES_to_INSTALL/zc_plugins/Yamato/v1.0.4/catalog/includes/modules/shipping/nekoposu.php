@@ -80,7 +80,7 @@ class nekoposu  extends ZenShipping
                 [
                     'id' => $this->code,
                     'title' => MODULE_SHIPPING_NEKOPOSU_TEXT_WAY,
-                    'cost' => MODULE_SHIPPING_NEKOPOSU_COST
+                    'cost' => zen_config('MODULE_SHIPPING_NEKOPOSU_COST'),
                 ],
             ],
         ];

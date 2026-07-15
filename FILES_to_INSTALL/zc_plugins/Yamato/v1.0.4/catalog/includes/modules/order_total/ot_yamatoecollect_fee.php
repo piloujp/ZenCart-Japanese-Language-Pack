@@ -55,8 +55,8 @@ class ot_yamatoecollect_fee
         $this->code = 'ot_yamatoecollect_fee';
         $this->title = MODULE_ORDER_TOTAL_YAMATOECOLLECT_TITLE;
         $this->description = MODULE_ORDER_TOTAL_YAMATOECOLLECT_DESCRIPTION;
-        $this->enabled = (defined('MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS') && MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS == 'true');
-        $this->sort_order = defined('MODULE_ORDER_TOTAL_YAMATOECOLLECT_SORT_ORDER') ? MODULE_ORDER_TOTAL_YAMATOECOLLECT_SORT_ORDER : null;
+        $this->enabled = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS') === 'true';
+        $this->sort_order = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_SORT_ORDER');
         if (null === $this->sort_order) return;
 
         $this->output = [];
@@ -66,24 +66,24 @@ class ot_yamatoecollect_fee
     {
         global $order, $currencies, $yamatoecollect_cost;
         $orderTotal = $order->info['total'];
-        if (MODULE_ORDER_TOTAL_YAMATOECOLLECT_STATUS == 'true') {
+        if ($this->enabled == 'true') {
             //check if payment method is COD for Yamato.
             if (isset($_SESSION['payment']) && $_SESSION['payment'] == 'yamatoecollect') {
                 switch ($orderTotal) {
-                    case ($orderTotal <= (10000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000)) :
+                    case ($orderTotal <= (10000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000'))) :
                         $yamatoecollect_cost = MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE;
                         break;
-                    case (($orderTotal > (10000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000)) && ($orderTotal <= (30000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000))):
-                        $yamatoecollect_cost = MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000;
+                    case (($orderTotal > (10000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000'))) && ($orderTotal <= (30000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000')))):
+                        $yamatoecollect_cost = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE10000');
                         break;
-                    case (($orderTotal > (30000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000)) && ($orderTotal <= (55000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000))):
-                        $yamatoecollect_cost = MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000;
+                    case (($orderTotal > (30000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000'))) && ($orderTotal <= (55000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000')))):
+                        $yamatoecollect_cost = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE30000');
                         break;
-                    case (($orderTotal > (55000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000)) && ($orderTotal <= (100000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000))):
-                        $yamatoecollect_cost = MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000;
+                    case (($orderTotal > (55000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000'))) && ($orderTotal <= (100000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000')))):
+                        $yamatoecollect_cost = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE55000');
                         break;
-                    case (($orderTotal > (100000-MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000))):
-                        $yamatoecollect_cost = MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000;
+                    case (($orderTotal > (100000 - zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000')))):
+                        $yamatoecollect_cost = zen_config('MODULE_ORDER_TOTAL_YAMATOECOLLECT_FEE100000');
                         break;
                 }
                 $order->info['total'] += $yamatoecollect_cost;

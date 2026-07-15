@@ -41,7 +41,7 @@ class yupackchilled extends ZenShipping
             $this->enabled = false;
         }
 
-        $this->japan_id = zen_country_iso_to_id('JP');
+        $this->japan_id = (int)zen_country_iso_to_id('JP');
 
         $this->update_status();
     }
@@ -94,7 +94,7 @@ class yupackchilled extends ZenShipping
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
             if (zen_config('MODULE_SHIPPING_YUPACKCHILLED_FREE_SHIPPING') !== 'True' || (int)$order->info['subtotal'] < (int)zen_config('MODULE_SHIPPING_YUPACKCHILLED_OVER')) {
-                $rate = new _Yupack($this->code, MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
+                $rate = new _Yupack($this->code, MODULE_SHIPPING_YUPACKCHILLED_TEXT_WAY_NORMAL, zen_get_zone_code(zen_config('STORE_COUNTRY'), zen_config('STORE_ZONE'), 0), zen_config('STORE_COUNTRY'));
                 $rate->SetDest($s_zone_code);
                 if (!empty($box_sizes_array)) {
                     $total_boxes_quote = 0;

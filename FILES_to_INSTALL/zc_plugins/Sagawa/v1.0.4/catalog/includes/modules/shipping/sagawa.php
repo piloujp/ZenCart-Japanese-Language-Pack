@@ -37,6 +37,8 @@ class sagawa extends ZenShipping
         // disable only when entire cart is free shipping
         if (zen_get_shipping_enabled($this->code)) {
             $this->enabled = zen_config('MODULE_SHIPPING_SAGAWA_STATUS') === 'True';
+        } else {
+            $this->enabled = false;
         }
 
         $this->japan_id = (int)zen_country_iso_to_id('JP');
@@ -80,7 +82,7 @@ class sagawa extends ZenShipping
         $this->quotes = ['id' => $this->code, 'module' => $this->title];
         if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title, $width = '', $height = '', $parameters = ' style="vertical-align: middle"');
 
-        $max_shipping_weight = zen_config('MODULE_SHIPPING_SAGAWA_MAX_WEIGHT');
+        $max_shipping_weight = zen_config('MODULE_SHIPPING_SAGAWA_MAX_WEIGHT', 50);
         $country_id = $order->delivery['country']['id'];
         $zone_id    = $order->delivery['zone_id'];
 
@@ -91,8 +93,8 @@ class sagawa extends ZenShipping
             $s_zone_code = $zoneinfo->fields['zone_code'];
 
             // 送料が条件によって無料になってしまう(ここではtotalではなくsubtotalを確認すべき)
-            if (zen_config('MODULE_SHIPPING_SAGAWA_FREE_SHIPPING') !== 'True' || (int)$order->info['subtotal'] < (int)zen_config('MODULE_SHIPPING_SAGAWA_OVER')) {
-                $rate = new _Sagawa($this->code, MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, zen_get_zone_code( STORE_COUNTRY,STORE_ZONE,0), STORE_COUNTRY);
+            if (zen_config('MODULE_SHIPPING_SAGAWA_FREE_SHIPPING') !== 'True' || (int)$order->info['subtotal'] < (int)zen_config('MODULE_SHIPPING_SAGAWA_OVER', 100000)) {
+                $rate = new _Sagawa($this->code, MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, zen_get_zone_code(zen_config('STORE_COUNTRY'), zen_config('STORE_ZONE'), 0), zen_config('STORE_COUNTRY'));
                 $rate->SetDest($s_zone_code);
                 if (!empty($box_sizes_array)) {
                     $total_boxes_quote = 0;
@@ -129,7 +131,7 @@ class sagawa extends ZenShipping
                     $tmpQuote['cost'] = -1;
                 }
                 // 手数料
-                $tmpQuote['cost'] += MODULE_SHIPPING_SAGAWA_HANDLING;
+                $tmpQuote['cost'] += zen_config('MODULE_SHIPPING_SAGAWA_HANDLING', 0);
             } else {
                 $tmpQuote = ['id' => $this->code, 'title' => MODULE_SHIPPING_SAGAWA_TEXT_WAY_NORMAL, 'cost' => 0];
             }
