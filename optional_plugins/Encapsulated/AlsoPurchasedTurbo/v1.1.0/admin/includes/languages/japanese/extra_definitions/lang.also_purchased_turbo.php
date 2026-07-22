@@ -6,8 +6,8 @@
  * @author      Marcopolo
  * @copyright   2026
  * @license     GNU General Public License (GPL) - https://www.zen-cart.com/license/2_0.txt
- * @version     1.0.0
- * @updated     07-13-2026
+ * @version     1.1.0
+ * @updated     07-22-2026
  * @github      https://github.com/CcMarc/AlsoPurchasedTurbo
  */
 $define = [
@@ -34,6 +34,9 @@ $define = [
     'APT_TEXT_SEED_NOT_STARTED' => '商品ページでは、デフォルトの基本的な仕組みが使用されています。',
     'APT_TEXT_SEED_IN_PROGRESS_SHORT' => '進行中',
     'APT_TEXT_SEED_IN_PROGRESS' => '処理対象の次の注文ID： %s（最大 %s 中）。',
+    'APT_TEXT_LAST_PRUNE' => '最新の清掃',
+    'APT_TEXT_LAST_PRUNE_NEVER' => '一度も実行されません。',
+    'APT_TEXT_LAST_PRUNE_DETAIL' => '%1$s ～　%2$s &rarr; %3$s 行（%4$s 件を削除、製品ごとの上限 %5$s）',
 
     'APT_TEXT_SHIMS_EXPLAIN' => 'アクティブなテンプレートにおいて、併せて購入されたデータエンジンがどのように組み込まれているかを示します。「OK」および「統合型」は、いずれもこのプラグインがデータを提供することを意味します。',
     'APT_TEXT_SHIM_OK' => 'OK',
@@ -55,6 +58,14 @@ $define = [
     'APT_TEXT_SETTING_RANKING' => 'ランキング (APT_RANKING)',
     'APT_TEXT_SETTING_FALLBACK' => '在庫照会のフォールバック (APT_FALLBACK_STOCK)',
     'APT_TEXT_SETTING_DEBUG' => 'デバッグログ (APT_DEBUG_LOG)',
+    'APT_TEXT_SETTING_MAX_PAIRS' => '商品ごとの最大ペア数 (APT_MAX_PAIRS_PER_PRODUCT)',
+
+    'APT_BUTTON_PRUNE' => 'ペアテーブルを剪定する（上位のペアを保持する）',
+    'APT_HELP_PRUNE' => '各商品を、その「%s」個の最も強力なペア（ランキングは APT_RANKING に準拠）に絞り込みます。ストアフロントにはごく一部しか表示されないため、大規模なストアでは、見た目に影響を与えることなくテーブルサイズを大幅に縮小できる可能性があります。処理は分割して実行され、自動的に継続されるため、いつでも安全に実行可能です。シード処理の完了後に自動的に実行されます。',
+    'APT_TEXT_PRUNE_DISABLED' => 'プルーニング（不要なデータの削除）は無効になっています（製品ごとに保存されるペアの最大数が0に設定されています）。一般設定 > 同時購入「ターボ版」で上限を設定してください。',
+    'APT_TEXT_PRUNE_CHUNK_DONE' => '整理中...商品 ID %1$s を処理中（これまでに %2$s 行を削除）。自動的に続行します...',
+    'APT_TEXT_PRUNE_COMPLETE' => '剪定完了：%s組の行を削除しました。各商品は最大で%s組を保持するようになりました。',
+    'APT_TEXT_SEED_PRUNE_CHAIN' => '新規にシードされたテーブルを整理するため、不要なペアの削除が自動的に開始されます...',
     'APT_BUTTON_EDIT_PLUGIN_SETTINGS' => '設定で編集 &raquo; 同時購入「ターボ版」',
 
     'APT_BUTTON_SEED' => '注文履歴からシード／再開',
