@@ -85,6 +85,7 @@ $define = [
     'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATION' => 'ペイパルの応答ステータスが「%2$s」であるため、注文番号 %1$u のステータスは強制的に「処理待ち」になりました。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_OBSERVER' => '支払いモジュールのオブザーバー（auto.paypalrestful.php）が読み込まれませんでした。支払いモジュールは無効になっています。',
     'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_NOTIFICATIONS' => 'order_total.php クラスで必要な通知が適用されなかったため、支払いモジュールは注文を行うことができません。',
+    'MODULE_PAYMENT_PAYPALR_ALERT_MISSING_ROOT_FILES' => '必要なルートディレクトリファイル（%s）が見つかりません。ファイルシステムの権限を確認してください。',
     'MODULE_PAYMENT_PAYPALR_ALERT_ORDER_CREATE' => '注文を開始しようとしたときにペイパルからエラーが返されました。礼儀として、エラーコードのみが顧客に表示されました。エラーの詳細は以下に表示されます。' . "\n\n",
     'MODULE_PAYMENT_PAYPALR_ALERT_TOTAL_MISMATCH' => '注文の総額と内訳に矛盾が見つかりました。注文は、商品と費用の内訳が含まれないままペイパルに送信されています。',
     'MODULE_PAYMENT_PAYPALR_ALERT_CONFIRMATION_ERROR' => 'ペイパルウォレットから顧客の支払い選択を確認しようとしたときに、ペイパルから処理できない返品を受け取りました。',
