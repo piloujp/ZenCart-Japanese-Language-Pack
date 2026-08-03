@@ -2,19 +2,19 @@
 $define = [
     'MODULE_PAYMENT_FURIKOMI_TEXT_TITLE' => 'Direct Bank Deposit',
     'MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION' => '<BR>Please use the following details to transfer your total order value:<br><pre>'
-    . "\nBank Name:    " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME') : 'Bank name')
-    . "\nBranch Name:  " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH') : 'Branch name')
-    . "\nAccount No.:  " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM') : 'Account number')
-    . "\nAccount type: " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE') : 'Account type')
-    . "\nAccount Name: " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM') : 'Account name')
-//    . "\nSwift Code:   " . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT') ? zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT') : 'Swift Code')
+    . "\nBank Name:    " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME', 'Bank name')
+    . "\nBranch Name:  " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH', 'Branch name')
+    . "\nAccount No.:  " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM', 'Account number')
+    . "\nAccount type: " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE', 'Account type')
+    . "\nAccount Name: " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM', 'Account name')
+//    . "\nSwift Code:   " . zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT', 'Swift Code')
 //    . "\n\nOther account choice:"
-//    . "\nBank Name:    " . (defined('MODULE_PAYMENT_FURIKOMI_BANKNAME2') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME2') : 'Bank name')
-//    . "\nBranch Name:  " . (defined('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') ? zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2') : 'Branch name')
-//    . "\nAccount No.:  " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNUM2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM2') : 'Account number')
-//    . "\nAccount type: " . (defined('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE2') : 'Account type')
-//    . "\nAccount Name: " . (defined('MODULE_PAYMENT_FURIKOMI_ACCNAM2') ? zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM2') : 'Account name')
-//    . "\nSwift Code:   " . (defined('MODULE_PAYMENT_FURIKOMI_SWIFT2') ? zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT2') : 'Swift Code')
+//    . "\nBank Name:    " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKNAME2', 'Bank name')
+//    . "\nBranch Name:  " . zen_config('MODULE_PAYMENT_FURIKOMI_BANKBRANCH2', 'Branch name')
+//    . "\nAccount No.:  " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM2', 'Account number')
+//    . "\nAccount type: " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCTYPE2', 'Account type')
+//    . "\nAccount Name: " . zen_config('MODULE_PAYMENT_FURIKOMI_ACCNAM2', 'Account name')
+//    . "\nSwift Code:   " . zen_config('MODULE_PAYMENT_FURIKOMI_SWIFT2', 'Swift Code')
     . '</pre><p>Thanks for your order which will ship after we receive payment in the above account.',
     'MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO' => '(not configured - Missing transfer data)',
 ];
