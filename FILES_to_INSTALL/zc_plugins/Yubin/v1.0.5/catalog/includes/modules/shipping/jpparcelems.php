@@ -1,0 +1,198 @@
+<?php
+/**
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: pilou2/piloujp 2026 June 23 Modified in v3.0.0 $
+**/
+
+use Zencart\Plugins\Catalog\Yubin\_JpParcel;
+
+class jpparcelems extends ZenShipping
+{
+    /**
+     * $country_code is country ISO 2 letters code EMS is shipping
+    **/
+    public string $country_code;
+
+    /**
+     * constructor
+     *
+     * @return jpparcelems
+    **/
+    public function __construct()
+    {
+        $this->code = 'jpparcelems';
+        $this->title = MODULE_SHIPPING_JPPARCELEMS_TEXT_TITLE;
+        $this->description = MODULE_SHIPPING_JPPARCELEMS_TEXT_DESCRIPTION;
+        $this->sort_order = zen_config('MODULE_SHIPPING_JPPARCELEMS_SORT_ORDER');
+        if (null === $this->sort_order) {
+            return;
+        }
+
+        // $Pversion = zen_get_plugin_version('Yubin');
+        $this->icon = ''; // (!empty($Pversion)) ? HTTPS_SERVER . DIR_WS_CATALOG . 'zc_plugins/Yubin/' . $Pversion . '/catalog/includes/templates/default/images/icons/shipping_jpparcelems.gif' : '';
+        $this->tax_class = zen_config('MODULE_SHIPPING_JPPARCELEMS_TAX_CLASS');
+        $this->tax_basis = zen_config('MODULE_SHIPPING_JPPARCELEMS_TAX_BASIS');
+        // disable only when entire cart is free shipping
+        if (zen_get_shipping_enabled($this->code)) {
+            $this->enabled = zen_config('MODULE_SHIPPING_JPPARCELEMS_STATUS') === 'True';
+        } else {
+            $this->enabled = false;
+        }
+
+        $this->update_status();
+    }
+
+    /**
+     * Perform various checks to see whether this module should be visible
+    **/
+    public function update_status()
+    {
+        global $order, $db;
+        if ($this->enabled === false || IS_ADMIN_FLAG === true) {
+            return;
+        }
+
+        $this->checkEnabledForZone(zen_config('MODULE_SHIPPING_JPPARCELEMS_ZONE'));
+
+        if ($this->enabled == true) {
+            $countries = $db->Execute("SELECT countries_iso_code_2 FROM " . TABLE_COUNTRIES . " WHERE countries_id = '" . (int)$order->delivery['country']['id'] . "' ORDER BY countries_name LIMIT 1");
+            $this->country_code = $countries->fields['countries_iso_code_2'];
+            if ($this->country_code === 'JP') {
+                $this->enabled = false;
+            }
+        }
+
+        if ($this->enabled) {
+            // -----
+            // Give a watching observer the opportunity to disable the overall shipping module.
+            //
+            $this->notify('NOTIFY_SHIPPING_JPPARCELEMS_UPDATE_STATUS', [], $this->enabled);
+        }
+    }
+    /**
+     *  Obtain quote from shipping system/calculations
+     *
+     * @param string $method
+     * @return unknown
+    **/
+    public function quote($method = ''): array
+    {
+        global $shipping_weight, $shipping_num_boxes, $box_array, $total_boxes_weight, $max_shipping_weight, $multiboxes;
+        global $cart;
+
+        $this->quotes = ['id' => $this->code, 'module' => $this->title];
+        if (zen_not_null($this->icon)) $this->quotes['icon'] = zen_image($this->icon, $this->title);
+
+        $max_shipping_weight = zen_config('MODULE_SHIPPING_JPPARCELEMS_MAX_WEIGHT');
+        if (zen_config('MODULE_SHIPPING_JPPARCELEMS_FREE_SHIPPING') !== 'True' || (int)$cart->show_total() < (int)zen_config('MODULE_SHIPPING_JPPARCELEMS_OVER')) {
+            $rate = new _JpParcel($this->code, MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, $this->country_code);
+            $multiboxes = zen_config('MODULE_SHIPPING_JPPARCELEMS_MULTIBOX');
+            if (!empty($box_array)) {
+                $total_boxes_quote = 0;
+                for ($b=0; $b < $shipping_num_boxes; $b++) { // loop through boxes
+                    $rate->SetWeight($box_array[$b]['box_weight']);
+                    $tmpQuote = $rate->GetQuote(); // id, title, cost | error
+                    $box_array[$b]['box_quote'] = $tmpQuote['cost'];
+                    if (isset($tmpQuote['error'])) {
+                        $this->quotes['error'] = $tmpQuote['error'];
+                    } else {
+                        if ($b == 0) {
+                            $this->quotes['module'] = $this->title . ' (' . $box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
+                        } else {
+                            $this->quotes['module'] .= ', ' . $box_array[$b]['box_weight'] . TEXT_SHIPPING_WEIGHT;
+                        }
+                        if ($b == $shipping_num_boxes-1) {
+                            $this->quotes['module'] .= ')';
+                        }
+                        $total_boxes_quote += $tmpQuote['cost'];
+                    }
+                }
+                $tmpQuote['cost'] = $total_boxes_quote;
+            } else {
+                $rate->SetWeight($shipping_weight);
+                $tmpQuote = $rate->GetQuote(); // id, title, cost | error
+
+                if (isset($tmpQuote['error'])) {
+                    $this->quotes['error'] = $tmpQuote['error'];
+                } else {
+                    $this->quotes['module'] = $this->title . ' (' . $shipping_num_boxes . ' x ' . $shipping_weight . TEXT_SHIPPING_WEIGHT . ')';
+                    $tmpQuote['cost'] *= $shipping_num_boxes;
+                }
+            }
+
+            // 手数料
+            $tmpQuote['cost'] += zen_config('MODULE_SHIPPING_JPPARCELEMS_HANDLING');
+        } else {
+            $tmpQuote = ['id' => $this->code, 'title' => MODULE_SHIPPING_JPPARCELEMS_TEXT_WAY_NORMAL, 'cost' => 0];
+        }
+
+        $this->quotes['methods'][] = $tmpQuote;
+
+        if ($this->tax_class > 0) {
+            $this->quotes['tax'] = zen_get_tax_rate($this->tax_class, $country_id, $zone_id);
+        }
+        $max_shipping_weight = 0;
+        return $this->quotes;
+    }
+
+    /**
+     * Check to see whether module is installed
+     *
+     * @return unknown
+    **/
+    public function check()
+    {
+        if (!isset($this->_check)) {
+            $this->_check = (int)(zen_config('MODULE_SHIPPING_JPPARCELEMS_STATUS') !== null);
+        }
+        return $this->_check;
+    }
+    /**
+     * Install the shipping module and its configuration settings
+     *
+    **/
+    public function install(): void
+    {
+        global $db;
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable EMS shipping method', 'MODULE_SHIPPING_JPPARCELEMS_STATUS', 'True', 'Do you want to offer EMS rate shipping?', '6', '0', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable EMS shipping method for some categories', 'MODULE_SHIPPING_JPPARCELEMS_CATEGORIES', 'Disable', 'Do you want to enable or disable EMS shipping for some categories?', '6', '0', 'zen_cfg_select_option([\'Enable\', \'Disable\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable categories IDs list', 'MODULE_SHIPPING_JPPARCELEMS_CAT_LIST', '', 'Comma separated list of categoies IDs to be enabled or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) VALUES ('Enable or Disable EMS shipping method for some products', 'MODULE_SHIPPING_JPPARCELEMS_PRODUCTS', 'Disable', 'Do you want to enable or disable EMS shipping for some products?', '6', '0', 'zen_cfg_select_option([\'Enable\', \'Disable\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Enable/Disable products IDs list', 'MODULE_SHIPPING_JPPARCELEMS_PROD_LIST', '', 'Comma separated list of products IDs to be enables or disabled, depending on above option.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable multi-boxing for this Method', 'MODULE_SHIPPING_JPPARCELEMS_MULTIBOX', 'None', 'Do you want to add new parcels when limit is reached and on what basis? Options are:<br>None - No multi-boxing<br>Weight - New boxes based on weight limit', '6', '0', 'zen_cfg_select_option([\'None\', \'Weight\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Handling Fee', 'MODULE_SHIPPING_JPPARCELEMS_HANDLING', '0', 'Handling fee for this shipping method.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Max shipping weight', 'MODULE_SHIPPING_JPPARCELEMS_MAX_WEIGHT', '30', 'Maximum weight that can be ship with this method.', '6', '0', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Free shipping settings', 'MODULE_SHIPPING_JPPARCELEMS_FREE_SHIPPING', 'False', 'Would you like to activate the free shipping setting?Select False to give priority to other modules [Shipping cost]-[Free options]...', '6', '2', 'zen_cfg_select_option([\'True\', \'False\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum order for free shipping', 'MODULE_SHIPPING_JPPARCELEMS_OVER', '50000', 'If you purchase more than the set amount, shipping will be free.', '6', '3', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Tax Class', 'MODULE_SHIPPING_JPPARCELEMS_TAX_CLASS', '0', 'Use the following tax class on the shipping fee.', '6', '0', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Tax Basis', 'MODULE_SHIPPING_JPPARCELEMS_TAX_BASIS', 'Shipping', 'On what basis is Shipping Tax calculated. Options are<br>Shipping - Based on customers Shipping Address<br>Billing Based on customers Billing address<br>Store - Based on Store address if Billing/Shipping Zone equals Store zone', '6', '0', 'zen_cfg_select_option([\'Shipping\', \'Billing\', \'Store\'], ', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) values ('Shipping Zone', 'MODULE_SHIPPING_JPPARCELEMS_ZONE', '0', 'If a zone is selected, only enable this shipping method for that zone.', '6', '4', 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', now())");
+        $db->Execute("insert into " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_SHIPPING_JPPARCELEMS_SORT_ORDER', '0', 'Sort order of display.', '6', '6', now())");
+    }
+
+    /**
+     * Internal list of configuration keys used for configuration of the module
+     *
+    **/
+    public function keys(): array
+    {
+        return [
+            'MODULE_SHIPPING_JPPARCELEMS_STATUS',
+            'MODULE_SHIPPING_JPPARCELEMS_CATEGORIES',
+            'MODULE_SHIPPING_JPPARCELEMS_CAT_LIST',
+            'MODULE_SHIPPING_JPPARCELEMS_PRODUCTS',
+            'MODULE_SHIPPING_JPPARCELEMS_PROD_LIST',
+            'MODULE_SHIPPING_JPPARCELEMS_MULTIBOX',
+            'MODULE_SHIPPING_JPPARCELEMS_HANDLING',
+            'MODULE_SHIPPING_JPPARCELEMS_MAX_WEIGHT',
+            'MODULE_SHIPPING_JPPARCELEMS_FREE_SHIPPING',
+            'MODULE_SHIPPING_JPPARCELEMS_OVER',
+            'MODULE_SHIPPING_JPPARCELEMS_TAX_CLASS',
+            'MODULE_SHIPPING_JPPARCELEMS_TAX_BASIS',
+            'MODULE_SHIPPING_JPPARCELEMS_ZONE',
+            'MODULE_SHIPPING_JPPARCELEMS_SORT_ORDER',
+        ];
+    }
+}
