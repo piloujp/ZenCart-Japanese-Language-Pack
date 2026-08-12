@@ -6,6 +6,16 @@
  * @version $Id: lat9 2025 Sep 24 Modified in v2.2.0 $
 */
 $define = [
+    'BUTTON_GO' => '実行',
+
+    'ERROR_TEMPLATE_NOT_SELECTABLE' => '以前選択されたテンプレート（%1$s）は現在利用できません。送信された変更内容は破棄されました。もう一度お試しください。',
+
+    'TEXT_ALL_TEMPLATES' => 'すべてのテンプレート',
+    'TEXT_CHOOSE_SAVETO' => '保存先：',
+    'TEXT_INHERITED_VALUE' => '継承された値： %1$s',
+    'TEXT_NO_TEMPLATE_SETTINGS' => 'この構成アイテムのグループには、テンプレート固有の設定は含まれていません。',
+    'TEXT_TEMPLATE_SETTINGS' => 'この構成項目グループには、テンプレートごとに設定できる項目が含まれています。変更を適用するテンプレートを選択してください。選択した内容は、現在のログインセッション中、記憶されます。<br><br>なお、<code>All Templates</code>（すべてのテンプレート）以外のテンプレートに保存する場合、更新対象としてここに表示されるのは、そのテンプレート固有の設定のみとなります。',
+
     'TEXT_DATA_OUT_OF_RANGE' => '日付が誤っています',
     'TEXT_MIN_GENERAL_ADMIN' => '「%1$s」に入力する最小値は、%2$s以上の整数である必要があります。入力された値（%3$s）は保存されませんでした。',
     'TEXT_MAX_GENERAL_ADMIN' => '「%1$s」の最大値として入力する値は、%2$s以上の整数である必要があります。入力された値（%3$s）は保存されませんでした。',
