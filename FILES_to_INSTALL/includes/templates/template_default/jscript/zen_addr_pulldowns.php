@@ -135,7 +135,7 @@ jQuery(document).ready(function() {
     }
     $('#stateZone').on('change', function() {
         // Get the updated value
-        var selectedValue = $(this).val(); 
+        var selectedValue = $(this).val();
         if (selectedValue == 0) {
             jQuery('#zoneLabel').nextAll('span.alert').first().show();
         } else {

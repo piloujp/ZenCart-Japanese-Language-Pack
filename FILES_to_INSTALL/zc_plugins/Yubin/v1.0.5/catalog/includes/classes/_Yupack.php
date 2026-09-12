@@ -32,7 +32,7 @@ class _Yupack {
     public $Length = 0;
     public $Width  = 0;
     public $Height = 0;
-    private $Surcharge = (strtotime('2026-10-01') < strtotime('today')) ? 620 : 560;
+    private $Surcharge;
 
     // コンストラクタ
     // $id:   module id
@@ -44,6 +44,7 @@ class _Yupack {
         if($zone) {
             $this->SetOrigin($zone, $country);
         }
+        $this->Surcharge = (strtotime('2026-10-01') < strtotime('today') ? 620 : 560);
     }
     // 発送元をセットする
     // $zone: 都道府県

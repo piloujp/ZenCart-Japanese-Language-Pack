@@ -221,7 +221,7 @@ class shipping
     }
 
     // calculate box size with data from $weight_qty_sizes_array and or $sizes_array
-    public function get_box_size(): array
+    public function get_box_size(): void
     {
         global $shipping_num_boxes, $box_array, $max_size_array, $multiboxes, $box_sizes_array;
 
@@ -469,7 +469,6 @@ class shipping
             }
             $box_sizes_array[] = [$maxlength, $maxwidth, $box_height];
         }
-        return $box_sizes_array;
     }
 
     // return an array filled with id, weight, qty, length, width, height, girth and volume of each item in cart.

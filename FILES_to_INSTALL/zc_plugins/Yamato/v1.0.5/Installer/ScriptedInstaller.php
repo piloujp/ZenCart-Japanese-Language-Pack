@@ -31,7 +31,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         // クール便追加コスト(60,80,100,120)
         // https://www.kuronekoyamato.co.jp/ytc/en/send/services/cool/
     private array $default_coolyamato_headers = ['60', '80', '100', '120'];
-    
+
     private array $default_coolyamato_surcharge = [275, 330, 440, 715];
 
     private string $imple_date = '2025-10-10'; // Update this to save a new rates table in database
