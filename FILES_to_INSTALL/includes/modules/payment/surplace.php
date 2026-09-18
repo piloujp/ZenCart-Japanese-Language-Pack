@@ -56,7 +56,7 @@ class surplace
         $this->description = MODULE_PAYMENT_SURPLACE_TEXT_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_PAYMENT_SURPLACE_STATUS') === 'True');
         $this->sort_order = zen_config('MODULE_PAYMENT_SURPLACE_SORT_ORDER');
-        if (null === $this->sort_order) return false;
+        if (null === $this->sort_order) return;
         if ((int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID') > 0) {
             $this->order_status = (int)zen_config('MODULE_PAYMENT_SURPLACE_ORDER_STATUS_ID');
         }

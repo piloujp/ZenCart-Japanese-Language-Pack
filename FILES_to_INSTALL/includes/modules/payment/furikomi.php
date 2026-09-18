@@ -59,7 +59,7 @@ class furikomi
         $this->description = MODULE_PAYMENT_FURIKOMI_TEXT_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_PAYMENT_FURIKOMI_STATUS') === 'True');
         $this->sort_order = zen_config('MODULE_PAYMENT_FURIKOMI_SORT_ORDER');
-        if (null === $this->sort_order) return false;
+        if (null === $this->sort_order) return;
 
         if (IS_ADMIN_FLAG === true && (zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM') === '1234567' || empty(zen_config('MODULE_PAYMENT_FURIKOMI_ACCNUM')))) {
             $this->title .= '<span class="alert">' .  MODULE_PAYMENT_FURIKOMI_TEXT_MISSING_INFO . '</span>';

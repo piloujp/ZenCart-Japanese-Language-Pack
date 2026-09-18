@@ -55,7 +55,7 @@ class ot_paypal_fee
         $this->description = MODULE_ORDER_TOTAL_PAYPAL_DESCRIPTION;
         $this->enabled = (zen_config('MODULE_ORDER_TOTAL_PAYPAL_STATUS') === 'true');
         $this->sort_order = zen_config('MODULE_ORDER_TOTAL_PAYPAL_SORT_ORDER');
-        if (null === $this->sort_order) return false;
+        if (null === $this->sort_order) return;
 
         $this->output = array();
     }
