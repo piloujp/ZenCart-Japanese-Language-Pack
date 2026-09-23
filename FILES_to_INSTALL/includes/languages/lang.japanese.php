@@ -527,6 +527,7 @@ $define = [
     'TEXT_WORDS_FREE' => ' 無料語数 ',
     'TEXT_YOUR_IP_ADDRESS' => 'IPアドレス：',
     'TYPE_BELOW' => '以下の選択肢を入力...',
+    'WARNING_CART_ITEM_LIMIT_REACHED' => 'ショッピングカートに追加できる商品の種類数が上限に達しました。別の商品を追加する前に、いずれかの商品を削除してください。',
     'WARNING_COULD_NOT_LOCATE_LANG_FILE' => '警告：言語ファイルを確認できませんでした。　ファイル：',
     'WARNING_NO_FILE_UPLOADED' => '警告：何もアップロードされていません。',
     'WARNING_PRODUCT_QUANTITY_ADJUSTED' => '商品数量が購入可能な残り在庫数にあわせて変更されました。',

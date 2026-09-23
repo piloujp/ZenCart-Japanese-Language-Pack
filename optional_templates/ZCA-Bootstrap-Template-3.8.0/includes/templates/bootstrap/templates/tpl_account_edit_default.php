@@ -81,7 +81,7 @@ if (zen_config('ACCOUNT_FAX_NUMBER') === 'true' ) {
             <label class="inputLabel" for="fax"><?= ENTRY_FAX_NUMBER ?></label>
             <?= zen_draw_input_field('fax', $account->fields['customers_fax'], 'id="fax" placeholder="' . ENTRY_FAX_NUMBER_TEXT . '"', 'tel') ?>
             <div class="p-2"></div>
-<?php 
+<?php
 }
 
 if (zen_config('CUSTOMERS_REFERRAL_STATUS') === '2' && $customers_referral == '') {
@@ -109,7 +109,7 @@ if (zen_config('CUSTOMERS_REFERRAL_STATUS') === '2' && $customers_referral != ''
         <h4 id="details-card-header" class="card-header"><?= ENTRY_EMAIL_PREFERENCE ?></h4>
         <div id="details-card-body" class="card-body p-3">
             <div class="custom-control custom-radio custom-control-inline">
-                <?= zen_draw_radio_field('email_format', 'HTML', $email_pref_html,'id="email-format-html"') . '<label class="custom-control-label" for="email-format-html">' . ENTRY_EMAIL_HTML_DISPLAY . '</label>' ?> 
+                <?= zen_draw_radio_field('email_format', 'HTML', $email_pref_html,'id="email-format-html"') . '<label class="custom-control-label" for="email-format-html">' . ENTRY_EMAIL_HTML_DISPLAY . '</label>' ?>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <?= zen_draw_radio_field('email_format', 'TEXT', $email_pref_text, 'id="email-format-text"') . '<label  class="custom-control-label" for="email-format-text">' . ENTRY_EMAIL_TEXT_DISPLAY . '</label>' ?>

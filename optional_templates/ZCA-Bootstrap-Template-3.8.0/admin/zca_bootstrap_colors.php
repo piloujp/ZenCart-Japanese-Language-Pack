@@ -136,7 +136,7 @@ switch ($action) {
             if (($original[$cID] ?? -1) === $color) {
                 continue;
             }
-            
+
             // -----
             // Otherwise, the color is updated and the updated-count incremented.
             //

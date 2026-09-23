@@ -28,7 +28,7 @@ $define = [
     'DBIO_FORMAT_MESSAGE_IMPORT_MISSING_KEY' => 'インポートが中止されました：キー列（%s）がありません。',
      //-Used to prefix processing messages with errors
     'DBIO_TEXT_ERROR' => 'エラー： ',
-     // Messages used by the DbIoHandler class    
+     // Messages used by the DbIoHandler class
     'DBIO_MESSAGE_KEY_CONFIGURATION_ERROR' => '選択したハンドラーのキー構成にエラーがあるため、ハンドラーは使用できません。',
     'DBIO_ERROR_HANDLER_MISSING_FUNCTION' => '現在のハンドラー（%1$s）には（必須の）　"%2$s" 関数がありません。インポートは許可されません。',
     'DBIO_ERROR_HEADER_MISSING_KEYS' => '現在のインポート ファイルにはこれらの（%s）必須列がないため、インポートは許可されません。',
