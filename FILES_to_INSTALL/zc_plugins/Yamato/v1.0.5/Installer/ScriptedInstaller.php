@@ -8,7 +8,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         ];
 
     private array $default_priceranks = [ // Shipping rates from Oct. 2025
-            'N01' => [ 940,1230,1530,1850,2190,2510,3060,3720],
+            'N01' => [ 940,1230,1530,2040,2630,3020,3680,4470],
             'N02' => [1060,1350,1650,1970,2310,2630,3730,4500],
             'N03' => [1190,1480,1790,2110,2450,2770,4090,5190],
             'N04' => [1320,1610,1920,2240,2580,2900,4220,5320],
@@ -24,7 +24,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             'N14' => [2070,2360,2670,2990,3330,3650,6180,7770],
             'N15' => [2340,2620,2930,3250,3590,3910,6550,8140],
             'N16' => [2340,2950,3590,4240,4910,5560,9080,10730],
-            'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720], // small islands
+            'N17' => [ 940,1230,1530,1850,2190,2510,3060,3720],
         ];
 
         // Based charge for Cool Yamato is same as Yamato takyubin, but limited to 120 size.
