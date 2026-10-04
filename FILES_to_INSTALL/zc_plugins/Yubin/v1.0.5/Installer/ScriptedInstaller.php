@@ -126,7 +126,7 @@ class ScriptedInstaller extends ScriptedInstallBase
         private array $default_yupack_priceranks_headers = [
             'SHIPPING_RATES_DIM_ZONE' => ['60', '80', '100', '120', '140', '160', '170'],
         ];
-        
+
         private string $yupack_imple_date = '2024-08-01'; // Update this to save a new rates table in database for YuPack
         private array $default_yupack_pricerank = [ // ２０２４年８月現在の全ての送料（契約無し）　Full tarafication (no contract) as of August 2024
             'N01' => [820,1130,1450,1770,2120,2450,3000],

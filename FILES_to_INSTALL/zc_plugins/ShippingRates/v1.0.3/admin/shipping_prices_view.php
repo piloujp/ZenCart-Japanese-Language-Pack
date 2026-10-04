@@ -12,19 +12,19 @@ if (isset($_GET['tid'])) {
 if (isset($_POST['saverates'])) {
     $i = 0;
     $j = 0;
-    while (isset($_POST['rates'][$i . '-' . $j])) {
+    while (isset($_POST['rate'][$i . '-' . $j])) {
         if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack' && $_POST['method'] !== 'YupackChilled') {
             if ($j == 0) {
                 $newrates_key = $i;
             }
         } elseif ($_POST['method'] !== 'CoolTakyubin' && $_POST['method'] !== 'YupackChilled') {
-            $newrates_key = ($i <= 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
+            $newrates_key = ($i < 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
         }
-        while (isset($_POST['rates'][$i . '-' . $j])) {
+        while (isset($_POST['rate'][$i . '-' . $j])) {
             if ($_POST['method'] === 'YupackChilled' || $_POST['method'] === 'CoolTakyubin') {
-                $newrates[] = (int)$_POST['rates'][$i . '-' . $j];
+                $newrates[] = (int)$_POST['rate'][$i . '-' . $j];
             } else {
-                $newrates[$newrates_key][] = $_POST['rates'][$i . '-' . $j];
+                $newrates[$newrates_key][] = $_POST['rate'][$i . '-' . $j];
             }
             $j++;
         }
@@ -190,13 +190,14 @@ if (isset($_POST['saverates'])) {
                 $tr_header = $item['quote_header'] ? json_decode($item['quote_header'], true) : '';
                 $tr_array = json_decode($item['quote_zone'], true);
                 if ($_GET['action'] === 'edit' && isset($_GET['tid']) && $_GET['tid'] == $item['id']) {
-                    echo zen_draw_form('rates_editor_form', FILENAME_SHIPPING_PRICES_VIEW, 'tid=' . (int)$tInfo->id . '&#rate' . (int)$tInfo->id, 'post', 'class="form-horizontal"');
+                    echo zen_draw_form('rates_editor_form', FILENAME_SHIPPING_PRICES_VIEW, 'tid=' . (int)$tInfo->id . '#rate' . (int)$tInfo->id, 'post', 'class="form-horizontal"');
                 ?>
                 <td class="dataTableContent<?= strtotime($item['imple_date']) > time() ? ' future text-center"><input type="text" id="imple_date" name="imple_date" placeholder="' . zen_date_short($item['imple_date']) . '" value="' . zen_date_short($item['imple_date']) . '">' : ' text-center">' . zen_date_short($item['imple_date']) ?>
                 </td>
                 <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
                 <td class="dataTableContent text-center">
-                    <div class="ratescontainer"><table class="rateseditcenter">
+                    <div class="ratescontainer">
+                    <table class="rateseditcenter">
                     <?php
                     $rownumb = 0;
                     $columnnumb = 0;
@@ -278,9 +279,12 @@ if (isset($_POST['saverates'])) {
                     <input type="hidden" name="method" value="<?= $item['method'] ?>">
                     </div>
                     <input type="submit" value="<?= IMAGE_SAVE ?>" name="saverates" class="btn btn-primary">
-                    </form>
                     <?php
-                    echo '&nbsp;&nbsp;<a id="Canceledit" href="' . zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'tid=' . (int)$tInfo->id . '#rate' . (int)$tInfo->id) . '" class="btn btn-primary" role="button">' . IMAGE_CANCEL . '</a></td>';
+                    echo '&nbsp;&nbsp;<a id="Canceledit" href="' . zen_href_link(FILENAME_SHIPPING_PRICES_VIEW, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'tid=' . (int)$tInfo->id . '#rate' . (int)$tInfo->id) . '" class="btn btn-primary" role="button">' . IMAGE_CANCEL . '</a>';
+                    ?>
+                    </td>
+                    </form>
+                <?php
                 } else {?>
                 <td class="dataTableContent<?= (strtotime($item['imple_date']) > time() ? ' future' : '') ?> text-center"><?= zen_date_short($item['imple_date']) ?></td>
                 <td class="dataTableContent text-center"><?= zen_date_short($item['update_date'])?></td>
