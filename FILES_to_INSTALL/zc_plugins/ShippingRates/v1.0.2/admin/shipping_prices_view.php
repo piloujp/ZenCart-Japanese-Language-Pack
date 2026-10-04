@@ -12,19 +12,19 @@ if (isset($_GET['tid'])) {
 if (isset($_POST['saverates'])) {
     $i = 0;
     $j = 0;
-    while (isset($_POST['rates'][$i . '-' . $j])) {
+    while (isset($_POST['rate'][$i . '-' . $j])) {
         if ($_POST['module'] === 'Yubin' && $_POST['method'] !== 'Yupack' && $_POST['method'] !== 'YupackChilled') {
             if ($j == 0) {
                 $newrates_key = $i;
             }
         } elseif ($_POST['method'] !== 'CoolTakyubin' && $_POST['method'] !== 'YupackChilled') {
-            $newrates_key = ($i <= 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
+            $newrates_key = ($i < 9) ? 'N0' . $i + 1 : 'N' . $i + 1;
         }
-        while (isset($_POST['rates'][$i . '-' . $j])) {
+        while (isset($_POST['rate'][$i . '-' . $j])) {
             if ($_POST['method'] === 'YupackChilled' || $_POST['method'] === 'CoolTakyubin') {
-                $newrates[] = (int)$_POST['rates'][$i . '-' . $j];
+                $newrates[] = (int)$_POST['rate'][$i . '-' . $j];
             } else {
-                $newrates[$newrates_key][] = $_POST['rates'][$i . '-' . $j];
+                $newrates[$newrates_key][] = $_POST['rate'][$i . '-' . $j];
             }
             $j++;
         }
