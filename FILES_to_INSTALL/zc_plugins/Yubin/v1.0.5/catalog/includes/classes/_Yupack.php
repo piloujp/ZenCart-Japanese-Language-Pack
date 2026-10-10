@@ -212,7 +212,7 @@ class _Yupack {
     function GetQuote() {
         global $db;
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,170)
-        // https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html
+        // https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html#01
 
         $jsonarray = $db->Execute("SELECT quote_zone from " . TABLE_SHIPPING_RATES . " WHERE module = 'Yubin' AND method = 'Yupack' AND imple_date <= NOW() ORDER BY update_date DESC", 1);
         $a_pricerank = json_decode($jsonarray->fields["quote_zone"], true);

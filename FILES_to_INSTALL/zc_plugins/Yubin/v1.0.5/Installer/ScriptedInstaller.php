@@ -4,8 +4,9 @@ use Zencart\PluginSupport\ScriptedInstaller as ScriptedInstallBase;
 class ScriptedInstaller extends ScriptedInstallBase
 {
 
-        private string $imple_date = '2024-08-01'; // Update this to save a new rates tablbe in database
+        private string $imple_date = '2024-08-01'; // Update this to save a new rates table in database
 
+        // https://www.post.japanpost.jp/send/oversea/charge/index_en.html
         private array $default_jpparcelair_headers = ['SHIPPING_RATES_ZONE_WEIGHT', 'Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
         private array $default_jpparcelair = [ // 小包郵便物:国際小包、航空便 08-2024 extra charge zone 3 and 4 - International Parcels Air 7-15 days - tracking
             [1,2050,2500,3850,4200,4550],
@@ -74,6 +75,7 @@ class ScriptedInstaller extends ScriptedInstallBase
             [30,13400,14600,15900,20900,21000],
         ];
 
+        // https://www.post.japanpost.jp/send/oversea/charge/list-ems/all_en.html
         private array $default_jpparcelems_headers = ['SHIPPING_RATES_ZONE_WEIGHT', 'Z1', 'Z2', 'Z3', 'Z4', 'Z5'];
         private array $default_jpparcelems = [ // 国際スピード郵便(EMS) 08-2024 extra charge zone 3 and 4 - EMS 4-10 days - tracking
             [0.5,1450,1900,3150,3900,3600],
@@ -122,28 +124,13 @@ class ScriptedInstaller extends ScriptedInstallBase
 
 
         // 距離別の価格ランク: ランクコード => 価格(60,80,100,120,140,160,170)
-        // https://www.post.japanpost.jp/service/you_pack/charge/ichiran.html
+        // https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html#01
         private array $default_yupack_priceranks_headers = [
             'SHIPPING_RATES_DIM_ZONE' => ['60', '80', '100', '120', '140', '160', '170'],
         ];
 
-        private string $yupack_imple_date = '2024-08-01'; // Update this to save a new rates table in database for YuPack
-        private array $default_yupack_pricerank = [ // ２０２４年８月現在の全ての送料（契約無し）　Full tarafication (no contract) as of August 2024
-            'N01' => [820,1130,1450,1770,2120,2450,3000],
-            'N02' => [880,1200,1500,1830,2170,2500,3070],
-            'N03' => [990,1310,1620,1940,2300,2610,3750],
-            'N04' => [1100,1450,1810,2130,2510,2820,3970],
-            'N05' => [1150,1440,1780,2080,2440,2750,3890],
-            'N06' => [1340,1690,2030,2370,2730,3060,4200],
-            'N07' => [1410,1710,2020,2340,2680,3010,4140],
-            'N08' => [1450,1810,2160,2490,2860,3180,4350],
-            'N09' => [1590,1890,2190,2500,2850,3170,4860],
-            'N10' => [1600,1970,2320,2630,3010,3330,5040],
-            'N11' => [1740,2040,2350,2650,3010,3330,5030],
-            'N12' => [1750,2050,2380,2680,3060,3380,5090],
-        ];
-        private string $yupack_new_imple_date = '2026-10-01'; // Update this to save a new rates table in database for YuPack
-        private array $new_yupack_pricerank = [ // ２０２６年１０月現在の全ての送料（契約無し）　Full tarafication (no contract) as of October 2026
+        private string $yupack_imple_date = '2026-10-01'; // Update this to save a new rates table in database for YuPack
+        private array $default_yupack_pricerank = [ // ２０２６年１０月現在の全ての送料（契約無し）　Full tarafication (no contract) as of October 2026
             'N01' => [840,1150,1480,1810,2160,2500,3060],
             'N02' => [970,1320,1650,2010,2600,3000,3680],
             'N03' => [1090,1440,1780,2130,2760,3130,4500],
@@ -195,7 +182,6 @@ class ScriptedInstaller extends ScriptedInstallBase
                 ('Yubin', 'jpparcelsea', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_jpparcelsea) . "', '" . json_encode($this->default_jpparcelsea_headers) . "'),
                 ('Yubin', 'jpparcelems', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_jpparcelems) . "', '" . json_encode($this->default_jpparcelems_headers) . "'),
                 ('Yubin', 'Yupack', '" . $this->yupack_imple_date . "', NOW(), '" . json_encode($this->default_yupack_pricerank) . "', '" . json_encode($this->default_yupack_priceranks_headers) . "'),
-                ('Yubin', 'Yupack', '" . $this->yupack_new_imple_date . "', NOW(), '" . json_encode($this->new_yupack_pricerank) . "', '" . json_encode($this->default_yupack_priceranks_headers) . "'),
                 ('Yubin', 'YupackChilled', '" . $this->yupack_imple_date . "', NOW(), '" . json_encode($this->default_yupackchilled_surcharge) . "', '" . json_encode($this->default_yupackchilled_headers) . "')
                 ;"
         );
@@ -228,7 +214,6 @@ class ScriptedInstaller extends ScriptedInstallBase
                 ('Yubin', 'jpparcelsea', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_jpparcelsea) . "', '" . json_encode($this->default_jpparcelsea_headers) . "'),
                 ('Yubin', 'jpparcelems', '" . $this->imple_date . "', NOW(), '" . json_encode($this->default_jpparcelems) . "', '" . json_encode($this->default_jpparcelems_headers) . "'),
                 ('Yubin', 'Yupack', '" . $this->yupack_imple_date . "', NOW(), '" . json_encode($this->default_yupack_pricerank) . "', '" . json_encode($this->default_yupack_priceranks_headers) . "'),
-                ('Yubin', 'Yupack', '" . $this->yupack_new_imple_date . "', NOW(), '" . json_encode($this->new_yupack_pricerank) . "', '" . json_encode($this->default_yupack_priceranks_headers) . "'),
                 ('Yubin', 'YupackChilled', '" . $this->yupack_imple_date . "', NOW(), '" . json_encode($this->default_yupackchilled_surcharge) . "', '" . json_encode($this->default_yupackchilled_headers) . "')
             AS newshippingrates
             ON DUPLICATE KEY UPDATE
