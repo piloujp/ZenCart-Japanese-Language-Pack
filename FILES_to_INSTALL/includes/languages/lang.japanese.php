@@ -133,6 +133,7 @@ $define = [
     'ENTRY_ENQUIRY' => 'メッセージ：',
     'ENTRY_FAX_NUMBER' => 'FAX 番号：',
     'ENTRY_FAX_NUMBER_TEXT' => '',
+    'ENTRY_FIELD_TOO_LONG_ERROR' => '%1$sは%2$d文字以内で入力してください。',
     'ENTRY_FIRST_NAME' => '名：',
     'ENTRY_FIRST_NAME_ERROR' => '名は最低' . zen_config('ENTRY_FIRST_NAME_MIN_LENGTH') . '文字以上入力してください。',
     'ENTRY_FIRST_NAME_TEXT' => '*',
