@@ -281,9 +281,13 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
     //
     $field_length_checks = [
         [TABLE_CUSTOMERS, 'customers_firstname', $firstname, ENTRY_FIRST_NAME],
+        [TABLE_CUSTOMERS, 'customers_firstname_kana', $firstname_kana, ENTRY_FIRST_NAME_KANA],
         [TABLE_CUSTOMERS, 'customers_lastname', $lastname, ENTRY_LAST_NAME],
+        [TABLE_CUSTOMERS, 'customers_lastname_kana', $lastname_kana, ENTRY_LAST_NAME_KANA],
         [TABLE_ADDRESS_BOOK, 'entry_firstname', $firstname, ENTRY_FIRST_NAME],
+        [TABLE_ADDRESS_BOOK, 'entry_firstname_kana', $firstname_kana, ENTRY_FIRST_NAME_KANA],
         [TABLE_ADDRESS_BOOK, 'entry_lastname', $lastname, ENTRY_LAST_NAME],
+        [TABLE_ADDRESS_BOOK, 'entry_lastname_kana', $lastname_kana, ENTRY_LAST_NAME_KANA],
         [TABLE_CUSTOMERS, 'customers_email_address', $email_address, ENTRY_EMAIL_ADDRESS],
         [TABLE_CUSTOMERS, 'customers_nick', $nick, ENTRY_NICK],
         [TABLE_CUSTOMERS, 'customers_telephone', $telephone, ENTRY_TELEPHONE_NUMBER],
@@ -295,6 +299,8 @@ if (isset($_POST['action']) && ($_POST['action'] === 'process') && !isset($login
         [TABLE_ADDRESS_BOOK, 'entry_city', $city, ENTRY_CITY],
         [TABLE_ADDRESS_BOOK, 'entry_state', $state, ENTRY_STATE],
         [TABLE_ADDRESS_BOOK, 'entry_postcode', $postcode, ENTRY_POST_CODE],
+        [TABLE_ADDRESS_BOOK, 'entry_telephone', $telephone, ENTRY_TELEPHONE_NUMBER],
+        [TABLE_ADDRESS_BOOK, 'entry_fax', $fax, ENTRY_FAX_NUMBER],
     ];
     foreach (zen_get_field_length_violations($field_length_checks) as [$field_label, $max_length]) {
         $error = true;
