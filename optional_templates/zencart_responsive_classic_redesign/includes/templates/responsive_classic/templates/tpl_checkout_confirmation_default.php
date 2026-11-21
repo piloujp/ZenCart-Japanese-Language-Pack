@@ -40,7 +40,7 @@
 ?>
   <div class="important">
 <?php
-      for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
+      for ($i=0, $n=sizeof($confirmation['fields']); $i<$n; $i++) {
 ?>
     <div class="back"><?php echo $confirmation['fields'][$i]['title']; ?></div>
     <div ><?php echo $confirmation['fields'][$i]['field']; ?></div>
@@ -106,7 +106,7 @@
           <th scope="col" id="ccProductsHeading"><?php echo TABLE_HEADING_PRODUCTS; ?></th>
 <?php
   // If there are tax groups, display the tax columns for price breakdown
-  if (count($order->info['tax_groups']) > 1) {
+  if (sizeof($order->info['tax_groups']) > 1) {
 ?>
           <th scope="col" id="ccTaxHeading"><?php echo HEADING_TAX; ?></th>
 <?php
@@ -115,16 +115,35 @@
           <th scope="col" id="ccTotalHeading"><?php echo TABLE_HEADING_TOTAL; ?></th>
         </tr>
 <?php // now loop thru all products to display quantity and price ?>
-<?php for ($i=0, $n=count($order->products); $i<$n; $i++) { ?>
+<?php for ($i=0, $n=sizeof($order->products); $i<$n; $i++) { ?>
         <tr class="<?php echo $order->products[$i]['rowClass']; ?>">
           <td  class="cartQuantity"><?php echo $order->products[$i]['qty']; ?>&nbsp;x</td>
-          <td class="cartProductDisplay"><?php echo $order->products[$i]['name']; ?>
-          <?php  if (!empty($stock_check[$i])) echo $stock_check[$i]; ?>
+        <td class="cartProductDisplay">
+<?php
+  $product_name = $order->products[$i]['name'];
+  $injected_stock = '';
+
+  // Pull stock-wrapper out of product name
+  if (preg_match('/<div class="stock-wrapper">.*?<\/div>\s*<\/div>/is', $product_name, $match)) {
+      $injected_stock = $match[0];
+      $product_name = str_replace($injected_stock, '', $product_name);
+  }
+
+  // Product name first
+  echo trim($product_name);
+
+  // Stock check underneath
+  if (!empty($injected_stock)) {
+      echo '<br>' . $injected_stock;
+  } elseif (!empty($stock_check[$i])) {
+      echo '<br>' . $stock_check[$i];
+  }
+?>
 
 <?php // if there are attributes, loop thru them and display one per line
-    if (isset($order->products[$i]['attributes']) && count($order->products[$i]['attributes']) > 0 ) {
+    if (isset($order->products[$i]['attributes']) && sizeof($order->products[$i]['attributes']) > 0 ) {
     echo '<ul class="cartAttribsList">';
-      for ($j=0, $n2=count($order->products[$i]['attributes']); $j<$n2; $j++) {
+      for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
 ?>
       <li>
           <?php
@@ -139,7 +158,7 @@
           </td>
 
 <?php // display tax info if exists ?>
-<?php if (count($order->info['tax_groups']) > 1)  { ?>
+<?php if (sizeof($order->info['tax_groups']) > 1)  { ?>
          <td class="cartTotalDisplay_tax">
           <?php echo zen_display_tax_value($order->products[$i]['tax']); ?>%</td>
 <?php    }  // endif tax info display  ?>
