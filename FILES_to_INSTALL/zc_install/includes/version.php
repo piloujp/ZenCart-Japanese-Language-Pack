@@ -9,7 +9,7 @@
  *
  * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott Wilson 2026 Mar 19 Modified in v2.2.1 $
+ * @version $Id: Scott Wilson 2026 Apr 04 Modified in v2.2.2 $
  * @private
  */
 
